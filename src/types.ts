@@ -1,30 +1,47 @@
 export type Gender = 'male' | 'female' | 'other';
+export type UnitSystem = 'metric' | 'imperial';
 
 export interface Person {
   id: string;
   name: string;
-  height: number; // height in cm
+  heightCm: number;
   gender: Gender;
   color: string;
-  isMetric: boolean;
 }
+
+export interface AppState {
+  persons: Person[];
+  unitSystem: UnitSystem;
+  zoom: number;
+}
+
+export const uid = () => Math.random().toString(36).substring(2, 9);
+
+export const COLOR_PALETTE = [
+  '#F97316', // orange
+  '#22C55E', // green
+  '#6366F1', // indigo
+  '#8B5CF6', // violet
+  '#EC4899', // pink
+  '#3B82F6', // blue
+  '#EF4444', // red
+  '#F59E0B', // yellow
+];
 
 export const DEFAULT_PERSONS: Person[] = [
   {
-    id: '1',
+    id: uid(),
     name: 'You',
-    height: 170,
+    heightCm: 170,
     gender: 'male',
     color: '#6366F1',
-    isMetric: true,
   },
   {
-    id: '2',
+    id: uid(),
     name: 'Compare',
-    height: 160,
+    heightCm: 160,
     gender: 'female',
     color: '#EC4899',
-    isMetric: true,
   },
 ];
 
@@ -40,3 +57,4 @@ export const CONVERSION = {
   FT_TO_CM: 30.48,
   IN_TO_CM: 2.54,
 };
+

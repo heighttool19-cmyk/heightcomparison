@@ -1,11 +1,23 @@
 @import "tailwindcss";
 
 :root {
+  /* Dark mode by default (as per designer requirements) */
   --bg: #0F172A;
   --surface: #1E293B;
   --border: #334155;
   --accent: #6366F1;
   --foreground: #F8FAFC;
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --border: #E2E8F0;
+    --accent: #4F46E5;
+    --foreground: #0F172A;
+  }
 }
 
 @theme inline {
@@ -20,5 +32,7 @@ body {
   background: var(--bg);
   color: var(--foreground);
   font-family: Inter, system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 
