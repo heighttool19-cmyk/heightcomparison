@@ -21,12 +21,22 @@ export const COLOR_PALETTE = [
   '#F97316', // orange
   '#22C55E', // green
   '#6366F1', // indigo
-  '#8B5CF6', // violet
+  '#A78BFA', // violet
   '#EC4899', // pink
-  '#3B82F6', // blue
+  '#06B6D4', // cyan
+  '#F59E0B', // amber
   '#EF4444', // red
-  '#F59E0B', // yellow
 ];
+
+export const QUICK_ADD_PRESETS = [
+  { name: 'Basketball Player', heightCm: 198, gender: 'male' as const },
+  { name: 'Average Male', heightCm: 177, gender: 'male' as const },
+  { name: 'Average Female', heightCm: 163, gender: 'female' as const },
+  { name: "Shaquille O'Neal", heightCm: 216, gender: 'male' as const },
+  { name: 'Kevin Hart', heightCm: 157, gender: 'male' as const },
+  { name: 'Eiffel Tower', heightCm: 33000, gender: 'other' as const },
+];
+
 
 export const DEFAULT_PERSONS: Person[] = [
   {
