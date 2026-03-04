@@ -50,8 +50,8 @@ const HeightDashboard: React.FC = () => {
         const heights = state.persons.length > 0 ? state.persons.map(p => p.heightCm) : [0];
         const maxHeightCm = Math.max(210, ...heights);
 
-        // Account for 80px bottom offset + 100px top margin for labels
-        const fitScale = Math.max(0, (canvasHeight - 180) / maxHeightCm);
+        // Account for 80px bottom offset + 150px top margin for labels and headers
+        const fitScale = Math.max(0, (canvasHeight - 230) / maxHeightCm);
 
         const finalScale = fitScale * state.zoom;
 
@@ -63,18 +63,18 @@ const HeightDashboard: React.FC = () => {
     return (
         <div className="flex bg-background h-screen overflow-hidden font-sans selection:bg-accent/10">
             <main className={`flex-1 flex flex-col transition-all duration-500 ease-in-out ${isSidebarOpen ? 'lg:mr-[280px]' : ''}`}>
-                {/* Header Area - Centered Branding */}
-                <header className="flex flex-col items-center py-4 relative z-20 border-b border-border/50">
-                    <h1 className="text-xl font-medium tracking-tight text-foreground/60 transition-colors duration-300">
+                {/* Header Area - Responsive Scaling */}
+                <header className="flex flex-col items-center py-3 sm:py-4 relative z-20 border-b border-border/50 bg-background/50 backdrop-blur-md">
+                    <h1 className="text-lg sm:text-xl font-medium tracking-tight text-foreground/60 transition-colors duration-300">
                         HeightComparison.com
                     </h1>
 
                     <button
                         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                        className="absolute right-6 top-1/2 -translate-y-1/2 p-2.5 text-muted hover:text-accent transition-all active:scale-95 lg:hidden"
+                        className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 p-2 text-muted hover:text-accent transition-all active:scale-95 lg:hidden"
                         aria-label="Toggle Sidebar"
                     >
-                        <Menu size={20} strokeWidth={2.5} />
+                        <Menu size={18} strokeWidth={2.5} />
                     </button>
 
                     <button
@@ -85,21 +85,16 @@ const HeightDashboard: React.FC = () => {
                     </button>
                 </header>
 
-                {/* Comparison Canvas - Clean Utility Look */}
+                {/* Comparison Canvas - Responsive Padding & Gaps */}
                 <div
                     ref={containerRef}
-                    className="flex-1 relative bg-background overflow-hidden flex items-end justify-center px-4 transition-all duration-700 shadow-inner"
+                    className="flex-1 relative bg-background overflow-hidden flex items-end justify-center px-2 sm:px-4 transition-all duration-700 shadow-inner"
                 >
-                    {/* Smart Ruler - Occupies full width */}
+                    {/* Smart Ruler */}
                     <Ruler scale={scale} />
 
-                    {/* Reference Door - Only show if tall subjects are not overwhelming? 
-                        In the reference image, there is no door, but I'll keep it as a toggle or subtle background if needed.
-                        For now, I'll hide it to match the reference image's focus. */}
-                    {/* <Door scale={scale} /> */}
-
-                    {/* Person Bars - Centered Container */}
-                    <div className="flex items-end gap-16 md:gap-24 pointer-events-none relative z-10 max-w-4xl mx-auto h-full">
+                    {/* Person Bars - Responsive Gap Scaling */}
+                    <div className="flex items-end gap-2 sm:gap-16 md:gap-24 pointer-events-none relative z-10 max-w-full lg:max-w-4xl mx-auto h-full px-4">
                         <AnimatePresence mode="popLayout" initial={false}>
                             {state.persons.map((person) => (
                                 <PersonBar

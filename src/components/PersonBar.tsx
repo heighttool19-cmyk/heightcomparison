@@ -30,25 +30,26 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale }) => {
             exit={{ opacity: 0, scale: 0.9 }}
             transition={springConfig}
             className="flex flex-col items-center justify-end h-full relative group"
-            style={{ width: '150px', paddingBottom: '80px' }}
+            style={{ width: 'clamp(80px, 15vw, 150px)', paddingBottom: '80px' }}
         >
-            {/* Stacked Labels - Positioned mathematically above Head */}
+            {/* Stacked Labels - Positioned mathematically above Head with Premium Glass Effect */}
             <div
-                className="flex flex-col items-center text-[10px] font-mono font-bold text-foreground pointer-events-none"
+                className="flex flex-col items-center px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-surface/40 backdrop-blur-md border border-white/5 shadow-xl group-hover:bg-surface/60 transition-all duration-300 text-[9px] sm:text-[10px] font-mono font-bold text-foreground pointer-events-none"
                 style={{
                     position: 'absolute',
-                    bottom: `${barHeightPx + 105}px`, // 80 (baseline) + barHeightPx + 25px gap
-                    width: '200px'
+                    bottom: `${barHeightPx + 105}px`,
+                    width: 'clamp(100px, 28vw, 180px)',
+                    zIndex: 30
                 }}
             >
-                <span className="mb-0.5 text-[11px] uppercase tracking-tighter opacity-70">{person.name}</span>
-                <span className="text-foreground">cm: {person.heightCm.toFixed(1)}</span>
-                <span className="opacity-60">ft: {ftDisplay}</span>
+                <span className="mb-0.5 text-[10px] sm:text-[11px] uppercase tracking-tighter text-accent/90 truncate max-w-full leading-none">{person.name}</span>
+                <span className="text-foreground shrink-0 text-center leading-tight">cm: {person.heightCm.toFixed(1)}</span>
+                <span className="opacity-60 shrink-0 text-center leading-tight">ft: {ftDisplay}</span>
             </div>
 
-            {/* Indicator Line - Exactly at 170cm height line */}
+            {/* Indicator Line - Exactly at Height Line */}
             <div
-                className="w-24 h-[1px] bg-foreground/30"
+                className="w-16 sm:w-24 h-[1px] bg-foreground/30"
                 style={{
                     position: 'absolute',
                     bottom: `${barHeightPx + 80}px`,
@@ -74,9 +75,9 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale }) => {
                 {/* Body */}
                 <motion.div
                     layout
-                    className="rounded-t-[2.5rem] relative z-10 overflow-hidden"
+                    className="rounded-t-[1.5rem] sm:rounded-t-[2.5rem] relative z-10 overflow-hidden"
                     style={{
-                        width: `${headDiameter * 2.4}px`,
+                        width: `${headDiameter * 2.2}px`,
                         backgroundColor: person.color || '#6366F1'
                     }}
                     animate={{ height: bodyHeight }}
