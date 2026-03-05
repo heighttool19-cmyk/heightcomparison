@@ -161,12 +161,76 @@ const HeightDashboard: React.FC = () => {
         });
     };
 
+    // Handle Zoom via Mouse Wheel (with Ctrl Key) and Touch Pinch
+    useEffect(() => {
+        const container = containerRef.current;
+        if (!container) return;
+
+        let initialPinchDist = 0;
+        let startZoom = 0;
+
+        const handleWheel = (e: WheelEvent) => {
+            if (e.ctrlKey || e.metaKey) {
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? -0.1 : 0.1;
+                handleZoom(delta);
+            }
+        };
+
+        const handleTouchStart = (e: TouchEvent) => {
+            if (e.touches.length === 2) {
+                // Not calling e.preventDefault() here to let user pan if they want, 
+                // but pinch usually implies preventDefault in touchmove
+                initialPinchDist = Math.hypot(
+                    e.touches[0].pageX - e.touches[1].pageX,
+                    e.touches[0].pageY - e.touches[1].pageY
+                );
+                startZoom = state.zoom;
+            }
+        };
+
+        const handleTouchMove = (e: TouchEvent) => {
+            if (e.touches.length === 2 && initialPinchDist > 0) {
+                e.preventDefault();
+                const currentDist = Math.hypot(
+                    e.touches[0].pageX - e.touches[1].pageX,
+                    e.touches[0].pageY - e.touches[1].pageY
+                );
+                const ratio = currentDist / initialPinchDist;
+                const newZoom = startZoom * ratio;
+                setState(prev => ({
+                    ...prev,
+                    zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, newZoom))
+                }));
+            }
+        };
+
+        const handleTouchEnd = () => {
+            initialPinchDist = 0;
+        };
+
+        container.addEventListener('wheel', handleWheel, { passive: false });
+        container.addEventListener('touchstart', handleTouchStart, { passive: false });
+        container.addEventListener('touchmove', handleTouchMove, { passive: false });
+        container.addEventListener('touchend', handleTouchEnd);
+
+        return () => {
+            container.removeEventListener('wheel', handleWheel);
+            container.removeEventListener('touchstart', handleTouchStart);
+            container.removeEventListener('touchmove', handleTouchMove);
+            container.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, [state.zoom]); // We depend on state.zoom for starting pinch zoom accurately
+
     const handleAutoScale = () => {
         if (state.persons.length === 0 || canvasHeight === 0) return;
         const heights = state.persons.map(p => p.heightCm);
         const maxHeightCm = Math.max(180, ...heights);
-        // We want the max height to take up roughly 70-80% of the canvas height
-        const targetHeightPx = canvasHeight * 0.75;
+
+        // Slightly more conservative on mobile (lower targetHeightPx)
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+        const targetHeightPx = canvasHeight * (isMobile ? 0.65 : 0.75);
+
         const fitScale = Math.max(0, (canvasHeight - 200) / maxHeightCm);
 
         if (fitScale > 0) {
@@ -188,7 +252,9 @@ const HeightDashboard: React.FC = () => {
         const shortestPx = Math.min(...heights) * fitScale * currentZoom;
         if (shortestPx > 0 && shortestPx < 80) {
             // Increase zoom to make shortest exactly 80px, but clamp to max
-            return Math.min(MAX_ZOOM, 80 / (Math.min(...heights) * fitScale));
+            // Guard never decreases user-set zoom
+            const requiredZoom = 80 / (Math.min(...heights) * fitScale);
+            return Math.max(currentZoom, Math.min(MAX_ZOOM, requiredZoom));
         }
         return currentZoom;
     };
@@ -196,10 +262,9 @@ const HeightDashboard: React.FC = () => {
     const addPerson = (person: Person) => {
         setState(s => {
             const tempPersons = [...s.persons, person];
-            return { ...s, persons: tempPersons };
+            const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, s.zoom);
+            return { ...s, persons: tempPersons, zoom: guardedZoom };
         });
-        // Auto scale after adding to ensure they are visible
-        setTimeout(handleAutoScale, 50);
     };
 
     const removePerson = (id: string) => {
@@ -375,7 +440,7 @@ const HeightDashboard: React.FC = () => {
 
                 {/* 2. Left Native Menu (Desktop) / Top Menu (Mobile) */}
                 <aside className="
-                    shrink-0 w-full h-[75px] bg-background border-b border-border/50 z-40
+                    shrink-0 w-full h-[65px] p-2 bg-background border-b overflow-hidden border-border/50 z-40
                     flex items-center justify-center overflow-x-auto px-4 gap-4 custom-scrollbar
                     sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col sm:py-6 sm:px-0 sm:gap-8
                 ">
@@ -385,13 +450,13 @@ const HeightDashboard: React.FC = () => {
                     <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(false); }} />
                 </aside>
                 {/* Center Column: Canvas */}
-                <main className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500">
+                <main className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500 pb-10">
                     {/* Top Canvas Toolbar */}
-                    <div className="h-[70px] shrink-0 flex items-center justify-between px-4 sm:px-8 z-30 gap-4">
+                    <div className="order-2 sm:order-first min-h-[60px] sm:h-[70px] shrink-0 flex flex-nowrap overflow-x-auto sm:overflow-visible items-center justify-start sm:justify-between px-4 sm:px-8 z-30 gap-3 sm:gap-4 no-scrollbar mb-8 sm:mb-0">
                         {/* Zoom Controls Container */}
-                        <div className="flex items-center gap-4 bg-surface/50 border border-border rounded-full py-1.5 px-4 backdrop-blur-sm">
-                            <div className="flex items-center gap-1">
-                                <button onClick={() => handleZoom(-0.1)} className="p-1.5 text-muted hover:text-foreground rounded-full hover:bg-white/5 transition-colors"><ZoomOut size={16} /></button>
+                        <div className="flex shrink-0 items-center gap-2 sm:gap-4 bg-surface/50 border border-border rounded-full py-1.5 px-3 sm:px-4 backdrop-blur-sm">
+                            <div className="flex items-center gap-0.5 sm:gap-1">
+                                <button onClick={() => handleZoom(-0.1)} className="p-1 sm:p-1.5 text-muted hover:text-foreground rounded-full hover:bg-white/5 transition-colors"><ZoomOut size={16} /></button>
 
                                 {/* Zoom Slider */}
                                 <input
@@ -401,14 +466,14 @@ const HeightDashboard: React.FC = () => {
                                     step={0.1}
                                     value={state.zoom}
                                     onChange={(e) => setState(s => ({ ...s, zoom: parseFloat(e.target.value) }))}
-                                    className="w-20 sm:w-32 h-1 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
+                                    className="w-16 sm:w-32 h-1 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
                                 />
 
-                                <button onClick={() => handleZoom(0.1)} className="p-1.5 text-muted hover:text-foreground rounded-full hover:bg-white/5 transition-colors"><ZoomIn size={16} /></button>
+                                <button onClick={() => handleZoom(0.1)} className="p-1 sm:p-1.5 text-muted hover:text-foreground rounded-full hover:bg-white/5 transition-colors"><ZoomIn size={16} /></button>
                             </div>
 
-                            {/* Zoom Input Box */}
-                            <div className="flex items-center gap-1 border-l border-border pl-4">
+                            {/* Zoom Input Box / Badge */}
+                            <div className={`flex items-center gap-0.5 sm:gap-1 border-l border-border pl-2 sm:pl-4 transition-all duration-300 ${state.zoom > 1 ? 'bg-accent/10 sm:bg-accent/5 rounded-lg px-2 text-accent' : ''}`}>
                                 <input
                                     type="number"
                                     value={Math.round(state.zoom * 100)}
@@ -418,36 +483,36 @@ const HeightDashboard: React.FC = () => {
                                             setState(s => ({ ...s, zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, val / 100)) }));
                                         }
                                     }}
-                                    className="w-12 bg-transparent text-xs font-mono font-bold text-center outline-none focus:text-accent transition-colors"
+                                    className={`w-8 sm:w-12 bg-transparent text-[11px] sm:text-xs font-mono font-black text-center outline-none transition-colors ${state.zoom > 1 ? 'text-accent' : 'text-foreground'}`}
                                 />
-                                <span className="text-[10px] font-bold text-muted">%</span>
+                                <span className={`text-[9px] sm:text-[10px] font-bold ${state.zoom > 1 ? 'text-accent' : 'text-muted'}`}>%</span>
                             </div>
 
                             {/* Auto Scale Button */}
                             <button
                                 onClick={handleAutoScale}
-                                className="flex items-center gap-1.5 border-l border-border pl-4 text-xs font-bold text-muted hover:text-accent transition-all group"
+                                className="flex items-center gap-1 sm:gap-1.5 border-l border-border pl-2 sm:pl-4 text-[11px] sm:text-xs font-bold text-muted hover:text-accent transition-all group"
                                 title="Auto Scale View"
                             >
-                                <Box size={14} className="group-hover:scale-110 transition-transform" />
-                                <span className="hidden sm:inline">Auto</span>
+                                <Box size={14} className="group-hover:scale-110 transition-transform shrink-0" />
+                                <span className="hidden xs:inline">Auto</span>
                             </button>
                         </div>
 
                         {/* UNIT TOGGLE */}
                         <button
                             onClick={toggleUnitSystem}
-                            className="flex items-center gap-2 bg-surface/50 border border-border rounded-full py-1.5 px-4 text-xs font-semibold text-muted hover:text-foreground backdrop-blur-sm transition-colors"
+                            className="shrink-0 flex items-center gap-2 bg-surface/50 border border-border rounded-full py-1.5 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold text-muted hover:text-foreground backdrop-blur-sm transition-colors whitespace-nowrap"
                         >
                             <span className="font-mono">↔</span> {unitSystem === 'metric' ? 'cm → ft/in' : 'ft/in → cm'}
                         </button>
 
                         {/* Actions */}
-                        <div className="hidden sm:flex items-center gap-2">
+                        <div className="flex items-center gap-2 shrink-0 pr-4 sm:pr-0">
                             <button onClick={handleShare} className="flex items-center gap-2 text-xs font-semibold text-muted hover:text-foreground px-3 py-2 transition-colors">
                                 <Share2 size={16} /> Share
                             </button>
-                            <button onClick={handleDownloadPNG} disabled={isCapturing} className="flex items-center gap-2 bg-[#3B82F6] hover:bg-blue-500 text-xs font-bold text-white px-4 py-2 rounded-xl transition-colors shadow-lg disabled:opacity-50">
+                            <button onClick={handleDownloadPNG} disabled={isCapturing} className="flex items-center gap-2 bg-[#3B82F6] hover:bg-blue-500 text-[11px] sm:text-xs font-bold text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl transition-colors shadow-lg disabled:opacity-50 whitespace-nowrap">
                                 <Download size={16} strokeWidth={2.5} /> Download PNG
                             </button>
                         </div>
@@ -456,7 +521,7 @@ const HeightDashboard: React.FC = () => {
                     {/* CANVAS AREA */}
                     <div
                         ref={containerRef}
-                        className="canvas-export-area flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar"
+                        className="order-1 canvas-export-area flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar"
                     >
                         {/* Unified Absolute Coordinate Grid Container */}
                         <div className="relative min-w-full w-max h-full pl-24 md:pl-40 pr-24 md:pr-48 flex items-end">

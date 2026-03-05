@@ -160,20 +160,24 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
             </div>
 
             {/* Inline Edit & Delete (Below Ruler Zero Line) */}
-            <div className="absolute inset-x-0 bottom-0 h-[60px] flex items-center justify-center pointer-events-auto hide-on-export">
-                <div className="flex items-center gap-1 bg-surface/80 rounded border border-border px-2 py-1 focus-within:border-accent/40 backdrop-blur-sm shadow-sm transition-all group-hover:border-accent/40 opacity-50 md:opacity-100 group-hover:opacity-100 hover:opacity-100">
+            <div className="absolute inset-x-0 bottom-0 h-[65px] flex items-center justify-center pointer-events-auto hide-on-export">
+                <div className="flex items-center gap-1.5 bg-surface/90 border border-border/60 rounded-lg px-2.5 py-1.5 focus-within:border-accent/60 backdrop-blur-md shadow-2xl transition-all group-hover:border-accent/50 opacity-100 group-hover:opacity-100 ring-1 ring-white/5">
                     <input
                         type="number"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onBlur={handleBlur}
                         onKeyDown={handleKeyDown}
-                        className="w-10 bg-transparent text-[10px] font-mono text-center text-foreground focus:outline-none"
+                        className="w-12 bg-transparent text-[13px] font-mono font-black text-center text-foreground focus:outline-none"
                     />
-                    <span className="text-[10px] font-mono text-muted">cm</span>
+                    <span className="text-[10px] font-mono font-black text-muted uppercase tracking-tighter">cm</span>
                     {onRemove && (
-                        <button onClick={(e) => { e.stopPropagation(); onRemove(person.id); }} className="ml-1 p-0.5 text-muted hover:text-red-500 hover:bg-red-500/10 rounded transition-colors" title="Delete">
-                            <Trash2 size={12} strokeWidth={2.5} />
+                        <button
+                            onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}
+                            className="ml-1 p-1 text-muted hover:text-red-500 hover:bg-red-500/10 rounded-md transition-all active:scale-95"
+                            title="Remove"
+                        >
+                            <Trash2 size={14} strokeWidth={2.5} />
                         </button>
                     )}
                 </div>

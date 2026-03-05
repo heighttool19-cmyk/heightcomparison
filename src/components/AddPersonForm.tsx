@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
 import { Gender, UnitSystem, COLOR_PALETTE, uid, Person } from '../types';
 
 interface AddPersonFormProps {
