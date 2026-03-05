@@ -68,11 +68,11 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
                             }}
                         >
                             {unitSystem === 'metric' ? (
-                                <span className="text-[10px] sm:text-[11px] font-mono font-black text-foreground/90 drop-shadow-md">
-                                    {tick} cm
+                                <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${tick % 80 === 0 || isZero ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                    {tick} {(tick % 80 === 0 || isZero) && 'cm'}
                                 </span>
                             ) : (
-                                <span className="text-[10px] sm:text-[11px] font-mono font-black text-foreground/90 drop-shadow-md">
+                                <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${tick % 24 === 0 || isZero ? 'text-foreground/90' : 'text-foreground/30'}`}>
                                     {ftDisplay}
                                 </span>
                             )}
@@ -81,8 +81,8 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
                         {/* Grid Line - ensure it stretches full width */}
                         <div
                             className={`flex-1 transition-colors duration-500 ${isZero
-                                ? 'bg-[#EF4444] h-[1px] opacity-100'
-                                : 'bg-foreground/10 group-hover/tick:bg-foreground/20 h-[1px]'
+                                ? 'bg-white/20 h-[1.5px] opacity-100'
+                                : 'bg-foreground/5 group-hover/tick:bg-foreground/10 h-[1px]'
                                 }
                                 mr-4
                                 `}

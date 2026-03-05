@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Person, uid, HEIGHT_LIMITS } from '../types';
+import { Person, uid, HEIGHT_LIMITS, UnitSystem } from '../types';
 import { UploadCloud } from 'lucide-react';
 
 interface AddImageFormProps {
@@ -11,7 +11,10 @@ interface AddImageFormProps {
 
 const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
     const [name, setName] = useState('');
-    const [height, setHeight] = useState('170');
+    const [unit, setUnit] = useState<UnitSystem>('metric');
+    const [heightCm, setHeightCm] = useState<string>('170');
+    const [heightFt, setHeightFt] = useState<string>('5');
+    const [heightIn, setHeightIn] = useState<string>('7');
     const [error, setError] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -24,10 +27,21 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
             return;
         }
 
-        const h = parseFloat(height);
-        if (isNaN(h) || h < HEIGHT_LIMITS.MIN_CM || h > HEIGHT_LIMITS.MAX_CM) {
-            setError(`Height must be between ${HEIGHT_LIMITS.MIN_CM} and ${HEIGHT_LIMITS.MAX_CM} cm.`);
-            return;
+        let finalHeightCm = 0;
+        if (unit === 'metric') {
+            finalHeightCm = parseFloat(heightCm) || 0;
+            if (isNaN(finalHeightCm) || finalHeightCm < HEIGHT_LIMITS.MIN_CM || finalHeightCm > HEIGHT_LIMITS.MAX_CM) {
+                setError(`Height must be between ${HEIGHT_LIMITS.MIN_CM} and ${HEIGHT_LIMITS.MAX_CM} cm.`);
+                return;
+            }
+        } else {
+            const ft = parseFloat(heightFt) || 0;
+            const inch = parseFloat(heightIn) || 0;
+            finalHeightCm = (ft * 30.48) + (inch * 2.54);
+            if (finalHeightCm < HEIGHT_LIMITS.MIN_CM || finalHeightCm > HEIGHT_LIMITS.MAX_CM) {
+                setError(`Height outside allowed range.`);
+                return;
+            }
         }
 
         const reader = new FileReader();
@@ -37,13 +51,14 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                 onAdd({
                     id: uid(),
                     name: name.trim() || 'Custom Image',
-                    heightCm: h,
+                    heightCm: finalHeightCm,
                     gender: 'other',
                     color: '#3B82F6',
                     imgUrl: result
                 });
                 // Reset slightly
                 setName('');
+                setHeightCm('170');
                 setError('');
                 if (inputRef.current) inputRef.current.value = '';
             }
@@ -70,16 +85,67 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                     className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
                 />
 
-                <div className="flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent transition-colors">
-                    <input
-                        type="number"
-                        value={height}
-                        onChange={(e) => setHeight(e.target.value)}
-                        placeholder="Height"
-                        className="flex-1 bg-transparent px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none"
-                    />
-                    <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center justify-center">
-                        cm
+                {/* Unit & Height Container */}
+                <div className="space-y-1.5 pt-1">
+                    <div className="flex justify-between items-center ml-0.5 mb-1.5">
+                        <label className="text-[10px] uppercase font-black text-foreground/60">Dimension</label>
+                        <div className="flex gap-1.5">
+                            {(['metric', 'imperial'] as UnitSystem[]).map((u) => (
+                                <button
+                                    key={u}
+                                    type="button"
+                                    onClick={() => setUnit(u)}
+                                    className={`text-[9px] font-bold uppercase tracking-tight px-2 py-1 rounded border transition-all ${unit === u ? 'border-accent/40 text-accent bg-accent/5' : 'border-border text-muted/40'
+                                        }`}
+                                >
+                                    {u === 'metric' ? 'Metric' : 'Imp'}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="flex gap-2">
+                        {unit === 'metric' ? (
+                            <div className="w-full flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                <input
+                                    type="number"
+                                    placeholder="Height"
+                                    value={heightCm}
+                                    onChange={(e) => setHeightCm(e.target.value)}
+                                    className="w-full bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
+                                />
+                                <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-[10px] font-black border-l border-border flex items-center justify-center">
+                                    CM
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="flex gap-2 w-full">
+                                <div className="flex-1 flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                    <input
+                                        type="number"
+                                        placeholder="Ft"
+                                        value={heightFt}
+                                        onChange={(e) => setHeightFt(e.target.value)}
+                                        className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
+                                    />
+                                    <div className="px-2 py-3 bg-surface text-foreground/60 font-mono text-[10px] font-black border-l border-border flex items-center justify-center shrink-0">
+                                        FT
+                                    </div>
+                                </div>
+                                <div className="flex-1 flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                    <input
+                                        type="number"
+                                        placeholder="In"
+                                        value={heightIn}
+                                        onChange={(e) => setHeightIn(e.target.value)}
+                                        className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
+                                    />
+                                    <div className="px-2 py-3 bg-surface text-foreground/60 font-mono text-[10px] font-black border-l border-border flex items-center justify-center shrink-0">
+                                        IN
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
 

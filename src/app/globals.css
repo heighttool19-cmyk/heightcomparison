@@ -2,31 +2,47 @@
 @import "tailwindcss";
 
 :root, [data-theme="dark"] {
-  /* Reference Design Colors (Dark Mode Only) */
-  --bg: #0F172A; /* Very dark background */
-  --surface: #1E293B; /* Slightly lighter for sidebars/cards */
-  --canvas: #0B0F19; /* Darkest for center canvas */
-  --border: #334155; /* Subtle borders */
-  --accent: #6366F1; /* Primary blue button color from reference */
-  --accent-secondary: #4F46E5;
-  --foreground: #F8FAFC;
-  --muted: #94A3B8;
-  --ruler-text: #64748B;
+  /* Refined Dark Theme Palette */
+  --bg: #101011;
+  --surface: #121214;
+  --canvas: #121214;
+  --border: #262629;
+  --accent: #1e974bff;
+  --accent-secondary: #2563EB;
+  --foreground: #FAFAFA;
+  --muted: #71717A;
+  --ruler-text: #52525B;
   --baseline: #EF4444;
+
+  --toolbar-bg: rgba(22, 22, 24, 0.8);
+  --toolbar-border: rgba(255, 255, 255, 0.05);
+  --item-hover: rgba(255, 255, 255, 0.05);
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
 }
 
 [data-theme="light"] {
-  /* Light Mode Colors */
-  --bg: #F1F5F9; /* Very light slate background */
-  --surface: #FFFFFF; /* White for sidebars/cards */
-  --canvas: #E2E8F0; /* Slightly darker than bg for contrast */
-  --border: #CBD5E1; /* Subtle borders */
-  --accent: #23991bff;  
-  --accent-secondary: #4338CA;
-  --foreground: #0F172A; /* Dark text */
-  --muted: #64748B;
-  --ruler-text: #475569;
+  /* Refined Light Theme Palette */
+  --bg: #FAFAFA;
+  --surface: #FFFFFF;
+  --canvas: #F4F4F5;
+  --border: #E4E4E7;
+  --accent: #2563EB;
+  --accent-secondary: #1D4ED8;
+  --foreground: #09090B;
+  --muted: #71717A;
+  --ruler-text: #A1A1AA;
   --baseline: #EF4444;
+
+  --toolbar-bg: rgba(255, 255, 255, 0.8);
+  --toolbar-border: rgba(0, 0, 0, 0.05);
+  --item-hover: rgba(0, 0, 0, 0.05);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 @theme inline {
@@ -38,6 +54,10 @@
   --color-accent-secondary: var(--accent-secondary);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-toolbar-bg: var(--toolbar-bg);
+  --color-toolbar-border: var(--toolbar-border);
+  --color-item-hover: var(--item-hover);
+  --shadow-premium: var(--shadow);
   
   --font-sans: var(--font-inter), sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -76,6 +96,20 @@ body {
   background: color-mix(in srgb, var(--surface) 80%, transparent);
   backdrop-filter: blur(12px);
   border: 1px solid var(--border);
+}
+
+.chart-grid {
+    background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+:root, [data-theme="dark"] {
+    --grid-color: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="light"] {
+    --grid-color: rgba(0, 0, 0, 0.03);
 }
 
 

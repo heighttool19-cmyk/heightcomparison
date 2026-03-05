@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, ZoomOut, Share2, Download, UserPlus, Star, Box, ImageIcon, Check, Plus, X, Sun, Moon, Menu } from 'lucide-react';
+import { ZoomIn, ZoomOut, Share2, Download, UserPlus, Star, Box, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link, ArrowLeftRight, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
 import { Person, AppState, DEFAULT_PERSONS, uid } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
@@ -53,6 +53,7 @@ const HeightDashboard: React.FC = () => {
     const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const [isCapturing, setIsCapturing] = useState(false);
+    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Apply the theme to the <html> document root
@@ -286,6 +287,7 @@ const HeightDashboard: React.FC = () => {
     const handleEditRequest = (id: string) => {
         setEditingPersonId(id);
         setActivePanel('EDIT_PERSON');
+        setIsSidebarCollapsed(false);
         if (window.innerWidth < 768) {
             setIsMobileDrawerOpen(true);
         }
@@ -440,88 +442,112 @@ const HeightDashboard: React.FC = () => {
 
                 {/* 2. Left Native Menu (Desktop) / Top Menu (Mobile) */}
                 <aside className="
-                    shrink-0 w-full h-[65px] p-2 bg-background border-b overflow-hidden border-border/50 z-40
-                    flex items-center justify-center overflow-x-auto px-4 gap-4 custom-scrollbar
-                    sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col sm:py-6 sm:px-0 sm:gap-8
+                    shrink-0 w-full h-[80px] bg-background border-b overflow-hidden border-border/50 z-40
+                    flex overflow-x-auto overflow-y-hidden gap-0 custom-scrollbar
+                    sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col sm:py-0 sm:px-0 sm:gap-0
                 ">
-                    <LeftNavItem icon={<UserPlus size={22} />} label="ADD PERSON" active={activePanel === 'ADD_PERSON'} onClick={() => { setActivePanel('ADD_PERSON'); setIsMobileDrawerOpen(false); }} />
-                    <LeftNavItem icon={<Star size={22} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(false); }} />
-                    <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(false); }} />
-                    <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(false); }} />
+                    <LeftNavItem icon={<UserPlus size={22} />} label="ADD PERSON" active={activePanel === 'ADD_PERSON'} onClick={() => { setActivePanel('ADD_PERSON'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                    <LeftNavItem icon={<Star size={22} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                    <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                    <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                 </aside>
                 {/* Center Column: Canvas */}
-                <main className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500 pb-10">
+                <main className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500 pb-14">
                     {/* Top Canvas Toolbar */}
-                    <div className="order-2 sm:order-first min-h-[60px] sm:h-[70px] shrink-0 flex flex-nowrap overflow-x-auto sm:overflow-visible items-center justify-start sm:justify-between px-4 sm:px-8 z-30 gap-3 sm:gap-4 no-scrollbar mb-8 sm:mb-0">
-                        {/* Zoom Controls Container */}
-                        <div className="flex shrink-0 items-center gap-2 sm:gap-4 bg-surface/50 border border-border rounded-full py-1.5 px-3 sm:px-4 backdrop-blur-sm">
-                            <div className="flex items-center gap-0.5 sm:gap-1">
-                                <button onClick={() => handleZoom(-0.1)} className="p-1 sm:p-1.5 text-muted hover:text-foreground rounded-full hover:bg-white/5 transition-colors"><ZoomOut size={16} /></button>
+                    <div className="order-2 sm:order-first px-4 sm:px-8 py-4 z-30">
+                        <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-3 px-4 sm:px-6 backdrop-blur-md shadow-2xl overflow-x-auto custom-scrollbar flex-nowrap">
 
-                                {/* Zoom Slider */}
-                                <input
-                                    type="range"
-                                    min={MIN_ZOOM}
-                                    max={MAX_ZOOM}
-                                    step={0.1}
-                                    value={state.zoom}
-                                    onChange={(e) => setState(s => ({ ...s, zoom: parseFloat(e.target.value) }))}
-                                    className="w-16 sm:w-32 h-1 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
-                                />
+                            {/* Left Side: Units & Zoom Group */}
+                            <div className="flex items-center gap-4 sm:gap-6">
 
-                                <button onClick={() => handleZoom(0.1)} className="p-1 sm:p-1.5 text-muted hover:text-foreground rounded-full hover:bg-white/5 transition-colors"><ZoomIn size={16} /></button>
+                                {/* 1. UNIT TOGGLE (Now First) */}
+                                <button
+                                    onClick={toggleUnitSystem}
+                                    className="shrink-0 flex items-center gap-2 group hover:bg-item-hover px-3 py-2 rounded-xl transition-all"
+                                >
+                                    <ArrowLeftRight size={18} className="text-muted/50 group-hover:text-accent" />
+                                    <span className="text-xs font-semibold text-muted group-hover:text-foreground whitespace-nowrap">
+                                        {unitSystem === 'metric' ? 'cm → ft/in' : 'ft/in → cm'}
+                                    </span>
+                                </button>
+
+                                {/* Divider */}
+                                <div className="hidden sm:block w-px h-6 bg-white/10 shrink-0" />
+
+                                {/* 2. Zoom Controls Container */}
+                                <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+                                    <button onClick={() => handleZoom(0.1)} className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors" title="Zoom In">
+                                        <ZoomIn size={18} strokeWidth={2.5} />
+                                    </button>
+
+                                    {/* Zoom Input Box */}
+                                    <div className="bg-item-hover rounded-lg px-3 py-2 flex items-center gap-0.5 border border-toolbar-border">
+                                        <input
+                                            type="number"
+                                            value={Math.round(state.zoom * 100)}
+                                            onChange={(e) => {
+                                                const val = parseInt(e.target.value);
+                                                if (!isNaN(val)) {
+                                                    setState(s => ({ ...s, zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, val / 100)) }));
+                                                }
+                                            }}
+                                            className="w-8 sm:w-10 bg-transparent text-[11px] sm:text-[13px] font-mono font-bold text-center outline-none text-muted transition-colors focus:text-foreground"
+                                        />
+                                        <span className="text-[10px] font-bold text-muted/30">%</span>
+                                    </div>
+
+                                    <button onClick={() => handleZoom(-0.1)} className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors" title="Zoom Out">
+                                        <ZoomOut size={18} strokeWidth={2.5} />
+                                    </button>
+
+                                    {/* Sub-actions: Auto & Slider (Preserved) */}
+                                    <div className="flex items-center gap-1 ml-2 border-l border-white/10 pl-3">
+                                        <button
+                                            onClick={handleAutoScale}
+                                            className="p-2 text-muted hover:text-primary transition-all rounded-lg hover:bg-white/5"
+                                            title="Auto Scale"
+                                        >
+                                            <Maximize2 size={16} />
+                                        </button>
+
+                                        <div className="hidden sm:block px-2">
+                                            <input
+                                                type="range"
+                                                min={MIN_ZOOM}
+                                                max={MAX_ZOOM}
+                                                step={0.1}
+                                                value={state.zoom}
+                                                onChange={(e) => setState(s => ({ ...s, zoom: parseFloat(e.target.value) }))}
+                                                className="w-24 h-1 bg-border/30 rounded-lg appearance-none cursor-pointer accent-accent"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            {/* Zoom Input Box / Badge */}
-                            <div className={`flex items-center gap-0.5 sm:gap-1 border-l border-border pl-2 sm:pl-4 transition-all duration-300 ${state.zoom > 1 ? 'bg-accent/10 sm:bg-accent/5 rounded-lg px-2 text-accent' : ''}`}>
-                                <input
-                                    type="number"
-                                    value={Math.round(state.zoom * 100)}
-                                    onChange={(e) => {
-                                        const val = parseInt(e.target.value);
-                                        if (!isNaN(val)) {
-                                            setState(s => ({ ...s, zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, val / 100)) }));
-                                        }
-                                    }}
-                                    className={`w-8 sm:w-12 bg-transparent text-[11px] sm:text-xs font-mono font-black text-center outline-none transition-colors ${state.zoom > 1 ? 'text-accent' : 'text-foreground'}`}
-                                />
-                                <span className={`text-[9px] sm:text-[10px] font-bold ${state.zoom > 1 ? 'text-accent' : 'text-muted'}`}>%</span>
+                            {/* Right Side: Actions Group */}
+                            <div className="flex items-center gap-2 sm:gap-4">
+                                <button onClick={handleShare} className="flex items-center gap-2 text-sm font-medium text-muted hover:text-foreground px-3 py-2 transition-all group">
+                                    <Link size={18} className="text-muted/50 group-hover:text-accent transition-colors" />
+                                    <span className="hidden sm:inline">Share</span>
+                                </button>
+
+                                <button
+                                    onClick={handleDownloadPNG}
+                                    disabled={isCapturing}
+                                    className="flex items-center gap-2 bg-accent/10 text-accent border border-accent/20 px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl text-sm font-bold hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 whitespace-nowrap"
+                                >
+                                    <Download size={18} strokeWidth={2.5} />
+                                    <span className="hidden sm:inline">Download PNG</span>
+                                </button>
                             </div>
-
-                            {/* Auto Scale Button */}
-                            <button
-                                onClick={handleAutoScale}
-                                className="flex items-center gap-1 sm:gap-1.5 border-l border-border pl-2 sm:pl-4 text-[11px] sm:text-xs font-bold text-muted hover:text-accent transition-all group"
-                                title="Auto Scale View"
-                            >
-                                <Box size={14} className="group-hover:scale-110 transition-transform shrink-0" />
-                                <span className="hidden xs:inline">Auto</span>
-                            </button>
-                        </div>
-
-                        {/* UNIT TOGGLE */}
-                        <button
-                            onClick={toggleUnitSystem}
-                            className="shrink-0 flex items-center gap-2 bg-surface/50 border border-border rounded-full py-1.5 px-3 sm:px-4 text-[11px] sm:text-xs font-semibold text-muted hover:text-foreground backdrop-blur-sm transition-colors whitespace-nowrap"
-                        >
-                            <span className="font-mono">↔</span> {unitSystem === 'metric' ? 'cm → ft/in' : 'ft/in → cm'}
-                        </button>
-
-                        {/* Actions */}
-                        <div className="flex items-center gap-2 shrink-0 pr-4 sm:pr-0">
-                            <button onClick={handleShare} className="flex items-center gap-2 text-xs font-semibold text-muted hover:text-foreground px-3 py-2 transition-colors">
-                                <Share2 size={16} /> Share
-                            </button>
-                            <button onClick={handleDownloadPNG} disabled={isCapturing} className="flex items-center gap-2 bg-[#3B82F6] hover:bg-blue-500 text-[11px] sm:text-xs font-bold text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl transition-colors shadow-lg disabled:opacity-50 whitespace-nowrap">
-                                <Download size={16} strokeWidth={2.5} /> Download PNG
-                            </button>
                         </div>
                     </div>
 
                     {/* CANVAS AREA */}
                     <div
                         ref={containerRef}
-                        className="order-1 canvas-export-area flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar"
+                        className="order-1 canvas-export-area flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar chart-grid m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl"
                     >
                         {/* Unified Absolute Coordinate Grid Container */}
                         <div className="relative min-w-full w-max h-full pl-24 md:pl-40 pr-24 md:pr-48 flex items-end">
@@ -545,11 +571,12 @@ const HeightDashboard: React.FC = () => {
                                         <button
                                             onClick={() => {
                                                 setActivePanel('ADD_PERSON');
+                                                setIsSidebarCollapsed(false);
                                                 if (window.innerWidth < 768) {
                                                     setIsMobileDrawerOpen(true);
                                                 }
                                             }}
-                                            className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-xl flex items-center justify-center text-muted hover:text-white hover:border-accent transition-colors"
+                                            className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
                                         >
                                             <UserPlus size={24} />
                                         </button>
@@ -572,18 +599,51 @@ const HeightDashboard: React.FC = () => {
                 </main>
 
                 {/* 3. Sidebar - Hidden on tiny Mobile, Visible on sm+ */}
-                <div className="hidden sm:flex flex-col w-[280px] shrink-0 border-l border-border bg-surface overflow-y-auto custom-scrollbar relative z-30 transition-colors duration-500">
-                    <Sidebar
-                        persons={state.persons}
-                        onAdd={addPerson}
-                        onRemove={removePerson}
-                        scale={scale}
-                        zoom={state.zoom}
-                        activePanel={activePanel}
-                        editingPerson={state.persons.find(p => p.id === editingPersonId)}
-                        onEditSave={handleEditSave}
-                        onEditCancel={handleEditCancel}
-                    />
+                <div className="hidden sm:flex shrink-0 relative z-30">
+                    <motion.div
+                        initial={false}
+                        animate={{
+                            width: isSidebarCollapsed ? 0 : 280,
+                            opacity: isSidebarCollapsed ? 0 : 1
+                        }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                        className="flex flex-col border-l border-border bg-surface overflow-hidden transition-colors duration-500"
+                    >
+                        <div className="flex-1 w-[280px] overflow-y-auto custom-scrollbar">
+                            <Sidebar
+                                persons={state.persons}
+                                onAdd={addPerson}
+                                onRemove={removePerson}
+                                scale={scale}
+                                zoom={state.zoom}
+                                activePanel={activePanel}
+                                editingPerson={state.persons.find(p => p.id === editingPersonId)}
+                                onEditSave={handleEditSave}
+                                onEditCancel={handleEditCancel}
+                            />
+                        </div>
+                    </motion.div>
+
+                    {/* Toggle Button Anchor (Always visible at the edge of the sidebar/canvas) */}
+                    <button
+                        onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+                        className={`
+                            absolute top-1/2 -translate-y-1/2 w-8 h-12 
+                            bg-surface border border-border rounded-l-xl
+                            flex items-center justify-center text-muted 
+                            hover:text-white hover:bg-accent hover:border-accent
+                            transition-all duration-300 shadow-2xl z-50 group
+                            right-full translate-x-[1px]
+                        `}
+                        style={{ borderRight: 'none' }}
+                        title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+                    >
+                        {isSidebarCollapsed ? (
+                            <ChevronLeft size={18} className="transition-transform group-hover:scale-125 translate-x-0.5" />
+                        ) : (
+                            <ChevronRight size={18} className="transition-transform group-hover:scale-125 -translate-x-0.5" />
+                        )}
+                    </button>
                 </div>
             </div>
 
@@ -667,12 +727,18 @@ const LeftNavItem = ({ icon, label, active = false, onClick }: { icon: React.Rea
     <button
         onClick={onClick}
         className={`
-            flex flex-col items-center justify-center gap-1.5 py-2.5 rounded-xl w-[64px] min-w-[64px] sm:w-[72px] sm:min-w-[72px] transition-all
-            ${active ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground hover:bg-surface/50 border border-transparent'}
+            flex flex-col items-center justify-center gap-2 py-3 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4
+            ${active
+                ? 'bg-accent/10 text-accent border-accent shadow-sm'
+                : 'text-muted hover:text-foreground hover:bg-surface/30 border-transparent'}
         `}
     >
-        {icon}
-        <span className="text-[8.5px] font-black tracking-[0.15em] uppercase text-center w-full px-1" style={{ lineHeight: '12px' }}>{label}</span>
+        <div className={`${active ? 'scale-110' : ''} transition-transform`}>
+            {icon}
+        </div>
+        <span className="text-[10px] font-black tracking-[0.05em] uppercase text-center w-full px-1 whitespace-nowrap overflow-hidden text-ellipsis">
+            {label}
+        </span>
     </button>
 );
 

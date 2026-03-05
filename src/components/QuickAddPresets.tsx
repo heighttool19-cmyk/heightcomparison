@@ -22,7 +22,7 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
     };
 
     return (
-        <div className="flex flex-col bg-surface/50 border-t border-border">
+        <div className="flex flex-col bg-surface border-t border-border">
             <div className="p-6 space-y-4">
                 <div className="flex items-center gap-2">
                     <Sparkles size={14} className="text-muted" />
@@ -34,7 +34,7 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
                         <button
                             key={preset.name}
                             onClick={() => handlePresetClick(preset)}
-                            className="flex items-center justify-between p-3.5 rounded-xl bg-background border border-border hover:border-accent hover:bg-surface/50 transition-all text-left shadow-sm group"
+                            className="flex items-center justify-between p-3.5 rounded-2xl bg-background border border-border hover:border-accent hover:bg-surface transition-all text-left shadow-sm group"
                         >
                             <span className="text-[11px] font-black text-foreground group-hover:text-accent transition-colors uppercase leading-none">
                                 {preset.name}
@@ -47,13 +47,13 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
                 </div>
             </div>
 
-            {/* Scale Info Footer - Exact match to Week 2 Requirements */}
-            <div className="mx-6 mb-6 p-4 rounded-xl border border-border bg-background flex flex-col gap-2">
+            {/* Scale Info Footer */}
+            <div className="mx-6 mb-6 p-4 rounded-2xl border border-border bg-background flex flex-col gap-2">
                 <div className="flex items-center gap-2 mb-1">
                     <Activity size={12} className="text-accent" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-accent">SCALE INFO</span>
                 </div>
-                <div className="space-y-1.5 font-mono text-[10px] font-black text-accent uppercase">
+                <div className="space-y-1.5 font-mono text-[10px] font-black text-accent uppercase opacity-80">
                     <div className="flex justify-between">
                         <span>1 cm =</span>
                         <span>{scale.toFixed(4)} px</span>

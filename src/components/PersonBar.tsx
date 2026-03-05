@@ -70,7 +70,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
         >
             {/* Stacked Labels - Matching the exact reference image */}
             <div
-                className={`flex flex-col items-center justify-center rounded-2xl bg-surface/80 backdrop-blur-md border border-border/50 shadow-[0_20px_50px_rgba(0,0,0,0.3)] px-4 py-2.5 text-center pointer-events-none transition-all duration-500 ${isMenuOpen ? 'border-accent/60 bg-surface' : 'group-hover:border-accent/40'}`}
+                className={`flex flex-col items-center justify-center rounded-2xl bg-surface/90 backdrop-blur-md border border-border/50 shadow-premium px-4 py-2.5 text-center pointer-events-none transition-all duration-500 ${isMenuOpen ? 'border-accent/60 bg-surface' : 'group-hover:border-accent/40'}`}
                 style={{
                     position: 'absolute',
                     bottom: `${barHeightPx + 80}px`,
@@ -95,8 +95,6 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
                         </button>
                     )}
                 </div>
-
-                <span className="text-[10px] md:text-xs font-black uppercase text-[#3B82F6] mb-1">{person.name}</span>
                 {unitSystem === 'metric' ? (
                     <span className="text-foreground text-[11px] md:text-sm font-bold">cm: {person.heightCm.toFixed(1)}</span>
                 ) : (
@@ -108,7 +106,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
             <div className="absolute inset-x-0 bottom-[60px] flex flex-col items-center justify-end">
                 {/* Indicator Line - Exactly at Height Line */}
                 <div
-                    className="w-24 md:w-36 h-[1.5px] bg-foreground/20 group-hover:bg-accent/40 shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-500 absolute"
+                    className="w-24 md:w-36 h-[1.5px] bg-foreground/10 group-hover:bg-accent/40 shadow-sm transition-all duration-500 absolute"
                     style={{
                         bottom: `${barHeightPx}px`,
                         zIndex: 20
@@ -157,11 +155,16 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
                         </div>
                     )}
                 </div>
+
+                {/* Name Label below silhouette */}
+                <span className="absolute -bottom-8 text-[13px] font-bold text-white uppercase tracking-tight">
+                    {person.name}
+                </span>
             </div>
 
             {/* Inline Edit & Delete (Below Ruler Zero Line) */}
             <div className="absolute inset-x-0 bottom-0 h-[65px] flex items-center justify-center pointer-events-auto hide-on-export">
-                <div className="flex items-center gap-1.5 bg-surface/90 border border-border/60 rounded-lg px-2.5 py-1.5 focus-within:border-accent/60 backdrop-blur-md shadow-2xl transition-all group-hover:border-accent/50 opacity-100 group-hover:opacity-100 ring-1 ring-white/5">
+                <div className="flex items-center gap-1.5 bg-surface border border-border/60 rounded-xl px-2.5 py-1.5 focus-within:border-accent/60 backdrop-blur-md shadow-premium transition-all group-hover:border-accent/50 opacity-100 group-hover:opacity-100 ring-1 ring-black/5 dark:ring-white/5">
                     <input
                         type="number"
                         value={inputValue}

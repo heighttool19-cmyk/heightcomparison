@@ -63,17 +63,17 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
             </div>
 
             {/* Gender Toggle */}
-            <div className="flex p-0.5 bg-surface/50 rounded-xl border border-border">
+            <div className="flex p-0.5 bg-surface rounded-2xl border border-border">
                 <button
                     onClick={() => setGender('male')}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all duration-300 ${gender === 'male' ? 'bg-background text-foreground shadow-sm' : 'text-muted hover:text-foreground'
+                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-white shadow-sm' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Male
                 </button>
                 <button
                     onClick={() => setGender('female')}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all duration-300 ${gender === 'female' ? 'bg-background text-foreground shadow-sm' : 'text-muted hover:text-foreground'
+                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Female
@@ -89,7 +89,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                         placeholder="Name (Optional)"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
+                        className="w-full bg-background border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
                     />
                 </div>
 
@@ -113,7 +113,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
 
                     <div className="flex gap-2">
                         {unit === 'metric' ? (
-                            <div className="w-full flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                            <div className="flex-1 flex bg-background border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
                                 <input
                                     type="number"
                                     placeholder="Height"
@@ -178,7 +178,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
             {/* Save Button */}
             <button
                 onClick={handleSave}
-                className="w-full bg-accent hover:bg-accent-secondary text-white py-4 rounded-xl text-xs font-black uppercase tracking-[0.2em] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group"
+                className="w-full bg-accent hover:bg-accent-secondary text-white py-4 rounded-2xl text-xs font-black uppercase tracking-[0.2em] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-accent/10"
             >
                 Save Changes
                 <ChevronRight size={16} className="group-hover:translate-x-0.5 transition-transform" strokeWidth={4} />

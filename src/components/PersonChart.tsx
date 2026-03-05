@@ -13,9 +13,9 @@ interface PersonChartProps {
 const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove }) => {
     return (
         <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-            <div className="px-6 py-4 flex items-center justify-between sticky top-0 bg-background z-10 border-y border-border">
+            <div className="px-6 py-4 flex items-center justify-between sticky top-0 bg-surface z-10 border-y border-border">
                 <h2 className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70">
-                    Simulation Queue <span className="text-foreground ml-2">{persons.length}</span>
+                    Simulation Queue <span className="text-accent ml-2">{persons.length}</span>
                 </h2>
             </div>
 
@@ -29,11 +29,11 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove }) => {
                             exit={{ opacity: 0, scale: 0.8, x: -20 }}
                             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                             key={person.id}
-                            className="flex items-center justify-between p-3 rounded-xl bg-surface/50 border border-border hover:border-accent group transition-colors"
+                            className="flex items-center justify-between p-3 rounded-2xl bg-background border border-border hover:border-accent group transition-all shadow-sm"
                         >
                             <div className="flex items-center gap-3">
                                 <div
-                                    className="w-2.5 h-2.5 rounded-full"
+                                    className="w-2.5 h-2.5 rounded-full shadow-sm"
                                     style={{ backgroundColor: person.color }}
                                 />
                                 <div className="flex flex-col">
