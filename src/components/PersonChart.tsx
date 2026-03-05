@@ -21,18 +21,27 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove }) => {
 
             <div className="flex-1 overflow-y-auto custom-scrollbar px-4 py-4 space-y-2.5">
                 <AnimatePresence mode="popLayout">
-                    {persons.map((person) => (
+                    {persons.map((person, index) => (
                         <motion.div
                             layout
-                            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                            initial={{ opacity: 0, scale: 0.9, y: 15 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.8, x: -20 }}
-                            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                            exit={{ opacity: 0, scale: 0.9, x: -20 }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 400,
+                                damping: 30,
+                                delay: index * 0.03
+                            }}
+                            whileHover={{ scale: 1.02, x: 5, backgroundColor: 'rgba(59, 130, 246, 0.03)' }}
+                            whileTap={{ scale: 0.99 }}
                             key={person.id}
-                            className="flex items-center justify-between p-3 rounded-2xl bg-background border border-border hover:border-accent group transition-all shadow-sm"
+                            className="flex items-center justify-between p-3.5 rounded-2xl bg-background border border-border hover:border-accent/40 group transition-all shadow-sm relative overflow-hidden"
                         >
-                            <div className="flex items-center gap-3">
-                                <div
+                            <div className="flex items-center gap-3 relative z-10">
+                                <motion.div
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
                                     className="w-2.5 h-2.5 rounded-full shadow-sm"
                                     style={{ backgroundColor: person.color }}
                                 />
@@ -40,19 +49,24 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove }) => {
                                     <span className="text-xs font-black text-foreground leading-tight uppercase tracking-tight">
                                         {person.name}
                                     </span>
-                                    <span className="text-[11px] font-mono font-black text-foreground/40 mt-0.5">
+                                    <span className="text-[11px] font-mono font-black text-foreground/40 mt-0.5 uppercase">
                                         {person.heightCm.toFixed(1)} cm
                                     </span>
                                 </div>
                             </div>
 
-                            <button
+                            <motion.button
+                                whileHover={{ scale: 1.1, color: '#ef4444' }}
+                                whileTap={{ scale: 0.9 }}
                                 onClick={() => onRemove(person.id)}
-                                className="p-1.5 text-foreground/40 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all opacity-0 lg:group-hover:opacity-100 focus:opacity-100"
+                                className="p-1.5 text-foreground/20 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all opacity-0 lg:group-hover:opacity-100 focus:opacity-100 z-10"
                                 aria-label="Remove"
                             >
                                 <Trash2 size={15} strokeWidth={3} />
-                            </button>
+                            </motion.button>
+
+                            {/* Subtle background glow on hover */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-accent/0 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                         </motion.div>
                     ))}
                 </AnimatePresence>

@@ -113,3 +113,32 @@ body {
 }
 
 
+
+.hide-on-export {
+    transition: opacity 0.3s ease;
+}
+
+body.is-capturing .hide-on-export {
+    display: none !important;
+}
+
+.empty-door {
+    width: 140px;
+    height: 220px;
+    border: 3px dashed var(--border);
+    border-radius: 1.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-center: center;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.02));
+    transition: all 0.5s ease;
+}
+
+[data-theme="dark"] .empty-door {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .empty-door {
+    border-color: rgba(0, 0, 0, 0.1);
+}

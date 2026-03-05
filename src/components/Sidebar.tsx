@@ -16,12 +16,13 @@ interface SidebarProps {
     scale: number;
     zoom: number;
     activePanel?: string;
+    personCount: number;
     editingPerson?: Person;
     onEditSave?: (person: Person) => void;
     onEditCancel?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ persons, onAdd, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel }) => {
+const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel }) => {
     return (
         <aside className="w-full h-full flex flex-col bg-transparent">
             <div className="flex flex-col h-full overflow-y-auto custom-scrollbar p-5 gap-6">
@@ -35,7 +36,7 @@ const Sidebar: React.FC<SidebarProps> = ({ persons, onAdd, onRemove, scale, zoom
                             transition={{ duration: 0.2 }}
                             className="flex flex-col gap-6"
                         >
-                            <AddPersonForm onAdd={onAdd} />
+                            <AddPersonForm onAdd={onAdd} personCount={personCount} />
                             <PersonChart persons={persons} onRemove={onRemove} />
                             <QuickAddPresets onAdd={onAdd} scale={scale} zoom={zoom} />
                         </motion.div>

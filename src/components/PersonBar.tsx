@@ -155,15 +155,13 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
                         </div>
                     )}
                 </div>
-
-                {/* Name Label below silhouette */}
-                <span className="absolute -bottom-8 text-[13px] font-bold text-white uppercase tracking-tight">
-                    {person.name}
-                </span>
             </div>
 
-            {/* Inline Edit & Delete (Below Ruler Zero Line) */}
-            <div className="absolute inset-x-0 bottom-0 h-[65px] flex items-center justify-center pointer-events-auto hide-on-export">
+            {/* Inline Name, Edit & Delete (Below Ruler Zero Line) */}
+            <div className="absolute inset-x-0 bottom-0 h-[65px] flex flex-col items-center justify-center gap-1 pointer-events-auto hide-on-export">
+                <span className="text-[11px] font-black text-foreground/70 uppercase tracking-tight truncate max-w-full px-2">
+                    {person.name}
+                </span>
                 <div className="flex items-center gap-1.5 bg-surface border border-border/60 rounded-xl px-2.5 py-1.5 focus-within:border-accent/60 backdrop-blur-md shadow-premium transition-all group-hover:border-accent/50 opacity-100 group-hover:opacity-100 ring-1 ring-black/5 dark:ring-white/5">
                     <input
                         type="number"

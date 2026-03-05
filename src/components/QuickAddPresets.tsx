@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Sparkles, Activity } from 'lucide-react';
+import { Sparkles, Activity, Plus } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { QUICK_ADD_PRESETS, Person, uid } from '../types';
 
 interface QuickAddPresetsProps {
@@ -29,22 +30,39 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
                     <h2 className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70">Quick Insertion</h2>
                 </div>
 
-                <div className="flex flex-col gap-2">
+                <motion.div
+                    initial="hidden"
+                    animate="show"
+                    variants={{
+                        show: { transition: { staggerChildren: 0.05 } },
+                        hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
+                    }}
+                    className="flex flex-col gap-2"
+                >
                     {QUICK_ADD_PRESETS.map((preset) => (
-                        <button
+                        <motion.button
                             key={preset.name}
+                            variants={{
+                                show: { y: 0, opacity: 1 },
+                                hidden: { y: 10, opacity: 0 }
+                            }}
+                            whileHover={{ scale: 1.02, x: 4, backgroundColor: 'rgba(59, 130, 246, 0.05)' }}
+                            whileTap={{ scale: 0.98 }}
                             onClick={() => handlePresetClick(preset)}
-                            className="flex items-center justify-between p-3.5 rounded-2xl bg-background border border-border hover:border-accent hover:bg-surface transition-all text-left shadow-sm group"
+                            className="flex items-center justify-between p-3.5 rounded-2xl bg-background border border-border hover:border-accent/40 transition-all text-left shadow-sm group"
                         >
                             <span className="text-[11px] font-black text-foreground group-hover:text-accent transition-colors uppercase leading-none">
                                 {preset.name}
                             </span>
-                            <span className="text-[10px] font-mono font-black text-foreground/50 uppercase">
-                                {preset.heightCm >= 1000 ? `${(preset.heightCm / 100).toFixed(1)}m` : `${preset.heightCm}cm`}
-                            </span>
-                        </button>
+                            <div className="flex items-center gap-2">
+                                <span className="text-[10px] font-mono font-black text-foreground/50 uppercase">
+                                    {preset.heightCm >= 1000 ? `${(preset.heightCm / 100).toFixed(1)}m` : `${preset.heightCm}cm`}
+                                </span>
+                                <Plus size={12} className="text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </div>
+                        </motion.button>
                     ))}
-                </div>
+                </motion.div>
             </div>
 
             {/* Scale Info Footer */}

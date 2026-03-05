@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, ZoomOut, Share2, Download, UserPlus, Star, Box, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link, ArrowLeftRight, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link, ArrowLeftRight, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
 import { Person, AppState, DEFAULT_PERSONS, uid } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
@@ -52,6 +52,7 @@ const HeightDashboard: React.FC = () => {
     const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
     const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
     const [showToast, setShowToast] = useState(false);
+    const [toastMessage, setToastMessage] = useState('');
     const [isCapturing, setIsCapturing] = useState(false);
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -311,11 +312,16 @@ const HeightDashboard: React.FC = () => {
         setEditingPersonId(null);
     };
 
+    const triggerToast = (msg: string) => {
+        setToastMessage(msg);
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 2500);
+    };
+
     const handleShare = async () => {
         try {
             await navigator.clipboard.writeText(window.location.href);
-            setShowToast(true);
-            setTimeout(() => setShowToast(false), 2000);
+            triggerToast('Link copied to clipboard!');
         } catch (err) {
             console.error('Failed to copy', err);
         }
@@ -325,22 +331,26 @@ const HeightDashboard: React.FC = () => {
         if (!containerRef.current) return;
         try {
             setIsCapturing(true);
+            triggerToast('Generating your height comparison...');
             document.body.classList.add('is-capturing');
 
             // Wait a tick for CSS to apply (hiding inline inputs etc)
-            await new Promise(resolve => setTimeout(resolve, 50));
+            await new Promise(resolve => setTimeout(resolve, 800));
 
             const dataUrl = await htmlToImage.toPng(containerRef.current, {
                 pixelRatio: 2,
-                backgroundColor: '#0F172A'
+                backgroundColor: theme === 'dark' ? '#101011' : '#FAFAFA'
             });
 
             const link = document.createElement('a');
-            link.download = 'heightcomparison.png';
+            link.download = `height-comparison-${new Date().getTime()}.png`;
             link.href = dataUrl;
             link.click();
+
+            setTimeout(() => triggerToast('Image downloaded successfully!'), 500);
         } catch (error) {
             console.error('Failed to generate PNG', error);
+            triggerToast('Failed to generate image. Please try again.');
         } finally {
             setIsCapturing(false);
             document.body.classList.remove('is-capturing');
@@ -359,7 +369,12 @@ const HeightDashboard: React.FC = () => {
     return (
         <div className="flex flex-col h-screen bg-background overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
             {/* 1. Global Top Header (New Navbar design) */}
-            <header className="h-[70px] shrink-0 border-b border-border/50 bg-background flex items-center justify-between px-6 sm:px-12 z-50">
+            <motion.header
+                initial={{ y: -70, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="h-[70px] shrink-0 border-b border-border/50 bg-background flex items-center justify-between px-6 sm:px-12 z-50"
+            >
                 {/* Left side: Logo & Brands */}
                 <div className="flex items-center gap-3 cursor-pointer">
                     {/* Logo Graphic */}
@@ -435,24 +450,43 @@ const HeightDashboard: React.FC = () => {
                         </AnimatePresence>
                     </div>
                 </div>
-            </header>
+            </motion.header>
 
             {/* Main Application Area */}
             <div className="flex flex-1 overflow-hidden relative flex-col md:flex-row custom-scrollbar bg-background transition-colors duration-500">
 
                 {/* 2. Left Native Menu (Desktop) / Top Menu (Mobile) */}
-                <aside className="
+                <motion.aside
+                    initial={{ x: -85, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                    className="
                     shrink-0 w-full h-[80px] bg-background border-b overflow-hidden border-border/50 z-40
                     flex overflow-x-auto overflow-y-hidden gap-0 custom-scrollbar
                     sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col sm:py-0 sm:px-0 sm:gap-0
                 ">
-                    <LeftNavItem icon={<UserPlus size={22} />} label="ADD PERSON" active={activePanel === 'ADD_PERSON'} onClick={() => { setActivePanel('ADD_PERSON'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                    <LeftNavItem icon={<Star size={22} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                    <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                    <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                </aside>
+                    <motion.div
+                        className="flex sm:flex-col h-full w-full"
+                        variants={{
+                            show: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
+                            hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
+                        }}
+                        initial="hidden"
+                        animate="show"
+                    >
+                        <LeftNavItem icon={<UserPlus size={22} />} label="ADD PERSON" active={activePanel === 'ADD_PERSON'} onClick={() => { setActivePanel('ADD_PERSON'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                        <LeftNavItem icon={<Star size={22} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                        <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                        <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                    </motion.div>
+                </motion.aside>
                 {/* Center Column: Canvas */}
-                <main className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500 pb-14">
+                <motion.main
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+                    className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500 pb-14"
+                >
                     {/* Top Canvas Toolbar */}
                     <div className="order-2 sm:order-first px-4 sm:px-8 py-4 z-30">
                         <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-3 px-4 sm:px-6 backdrop-blur-md shadow-2xl overflow-x-auto custom-scrollbar flex-nowrap">
@@ -535,10 +569,19 @@ const HeightDashboard: React.FC = () => {
                                 <button
                                     onClick={handleDownloadPNG}
                                     disabled={isCapturing}
-                                    className="flex items-center gap-2 bg-accent/10 text-accent border border-accent/20 px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl text-sm font-bold hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 whitespace-nowrap"
+                                    className="flex items-center gap-2 bg-accent/10 text-accent border border-accent/20 px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl text-sm font-bold hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 whitespace-nowrap min-w-[140px] justify-center"
                                 >
-                                    <Download size={18} strokeWidth={2.5} />
-                                    <span className="hidden sm:inline">Download PNG</span>
+                                    {isCapturing ? (
+                                        <>
+                                            <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                            <span>Processing...</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Download size={18} strokeWidth={2.5} />
+                                            <span className="hidden sm:inline">Download PNG</span>
+                                        </>
+                                    )}
                                 </button>
                             </div>
                         </div>
@@ -547,7 +590,7 @@ const HeightDashboard: React.FC = () => {
                     {/* CANVAS AREA */}
                     <div
                         ref={containerRef}
-                        className="order-1 canvas-export-area flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar chart-grid m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl"
+                        className="order-1 canvas-export-area flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar chart-grid m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl scroll-smooth"
                     >
                         {/* Unified Absolute Coordinate Grid Container */}
                         <div className="relative min-w-full w-max h-full pl-24 md:pl-40 pr-24 md:pr-48 flex items-end">
@@ -589,14 +632,21 @@ const HeightDashboard: React.FC = () => {
                         </div>
 
                         {state.persons.length === 0 && (
-                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none mb-32">
-                                <span className="text-xl font-semibold text-muted/50 bg-black/20 px-6 py-2 rounded-full backdrop-blur-sm">
+                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mb-32 gap-6">
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    className="empty-door flex items-center justify-center"
+                                >
+                                    <Plus size={40} className="text-muted/20" />
+                                </motion.div>
+                                <span className="text-xl font-bold tracking-tight text-muted/50 bg-surface/50 px-8 py-3 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl">
                                     Add a person to get started
                                 </span>
                             </div>
                         )}
                     </div>
-                </main>
+                </motion.main>
 
                 {/* 3. Sidebar - Hidden on tiny Mobile, Visible on sm+ */}
                 <div className="hidden sm:flex shrink-0 relative z-30">
@@ -612,6 +662,7 @@ const HeightDashboard: React.FC = () => {
                         <div className="flex-1 w-[280px] overflow-y-auto custom-scrollbar">
                             <Sidebar
                                 persons={state.persons}
+                                personCount={state.persons.length}
                                 onAdd={addPerson}
                                 onRemove={removePerson}
                                 scale={scale}
@@ -656,9 +707,9 @@ const HeightDashboard: React.FC = () => {
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
                         className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-surface border border-border text-foreground px-4 py-2 rounded-full shadow-2xl flex items-center gap-3 z-50 pointer-events-none"
                     >
-                        <div className="w-2 h-2 rounded-full bg-green-500" />
-                        <span className="text-sm font-bold tracking-tight">Copied!</span>
-                        <Check size={16} className="text-green-500" />
+                        <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                        <span className="text-sm font-bold tracking-tight">{toastMessage}</span>
+                        <Check size={16} className="text-accent" />
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -705,6 +756,7 @@ const HeightDashboard: React.FC = () => {
                             <div className="flex-1 overflow-y-auto custom-scrollbar pb-6 relative">
                                 <Sidebar
                                     persons={state.persons}
+                                    personCount={state.persons.length}
                                     onAdd={(p) => { addPerson(p); setIsMobileDrawerOpen(false); }}
                                     onRemove={removePerson}
                                     scale={scale}
@@ -724,13 +776,19 @@ const HeightDashboard: React.FC = () => {
 };
 
 const LeftNavItem = ({ icon, label, active = false, onClick }: { icon: React.ReactNode, label: string, active?: boolean, onClick?: () => void }) => (
-    <button
+    <motion.button
+        variants={{
+            show: { y: 0, opacity: 1, scale: 1 },
+            hidden: { y: 15, opacity: 0, scale: 0.9 }
+        }}
+        whileHover={{ scale: 1.02, backgroundColor: 'rgba(59, 130, 246, 0.05)' }}
+        whileTap={{ scale: 0.98 }}
         onClick={onClick}
         className={`
             flex flex-col items-center justify-center gap-2 py-3 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4
             ${active
                 ? 'bg-accent/10 text-accent border-accent shadow-sm'
-                : 'text-muted hover:text-foreground hover:bg-surface/30 border-transparent'}
+                : 'text-muted hover:text-foreground border-transparent'}
         `}
     >
         <div className={`${active ? 'scale-110' : ''} transition-transform`}>
@@ -739,7 +797,7 @@ const LeftNavItem = ({ icon, label, active = false, onClick }: { icon: React.Rea
         <span className="text-[10px] font-black tracking-[0.05em] uppercase text-center w-full px-1 whitespace-nowrap overflow-hidden text-ellipsis">
             {label}
         </span>
-    </button>
+    </motion.button>
 );
 
 export default HeightDashboard;

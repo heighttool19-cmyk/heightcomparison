@@ -2,20 +2,22 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Plus } from 'lucide-react';
 import { Gender, UnitSystem, COLOR_PALETTE, uid, Person } from '../types';
 
 interface AddPersonFormProps {
     onAdd: (person: Person) => void;
+    personCount: number;
 }
 
-const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd }) => {
+const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => {
     const [gender, setGender] = useState<Gender>('male');
     const [name, setName] = useState('');
     const [unit, setUnit] = useState<UnitSystem>('metric');
     const [heightCm, setHeightCm] = useState<string>('');
     const [heightFt, setHeightFt] = useState<string>('');
     const [heightIn, setHeightIn] = useState<string>('');
-    const [color, setColor] = useState(COLOR_PALETTE[2]);
+    const [color, setColor] = useState(COLOR_PALETTE[personCount % 8]);
     const handleAdd = () => {
         let finalHeightCm = 0;
         if (unit === 'metric') {
@@ -94,7 +96,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd }) => {
                                 <button
                                     key={u}
                                     onClick={() => setUnit(u)}
-                                    className={`text-[10px] font-bold uppercase tracking-tight px-2.5 py-1 rounded border transition-all ${unit === u ? 'border-accent/40 text-accent bg-accent/5' : 'border-border text-muted/40'
+                                    className={`text-[10px] font-bold uppercase tracking-tight px-2.5 py-1 rounded border transition-all ${unit === u ? 'border-accent/40 text-accent bg-accent/5' : 'border-border text-muted/70 hover:text-muted hover:border-muted/30'
                                         }`}
                                 >
                                     {u === 'metric' ? 'Metric' : 'Imp'}
@@ -154,24 +156,29 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd }) => {
                 <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Accent</label>
                 <div className="flex gap-2.5">
                     {COLOR_PALETTE.slice(0, 6).map((c) => (
-                        <button
+                        <motion.button
                             key={c}
+                            whileHover={{ scale: 1.2, rotate: 5 }}
+                            whileTap={{ scale: 0.9 }}
                             onClick={() => setColor(c)}
-                            className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110' : 'border-transparent opacity-50 hover:opacity-100'
+                            className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'
                                 }`}
-                            style={{ backgroundColor: c }}
+                            style={{ backgroundColor: c, boxShadow: color === c ? `0 0 12px ${c}44` : 'none' }}
                         />
                     ))}
                 </div>
             </div>
 
             {/* Submit Button */}
-            <button
+            <motion.button
+                whileHover={{ scale: 1.02, backgroundColor: '#3B82F6' }}
+                whileTap={{ scale: 0.98 }}
                 onClick={handleAdd}
-                className="w-full bg-accent hover:bg-accent-secondary text-white py-4 rounded-2xl text-xs font-black uppercase tracking-[0.2em] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-accent/10"
+                className="w-full bg-accent text-white py-4 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-accent/10"
             >
-                + Add Person
-            </button>
+                <Plus size={16} className="group-hover:rotate-90 transition-transform duration-300" />
+                Add Person
+            </motion.button>
 
         </motion.div>
     );
