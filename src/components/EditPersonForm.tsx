@@ -1,72 +1,79 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ChevronRight } from 'lucide-react';
-import { Gender, UnitSystem, COLOR_PALETTE, uid, Person } from '../types';
+import { ChevronRight, X } from 'lucide-react';
+import { Gender, UnitSystem, COLOR_PALETTE, Person } from '../types';
+import { useUnitStore } from '../store';
 
-interface AddPersonFormProps {
-    onAdd: (person: Person) => void;
+interface EditPersonFormProps {
+    person: Person;
+    onSave: (person: Person) => void;
+    onCancel: () => void;
 }
 
-const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd }) => {
-    const [gender, setGender] = useState<Gender>('male');
-    const [name, setName] = useState('');
-    const [unit, setUnit] = useState<UnitSystem>('metric');
-    const [heightCm, setHeightCm] = useState<string>('');
-    const [heightFt, setHeightFt] = useState<string>('');
-    const [heightIn, setHeightIn] = useState<string>('');
-    const [color, setColor] = useState(COLOR_PALETTE[2]);
-    const handleAdd = () => {
+const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCancel }) => {
+    const { unitSystem: globalUnit } = useUnitStore();
+
+    const [gender, setGender] = useState<Gender>(person.gender);
+    const [name, setName] = useState(person.name);
+    const [unit, setUnit] = useState<UnitSystem>(globalUnit);
+
+    const [heightCm, setHeightCm] = useState<string>(Math.round(person.heightCm).toString());
+
+    const ftDecimal = person.heightCm * 0.0328084;
+    const ft = Math.floor(ftDecimal);
+    const inch = Math.round((ftDecimal - ft) * 12);
+
+    const [heightFt, setHeightFt] = useState<string>(ft.toString());
+    const [heightIn, setHeightIn] = useState<string>(inch.toString());
+
+    const [color, setColor] = useState(person.color || COLOR_PALETTE[2]);
+
+    const handleSave = () => {
         let finalHeightCm = 0;
         if (unit === 'metric') {
             finalHeightCm = parseFloat(heightCm) || 0;
         } else {
-            const ft = parseFloat(heightFt) || 0;
-            const inch = parseFloat(heightIn) || 0;
-            finalHeightCm = (ft * 30.48) + (inch * 2.54);
+            const f = parseFloat(heightFt) || 0;
+            const i = parseFloat(heightIn) || 0;
+            finalHeightCm = (f * 30.48) + (i * 2.54);
         }
 
         if (finalHeightCm > 0) {
-            onAdd({
-                id: uid(),
+            onSave({
+                ...person,
                 name: name || (gender === 'male' ? 'Man' : gender === 'female' ? 'Woman' : 'Person'),
                 heightCm: finalHeightCm,
                 gender,
                 color,
             });
-            // Reset form
-            setName('');
-            setHeightCm('');
-            setHeightFt('');
-            setHeightIn('');
         }
     };
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: 'easeOut' }}
-            className="p-6 space-y-6"
-        >
-            <div className="flex items-center gap-2">
-                <div className="w-1 h-4 bg-accent rounded-full" />
-                <h2 className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">Add Subject</h2>
+        <div className="p-6 space-y-6">
+            <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                    <div className="w-1 h-4 bg-accent rounded-full" />
+                    <h2 className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">Edit Subject</h2>
+                </div>
+                <button onClick={onCancel} className="text-muted hover:text-white transition-colors bg-white/5 rounded-full p-1">
+                    <X size={14} />
+                </button>
             </div>
 
             {/* Gender Toggle */}
             <div className="flex p-0.5 bg-surface/50 rounded-xl border border-border">
                 <button
                     onClick={() => setGender('male')}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all duration-300 ${gender === 'male' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
+                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all duration-300 ${gender === 'male' ? 'bg-background text-foreground shadow-sm' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Male
                 </button>
                 <button
                     onClick={() => setGender('female')}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all duration-300 ${gender === 'female' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
+                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-lg transition-all duration-300 ${gender === 'female' ? 'bg-background text-foreground shadow-sm' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Female
@@ -79,7 +86,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd }) => {
                     <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Identity</label>
                     <input
                         type="text"
-                        placeholder="Optional"
+                        placeholder="Name (Optional)"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
@@ -151,32 +158,34 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd }) => {
             </div>
 
             {/* Color Swatches */}
-            <div className="space-y-2">
-                <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Accent</label>
-                <div className="flex gap-2.5">
-                    {COLOR_PALETTE.slice(0, 6).map((c) => (
-                        <button
-                            key={c}
-                            onClick={() => setColor(c)}
-                            className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110' : 'border-transparent opacity-50 hover:opacity-100'
-                                }`}
-                            style={{ backgroundColor: c }}
-                        />
-                    ))}
+            {!person.imgUrl && (
+                <div className="space-y-2">
+                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Accent</label>
+                    <div className="flex gap-2.5">
+                        {COLOR_PALETTE.slice(0, 6).map((c) => (
+                            <button
+                                key={c}
+                                onClick={() => setColor(c)}
+                                className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110' : 'border-transparent opacity-50 hover:opacity-100'
+                                    }`}
+                                style={{ backgroundColor: c }}
+                            />
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
 
-            {/* Submit Button */}
+            {/* Save Button */}
             <button
-                onClick={handleAdd}
+                onClick={handleSave}
                 className="w-full bg-accent hover:bg-accent-secondary text-white py-4 rounded-xl text-xs font-black uppercase tracking-[0.2em] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 group"
             >
-                + Add Person
+                Save Changes
+                <ChevronRight size={16} className="group-hover:translate-x-0.5 transition-transform" strokeWidth={4} />
             </button>
 
-        </motion.div>
+        </div>
     );
 };
 
-export default AddPersonForm;
-
+export default EditPersonForm;

@@ -1,44 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap');
 @import "tailwindcss";
 
-:root {
-  /* Dark mode by default */
-  --bg: #0F172A;
-  --surface: #1E293B;
-  --border: #334155;
-  --accent: #6366F1;
-  --accent-secondary: #818CF8;
+:root, [data-theme="dark"] {
+  /* Reference Design Colors (Dark Mode Only) */
+  --bg: #0F172A; /* Very dark background */
+  --surface: #1E293B; /* Slightly lighter for sidebars/cards */
+  --canvas: #0B0F19; /* Darkest for center canvas */
+  --border: #334155; /* Subtle borders */
+  --accent: #6366F1; /* Primary blue button color from reference */
+  --accent-secondary: #4F46E5;
   --foreground: #F8FAFC;
   --muted: #94A3B8;
   --ruler-text: #64748B;
   --baseline: #EF4444;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    /* Premium light mode */
-    --bg: #F8FAFC;
-    --surface: #FFFFFF;
-    --border: #E2E8F0;
-    --accent: #6366F1;
-    --accent-secondary: #4F46E5;
-    --foreground: #0F172A;
-    --muted: #64748B;
-    --ruler-text: #64748B;
-    --baseline: #EF4444;
-  }
+[data-theme="light"] {
+  /* Light Mode Colors */
+  --bg: #F1F5F9; /* Very light slate background */
+  --surface: #FFFFFF; /* White for sidebars/cards */
+  --canvas: #E2E8F0; /* Slightly darker than bg for contrast */
+  --border: #CBD5E1; /* Subtle borders */
+  --accent: #23991bff;  
+  --accent-secondary: #4338CA;
+  --foreground: #0F172A; /* Dark text */
+  --muted: #64748B;
+  --ruler-text: #475569;
+  --baseline: #EF4444;
 }
 
 @theme inline {
   --color-background: var(--bg);
   --color-surface: var(--surface);
+  --color-canvas: var(--canvas);
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-secondary: var(--accent-secondary);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   
-  --font-sans: 'Outfit', sans-serif;
+  --font-sans: var(--font-inter), sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 

@@ -1,68 +1,92 @@
 'use client';
 
 import React, { useMemo } from 'react';
+import { useUnitStore } from '../store';
 
 interface RulerProps {
     scale: number;
+    maxHeightCm: number;
+    canvasHeight?: number;
 }
 
-const Ruler: React.FC<RulerProps> = ({ scale }) => {
-    const tickInterval = 10;
+const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
+    const { unitSystem } = useUnitStore();
+
+    const tickInterval = useMemo(() => {
+        const baseMin = 40 / scale; // Ensure at least 40px between lines
+        const intervals = [5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000, 2500, 5000, 10000];
+        let chosen = intervals[intervals.length - 1];
+        for (const i of intervals) {
+            if (i >= baseMin) {
+                chosen = i;
+                break;
+            }
+        }
+        return chosen;
+    }, [scale]);
 
     const ticks = useMemo(() => {
         const minTick = 0; // Start exactly from 0 as requested
-        const maxTick = 300;
+
+        // Ensure lines stretch across the entire zoomed canvas view
+        let maxVisibleCm = maxHeightCm;
+        if (canvasHeight && scale > 0) {
+            maxVisibleCm = Math.max(maxHeightCm, (canvasHeight * 2) / scale);
+        }
+
+        const maxTick = Math.max(300, Math.ceil(maxVisibleCm / tickInterval) * tickInterval + (tickInterval * 2));
         const tickCount = Math.floor((maxTick - minTick) / tickInterval);
         return Array.from({ length: tickCount + 1 }, (_, i) => minTick + (i * tickInterval));
-    }, [tickInterval]);
+    }, [tickInterval, maxHeightCm, canvasHeight, scale]);
 
     return (
         <div className="absolute inset-x-0 inset-y-0 pointer-events-none select-none z-0">
-            {/* Headers - High Visibility, Locked to Top with Backdrop */}
-            <div className="absolute top-0 inset-x-0 h-10 bg-background/80 backdrop-blur-sm z-30 border-b border-border/20 flex items-center justify-between px-4 sm:px-12">
-                <div className="text-[12px] sm:text-[14px] font-black uppercase text-foreground/80 tracking-[0.2em] drop-shadow-sm">cm</div>
-                <div className="text-[12px] sm:text-[14px] font-black uppercase text-foreground/80 tracking-[0.1em] drop-shadow-sm">Ft</div>
-            </div>
-
+            {/* Horizontal Ticks */}
             {ticks.map((tick) => {
                 const heightPx = tick * scale;
                 const isZero = tick === 0;
 
-                // Simple check to prevent overlapping with headers (assuming a reasonable viewport height)
-                // We'll hide ticks that are visually Too High relative to the container.
-                // Since this component doesn't know canvasHeight, we can pass it or use a CSS-based approach.
-                // However, with our new reserved space in HeightDashboard, the scale is calculated to fit.
-                // But a tick at exactly 300 might still hit the header if 300 is the maxHeight.
-
                 const absFt = Math.abs(tick * 0.393701);
-                const ftValue = Math.floor(absFt / 12);
-                const inValue = (absFt % 12).toFixed(2);
                 const isNegative = tick < 0;
+                const totalInches = Math.round(absFt);
+                const ftValue = Math.floor(totalInches / 12);
+                const inValue = totalInches % 12;
                 const ftDisplay = `${isNegative ? '-' : ''}${ftValue}' ${inValue}''`;
-
                 return (
                     <div
                         key={tick}
-                        className="absolute inset-x-0 flex items-center transition-all duration-700 ease-in-out group/tick"
-                        style={{ bottom: `${heightPx + 80}px` }}
+                        className="absolute inset-x-0 flex items-center group/tick h-0"
+                        style={{ bottom: `${heightPx + 60}px` }}
                     >
-                        {/* CM Label (Left) */}
-                        <span className="absolute left-2 sm:left-10 text-[9px] sm:text-[10px] font-mono font-bold text-foreground/50 w-6 sm:w-8 text-right pr-1 sm:pr-2 group-hover/tick:text-foreground/80 transition-colors">
-                            {tick}
-                        </span>
-
-                        {/* Grid Line */}
+                        {/* CM & FT Labels (Sticky Left) */}
                         <div
-                            className={`flex-1 mx-10 sm:mx-24 h-[1px] transition-colors duration-500 ${isZero
-                                ? 'bg-red-500 h-[1.5px] opacity-100 shadow-[0_0_10px_rgba(239,68,68,0.2)]'
-                                : 'bg-foreground/20 group-hover/tick:bg-foreground/40'
-                                }`}
-                        />
+                            className="sticky left-0 z-20 flex flex-col items-end w-16 sm:w-20 pr-4 pl-2 bg-canvas/40 backdrop-blur-[2px]"
+                            style={{
 
-                        {/* FT Label (Right) */}
-                        <span className="absolute right-2 sm:right-10 text-[9px] sm:text-[10px] font-mono font-bold text-foreground/30 text-right min-w-[50px] sm:min-w-[65px] group-hover/tick:text-foreground/60 transition-colors">
-                            {ftDisplay}
-                        </span>
+                                maskImage: 'linear-gradient(to right, black 80%, transparent)',
+                                WebkitMaskImage: 'linear-gradient(to right, black 80%, transparent)'
+                            }}
+                        >
+                            {unitSystem === 'metric' ? (
+                                <span className="text-[10px] sm:text-[11px] font-mono font-black text-foreground/90 drop-shadow-md">
+                                    {tick} cm
+                                </span>
+                            ) : (
+                                <span className="text-[10px] sm:text-[11px] font-mono font-black text-foreground/90 drop-shadow-md">
+                                    {ftDisplay}
+                                </span>
+                            )}
+                        </div>
+
+                        {/* Grid Line - ensure it stretches full width */}
+                        <div
+                            className={`flex-1 transition-colors duration-500 ${isZero
+                                ? 'bg-[#EF4444] h-[1px] opacity-100'
+                                : 'bg-foreground/10 group-hover/tick:bg-foreground/20 h-[1px]'
+                                }
+                                mr-4
+                                `}
+                        />
                     </div>
                 );
             })}

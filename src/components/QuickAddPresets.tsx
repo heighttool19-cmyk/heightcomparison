@@ -7,9 +7,10 @@ import { QUICK_ADD_PRESETS, Person, uid } from '../types';
 interface QuickAddPresetsProps {
     onAdd: (person: Person) => void;
     scale: number;
+    zoom: number;
 }
 
-const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale }) => {
+const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom }) => {
     const handlePresetClick = (preset: typeof QUICK_ADD_PRESETS[0]) => {
         onAdd({
             id: uid(),
@@ -24,21 +25,21 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale }) => {
         <div className="flex flex-col bg-surface/50 border-t border-border">
             <div className="p-6 space-y-4">
                 <div className="flex items-center gap-2">
-                    <Sparkles size={12} className="text-muted" />
-                    <h2 className="text-[10px] uppercase tracking-[0.2em] font-bold text-muted">Quick Insertion</h2>
+                    <Sparkles size={14} className="text-muted" />
+                    <h2 className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70">Quick Insertion</h2>
                 </div>
 
-                <div className="grid grid-cols-2 gap-2">
+                <div className="flex flex-col gap-2">
                     {QUICK_ADD_PRESETS.map((preset) => (
                         <button
                             key={preset.name}
                             onClick={() => handlePresetClick(preset)}
-                            className="flex flex-col items-start p-3 rounded-xl bg-background border border-border hover:border-accent hover:bg-surface/50 transition-all text-left overflow-hidden shadow-sm"
+                            className="flex items-center justify-between p-3.5 rounded-xl bg-background border border-border hover:border-accent hover:bg-surface/50 transition-all text-left shadow-sm group"
                         >
-                            <span className="text-[10px] font-bold text-foreground/80 group-hover:text-accent transition-colors uppercase truncate w-full">
+                            <span className="text-[11px] font-black text-foreground group-hover:text-accent transition-colors uppercase leading-none">
                                 {preset.name}
                             </span>
-                            <span className="text-[9px] font-mono font-medium text-muted mt-1 uppercase">
+                            <span className="text-[10px] font-mono font-black text-foreground/50 uppercase">
                                 {preset.heightCm >= 1000 ? `${(preset.heightCm / 100).toFixed(1)}m` : `${preset.heightCm}cm`}
                             </span>
                         </button>
@@ -46,20 +47,24 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale }) => {
                 </div>
             </div>
 
-            {/* Scale Info Footer - Minimal Labeling */}
+            {/* Scale Info Footer - Exact match to Week 2 Requirements */}
             <div className="mx-6 mb-6 p-4 rounded-xl border border-border bg-background flex flex-col gap-2">
                 <div className="flex items-center gap-2 mb-1">
-                    <Activity size={10} className="text-muted/60" />
-                    <span className="text-[8px] font-bold uppercase tracking-widest text-muted">System Metrics</span>
+                    <Activity size={12} className="text-accent" />
+                    <span className="text-[10px] font-black uppercase tracking-widest text-accent">SCALE INFO</span>
                 </div>
-                <div className="space-y-1.5 font-mono text-[9px] font-medium text-muted uppercase">
+                <div className="space-y-1.5 font-mono text-[10px] font-black text-accent uppercase">
                     <div className="flex justify-between">
-                        <span>Res</span>
-                        <span className="text-foreground/60">{(1 / scale).toFixed(3)} cm/px</span>
+                        <span>1 cm =</span>
+                        <span>{scale.toFixed(4)} px</span>
                     </div>
                     <div className="flex justify-between">
-                        <span>Scale</span>
-                        <span className="text-foreground/60">{scale.toFixed(4)} px/cm</span>
+                        <span>Fit scale =</span>
+                        <span>{(scale / zoom).toFixed(4)} px/cm</span>
+                    </div>
+                    <div className="flex justify-between">
+                        <span>Zoom =</span>
+                        <span>{Math.round(zoom * 100)}%</span>
                     </div>
                 </div>
             </div>

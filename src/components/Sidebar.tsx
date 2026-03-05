@@ -2,70 +2,100 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X as CloseIcon } from 'lucide-react';
 import { Person } from '../types';
 import AddPersonForm from './AddPersonForm';
 import PersonChart from './PersonChart';
 import QuickAddPresets from './QuickAddPresets';
+import AddImageForm from './AddImageForm';
+import EditPersonForm from './EditPersonForm';
 
 interface SidebarProps {
     persons: Person[];
     onAdd: (person: Person) => void;
     onRemove: (id: string) => void;
     scale: number;
-    isOpen: boolean;
-    setIsOpen: (isOpen: boolean) => void;
+    zoom: number;
+    activePanel?: string;
+    editingPerson?: Person;
+    onEditSave?: (person: Person) => void;
+    onEditCancel?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ persons, onAdd, onRemove, scale, isOpen, setIsOpen }) => {
+const Sidebar: React.FC<SidebarProps> = ({ persons, onAdd, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel }) => {
     return (
-        <>
-            {/* Backdrop for Mobile */}
-            <AnimatePresence>
-                {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setIsOpen(false)}
-                        className="fixed inset-0 bg-background/60 backdrop-blur-md z-40 lg:hidden"
-                    />
-                )}
-            </AnimatePresence>
-
-            {/* Sidebar Content */}
-            <motion.aside
-                initial={false}
-                animate={{
-                    x: isOpen ? 0 : '100%',
-                    opacity: 1
-                }}
-                transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-                className="fixed top-0 right-0 w-full max-w-[300px] h-screen glass-surface flex flex-col z-50 shadow-2xl overflow-hidden"
-            >
-                {/* Mobile Close Button Header */}
-                <div className="lg:hidden flex items-center justify-between p-4 border-b border-border/50 bg-background/20">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-muted">Management Console</span>
-                    <button
-                        onClick={() => setIsOpen(false)}
-                        className="p-2 bg-surface border border-border rounded-xl text-muted hover:text-accent transition-colors shadow-sm"
-                    >
-                        <CloseIcon size={18} strokeWidth={3} />
-                    </button>
-                </div>
-
-                <div className="flex flex-col h-full bg-surface/10 backdrop-blur-3xl overflow-y-auto custom-scrollbar pt-2">
-                    {/* Top: Add Form */}
-                    <AddPersonForm onAdd={onAdd} />
-
-                    {/* Middle: Chart (Scrollable) */}
-                    <PersonChart persons={persons} onRemove={onRemove} />
-
-                    {/* Bottom: Presets & Scale Info */}
-                    <QuickAddPresets onAdd={onAdd} scale={scale} />
-                </div>
-            </motion.aside>
-        </>
+        <aside className="w-full h-full flex flex-col bg-transparent">
+            <div className="flex flex-col h-full overflow-y-auto custom-scrollbar p-5 gap-6">
+                <AnimatePresence mode="popLayout" initial={false}>
+                    {activePanel === 'ADD_PERSON' && (
+                        <motion.div
+                            key="add_person"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex flex-col gap-6"
+                        >
+                            <AddPersonForm onAdd={onAdd} />
+                            <PersonChart persons={persons} onRemove={onRemove} />
+                            <QuickAddPresets onAdd={onAdd} scale={scale} zoom={zoom} />
+                        </motion.div>
+                    )}
+                    {activePanel === 'CELEBRITIES' && (
+                        <motion.div
+                            key="celebrities"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex-1 flex items-center justify-center text-muted/50 text-xs font-medium uppercase tracking-widest text-center px-4"
+                        >
+                            Celebrities module coming soon
+                        </motion.div>
+                    )}
+                    {activePanel === 'ENTITIES' && (
+                        <motion.div
+                            key="entities"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex-1 flex items-center justify-center text-muted/50 text-xs font-medium uppercase tracking-widest text-center px-4"
+                        >
+                            Entities module coming soon
+                        </motion.div>
+                    )}
+                    {activePanel === 'ADD_IMAGE' && (
+                        <motion.div
+                            key="add_image"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex flex-col gap-6"
+                        >
+                            <AddImageForm onAdd={onAdd} />
+                            <PersonChart persons={persons} onRemove={onRemove} />
+                        </motion.div>
+                    )}
+                    {activePanel === 'EDIT_PERSON' && editingPerson && onEditSave && onEditCancel && (
+                        <motion.div
+                            key="edit_person"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex flex-col gap-6"
+                        >
+                            <EditPersonForm
+                                person={editingPerson}
+                                onSave={onEditSave}
+                                onCancel={onEditCancel}
+                            />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        </aside>
     );
 };
 

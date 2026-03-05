@@ -19,21 +19,20 @@ const Door: React.FC<DoorProps> = ({ scale }) => {
             style={{ width: `${doorWidthPx}px` }}
         >
             <div className="relative group">
-                {/* Door Body */}
+                {/* Door Body (Simple SVG Rectangle Look) */}
                 <motion.div
                     layout
-                    className="bg-surface/40 border-x-2 border-t-2 border-border/80 rounded-t-sm shadow-[0_0_40px_rgba(0,0,0,0.1)] relative overflow-hidden transition-colors duration-500 group-hover:border-accent/40"
+                    className="bg-[#374151] rounded-t-sm relative overflow-hidden transition-colors duration-500"
                     style={{
                         width: `${doorWidthPx}px`,
                         height: `${doorHeightPx}px`,
                     }}
                 >
-                    {/* Inner Panel Detail */}
-                    <div className="absolute inset-2 border border-border/20 rounded-sm" />
+                    {/* Inner Panel Detail (Removed for simpler look as requested) */}
 
                     {/* Doorknob */}
                     <div
-                        className="absolute w-2 h-2 rounded-full bg-muted/40 shadow-sm transition-all duration-300 group-hover:bg-accent/60 group-hover:scale-125"
+                        className="absolute w-2 h-2 rounded-full bg-gray-400 shadow-sm transition-all duration-300 group-hover:bg-gray-300"
                         style={{
                             right: '12px',
                             bottom: `${knobHeightPx}px`,

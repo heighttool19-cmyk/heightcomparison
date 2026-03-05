@@ -7,11 +7,11 @@ export interface Person {
   heightCm: number;
   gender: Gender;
   color: string;
+  imgUrl?: string;
 }
 
 export interface AppState {
   persons: Person[];
-  unitSystem: UnitSystem;
   zoom: number;
 }
 
@@ -57,9 +57,9 @@ export const DEFAULT_PERSONS: Person[] = [
 
 export const HEIGHT_LIMITS = {
   MIN_CM: 30,
-  MAX_CM: 300,
+  MAX_CM: 400,
   MIN_FT: 1,
-  MAX_FT: 9,
+  MAX_FT: 13,
 };
 
 export const CONVERSION = {
