@@ -9,12 +9,13 @@ import { useUnitStore } from '../store';
 interface PersonBarProps {
     person: Person;
     scale: number;
+    zoom: number;
     onEditRequest?: (id: string) => void;
     onRemove?: (id: string) => void;
     onHeightChange?: (val: number) => void;
 }
 
-const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onRemove, onHeightChange }) => {
+const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditRequest, onRemove, onHeightChange }) => {
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [inputValue, setInputValue] = React.useState(person.heightCm.toString());
@@ -54,14 +55,18 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
 
     const springConfig = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
+    // Dynamic width calculation for true 2D zoom
+    const baseWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? 90 : 120;
+    const containerWidth = Math.max(65, baseWidth * zoom);
+
     return (
         <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
-            className="relative group pointer-events-auto shrink-0 h-full"
-            style={{ width: 'clamp(100px, 18vw, 150px)' }}
+            className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end"
+            style={{ width: `${containerWidth}px` }}
             onClick={() => {
                 if (window.innerWidth < 768) {
                     setIsMenuOpen(!isMenuOpen);
@@ -70,12 +75,14 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
         >
             {/* Stacked Labels - Matching the exact reference image */}
             <div
-                className={`flex flex-col items-center justify-center rounded-2xl bg-surface/90 backdrop-blur-md border border-border/50 shadow-premium px-4 py-2.5 text-center pointer-events-none transition-all duration-500 ${isMenuOpen ? 'border-accent/60 bg-surface' : 'group-hover:border-accent/40'}`}
+                className={`flex flex-col items-center justify-center rounded-[1rem] bg-surface/90 backdrop-blur-md border border-border/50 shadow-premium px-1 py-1.5 md:py-2 text-center pointer-events-none transition-all duration-500 ${isMenuOpen ? 'border-accent/60 bg-surface' : 'group-hover:border-accent/40'}`}
                 style={{
                     position: 'absolute',
-                    bottom: `${barHeightPx + 80}px`,
-                    width: 'clamp(115px, 28vw, 160px)',
-                    zIndex: 30
+                    bottom: `${barHeightPx + (60 * Math.min(1, zoom)) + 20}px`,
+                    width: '100%',
+                    zIndex: 30,
+                    transform: `scale(${Math.min(1, Math.max(0.65, zoom + 0.1))})`,
+                    transformOrigin: 'bottom center'
                 }}
             >
                 {/* Hover/Tap Action Menu */}
@@ -96,9 +103,9 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
                     )}
                 </div>
                 {unitSystem === 'metric' ? (
-                    <span className="text-foreground text-[11px] md:text-sm font-bold">cm: {person.heightCm.toFixed(1)}</span>
+                    <span className="text-foreground text-[10px] md:text-[13px] font-bold w-full truncate px-1">cm: {person.heightCm.toFixed(1)}</span>
                 ) : (
-                    <span className="text-foreground text-[11px] md:text-sm font-bold">ft: {ftDisplay}</span>
+                    <span className="text-foreground text-[10px] md:text-[13px] font-bold w-full truncate px-1">ft: {ftDisplay}</span>
                 )}
             </div>
 
@@ -106,7 +113,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
             <div className="absolute inset-x-0 bottom-[60px] flex flex-col items-center justify-end">
                 {/* Indicator Line - Exactly at Height Line */}
                 <div
-                    className="w-24 md:w-36 h-[1.5px] bg-foreground/10 group-hover:bg-accent/40 shadow-sm transition-all duration-500 absolute"
+                    className="w-[130%] h-[1.5px] bg-foreground/10 group-hover:bg-accent/40 shadow-sm transition-all duration-500 absolute"
                     style={{
                         bottom: `${barHeightPx}px`,
                         zIndex: 20
@@ -158,8 +165,14 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, onEditRequest, onR
             </div>
 
             {/* Inline Name, Edit & Delete (Below Ruler Zero Line) */}
-            <div className="absolute inset-x-0 bottom-0 h-[65px] flex flex-col items-center justify-center gap-1 pointer-events-auto hide-on-export">
-                <span className="text-[11px] font-black text-foreground/70 uppercase tracking-tight truncate max-w-full px-2">
+            <div
+                className="absolute inset-x-0 bottom-0 h-[65px] flex flex-col items-center justify-center gap-1 pointer-events-auto hide-on-export"
+                style={{
+                    transform: `scale(${Math.min(1, Math.max(0.6, zoom + 0.2))})`,
+                    transformOrigin: 'bottom center'
+                }}
+            >
+                <span className="text-[11px] font-black text-foreground/70 uppercase tracking-tight truncate w-full text-center px-1">
                     {person.name}
                 </span>
                 <div className="flex items-center gap-1.5 bg-surface border border-border/60 rounded-xl px-2.5 py-1.5 focus-within:border-accent/60 backdrop-blur-md shadow-premium transition-all group-hover:border-accent/50 opacity-100 group-hover:opacity-100 ring-1 ring-black/5 dark:ring-white/5">

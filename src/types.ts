@@ -68,3 +68,14 @@ export const CONVERSION = {
   IN_TO_CM: 2.54,
 };
 
+export type CelebrityCategory = 'NBA Stars' | 'Hollywood' | 'Musicians' | 'Athletes' | 'Historical';
+
+export interface Celebrity {
+  id: string;
+  name: string;
+  heightCm: number;
+  category: CelebrityCategory;
+  imgUrl?: string;
+  color?: string;
+}
+

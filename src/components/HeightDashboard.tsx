@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link, ArrowLeftRight, Maximize2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link, ArrowLeftRight, Focus, ChevronLeft, ChevronRight } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
 import { Person, AppState, DEFAULT_PERSONS, uid } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
@@ -226,22 +226,37 @@ const HeightDashboard: React.FC = () => {
 
     const handleAutoScale = () => {
         if (state.persons.length === 0 || canvasHeight === 0) return;
+
+        const container = containerRef.current;
+        if (!container) return;
+        const containerWidth = container.getBoundingClientRect().width;
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
+        // 1. Vertical Calculation (Guarantee 100% visibility)
         const heights = state.persons.map(p => p.heightCm);
         const maxHeightCm = Math.max(180, ...heights);
+        const targetHeightPx = canvasHeight * (isMobile ? 0.6 : 0.65);
+        const fitScale = Math.max(0, (canvasHeight - 220) / maxHeightCm);
+        const verticalZoom = targetHeightPx / (maxHeightCm * fitScale);
 
-        // Slightly more conservative on mobile (lower targetHeightPx)
-        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-        const targetHeightPx = canvasHeight * (isMobile ? 0.65 : 0.75);
+        // 2. Horizontal Calculation (Guarantee 100% visibility)
+        const basePersonWidth = isMobile ? 90 : 120;
+        const baseGap = isMobile ? 8 : 12;
+        const ghostRefWidth = isMobile ? 80 : 120;
+        const horizontalPadding = isMobile ? 80 : 220; // Extra padding for ruler and safety
 
-        const fitScale = Math.max(0, (canvasHeight - 200) / maxHeightCm);
+        const count = state.persons.length;
+        // Total width at zoom 1: (People * baseWidth) + (Gaps * baseGap) + Ghost
+        const totalContentWidthAtZoom1 = (count * basePersonWidth) + (count * baseGap) + ghostRefWidth;
+        const horizontalZoom = (containerWidth - horizontalPadding) / totalContentWidthAtZoom1;
 
-        if (fitScale > 0) {
-            const idealZoom = targetHeightPx / (maxHeightCm * fitScale);
-            setState(s => ({
-                ...s,
-                zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom))
-            }));
-        }
+        // Take the more restrictive zoom (minimum) to ensure everything fits perfectly in BOTH dimensions
+        const idealZoom = Math.min(verticalZoom, horizontalZoom || verticalZoom);
+
+        setState(s => ({
+            ...s,
+            zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom))
+        }));
     };
 
     // Auto-zoom Guard logic
@@ -538,10 +553,10 @@ const HeightDashboard: React.FC = () => {
                                     <div className="flex items-center gap-1 ml-2 border-l border-white/10 pl-3">
                                         <button
                                             onClick={handleAutoScale}
-                                            className="p-2 text-muted hover:text-primary transition-all rounded-lg hover:bg-white/5"
-                                            title="Auto Scale"
+                                            className="p-2 text-primary hover:bg-primary/10 transition-all rounded-lg"
+                                            title="Auto Fit All"
                                         >
-                                            <Maximize2 size={16} />
+                                            <Focus size={18} strokeWidth={2.5} />
                                         </button>
 
                                         <div className="hidden sm:block px-2">
@@ -597,12 +612,20 @@ const HeightDashboard: React.FC = () => {
                             <Ruler scale={scale} maxHeightCm={state.persons.length > 0 ? Math.max(...state.persons.map(p => p.heightCm)) : 300} canvasHeight={canvasHeight} />
 
                             <AnimatePresence mode="popLayout" initial={false}>
-                                <div className="flex items-end gap-12 md:gap-24 h-full">
+                                <div
+                                    className="flex items-end h-full"
+                                    style={{
+                                        gap: `${Math.max(2, (window.innerWidth < 768 ? 8 : 12) * state.zoom)}px`,
+
+                                        transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
+                                    }}
+                                >
                                     {state.persons.map((person) => (
                                         <PersonBar
                                             key={person.id}
                                             person={person}
                                             scale={scale}
+                                            zoom={state.zoom}
                                             onEditRequest={handleEditRequest}
                                             onRemove={removePerson}
                                             onHeightChange={(val) => updatePersonHeight(person.id, val)}
@@ -610,7 +633,7 @@ const HeightDashboard: React.FC = () => {
                                     ))}
 
                                     {/* Ghost Column + */}
-                                    <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: 'clamp(80px, 15vw, 150px)' }}>
+                                    <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (window.innerWidth < 768 ? 80 : 120) * state.zoom)}px` }}>
                                         <button
                                             onClick={() => {
                                                 setActivePanel('ADD_PERSON');
