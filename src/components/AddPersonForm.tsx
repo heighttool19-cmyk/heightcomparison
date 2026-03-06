@@ -53,7 +53,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
         >
             <div className="flex items-center gap-2">
                 <div className="w-1 h-4 bg-accent rounded-full" />
-                <h2 className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">Add Subject</h2>
+                <h2 className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">Enter Your Details</h2>
             </div>
 
             {/* Gender Toggle */}
@@ -77,20 +77,20 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
             <div className="space-y-4">
                 {/* Name Input */}
                 <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Identity</label>
+                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Name</label>
                     <input
                         type="text"
                         placeholder="Optional"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full bg-background border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
+                        className="w-full bg-bg border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
                     />
                 </div>
 
                 {/* Unit & Height Container */}
                 <div className="space-y-1.5">
                     <div className="flex justify-between items-center ml-0.5">
-                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60">Dimension</label>
+                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60">Height (CM/FT)</label>
                         <div className="flex gap-1.5">
                             {(['metric', 'imperial'] as UnitSystem[]).map((u) => (
                                 <button
@@ -107,7 +107,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
 
                     <div className="flex gap-2">
                         {unit === 'metric' ? (
-                            <div className="w-full flex bg-background border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
+                            <div className="w-full flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
                                 <input
                                     type="number"
                                     placeholder="Height"
@@ -121,7 +121,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                             </div>
                         ) : (
                             <div className="flex gap-2 w-full">
-                                <div className="flex-1 flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                     <input
                                         type="number"
                                         placeholder="Ft"
@@ -133,7 +133,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                         FT
                                     </div>
                                 </div>
-                                <div className="flex-1 flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                     <input
                                         type="number"
                                         placeholder="In"
@@ -153,7 +153,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
 
             {/* Color Swatches */}
             <div className="space-y-2">
-                <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Accent</label>
+                <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Color</label>
                 <div className="flex gap-2.5">
                     {COLOR_PALETTE.slice(0, 6).map((c) => (
                         <motion.button

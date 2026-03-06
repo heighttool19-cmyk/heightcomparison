@@ -46,7 +46,7 @@
 }
 
 @theme inline {
-  --color-background: var(--bg);
+  --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-canvas: var(--canvas);
   --color-border: var(--border);

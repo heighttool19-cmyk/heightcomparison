@@ -29,7 +29,6 @@ export const COLOR_PALETTE = [
 ];
 
 export const QUICK_ADD_PRESETS = [
-  { name: 'Basketball Player', heightCm: 198, gender: 'male' as const },
   { name: 'Average Male', heightCm: 177, gender: 'male' as const },
   { name: 'Average Female', heightCm: 163, gender: 'female' as const },
   { name: "Shaquille O'Neal", heightCm: 216, gender: 'male' as const },

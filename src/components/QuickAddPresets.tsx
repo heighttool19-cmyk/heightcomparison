@@ -49,7 +49,7 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
                             whileHover={{ scale: 1.02, x: 4, backgroundColor: 'rgba(59, 130, 246, 0.05)' }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => handlePresetClick(preset)}
-                            className="flex items-center justify-between p-3.5 rounded-2xl bg-background border border-border hover:border-accent/40 transition-all text-left shadow-sm group"
+                            className="flex items-center justify-between p-3.5 rounded-2xl bg-bg border border-border hover:border-accent/40 transition-all text-left shadow-sm group"
                         >
                             <span className="text-[11px] font-black text-foreground group-hover:text-accent transition-colors uppercase leading-none">
                                 {preset.name}
@@ -66,7 +66,7 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
             </div>
 
             {/* Scale Info Footer */}
-            <div className="mx-6 mb-6 p-4 rounded-2xl border border-border bg-background flex flex-col gap-2">
+            <div className="mx-6 mb-6 p-4 rounded-2xl border border-border bg-bg flex flex-col gap-2">
                 <div className="flex items-center gap-2 mb-1">
                     <Activity size={12} className="text-accent" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-accent">SCALE INFO</span>

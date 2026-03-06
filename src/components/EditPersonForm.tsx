@@ -100,7 +100,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                         placeholder="Name (Optional)"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full bg-background border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
+                        className="w-full bg-bg border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
                     />
                 </div>
 
@@ -124,7 +124,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
 
                     <div className="flex gap-2">
                         {unit === 'metric' ? (
-                            <div className="flex-1 flex bg-background border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
+                            <div className="flex-1 flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
                                 <input
                                     type="number"
                                     placeholder="Height"
@@ -138,7 +138,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                             </div>
                         ) : (
                             <div className="flex gap-2 w-full">
-                                <div className="flex-1 flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                     <input
                                         type="number"
                                         placeholder="Ft"
@@ -150,7 +150,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                                         FT
                                     </div>
                                 </div>
-                                <div className="flex-1 flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                     <input
                                         type="number"
                                         placeholder="In"

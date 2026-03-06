@@ -82,7 +82,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                     value={name}
                     onChange={e => setName(e.target.value)}
                     placeholder="Subject Name (e.g., Car)"
-                    className="w-full bg-background border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
+                    className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted focus:outline-none focus:border-accent transition-colors"
                 />
 
                 {/* Unit & Height Container */}
@@ -106,7 +106,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
 
                     <div className="flex gap-2">
                         {unit === 'metric' ? (
-                            <div className="w-full flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                            <div className="w-full flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                 <input
                                     type="number"
                                     placeholder="Height"
@@ -120,7 +120,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                             </div>
                         ) : (
                             <div className="flex gap-2 w-full">
-                                <div className="flex-1 flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                     <input
                                         type="number"
                                         placeholder="Ft"
@@ -132,7 +132,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                                         FT
                                     </div>
                                 </div>
-                                <div className="flex-1 flex bg-background border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                     <input
                                         type="number"
                                         placeholder="In"

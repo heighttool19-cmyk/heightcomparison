@@ -15,7 +15,7 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove }) => {
         <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
             <div className="px-6 py-4 flex items-center justify-between sticky top-0 bg-surface z-10 border-y border-border">
                 <h2 className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70">
-                    Simulation Queue <span className="text-accent ml-2">{persons.length}</span>
+                    Your List <span className="text-accent ml-2">{persons.length}</span>
                 </h2>
             </div>
 
@@ -36,7 +36,7 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove }) => {
                             whileHover={{ scale: 1.02, x: 5, backgroundColor: 'rgba(59, 130, 246, 0.03)' }}
                             whileTap={{ scale: 0.99 }}
                             key={person.id}
-                            className="flex items-center justify-between p-3.5 rounded-2xl bg-background border border-border hover:border-accent/40 group transition-all shadow-sm relative overflow-hidden"
+                            className="flex items-center justify-between p-3.5 rounded-2xl bg-bg border border-border hover:border-accent/40 group transition-all shadow-sm relative overflow-hidden"
                         >
                             <div className="flex items-center gap-3 relative z-10">
                                 <motion.div
@@ -78,7 +78,7 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove }) => {
                         className="flex flex-col items-center justify-center py-10"
                     >
                         <p className="text-xs uppercase tracking-[0.3em] font-black text-foreground/40 text-center">
-                            Queue Empty
+                            List is Empty
                         </p>
                     </motion.div>
                 )}

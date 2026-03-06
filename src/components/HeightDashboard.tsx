@@ -285,6 +285,7 @@ const HeightDashboard: React.FC = () => {
         setState(s => {
             const tempPersons = [...s.persons, person];
             const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, s.zoom);
+            setTimeout(handleAutoScale, 50);
             return { ...s, persons: tempPersons, zoom: guardedZoom };
         });
     };
@@ -387,13 +388,13 @@ const HeightDashboard: React.FC = () => {
     }, [canvasHeight, state.persons, state.zoom]);
 
     return (
-        <div className="flex flex-col h-screen bg-background overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
+        <div className="flex flex-col h-screen bg-bg overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
             {/* 1. Global Top Header (New Navbar design) */}
             <motion.header
                 initial={{ y: -70, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="h-[70px] shrink-0 border-b border-border/50 bg-background flex items-center justify-between px-6 sm:px-12 z-50"
+                className="h-[70px] shrink-0 border-b border-border/50 bg-bg flex items-center justify-between px-6 sm:px-12 z-50"
             >
                 {/* Left side: Logo & Brands */}
                 <div className="flex items-center gap-3 cursor-pointer">
@@ -473,7 +474,7 @@ const HeightDashboard: React.FC = () => {
             </motion.header>
 
             {/* Main Application Area */}
-            <div className="flex flex-1 overflow-hidden relative flex-col md:flex-row custom-scrollbar bg-background transition-colors duration-500">
+            <div className="flex flex-1 overflow-hidden relative flex-col md:flex-row custom-scrollbar bg-bg transition-colors duration-500">
 
                 {/* 2. Left Native Menu (Desktop) / Top Menu (Mobile) */}
                 <motion.aside
@@ -481,7 +482,7 @@ const HeightDashboard: React.FC = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                     className="
-                    shrink-0 w-full h-[80px] bg-background border-b overflow-hidden border-border/50 z-40
+                    shrink-0 w-full h-[80px] bg-bg border-b overflow-hidden border-border/50 z-40
                     flex overflow-x-auto overflow-y-hidden gap-0 custom-scrollbar
                     sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col sm:py-0 sm:px-0 sm:gap-0
                 ">
@@ -681,13 +682,13 @@ const HeightDashboard: React.FC = () => {
                     <motion.div
                         initial={false}
                         animate={{
-                            width: isSidebarCollapsed ? 0 : 280,
+                            width: isSidebarCollapsed ? 0 : 400,
                             opacity: isSidebarCollapsed ? 0 : 1
                         }}
                         transition={{ type: 'spring', damping: 25, stiffness: 200 }}
                         className="flex flex-col border-l border-border bg-surface overflow-hidden transition-colors duration-500"
                     >
-                        <div className="flex-1 w-[280px] overflow-y-auto custom-scrollbar">
+                        <div className="flex-1 w-[400px] overflow-y-auto custom-scrollbar">
                             <Sidebar
                                 persons={state.persons}
                                 personCount={state.persons.length}
@@ -768,17 +769,17 @@ const HeightDashboard: React.FC = () => {
                             animate={{ y: 0 }}
                             exit={{ y: '100%' }}
                             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="sm:hidden fixed bottom-0 left-0 right-0 h-[60vh] bg-surface rounded-t-[16px] z-50 overflow-hidden flex flex-col shadow-2xl border-t border-border"
+                            className="sm:hidden fixed bottom-0 left-0 right-0 h-[80vh] bg-surface rounded-t-[2rem] z-50 overflow-hidden flex flex-col shadow-2xl border-t border-border"
                         >
-                            <div className="flex items-center justify-between px-6 py-4 border-b border-border/50">
-                                <h3 className="text-xs font-black uppercase tracking-widest text-foreground/80">
-                                    {activePanel === 'ADD_PERSON' ? 'Add Subject' :
-                                        activePanel === 'ADD_IMAGE' ? 'Add Custom Image' :
-                                            activePanel === 'EDIT_PERSON' ? 'Edit Subject' :
+                            <div className="flex items-center justify-between px-6 py-5 border-b border-border/30 bg-surface/50 backdrop-blur-md sticky top-0 z-20">
+                                <h3 className="text-sm font-black uppercase tracking-[0.2em] text-foreground/90">
+                                    {activePanel === 'ADD_PERSON' ? 'Enter Details' :
+                                        activePanel === 'CELEBRITIES' ? 'Celebrities' :
+                                            activePanel === 'FICTIONAL' ? 'Fictional' :
                                                 activePanel.replace('_', ' ')}
                                 </h3>
-                                <button onClick={() => setIsMobileDrawerOpen(false)} className="p-2 text-muted hover:text-white transition-colors">
-                                    <X size={20} />
+                                <button onClick={() => setIsMobileDrawerOpen(false)} className="p-2 bg-bg border border-border/50 rounded-xl text-muted hover:text-foreground transition-all active:scale-95">
+                                    <X size={20} strokeWidth={3} />
                                 </button>
                             </div>
                             <div className="flex-1 overflow-y-auto custom-scrollbar pb-6 relative">
