@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link, ArrowLeftRight, Focus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link, ArrowLeftRight, Focus, ChevronLeft, ChevronRight } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
 import { Person, AppState, DEFAULT_PERSONS, uid } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
@@ -10,7 +10,7 @@ import PersonBar from './PersonBar';
 import Ruler from './Ruler';
 import Sidebar from './Sidebar';
 
-type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'ADD_IMAGE' | 'EDIT_PERSON';
+type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
 
 const HeightDashboard: React.FC = () => {
     // 1. URL Hash decoding (Lazy Initializer)
@@ -491,6 +491,7 @@ const HeightDashboard: React.FC = () => {
                     >
                         <LeftNavItem icon={<UserPlus size={22} />} label="ADD PERSON" active={activePanel === 'ADD_PERSON'} onClick={() => { setActivePanel('ADD_PERSON'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                         <LeftNavItem icon={<Star size={22} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                        <LeftNavItem icon={<Ghost size={22} />} label="FICTIONAL" active={activePanel === 'FICTIONAL'} onClick={() => { setActivePanel('FICTIONAL'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                         <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                         <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                     </motion.div>

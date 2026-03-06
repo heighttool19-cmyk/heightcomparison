@@ -9,6 +9,7 @@ import QuickAddPresets from './QuickAddPresets';
 import AddImageForm from './AddImageForm';
 import EditPersonForm from './EditPersonForm';
 import CelebritiesPanel from './CelebritiesPanel';
+import { FictionalPanel } from './FictionalPanel';
 
 interface SidebarProps {
     persons: Person[];
@@ -26,7 +27,7 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel }) => {
     return (
         <aside className="w-full h-full flex flex-col bg-transparent">
-            <div className={`flex flex-col h-full overflow-y-auto custom-scrollbar ${activePanel === 'CELEBRITIES' ? '' : 'p-5 gap-6'}`}>
+            <div className={`flex flex-col h-full overflow-y-auto custom-scrollbar ${activePanel === 'CELEBRITIES' || activePanel === 'FICTIONAL' ? '' : 'p-5 gap-6'}`}>
                 <AnimatePresence mode="popLayout" initial={false}>
                     {activePanel === 'ADD_PERSON' && (
                         <motion.div
@@ -64,6 +65,18 @@ const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onRemove
                             className="flex-1 flex items-center justify-center text-muted/50 text-xs font-medium uppercase tracking-widest text-center px-4"
                         >
                             Entities module coming soon
+                        </motion.div>
+                    )}
+                    {activePanel === 'FICTIONAL' && (
+                        <motion.div
+                            key="fictional"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 20 }}
+                            transition={{ duration: 0.2 }}
+                            className="flex-1 flex flex-col h-full w-full"
+                        >
+                            <FictionalPanel onAddPerson={onAdd} onClose={onEditCancel || (() => { })} />
                         </motion.div>
                     )}
                     {activePanel === 'ADD_IMAGE' && (

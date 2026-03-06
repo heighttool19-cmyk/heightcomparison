@@ -79,3 +79,14 @@ export interface Celebrity {
   color?: string;
 }
 
+export type FictionalCategory = 'Anime' | 'Cartoons' | 'DC Comics' | 'Fantasy' | 'Marvel' | 'Monsters & Kaiju' | 'TV Shows' | 'Video Games';
+
+export interface FictionalCharacter {
+  id: string;
+  name: string;
+  heightCm: number;
+  category: FictionalCategory;
+  color: string;
+}
+
+

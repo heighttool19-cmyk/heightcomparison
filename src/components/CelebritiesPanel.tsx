@@ -84,35 +84,35 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
     };
 
     return (
-        <div className="flex flex-col h-full bg-surface dark bg-[#0F172A] text-slate-200 font-sans">
+        <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
             {/* 1. Header Area */}
-            <div className="px-6 pt-8 pb-4 border-b border-white/5 shrink-0">
-                <h2 className="text-2xl font-bold text-white tracking-tight">Celebrity Selection</h2>
-                <p className="text-sm text-slate-400 mt-1 mb-6">Add icons to your comparison chart</p>
+            <div className="px-6 pt-8 pb-4 border-b border-border/50 shrink-0 bg-surface">
+                <h2 className="text-2xl font-bold tracking-tight">Celebrity Selection</h2>
+                <p className="text-sm text-muted mt-1 mb-6">Add icons to your comparison chart</p>
 
                 {/* Search Input */}
                 <div className="relative group">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors" size={18} />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted group-focus-within:text-accent transition-colors" size={18} />
                     <input
                         type="text"
                         placeholder="Search by name or category"
                         value={searchQuery}
                         onChange={handleSearchChange}
-                        className="w-full bg-[#1E293B] border border-white/10 rounded-full py-3.5 pl-12 pr-4 text-[15px] font-medium text-white placeholder:text-slate-500 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all shadow-inner"
+                        className="w-full bg-[var(--bg)] border border-border/50 rounded-full py-3.5 pl-12 pr-4 text-[15px] font-medium text-foreground placeholder:text-muted focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/50 transition-all shadow-inner"
                     />
                 </div>
             </div>
 
             {/* 2. Filter Tabs (Horizontally Scrollable) */}
             <div className="shrink-0 relative">
-                <div className="flex overflow-x-auto custom-scrollbar gap-2 px-6 py-4 border-b border-white/5 hide-scrollbar">
+                <div className="flex overflow-x-auto custom-scrollbar gap-2 px-6 py-4 border-b border-border/50 hide-scrollbar">
                     {CATEGORIES.map(category => (
                         <button
                             key={category}
                             onClick={() => setActiveCategory(category)}
                             className={`whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold transition-all duration-300 ${activeCategory === category
-                                    ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/20'
-                                    : 'bg-[#1E293B] text-slate-400 hover:text-slate-200 hover:bg-[#2A3B54]'
+                                ? 'bg-accent text-white shadow-lg shadow-accent/20'
+                                : 'bg-[var(--bg)] text-muted hover:text-foreground hover:bg-[var(--border)]'
                                 }`}
                         >
                             {category}
@@ -125,7 +125,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                         initial={{ x: '-100%' }}
                         animate={{ x: isSearching ? '100%' : '-100%' }}
                         transition={{ duration: 0.8, ease: "linear", repeat: isSearching ? Infinity : 0 }}
-                        className="h-full w-1/3 bg-blue-500/50 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.5)]"
+                        className="h-full w-1/3 bg-accent/50 rounded-full shadow-[0_0_10px_var(--accent)]"
                     />
                 </div>
             </div>
@@ -154,7 +154,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                                     <h3 className="text-[11px] font-black tracking-widest text-slate-400 uppercase">
                                         {category} — {celebs.length} FOUND
                                     </h3>
-                                    <div className="h-px bg-white/5 flex-1" />
+                                    <div className="h-px bg-border/50 flex-1" />
                                 </div>
 
                                 {/* Cards Grid */}
@@ -162,7 +162,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                                     {celebs.map(celeb => (
                                         <div
                                             key={celeb.id}
-                                            className="group flex items-center justify-between p-3.5 bg-[#1E293B] border border-white/5 rounded-2xl hover:border-white/10 hover:bg-[#233147] transition-all duration-300"
+                                            className="group flex items-center justify-between p-3.5 bg-[var(--bg)] border border-border/50 rounded-2xl hover:border-accent/30 hover:bg-[var(--border)] transition-all duration-300 shadow-sm"
                                         >
                                             <div className="flex items-center gap-4">
                                                 {/* Left: Avatar Circle */}
@@ -186,7 +186,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                                             {/* Right: Add Button */}
                                             <button
                                                 onClick={() => handleAdd(celeb)}
-                                                className="w-9 h-9 flex items-center justify-center rounded-full bg-blue-500/10 text-blue-500 hover:bg-blue-500 hover:text-white transition-all duration-300 active:scale-95"
+                                                className="w-9 h-9 flex items-center justify-center rounded-full bg-accent/10 text-accent hover:bg-accent hover:text-white transition-all duration-300 active:scale-95"
                                             >
                                                 <Plus size={18} strokeWidth={2.5} />
                                             </button>
@@ -200,15 +200,12 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
             </div>
 
             {/* 4. Fixed CTA Bottom */}
-            <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-[#0F172A] via-[#0F172A] to-transparent pointer-events-none">
+            <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-surface via-surface to-transparent pointer-events-none">
                 <button
                     onClick={() => {
-                        // Switch to ADD_PERSON panel
                         onClose();
-                        // This would be handled by a parent prop passing an active view changer ideally, 
-                        // but since the objective doesn't explicitly mention it, firing a simulated close works for mobile.
                     }}
-                    className="w-full pointer-events-auto bg-[#4F46E5] hover:bg-[#4338CA] text-white font-bold text-[15px] py-3.5 rounded-2xl shadow-xl shadow-indigo-500/20 transition-all active:scale-[0.98]"
+                    className="w-full pointer-events-auto bg-accent hover:bg-accent-secondary text-white font-bold text-[15px] py-3.5 rounded-2xl shadow-xl shadow-accent/20 transition-all active:scale-[0.98]"
                 >
                     Add Custom Person
                 </button>
