@@ -130,7 +130,7 @@ body.is-capturing .hide-on-export {
     position: relative;
     display: flex;
     align-items: center;
-    justify-center: center;
+    justify-content: center;
     background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.02));
     transition: all 0.5s ease;
 }

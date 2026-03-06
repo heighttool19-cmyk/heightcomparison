@@ -1,8 +1,9 @@
+'use client';
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Search, Plus, User, Sparkles } from 'lucide-react';
+import { X, Search, Plus, Sparkles } from 'lucide-react';
 import { fictionalCharacters } from '../data/fictionalCharacters';
-import { FictionalCategory, FictionalCharacter, Person } from '../types';
+import { FictionalCategory, Person } from '../types';
 
 interface FictionalPanelProps {
     onAddPerson: (person: Person) => void;
@@ -113,7 +114,7 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                             <div className="w-16 h-16 rounded-full bg-[var(--bg)] flex items-center justify-center text-muted mb-2 shadow-inner">
                                 <Search size={28} />
                             </div>
-                            <p className="text-muted text-sm font-medium">No characters found for "{searchQuery}"</p>
+                            <p className="text-muted text-sm font-medium">No characters found for &quot;{searchQuery}&quot;</p>
                         </motion.div>
                     ) : (
                         filteredCharacters.map((char, index) => (
@@ -155,13 +156,19 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                                 </div>
 
                                 <button
-                                    onClick={() => onAddPerson({
-                                        id: `person-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-                                        name: char.name,
-                                        heightCm: char.heightCm,
-                                        color: char.color,
-                                        gender: 'other',
-                                    })}
+                                    onClick={() => {
+                                        const timestamp = Date.now();
+                                        const rand = Math.random().toString(36).substr(2, 9);
+                                        const newId = `person-${timestamp}-${rand}`;
+
+                                        onAddPerson({
+                                            id: newId,
+                                            name: char.name,
+                                            heightCm: char.heightCm,
+                                            color: char.color,
+                                            gender: 'other',
+                                        });
+                                    }}
                                     className="w-9 h-9 flex shrink-0 ml-2 items-center justify-center rounded-full bg-accent/10 text-accent hover:bg-accent hover:text-white transition-all duration-300 active:scale-95 pointer-events-auto"
                                     title={`Add ${char.name} to chart`}
                                 >

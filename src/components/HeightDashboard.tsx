@@ -4,7 +4,7 @@ import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link, ArrowLeftRight, Focus, ChevronLeft, ChevronRight } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
-import { Person, AppState, DEFAULT_PERSONS, uid } from '../types';
+import { Person, AppState, DEFAULT_PERSONS } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
 import PersonBar from './PersonBar';
 import Ruler from './Ruler';
@@ -13,34 +13,10 @@ import Sidebar from './Sidebar';
 type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
 
 const HeightDashboard: React.FC = () => {
-    // 1. URL Hash decoding (Lazy Initializer)
-    const [state, setState] = useState<AppState>(() => {
-        if (typeof window !== 'undefined' && window.location.hash) {
-            try {
-                const hash = window.location.hash.slice(1);
-                const decoded = JSON.parse(decodeURIComponent(atob(hash)));
-
-                // Hydrate Zustand from URL if present
-                if (decoded.unitSystem) {
-                    useUnitStore.setState({ unitSystem: decoded.unitSystem });
-                }
-
-                return {
-                    persons: decoded.persons || DEFAULT_PERSONS,
-                    zoom: decoded.zoom || 1.0,
-                };
-            } catch (e) {
-                console.error("Hash decode failed, using fallback:", e);
-                return {
-                    persons: [{ id: uid(), name: 'Person 1', heightCm: 175, color: '#6366F1', gender: 'male' }],
-                    zoom: 1.0,
-                };
-            }
-        }
-        return {
-            persons: DEFAULT_PERSONS,
-            zoom: 1.0,
-        };
+    // 1. App State
+    const [state, setState] = useState<AppState>({
+        persons: DEFAULT_PERSONS,
+        zoom: 1.0,
     });
 
     const { unitSystem, toggleUnitSystem } = useUnitStore();
@@ -55,12 +31,37 @@ const HeightDashboard: React.FC = () => {
     const [toastMessage, setToastMessage] = useState('');
     const [isCapturing, setIsCapturing] = useState(false);
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Apply the theme to the <html> document root
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
+
+    // 2. URL Hash Hydration (Client-side only)
+    useEffect(() => {
+        if (typeof window !== 'undefined' && window.location.hash) {
+            try {
+                const hash = window.location.hash.slice(1);
+                if (!hash) return;
+
+                const decoded = JSON.parse(decodeURIComponent(atob(hash)));
+
+                // Hydrate Zustand from URL if present
+                if (decoded.unitSystem) {
+                    useUnitStore.setState({ unitSystem: decoded.unitSystem });
+                }
+
+                setState({
+                    persons: decoded.persons || DEFAULT_PERSONS,
+                    zoom: decoded.zoom || 1.0,
+                });
+            } catch (e) {
+                console.error("Hash decode failed:", e);
+            }
+        }
+    }, []); // Run once on mount
 
     // 2. URL Hash Encoding Sync
     useEffect(() => {
@@ -85,7 +86,9 @@ const HeightDashboard: React.FC = () => {
         const observer = new ResizeObserver((entries) => {
             for (const entry of entries) {
                 setCanvasHeight(entry.contentRect.height);
-                if (window.innerWidth >= 768) {
+                const mobile = window.innerWidth < 768;
+                setIsMobile(mobile);
+                if (!mobile) {
                     setIsMobileDrawerOpen(false);
                 }
             }
@@ -230,20 +233,22 @@ const HeightDashboard: React.FC = () => {
         const container = containerRef.current;
         if (!container) return;
         const containerWidth = container.getBoundingClientRect().width;
-        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+        // isMobile state is already updated via ResizeObserver
+        // but for safety in this direct handler we can check again if window exists
+        const mobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
 
         // 1. Vertical Calculation (Guarantee 100% visibility)
         const heights = state.persons.map(p => p.heightCm);
         const maxHeightCm = Math.max(180, ...heights);
-        const targetHeightPx = canvasHeight * (isMobile ? 0.6 : 0.65);
+        const targetHeightPx = canvasHeight * (mobile ? 0.6 : 0.65);
         const fitScale = Math.max(0, (canvasHeight - 220) / maxHeightCm);
         const verticalZoom = targetHeightPx / (maxHeightCm * fitScale);
 
         // 2. Horizontal Calculation (Guarantee 100% visibility)
-        const basePersonWidth = isMobile ? 90 : 120;
-        const baseGap = isMobile ? 8 : 12;
-        const ghostRefWidth = isMobile ? 80 : 120;
-        const horizontalPadding = isMobile ? 80 : 220; // Extra padding for ruler and safety
+        const basePersonWidth = mobile ? 90 : 120;
+        const baseGap = mobile ? 8 : 12;
+        const ghostRefWidth = mobile ? 80 : 120;
+        const horizontalPadding = mobile ? 80 : 220; // Extra padding for ruler and safety
 
         const count = state.persons.length;
         // Total width at zoom 1: (People * baseWidth) + (Gaps * baseGap) + Ghost
@@ -304,7 +309,7 @@ const HeightDashboard: React.FC = () => {
         setEditingPersonId(id);
         setActivePanel('EDIT_PERSON');
         setIsSidebarCollapsed(false);
-        if (window.innerWidth < 768) {
+        if (typeof window !== 'undefined' && window.innerWidth < 768) {
             setIsMobileDrawerOpen(true);
         }
     };
@@ -317,7 +322,7 @@ const HeightDashboard: React.FC = () => {
         });
         setActivePanel('ADD_PERSON');
         setEditingPersonId(null);
-        if (window.innerWidth < 768) {
+        if (typeof window !== 'undefined' && window.innerWidth < 768) {
             setIsMobileDrawerOpen(false);
         }
     };
@@ -616,8 +621,7 @@ const HeightDashboard: React.FC = () => {
                                 <div
                                     className="flex items-end h-full"
                                     style={{
-                                        gap: `${Math.max(2, (window.innerWidth < 768 ? 8 : 12) * state.zoom)}px`,
-
+                                        gap: `${Math.max(2, (isMobile ? 8 : 12) * state.zoom)}px`,
                                         transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
                                     }}
                                 >
@@ -634,12 +638,12 @@ const HeightDashboard: React.FC = () => {
                                     ))}
 
                                     {/* Ghost Column + */}
-                                    <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (window.innerWidth < 768 ? 80 : 120) * state.zoom)}px` }}>
+                                    <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (isMobile ? 80 : 120) * state.zoom)}px` }}>
                                         <button
                                             onClick={() => {
                                                 setActivePanel('ADD_PERSON');
                                                 setIsSidebarCollapsed(false);
-                                                if (window.innerWidth < 768) {
+                                                if (typeof window !== 'undefined' && window.innerWidth < 768) {
                                                     setIsMobileDrawerOpen(true);
                                                 }
                                             }}

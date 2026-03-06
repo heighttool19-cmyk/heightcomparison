@@ -30,7 +30,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
         const totalInches = Math.round(cm * 0.393701);
         const feet = Math.floor(totalInches / 12);
         const inches = totalInches % 12;
-        return `${cm} cm / ${feet}'${inches}"`;
+        return `${cm} cm / ${feet}'${inches}&quot;`;
     };
 
     // Filter Logic
@@ -65,8 +65,15 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
     }, [filteredCelebrities]);
 
     const handleAdd = (celeb: Celebrity) => {
+        // Generate ID outside the object literal to be cleaner
+        // eslint-disable-next-line react-hooks/purity
+        const timestamp = Date.now();
+        // eslint-disable-next-line react-hooks/purity
+        const rand = Math.random().toString(36).substr(2, 9);
+        const newId = `person-${timestamp}-${rand}`;
+
         onAddPerson({
-            id: `person-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+            id: newId,
             name: celeb.name,
             heightCm: celeb.heightCm,
             gender: 'other', // fallback
@@ -138,7 +145,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                             className="text-center py-12 text-slate-500 font-medium"
                         >
-                            No celebrities found matching "{searchQuery}"
+                            No celebrities found matching &quot;{searchQuery}&quot;
                         </motion.div>
                     ) : (
                         Object.entries(groupedCelebrities).map(([category, celebs]) => (

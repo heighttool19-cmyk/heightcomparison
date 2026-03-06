@@ -40,14 +40,14 @@ export const QUICK_ADD_PRESETS = [
 
 export const DEFAULT_PERSONS: Person[] = [
   {
-    id: uid(),
+    id: 'person-default-you',
     name: 'You',
     heightCm: 170,
     gender: 'male',
     color: '#6366F1',
   },
   {
-    id: uid(),
+    id: 'person-default-compare',
     name: 'Compare',
     heightCm: 160,
     gender: 'female',
