@@ -8,7 +8,7 @@ import { useUnitStore, useThemeStore } from '../store';
 import PersonBar from './PersonBar';
 import Ruler from './Ruler';
 import Sidebar from './Sidebar';
-import VerticalCanvas from './VerticalCanvas';
+
 
 type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
 
@@ -23,7 +23,6 @@ const HeightDashboard: React.FC = () => {
     const { theme, toggleTheme } = useThemeStore();
 
     const [canvasHeight, setCanvasHeight] = useState(0);
-    const [entities, setEntities] = useState<Entity[]>([]);
     const [activePanel, setActivePanel] = useState<PanelType>('ADD_PERSON');
     const [editingPersonId, setEditingPersonId] = useState<string | null>(null);
     const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
@@ -34,7 +33,6 @@ const HeightDashboard: React.FC = () => {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-    const verticalCanvasRef = useRef<HTMLDivElement>(null);
 
     // Apply the theme to the <html> document root
     useEffect(() => {
@@ -293,16 +291,25 @@ const HeightDashboard: React.FC = () => {
     };
 
     const addEntity = (entity: Entity) => {
-        setEntities(prev => {
-            if (prev.find(e => e.id === entity.id)) return prev;
-            return [...prev, entity];
+        setState(s => {
+            if (s.persons.find(p => p.id === entity.id)) return s;
+            const newPerson: Person = {
+                id: entity.id,
+                name: entity.name,
+                heightCm: entity.heightCm,
+                color: entity.color,
+                icon: entity.icon,
+                isEntity: true
+            };
+            const tempPersons = [...s.persons, newPerson];
+            const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, s.zoom);
+            setTimeout(handleAutoScale, 50);
+            return { ...s, persons: tempPersons, zoom: guardedZoom };
         });
         triggerToast(`${entity.name} added to comparison`);
     };
 
-    const removeEntity = (id: string) => {
-        setEntities(prev => prev.filter(e => e.id !== id));
-    };
+
 
     const removePerson = (id: string) => {
         setState(s => {
@@ -394,38 +401,7 @@ const HeightDashboard: React.FC = () => {
         }
     };
 
-    const handleEntitiesExport = async () => {
-        if (!verticalCanvasRef.current) return;
-        try {
-            setIsCapturing(true);
-            triggerToast('Capturing vertical comparison...');
 
-            // Wait for any animations to settle
-            await new Promise(resolve => setTimeout(resolve, 500));
-
-            // Dynamic import html-to-image only when needed
-            const htmlToImage = await import('html-to-image');
-            const dataUrl = await htmlToImage.toPng(verticalCanvasRef.current, {
-                pixelRatio: 2,
-                backgroundColor: theme === 'dark' ? '#101011' : '#FAFAFA',
-                style: {
-                    borderRadius: '0px'
-                }
-            });
-
-            const link = document.createElement('a');
-            link.download = `entity-comparison-${new Date().getTime()}.png`;
-            link.href = dataUrl;
-            link.click();
-
-            setTimeout(() => triggerToast('Comparison exported successfully!'), 500);
-        } catch (error) {
-            console.error('Failed to export entities', error);
-            triggerToast('Export failed. Please try again.');
-        } finally {
-            setIsCapturing(false);
-        }
-    };
 
     // Scale Engine Calculation
     const scale = useMemo(() => {
@@ -679,64 +655,53 @@ const HeightDashboard: React.FC = () => {
                         ref={containerRef}
                         className="order-1 canvas-export-area flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar chart-grid m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl scroll-smooth"
                     >
-                        {activePanel === 'ENTITIES' ? (
-                            <VerticalCanvas
-                                ref={verticalCanvasRef}
-                                entities={entities}
-                                canvasHeight={canvasHeight}
-                                zoom={state.zoom}
-                                unitSystem={unitSystem}
-                                onRemove={removeEntity}
-                            />
-                        ) : (
-                            /* Unified Absolute Coordinate Grid Container */
-                            <div className="relative min-w-full w-max h-full pl-24 md:pl-40 pr-24 md:pr-48 flex items-end">
-                                <Ruler scale={scale} maxHeightCm={state.persons.length > 0 ? Math.max(...state.persons.map(p => p.heightCm)) : 300} canvasHeight={canvasHeight} />
+                        {/* Unified Absolute Coordinate Grid Container */}
+                        <div className="relative min-w-full w-max h-full pl-24 md:pl-40 pr-24 md:pr-48 flex items-end">
+                            <Ruler scale={scale} maxHeightCm={state.persons.length > 0 ? Math.max(...state.persons.map(p => p.heightCm)) : 300} canvasHeight={canvasHeight} />
 
-                                <AnimatePresence mode="popLayout" initial={false}>
-                                    <div
-                                        className="flex items-end h-full"
-                                        style={{
-                                            gap: `${Math.max(2, (isMobile ? 8 : 12) * state.zoom)}px`,
-                                            transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
-                                        }}
-                                    >
-                                        {state.persons.map((person) => (
-                                            <PersonBar
-                                                key={person.id}
-                                                person={person}
-                                                scale={scale}
-                                                zoom={state.zoom}
-                                                onEditRequest={handleEditRequest}
-                                                onRemove={removePerson}
-                                                onHeightChange={(val) => updatePersonHeight(person.id, val)}
-                                            />
-                                        ))}
+                            <AnimatePresence mode="popLayout" initial={false}>
+                                <div
+                                    className="flex items-end h-full"
+                                    style={{
+                                        gap: `${Math.max(2, (isMobile ? 8 : 12) * state.zoom)}px`,
+                                        transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
+                                    }}
+                                >
+                                    {state.persons.map((person) => (
+                                        <PersonBar
+                                            key={person.id}
+                                            person={person}
+                                            scale={scale}
+                                            zoom={state.zoom}
+                                            onEditRequest={handleEditRequest}
+                                            onRemove={removePerson}
+                                            onHeightChange={(val) => updatePersonHeight(person.id, val)}
+                                        />
+                                    ))}
 
-                                        {/* Ghost Column + */}
-                                        <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (isMobile ? 80 : 120) * state.zoom)}px` }}>
-                                            <button
-                                                onClick={() => {
-                                                    setActivePanel('ADD_PERSON');
-                                                    setIsSidebarCollapsed(false);
-                                                    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-                                                        setIsMobileDrawerOpen(true);
-                                                    }
-                                                }}
-                                                className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
-                                            >
-                                                <UserPlus size={24} />
-                                            </button>
-                                        </div>
-
-                                        {/* Dedicated Scroll Spacer */}
-                                        <div className="w-20 md:w-40 shrink-0 pointer-events-none" />
+                                    {/* Ghost Column + */}
+                                    <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (isMobile ? 80 : 120) * state.zoom)}px` }}>
+                                        <button
+                                            onClick={() => {
+                                                setActivePanel('ADD_PERSON');
+                                                setIsSidebarCollapsed(false);
+                                                if (typeof window !== 'undefined' && window.innerWidth < 768) {
+                                                    setIsMobileDrawerOpen(true);
+                                                }
+                                            }}
+                                            className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
+                                        >
+                                            <UserPlus size={24} />
+                                        </button>
                                     </div>
-                                </AnimatePresence>
-                            </div>
-                        )}
 
-                        {activePanel !== 'ENTITIES' && state.persons.length === 0 && (
+                                    {/* Dedicated Scroll Spacer */}
+                                    <div className="w-20 md:w-40 shrink-0 pointer-events-none" />
+                                </div>
+                            </AnimatePresence>
+                        </div>
+
+                        {state.persons.length === 0 && (
                             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mb-32 gap-6">
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.9 }}
@@ -771,7 +736,7 @@ const HeightDashboard: React.FC = () => {
                                 onAdd={addPerson}
                                 activePanel={activePanel}
                                 onAddEntity={addEntity}
-                                onAddEntityExport={handleEntitiesExport}
+                                onAddEntityExport={handleDownloadPNG}
                                 isCapturing={isCapturing}
                                 onRemove={removePerson}
                                 scale={scale}
@@ -873,7 +838,7 @@ const HeightDashboard: React.FC = () => {
                                     onAdd={(p) => { addPerson(p); setIsMobileDrawerOpen(false); }}
                                     activePanel={activePanel}
                                     onAddEntity={(e) => { addEntity(e); setIsMobileDrawerOpen(false); }}
-                                    onAddEntityExport={handleEntitiesExport}
+                                    onAddEntityExport={handleDownloadPNG}
                                     isCapturing={isCapturing}
                                     onRemove={removePerson}
                                     scale={scale}

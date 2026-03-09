@@ -139,6 +139,18 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                             style={{ height: barHeightPx }}
                             transition={springConfig}
                         />
+                    ) : person.isEntity ? (
+                        <motion.div
+                            layout
+                            className="rounded-t-3xl shadow-2xl relative z-10"
+                            style={{
+                                width: `${Math.max(40, containerWidth * 0.6)}px`,
+                                height: barHeightPx,
+                                backgroundColor: person.color || '#6366F1',
+                                backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.1) 0%, transparent 20%, rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.2) 100%)`
+                            }}
+                            transition={springConfig}
+                        />
                     ) : (
                         <div className="flex flex-col items-center justify-end h-full opacity-100 group-hover:opacity-100 transition-all duration-500">
                             {/* Head */}

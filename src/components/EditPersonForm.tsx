@@ -15,7 +15,7 @@ interface EditPersonFormProps {
 const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCancel }) => {
     const { unitSystem: globalUnit } = useUnitStore();
 
-    const [gender, setGender] = useState<Gender>(person.gender);
+    const [gender, setGender] = useState<Gender>(person.gender || 'other');
     const [name, setName] = useState(person.name);
     const [unit, setUnit] = useState<UnitSystem>(globalUnit);
 

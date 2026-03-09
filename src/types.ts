@@ -5,9 +5,11 @@ export interface Person {
   id: string;
   name: string;
   heightCm: number;
-  gender: Gender;
+  gender?: Gender;
   color: string;
   imgUrl?: string;
+  icon?: string;
+  isEntity?: boolean;
 }
 
 export interface AppState {
