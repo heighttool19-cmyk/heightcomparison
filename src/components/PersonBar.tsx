@@ -92,12 +92,20 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                     `}
                 >
                     {onEditRequest && (
-                        <button onClick={(e) => { e.stopPropagation(); onEditRequest(person.id); }} className="w-10 h-10 rounded-full bg-accent hover:bg-accent-secondary flex items-center justify-center shadow-xl text-white transition-all active:scale-90">
+                        <button
+                            onClick={(e) => { e.stopPropagation(); onEditRequest(person.id); }}
+                            className="w-10 h-10 rounded-full bg-accent hover:bg-accent-secondary flex items-center justify-center shadow-xl text-white transition-all active:scale-90"
+                            aria-label={`Edit ${person.name}`}
+                        >
                             <Edit2 size={16} strokeWidth={3} />
                         </button>
                     )}
                     {onRemove && (
-                        <button onClick={(e) => { e.stopPropagation(); onRemove(person.id); }} className="w-10 h-10 rounded-full bg-red-500 hover:bg-red-400 flex items-center justify-center shadow-xl text-white transition-all active:scale-90">
+                        <button
+                            onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}
+                            className="w-10 h-10 rounded-full bg-red-500 hover:bg-red-400 flex items-center justify-center shadow-xl text-white transition-all active:scale-90"
+                            aria-label={`Remove ${person.name}`}
+                        >
                             <Trash2 size={16} strokeWidth={3} />
                         </button>
                     )}

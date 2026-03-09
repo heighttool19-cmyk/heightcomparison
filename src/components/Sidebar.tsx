@@ -1,19 +1,23 @@
 'use client';
 
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Person } from '../types';
-import AddPersonForm from './AddPersonForm';
-import PersonChart from './PersonChart';
-import QuickAddPresets from './QuickAddPresets';
-import AddImageForm from './AddImageForm';
-import EditPersonForm from './EditPersonForm';
-import CelebritiesPanel from './CelebritiesPanel';
-import { FictionalPanel } from './FictionalPanel';
+import { Person, Entity } from '../types';
+
+const AddPersonForm = dynamic(() => import('./AddPersonForm'));
+const PersonChart = dynamic(() => import('./PersonChart'));
+const QuickAddPresets = dynamic(() => import('./QuickAddPresets'));
+const AddImageForm = dynamic(() => import('./AddImageForm'));
+const EditPersonForm = dynamic(() => import('./EditPersonForm'));
+const CelebritiesPanel = dynamic(() => import('./CelebritiesPanel'));
+const FictionalPanel = dynamic(() => import('./FictionalPanel').then(mod => mod.FictionalPanel));
+const EntitiesPanel = dynamic(() => import('./EntitiesPanel'));
 
 interface SidebarProps {
     persons: Person[];
     onAdd: (person: Person) => void;
+    onAddEntity?: (entity: Entity) => void;
     onRemove: (id: string) => void;
     scale: number;
     zoom: number;
@@ -22,12 +26,14 @@ interface SidebarProps {
     editingPerson?: Person;
     onEditSave?: (person: Person) => void;
     onEditCancel?: () => void;
+    onAddEntityExport?: () => void;
+    isCapturing?: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel }) => {
+const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEntity, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel, onAddEntityExport, isCapturing }) => {
     return (
         <aside className="w-full h-full flex flex-col bg-transparent">
-            <div className={`flex flex-col h-full overflow-y-auto custom-scrollbar ${activePanel === 'CELEBRITIES' || activePanel === 'FICTIONAL' ? '' : 'p-5 gap-6'}`}>
+            <div className={`flex flex-col h-full overflow-y-auto custom-scrollbar ${activePanel === 'CELEBRITIES' || activePanel === 'FICTIONAL' || activePanel === 'ENTITIES' ? '' : 'p-5 gap-6'}`}>
                 <AnimatePresence mode="popLayout" initial={false}>
                     {activePanel === 'ADD_PERSON' && (
                         <motion.div
@@ -62,9 +68,14 @@ const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onRemove
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ duration: 0.2 }}
-                            className="flex-1 flex items-center justify-center text-muted/50 text-xs font-medium uppercase tracking-widest text-center px-4"
+                            className="flex-1 flex flex-col h-full w-full"
                         >
-                            Entities module coming soon
+                            <EntitiesPanel
+                                onAddEntity={onAddEntity || (() => { })}
+                                onClose={onEditCancel || (() => { })}
+                                onExport={onAddEntityExport}
+                                isCapturing={isCapturing}
+                            />
                         </motion.div>
                     )}
                     {activePanel === 'FICTIONAL' && (

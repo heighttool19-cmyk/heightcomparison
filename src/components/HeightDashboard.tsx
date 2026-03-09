@@ -3,12 +3,12 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link, ArrowLeftRight, Focus, ChevronLeft, ChevronRight } from 'lucide-react';
-import * as htmlToImage from 'html-to-image';
-import { Person, AppState, DEFAULT_PERSONS } from '../types';
+import { Person, AppState, DEFAULT_PERSONS, Entity } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
 import PersonBar from './PersonBar';
 import Ruler from './Ruler';
 import Sidebar from './Sidebar';
+import VerticalCanvas from './VerticalCanvas';
 
 type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
 
@@ -23,6 +23,7 @@ const HeightDashboard: React.FC = () => {
     const { theme, toggleTheme } = useThemeStore();
 
     const [canvasHeight, setCanvasHeight] = useState(0);
+    const [entities, setEntities] = useState<Entity[]>([]);
     const [activePanel, setActivePanel] = useState<PanelType>('ADD_PERSON');
     const [editingPersonId, setEditingPersonId] = useState<string | null>(null);
     const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
@@ -33,6 +34,7 @@ const HeightDashboard: React.FC = () => {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const verticalCanvasRef = useRef<HTMLDivElement>(null);
 
     // Apply the theme to the <html> document root
     useEffect(() => {
@@ -290,6 +292,18 @@ const HeightDashboard: React.FC = () => {
         });
     };
 
+    const addEntity = (entity: Entity) => {
+        setEntities(prev => {
+            if (prev.find(e => e.id === entity.id)) return prev;
+            return [...prev, entity];
+        });
+        triggerToast(`${entity.name} added to comparison`);
+    };
+
+    const removeEntity = (id: string) => {
+        setEntities(prev => prev.filter(e => e.id !== id));
+    };
+
     const removePerson = (id: string) => {
         setState(s => {
             const tempPersons = s.persons.filter(p => p.id !== id);
@@ -358,6 +372,8 @@ const HeightDashboard: React.FC = () => {
             // Wait a tick for CSS to apply (hiding inline inputs etc)
             await new Promise(resolve => setTimeout(resolve, 800));
 
+            // Dynamic import html-to-image only when needed
+            const htmlToImage = await import('html-to-image');
             const dataUrl = await htmlToImage.toPng(containerRef.current, {
                 pixelRatio: 2,
                 backgroundColor: theme === 'dark' ? '#101011' : '#FAFAFA'
@@ -375,6 +391,39 @@ const HeightDashboard: React.FC = () => {
         } finally {
             setIsCapturing(false);
             document.body.classList.remove('is-capturing');
+        }
+    };
+
+    const handleEntitiesExport = async () => {
+        if (!verticalCanvasRef.current) return;
+        try {
+            setIsCapturing(true);
+            triggerToast('Capturing vertical comparison...');
+
+            // Wait for any animations to settle
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Dynamic import html-to-image only when needed
+            const htmlToImage = await import('html-to-image');
+            const dataUrl = await htmlToImage.toPng(verticalCanvasRef.current, {
+                pixelRatio: 2,
+                backgroundColor: theme === 'dark' ? '#101011' : '#FAFAFA',
+                style: {
+                    borderRadius: '0px'
+                }
+            });
+
+            const link = document.createElement('a');
+            link.download = `entity-comparison-${new Date().getTime()}.png`;
+            link.href = dataUrl;
+            link.click();
+
+            setTimeout(() => triggerToast('Comparison exported successfully!'), 500);
+        } catch (error) {
+            console.error('Failed to export entities', error);
+            triggerToast('Export failed. Please try again.');
+        } finally {
+            setIsCapturing(false);
         }
     };
 
@@ -532,7 +581,12 @@ const HeightDashboard: React.FC = () => {
 
                                 {/* 2. Zoom Controls Container */}
                                 <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-                                    <button onClick={() => handleZoom(0.1)} className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors" title="Zoom In">
+                                    <button
+                                        onClick={() => handleZoom(0.1)}
+                                        className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
+                                        title="Zoom In"
+                                        aria-label="Zoom In"
+                                    >
                                         <ZoomIn size={18} strokeWidth={2.5} />
                                     </button>
 
@@ -552,7 +606,12 @@ const HeightDashboard: React.FC = () => {
                                         <span className="text-[10px] font-bold text-muted/30">%</span>
                                     </div>
 
-                                    <button onClick={() => handleZoom(-0.1)} className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors" title="Zoom Out">
+                                    <button
+                                        onClick={() => handleZoom(-0.1)}
+                                        className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
+                                        title="Zoom Out"
+                                        aria-label="Zoom Out"
+                                    >
                                         <ZoomOut size={18} strokeWidth={2.5} />
                                     </button>
 
@@ -562,6 +621,7 @@ const HeightDashboard: React.FC = () => {
                                             onClick={handleAutoScale}
                                             className="p-2 text-primary hover:bg-primary/10 transition-all rounded-lg"
                                             title="Auto Fit All"
+                                            aria-label="Auto Fit All"
                                         >
                                             <Focus size={18} strokeWidth={2.5} />
                                         </button>
@@ -583,7 +643,11 @@ const HeightDashboard: React.FC = () => {
 
                             {/* Right Side: Actions Group */}
                             <div className="flex items-center gap-2 sm:gap-4">
-                                <button onClick={handleShare} className="flex items-center gap-2 text-sm font-medium text-muted hover:text-foreground px-3 py-2 transition-all group">
+                                <button
+                                    onClick={handleShare}
+                                    className="flex items-center gap-2 text-sm font-medium text-muted hover:text-foreground px-3 py-2 transition-all group"
+                                    aria-label="Share Comparison"
+                                >
                                     <Link size={18} className="text-muted/50 group-hover:text-accent transition-colors" />
                                     <span className="hidden sm:inline">Share</span>
                                 </button>
@@ -592,6 +656,7 @@ const HeightDashboard: React.FC = () => {
                                     onClick={handleDownloadPNG}
                                     disabled={isCapturing}
                                     className="flex items-center gap-2 bg-accent/10 text-accent border border-accent/20 px-4 py-2 sm:px-6 sm:py-2.5 rounded-xl text-sm font-bold hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 whitespace-nowrap min-w-[140px] justify-center"
+                                    aria-label="Download Comparison as PNG"
                                 >
                                     {isCapturing ? (
                                         <>
@@ -614,53 +679,64 @@ const HeightDashboard: React.FC = () => {
                         ref={containerRef}
                         className="order-1 canvas-export-area flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar chart-grid m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl scroll-smooth"
                     >
-                        {/* Unified Absolute Coordinate Grid Container */}
-                        <div className="relative min-w-full w-max h-full pl-24 md:pl-40 pr-24 md:pr-48 flex items-end">
-                            <Ruler scale={scale} maxHeightCm={state.persons.length > 0 ? Math.max(...state.persons.map(p => p.heightCm)) : 300} canvasHeight={canvasHeight} />
+                        {activePanel === 'ENTITIES' ? (
+                            <VerticalCanvas
+                                ref={verticalCanvasRef}
+                                entities={entities}
+                                canvasHeight={canvasHeight}
+                                zoom={state.zoom}
+                                unitSystem={unitSystem}
+                                onRemove={removeEntity}
+                            />
+                        ) : (
+                            /* Unified Absolute Coordinate Grid Container */
+                            <div className="relative min-w-full w-max h-full pl-24 md:pl-40 pr-24 md:pr-48 flex items-end">
+                                <Ruler scale={scale} maxHeightCm={state.persons.length > 0 ? Math.max(...state.persons.map(p => p.heightCm)) : 300} canvasHeight={canvasHeight} />
 
-                            <AnimatePresence mode="popLayout" initial={false}>
-                                <div
-                                    className="flex items-end h-full"
-                                    style={{
-                                        gap: `${Math.max(2, (isMobile ? 8 : 12) * state.zoom)}px`,
-                                        transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
-                                    }}
-                                >
-                                    {state.persons.map((person) => (
-                                        <PersonBar
-                                            key={person.id}
-                                            person={person}
-                                            scale={scale}
-                                            zoom={state.zoom}
-                                            onEditRequest={handleEditRequest}
-                                            onRemove={removePerson}
-                                            onHeightChange={(val) => updatePersonHeight(person.id, val)}
-                                        />
-                                    ))}
+                                <AnimatePresence mode="popLayout" initial={false}>
+                                    <div
+                                        className="flex items-end h-full"
+                                        style={{
+                                            gap: `${Math.max(2, (isMobile ? 8 : 12) * state.zoom)}px`,
+                                            transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
+                                        }}
+                                    >
+                                        {state.persons.map((person) => (
+                                            <PersonBar
+                                                key={person.id}
+                                                person={person}
+                                                scale={scale}
+                                                zoom={state.zoom}
+                                                onEditRequest={handleEditRequest}
+                                                onRemove={removePerson}
+                                                onHeightChange={(val) => updatePersonHeight(person.id, val)}
+                                            />
+                                        ))}
 
-                                    {/* Ghost Column + */}
-                                    <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (isMobile ? 80 : 120) * state.zoom)}px` }}>
-                                        <button
-                                            onClick={() => {
-                                                setActivePanel('ADD_PERSON');
-                                                setIsSidebarCollapsed(false);
-                                                if (typeof window !== 'undefined' && window.innerWidth < 768) {
-                                                    setIsMobileDrawerOpen(true);
-                                                }
-                                            }}
-                                            className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
-                                        >
-                                            <UserPlus size={24} />
-                                        </button>
+                                        {/* Ghost Column + */}
+                                        <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (isMobile ? 80 : 120) * state.zoom)}px` }}>
+                                            <button
+                                                onClick={() => {
+                                                    setActivePanel('ADD_PERSON');
+                                                    setIsSidebarCollapsed(false);
+                                                    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+                                                        setIsMobileDrawerOpen(true);
+                                                    }
+                                                }}
+                                                className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
+                                            >
+                                                <UserPlus size={24} />
+                                            </button>
+                                        </div>
+
+                                        {/* Dedicated Scroll Spacer */}
+                                        <div className="w-20 md:w-40 shrink-0 pointer-events-none" />
                                     </div>
+                                </AnimatePresence>
+                            </div>
+                        )}
 
-                                    {/* Dedicated Scroll Spacer */}
-                                    <div className="w-20 md:w-40 shrink-0 pointer-events-none" />
-                                </div>
-                            </AnimatePresence>
-                        </div>
-
-                        {state.persons.length === 0 && (
+                        {activePanel !== 'ENTITIES' && state.persons.length === 0 && (
                             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mb-32 gap-6">
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.9 }}
@@ -693,10 +769,13 @@ const HeightDashboard: React.FC = () => {
                                 persons={state.persons}
                                 personCount={state.persons.length}
                                 onAdd={addPerson}
+                                activePanel={activePanel}
+                                onAddEntity={addEntity}
+                                onAddEntityExport={handleEntitiesExport}
+                                isCapturing={isCapturing}
                                 onRemove={removePerson}
                                 scale={scale}
                                 zoom={state.zoom}
-                                activePanel={activePanel}
                                 editingPerson={state.persons.find(p => p.id === editingPersonId)}
                                 onEditSave={handleEditSave}
                                 onEditCancel={handleEditCancel}
@@ -747,7 +826,8 @@ const HeightDashboard: React.FC = () => {
             <div className="sm:hidden fixed bottom-6 right-6 z-40">
                 <button
                     onClick={() => setIsMobileDrawerOpen(true)}
-                    className="w-14 h-14 bg-accent hover:bg-accent-secondary rounded-full flex items-center justify-center text-white shadow-2xl active:scale-90 transition-all"
+                    className="w-14 h-14 bg-accent hover:bg-accent-secondary rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all"
+                    aria-label="Open Add Person Menu"
                 >
                     <Plus size={24} strokeWidth={3} />
                 </button>
@@ -778,7 +858,11 @@ const HeightDashboard: React.FC = () => {
                                             activePanel === 'FICTIONAL' ? 'Fictional' :
                                                 activePanel.replace('_', ' ')}
                                 </h3>
-                                <button onClick={() => setIsMobileDrawerOpen(false)} className="p-2 bg-bg border border-border/50 rounded-xl text-muted hover:text-foreground transition-all active:scale-95">
+                                <button
+                                    onClick={() => setIsMobileDrawerOpen(false)}
+                                    className="p-2 bg-bg border border-border/50 rounded-xl text-muted hover:text-foreground transition-all active:scale-95"
+                                    aria-label="Close Mobile Menu"
+                                >
                                     <X size={20} strokeWidth={3} />
                                 </button>
                             </div>
@@ -787,10 +871,13 @@ const HeightDashboard: React.FC = () => {
                                     persons={state.persons}
                                     personCount={state.persons.length}
                                     onAdd={(p) => { addPerson(p); setIsMobileDrawerOpen(false); }}
+                                    activePanel={activePanel}
+                                    onAddEntity={(e) => { addEntity(e); setIsMobileDrawerOpen(false); }}
+                                    onAddEntityExport={handleEntitiesExport}
+                                    isCapturing={isCapturing}
                                     onRemove={removePerson}
                                     scale={scale}
                                     zoom={state.zoom}
-                                    activePanel={activePanel}
                                     editingPerson={state.persons.find(p => p.id === editingPersonId)}
                                     onEditSave={(p) => { handleEditSave(p); setIsMobileDrawerOpen(false); }}
                                     onEditCancel={() => setIsMobileDrawerOpen(false)}

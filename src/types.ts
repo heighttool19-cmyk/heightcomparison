@@ -87,5 +87,13 @@ export interface FictionalCharacter {
   category: FictionalCategory;
   color: string;
 }
+export type EntityCategory = 'Landmarks' | 'Nature' | 'Transport' | 'All';
 
-
+export interface Entity {
+  id: string;
+  name: string;
+  heightCm: number;
+  category: EntityCategory;
+  icon: string; // SVG or emoji
+  color: string;
+}
