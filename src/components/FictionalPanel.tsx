@@ -19,13 +19,7 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<FictionalCategory | 'All'>('All');
 
-    const categoryCounts = useMemo(() => {
-        const counts: Record<string, number> = { All: fictionalCharacters.length };
-        fictionalCharacters.forEach(c => {
-            counts[c.category] = (counts[c.category] || 0) + 1;
-        });
-        return counts;
-    }, []);
+
 
     // Convert cm to feet/inches string for display
     const getHeightString = (cm: number) => {
@@ -80,7 +74,6 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                 categories={DYNAMIC_CATEGORIES}
                 activeCategory={activeCategory}
                 onSelectCategory={(cat) => setActiveCategory(cat as FictionalCategory | 'All')}
-                categoryCounts={categoryCounts}
             />
 
             {/* List Area */}

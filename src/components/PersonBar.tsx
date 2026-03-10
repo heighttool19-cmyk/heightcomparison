@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Edit2, Trash2 } from 'lucide-react';
 import { Person } from '../types';
 import { useUnitStore } from '../store';
@@ -131,14 +132,49 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                 {/* Silhouette - Optimized for zero-error alignment */}
                 <div className="flex flex-col items-center justify-end relative transition-opacity group-hover:opacity-100" style={{ height: barHeightPx }}>
                     {person.imgUrl ? (
-                        <motion.img
+                        <motion.div
                             layout
-                            src={person.imgUrl}
-                            alt={person.name}
-                            className="object-contain w-full h-full pointer-events-none drop-shadow-2xl"
+                            className="relative flex flex-col items-center justify-end"
                             style={{ height: barHeightPx }}
                             transition={springConfig}
-                        />
+                        >
+                            {/* Portrait Image Card */}
+                            <div
+                                className="relative z-20 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl bg-surface"
+                                style={{
+                                    width: `${Math.max(60, containerWidth * 0.8)}px`,
+                                    height: `${Math.max(80, barHeightPx * 0.4)}px`,
+                                    maxHeight: '200px',
+                                    marginBottom: 'auto'
+                                }}
+                            >
+                                <Image
+                                    src={person.imgUrl}
+                                    alt={person.name}
+                                    className="object-cover"
+                                    fill
+                                    unoptimized
+                                />
+                                {/* Bottom Glow */}
+                                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+                            </div>
+
+                            {/* Height Pillar Stem */}
+                            <div
+                                className="absolute bottom-0 z-10 w-1.5 rounded-full"
+                                style={{
+                                    height: '100%',
+                                    background: `linear-gradient(to top, ${person.color || '#6366F1'}88 0%, ${person.color || '#6366F1'}44 50%, transparent 100%)`,
+                                    boxShadow: `0 0 15px ${(person.color || '#6366F1')}22`
+                                }}
+                            />
+
+                            {/* Ground Glow Dot */}
+                            <div
+                                className="absolute bottom-0 w-3 h-3 rounded-full blur-sm z-10"
+                                style={{ backgroundColor: person.color || '#6366F1' }}
+                            />
+                        </motion.div>
                     ) : person.isEntity ? (
                         <motion.div
                             layout

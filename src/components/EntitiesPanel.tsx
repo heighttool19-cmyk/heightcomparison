@@ -21,15 +21,8 @@ const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(entities.map(e => e.cat
 export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClose, onExport, isCapturing }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<EntityCategory>('All');
-    const [isSearching, setIsSearching] = useState(false);
 
-    const categoryCounts = useMemo(() => {
-        const counts: Record<string, number> = { All: entities.length };
-        entities.forEach(e => {
-            counts[e.category] = (counts[e.category] || 0) + 1;
-        });
-        return counts;
-    }, []);
+
 
     // Filter Logic
     const filteredEntities = useMemo(() => {
@@ -72,8 +65,8 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
-        setIsSearching(true);
-        setTimeout(() => setIsSearching(false), 300);
+        // setIsSearching(true);
+        // setTimeout(() => setIsSearching(false), 200);
     };
 
     return (
@@ -100,8 +93,6 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                 categories={DYNAMIC_CATEGORIES}
                 activeCategory={activeCategory}
                 onSelectCategory={(cat) => setActiveCategory(cat as EntityCategory)}
-                categoryCounts={categoryCounts}
-                isSearching={isSearching}
             />
 
             {/* List Area */}

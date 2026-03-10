@@ -2,20 +2,27 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link, ArrowLeftRight, Focus, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Person, AppState, DEFAULT_PERSONS, Entity } from '../types';
+import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link as LinkIcon, ArrowLeftRight, Focus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Person, Entity } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
 import PersonBar from './PersonBar';
 import Ruler from './Ruler';
 import Sidebar from './Sidebar';
+import { usePersonStore } from '../store';
+import Link from 'next/link';
 
 
 type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
 
 const HeightDashboard: React.FC = () => {
-    // 1. App State
-    const [state, setState] = useState<AppState>({
-        persons: DEFAULT_PERSONS,
+    const {
+        persons,
+        addPerson: storeAddPerson,
+        removePerson: storeRemovePerson,
+        updatePerson: storeUpdatePerson,
+        setPersons: storeSetPersons
+    } = usePersonStore();
+    const [state, setState] = useState({
         zoom: 1.0,
     });
 
@@ -53,27 +60,30 @@ const HeightDashboard: React.FC = () => {
                     useUnitStore.setState({ unitSystem: decoded.unitSystem });
                 }
 
+                if (decoded.persons) {
+                    storeSetPersons(decoded.persons);
+                }
+
                 setState({
-                    persons: decoded.persons || DEFAULT_PERSONS,
                     zoom: decoded.zoom || 1.0,
                 });
             } catch (e) {
                 console.error("Hash decode failed:", e);
             }
         }
-    }, []); // Run once on mount
+    }, [storeSetPersons]); // Run once on mount
 
     // 2. URL Hash Encoding Sync
     useEffect(() => {
         if (typeof window !== 'undefined') {
             const encoded = btoa(encodeURIComponent(JSON.stringify({
-                persons: state.persons,
+                persons,
                 unitSystem,
                 zoom: state.zoom
             })));
             window.history.replaceState(null, '', `#${encoded}`);
         }
-    }, [state, unitSystem]);
+    }, [state.zoom, unitSystem, persons]);
 
     // Pinch Zoom Tracking
     const touchStartRef = useRef<number | null>(null);
@@ -228,7 +238,7 @@ const HeightDashboard: React.FC = () => {
     }, [state.zoom]); // We depend on state.zoom for starting pinch zoom accurately
 
     const handleAutoScale = () => {
-        if (state.persons.length === 0 || canvasHeight === 0) return;
+        if (persons.length === 0 || canvasHeight === 0) return;
 
         const container = containerRef.current;
         if (!container) return;
@@ -238,7 +248,7 @@ const HeightDashboard: React.FC = () => {
         const mobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
 
         // 1. Vertical Calculation (Guarantee 100% visibility)
-        const heights = state.persons.map(p => p.heightCm);
+        const heights = persons.map(p => p.heightCm);
         const maxHeightCm = Math.max(180, ...heights);
         const targetHeightPx = canvasHeight * (mobile ? 0.6 : 0.65);
         const fitScale = Math.max(0, (canvasHeight - 220) / maxHeightCm);
@@ -250,9 +260,8 @@ const HeightDashboard: React.FC = () => {
         const ghostRefWidth = mobile ? 80 : 120;
         const horizontalPadding = mobile ? 80 : 220; // Extra padding for ruler and safety
 
-        const count = state.persons.length;
         // Total width at zoom 1: (People * baseWidth) + (Gaps * baseGap) + Ghost
-        const totalContentWidthAtZoom1 = (count * basePersonWidth) + (count * baseGap) + ghostRefWidth;
+        const totalContentWidthAtZoom1 = (persons.length * basePersonWidth) + (persons.length * baseGap) + ghostRefWidth;
         const horizontalZoom = (containerWidth - horizontalPadding) / totalContentWidthAtZoom1;
 
         // Take the more restrictive zoom (minimum) to ensure everything fits perfectly in BOTH dimensions
@@ -281,50 +290,42 @@ const HeightDashboard: React.FC = () => {
         return currentZoom;
     };
 
-    const addPerson = (person: Person) => {
-        setState(s => {
-            const tempPersons = [...s.persons, person];
-            const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, s.zoom);
-            setTimeout(handleAutoScale, 50);
-            return { ...s, persons: tempPersons, zoom: guardedZoom };
-        });
+    const handleAddPerson = (person: Person) => {
+        storeAddPerson(person);
+        const tempPersons = [...persons, person];
+        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom);
+        setState(s => ({ ...s, zoom: guardedZoom }));
+        setTimeout(handleAutoScale, 50);
     };
 
-    const addEntity = (entity: Entity) => {
-        setState(s => {
-            if (s.persons.find(p => p.id === entity.id)) return s;
-            const newPerson: Person = {
-                id: entity.id,
-                name: entity.name,
-                heightCm: entity.heightCm,
-                color: entity.color,
-                icon: entity.icon,
-                isEntity: true
-            };
-            const tempPersons = [...s.persons, newPerson];
-            const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, s.zoom);
-            setTimeout(handleAutoScale, 50);
-            return { ...s, persons: tempPersons, zoom: guardedZoom };
-        });
+    const handleAddEntity = (entity: Entity) => {
+        if (persons.find(p => p.id === entity.id)) return;
+        const newPerson: Person = {
+            id: entity.id,
+            name: entity.name,
+            heightCm: entity.heightCm,
+            color: entity.color,
+            icon: entity.icon,
+            isEntity: true
+        };
+        storeAddPerson(newPerson);
+        const tempPersons = [...persons, newPerson];
+        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom);
+        setState(s => ({ ...s, zoom: guardedZoom }));
+        setTimeout(handleAutoScale, 50);
         triggerToast(`${entity.name} added to comparison`);
     };
 
-
-
-    const removePerson = (id: string) => {
-        setState(s => {
-            const tempPersons = s.persons.filter(p => p.id !== id);
-            return { ...s, persons: tempPersons };
-        });
+    const handleRemovePerson = (id: string) => {
+        storeRemovePerson(id);
     };
 
-    const updatePersonHeight = (id: string, newHeightCm: number) => {
-        setState(s => {
-            const clamped = Math.min(400, Math.max(50, newHeightCm));
-            const tempPersons = s.persons.map(p => p.id === id ? { ...p, heightCm: clamped } : p);
-            const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, s.zoom);
-            return { ...s, persons: tempPersons, zoom: guardedZoom };
-        });
+    const handleUpdatePersonHeight = (id: string, newHeightCm: number) => {
+        const clamped = Math.min(400, Math.max(50, newHeightCm));
+        storeUpdatePerson(id, { heightCm: clamped });
+        const tempPersons = persons.map(p => p.id === id ? { ...p, heightCm: clamped } : p);
+        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom);
+        setState(s => ({ ...s, zoom: guardedZoom }));
     };
 
     const handleEditRequest = (id: string) => {
@@ -337,11 +338,10 @@ const HeightDashboard: React.FC = () => {
     };
 
     const handleEditSave = (updatedPerson: Person) => {
-        setState(s => {
-            const tempPersons = s.persons.map(p => p.id === updatedPerson.id ? updatedPerson : p);
-            const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, s.zoom);
-            return { ...s, persons: tempPersons, zoom: guardedZoom };
-        });
+        storeUpdatePerson(updatedPerson.id, updatedPerson);
+        const tempPersons = persons.map(p => p.id === updatedPerson.id ? updatedPerson : p);
+        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom);
+        setState(s => ({ ...s, zoom: guardedZoom }));
         setActivePanel('ADD_PERSON');
         setEditingPersonId(null);
         if (typeof window !== 'undefined' && window.innerWidth < 768) {
@@ -406,11 +406,20 @@ const HeightDashboard: React.FC = () => {
     // Scale Engine Calculation
     const scale = useMemo(() => {
         if (canvasHeight === 0) return 0;
-        const heights = state.persons.length > 0 ? state.persons.map(p => p.heightCm) : [0];
+        const heights = persons.length > 0 ? persons.map(p => p.heightCm) : [0];
         const maxHeightCm = Math.max(210, ...heights);
         const fitScale = Math.max(0, (canvasHeight - 200) / maxHeightCm); // Reserve space for toolbars/padding
         return fitScale * state.zoom;
-    }, [canvasHeight, state.persons, state.zoom]);
+    }, [canvasHeight, persons, state.zoom]);
+
+    // Calculate required height for scrollability to fix clipping on zooming out
+    const requiredCanvasHeight = useMemo(() => {
+        if (persons.length === 0) return '100%';
+        const maxHeightPx = Math.max(...persons.map(p => p.heightCm)) * scale;
+        // heightPx + 60px bottom offset + ~150px for top labels and clearance
+        const needed = maxHeightPx + 210;
+        return needed > canvasHeight ? `${needed}px` : '100%';
+    }, [persons, scale, canvasHeight]);
 
     return (
         <div className="flex flex-col h-screen bg-bg overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
@@ -439,8 +448,11 @@ const HeightDashboard: React.FC = () => {
 
                 {/* Center: Navigation Links (Desktop only) */}
                 <nav className="hidden lg:flex items-center gap-10">
-                    <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Home</button>
-                    <button className="text-[15px] font-medium text-foreground transition-colors">Calculator</button>
+                    <Link href="/" className="text-[15px] font-medium text-foreground transition-colors">Home</Link>
+                    <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Calculator</button>
+                    <Link href="/ai-space" className="text-[15px] font-bold text-accent transition-colors flex items-center gap-2">
+                        AI Space <Box size={14} />
+                    </Link>
                     <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">About</button>
                 </nav>
 
@@ -624,7 +636,7 @@ const HeightDashboard: React.FC = () => {
                                     className="flex items-center gap-2 text-sm font-medium text-muted hover:text-foreground px-3 py-2 transition-all group"
                                     aria-label="Share Comparison"
                                 >
-                                    <Link size={18} className="text-muted/50 group-hover:text-accent transition-colors" />
+                                    <LinkIcon size={18} className="text-muted/50 group-hover:text-accent transition-colors" />
                                     <span className="hidden sm:inline">Share</span>
                                 </button>
 
@@ -653,29 +665,32 @@ const HeightDashboard: React.FC = () => {
                     {/* CANVAS AREA */}
                     <div
                         ref={containerRef}
-                        className="order-1 canvas-export-area flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar chart-grid m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl scroll-smooth"
+                        className="order-1 canvas-export-area flex-1 relative overflow-x-auto overflow-y-auto custom-scrollbar chart-grid m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl scroll-smooth"
                     >
                         {/* Unified Absolute Coordinate Grid Container */}
-                        <div className="relative min-w-full w-max h-full pl-24 md:pl-40 pr-24 md:pr-48 flex items-end">
-                            <Ruler scale={scale} maxHeightCm={state.persons.length > 0 ? Math.max(...state.persons.map(p => p.heightCm)) : 300} canvasHeight={canvasHeight} />
+                        <div
+                            className="relative min-w-full w-max pl-24 md:pl-40 pr-24 md:pr-48 flex items-end"
+                            style={{ height: requiredCanvasHeight }}
+                        >
+                            <Ruler scale={scale} maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300} canvasHeight={canvasHeight} />
 
                             <AnimatePresence mode="popLayout" initial={false}>
                                 <div
-                                    className="flex items-end h-full"
+                                    className="flex items-end h-full mt-auto"
                                     style={{
                                         gap: `${Math.max(2, (isMobile ? 8 : 12) * state.zoom)}px`,
                                         transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
                                     }}
                                 >
-                                    {state.persons.map((person) => (
+                                    {persons.map((person) => (
                                         <PersonBar
                                             key={person.id}
                                             person={person}
                                             scale={scale}
                                             zoom={state.zoom}
                                             onEditRequest={handleEditRequest}
-                                            onRemove={removePerson}
-                                            onHeightChange={(val) => updatePersonHeight(person.id, val)}
+                                            onRemove={handleRemovePerson}
+                                            onHeightChange={(val) => handleUpdatePersonHeight(person.id, val)}
                                         />
                                     ))}
 
@@ -701,7 +716,7 @@ const HeightDashboard: React.FC = () => {
                             </AnimatePresence>
                         </div>
 
-                        {state.persons.length === 0 && (
+                        {persons.length === 0 && (
                             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mb-32 gap-6">
                                 <motion.div
                                     initial={{ opacity: 0, scale: 0.9 }}
@@ -731,17 +746,17 @@ const HeightDashboard: React.FC = () => {
                     >
                         <div className="flex-1 w-[400px] overflow-y-auto custom-scrollbar">
                             <Sidebar
-                                persons={state.persons}
-                                personCount={state.persons.length}
-                                onAdd={addPerson}
+                                persons={persons}
+                                personCount={persons.length}
+                                onAdd={handleAddPerson}
                                 activePanel={activePanel}
-                                onAddEntity={addEntity}
+                                onAddEntity={handleAddEntity}
                                 onAddEntityExport={handleDownloadPNG}
                                 isCapturing={isCapturing}
-                                onRemove={removePerson}
+                                onRemove={handleRemovePerson}
                                 scale={scale}
                                 zoom={state.zoom}
-                                editingPerson={state.persons.find(p => p.id === editingPersonId)}
+                                editingPerson={persons.find(p => p.id === editingPersonId)}
                                 onEditSave={handleEditSave}
                                 onEditCancel={handleEditCancel}
                             />
@@ -833,17 +848,17 @@ const HeightDashboard: React.FC = () => {
                             </div>
                             <div className="flex-1 overflow-y-auto custom-scrollbar pb-6 relative">
                                 <Sidebar
-                                    persons={state.persons}
-                                    personCount={state.persons.length}
-                                    onAdd={(p) => { addPerson(p); setIsMobileDrawerOpen(false); }}
+                                    persons={persons}
+                                    personCount={persons.length}
+                                    onAdd={(p) => { handleAddPerson(p); setIsMobileDrawerOpen(false); }}
                                     activePanel={activePanel}
-                                    onAddEntity={(e) => { addEntity(e); setIsMobileDrawerOpen(false); }}
+                                    onAddEntity={(e) => { handleAddEntity(e); setIsMobileDrawerOpen(false); }}
                                     onAddEntityExport={handleDownloadPNG}
                                     isCapturing={isCapturing}
-                                    onRemove={removePerson}
+                                    onRemove={handleRemovePerson}
                                     scale={scale}
                                     zoom={state.zoom}
-                                    editingPerson={state.persons.find(p => p.id === editingPersonId)}
+                                    editingPerson={persons.find(p => p.id === editingPersonId)}
                                     onEditSave={(p) => { handleEditSave(p); setIsMobileDrawerOpen(false); }}
                                     onEditCancel={() => setIsMobileDrawerOpen(false)}
                                 />

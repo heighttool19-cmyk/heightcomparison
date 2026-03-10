@@ -14,7 +14,11 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
 
     const tickInterval = useMemo(() => {
         const baseMin = 40 / scale; // Ensure at least 40px between lines
-        const intervals = [5, 10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000, 2500, 5000, 10000];
+        const intervals = [
+            5, 10, 20, 25, 50, 100, 200, 250, 500, 1000,
+            2000, 2500, 5000, 10000, 20000, 25000, 50000,
+            100000, 200000, 250000, 500000, 1000000
+        ];
         let chosen = intervals[intervals.length - 1];
         for (const i of intervals) {
             if (i >= baseMin) {
@@ -60,7 +64,7 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
                     >
                         {/* CM & FT Labels (Sticky Left) */}
                         <div
-                            className="sticky left-0 z-20 flex flex-col items-end w-16 sm:w-20 pr-4 pl-2 bg-canvas/40 backdrop-blur-[2px]"
+                            className="sticky left-0 z-20 flex flex-col items-end w-20 sm:w-28 pr-4 pl-2 bg-canvas/40 backdrop-blur-[2px]"
                             style={{
 
                                 maskImage: 'linear-gradient(to right, black 80%, transparent)',

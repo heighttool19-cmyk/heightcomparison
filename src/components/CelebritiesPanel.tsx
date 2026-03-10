@@ -20,15 +20,8 @@ const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(celebrities.map(c => c.
 export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson, onClose }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<'All' | CelebrityCategory>('All');
-    const [isSearching, setIsSearching] = useState(false);
 
-    const categoryCounts = useMemo(() => {
-        const counts: Record<string, number> = { All: celebrities.length };
-        celebrities.forEach(c => {
-            counts[c.category] = (counts[c.category] || 0) + 1;
-        });
-        return counts;
-    }, []);
+
 
     // Convert cm to feet/inches string for display
     const getHeightString = (cm: number) => {
@@ -90,9 +83,6 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
-        setIsSearching(true);
-        // Simulate a tiny delay for loading animation effect
-        setTimeout(() => setIsSearching(false), 300);
     };
 
     return (
@@ -119,8 +109,6 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                 categories={DYNAMIC_CATEGORIES}
                 activeCategory={activeCategory}
                 onSelectCategory={(cat) => setActiveCategory(cat as 'All' | CelebrityCategory)}
-                categoryCounts={categoryCounts}
-                isSearching={isSearching}
             />
 
             {/* 3. List Area */}
