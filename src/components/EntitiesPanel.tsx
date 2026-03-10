@@ -5,6 +5,9 @@ import { Search, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Entity, EntityCategory } from '../types';
 import { entities } from '../data/entities';
+import { FilterTabs } from './ui/FilterTabs';
+import { PanelHeader } from './ui/PanelHeader';
+import { PanelListItem } from './ui/PanelListItem';
 
 interface EntitiesPanelProps {
     onAddEntity: (entity: Entity) => void;
@@ -13,12 +16,7 @@ interface EntitiesPanelProps {
     isCapturing?: boolean;
 }
 
-const CATEGORIES: EntityCategory[] = [
-    'All',
-    'Landmarks',
-    'Nature',
-    'Transport'
-];
+const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(entities.map(e => e.category)))];
 
 export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClose, onExport, isCapturing }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -81,10 +79,7 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
     return (
         <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
             {/* Header Area */}
-            <div className="px-6 pt-6 pb-2 shrink-0 hidden sm:block">
-                <h2 className="text-base font-black uppercase tracking-tight text-foreground mb-1">Entities & Objects</h2>
-                <p className="text-[11px] font-medium text-muted">Compare real-world dimensions</p>
-            </div>
+            <PanelHeader title="Entities & Objects" subtitle="Compare real-world dimensions" />
 
             <div className="px-6 pb-2 shrink-0">
                 {/* Search Input */}
@@ -101,37 +96,13 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
             </div>
 
             {/* Filter Tabs */}
-            <div className="shrink-0">
-                <div className="flex overflow-x-auto gap-1.5 px-6 py-3 hide-scrollbar">
-                    {CATEGORIES.map(category => (
-                        <button
-                            key={category}
-                            onClick={() => setActiveCategory(category)}
-                            aria-label={`Show ${category} entities`}
-                            className={`whitespace-nowrap rounded-full px-3.5 py-1.5 text-[11px] font-bold transition-all duration-300 flex items-center gap-2 ${activeCategory === category
-                                ? 'bg-accent text-white'
-                                : 'bg-bg text-muted hover:text-foreground'
-                                }`}
-                        >
-                            <span>{category}</span>
-                            <span className={`text-[9px] px-1.5 py-0.5 rounded-full ${activeCategory === category ? 'bg-white/20' : 'bg-surface/50'}`}>
-                                {categoryCounts[category] || 0}
-                            </span>
-                        </button>
-                    ))}
-                </div>
-                {/* Loader bar */}
-                <div className="px-6">
-                    <div className="h-1.5 w-full bg-bg rounded-full overflow-hidden">
-                        <motion.div
-                            initial={{ x: '-100%' }}
-                            animate={{ x: isSearching ? '100%' : '-100%' }}
-                            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                            className="h-full w-1/2 bg-accent/50 rounded-full shadow-[0_0_10px_var(--accent)]"
-                        />
-                    </div>
-                </div>
-            </div>
+            <FilterTabs
+                categories={DYNAMIC_CATEGORIES}
+                activeCategory={activeCategory}
+                onSelectCategory={(cat) => setActiveCategory(cat as EntityCategory)}
+                categoryCounts={categoryCounts}
+                isSearching={isSearching}
+            />
 
             {/* List Area */}
             <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar">
@@ -165,12 +136,14 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                                 {/* Cards Grid */}
                                 <div className="flex flex-col gap-2.5">
                                     {ents.map(entity => (
-                                        <div
+                                        <PanelListItem
                                             key={entity.id}
-                                            className="group flex items-center justify-between p-2.5 bg-bg border border-border/30 rounded-2xl hover:border-accent/30 transition-all duration-300"
-                                        >
-                                            <div className="flex items-center gap-3 overflow-hidden">
-                                                {/* Icon/Avatar Style */}
+                                            id={entity.id}
+                                            name={entity.name}
+                                            heightString={getHeightString(entity.heightCm)}
+                                            onAdd={() => onAddEntity(entity)}
+                                            addAriaLabel={`Add ${entity.name} to comparison`}
+                                            avatarNode={
                                                 <div
                                                     className="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center text-white font-bold text-lg border border-border/50 shadow-sm"
                                                     style={{
@@ -179,23 +152,8 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                                                 >
                                                     {entity.icon}
                                                 </div>
-
-                                                {/* Info */}
-                                                <div className="flex flex-col min-w-0">
-                                                    <span className="text-sm font-bold text-foreground truncate leading-tight">{entity.name}</span>
-                                                    <span className="text-[11px] font-bold text-accent mt-0.5">{getHeightString(entity.heightCm)}</span>
-                                                </div>
-                                            </div>
-
-                                            {/* Add Button */}
-                                            <button
-                                                onClick={() => onAddEntity(entity)}
-                                                className="w-8 h-8 shrink-0 flex items-center justify-center rounded-xl bg-surface text-accent hover:bg-accent hover:text-white border border-border/50 transition-all active:scale-95 shadow-sm"
-                                                aria-label={`Add ${entity.name} to comparison`}
-                                            >
-                                                <Plus size={16} strokeWidth={3} />
-                                            </button>
-                                        </div>
+                                            }
+                                        />
                                     ))}
                                 </div>
                             </motion.div>

@@ -6,25 +6,29 @@ import { Search, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Celebrity, CelebrityCategory, Person } from '../types';
 import { celebrities } from '../data/celebrities';
+import { FilterTabs } from './ui/FilterTabs';
+import { PanelHeader } from './ui/PanelHeader';
+import { PanelListItem } from './ui/PanelListItem';
 
 interface CelebritiesPanelProps {
     onAddPerson: (person: Person) => void;
     onClose: () => void;
 }
 
-const CATEGORIES: ('All' | CelebrityCategory)[] = [
-    'All',
-    'NBA Stars',
-    'Hollywood',
-    'Historical',
-    'Athletes',
-    'Musicians'
-];
+const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(celebrities.map(c => c.category)))];
 
 export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson, onClose }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<'All' | CelebrityCategory>('All');
     const [isSearching, setIsSearching] = useState(false);
+
+    const categoryCounts = useMemo(() => {
+        const counts: Record<string, number> = { All: celebrities.length };
+        celebrities.forEach(c => {
+            counts[c.category] = (counts[c.category] || 0) + 1;
+        });
+        return counts;
+    }, []);
 
     // Convert cm to feet/inches string for display
     const getHeightString = (cm: number) => {
@@ -94,10 +98,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
     return (
         <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
             {/* 1. Header Area */}
-            <div className="px-6 pt-6 pb-2 shrink-0 hidden sm:block">
-                <h2 className="text-base font-black uppercase tracking-tight text-foreground mb-1">Celebrity Selection</h2>
-                <p className="text-[11px] font-medium text-muted">Add icons to your comparison chart</p>
-            </div>
+            <PanelHeader title="Celebrity Selection" subtitle="Add icons to your comparison chart" />
 
             <div className="px-6 pb-2 shrink-0">
                 {/* Search Input */}
@@ -114,33 +115,13 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
             </div>
 
             {/* 2. Filter Tabs */}
-            <div className="shrink-0">
-                <div className="flex overflow-x-auto gap-1.5 px-6 py-3 hide-scrollbar">
-                    {CATEGORIES.map(category => (
-                        <button
-                            key={category}
-                            onClick={() => setActiveCategory(category)}
-                            className={`whitespace-nowrap rounded-full px-3.5 py-1.5 text-[11px] font-bold transition-all duration-300 ${activeCategory === category
-                                ? 'bg-accent text-white'
-                                : 'bg-bg text-muted hover:text-foreground'
-                                }`}
-                        >
-                            {category}
-                        </button>
-                    ))}
-                </div>
-                {/* Loader bar */}
-                <div className="px-6">
-                    <div className="h-1.5 w-full bg-bg rounded-full overflow-hidden">
-                        <motion.div
-                            initial={{ x: '-100%' }}
-                            animate={{ x: isSearching ? '100%' : '-100%' }}
-                            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                            className="h-full w-1/2 bg-accent/50 rounded-full shadow-[0_0_10px_var(--accent)]"
-                        />
-                    </div>
-                </div>
-            </div>
+            <FilterTabs
+                categories={DYNAMIC_CATEGORIES}
+                activeCategory={activeCategory}
+                onSelectCategory={(cat) => setActiveCategory(cat as 'All' | CelebrityCategory)}
+                categoryCounts={categoryCounts}
+                isSearching={isSearching}
+            />
 
             {/* 3. List Area */}
             <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar">
@@ -174,12 +155,13 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                                 {/* Cards Grid */}
                                 <div className="flex flex-col gap-2.5">
                                     {celebs.map(celeb => (
-                                        <div
+                                        <PanelListItem
                                             key={celeb.id}
-                                            className="group flex items-center justify-between p-2.5 bg-bg border border-border/30 rounded-2xl hover:border-accent/30 transition-all duration-300"
-                                        >
-                                            <div className="flex items-center gap-3 overflow-hidden">
-                                                {/* Image/Avatar */}
+                                            id={celeb.id}
+                                            name={celeb.name}
+                                            heightString={getHeightString(celeb.heightCm)}
+                                            onAdd={() => handleAdd(celeb)}
+                                            avatarNode={
                                                 <div className="w-10 h-10 rounded-xl shrink-0 overflow-hidden bg-surface border border-border/50 shadow-sm relative">
                                                     {celeb.imgUrl ? (
                                                         <Image
@@ -195,22 +177,8 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                                                         </div>
                                                     )}
                                                 </div>
-
-                                                {/* Info */}
-                                                <div className="flex flex-col min-w-0">
-                                                    <span className="text-sm font-bold text-foreground truncate leading-tight">{celeb.name}</span>
-                                                    <span className="text-[11px] font-bold text-accent mt-0.5">{getHeightString(celeb.heightCm)}</span>
-                                                </div>
-                                            </div>
-
-                                            {/* Add Button */}
-                                            <button
-                                                onClick={() => handleAdd(celeb)}
-                                                className="w-8 h-8 shrink-0 flex items-center justify-center rounded-xl bg-surface text-accent hover:bg-accent hover:text-white border border-border/50 transition-all active:scale-95 shadow-sm"
-                                            >
-                                                <Plus size={16} strokeWidth={3} />
-                                            </button>
-                                        </div>
+                                            }
+                                        />
                                     ))}
                                 </div>
                             </motion.div>

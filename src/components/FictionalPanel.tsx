@@ -2,29 +2,30 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Plus } from 'lucide-react';
-import { fictionalCharacters } from '../data/fictionalCharacters';
+import { fictionalCharacters } from '../data/fictional';
 import { FictionalCategory, Person } from '../types';
+import { FilterTabs } from './ui/FilterTabs';
+import { PanelHeader } from './ui/PanelHeader';
+import { PanelListItem } from './ui/PanelListItem';
 
 interface FictionalPanelProps {
     onAddPerson: (person: Person) => void;
     onClose: () => void;
 }
 
-const CATEGORIES: { id: FictionalCategory | 'All'; label: string }[] = [
-    { id: 'All', label: 'All' },
-    { id: 'Anime', label: 'Anime' },
-    { id: 'Cartoons', label: 'Cartoons' },
-    { id: 'DC Comics', label: 'DC Comics' },
-    { id: 'Fantasy', label: 'Fantasy' },
-    { id: 'Marvel', label: 'Marvel' },
-    { id: 'Monsters & Kaiju', label: 'Monsters & Kaiju' },
-    { id: 'TV Shows', label: 'TV Shows' },
-    { id: 'Video Games', label: 'Video Games' },
-];
+const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(fictionalCharacters.map(c => c.category)))];
 
 export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onClose }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<FictionalCategory | 'All'>('All');
+
+    const categoryCounts = useMemo(() => {
+        const counts: Record<string, number> = { All: fictionalCharacters.length };
+        fictionalCharacters.forEach(c => {
+            counts[c.category] = (counts[c.category] || 0) + 1;
+        });
+        return counts;
+    }, []);
 
     // Convert cm to feet/inches string for display
     const getHeightString = (cm: number) => {
@@ -58,10 +59,7 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
     return (
         <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
             {/* Header */}
-            <div className="px-6 pt-6 pb-2 shrink-0 hidden sm:block">
-                <h2 className="text-base font-black uppercase tracking-tight text-foreground mb-1">Fictional Entities</h2>
-                <p className="text-[11px] font-medium text-muted">Add iconic characters to your chart</p>
-            </div>
+            <PanelHeader title="Fictional Entities" subtitle="Add iconic characters to your chart" />
 
             <div className="px-6 pb-2 shrink-0">
                 {/* Search */}
@@ -78,33 +76,12 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
             </div>
 
             {/* Filter Tabs */}
-            <div className="shrink-0">
-                <div className="flex overflow-x-auto gap-1.5 px-6 py-3 hide-scrollbar">
-                    {CATEGORIES.map((cat) => (
-                        <button
-                            key={cat.id}
-                            onClick={() => setActiveCategory(cat.id)}
-                            className={`whitespace-nowrap rounded-full px-3.5 py-1.5 text-[11px] font-bold transition-all duration-300 ${activeCategory === cat.id
-                                ? 'bg-accent text-white'
-                                : 'bg-bg text-muted hover:text-foreground'
-                                }`}
-                        >
-                            {cat.label}
-                        </button>
-                    ))}
-                </div>
-                {/* Loader bar */}
-                {/* <div className="px-6">
-                    <div className="h-1.5 w-full bg-bg rounded-full overflow-hidden">
-                        <motion.div
-                            initial={{ width: "0%" }}
-                            animate={{ width: "100%" }}
-                            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                            className="h-full bg-accent/50 rounded-full shadow-[0_0_10px_var(--accent)]"
-                        />
-                    </div>
-                </div> */}
-            </div>
+            <FilterTabs
+                categories={DYNAMIC_CATEGORIES}
+                activeCategory={activeCategory}
+                onSelectCategory={(cat) => setActiveCategory(cat as FictionalCategory | 'All')}
+                categoryCounts={categoryCounts}
+            />
 
             {/* List Area */}
             <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar">
@@ -138,12 +115,25 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                                 {/* Cards Grid */}
                                 <div className="flex flex-col gap-2.5">
                                     {chars.map(char => (
-                                        <div
+                                        <PanelListItem
                                             key={char.id}
-                                            className="group flex items-center justify-between p-2.5 bg-bg border border-border/30 rounded-2xl hover:border-accent/30 transition-all duration-300"
-                                        >
-                                            <div className="flex items-center gap-3 overflow-hidden">
-                                                {/* Avatar */}
+                                            id={char.id}
+                                            name={char.name}
+                                            heightString={getHeightString(char.heightCm)}
+                                            onAdd={() => {
+                                                const timestamp = Date.now();
+                                                const rand = Math.random().toString(36).substr(2, 9);
+                                                const newId = `person-${timestamp}-${rand}`;
+
+                                                onAddPerson({
+                                                    id: newId,
+                                                    name: char.name,
+                                                    heightCm: char.heightCm,
+                                                    color: char.color,
+                                                    gender: 'other',
+                                                });
+                                            }}
+                                            avatarNode={
                                                 <div
                                                     className="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center text-white font-bold text-sm border border-border/50 shadow-sm"
                                                     style={{
@@ -152,33 +142,8 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                                                 >
                                                     {char.name.charAt(0)}
                                                 </div>
-
-                                                {/* Info */}
-                                                <div className="flex flex-col min-w-0">
-                                                    <span className="text-sm font-bold text-foreground truncate leading-tight">{char.name}</span>
-                                                    <span className="text-[11px] font-bold text-accent mt-0.5">{getHeightString(char.heightCm)}</span>
-                                                </div>
-                                            </div>
-
-                                            <button
-                                                onClick={() => {
-                                                    const timestamp = Date.now();
-                                                    const rand = Math.random().toString(36).substr(2, 9);
-                                                    const newId = `person-${timestamp}-${rand}`;
-
-                                                    onAddPerson({
-                                                        id: newId,
-                                                        name: char.name,
-                                                        heightCm: char.heightCm,
-                                                        color: char.color,
-                                                        gender: 'other',
-                                                    });
-                                                }}
-                                                className="w-8 h-8 shrink-0 flex items-center justify-center rounded-xl bg-surface text-accent hover:bg-accent hover:text-white border border-border/50 transition-all active:scale-95 shadow-sm"
-                                            >
-                                                <Plus size={16} strokeWidth={3} />
-                                            </button>
-                                        </div>
+                                            }
+                                        />
                                     ))}
                                 </div>
                             </motion.div>
@@ -200,3 +165,5 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
         </div>
     );
 };
+
+export default FictionalPanel;

@@ -69,7 +69,7 @@ export const CONVERSION = {
   IN_TO_CM: 2.54,
 };
 
-export type CelebrityCategory = 'NBA Stars' | 'Hollywood' | 'Musicians' | 'Athletes' | 'Historical';
+export type CelebrityCategory = 'NBA Stars' | 'Hollywood' | 'Musicians' | 'Athletes' | 'Historical' | 'Asian Celebrities' | 'Bollywood' | 'British Celebrities' | 'Politicians' | 'Reality TV Stars';
 
 export interface Celebrity {
   id: string;
@@ -89,7 +89,7 @@ export interface FictionalCharacter {
   category: FictionalCategory;
   color: string;
 }
-export type EntityCategory = 'Landmarks' | 'Nature' | 'Transport' | 'All';
+export type EntityCategory = 'Landmarks' | 'Nature' | 'Transport' | 'Animals' | 'Dinosaurs' | 'Objects' | 'Human Averages' | 'Fictional Averages' | 'All';
 
 export interface Entity {
   id: string;
