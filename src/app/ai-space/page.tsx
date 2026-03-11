@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeftRight, ChevronLeft, Plus, Ruler, Trash2, Box, BarChart2, Moon, Sun } from 'lucide-react';
+import { ArrowLeftRight, ChevronLeft, Plus, Ruler, Trash2, Box, BarChart2, Moon, Sun, Monitor, Info, HelpCircle, CheckCircle2, Camera, Smartphone, ChevronDown } from 'lucide-react';
 import { useUnitStore, useThemeStore, usePersonStore } from '@/store';
 import { ImageMeasurement } from '@/components/ImageMeasurement';
 
@@ -17,7 +17,7 @@ export default function AISpacePage() {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    // const [isSaved, setIsSaved] = useState(false);
+    const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
     // No manual add logic needed anymore as per requirements
 
@@ -91,60 +91,241 @@ export default function AISpacePage() {
                         </div>
                     </div>
 
-                    {/* How to Guide Section */}
-                    <div className="bg-surface border border-border rounded-3xl p-6 md:p-10 shadow-lg mt-4 content-section">
-                        <h2 className="text-xl md:text-2xl font-black text-foreground mb-6 flex items-center gap-3">
-                            <Ruler className="text-accent" /> How to Determine Your Height Without Measuring: Using a Photo
-                        </h2>
+                    {/* Comprehensive Content Section */}
+                    <div className="flex flex-col gap-12 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
 
-                        <div className="grid md:grid-cols-2 gap-8">
-                            <div className="space-y-4">
-                                <h3 className="text-lg font-bold text-foreground font-sans">Step-by-Step Instructions</h3>
-                                <div className="space-y-4 text-muted text-sm leading-relaxed">
-                                    <div className="flex gap-4">
-                                        <div className="w-6 h-6 shrink-0 rounded-full bg-accent/10 flex items-center justify-center text-accent font-black text-xs">1</div>
-                                        <p><strong>Upload a full-body photo</strong> standing upright with natural posture.</p>
+                        {/* 1. Main Headline & Problem */}
+                        <div className="space-y-6">
+                            <h2 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight">
+                                How to Measure Your Height Without a Measuring Tape — <span className="text-accent">Upload a Photo and Find Out Instantly</span>
+                            </h2>
+                            <div className="h-1.5 w-24 bg-accent rounded-full" />
+
+                            <div className="grid md:grid-cols-5 gap-8 items-start">
+                                <div className="md:col-span-3 space-y-4">
+                                    <h3 className="text-xl font-bold text-foreground">The Problem With Measuring Your Own Height</h3>
+                                    <p className="text-muted leading-relaxed">
+                                        Measuring your own height accurately is harder than it looks — especially alone.
+                                        Most people have tried the wall-and-book method. Stand straight, balance a hardback on your head, mark the wall, measure the mark.
+                                        Simple enough except you&apos;re probably hunching slightly, the book isn&apos;t perfectly level, or the tape isn&apos;t sitting flat on the floor.
+                                        The result is off by half an inch to a full inch without you realizing it.
+                                    </p>
+                                    <div className="p-4 bg-accent/5 border-l-4 border-accent rounded-r-xl">
+                                        <p className="text-sm italic text-foreground/80">
+                                            &quot;One more thing most people don&apos;t know: you&apos;re up to 1 cm taller in the morning than at night. Your spine compresses slightly throughout the day.&quot;
+                                        </p>
                                     </div>
-                                    <div className="flex gap-4">
-                                        <div className="w-6 h-6 shrink-0 rounded-full bg-accent/10 flex items-center justify-center text-accent font-black text-xs">2</div>
-                                        <p><strong>Calibrate</strong> by drawing a line over an object of known size in the photo (like a door handle, credit card, or A4 paper).</p>
+                                    <p className="text-muted leading-relaxed">
+                                        Doing it alone makes it worse. Reaching up to mark a wall while keeping your heels flat and standing straight at the same time is awkward at best.
+                                        And most guides on how to measure your height at home assume you have a second person helping, which defeats the point.
+                                    </p>
+                                </div>
+                                <div className="md:col-span-2 bg-surface border border-border rounded-3xl p-6 shadow-sm space-y-4">
+                                    <h4 className="font-black uppercase tracking-widest text-[10px] text-accent">Quick Workarounds</h4>
+                                    <div className="space-y-3">
+                                        {[
+                                            { title: "Doorframe Method", desc: "Standard doors are 203cm tall. Use them as a baseline." },
+                                            { title: "Arm Span Method", desc: "Wingspan fingertip-to-fingertip is roughly equal to height." },
+                                            { title: "Dollar Bill Method", desc: "A US dollar bill is 6.14 inches long. Stack and multiply." }
+                                        ].map((item, i) => (
+                                            <div key={i} className="flex gap-3 items-start">
+                                                <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center text-accent text-[10px] font-bold shrink-0">{i + 1}</div>
+                                                <div>
+                                                    <p className="text-xs font-bold text-foreground">{item.title}</p>
+                                                    <p className="text-[11px] text-muted leading-tight mt-0.5">{item.desc}</p>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
-                                    <div className="flex gap-4">
-                                        <div className="w-6 h-6 shrink-0 rounded-full bg-accent/10 flex items-center justify-center text-accent font-black text-xs">3</div>
-                                        <p><strong>Enter the exact size</strong> of that reference object to set the scale.</p>
-                                    </div>
-                                    <div className="flex gap-4">
-                                        <div className="w-6 h-6 shrink-0 rounded-full bg-accent/10 flex items-center justify-center text-accent font-black text-xs">4</div>
-                                        <p><strong>Measure</strong> by drawing a line from the top of the head to the floor.</p>
-                                    </div>
+                                    <p className="text-[10px] text-muted italic pt-2 border-t border-border">Limitation: These get you close, not exact.</p>
                                 </div>
                             </div>
+                        </div>
 
-                            <div className="space-y-4">
-                                <h3 className="text-lg font-bold text-foreground font-sans">Frequently Asked Questions</h3>
-                                <div className="space-y-4">
-                                    <details className="group border-b border-border pb-4">
-                                        <summary className="list-none font-bold text-sm cursor-pointer flex justify-between items-center group-open:text-accent transition-colors">
-                                            How accurate is the measurement?
-                                            <Plus size={14} className="group-open:rotate-45 transition-transform" />
-                                        </summary>
-                                        <p className="text-xs text-muted mt-2 leading-relaxed">Accuracy depends on camera angle and perspective. For best results, take the photo exactly at waist height and ensure the person is standing on the same plane as the reference object.</p>
-                                    </details>
-                                    <details className="group border-b border-border pb-4">
-                                        <summary className="list-none font-bold text-sm cursor-pointer flex justify-between items-center group-open:text-accent transition-colors">
-                                            What photos work best?
-                                            <Plus size={14} className="group-open:rotate-45 transition-transform" />
-                                        </summary>
-                                        <p className="text-xs text-muted mt-2 leading-relaxed">Clear, well-lit photos with high resolution. Avoid wide-angle lenses or extreme &apos;fish-eye&apos; effects which can distort height proportions.</p>
-                                    </details>
-                                    <details className="group">
-                                        <summary className="list-none font-bold text-sm cursor-pointer flex justify-between items-center group-open:text-accent transition-colors">
-                                            Is my data private?
-                                            <Plus size={14} className="group-open:rotate-45 transition-transform" />
-                                        </summary>
-                                        <p className="text-xs text-muted mt-2 leading-relaxed">Yes. All image processing happens locally in your browser. No photos are uploaded to any server or stored remotely.</p>
-                                    </details>
+                        {/* 2. Photo Method Explained */}
+                        <div className="bg-bg border border-border rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group">
+                            <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000" />
+                            <div className="relative z-10 max-w-3xl">
+                                <h3 className="text-2xl font-black text-foreground mb-4">Using a Photo: The Most Reliable Shortcut</h3>
+                                <p className="text-muted leading-relaxed text-lg">
+                                    Every photo contains hidden scale information as long as you know the size of at least one object in it.
+                                    If either a standard door (203cm) or a credit card (85.6mm) appears in a photo with a person, the height is calculable.
+                                    The relationship between every object in the frame is mathematically fixed once you have one known measurement.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* 3. Step-by-Step Visualization */}
+                        <div className="space-y-8">
+                            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                                <h3 className="text-2xl font-black text-foreground">How It Works: Step-by-Step</h3>
+                                <span className="text-xs font-bold text-muted uppercase tracking-[0.2em] bg-surface border border-border px-4 py-1.5 rounded-full">Automated Process</span>
+                            </div>
+
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                                {[
+                                    { icon: <Camera size={20} />, title: "Upload", body: "Select any photo where the full body is visible head-to-toe." },
+                                    { icon: <Ruler size={20} />, title: "Calibrate", body: "Mark a known object like a door or card to set the scale." },
+                                    { icon: <Smartphone size={20} />, title: "Draw", body: "Draw a line from the floor to the top of the head." },
+                                    { icon: <CheckCircle2 size={20} />, title: "Result", body: "Get instant accurate results in CM and FT/IN." }
+                                ].map((step, idx) => (
+                                    <div key={idx} className="bg-surface border border-border p-6 rounded-3xl hover:border-accent/40 transition-all hover:translate-y-[-4px] group">
+                                        <div className="w-12 h-12 rounded-2xl bg-bg border border-border flex items-center justify-center text-muted group-hover:text-accent group-hover:bg-accent/5 transition-all mb-4">
+                                            {step.icon}
+                                        </div>
+                                        <p className="text-[10px] font-black uppercase text-accent/60 mb-1 tracking-widest">Step 0{idx + 1}</p>
+                                        <h4 className="font-bold text-foreground mb-2">{step.title}</h4>
+                                        <p className="text-xs text-muted leading-relaxed">{step.body}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* 4. Tips Section */}
+                        <div className="space-y-6">
+                            <h3 className="text-2xl font-black text-foreground flex items-center gap-3">
+                                <Info className="text-accent" /> Tips for High Accuracy
+                            </h3>
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {[
+                                    { title: "Shoot Straight-on", desc: "Camera at chest height, pointed straight. Avoid high or low angles." },
+                                    { title: "Stand Straight", desc: "Heels flat, back straight, head level. Slouching introduces errors." },
+                                    { title: "Reference Placement", desc: "Keep the reference object close to the subject to avoid lens distortion." },
+                                    { title: "Standard Doors", desc: "Most reliable indoors. 203cm is the universal standard baseline." },
+                                    { title: "Full Body", desc: "Feet must be in view. Always measure from the floor, not the toes." }
+                                ].map((tip, i) => (
+                                    <div key={i} className="flex gap-4 items-start">
+                                        <div className="shrink-0 w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
+                                            <Plus size={16} />
+                                        </div>
+                                        <div>
+                                            <h4 className="text-sm font-bold text-foreground leading-tight">{tip.title}</h4>
+                                            <p className="text-xs text-muted mt-1 leading-relaxed">{tip.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* 5. Frequently Asked Questions — Accordion */}
+                        <div className="border border-border rounded-[2.5rem] overflow-hidden mb-20 bg-surface transition-colors duration-500">
+                            {/* Header */}
+                            <div className="px-8 md:px-12 pt-10 pb-8 text-center space-y-2 border-b border-border">
+                                <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
+                                    <HelpCircle size={12} /> FAQ
                                 </div>
+                                <h3 className="text-3xl font-black text-foreground">Frequently Asked Questions</h3>
+                                <p className="text-sm text-muted">Everything you need to know about the AI height tool</p>
+                            </div>
+
+                            {/* Accordion Items */}
+                            <div className="px-6 md:px-10 py-6 flex flex-col gap-3">
+                                {[
+                                    {
+                                        q: "How accurate is the photo measurement?",
+                                        a: "Typically within 1–2 cm. Accuracy depends on camera angle, distance, and calibration precision. Best results come from straight-on photos at waist height with a clearly visible reference object on the same plane as the subject."
+                                    },
+                                    {
+                                        q: "What is the best object to use for calibration?",
+                                        a: "A standard interior door (203 cm / 6 ft 8 in) is the most reliable because it's a universal size. Credit cards (8.56 × 5.4 cm), A4 paper (29.7 cm tall), and standard rulers also work very well."
+                                    },
+                                    {
+                                        q: "Can I measure someone else's height from a photo?",
+                                        a: "Yes — this tool works on any photo of any person or object. As long as there is one reference object of known size in the frame, you can calculate the height of anything else in the image."
+                                    },
+                                    {
+                                        q: "Does it work for measuring celebrities?",
+                                        a: "Yes. If a paparazzi photo or red-carpet shot has a door, railing, or other known object visible alongside the celebrity, you can calibrate and measure with reasonable accuracy."
+                                    },
+                                    {
+                                        q: "Do I need to create an account?",
+                                        a: "No. The tool is completely free, requires no sign-up, and runs entirely in your browser. Nothing is uploaded to any server."
+                                    },
+                                    {
+                                        q: "Is my uploaded photo stored or shared?",
+                                        a: "No. All image processing happens locally on your device using the browser's Canvas API. Your photos are never sent to a server, stored remotely, or shared with anyone."
+                                    },
+                                    {
+                                        q: "What photos give the best results?",
+                                        a: "Full-body photos taken straight-on (not at an angle), in good lighting, where both feet and top of head are clearly visible. Avoid wide-angle or fisheye lenses as they distort proportions."
+                                    },
+                                    {
+                                        q: "Can I use this on mobile?",
+                                        a: "Yes. The tool is fully mobile-compatible. Use fullscreen mode for more precise line-drawing, and the tap-to-draw feature lets you place start and end points with just two taps."
+                                    }
+                                ].map((faq, idx) => {
+                                    const isOpen = openFaqIndex === idx;
+                                    return (
+                                        <div
+                                            key={idx}
+                                            className={`rounded-2xl border overflow-hidden transition-all duration-300 ${
+                                                isOpen
+                                                    ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5'
+                                                    : 'border-border bg-bg hover:border-accent/30'
+                                            }`}
+                                        >
+                                            {/* Trigger Button */}
+                                            <button
+                                                onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                                                className="w-full flex items-center justify-between px-5 py-4 text-left gap-4 group"
+                                            >
+                                                <div className="flex items-center gap-3 min-w-0">
+                                                    <div className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                                                        isOpen
+                                                            ? 'bg-accent text-white shadow-md shadow-accent/30'
+                                                            : 'bg-accent/10 text-accent'
+                                                    }`}>
+                                                        <HelpCircle size={13} />
+                                                    </div>
+                                                    <span className={`text-sm font-bold transition-colors duration-200 truncate ${
+                                                        isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'
+                                                    }`}>
+                                                        {faq.q}
+                                                    </span>
+                                                </div>
+                                                <motion.div
+                                                    animate={{ rotate: isOpen ? 180 : 0 }}
+                                                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                                                    className={`shrink-0 transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-muted'}`}
+                                                >
+                                                    <ChevronDown size={18} />
+                                                </motion.div>
+                                            </button>
+
+                                            {/* Animated Answer */}
+                                            <AnimatePresence initial={false}>
+                                                {isOpen && (
+                                                    <motion.div
+                                                        key="answer"
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: 'auto', opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                                                        className="overflow-hidden"
+                                                    >
+                                                        <div className="px-5 pt-0 pb-5 border-t border-border/40">
+                                                            <p className="text-sm text-muted leading-relaxed pl-10 pt-4">
+                                                                {faq.a}
+                                                            </p>
+                                                        </div>
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Footer CTA */}
+                            <div className="px-8 md:px-12 pb-10 pt-4 border-t border-border flex flex-col items-center gap-4 text-center">
+                                <h4 className="text-xl font-bold text-foreground">No Tape Measure? No Problem.</h4>
+                                <p className="text-sm text-muted max-w-sm">Upload a photo, set your reference point, and get your measurement in under a minute.</p>
+                                <button
+                                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                    className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 flex items-center gap-2 active:scale-95"
+                                >
+                                    <Monitor size={16} /> Measure Now
+                                </button>
                             </div>
                         </div>
                     </div>

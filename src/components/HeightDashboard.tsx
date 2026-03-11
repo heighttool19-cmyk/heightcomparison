@@ -502,6 +502,11 @@ const HeightDashboard: React.FC = () => {
                                 >
                                     <button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Home</button>
                                     <button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground bg-accent/10 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Calculator</button>
+                                    <Link href="/ai-space" onClick={() => setIsNavMenuOpen(false)}>
+                                        <button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent hover:text-accent/80 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">
+                                            AI Space <Box size={14} />
+                                        </button>
+                                    </Link>
                                     <button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>About</button>
                                 </motion.div>
                             )}

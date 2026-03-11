@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import { UnitSystem } from './types';
 
 interface UnitState {
@@ -23,13 +24,21 @@ interface ThemeState {
     setTheme: (theme: Theme) => void;
 }
 
-export const useThemeStore = create<ThemeState>((set) => ({
-    theme: 'dark', // Default
-    toggleTheme: () => set((state) => ({
-        theme: state.theme === 'dark' ? 'light' : 'dark'
-    })),
-    setTheme: (theme) => set({ theme }),
-}));
+export const useThemeStore = create<ThemeState>()(
+    persist(
+        (set) => ({
+            theme: 'dark', // Default
+            toggleTheme: () => set((state) => ({
+                theme: state.theme === 'dark' ? 'light' : 'dark'
+            })),
+            setTheme: (theme) => set({ theme }),
+        }),
+        {
+            name: 'height-tool-theme', // localStorage key
+            storage: createJSONStorage(() => localStorage),
+        }
+    )
+);
 
 interface PersonState {
     persons: Person[];

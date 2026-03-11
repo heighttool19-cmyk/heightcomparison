@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { Edit2, Trash2 } from 'lucide-react';
 import { Person } from '../types';
 import { useUnitStore } from '../store';
@@ -20,6 +19,14 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [inputValue, setInputValue] = React.useState(person.heightCm.toString());
+    const [imageAspectRatio, setImageAspectRatio] = React.useState<number | null>(null);
+
+    const handleImageLoad = React.useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+        const img = e.currentTarget;
+        if (img.naturalHeight > 0) {
+            setImageAspectRatio(img.naturalWidth / img.naturalHeight);
+        }
+    }, []);
 
     React.useEffect(() => {
         setInputValue(person.heightCm.toString());
@@ -60,6 +67,11 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
     const baseWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? 90 : 120;
     const containerWidth = Math.max(65, baseWidth * zoom);
 
+    // For image persons: compute width from natural aspect ratio so image fills its bar properly
+    const effectiveWidth = person.imgUrl && imageAspectRatio
+        ? Math.max(60, Math.round(barHeightPx * imageAspectRatio))
+        : containerWidth;
+
     return (
         <motion.div
             initial={{ opacity: 0, x: 60 }}
@@ -67,7 +79,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
             className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end"
-            style={{ width: `${containerWidth}px` }}
+            style={{ width: `${effectiveWidth}px` }}
             onClick={() => {
                 if (window.innerWidth < 768) {
                     setIsMenuOpen(!isMenuOpen);
@@ -134,46 +146,21 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                     {person.imgUrl ? (
                         <motion.div
                             layout
-                            className="relative flex flex-col items-center justify-end"
+                            className="relative flex flex-col items-center justify-end object-contain"
                             style={{ height: barHeightPx }}
                             transition={springConfig}
                         >
-                            {/* Portrait Image Card */}
-                            <div
-                                className="relative z-20 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl bg-surface"
-                                style={{
-                                    width: `${Math.max(60, containerWidth * 0.8)}px`,
-                                    height: `${Math.max(80, barHeightPx * 0.4)}px`,
-                                    maxHeight: '200px',
-                                    marginBottom: 'auto'
-                                }}
-                            >
-                                <Image
+                            {/* Proportional Full-Height Image */}
+                            <div className="relative z-20 h-full w-auto">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
                                     src={person.imgUrl}
                                     alt={person.name}
-                                    className="object-cover"
-                                    fill
-                                    unoptimized
+                                    onLoad={handleImageLoad}
+                                    style={{ height: `${barHeightPx}px`, width: 'auto', objectFit: 'contain', display: 'block' }}
+                                    className="drop-shadow-2xl"
                                 />
-                                {/* Bottom Glow */}
-                                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
                             </div>
-
-                            {/* Height Pillar Stem */}
-                            <div
-                                className="absolute bottom-0 z-10 w-1.5 rounded-full"
-                                style={{
-                                    height: '100%',
-                                    background: `linear-gradient(to top, ${person.color || '#6366F1'}88 0%, ${person.color || '#6366F1'}44 50%, transparent 100%)`,
-                                    boxShadow: `0 0 15px ${(person.color || '#6366F1')}22`
-                                }}
-                            />
-
-                            {/* Ground Glow Dot */}
-                            <div
-                                className="absolute bottom-0 w-3 h-3 rounded-full blur-sm z-10"
-                                style={{ backgroundColor: person.color || '#6366F1' }}
-                            />
                         </motion.div>
                     ) : person.isEntity ? (
                         <motion.div
