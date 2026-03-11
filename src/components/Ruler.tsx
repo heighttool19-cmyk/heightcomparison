@@ -56,6 +56,11 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
                 const ftValue = Math.floor(totalInches / 12);
                 const inValue = totalInches % 12;
                 const ftDisplay = `${isNegative ? '-' : ''}${ftValue}' ${inValue}''`;
+
+                const showLabelMetric = isZero || tick % (tickInterval >= 50 ? tickInterval : 50) === 0;
+                const showLabelImperial = isZero || tick % (tickInterval >= 30 ? tickInterval : 30) === 0;
+                const hasLabel = unitSystem === 'metric' ? showLabelMetric : showLabelImperial;
+
                 return (
                     <div
                         key={tick}
@@ -72,11 +77,11 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
                             }}
                         >
                             {unitSystem === 'metric' ? (
-                                <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${tick % 80 === 0 || isZero ? 'text-foreground/90' : 'text-foreground/30'}`}>
-                                    {tick} {(tick % 80 === 0 || isZero) && 'cm'}
+                                <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                    {tick} {hasLabel && 'cm'}
                                 </span>
                             ) : (
-                                <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${tick % 24 === 0 || isZero ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
                                     {ftDisplay}
                                 </span>
                             )}
@@ -86,7 +91,9 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
                         <div
                             className={`flex-1 transition-colors duration-500 ${isZero
                                 ? 'bg-white/20 h-[1.5px] opacity-100'
-                                : 'bg-foreground/5 group-hover/tick:bg-foreground/10 h-[1px]'
+                                : hasLabel
+                                    ? 'bg-foreground/20 group-hover/tick:bg-foreground/30 h-[1.5px]'
+                                    : 'bg-foreground/5 group-hover/tick:bg-foreground/10 h-[1px]'
                                 }
                                 mr-4
                                 `}

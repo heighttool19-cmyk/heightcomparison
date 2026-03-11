@@ -13,9 +13,10 @@ interface PersonBarProps {
     onEditRequest?: (id: string) => void;
     onRemove?: (id: string) => void;
     onHeightChange?: (val: number) => void;
+    readOnly?: boolean;
 }
 
-const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditRequest, onRemove, onHeightChange }) => {
+const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly }) => {
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [inputValue, setInputValue] = React.useState(person.heightCm.toString());
@@ -99,30 +100,32 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                 }}
             >
                 {/* Hover/Tap Action Menu */}
-                <div
-                    className={`absolute -top-12 left-1/2 -translate-x-1/2 flex items-center gap-2 transition-all duration-300 pointer-events-auto hide-on-export
+                {!readOnly && (
+                    <div
+                        className={`absolute -top-12 left-1/2 -translate-x-1/2 flex items-center gap-2 transition-all duration-300 pointer-events-auto hide-on-export
                         ${isMenuOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-75 md:scale-75 md:group-hover:opacity-100 md:group-hover:scale-100'}
                     `}
-                >
-                    {onEditRequest && (
-                        <button
-                            onClick={(e) => { e.stopPropagation(); onEditRequest(person.id); }}
-                            className="w-10 h-10 rounded-full bg-accent hover:bg-accent-secondary flex items-center justify-center shadow-xl text-white transition-all active:scale-90"
-                            aria-label={`Edit ${person.name}`}
-                        >
-                            <Edit2 size={16} strokeWidth={3} />
-                        </button>
-                    )}
-                    {onRemove && (
-                        <button
-                            onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}
-                            className="w-10 h-10 rounded-full bg-red-500 hover:bg-red-400 flex items-center justify-center shadow-xl text-white transition-all active:scale-90"
-                            aria-label={`Remove ${person.name}`}
-                        >
-                            <Trash2 size={16} strokeWidth={3} />
-                        </button>
-                    )}
-                </div>
+                    >
+                        {onEditRequest && (
+                            <button
+                                onClick={(e) => { e.stopPropagation(); onEditRequest(person.id); }}
+                                className="w-10 h-10 rounded-full bg-accent hover:bg-accent-secondary flex items-center justify-center shadow-xl text-white transition-all active:scale-90"
+                                aria-label={`Edit ${person.name}`}
+                            >
+                                <Edit2 size={16} strokeWidth={3} />
+                            </button>
+                        )}
+                        {onRemove && (
+                            <button
+                                onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}
+                                className="w-10 h-10 rounded-full bg-red-500 hover:bg-red-400 flex items-center justify-center shadow-xl text-white transition-all active:scale-90"
+                                aria-label={`Remove ${person.name}`}
+                            >
+                                <Trash2 size={16} strokeWidth={3} />
+                            </button>
+                        )}
+                    </div>
+                )}
                 {unitSystem === 'metric' ? (
                     <span className="text-foreground text-[10px] md:text-[13px] font-bold w-full truncate px-1">cm: {person.heightCm.toFixed(1)}</span>
                 ) : (
@@ -211,33 +214,46 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
             <div
                 className="absolute inset-x-0 bottom-0 h-[65px] flex flex-col items-center justify-center gap-1 pointer-events-auto hide-on-export"
                 style={{
-                    transform: `scale(${Math.min(1, Math.max(0.6, zoom + 0.2))})`,
-                    transformOrigin: 'bottom center'
+                    transform: `scale(${zoom < 0.8 ? Math.max(0.7, zoom + 0.3) : 1})`,
+                    transformOrigin: 'top center'
                 }}
             >
-                <span className="text-[11px] font-black text-foreground/70 uppercase tracking-tight truncate w-full text-center px-1">
+                <span className="text-[11px] font-black text-foreground/70 uppercase tracking-tight truncate w-full text-center px-1"
+                    style={{ lineHeight: 1.1 }}>
                     {person.name}
                 </span>
-                <div className="flex items-center gap-1.5 bg-surface border border-border/60 rounded-xl px-2.5 py-1.5 focus-within:border-accent/60 backdrop-blur-md shadow-premium transition-all group-hover:border-accent/50 opacity-100 group-hover:opacity-100 ring-1 ring-black/5 dark:ring-white/5">
-                    <input
-                        type="number"
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        onBlur={handleBlur}
-                        onKeyDown={handleKeyDown}
-                        className="w-12 bg-transparent text-[13px] font-mono font-black text-center text-foreground focus:outline-none"
-                    />
-                    <span className="text-[10px] font-mono font-black text-muted uppercase tracking-tighter">cm</span>
-                    {onRemove && (
-                        <button
-                            onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}
-                            className="ml-1 p-1 text-muted hover:text-red-500 hover:bg-red-500/10 rounded-md transition-all active:scale-95"
-                            title="Remove"
-                        >
-                            <Trash2 size={14} strokeWidth={2.5} />
-                        </button>
-                    )}
-                </div>
+
+                {readOnly ? (
+                    <div className="flex items-center gap-1.5 bg-surface/50 border border-border/40 rounded-xl px-4 py-1.5 backdrop-blur-md shadow-sm mt-1 transition-all">
+                        <span className="text-xs sm:text-[13px] font-mono font-black text-foreground whitespace-nowrap">
+                            {unitSystem === 'metric'
+                                ? `${person.heightCm.toFixed(1)} cm`
+                                : ftDisplay
+                            }
+                        </span>
+                    </div>
+                ) : (
+                    <div className="flex items-center gap-1.5 bg-surface border border-border/60 rounded-xl px-2.5 py-1.5 focus-within:border-accent/60 backdrop-blur-md shadow-sm transition-all group-hover:border-accent/50 ring-1 ring-black/5 dark:ring-white/5 mt-1">
+                        <input
+                            type="number"
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            onBlur={handleBlur}
+                            onKeyDown={handleKeyDown}
+                            className="w-10 sm:w-12 bg-transparent text-xs sm:text-[13px] font-mono font-black text-center text-foreground focus:outline-none"
+                        />
+                        <span className="text-[9px] sm:text-[10px] font-mono font-black text-muted uppercase tracking-tighter">cm</span>
+                        {onRemove && (
+                            <button
+                                onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}
+                                className="ml-1 p-1 text-muted hover:text-red-500 hover:bg-red-400 rounded-md transition-all active:scale-95"
+                                title="Remove"
+                            >
+                                <Trash2 size={14} strokeWidth={2.5} />
+                            </button>
+                        )}
+                    </div>
+                )}
             </div>
         </motion.div>
     );

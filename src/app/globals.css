@@ -142,3 +142,13 @@ body.is-capturing .hide-on-export {
 [data-theme="light"] .empty-door {
     border-color: rgba(0, 0, 0, 0.1);
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide number input arrows for Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

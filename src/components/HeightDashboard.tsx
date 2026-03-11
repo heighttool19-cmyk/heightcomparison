@@ -14,14 +14,22 @@ import Link from 'next/link';
 
 type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
 
-const HeightDashboard: React.FC = () => {
+interface HeightDashboardProps {
+    readOnly?: boolean;
+    initialPersons?: Person[];
+    onClose?: () => void;
+}
+
+const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, initialPersons, onClose }) => {
     const {
-        persons,
+        persons: storePersons,
         addPerson: storeAddPerson,
         removePerson: storeRemovePerson,
         updatePerson: storeUpdatePerson,
         setPersons: storeSetPersons
     } = usePersonStore();
+
+    const persons = readOnly && initialPersons ? initialPersons : storePersons;
     const [state, setState] = useState({
         zoom: 1.0,
     });
@@ -48,6 +56,7 @@ const HeightDashboard: React.FC = () => {
 
     // 2. URL Hash Hydration (Client-side only)
     useEffect(() => {
+        if (readOnly) return;
         if (typeof window !== 'undefined' && window.location.hash) {
             try {
                 const hash = window.location.hash.slice(1);
@@ -71,10 +80,11 @@ const HeightDashboard: React.FC = () => {
                 console.error("Hash decode failed:", e);
             }
         }
-    }, [storeSetPersons]); // Run once on mount
+    }, [storeSetPersons, readOnly]); // Run once on mount
 
     // 2. URL Hash Encoding Sync
     useEffect(() => {
+        if (readOnly) return;
         if (typeof window !== 'undefined') {
             const encoded = btoa(encodeURIComponent(JSON.stringify({
                 persons,
@@ -83,7 +93,7 @@ const HeightDashboard: React.FC = () => {
             })));
             window.history.replaceState(null, '', `#${encoded}`);
         }
-    }, [state.zoom, unitSystem, persons]);
+    }, [state.zoom, unitSystem, persons, readOnly]);
 
     // Pinch Zoom Tracking
     const touchStartRef = useRef<number | null>(null);
@@ -422,128 +432,145 @@ const HeightDashboard: React.FC = () => {
     }, [persons, scale, canvasHeight]);
 
     return (
-        <div className="flex flex-col h-screen bg-bg overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
+        <div className="flex flex-col h-screen bg-bg overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 relative">
+
+            {/* Close Button for specific readonly integrations */}
+            {readOnly && onClose && (
+                <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 z-[70] p-3 text-white bg-red-500/90 hover:bg-red-600 rounded-full shadow-2xl backdrop-blur-md transition-all sm:top-6 sm:right-6"
+                    title="Close Chart"
+                >
+                    <X size={24} strokeWidth={3} />
+                </button>
+            )}
+
             {/* 1. Global Top Header (New Navbar design) */}
-            <motion.header
-                initial={{ y: -70, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className="h-[70px] shrink-0 border-b border-border/50 bg-bg flex items-center justify-between px-6 sm:px-12 z-50"
-            >
-                {/* Left side: Logo & Brands */}
-                <div className="flex items-center gap-3 cursor-pointer">
-                    {/* Logo Graphic */}
-                    <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
-                        <div className="flex items-end gap-[2px] h-4">
-                            <div className="w-1.5 h-full bg-white rounded-t-sm" />
-                            <div className="w-1.5 h-2/3 bg-white rounded-t-sm" />
-                            <div className="w-1.5 h-1/3 bg-white rounded-t-sm" />
+            {!readOnly && (
+                <motion.header
+                    initial={{ y: -70, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="h-[70px] shrink-0 border-b border-border/50 bg-bg flex items-center justify-between px-6 sm:px-12 z-50"
+                >
+                    {/* Left side: Logo & Brands */}
+                    <div className="flex items-center gap-3 cursor-pointer">
+                        {/* Logo Graphic */}
+                        <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
+                            <div className="flex items-end gap-[2px] h-4">
+                                <div className="w-1.5 h-full bg-white rounded-t-sm" />
+                                <div className="w-1.5 h-2/3 bg-white rounded-t-sm" />
+                                <div className="w-1.5 h-1/3 bg-white rounded-t-sm" />
+                            </div>
                         </div>
+                        {/* Brand Name */}
+                        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors">
+                            Height<span className="text-[#3B82F6]">Comparison</span>
+                        </h1>
                     </div>
-                    {/* Brand Name */}
-                    <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors">
-                        Height<span className="text-[#3B82F6]">Comparison</span>
-                    </h1>
-                </div>
 
-                {/* Center: Navigation Links (Desktop only) */}
-                <nav className="hidden lg:flex items-center gap-10">
-                    <Link href="/" className="text-[15px] font-medium text-foreground transition-colors">Home</Link>
-                    <Link href="/height-calculator" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Calculator</Link>
-                    <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors flex items-center gap-2">
-                        Image to Height <Box size={14} />
-                    </Link>
-                    <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">About</button>
-                </nav>
+                    {/* Center: Navigation Links (Desktop only) */}
+                    <nav className="hidden lg:flex items-center gap-10">
+                        <Link href="/" className="text-[15px] font-medium text-foreground transition-colors">Home</Link>
+                        <Link href="/height-calculator" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Calculator</Link>
+                        <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors flex items-center gap-2">
+                            Image to Height <Box size={14} />
+                        </Link>
+                        <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">About</button>
+                    </nav>
 
-                {/* Right side: Auth & Theme */}
-                <div className="flex items-center gap-6">
-                    {/* Theme Toggle Button */}
-                    <button
-                        onClick={toggleTheme}
-                        className="p-2 text-muted hover:text-foreground hover:bg-surface/50 rounded-full transition-colors flex items-center justify-center"
-                        title="Toggle Theme"
-                    >
-                        <AnimatePresence mode="popLayout" initial={false}>
-                            {theme === 'dark' ? (
-                                <motion.div key="moon" initial={{ rotate: -90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} exit={{ rotate: 90, scale: 0 }} transition={{ duration: 0.2 }}>
-                                    <Moon size={20} />
-                                </motion.div>
-                            ) : (
-                                <motion.div key="sun" initial={{ rotate: 90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} exit={{ rotate: -90, scale: 0 }} transition={{ duration: 0.2 }}>
-                                    <Sun size={20} />
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </button>
+                    {/* Right side: Auth & Theme */}
+                    <div className="flex items-center gap-6">
+                        {/* Theme Toggle Button */}
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2 text-muted hover:text-foreground hover:bg-surface/50 rounded-full transition-colors flex items-center justify-center"
+                            title="Toggle Theme"
+                        >
+                            <AnimatePresence mode="popLayout" initial={false}>
+                                {theme === 'dark' ? (
+                                    <motion.div key="moon" initial={{ rotate: -90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} exit={{ rotate: 90, scale: 0 }} transition={{ duration: 0.2 }}>
+                                        <Moon size={20} />
+                                    </motion.div>
+                                ) : (
+                                    <motion.div key="sun" initial={{ rotate: 90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} exit={{ rotate: -90, scale: 0 }} transition={{ duration: 0.2 }}>
+                                        <Sun size={20} />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </button>
 
-                    {/* <button className="hidden sm:block text-[15px] font-medium text-muted hover:text-foreground transition-colors">
+                        {/* <button className="hidden sm:block text-[15px] font-medium text-muted hover:text-foreground transition-colors">
                         Login
                     </button>
                     <button className="hidden sm:flex bg-[#3B82F6] hover:bg-blue-500 text-white font-semibold text-[15px] px-6 py-2.5 rounded-full shadow-lg shadow-blue-500/20 transition-all active:scale-95">
                         Sign Up
                     </button> */}
-                    {/* Mobile Hamburger Menu */}
-                    <div className="relative">
-                        <button
-                            className="lg:hidden p-2 text-muted hover:text-foreground transition-colors -ml-2"
-                            onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
-                        >
-                            <Menu size={24} />
-                        </button>
+                        {/* Mobile Hamburger Menu */}
+                        <div className="relative">
+                            <button
+                                className="lg:hidden p-2 text-muted hover:text-foreground transition-colors -ml-2"
+                                onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
+                            >
+                                <Menu size={24} />
+                            </button>
 
-                        <AnimatePresence>
-                            {isNavMenuOpen && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                    className="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden"
-                                >
-                                    <Link href="/"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Home</button></Link>
-                                    <Link href="/height-calculator"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Calculator</button></Link>
-                                    <Link href="/image-to-height" onClick={() => setIsNavMenuOpen(false)}>
-                                        <button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent hover:text-accent/80 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">
-                                            Image to Height <Box size={14} />
-                                        </button>
-                                    </Link>
-                                    <button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>About</button>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
+                            <AnimatePresence>
+                                {isNavMenuOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        className="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden"
+                                    >
+                                        <Link href="/"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Home</button></Link>
+                                        <Link href="/height-calculator"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Calculator</button></Link>
+                                        <Link href="/image-to-height" onClick={() => setIsNavMenuOpen(false)}>
+                                            <button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent hover:text-accent/80 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">
+                                                Image to Height <Box size={14} />
+                                            </button>
+                                        </Link>
+                                        <button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>About</button>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
                     </div>
-                </div>
-            </motion.header>
+                </motion.header>
+            )}
 
             {/* Main Application Area */}
             <div className="flex flex-1 overflow-hidden relative flex-col md:flex-row custom-scrollbar bg-bg transition-colors duration-500">
 
                 {/* 2. Left Native Menu (Desktop) / Top Menu (Mobile) */}
-                <motion.aside
-                    initial={{ x: -85, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                    className="
+                {!readOnly && (
+                    <motion.aside
+                        initial={{ x: -85, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                        className="
                     shrink-0 w-full h-[80px] bg-bg border-b overflow-hidden border-border/50 z-40
                     flex overflow-x-auto overflow-y-hidden gap-0 custom-scrollbar
                     sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col sm:py-0 sm:px-0 sm:gap-0
                 ">
-                    <motion.div
-                        className="flex sm:flex-col h-full w-full"
-                        variants={{
-                            show: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
-                            hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
-                        }}
-                        initial="hidden"
-                        animate="show"
-                    >
-                        <LeftNavItem icon={<UserPlus size={22} />} label="ADD PERSON" active={activePanel === 'ADD_PERSON'} onClick={() => { setActivePanel('ADD_PERSON'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                        <LeftNavItem icon={<Star size={22} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                        <LeftNavItem icon={<Ghost size={22} />} label="FICTIONAL" active={activePanel === 'FICTIONAL'} onClick={() => { setActivePanel('FICTIONAL'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                        <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                        <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                    </motion.div>
-                </motion.aside>
+                        <motion.div
+                            className="flex sm:flex-col h-full w-full"
+                            variants={{
+                                show: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
+                                hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
+                            }}
+                            initial="hidden"
+                            animate="show"
+                        >
+                            <LeftNavItem icon={<UserPlus size={22} />} label="ADD PERSON" active={activePanel === 'ADD_PERSON'} onClick={() => { setActivePanel('ADD_PERSON'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                            <LeftNavItem icon={<Star size={22} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                            <LeftNavItem icon={<Ghost size={22} />} label="FICTIONAL" active={activePanel === 'FICTIONAL'} onClick={() => { setActivePanel('FICTIONAL'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                            <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                            <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                        </motion.div>
+                    </motion.aside>
+                )}
+
                 {/* Center Column: Canvas */}
                 <motion.main
                     initial={{ opacity: 0, scale: 0.98 }}
@@ -693,27 +720,30 @@ const HeightDashboard: React.FC = () => {
                                             person={person}
                                             scale={scale}
                                             zoom={state.zoom}
-                                            onEditRequest={handleEditRequest}
-                                            onRemove={handleRemovePerson}
-                                            onHeightChange={(val) => handleUpdatePersonHeight(person.id, val)}
+                                            readOnly={readOnly}
+                                            onEditRequest={!readOnly ? handleEditRequest : undefined}
+                                            onRemove={!readOnly ? handleRemovePerson : undefined}
+                                            onHeightChange={!readOnly ? (val) => handleUpdatePersonHeight(person.id, val) : undefined}
                                         />
                                     ))}
 
                                     {/* Ghost Column + */}
-                                    <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (isMobile ? 80 : 120) * state.zoom)}px` }}>
-                                        <button
-                                            onClick={() => {
-                                                setActivePanel('ADD_PERSON');
-                                                setIsSidebarCollapsed(false);
-                                                if (typeof window !== 'undefined' && window.innerWidth < 768) {
-                                                    setIsMobileDrawerOpen(true);
-                                                }
-                                            }}
-                                            className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
-                                        >
-                                            <UserPlus size={24} />
-                                        </button>
-                                    </div>
+                                    {!readOnly && (
+                                        <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (isMobile ? 80 : 120) * state.zoom)}px` }}>
+                                            <button
+                                                onClick={() => {
+                                                    setActivePanel('ADD_PERSON');
+                                                    setIsSidebarCollapsed(false);
+                                                    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+                                                        setIsMobileDrawerOpen(true);
+                                                    }
+                                                }}
+                                                className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
+                                            >
+                                                <UserPlus size={24} />
+                                            </button>
+                                        </div>
+                                    )}
 
                                     {/* Dedicated Scroll Spacer */}
                                     <div className="w-20 md:w-40 shrink-0 pointer-events-none" />
@@ -739,39 +769,40 @@ const HeightDashboard: React.FC = () => {
                 </motion.main>
 
                 {/* 3. Sidebar - Hidden on tiny Mobile, Visible on sm+ */}
-                <div className="hidden sm:flex shrink-0 relative z-30">
-                    <motion.div
-                        initial={false}
-                        animate={{
-                            width: isSidebarCollapsed ? 0 : 400,
-                            opacity: isSidebarCollapsed ? 0 : 1
-                        }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="flex flex-col border-l border-border bg-surface overflow-hidden transition-colors duration-500"
-                    >
-                        <div className="flex-1 w-[400px] overflow-y-auto custom-scrollbar">
-                            <Sidebar
-                                persons={persons}
-                                personCount={persons.length}
-                                onAdd={handleAddPerson}
-                                activePanel={activePanel}
-                                onAddEntity={handleAddEntity}
-                                onAddEntityExport={handleDownloadPNG}
-                                isCapturing={isCapturing}
-                                onRemove={handleRemovePerson}
-                                scale={scale}
-                                zoom={state.zoom}
-                                editingPerson={persons.find(p => p.id === editingPersonId)}
-                                onEditSave={handleEditSave}
-                                onEditCancel={handleEditCancel}
-                            />
-                        </div>
-                    </motion.div>
+                {!readOnly && (
+                    <div className="hidden sm:flex shrink-0 relative z-30">
+                        <motion.div
+                            initial={false}
+                            animate={{
+                                width: isSidebarCollapsed ? 0 : 400,
+                                opacity: isSidebarCollapsed ? 0 : 1
+                            }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                            className="flex flex-col border-l border-border bg-surface overflow-hidden transition-colors duration-500"
+                        >
+                            <div className="flex-1 w-[400px] overflow-y-auto custom-scrollbar">
+                                <Sidebar
+                                    persons={persons}
+                                    personCount={persons.length}
+                                    onAdd={handleAddPerson}
+                                    activePanel={activePanel}
+                                    onAddEntity={handleAddEntity}
+                                    onAddEntityExport={handleDownloadPNG}
+                                    isCapturing={isCapturing}
+                                    onRemove={handleRemovePerson}
+                                    scale={scale}
+                                    zoom={state.zoom}
+                                    editingPerson={persons.find(p => p.id === editingPersonId)}
+                                    onEditSave={handleEditSave}
+                                    onEditCancel={handleEditCancel}
+                                />
+                            </div>
+                        </motion.div>
 
-                    {/* Toggle Button Anchor (Always visible at the edge of the sidebar/canvas) */}
-                    <button
-                        onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                        className={`
+                        {/* Toggle Button Anchor (Always visible at the edge of the sidebar/canvas) */}
+                        <button
+                            onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+                            className={`
                             absolute top-1/2 -translate-y-1/2 w-8 h-12 
                             bg-surface border border-border rounded-l-xl
                             flex items-center justify-center text-muted 
@@ -779,16 +810,17 @@ const HeightDashboard: React.FC = () => {
                             transition-all duration-300 shadow-2xl z-50 group
                             right-full translate-x-[1px]
                         `}
-                        style={{ borderRight: 'none' }}
-                        title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
-                    >
-                        {isSidebarCollapsed ? (
-                            <ChevronLeft size={18} className="transition-transform group-hover:scale-125 translate-x-0.5" />
-                        ) : (
-                            <ChevronRight size={18} className="transition-transform group-hover:scale-125 -translate-x-0.5" />
-                        )}
-                    </button>
-                </div>
+                            style={{ borderRight: 'none' }}
+                            title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+                        >
+                            {isSidebarCollapsed ? (
+                                <ChevronLeft size={18} className="transition-transform group-hover:scale-125 translate-x-0.5" />
+                            ) : (
+                                <ChevronRight size={18} className="transition-transform group-hover:scale-125 -translate-x-0.5" />
+                            )}
+                        </button>
+                    </div>
+                )}
             </div>
 
             {/* Share Toast Notification */}
@@ -808,70 +840,74 @@ const HeightDashboard: React.FC = () => {
             </AnimatePresence>
 
             {/* Mobile FAB */}
-            <div className="sm:hidden fixed bottom-6 right-6 z-40">
-                <button
-                    onClick={() => setIsMobileDrawerOpen(true)}
-                    className="w-14 h-14 bg-accent hover:bg-accent-secondary rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all"
-                    aria-label="Open Add Person Menu"
-                >
-                    <Plus size={24} strokeWidth={3} />
-                </button>
-            </div>
+            {!readOnly && (
+                <div className="sm:hidden fixed bottom-6 right-6 z-40">
+                    <button
+                        onClick={() => setIsMobileDrawerOpen(true)}
+                        className="w-14 h-14 bg-accent hover:bg-accent-secondary rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all"
+                        aria-label="Open Add Person Menu"
+                    >
+                        <Plus size={24} strokeWidth={3} />
+                    </button>
+                </div>
+            )}
 
             {/* Mobile Bottom Drawer */}
-            <AnimatePresence>
-                {isMobileDrawerOpen && (
-                    <>
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setIsMobileDrawerOpen(false)}
-                            className="sm:hidden fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
-                        />
-                        <motion.div
-                            initial={{ y: '100%' }}
-                            animate={{ y: 0 }}
-                            exit={{ y: '100%' }}
-                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="sm:hidden fixed bottom-0 left-0 right-0 h-[80vh] bg-surface rounded-t-[2rem] z-50 overflow-hidden flex flex-col shadow-2xl border-t border-border"
-                        >
-                            <div className="flex items-center justify-between px-6 py-5 border-b border-border/30 bg-surface/50 backdrop-blur-md sticky top-0 z-20">
-                                <h3 className="text-sm font-black uppercase tracking-[0.2em] text-foreground/90">
-                                    {activePanel === 'ADD_PERSON' ? 'Enter Details' :
-                                        activePanel === 'CELEBRITIES' ? 'Celebrities' :
-                                            activePanel === 'FICTIONAL' ? 'Fictional' :
-                                                activePanel.replace('_', ' ')}
-                                </h3>
-                                <button
-                                    onClick={() => setIsMobileDrawerOpen(false)}
-                                    className="p-2 bg-bg border border-border/50 rounded-xl text-muted hover:text-foreground transition-all active:scale-95"
-                                    aria-label="Close Mobile Menu"
-                                >
-                                    <X size={20} strokeWidth={3} />
-                                </button>
-                            </div>
-                            <div className="flex-1 overflow-y-auto custom-scrollbar pb-6 relative">
-                                <Sidebar
-                                    persons={persons}
-                                    personCount={persons.length}
-                                    onAdd={(p) => { handleAddPerson(p); setIsMobileDrawerOpen(false); }}
-                                    activePanel={activePanel}
-                                    onAddEntity={(e) => { handleAddEntity(e); setIsMobileDrawerOpen(false); }}
-                                    onAddEntityExport={handleDownloadPNG}
-                                    isCapturing={isCapturing}
-                                    onRemove={handleRemovePerson}
-                                    scale={scale}
-                                    zoom={state.zoom}
-                                    editingPerson={persons.find(p => p.id === editingPersonId)}
-                                    onEditSave={(p) => { handleEditSave(p); setIsMobileDrawerOpen(false); }}
-                                    onEditCancel={() => setIsMobileDrawerOpen(false)}
-                                />
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
+            {!readOnly && (
+                <AnimatePresence>
+                    {isMobileDrawerOpen && (
+                        <>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => setIsMobileDrawerOpen(false)}
+                                className="sm:hidden fixed inset-0 bg-black/60 z-50 backdrop-blur-sm"
+                            />
+                            <motion.div
+                                initial={{ y: '100%' }}
+                                animate={{ y: 0 }}
+                                exit={{ y: '100%' }}
+                                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                                className="sm:hidden fixed bottom-0 left-0 right-0 h-[80vh] bg-surface rounded-t-[2rem] z-50 overflow-hidden flex flex-col shadow-2xl border-t border-border"
+                            >
+                                <div className="flex items-center justify-between px-6 py-5 border-b border-border/30 bg-surface/50 backdrop-blur-md sticky top-0 z-20">
+                                    <h3 className="text-sm font-black uppercase tracking-[0.2em] text-foreground/90">
+                                        {activePanel === 'ADD_PERSON' ? 'Enter Details' :
+                                            activePanel === 'CELEBRITIES' ? 'Celebrities' :
+                                                activePanel === 'FICTIONAL' ? 'Fictional' :
+                                                    activePanel.replace('_', ' ')}
+                                    </h3>
+                                    <button
+                                        onClick={() => setIsMobileDrawerOpen(false)}
+                                        className="p-2 bg-bg border border-border/50 rounded-xl text-muted hover:text-foreground transition-all active:scale-95"
+                                        aria-label="Close Mobile Menu"
+                                    >
+                                        <X size={20} strokeWidth={3} />
+                                    </button>
+                                </div>
+                                <div className="flex-1 overflow-y-auto custom-scrollbar pb-6 relative">
+                                    <Sidebar
+                                        persons={persons}
+                                        personCount={persons.length}
+                                        onAdd={(p) => { handleAddPerson(p); setIsMobileDrawerOpen(false); }}
+                                        activePanel={activePanel}
+                                        onAddEntity={(e) => { handleAddEntity(e); setIsMobileDrawerOpen(false); }}
+                                        onAddEntityExport={handleDownloadPNG}
+                                        isCapturing={isCapturing}
+                                        onRemove={handleRemovePerson}
+                                        scale={scale}
+                                        zoom={state.zoom}
+                                        editingPerson={persons.find(p => p.id === editingPersonId)}
+                                        onEditSave={(p) => { handleEditSave(p); setIsMobileDrawerOpen(false); }}
+                                        onEditCancel={() => setIsMobileDrawerOpen(false)}
+                                    />
+                                </div>
+                            </motion.div>
+                        </>
+                    )}
+                </AnimatePresence>
+            )}
         </div>
     );
 };

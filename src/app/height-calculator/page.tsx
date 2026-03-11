@@ -5,7 +5,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, Box, ChevronDown, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useThemeStore } from '@/store';
-import CompactComparisonChart from '@/components/CompactComparisonChart';
+import HeightDashboard from '@/components/HeightDashboard';
+import HeightCharts from '@/components/HeightCharts';
+import GrowthPlateExplainer from '@/components/GrowthPlateExplainer';
 import { Person } from '@/types';
 
 // We might not have SEO metadata in a layout file if it's a client component.
@@ -54,7 +56,6 @@ export default function HeightCalculatorPage() {
     // --- State for Chart Visualization ---
     const [showChart, setShowChart] = useState(false);
     const [chartPersons, setChartPersons] = useState<Person[]>([]);
-    const [predictionResultLabel, setPredictionResultLabel] = useState("");
 
     // Theme sync
     useEffect(() => {
@@ -147,8 +148,6 @@ export default function HeightCalculatorPage() {
         setPredictedKhamis(prediction);
 
         // Prepare chart data
-        const label = `${prediction.cm} cm / ${prediction.ft}'${prediction.in}"`;
-        setPredictionResultLabel(label);
 
         const persons: Person[] = [
             { id: 'father', name: 'Father', heightCm: pFatherCm, color: '#3b82f6', isEntity: false },
@@ -159,9 +158,7 @@ export default function HeightCalculatorPage() {
     };
 
     const handleShowMidParentalChart = (gender: 'male' | 'female', predictedCm: number, fCm: number, mCm: number) => {
-        const res = cmToFtIn(predictedCm);
-        const label = `${Math.round(predictedCm)} cm / ${res.ft}'${res.in}"`;
-        setPredictionResultLabel(label);
+        // const res = cmToFtIn(predictedCm);
 
         const persons: Person[] = [
             { id: 'father', name: 'Father', heightCm: fCm, color: '#3b82f6', isEntity: false },
@@ -261,7 +258,13 @@ export default function HeightCalculatorPage() {
                     <Link href="/about" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">About</Link>
                 </nav>
 
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-4 sm:gap-6">
+                    {/* Global Unit Toggle */}
+                    <div className="hidden sm:flex bg-bg border border-border p-1 rounded-full items-center shadow-sm">
+                        <button onClick={() => setUnit('us')} className={`px-3 py-1.5 rounded-full text-[13px] font-bold transition-colors ${unit === 'us' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US</button>
+                        <button onClick={() => setUnit('metric')} className={`px-3 py-1.5 rounded-full text-[13px] font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric</button>
+                    </div>
+
                     <button onClick={toggleTheme} className="p-2 text-muted hover:text-foreground hover:bg-surface/50 rounded-full transition-colors flex items-center justify-center" title="Toggle Theme">
                         <AnimatePresence mode="popLayout" initial={false}>
                             {theme === 'dark' ? (
@@ -277,7 +280,12 @@ export default function HeightCalculatorPage() {
                         </button>
                         <AnimatePresence>
                             {isNavMenuOpen && (
-                                <motion.div initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 10, scale: 0.95 }} className="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden">
+                                <motion.div initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 10, scale: 0.95 }} className="absolute right-0 mt-2 w-56 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden">
+                                    {/* Mobile Unit Toggle */}
+                                    <div className="flex bg-bg border border-border p-1 rounded-xl mb-2 items-center">
+                                        <button onClick={() => setUnit('us')} className={`flex-1 py-2 rounded-lg text-sm font-bold transition-colors ${unit === 'us' ? 'bg-accent text-white shadow-sm' : 'text-muted hover:text-foreground'}`}>US</button>
+                                        <button onClick={() => setUnit('metric')} className={`flex-1 py-2 rounded-lg text-sm font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-sm' : 'text-muted hover:text-foreground'}`}>Metric</button>
+                                    </div>
                                     <Link href="/"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Home</button></Link>
                                     <Link href="/height-calculator"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground bg-accent/10 rounded-xl transition-colors">Calculator</button></Link>
                                     <Link href="/image-to-height"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent hover:text-accent/80 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">Image to Height <Box size={14} /></button></Link>
@@ -308,10 +316,6 @@ export default function HeightCalculatorPage() {
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
                             <div className="space-y-2">
                                 <h2 className="text-2xl font-black tracking-tight text-foreground">Height Predictor <span className="text-muted text-base font-medium ml-2 uppercase tracking-widest">(Khamis-Roche)</span></h2>
-                            </div>
-                            <div className="bg-bg border border-border p-1 rounded-full flex self-start sm:self-auto">
-                                <button onClick={() => setUnit('us')} className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${unit === 'us' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US Units</button>
-                                <button onClick={() => setUnit('metric')} className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric Units</button>
                             </div>
                         </div>
 
@@ -351,7 +355,7 @@ export default function HeightCalculatorPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-semibold text-muted">Child&apos;s Current Weight (Optional for calc)</label>
+                                <label className="text-sm font-semibold text-muted">Child&apos;s Current Weight </label>
                                 {unit === 'metric' ? (
                                     <div className="relative">
                                         <input type="number" value={childWtKg} onChange={e => setChildWtKg(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 20" />
@@ -549,7 +553,7 @@ export default function HeightCalculatorPage() {
                     </section>
 
                     {/* Data Table */}
-                    <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 overflow-hidden hover:border-accent/30 transition-colors">
+                    {/* <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 overflow-hidden hover:border-accent/30 transition-colors">
                         <div className="space-y-2 mb-6">
                             <h2 className="text-2xl font-black tracking-tight text-foreground">Boys & Girls Height Growth Charts</h2>
                             <p className="text-xs font-bold tracking-widest uppercase text-muted">Average & Median Height by Age (CDC 50th Percentile approximate)</p>
@@ -588,7 +592,7 @@ export default function HeightCalculatorPage() {
                                 </tbody>
                             </table>
                         </div>
-                    </section>
+                    </section> */}
 
                     {/* SEO Content Section - Matched with Image to Height styling */}
                     <div className="flex flex-col gap-12 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
@@ -666,8 +670,12 @@ export default function HeightCalculatorPage() {
                             </div>
                         </div>
 
+                        {/* 2.5. NEW CHARTS AND EXPLAINERS FROM RECHARTS */}
+                        <HeightCharts />
+                        <GrowthPlateExplainer />
+
                         {/* 3. Methods Visualization */}
-                        <div className="space-y-8">
+                        <div className="space-y-8 mt-12">
                             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                                 <h3 className="text-2xl font-black text-foreground">Prediction Methods Explained</h3>
                                 <span className="text-xs font-bold text-muted uppercase tracking-[0.2em] bg-surface border border-border px-4 py-1.5 rounded-full">Science-Based Models</span>
@@ -770,14 +778,14 @@ export default function HeightCalculatorPage() {
 
             {/* Comparison Chart Overlay */}
             <AnimatePresence>
-                {showChart && (
-                    <CompactComparisonChart
-                        persons={chartPersons}
-                        onClose={() => setShowChart(false)}
-                        title="Adult Height Prediction"
-                        subtitle={`Based on ${childAge} year old ${childGender}'s trajectory and genetics`}
-                        resultValue={predictionResultLabel}
-                    />
+                {showChart && chartPersons && (
+                    <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} className="fixed inset-0 z-[60] bg-bg overflow-hidden">
+                        <HeightDashboard
+                            readOnly={true}
+                            initialPersons={chartPersons}
+                            onClose={() => setShowChart(false)}
+                        />
+                    </motion.div>
                 )}
             </AnimatePresence>
         </div>
