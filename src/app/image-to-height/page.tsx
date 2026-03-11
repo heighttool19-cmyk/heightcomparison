@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeftRight, ChevronLeft, Plus, Ruler, Trash2, Box, BarChart2, Moon, Sun, Monitor, Info, HelpCircle, CheckCircle2, Camera, Smartphone, ChevronDown } from 'lucide-react';
+import { ArrowLeftRight, Plus, Ruler, Trash2, Box, Moon, Sun, Monitor, Info, HelpCircle, CheckCircle2, Camera, Smartphone, ChevronDown, Menu } from 'lucide-react';
 import { useUnitStore, useThemeStore, usePersonStore } from '@/store';
 import { ImageMeasurement } from '@/components/ImageMeasurement';
 
@@ -11,6 +11,7 @@ export default function ImageToHeightPage() {
     const { unitSystem, toggleUnitSystem } = useUnitStore();
     const { theme, toggleTheme } = useThemeStore();
     const { persons, removePerson } = usePersonStore();
+    const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
 
     // Apply the theme to the <html> document root
     useEffect(() => {
@@ -25,19 +26,27 @@ export default function ImageToHeightPage() {
         <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
             {/* Top Header */}
             <header className="h-[70px] shrink-0 border-b border-border/50 bg-bg flex items-center justify-between px-6 sm:px-12 z-50">
-                <div className="flex items-center gap-6">
-                    <Link href="/" className="flex items-center justify-center p-2 rounded-xl text-muted hover:text-foreground hover:bg-surface/50 transition-colors">
-                        <ChevronLeft size={24} />
-                    </Link>
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center relative overflow-hidden text-accent">
-                            <Box size={16} />
+                <div className="flex items-center gap-3 cursor-pointer">
+                    <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
+                        <div className="flex items-end gap-[2px] h-4">
+                            <div className="w-1.5 h-full bg-white rounded-t-sm" />
+                            <div className="w-1.5 h-2/3 bg-white rounded-t-sm" />
+                            <div className="w-1.5 h-1/3 bg-white rounded-t-sm" />
                         </div>
-                        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors">
-                            Image to <span className="text-accent">Height</span>
-                        </h1>
                     </div>
+                    <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors">
+                        Height<span className="text-[#3B82F6]">Comparison</span>
+                    </h1>
                 </div>
+
+                <nav className="hidden lg:flex items-center gap-10">
+                    <Link href="/" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Home</Link>
+                    <Link href="/height-calculator" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Calculator</Link>
+                    <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors border-b-2 border-accent pb-1 flex items-center gap-2">
+                        Image to Height <Box size={14} />
+                    </Link>
+                    <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">About</button>
+                </nav>
 
                 <div className="flex items-center gap-4">
                     <button
@@ -68,9 +77,36 @@ export default function ImageToHeightPage() {
                             )}
                         </AnimatePresence>
                     </button>
-                    <Link href="/" className="hidden sm:flex bg-surface hover:bg-surface/80 border border-border text-foreground font-semibold text-xs uppercase tracking-widest px-6 py-2.5 rounded-xl transition-all active:scale-95 items-center gap-2">
-                        <BarChart2 size={16} /> Dashboard
-                    </Link>
+
+                    {/* Mobile Hamburger Menu */}
+                    <div className="relative">
+                        <button
+                            className="lg:hidden p-2 text-muted hover:text-foreground transition-colors -ml-2"
+                            onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
+                        >
+                            <Menu size={24} />
+                        </button>
+
+                        <AnimatePresence>
+                            {isNavMenuOpen && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                    className="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden"
+                                >
+                                    <Link href="/" onClick={() => setIsNavMenuOpen(false)}><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Home</button></Link>
+                                    <Link href="/height-calculator" onClick={() => setIsNavMenuOpen(false)}><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Calculator</button></Link>
+                                    <Link href="/image-to-height" onClick={() => setIsNavMenuOpen(false)}>
+                                        <button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent bg-accent/10 rounded-xl transition-colors flex items-center justify-between">
+                                            Image to Height <Box size={14} />
+                                        </button>
+                                    </Link>
+                                    <button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>About</button>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
                 </div>
             </header>
 

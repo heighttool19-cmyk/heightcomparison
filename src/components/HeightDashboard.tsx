@@ -449,7 +449,7 @@ const HeightDashboard: React.FC = () => {
                 {/* Center: Navigation Links (Desktop only) */}
                 <nav className="hidden lg:flex items-center gap-10">
                     <Link href="/" className="text-[15px] font-medium text-foreground transition-colors">Home</Link>
-                    <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Calculator</button>
+                    <Link href="/height-calculator" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Calculator</Link>
                     <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors flex items-center gap-2">
                         Image to Height <Box size={14} />
                     </Link>
@@ -500,8 +500,8 @@ const HeightDashboard: React.FC = () => {
                                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                                     className="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden"
                                 >
-                                    <button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Home</button>
-                                    <button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground bg-accent/10 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Calculator</button>
+                                    <Link href="/"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Home</button></Link>
+                                    <Link href="/height-calculator"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Calculator</button></Link>
                                     <Link href="/image-to-height" onClick={() => setIsNavMenuOpen(false)}>
                                         <button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent hover:text-accent/80 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">
                                             Image to Height <Box size={14} />
