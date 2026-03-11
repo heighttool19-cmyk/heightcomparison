@@ -450,8 +450,8 @@ const HeightDashboard: React.FC = () => {
                 <nav className="hidden lg:flex items-center gap-10">
                     <Link href="/" className="text-[15px] font-medium text-foreground transition-colors">Home</Link>
                     <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Calculator</button>
-                    <Link href="/ai-space" className="text-[15px] font-bold text-accent transition-colors flex items-center gap-2">
-                        AI Space <Box size={14} />
+                    <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors flex items-center gap-2">
+                        Image to Height <Box size={14} />
                     </Link>
                     <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">About</button>
                 </nav>
@@ -502,9 +502,9 @@ const HeightDashboard: React.FC = () => {
                                 >
                                     <button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Home</button>
                                     <button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground bg-accent/10 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Calculator</button>
-                                    <Link href="/ai-space" onClick={() => setIsNavMenuOpen(false)}>
+                                    <Link href="/image-to-height" onClick={() => setIsNavMenuOpen(false)}>
                                         <button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent hover:text-accent/80 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">
-                                            AI Space <Box size={14} />
+                                            Image to Height <Box size={14} />
                                         </button>
                                     </Link>
                                     <button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>About</button>

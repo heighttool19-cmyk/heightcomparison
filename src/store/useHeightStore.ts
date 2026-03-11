@@ -14,8 +14,8 @@ interface HeightStoreState {
     setCalibrationDetails: (px: number, cm: number) => void;
     setMeasurementPx: (px: number) => void;
 
-    // The "Currently Comparing" list for the /ai-space/ page specifically
-    aiSpacePersons: Person[];
+    // The "Currently Comparing" list for the /image-to-height/ page specifically
+    imageToHeightPersons: Person[];
     addPerson: (person: Person) => void;
     removePerson: (id: string) => void;
 }
@@ -28,7 +28,7 @@ export const useHeightStore = create<HeightStoreState>((set) => ({
     calculatedHeight: 0,
     unit: 'metric', // Using metric as base for now, can be synced with useUnitStore or local toggle
 
-    aiSpacePersons: [],
+    imageToHeightPersons: [],
 
     setUploadedImage: (url) => set({
         uploadedImage: url,
@@ -64,10 +64,10 @@ export const useHeightStore = create<HeightStoreState>((set) => ({
     }),
 
     addPerson: (person) => set(state => ({
-        aiSpacePersons: [...state.aiSpacePersons, person]
+        imageToHeightPersons: [...state.imageToHeightPersons, person]
     })),
 
     removePerson: (id) => set(state => ({
-        aiSpacePersons: state.aiSpacePersons.filter(p => p.id !== id)
+        imageToHeightPersons: state.imageToHeightPersons.filter(p => p.id !== id)
     }))
 }));

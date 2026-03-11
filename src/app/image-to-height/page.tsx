@@ -7,7 +7,7 @@ import { ArrowLeftRight, ChevronLeft, Plus, Ruler, Trash2, Box, BarChart2, Moon,
 import { useUnitStore, useThemeStore, usePersonStore } from '@/store';
 import { ImageMeasurement } from '@/components/ImageMeasurement';
 
-export default function AISpacePage() {
+export default function ImageToHeightPage() {
     const { unitSystem, toggleUnitSystem } = useUnitStore();
     const { theme, toggleTheme } = useThemeStore();
     const { persons, removePerson } = usePersonStore();
@@ -34,7 +34,7 @@ export default function AISpacePage() {
                             <Box size={16} />
                         </div>
                         <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors">
-                            AI<span className="text-accent">Space</span>
+                            Image to <span className="text-accent">Height</span>
                         </h1>
                     </div>
                 </div>
@@ -81,9 +81,9 @@ export default function AISpacePage() {
                 <div className="md:w-[72%] w-full flex flex-col gap-4 pb-10 order-1 md:order-2">
                     <div className="flex-1 min-h-[500px] sm:min-h-[610px] bg-surface border border-border rounded-3xl shadow-xl overflow-hidden relative">
                         <div className="p-4 md:p-8 flex flex-col relative w-full h-full">
-                            {/* Ghost AI Watermark */}
+                            {/* Ghost Watermark */}
                             <div className="absolute top-1/2 right-10 -translate-y-1/2 text-[15vw] font-black text-foreground opacity-5 pointer-events-none select-none tracking-tighter leading-none">
-                                AI
+                                HEIGHT
                             </div>
                             <div className="relative z-10 w-full max-w-4xl mx-auto">
                                 <ImageMeasurement />
@@ -164,10 +164,10 @@ export default function AISpacePage() {
 
                             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {[
-                                    { icon: <Camera size={20} />, title: "Upload", body: "Select any photo where the full body is visible head-to-toe." },
-                                    { icon: <Ruler size={20} />, title: "Calibrate", body: "Mark a known object like a door or card to set the scale." },
-                                    { icon: <Smartphone size={20} />, title: "Draw", body: "Draw a line from the floor to the top of the head." },
-                                    { icon: <CheckCircle2 size={20} />, title: "Result", body: "Get instant accurate results in CM and FT/IN." }
+                                    { icon: <Camera size={20} />, title: "Upload Your Photo", body: "Select any photo where the subject is visible. For best results, use a full-body photo." },
+                                    { icon: <Ruler size={20} />, title: "Calibrate Measurement", body: "Mark a known object like a door (203cm) or card (8.56cm) to set the scale." },
+                                    { icon: <Smartphone size={20} />, title: "Measure Your Height", body: "Draw a line from the floor to the top of the subject's head." },
+                                    { icon: <CheckCircle2 size={20} />, title: "Get Your Results", body: "Our tool calculates the height instantly in both CM and FT/IN." }
                                 ].map((step, idx) => (
                                     <div key={idx} className="bg-surface border border-border p-6 rounded-3xl hover:border-accent/40 transition-all hover:translate-y-[-4px] group">
                                         <div className="w-12 h-12 rounded-2xl bg-bg border border-border flex items-center justify-center text-muted group-hover:text-accent group-hover:bg-accent/5 transition-all mb-4">
@@ -215,7 +215,7 @@ export default function AISpacePage() {
                                     <HelpCircle size={12} /> FAQ
                                 </div>
                                 <h3 className="text-3xl font-black text-foreground">Frequently Asked Questions</h3>
-                                <p className="text-sm text-muted">Everything you need to know about the AI height tool</p>
+                                <p className="text-sm text-muted">Everything you need to know about the image height tool</p>
                             </div>
 
                             {/* Accordion Items */}
@@ -258,11 +258,10 @@ export default function AISpacePage() {
                                     return (
                                         <div
                                             key={idx}
-                                            className={`rounded-2xl border overflow-hidden transition-all duration-300 ${
-                                                isOpen
-                                                    ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5'
-                                                    : 'border-border bg-bg hover:border-accent/30'
-                                            }`}
+                                            className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen
+                                                ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5'
+                                                : 'border-border bg-bg hover:border-accent/30'
+                                                }`}
                                         >
                                             {/* Trigger Button */}
                                             <button
@@ -270,16 +269,14 @@ export default function AISpacePage() {
                                                 className="w-full flex items-center justify-between px-5 py-4 text-left gap-4 group"
                                             >
                                                 <div className="flex items-center gap-3 min-w-0">
-                                                    <div className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                                                        isOpen
-                                                            ? 'bg-accent text-white shadow-md shadow-accent/30'
-                                                            : 'bg-accent/10 text-accent'
-                                                    }`}>
+                                                    <div className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${isOpen
+                                                        ? 'bg-accent text-white shadow-md shadow-accent/30'
+                                                        : 'bg-accent/10 text-accent'
+                                                        }`}>
                                                         <HelpCircle size={13} />
                                                     </div>
-                                                    <span className={`text-sm font-bold transition-colors duration-200 truncate ${
-                                                        isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'
-                                                    }`}>
+                                                    <span className={`text-sm font-bold transition-colors duration-200 truncate ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'
+                                                        }`}>
                                                         {faq.q}
                                                     </span>
                                                 </div>
@@ -338,7 +335,7 @@ export default function AISpacePage() {
                     <div className="bg-surface border border-border rounded-3xl p-6 shadow-xl flex flex-col gap-3 relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-full h-1 bg-accent/50" />
                         <h2 className="text-sm font-black uppercase tracking-[0.1em] text-foreground">
-                            AI Workspace
+                            Image to Height
                         </h2>
                         <p className="text-xs text-muted font-medium">
                             Use advanced vision analysis to estimate heights from photographs.
