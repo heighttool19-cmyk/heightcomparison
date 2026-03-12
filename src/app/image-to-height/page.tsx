@@ -400,14 +400,16 @@ export default function ImageToHeightPage() {
                                         <p className="text-xs text-muted font-mono mt-0.5">Reference Object</p>
                                     </div>
                                 </div>
-                                <div className="text-right">
-                                    <div className="text-lg font-black text-foreground">
-                                        {unitSystem === 'metric' ? '210' : (210 / 30.48).toFixed(1)}
-                                    </div>
-                                    <div className="text-[10px] font-bold text-muted uppercase">
+                                {/* Notice the added pr-8 md:pr-10 here to match the persons list */}
+                                <div className="flex items-baseline justify-end gap-1.5 pr-8 md:pr-10">
+                                    <span className="text-lg font-black text-foreground whitespace-nowrap">
+                                        {unitSystem === 'metric' ? '210.0' : (210 / 30.48).toFixed(1)}
+                                    </span>
+                                    <span className="text-[11px] font-bold text-muted uppercase whitespace-nowrap">
                                         {unitSystem === 'metric' ? 'cm' : 'ft'}
-                                    </div>
+                                    </span>
                                 </div>
+
                             </div>
 
                             <AnimatePresence>
@@ -430,18 +432,21 @@ export default function ImageToHeightPage() {
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center gap-4">
-                                            <div className="text-right">
-                                                <div className="text-lg font-black text-foreground">
+                                        {/* The fix: Added pr-8 to give the text room, and absolute positioned the button */}
+                                        <div className="flex items-center pr-8 md:pr-10">
+                                            <div className="flex items-baseline justify-end gap-1.5">
+                                                <span className="text-lg font-black text-foreground whitespace-nowrap">
                                                     {unitSystem === 'metric' ? person.heightCm.toFixed(1) : (person.heightCm / 30.48).toFixed(1)}
-                                                </div>
-                                                <div className="text-[10px] font-bold text-muted uppercase">
+                                                </span>
+                                                <span className="text-[11px] font-bold text-muted uppercase whitespace-nowrap">
                                                     {unitSystem === 'metric' ? 'cm' : 'ft'}
-                                                </div>
+                                                </span>
                                             </div>
+
+                                            {/* Button is now absolutely positioned to the right edge */}
                                             <button
                                                 onClick={() => removePerson(person.id)}
-                                                className="w-8 h-8 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+                                                className="absolute right-3 w-8 h-8 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
                                             >
                                                 <Trash2 size={14} />
                                             </button>

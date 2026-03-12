@@ -48,6 +48,16 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const rulerScrollRef = useRef<HTMLDivElement>(null);
+    const personsScrollRef = useRef<HTMLDivElement>(null);
+    // Sync vertical scroll between ruler and persons panels
+    const syncScroll = React.useCallback((source: 'ruler' | 'persons') => {
+        if (source === 'persons' && rulerScrollRef.current && personsScrollRef.current) {
+            rulerScrollRef.current.scrollTop = personsScrollRef.current.scrollTop;
+        } else if (source === 'ruler' && personsScrollRef.current && rulerScrollRef.current) {
+            personsScrollRef.current.scrollTop = rulerScrollRef.current.scrollTop;
+        }
+    }, []);
 
     // Apply the theme to the <html> document root
     useEffect(() => {
@@ -694,76 +704,119 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         </div>
                     </div>
 
-                    {/* CANVAS AREA */}
+                    {/* CANVAS AREA — Split into fixed Ruler column + scrollable Persons column */}
                     <div
                         ref={containerRef}
-                        className="order-1 canvas-export-area flex-1 relative overflow-x-auto overflow-y-auto custom-scrollbar chart-grid m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl scroll-smooth"
+                        className="order-1 canvas-export-area flex-1 relative flex flex-row m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl overflow-hidden"
                     >
-                        {/* Unified Absolute Coordinate Grid Container */}
+                        {/* LEFT: Ruler Labels Panel (fixed width, only scrolls vertically) */}
                         <div
-                            className="relative min-w-full w-max pl-24 md:pl-40 pr-24 md:pr-48 flex items-end"
-                            style={{ height: requiredCanvasHeight }}
+                            ref={rulerScrollRef}
+                            className="shrink-0 relative bg-canvas z-10  overflow-hidden custom-scrollbar"
+                            style={{ width: '5rem' }}
+                            onScroll={() => syncScroll('ruler')}
                         >
-                            <Ruler scale={scale} maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300} canvasHeight={canvasHeight} />
-                            <AnimatePresence mode="popLayout" initial={false}>
-                                <div
-                                    className="flex items-end h-full mt-auto"
-                                    style={{
-                                        gap: `${Math.max(5, (isMobile ? 8 : 12) * state.zoom)}px`,
-                                        transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
-                                    }}
-                                >
-                                    {persons.map((person) => (
-                                        <PersonBar
-                                            key={person.id}
-                                            person={person}
-                                            scale={scale}
-                                            zoom={state.zoom}
-                                            readOnly={readOnly}
-                                            onEditRequest={!readOnly ? handleEditRequest : undefined}
-                                            onRemove={!readOnly ? handleRemovePerson : undefined}
-                                            onHeightChange={!readOnly ? (val) => handleUpdatePersonHeight(person.id, val) : undefined}
-                                        />
-                                    ))}
-
-                                    {/* Ghost Column + */}
-                                    {!readOnly && (
-                                        <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (isMobile ? 80 : 120) * state.zoom)}px` }}>
-                                            <button
-                                                onClick={() => {
-                                                    setActivePanel('ADD_PERSON');
-                                                    setIsSidebarCollapsed(false);
-                                                    if (typeof window !== 'undefined' && window.innerWidth < 768) {
-                                                        setIsMobileDrawerOpen(true);
-                                                    }
-                                                }}
-                                                className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
-                                            >
-                                                <UserPlus size={24} />
-                                            </button>
-                                        </div>
-                                    )}
-
-                                    {/* Dedicated Scroll Spacer */}
-                                    <div className="w-20 md:w-40 shrink-0 pointer-events-none" />
-                                </div>
-                            </AnimatePresence>
+                            {/* Ruler labels only — inside a coordinated-height inner div */}
+                            <div
+                                className="relative"
+                                style={{ height: requiredCanvasHeight }}
+                            >
+                                <Ruler
+                                    mode="labels"
+                                    scale={scale}
+                                    maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300}
+                                    canvasHeight={canvasHeight}
+                                />
+                            </div>
                         </div>
 
-                        {persons.length === 0 && (
-                            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none mb-32 gap-6">
-                                <motion.div
-                                    initial={{ opacity: 0, scale: 0.9 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    className="empty-door flex items-center justify-center"
-                                >
-                                    <Plus size={40} className="text-muted/20" />
-                                </motion.div>
-                                <span className="text-xl font-bold tracking-tight text-muted/50 bg-surface/50 px-8 py-3 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl">
-                                    Add a person to get started
-                                </span>
+                        {/* RIGHT: Persons scroll area (scrolls both X and Y, with grid lines) */}
+                        <div
+                            ref={personsScrollRef}
+                            className="flex-1 relative overflow-x-auto overflow-y-auto custom-scrollbar chart-grid scroll-smooth"
+                            onScroll={() => syncScroll('persons')}
+                        >
+                            {/* Unified Absolute Coordinate Grid Container */}
+                            <div
+                                className="relative min-w-full w-max pr-24 md:pr-48 flex items-end"
+                                style={{ height: requiredCanvasHeight }}
+                            >
+                                {/* Horizontal grid lines — extend across the persons area */}
+                                <Ruler
+                                    mode="lines"
+                                    scale={scale}
+                                    maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300}
+                                    canvasHeight={canvasHeight}
+                                />
+                                <AnimatePresence mode="popLayout" initial={false}>
+                                    <div
+                                        className="flex items-end h-full mt-auto pl-4"
+                                        style={{
+                                            gap: `${Math.max(5, (isMobile ? 8 : 12) * state.zoom)}px`,
+                                            transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
+                                        }}
+                                    >
+                                        {persons.map((person) => (
+                                            <PersonBar
+                                                key={person.id}
+                                                person={person}
+                                                scale={scale}
+                                                zoom={state.zoom}
+                                                readOnly={readOnly}
+                                                onEditRequest={!readOnly ? handleEditRequest : undefined}
+                                                onRemove={!readOnly ? handleRemovePerson : undefined}
+                                                onHeightChange={!readOnly ? (val) => handleUpdatePersonHeight(person.id, val) : undefined}
+                                            />
+                                        ))}
+
+                                        {/* Ghost Column + (Only show if there are existing persons) */}
+                                        {!readOnly && persons.length > 0 && (
+                                            <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: `${Math.max(60, (isMobile ? 80 : 120) * state.zoom)}px` }}>
+                                                <button
+                                                    onClick={() => {
+                                                        setActivePanel('ADD_PERSON');
+                                                        setIsSidebarCollapsed(false);
+                                                        if (typeof window !== 'undefined' && window.innerWidth < 768) {
+                                                            setIsMobileDrawerOpen(true);
+                                                        }
+                                                    }}
+                                                    className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
+                                                >
+                                                    <UserPlus size={24} />
+                                                </button>
+                                            </div>
+                                        )}
+
+                                        {/* Dedicated Scroll Spacer */}
+                                        <div className="w-20 md:w-40 shrink-0 pointer-events-none" />
+                                    </div>
+                                </AnimatePresence>
                             </div>
-                        )}
+
+                            {persons.length === 0 && (
+                                <div className="absolute inset-0 flex flex-col items-center justify-center mb-24 sm:mb-32 gap-4 sm:gap-6 px-4">
+                                    <motion.button
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
+                                        onClick={() => {
+                                            if (readOnly) return;
+                                            setActivePanel('ADD_PERSON');
+                                            setIsSidebarCollapsed(false);
+                                            if (typeof window !== 'undefined' && window.innerWidth < 768) {
+                                                setIsMobileDrawerOpen(true);
+                                            }
+                                        }}
+                                        className={`empty-door flex items-center justify-center group ${!readOnly ? 'cursor-pointer hover:border-accent' : ''}`}
+                                        aria-label="Add a person to get started"
+                                    >
+                                        <Plus size={40} className={`text-muted/20 transition-colors ${!readOnly ? 'group-hover:text-accent/60' : ''}`} />
+                                    </motion.button>
+                                    <span className="text-sm sm:text-lg lg:text-xl text-center font-bold tracking-tight text-muted/50 bg-surface/50 px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl w-auto max-w-[90%]">
+                                        Add a person to get started
+                                    </span>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </motion.main>
 

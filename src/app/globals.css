@@ -75,20 +75,29 @@ body {
 
 /* Smooth custom scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px; /* Slightly wider for better usability */
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 
+/* Distinct, visible thumb color using foreground with opacity */
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: color-mix(in srgb, var(--foreground) 20%, transparent);
   border-radius: 10px;
+  /* Add a border to give it a "floating" pill look */
+  border: 2px solid var(--bg); 
 }
 
+/* Darker on hover for interactive feedback */
 ::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--foreground) 40%, transparent);
+}
+
+/* Active state matches accent color */
+::-webkit-scrollbar-thumb:active {
   background: var(--accent);
 }
 
@@ -123,8 +132,8 @@ body.is-capturing .hide-on-export {
 }
 
 .empty-door {
-    width: 140px;
-    height: 220px;
+    width: clamp(100px, 30vw, 140px);
+    height: clamp(160px, 45vw, 220px);
     border: 3px dashed var(--border);
     border-radius: 1.5rem;
     position: relative;
@@ -132,7 +141,11 @@ body.is-capturing .hide-on-export {
     align-items: center;
     justify-content: center;
     background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.02));
-    transition: all 0.5s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.empty-door:active {
+    transform: scale(0.95);
 }
 
 [data-theme="dark"] .empty-door {
@@ -151,4 +164,12 @@ input::-webkit-inner-spin-button {
 /* Hide number input arrows for Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+/* Theme-Synced Fluorescent Line */
+.neon-indicator {
+  background-color: var(--accent);
+  box-shadow: 
+    0 0 2px 0px var(--accent),
+    0 0 6px 1px color-mix(in srgb, var(--accent) 40%, transparent),
+    0 0 12px 3px color-mix(in srgb, var(--accent) 15%, transparent);
 }

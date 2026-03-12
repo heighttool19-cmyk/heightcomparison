@@ -137,15 +137,17 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
             <div className="absolute inset-x-0 bottom-[60px] flex flex-col items-center justify-end">
                 {/* Indicator Line - Exactly at Height Line */}
                 <div
-                    className="w-[108%] h-[1.5px] bg-foreground/35 group-hover:bg-accent/70 shadow-sm transition-all duration-500 absolute"
+                    className="w-[104%] h-[1px] absolute transition-all duration-500 neon-indicator group-hover:brightness-150"
                     style={{
                         bottom: `${barHeightPx}px`,
                         zIndex: 20
                     }}
                 />
-
-                {/* Silhouette - Optimized for zero-error alignment */}
-                <div className="flex flex-col items-center justify-end relative transition-opacity group-hover:opacity-100" style={{ height: barHeightPx }}>
+                {/* Silhouette - Clipped to exact height boundary */}
+                <div
+                    className="flex flex-col items-center justify-end relative transition-opacity group-hover:opacity-100"
+                    style={{ height: barHeightPx, overflow: 'hidden' }}
+                >
                     {person.imgUrl ? (
                         <motion.div
                             layout

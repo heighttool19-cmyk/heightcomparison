@@ -1,8 +1,10 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { motion, AnimatePresence } from 'framer-motion';
+
+const GEORGIA = "'Georgia', serif";
 
 // CDC Growth Chart Data (cm) — P3, P50 (Median), P97
 const boysData = [
@@ -65,6 +67,13 @@ const tableData = [
     { age: 18, boysAvg: 172.2, boysMedian: 172.2, girlsAvg: 160.1, girlsMedian: 160.1 },
 ];
 
+const toFt = (cm: number) => {
+    const totalIn = cm / 2.54;
+    const ft = Math.floor(totalIn / 12);
+    const inch = Math.round(totalIn % 12);
+    return `${ft}'${inch}"`;
+};
+
 interface TooltipPayload {
     color: string;
     name: string;
@@ -76,12 +85,14 @@ interface CustomTooltipProps {
     payload?: TooltipPayload[];
     label?: string | number;
 }
-
 const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-surface/95 backdrop-blur-md border border-border rounded-xl p-2 sm:p-4 shadow-xl max-w-[180px] sm:max-w-none">
-                <p className="font-bold text-foreground mb-1 sm:mb-2 text-xs sm:text-base">Age {label}</p>
+            <div
+                className="bg-surface/95 backdrop-blur-md border border-[#e94560] rounded-xl p-2 sm:p-4 shadow-[0_0_15px_rgba(233,69,96,0.15)] max-w-[180px] sm:max-w-none z-50 relative"
+                style={{ fontFamily: GEORGIA }}
+            >
+                <p className="font-bold text-[#e94560] mb-1 sm:mb-2 text-xs sm:text-base">Age {label}</p>
                 <div className="space-y-0.5 sm:space-y-1">
                     {payload.map((p: TooltipPayload, i: number) => (
                         <div key={i} className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-sm">
@@ -96,44 +107,42 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
     }
     return null;
 };
-
 export default function HeightCharts() {
     const [activeChart, setActiveChart] = useState<"boys" | "girls">("boys");
     const [activeView, setActiveView] = useState<"chart" | "table">("chart");
     const [isMobile, setIsMobile] = useState(false);
 
-    // Initial check and listener for responsiveness
-    useState(() => {
+    useEffect(() => {
         if (typeof window !== 'undefined') {
             const checkMobile = () => setIsMobile(window.innerWidth < 768);
             checkMobile();
             window.addEventListener('resize', checkMobile);
             return () => window.removeEventListener('resize', checkMobile);
         }
-    });
+    }, []);
 
     const data = activeChart === "boys" ? boysData : girlsData;
-    const color1 = activeChart === "boys" ? "#3b82f6" : "#ec4899"; // p50 (Median/Avg)
-    const color2 = activeChart === "boys" ? "#06b6d4" : "#f59e0b"; // p97 (Tall/FT color)
-    const color3 = activeChart === "boys" ? "#8b5cf6" : "#10b981"; // p3 (Short)
+    const color1 = activeChart === "boys" ? "#3b82f6" : "#ec4899";
+    const color2 = activeChart === "boys" ? "#06b6d4" : "#f59e0b";
+    const color3 = activeChart === "boys" ? "#8b5cf6" : "#10b981";
     const label = activeChart === "boys" ? "Boys" : "Girls";
 
     return (
-        <div className="space-y-6 mt-12">
+        <div className="space-y-6 mt-12" style={{ fontFamily: GEORGIA }}>
             <h2 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight">
                 Boys & Girls <span className={activeChart === "boys" ? "text-blue-500" : "text-pink-500"}>Height Growth Charts</span>
             </h2>
             <div className="h-1.5 w-24 bg-accent rounded-full" />
             <p className="text-muted leading-relaxed max-w-3xl">
-                Based on CDC growth chart data — average & median height by age (ages 2–18).
+                Based on CDC growth chart data — average & median height by age (ages 2–18) — cm
             </p>
 
-            <div className="bg-bg border border-border rounded-[2.5rem] p-6 md:p-10 relative overflow-hidden group shadow-sm transition-colors duration-500">
+            <div className="bg-bg border border-border rounded-[2.5rem] p-4 sm:p-6 md:p-10 relative overflow-hidden group shadow-sm transition-colors duration-500">
                 <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000" />
                 <div className="relative z-10 mx-auto space-y-8">
+
                     {/* Toggles */}
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 pt-4">
-                        {/* Gender Toggle */}
+                    <div className="flex flex-col sm:flex-col items-center justify-center gap-6 pt-4">
                         <div className="bg-bg border border-border p-1 rounded-full flex">
                             {["boys", "girls"].map(g => (
                                 <button
@@ -143,13 +152,13 @@ export default function HeightCharts() {
                                         ? (g === "boys" ? "bg-blue-500 text-white shadow-md shadow-blue-500/25" : "bg-pink-500 text-white shadow-md shadow-pink-500/25")
                                         : "text-muted hover:text-foreground"
                                         } capitalize flex items-center gap-2`}
+                                    style={{ fontFamily: GEORGIA }}
                                 >
                                     {g === "boys" ? "👦 Boys" : "👧 Girls"}
                                 </button>
                             ))}
                         </div>
 
-                        {/* View Toggle */}
                         <div className="bg-bg border border-border p-1 rounded-xl flex text-sm">
                             {["chart", "table"].map(v => (
                                 <button
@@ -159,6 +168,7 @@ export default function HeightCharts() {
                                         ? "bg-accent/10 border border-accent/20 text-accent"
                                         : "text-muted hover:text-foreground"
                                         } capitalize flex items-center gap-2`}
+                                    style={{ fontFamily: GEORGIA }}
                                 >
                                     {v === "chart" ? "📈 Growth Chart" : "📊 Data Table"}
                                 </button>
@@ -167,6 +177,7 @@ export default function HeightCharts() {
                     </div>
 
                     <AnimatePresence mode="wait">
+
                         {/* CHART VIEW */}
                         {activeView === "chart" && (
                             <motion.div
@@ -174,49 +185,84 @@ export default function HeightCharts() {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
-                                className="bg-bg border border-border rounded-3xl p-6 md:p-8"
+                                className="bg-bg border border-border rounded-3xl p-4 sm:p-6 md:p-8"
                             >
-                                <h3 className="text-center font-bold text-foreground mb-6 text-lg">
+                                <h3 className="text-center font-bold text-foreground mb-4 text-xl sm:text-2xl" style={{ fontFamily: GEORGIA }}>
                                     {label} Height Percentile Chart (Ages 2–18)
                                 </h3>
-                                <div className="h-[300px] sm:h-[400px] md:h-[500px] w-full">
+
+                                {/* Massively increased height for visibility */}
+                                <div className="h-[500px] sm:h-[600px] md:h-[700px] w-full mt-4">
                                     <ResponsiveContainer width="100%" height="100%">
                                         <LineChart
                                             data={data}
                                             margin={isMobile
-                                                ? { top: 8, right: 10, left: -25, bottom: 8 }
-                                                : { top: 8, right: 24, left: 0, bottom: 8 }
+                                                ? { top: 20, right: 15, left: 15, bottom: 120 }
+                                                : { top: 20, right: 30, left: 15, bottom: 60 }
                                             }
+                                            style={{ fontFamily: GEORGIA }}
                                         >
-                                            <CartesianGrid strokeDasharray="3 3" stroke="#888888" strokeOpacity={0.15} />
+                                            <CartesianGrid strokeDasharray="3 3" stroke="#888888" strokeOpacity={0.15} vertical={false} />
                                             <XAxis
                                                 dataKey="age"
                                                 stroke="#888888"
-                                                tick={{ fill: "#888888", fontSize: isMobile ? 10 : 12 }}
-                                                tickMargin={isMobile ? 5 : 10}
+                                                tick={{ fill: "#888888", fontSize: isMobile ? 12 : 14, fontFamily: GEORGIA, fontWeight: 600 }}
+                                                tickMargin={isMobile ? 8 : 12}
+                                                label={{
+                                                    value: 'Age (years)',
+                                                    position: 'bottom',
+                                                    offset: isMobile ? 0 : 10,
+                                                    fill: '#888888',
+                                                    fontSize: isMobile ? 13 : 15,
+                                                    fontFamily: GEORGIA,
+                                                    fontWeight: 700
+                                                }}
                                             />
                                             <YAxis
                                                 stroke="#888888"
-                                                tick={{ fill: "#888888", fontSize: isMobile ? 10 : 12 }}
+                                                tick={{ fill: "#888888", fontSize: isMobile ? 12 : 14, fontFamily: GEORGIA, fontWeight: 600 }}
                                                 domain={[70, 200]}
                                                 tickMargin={isMobile ? 5 : 10}
-                                                hide={isMobile && activeView === 'chart'}
+                                                tickCount={14}
+                                                label={{
+                                                    value: 'Height (cm)',
+                                                    angle: -90,
+                                                    position: 'insideLeft',
+                                                    offset: isMobile ? 5 : 15,
+                                                    fill: '#888888',
+                                                    fontSize: isMobile ? 13 : 15,
+                                                    style: { textAnchor: 'middle' },
+                                                    fontFamily: GEORGIA,
+                                                    fontWeight: 700
+                                                }}
                                             />
-                                            <Tooltip content={<CustomTooltip />} />
+                                            <Tooltip content={<CustomTooltip />} cursor={{ stroke: 'rgba(255,255,255,0.1)', strokeWidth: 2 }} />
                                             <Legend
                                                 wrapperStyle={{
-                                                    paddingTop: isMobile ? "10px" : "20px",
-                                                    fontSize: isMobile ? "10px" : "12px"
+                                                    paddingTop: isMobile ? "20px" : "30px",
+                                                    fontSize: isMobile ? "11px" : "14px",
+                                                    fontFamily: GEORGIA,
+                                                    fontWeight: 600,
+                                                    width: "100%",
+                                                    display: "flex",
+                                                    flexDirection: isMobile ? "column" : "row",
+                                                    justifyContent: "center",
+                                                    alignItems: "center",
+                                                    gap: isMobile ? "6px" : "16px",
+                                                    whiteSpace: isMobile ? "normal" : "nowrap"
                                                 }}
-                                                formatter={(value) => isMobile ? value.split(' (')[0] : value}
+                                                layout={isMobile ? "vertical" : "horizontal"}
+                                                verticalAlign="bottom"
+                                                align="center"
+                                                iconSize={isMobile ? 12 : 14}
                                             />
-                                            <Line type="monotone" dataKey="p3" name="3rd Percentile (Short Range)" stroke={color3} strokeWidth={2} strokeDasharray="5 5" dot={false} />
-                                            <Line type="monotone" dataKey="p50" name="50th Percentile (Average/Median)" stroke={color1} strokeWidth={isMobile ? 3 : 4} activeDot={{ r: isMobile ? 6 : 8 }} />
-                                            <Line type="monotone" dataKey="p97" name="97th Percentile (Tall Range)" stroke={color2} strokeWidth={2} strokeDasharray="5 5" dot={false} />
+                                            <Line type="monotone" dataKey="p3" name="3rd Percentile (Short Range)" stroke={color3} strokeWidth={isMobile ? 2.5 : 3} strokeDasharray="6 6" dot={{ r: isMobile ? 2 : 3, fill: color3 }} activeDot={{ r: 6 }} />
+                                            <Line type="monotone" dataKey="p50" name="50th Percentile (Average/Median)" stroke={color1} strokeWidth={isMobile ? 4 : 5} dot={{ r: isMobile ? 3 : 4, fill: color1 }} activeDot={{ r: isMobile ? 8 : 10 }} />
+                                            <Line type="monotone" dataKey="p97" name="97th Percentile (Tall Range)" stroke={color2} strokeWidth={isMobile ? 2.5 : 3} strokeDasharray="6 6" dot={{ r: isMobile ? 2 : 3, fill: color2 }} activeDot={{ r: 6 }} />
                                         </LineChart>
                                     </ResponsiveContainer>
                                 </div>
-                                <p className="text-center text-xs text-muted mt-6 uppercase tracking-wider font-bold">
+                                <p className="text-center text-[10px] sm:text-xs text-muted mt-8 sm:mt-10 uppercase tracking-wider font-bold" style={{ fontFamily: GEORGIA }}>
                                     Source: CDC Growth Charts — National Center for Health Statistics
                                 </p>
                             </motion.div>
@@ -231,10 +277,10 @@ export default function HeightCharts() {
                                 exit={{ opacity: 0, y: -10 }}
                                 className="bg-bg border border-border rounded-3xl p-6 overflow-x-auto"
                             >
-                                <h3 className="text-center font-bold text-foreground mb-6 text-lg">
-                                    Average & Median Height by Age
+                                <h3 className="text-center font-bold text-foreground mb-6 text-lg" style={{ fontFamily: GEORGIA }}>
+                                    Average & Median Height by Age (cm)
                                 </h3>
-                                <table className="w-full text-left min-w-[600px] border-collapse">
+                                <table className="w-full text-left min-w-[600px] border-collapse" style={{ fontFamily: GEORGIA }}>
                                     <thead>
                                         <tr className="border-b-2 border-border">
                                             {["Age", "Boys Avg (cm)", "Boys Avg (ft)", "Boys Median", "Girls Avg (cm)", "Girls Avg (ft)", "Girls Median"].map(h => (
@@ -243,32 +289,25 @@ export default function HeightCharts() {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-border/50 text-sm">
-                                        {tableData.map((row) => {
-                                            const toFt = (cm: number) => {
-                                                const totalIn = cm / 2.54;
-                                                const ft = Math.floor(totalIn / 12);
-                                                const inch = Math.round(totalIn % 12);
-                                                return `${ft}'${inch}"`;
-                                            };
-                                            return (
-                                                <tr key={row.age} className="hover:bg-surface/50 transition-colors">
-                                                    <td className="py-3 px-1 font-black text-[#e94560]">{row.age} yrs</td>
-                                                    <td className="py-3 px-4 text-[#2660ea] font-semibold">{row.boysAvg}</td>
-                                                    <td className="py-3 px-4 text-[#2fd9f5] font-medium text-xs font-mono">{toFt(row.boysAvg)}</td>
-                                                    <td className="py-3 px-4 text-[#455eee] font-semibold">{row.boysMedian}</td>
-                                                    <td className="py-3 px-4 text-[#e94958] font-semibold">{row.girlsAvg}</td>
-                                                    <td className="py-3 px-4 text-[#bf964f] font-medium text-xs font-mono">{toFt(row.girlsAvg)}</td>
-                                                    <td className="py-3 px-4 text-[#72f7b4] font-semibold">{row.girlsMedian}</td>
-                                                </tr>
-                                            );
-                                        })}
+                                        {tableData.map((row) => (
+                                            <tr key={row.age} className="hover:bg-surface/50 transition-colors">
+                                                <td className="py-3 px-1 font-black text-[#e94560]">{row.age} yrs</td>
+                                                <td className="py-3 px-4 text-[#2660ea] font-semibold">{row.boysAvg}</td>
+                                                <td className="py-3 px-4 text-[#2fd9f5] font-medium text-xs font-mono">{toFt(row.boysAvg)}</td>
+                                                <td className="py-3 px-4 text-[#455eee] font-semibold">{row.boysMedian}</td>
+                                                <td className="py-3 px-4 text-[#e94958] font-semibold">{row.girlsAvg}</td>
+                                                <td className="py-3 px-4 text-[#bf964f] font-medium text-xs font-mono">{toFt(row.girlsAvg)}</td>
+                                                <td className="py-3 px-4 text-[#72f7b4] font-semibold">{row.girlsMedian}</td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
-                                <p className="text-center text-xs text-muted mt-6 uppercase tracking-wider font-bold">
+                                <p className="text-center text-xs text-muted mt-6 uppercase tracking-wider font-bold" style={{ fontFamily: GEORGIA }}>
                                     Source: CDC Growth Charts — National Center for Health Statistics
                                 </p>
                             </motion.div>
                         )}
+
                     </AnimatePresence>
 
                     {/* Insight Cards */}
@@ -276,15 +315,16 @@ export default function HeightCharts() {
                         {[
                             { label: "Boys stop growing", value: "~18 yrs", color: "text-blue-500", bg: "bg-blue-500/10", border: "border-blue-500/20" },
                             { label: "Girls stop growing", value: "~15-16 yrs", color: "text-pink-500", bg: "bg-pink-500/10", border: "border-pink-500/20" },
-                            { label: "Boys median adult", value: "172.2 cm", color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/20" },
-                            { label: "Girls median adult", value: "160.1 cm", color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/20" },
+                            { label: "Boys median adult height", value: "172.2 cm", color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/20" },
+                            { label: "Girls median adult height", value: "160.1 cm", color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/20" },
                         ].map(card => (
-                            <div key={card.label} className={`p-4 rounded-2xl border ${card.border} ${card.bg} text-center`}>
+                            <div key={card.label} className={`p-2 rounded-2xl border ${card.border} ${card.bg} text-center`} style={{ fontFamily: GEORGIA }}>
                                 <div className={`text-xl font-black ${card.color} mb-1`}>{card.value}</div>
                                 <div className="text-xs font-semibold text-muted tracking-wide">{card.label}</div>
                             </div>
                         ))}
                     </div>
+
                 </div>
             </div>
         </div>

@@ -7,9 +7,11 @@ interface RulerProps {
     scale: number;
     maxHeightCm: number;
     canvasHeight?: number;
+    /** 'full' = labels+lines (legacy), 'labels' = only left label col, 'lines' = only horizontal lines */
+    mode?: 'full' | 'labels' | 'lines';
 }
 
-const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
+const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight, mode = 'full' }) => {
     const { unitSystem } = useUnitStore();
 
     const tickInterval = useMemo(() => {
@@ -30,9 +32,8 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
     }, [scale]);
 
     const ticks = useMemo(() => {
-        const minTick = 0; // Start exactly from 0 as requested
+        const minTick = 0;
 
-        // Ensure lines stretch across the entire zoomed canvas view
         let maxVisibleCm = maxHeightCm;
         if (canvasHeight && scale > 0) {
             maxVisibleCm = Math.max(maxHeightCm, (canvasHeight * 2) / scale);
@@ -42,6 +43,9 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
         const tickCount = Math.floor((maxTick - minTick) / tickInterval);
         return Array.from({ length: tickCount + 1 }, (_, i) => minTick + (i * tickInterval));
     }, [tickInterval, maxHeightCm, canvasHeight, scale]);
+
+    const showLabels = mode === 'full' || mode === 'labels';
+    const showLines = mode === 'full' || mode === 'lines';
 
     return (
         <div className="absolute inset-x-0 inset-y-0 pointer-events-none select-none z-0">
@@ -67,37 +71,40 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight }) => {
                         className="absolute inset-x-0 flex items-center group/tick h-0"
                         style={{ bottom: `${heightPx + 60}px` }}
                     >
-                        {/* CM & FT Labels (Sticky Left) */}
-                        <div
-                            className="sticky left-0 z-20 flex flex-col items-end w-20 sm:w-28 pr-4 pl-2 bg-canvas/40 backdrop-blur-[2px]"
-                            style={{
+                        {/* CM & FT Labels */}
+                        {showLabels && (
+                            <div
+                                className="sticky left-0 z-20 flex flex-col items-end w-20 sm:w-28 pr-4 pl-2 bg-canvas/40 backdrop-blur-[2px]"
+                                style={{
+                                    maskImage: 'linear-gradient(to right, black 80%, transparent)',
+                                    WebkitMaskImage: 'linear-gradient(to right, black 80%, transparent)'
+                                }}
+                            >
+                                {unitSystem === 'metric' ? (
+                                    <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                        {tick} {hasLabel && 'cm'}
+                                    </span>
+                                ) : (
+                                    <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                        {ftDisplay}
+                                    </span>
+                                )}
+                            </div>
+                        )}
 
-                                maskImage: 'linear-gradient(to right, black 80%, transparent)',
-                                WebkitMaskImage: 'linear-gradient(to right, black 80%, transparent)'
-                            }}
-                        >
-                            {unitSystem === 'metric' ? (
-                                <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
-                                    {tick} {hasLabel && 'cm'}
-                                </span>
-                            ) : (
-                                <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
-                                    {ftDisplay}
-                                </span>
-                            )}
-                        </div>
-
-                        {/* Grid Line - ensure it stretches full width */}
-                        <div
-                            className={`flex-1 transition-colors duration-500 ${isZero
-                                ? 'bg-white/20 h-[1.5px] opacity-100'
-                                : hasLabel
-                                    ? 'bg-foreground/20 group-hover/tick:bg-foreground/30 h-[1.5px]'
-                                    : 'bg-foreground/5 group-hover/tick:bg-foreground/10 h-[1px]'
-                                }
-                                mr-4
-                                `}
-                        />
+                        {/* Grid Line */}
+                        {showLines && (
+                            <div
+                                className={`flex-1 transition-colors duration-500 ${isZero
+                                    ? 'bg-white/20 h-[1.5px] opacity-100'
+                                    : hasLabel
+                                        ? 'bg-foreground/20 group-hover/tick:bg-foreground/30 h-[1.5px]'
+                                        : 'bg-foreground/5 group-hover/tick:bg-foreground/10 h-[1px]'
+                                    }
+                                    mr-4
+                                    `}
+                            />
+                        )}
                     </div>
                 );
             })}

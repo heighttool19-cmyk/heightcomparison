@@ -5,14 +5,21 @@ import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Person, Entity } from '../types';
 
+const LoadingPanel = () => (
+    <div className="flex-1 flex flex-col items-center justify-center h-full w-full opacity-50 space-y-4 min-h-[300px]">
+        <div className="w-8 h-8 border-4 border-accent border-r-transparent rounded-full animate-spin"></div>
+        <p className="text-[10px] font-black uppercase text-accent tracking-[0.2em] animate-pulse">Loading...</p>
+    </div>
+);
+
 const AddPersonForm = dynamic(() => import('./AddPersonForm'));
 const PersonChart = dynamic(() => import('./PersonChart'));
 const QuickAddPresets = dynamic(() => import('./QuickAddPresets'));
-const AddImageForm = dynamic(() => import('./AddImageForm'));
+const AddImageForm = dynamic(() => import('./AddImageForm'), { loading: () => <LoadingPanel /> });
 const EditPersonForm = dynamic(() => import('./EditPersonForm'));
-const CelebritiesPanel = dynamic(() => import('./CelebritiesPanel'));
-const FictionalPanel = dynamic(() => import('./FictionalPanel').then(mod => mod.FictionalPanel));
-const EntitiesPanel = dynamic(() => import('./EntitiesPanel'));
+const CelebritiesPanel = dynamic(() => import('./CelebritiesPanel'), { loading: () => <LoadingPanel /> });
+const FictionalPanel = dynamic(() => import('./FictionalPanel').then(mod => mod.FictionalPanel), { loading: () => <LoadingPanel /> });
+const EntitiesPanel = dynamic(() => import('./EntitiesPanel'), { loading: () => <LoadingPanel /> });
 
 interface SidebarProps {
     persons: Person[];

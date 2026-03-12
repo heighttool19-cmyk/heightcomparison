@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Plus } from 'lucide-react';
 import { fictionalCharacters } from '../data/fictional';
@@ -18,8 +18,14 @@ const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(fictionalCharacters.map
 export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onClose }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<FictionalCategory | 'All'>('All');
+    const [visibleCount, setVisibleCount] = useState(30);
+    const [prevFilterKey, setPrevFilterKey] = useState(`${searchQuery}|${activeCategory}`);
 
-
+    const filterKey = `${searchQuery}|${activeCategory}`;
+    if (prevFilterKey !== filterKey) {
+        setPrevFilterKey(filterKey);
+        setVisibleCount(30);
+    }
 
     // Convert cm to feet/inches string for display
     const getHeightString = (cm: number) => {
@@ -38,17 +44,28 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
         });
     }, [searchQuery, activeCategory]);
 
-    // Grouping logic
+    // Grouping logic (only group visible slice)
     const groupedCharacters = useMemo(() => {
         const groups: Record<string, typeof fictionalCharacters> = {};
-        filteredCharacters.forEach(char => {
+        const sliced = filteredCharacters.slice(0, visibleCount);
+
+        sliced.forEach(char => {
             if (!groups[char.category]) {
                 groups[char.category] = [];
             }
             groups[char.category].push(char);
         });
         return groups;
-    }, [filteredCharacters]);
+    }, [filteredCharacters, visibleCount]);
+
+    const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
+        const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+        if (scrollHeight - scrollTop <= clientHeight + 150) {
+            if (visibleCount < filteredCharacters.length) {
+                setVisibleCount(prev => prev + 30);
+            }
+        }
+    }, [visibleCount, filteredCharacters.length]);
 
     return (
         <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
@@ -77,7 +94,7 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
             />
 
             {/* List Area */}
-            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar" onScroll={handleScroll}>
                 <AnimatePresence mode="popLayout">
                     {Object.keys(groupedCharacters).length === 0 ? (
                         <motion.div

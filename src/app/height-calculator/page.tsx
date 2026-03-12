@@ -10,16 +10,14 @@ import HeightCharts from '@/components/HeightCharts';
 import GrowthPlateExplainer from '@/components/GrowthPlateExplainer';
 import { Person } from '@/types';
 
-// We might not have SEO metadata in a layout file if it's a client component.
-// But the user requested this setup, and since it is 'use client', we export metadata in layout if needed.
-// For now, next.js allows metadata in server components. We will put it in a separate layout.tsx if needed, but the user asked for a single file. Wait, metadata must be in a server component. We can do it later if needed.
-
 export default function HeightCalculatorPage() {
     const { theme, toggleTheme } = useThemeStore();
     const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
 
-    // --- State for Section 1: Child Height Predictor ---
+    // --- Shared State for Units (Keeps both sections in sync) ---
     const [unit, setUnit] = useState<'metric' | 'us'>('us');
+
+    // --- State for Section 1: Child Height Predictor ---
     const [childAge, setChildAge] = useState<number | ''>('');
     const [childGender, setChildGender] = useState<'male' | 'female'>('male');
     const [childHtCm, setChildHtCm] = useState<number | ''>('');
@@ -76,7 +74,6 @@ export default function HeightCalculatorPage() {
     };
 
     // Calculate Section 1: Child Height Predictor
-    // We use a weighted approach: 50% Mid-Parental + 50% Growth Curve Projection
     const calculateKhamis = () => {
         let currentChildCm = 0;
         let pMotherCm = 0;
@@ -100,7 +97,6 @@ export default function HeightCalculatorPage() {
             : (pFatherCm + pMotherCm - 13) / 2;
 
         // 2. Growth Curve Projection
-        // Using the data table we have (CDC approx 50th percentile)
         const growthData = [
             { age: 2, bm: 86.8, gm: 85.5 },
             { age: 4, bm: 102.3, gm: 101.6 },
@@ -123,7 +119,6 @@ export default function HeightCalculatorPage() {
         } else if (age >= 18) {
             currentAvgHeight = avgHeightAt18;
         } else {
-            // Find the interval
             for (let i = 0; i < growthData.length - 1; i++) {
                 if (age >= growthData[i].age && age <= growthData[i + 1].age) {
                     const d1 = growthData[i];
@@ -147,8 +142,6 @@ export default function HeightCalculatorPage() {
         const prediction = { cm: Math.round(predCm), ft: res.ft, in: res.in };
         setPredictedKhamis(prediction);
 
-        // Prepare chart data
-
         const persons: Person[] = [
             { id: 'father', name: 'Father', heightCm: pFatherCm, color: '#3b82f6', isEntity: false },
             { id: 'mother', name: 'Mother', heightCm: pMotherCm, color: '#ec4899', isEntity: false },
@@ -158,8 +151,6 @@ export default function HeightCalculatorPage() {
     };
 
     const handleShowMidParentalChart = (gender: 'male' | 'female', predictedCm: number, fCm: number, mCm: number) => {
-        // const res = cmToFtIn(predictedCm);
-
         const persons: Person[] = [
             { id: 'father', name: 'Father', heightCm: fCm, color: '#3b82f6', isEntity: false },
             { id: 'mother', name: 'Mother', heightCm: mCm, color: '#ec4899', isEntity: false },
@@ -191,9 +182,6 @@ export default function HeightCalculatorPage() {
 
         if (pMotherCm <= 0 || pFatherCm <= 0) return;
 
-        // Mid-Parental Height Formula:
-        // Boys = (Father + Mother + 13cm) / 2
-        // Girls = (Father + Mother - 13cm) / 2
         const boysCm = (pFatherCm + pMotherCm + 13) / 2;
         const girlsCm = (pFatherCm + pMotherCm - 13) / 2;
 
@@ -259,11 +247,7 @@ export default function HeightCalculatorPage() {
                 </nav>
 
                 <div className="flex items-center gap-4 sm:gap-6">
-                    {/* Global Unit Toggle */}
-                    <div className="hidden sm:flex bg-bg border border-border p-1 rounded-full items-center shadow-sm">
-                        <button onClick={() => setUnit('us')} className={`px-3 py-1.5 rounded-full text-[13px] font-bold transition-colors ${unit === 'us' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US</button>
-                        <button onClick={() => setUnit('metric')} className={`px-3 py-1.5 rounded-full text-[13px] font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric</button>
-                    </div>
+                    {/* The Unit Toggle has been successfully removed from here! */}
 
                     <button onClick={toggleTheme} className="p-2 text-muted hover:text-foreground hover:bg-surface/50 rounded-full transition-colors flex items-center justify-center" title="Toggle Theme">
                         <AnimatePresence mode="popLayout" initial={false}>
@@ -281,11 +265,7 @@ export default function HeightCalculatorPage() {
                         <AnimatePresence>
                             {isNavMenuOpen && (
                                 <motion.div initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 10, scale: 0.95 }} className="absolute right-0 mt-2 w-56 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden">
-                                    {/* Mobile Unit Toggle */}
-                                    <div className="flex bg-bg border border-border p-1 rounded-xl mb-2 items-center">
-                                        <button onClick={() => setUnit('us')} className={`flex-1 py-2 rounded-lg text-sm font-bold transition-colors ${unit === 'us' ? 'bg-accent text-white shadow-sm' : 'text-muted hover:text-foreground'}`}>US</button>
-                                        <button onClick={() => setUnit('metric')} className={`flex-1 py-2 rounded-lg text-sm font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-sm' : 'text-muted hover:text-foreground'}`}>Metric</button>
-                                    </div>
+                                    {/* The Unit Toggle has been successfully removed from here as well! */}
                                     <Link href="/"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Home</button></Link>
                                     <Link href="/height-calculator"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground bg-accent/10 rounded-xl transition-colors">Calculator</button></Link>
                                     <Link href="/image-to-height"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent hover:text-accent/80 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">Image to Height <Box size={14} /></button></Link>
@@ -317,15 +297,20 @@ export default function HeightCalculatorPage() {
                             <div className="space-y-2">
                                 <h2 className="text-2xl font-black tracking-tight text-foreground">Height Predictor <span className="text-muted text-base font-medium ml-2 uppercase tracking-widest">(Khamis-Roche)</span></h2>
                             </div>
+                            {/* Synced Unit Toggle added here */}
+                            <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
+                                <button onClick={() => setUnit('us')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'us' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
+                                <button onClick={() => setUnit('metric')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                             <div className="space-y-2">
-                                <label className="text-sm font-semibold text-muted">Child&apos;s Age (Years)</label>
+                                <label className="text-base font-semibold text-muted">Child&apos;s Age (Years)</label>
                                 <input type="number" min="0" value={childAge} onChange={e => setChildAge(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-semibold text-muted">Gender</label>
+                                <label className="text-base font-semibold text-muted">Gender</label>
                                 <div className="flex gap-2">
                                     <button onClick={() => setChildGender('male')} className={`flex-1 py-3 rounded-xl border border-border font-semibold transition-all ${childGender === 'male' ? 'bg-blue-500/10 text-blue-500 border-blue-500' : 'bg-bg text-muted hover:bg-surface'}`}>Boy</button>
                                     <button onClick={() => setChildGender('female')} className={`flex-1 py-3 rounded-xl border border-border font-semibold transition-all ${childGender === 'female' ? 'bg-pink-500/10 text-pink-500 border-pink-500' : 'bg-bg text-muted hover:bg-surface'}`}>Girl</button>
@@ -334,7 +319,7 @@ export default function HeightCalculatorPage() {
 
                             {/* Child Height / Weight */}
                             <div className="space-y-2">
-                                <label className="text-sm font-semibold text-muted">Child&apos;s Current Height</label>
+                                <label className="text-base font-semibold text-muted">Child&apos;s Current Height</label>
                                 {unit === 'metric' ? (
                                     <div className="relative">
                                         <input type="number" value={childHtCm} onChange={e => setChildHtCm(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 110" />
@@ -355,7 +340,7 @@ export default function HeightCalculatorPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-semibold text-muted">Child&apos;s Current Weight </label>
+                                <label className="text-base font-semibold text-muted">Child&apos;s Current Weight </label>
                                 {unit === 'metric' ? (
                                     <div className="relative">
                                         <input type="number" value={childWtKg} onChange={e => setChildWtKg(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 20" />
@@ -371,7 +356,7 @@ export default function HeightCalculatorPage() {
 
                             {/* Parents */}
                             <div className="space-y-2">
-                                <label className="text-sm font-semibold text-muted">Mother&apos;s Height</label>
+                                <label className="text-base font-semibold text-muted">Mother&apos;s Height</label>
                                 {unit === 'metric' ? (
                                     <div className="relative">
                                         <input type="number" value={motherHtCm} onChange={e => setMotherHtCm(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 165" />
@@ -392,7 +377,7 @@ export default function HeightCalculatorPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-semibold text-muted">Father&apos;s Height</label>
+                                <label className="text-base font-semibold text-muted">Father&apos;s Height</label>
                                 {unit === 'metric' ? (
                                     <div className="relative">
                                         <input type="number" value={fatherHtCm} onChange={e => setFatherHtCm(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" />
@@ -420,8 +405,8 @@ export default function HeightCalculatorPage() {
 
                         <AnimatePresence>
                             {predictedKhamis && (
-                                <div className="bg-accent/10 border border-accent/20 rounded-2xl p-6 text-center shadow-lg shadow-accent/5">
-                                    <p className="text-sm font-black text-accent uppercase tracking-widest mb-2">Estimated Adult Height</p>
+                                <div className="bg-accent/10 border border-accent/20 rounded-2xl p-6 text-center shadow-lg shadow-accent/5 mt-8">
+                                    <p className="text-base font-black text-accent uppercase tracking-widest mb-2">Estimated Adult Height</p>
                                     <div className="flex items-center justify-center gap-4">
                                         <span className="text-4xl md:text-5xl font-black text-foreground">{predictedKhamis.cm} <span className="text-xl md:text-2xl text-accent">cm</span></span>
                                         <div className="w-px h-10 bg-border" />
@@ -443,13 +428,20 @@ export default function HeightCalculatorPage() {
 
                     {/* SECTION 2: PARENT ONLY */}
                     <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
-                        <div className="space-y-2 mb-8">
-                            <h2 className="text-2xl font-black tracking-tight text-foreground">Parent&apos;s Height Only <span className="text-muted text-base font-medium ml-2 uppercase tracking-widest">(Mid-Parental)</span></h2>
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+                            <div className="space-y-2">
+                                <h2 className="text-2xl font-black tracking-tight text-foreground">Parent&apos;s Height Only <span className="text-muted text-base font-medium ml-2 uppercase tracking-widest">(Mid-Parental)</span></h2>
+                            </div>
+                            {/* Synced Unit Toggle added here */}
+                            <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
+                                <button onClick={() => setUnit('us')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'us' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
+                                <button onClick={() => setUnit('metric')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
+                            </div>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                             <div className="space-y-2">
-                                <label className="text-sm font-semibold text-muted">Mother&apos;s Height</label>
+                                <label className="text-base font-semibold text-muted">Mother&apos;s Height</label>
                                 {unit === 'metric' ? (
                                     <div className="relative">
                                         <input type="number" value={parentMotherHtCm} onChange={e => setParentMotherHtCm(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 165" />
@@ -469,7 +461,7 @@ export default function HeightCalculatorPage() {
                                 )}
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-semibold text-muted">Father&apos;s Height</label>
+                                <label className="text-base font-semibold text-muted">Father&apos;s Height</label>
                                 {unit === 'metric' ? (
                                     <div className="relative">
                                         <input type="number" value={parentFatherHtCm} onChange={e => setParentFatherHtCm(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" />
@@ -495,7 +487,7 @@ export default function HeightCalculatorPage() {
                             {predictedParentOnlyBoys && predictedParentOnlyGirls && (
                                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
                                     <div className="p-6 bg-blue-500/5 border border-blue-500/20 rounded-2xl text-center flex flex-col items-center">
-                                        <p className="text-sm font-black text-blue-500 mb-2 uppercase tracking-widest">Boys</p>
+                                        <p className="text-base font-black text-blue-500 mb-2 uppercase tracking-widest">Boys</p>
                                         <p className="text-2xl font-black text-foreground mb-4">{predictedParentOnlyBoys.cm} cm / {predictedParentOnlyBoys.ft}&apos;{predictedParentOnlyBoys.in}&quot;</p>
                                         <button
                                             onClick={() => handleShowMidParentalChart('male', predictedParentOnlyBoys.raw, predictedParentOnlyBoys.fCm, predictedParentOnlyBoys.mCm)}
@@ -506,7 +498,7 @@ export default function HeightCalculatorPage() {
                                         </button>
                                     </div>
                                     <div className="p-6 bg-pink-500/5 border border-pink-500/20 rounded-2xl text-center flex flex-col items-center">
-                                        <p className="text-sm font-black text-pink-500 mb-2 uppercase tracking-widest">Girls</p>
+                                        <p className="text-base font-black text-pink-500 mb-2 uppercase tracking-widest">Girls</p>
                                         <p className="text-2xl font-black text-foreground mb-4">{predictedParentOnlyGirls.cm} cm / {predictedParentOnlyGirls.ft}&apos;{predictedParentOnlyGirls.in}&quot;</p>
                                         <button
                                             onClick={() => handleShowMidParentalChart('female', predictedParentOnlyGirls.raw, predictedParentOnlyGirls.fCm, predictedParentOnlyGirls.mCm)}
@@ -552,207 +544,88 @@ export default function HeightCalculatorPage() {
                         </div>
                     </section>
 
-                    {/* Data Table */}
-                    {/* <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 overflow-hidden hover:border-accent/30 transition-colors">
-                        <div className="space-y-2 mb-6">
-                            <h2 className="text-2xl font-black tracking-tight text-foreground">Boys & Girls Height Growth Charts</h2>
-                            <p className="text-xs font-bold tracking-widest uppercase text-muted">Average & Median Height by Age (CDC 50th Percentile approximate)</p>
-                        </div>
-                        <div className="overflow-x-auto custom-scrollbar pb-2">
-                            <table className="w-full text-left border-collapse">
-                                <thead>
-                                    <tr className="border-b border-border text-muted">
-                                        <th className="py-4 px-4 font-semibold">Age</th>
-                                        <th className="py-4 px-4 font-semibold text-blue-500">Boys (cm)</th>
-                                        <th className="py-4 px-4 font-semibold text-blue-500">Boys (ft/in)</th>
-                                        <th className="py-4 px-4 font-semibold text-pink-500">Girls (cm)</th>
-                                        <th className="py-4 px-4 font-semibold text-pink-500">Girls (ft/in)</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-border/50 text-sm font-medium">
-                                    {[
-                                        { age: 2, bm: 86.8, bf: "2'10\"", gm: 85.5, gf: "2'9\"" },
-                                        { age: 4, bm: 102.3, bf: "3'4\"", gm: 101.6, gf: "3'4\"" },
-                                        { age: 6, bm: 115.5, bf: "3'9\"", gm: 114.6, gf: "3'9\"" },
-                                        { age: 8, bm: 128.1, bf: "4'2\"", gm: 127.5, gf: "4'2\"" },
-                                        { age: 10, bm: 138.4, bf: "4'6\"", gm: 138.6, gf: "4'6\"" },
-                                        { age: 12, bm: 149.1, bf: "4'10\"", gm: 151.0, gf: "4'11\"" },
-                                        { age: 14, bm: 163.8, bf: "5'4\"", gm: 160.5, gf: "5'3\"" },
-                                        { age: 16, bm: 173.4, bf: "5'8\"", gm: 162.5, gf: "5'4\"" },
-                                        { age: 18, bm: 176.1, bf: "5'9\"", gm: 163.1, gf: "5'4\"" },
-                                    ].map(row => (
-                                        <tr key={row.age} className="hover:bg-bg/50 transition-colors">
-                                            <td className="py-3 px-4">{row.age} yrs</td>
-                                            <td className="py-3 px-4">{row.bm}</td>
-                                            <td className="py-3 px-4">{row.bf}</td>
-                                            <td className="py-3 px-4">{row.gm}</td>
-                                            <td className="py-3 px-4">{row.gf}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </section> */}
+                    {/* 2.5. NEW CHARTS AND EXPLAINERS FROM RECHARTS */}
+                    <HeightCharts />
+                    <GrowthPlateExplainer />
 
-                    {/* SEO Content Section - Matched with Image to Height styling */}
-                    <div className="flex flex-col gap-12 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-                        {/* 1. Main Headline & Intro */}
-                        <div className="space-y-6">
-                            <h2 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight">
-                                Introduction: How Tall Will My Child Be? — <span className="text-accent">Science-Backed Estimates for Every Growth Stage</span>
-                            </h2>
-                            <div className="h-1.5 w-24 bg-accent rounded-full" />
+                    {/* 3. Methods Visualization */}
+                    <div className="space-y-8 mt-12">
+                        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                            <h3 className="text-2xl font-black text-foreground">Prediction Methods Explained</h3>
+                            <span className="text-xs font-bold text-muted uppercase tracking-[0.2em] bg-surface border border-border px-4 py-1.5 rounded-full">Science-Based Models</span>
+                        </div>
 
-                            <div className="grid md:grid-cols-5 gap-8 items-start">
-                                <div className="md:col-span-3 space-y-4">
-                                    <h3 className="text-xl font-black text-foreground">The Mystery of Growth</h3>
-                                    <p className="text-muted leading-relaxed">
-                                        Every parent wonders it. Sometimes out loud, sometimes quietly while watching their kid sleep. How tall will my child be?
-                                    </p>
-                                    <p className="text-muted leading-relaxed">
-                                        The honest answer: no one can tell you with complete certainty. But science can get you surprisingly close. A good child height predictor uses your child&apos;s current measurements and your family&apos;s genetics to calculate a projected adult height.
-                                    </p>
-                                    <div className="p-4 bg-accent/5 border-l-4 border-accent rounded-r-xl">
-                                        <p className="text-sm italic text-foreground/80">
-                                            &quot;Predicted height is a statistical range, not a finish line. These tools are genuinely useful for tracking growth and spotting patterns worth discussing with a pediatrician.&quot;
-                                        </p>
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            {[
+                                { title: "Mid-Parental Height", body: "The simpler approach for babies. Averages both parents' heights with a ±5 inch sex adjustment." },
+                                { title: "Khamis-Roche Method", body: "The gold standard for toddlers over 4. Uses age, current height, and current weight for precision." },
+                                { title: "Bone Age Assessment", body: "Clinical X-ray method used by endocrinologists to view skeletal maturity. Most accurate overall." }
+                            ].map((step, idx) => (
+                                <div key={idx} className="bg-surface border border-border p-6 rounded-3xl hover:border-accent/40 transition-all hover:translate-y-[-4px] group">
+                                    <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-xs font-black mb-4">
+                                        0{idx + 1}
                                     </div>
-                                    <p className="text-muted leading-relaxed">
-                                        It&apos;s not a guarantee, but a well-informed estimate. With that framing, these tools become a helpful part of monitoring your child&apos;s health journey.
-                                    </p>
+                                    <h4 className="font-bold text-foreground mb-2">{step.title}</h4>
+                                    <p className="text-xs text-muted leading-relaxed">{step.body}</p>
                                 </div>
-                                <div className="md:col-span-2 bg-surface border border-border rounded-3xl p-6 shadow-sm space-y-4">
-                                    <h4 className="font-black uppercase tracking-widest text-[10px] text-accent">Key Growth Drivers</h4>
-                                    <div className="space-y-3">
-                                        {[
-                                            { title: "Genetics (60-80%)", desc: "The primary blueprint inherited from biological parents." },
-                                            { title: "Nutrition", desc: "Adequate protein, calcium, and vitamin D for bone growth." },
-                                            { title: "Sleep", desc: "Peak growth hormone is released during deep sleep cycles." }
-                                        ].map((item, i) => (
-                                            <div key={i} className="flex gap-3 items-start">
-                                                <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center text-accent text-[10px] font-bold shrink-0">{i + 1}</div>
-                                                <div>
-                                                    <p className="text-xs font-bold text-foreground">{item.title}</p>
-                                                    <p className="text-[11px] text-muted leading-tight mt-0.5">{item.desc}</p>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className="text-[10px] text-muted italic pt-2 border-t border-border">Source: CDC & Pediatric Health Studies</p>
-                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* FAQ Accordion Section */}
+                    <div className="border border-border rounded-[2.5rem] overflow-hidden bg-surface transition-colors duration-500 shadow-sm mt-4">
+                        {/* Header */}
+                        <div className="px-8 md:px-12 pt-10 pb-8 text-center sm:text-left space-y-2 border-b border-border">
+                            <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
+                                HELP CENTER
                             </div>
+                            <h3 className="text-3xl font-black text-foreground">Frequently Asked Questions</h3>
+                            <p className="text-sm text-muted">Scientific insights into your child&apos;s development</p>
                         </div>
 
-                        {/* 2. Determinant Factors Section */}
-                        <div className="bg-bg border border-border rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group">
-                            <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000" />
-                            <div className="relative z-10 max-w-3xl">
-                                <h3 className="text-2xl font-black text-foreground mb-4">What Determines a Child&apos;s Height?</h3>
-                                <p className="text-muted leading-relaxed text-lg mb-6">
-                                    Roughly 60–80% of adult height comes from DNA. Children typically land closer to the population average than either extreme parent — a phenomenon called <span className="text-accent font-bold">regression toward the mean</span>.
-                                </p>
-                                <div className="grid sm:grid-cols-2 gap-8">
-                                    <div className="space-y-2">
-                                        <h4 className="font-bold text-foreground flex items-center gap-2">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                                            Boys Growth Timeline
-                                        </h4>
-                                        <p className="text-sm text-muted leading-relaxed">Main spurt between ages 12–15. Most stop growing by 18, with minor additions possible until age 20.</p>
-                                    </div>
-                                    <div className="space-y-2">
-                                        <h4 className="font-bold text-foreground flex items-center gap-2">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                                            Girls Growth Timeline
-                                        </h4>
-                                        <p className="text-sm text-muted leading-relaxed">Earlier spurt between ages 10–14. Growth typically stops by 15 or 16 years old.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* 2.5. NEW CHARTS AND EXPLAINERS FROM RECHARTS */}
-                        <HeightCharts />
-                        <GrowthPlateExplainer />
-
-                        {/* 3. Methods Visualization */}
-                        <div className="space-y-8 mt-12">
-                            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                                <h3 className="text-2xl font-black text-foreground">Prediction Methods Explained</h3>
-                                <span className="text-xs font-bold text-muted uppercase tracking-[0.2em] bg-surface border border-border px-4 py-1.5 rounded-full">Science-Based Models</span>
-                            </div>
-
-                            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {[
-                                    { title: "Mid-Parental Height", body: "The simpler approach for babies. Averages both parents' heights with a ±5 inch sex adjustment." },
-                                    { title: "Khamis-Roche Method", body: "The gold standard for toddlers over 4. Uses age, current height, and current weight for precision." },
-                                    { title: "Bone Age Assessment", body: "Clinical X-ray method used by endocrinologists to view skeletal maturity. Most accurate overall." }
-                                ].map((step, idx) => (
-                                    <div key={idx} className="bg-surface border border-border p-6 rounded-3xl hover:border-accent/40 transition-all hover:translate-y-[-4px] group">
-                                        <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent text-xs font-black mb-4">
-                                            0{idx + 1}
-                                        </div>
-                                        <h4 className="font-bold text-foreground mb-2">{step.title}</h4>
-                                        <p className="text-xs text-muted leading-relaxed">{step.body}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* FAQ Accordion Section */}
-                        <div className="border border-border rounded-[2.5rem] overflow-hidden bg-surface transition-colors duration-500 shadow-sm mt-4">
-                            {/* Header */}
-                            <div className="px-8 md:px-12 pt-10 pb-8 text-center sm:text-left space-y-2 border-b border-border">
-                                <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
-                                    HELP CENTER
-                                </div>
-                                <h3 className="text-3xl font-black text-foreground">Frequently Asked Questions</h3>
-                                <p className="text-sm text-muted">Scientific insights into your child&apos;s development</p>
-                            </div>
-
-                            <div className="px-6 md:px-10 py-6 flex flex-col gap-3">
-                                {QA.map((item, idx) => {
-                                    const isOpen = openIndex === idx;
-                                    return (
-                                        <div
-                                            key={idx}
-                                            className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5' : 'border-border bg-bg hover:border-accent/30'}`}
+                        <div className="px-6 md:px-10 py-6 flex flex-col gap-3">
+                            {QA.map((item, idx) => {
+                                const isOpen = openIndex === idx;
+                                return (
+                                    <div
+                                        key={idx}
+                                        className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5' : 'border-border bg-bg hover:border-accent/30'}`}
+                                    >
+                                        <button
+                                            className="w-full flex items-center justify-between px-5 py-4 text-left gap-4 group"
+                                            onClick={() => setOpenIndex(isOpen ? null : idx)}
                                         >
-                                            <button
-                                                className="w-full flex items-center justify-between px-5 py-4 text-left gap-4 group"
-                                                onClick={() => setOpenIndex(isOpen ? null : idx)}
-                                            >
-                                                <span className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>
-                                                <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className={`shrink-0 transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-muted'}`}>
-                                                    <ChevronDown size={18} />
+                                            <span className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>
+                                            <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className={`shrink-0 transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-muted'}`}>
+                                                <ChevronDown size={18} />
+                                            </motion.div>
+                                        </button>
+                                        <AnimatePresence>
+                                            {isOpen && (
+                                                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
+                                                    <div className="px-5 pt-0 pb-5 border-t border-border/40">
+                                                        <p className="text-sm text-muted leading-relaxed pt-4">
+                                                            {item.a}
+                                                        </p>
+                                                    </div>
                                                 </motion.div>
-                                            </button>
-                                            <AnimatePresence>
-                                                {isOpen && (
-                                                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
-                                                        <div className="px-5 pt-0 pb-5 border-t border-border/40">
-                                                            <p className="text-sm text-muted leading-relaxed pt-4">
-                                                                {item.a}
-                                                            </p>
-                                                        </div>
-                                                    </motion.div>
-                                                )}
-                                            </AnimatePresence>
-                                        </div>
-                                    );
-                                })}
-                            </div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
+                                );
+                            })}
+                        </div>
 
-                            {/* Conclusion Footer */}
-                            <div className="px-8 md:px-12 pb-10 pt-8 border-t border-border flex flex-col items-center gap-4 text-center">
-                                <h4 className="text-xl font-bold text-foreground">A Guide, Not a Guarantee</h4>
-                                <p className="text-sm text-muted max-w-sm">Run the numbers, note the range, and track the journey. Height is just one part of your child&apos;s story.</p>
-                                <button
-                                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                    className="bg-accent text-white px-8 py-3.5 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95"
-                                >
-                                    Predict Another Height
-                                </button>
-                            </div>
+                        {/* Conclusion Footer */}
+                        <div className="px-8 md:px-12 pb-10 pt-8 border-t border-border flex flex-col items-center gap-4 text-center">
+                            <h4 className="text-xl font-bold text-foreground">A Guide, Not a Guarantee</h4>
+                            <p className="text-sm text-muted max-w-sm">Run the numbers, note the range, and track the journey. Height is just one part of your child&apos;s story.</p>
+                            <button
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                className="bg-accent text-white px-8 py-3.5 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95"
+                            >
+                                Predict Another Height
+                            </button>
                         </div>
                     </div>
                 </div>

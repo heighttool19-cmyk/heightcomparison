@@ -65,7 +65,7 @@ function HandBone({ stage, isActive }: { stage: typeof stages[0]; isActive: bool
     const inactiveMetaColor = "var(--tw-colors-blue-400, #60a5fa)";
 
     return (
-        <svg viewBox="0 0 120 200" width="100%" className="max-w-[150px] block    will-change-transform" style={{ transform: 'translateZ(0)' }}>
+        <svg viewBox="0 0 130 200" width="120%" style={{ maxWidth: 200, display: "block", margin: "0 auto" }}>
             {/* Background glow */}
             {isActive && (
                 <motion.ellipse
@@ -297,7 +297,7 @@ export default function GrowthPlateExplainer() {
                                         }`}
                                     style={{ borderColor: active === i ? `${s.plateColor}50` : undefined }}
                                 >
-                                    <div className="w-16 h-24 mb-4 flex items-center justify-center pointer-events-none">
+                                    <div className="w-16 h-24 mb-4 flex items-center  justify-center align-center pointer-events-none">
                                         <HandBone stage={s} isActive={active === i} />
                                     </div>
                                     <div className="font-mono font-bold text-sm tracking-wider" style={{ color: s.plateColor }}>{s.age}</div>

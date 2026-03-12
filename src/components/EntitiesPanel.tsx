@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { Search, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Entity, EntityCategory } from '../types';
@@ -21,8 +21,14 @@ const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(entities.map(e => e.cat
 export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClose, onExport, isCapturing }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<EntityCategory>('All');
+    const [visibleCount, setVisibleCount] = useState(30);
+    const [prevFilterKey, setPrevFilterKey] = useState(`${searchQuery}|${activeCategory}`);
 
-
+    const filterKey = `${searchQuery}|${activeCategory}`;
+    if (prevFilterKey !== filterKey) {
+        setPrevFilterKey(filterKey);
+        setVisibleCount(30);
+    }
 
     // Filter Logic
     const filteredEntities = useMemo(() => {
@@ -43,17 +49,28 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
         return filtered;
     }, [searchQuery, activeCategory]);
 
-    // Grouping Logic
+    // Grouping Logic (only group visible slice)
     const groupedEntities = useMemo(() => {
         const groups: Record<string, Entity[]> = {};
-        filteredEntities.forEach(entity => {
+        const sliced = filteredEntities.slice(0, visibleCount);
+
+        sliced.forEach(entity => {
             if (!groups[entity.category]) {
                 groups[entity.category] = [];
             }
             groups[entity.category].push(entity);
         });
         return groups;
-    }, [filteredEntities]);
+    }, [filteredEntities, visibleCount]);
+
+    const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
+        const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+        if (scrollHeight - scrollTop <= clientHeight + 150) {
+            if (visibleCount < filteredEntities.length) {
+                setVisibleCount(prev => prev + 30);
+            }
+        }
+    }, [visibleCount, filteredEntities.length]);
 
     // Convert cm to feet/inches string for display
     const getHeightString = (cm: number) => {
@@ -96,7 +113,7 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
             />
 
             {/* List Area */}
-            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar" onScroll={handleScroll}>
                 <AnimatePresence mode="popLayout">
                     {Object.keys(groupedEntities).length === 0 ? (
                         <motion.div

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import Image from 'next/image';
 import { Search, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -20,8 +20,14 @@ const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(celebrities.map(c => c.
 export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson, onClose }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<'All' | CelebrityCategory>('All');
+    const [visibleCount, setVisibleCount] = useState(30);
+    const [prevFilterKey, setPrevFilterKey] = useState(`${searchQuery}|${activeCategory}`);
 
-
+    const filterKey = `${searchQuery}|${activeCategory}`;
+    if (prevFilterKey !== filterKey) {
+        setPrevFilterKey(filterKey);
+        setVisibleCount(30);
+    }
 
     // Convert cm to feet/inches string for display
     const getHeightString = (cm: number) => {
@@ -51,16 +57,28 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
     }, [searchQuery, activeCategory]);
 
     // Grouping by Category (only if "All" is selected or grouping within a specific category)
+    // Only group the sliced visible items to prevent massive rendering delays
     const groupedCelebrities = useMemo(() => {
         const groups: Record<string, Celebrity[]> = {};
-        filteredCelebrities.forEach(celeb => {
+        const sliced = filteredCelebrities.slice(0, visibleCount);
+
+        sliced.forEach(celeb => {
             if (!groups[celeb.category]) {
                 groups[celeb.category] = [];
             }
             groups[celeb.category].push(celeb);
         });
         return groups;
-    }, [filteredCelebrities]);
+    }, [filteredCelebrities, visibleCount]);
+
+    const handleScroll = useCallback((e: React.UIEvent<HTMLDivElement>) => {
+        const { scrollTop, scrollHeight, clientHeight } = e.currentTarget;
+        if (scrollHeight - scrollTop <= clientHeight + 150) {
+            if (visibleCount < filteredCelebrities.length) {
+                setVisibleCount(prev => prev + 30);
+            }
+        }
+    }, [visibleCount, filteredCelebrities.length]);
 
     const handleAdd = (celeb: Celebrity) => {
         // Generate ID outside the object literal to be cleaner
@@ -112,7 +130,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
             />
 
             {/* 3. List Area */}
-            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar" onScroll={handleScroll}>
                 <AnimatePresence mode="popLayout">
                     {Object.keys(groupedCelebrities).length === 0 ? (
                         <motion.div
