@@ -282,7 +282,7 @@ export default function HeightCalculatorPage() {
     return (
         <div className="min-h-screen bg-bg text-foreground font-sans transition-colors duration-500 overflow-x-hidden">
             {/* --- Navbar --- */}
-            <header className="h-[70px] shrink-0 border-b border-border/50 bg-bg w-[100%] flex items-center justify-between px-6 sm:px-12 z-50 fixed top-0">
+            <header className="h-[70px] shrink-0 border-b border-border/50 bg-bg   flex items-center justify-between px-6 sm:px-12 z-50   top-0">
                 <div className="flex items-center gap-3 cursor-pointer">
                     <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
                         <div className="flex items-end gap-[2px] h-4">
