@@ -341,7 +341,7 @@ export default function HeightCalculatorPage() {
 
                     {/* --- LEFT SIDEBAR: Sticky Table of Contents (Desktop Only) --- */}
                     <div className="hidden lg:block relative">
-                        <div className="sticky top-24 bg-surface border border-border p-6 rounded-3xl shadow-sm text-left max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
+                        <div className="fixed top-24 bg-surface border border-border p-6 rounded-3xl shadow-sm text-left max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
                             <h3 className="font-black text-foreground mb-4 uppercase tracking-widest text-xs border-b border-border pb-4">Table of Contents</h3>
                             <ul className="text-sm font-medium">
                                 {tocItems.map(item => (
