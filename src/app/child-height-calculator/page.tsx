@@ -243,12 +243,26 @@ export default function HeightCalculatorPage() {
     };
 
     const QA = [
-        { q: "How tall will my son be?", a: "The most accurate way to estimate your son's adult height without a clinical assessment is the Khamis-Roche method, which factors in his current age, height, weight, and both parents' heights. Try our height predictor calculator above for an instant result." },
-        { q: "How accurate is a child height predictor?", a: "The Khamis-Roche method has a margin of error of roughly ±2.1 inches (5.3 cm) for boys and ±1.7 inches (4.3 cm) for girls. Bone age methods are more accurate but require clinical testing. No calculator gives a guaranteed number." },
-        { q: "What is the most accurate height prediction method?", a: "Bone age assessment (Greulich-Pyle or Tanner-Whitehouse) is the most accurate. Among calculator-based methods, Khamis-Roche leads for children over 4. For babies and toddlers, mid-parental height is your only practical option." },
-        { q: "Can I predict my baby's height?", a: "Yes, the mid-parental height formula works from birth. Enter both parents' heights into our baby height calculator to get an estimated adult height range." },
-        { q: "How tall should my child be at their age?", a: "The growth charts above show average and median height by age for both boys and girls. Most healthy children fall between the 3rd and 97th percentile. Where they sit matters less than whether they're consistently tracking the same curve over time." },
-        { q: "What's the difference between average and median height?", a: "In a healthy population, they're nearly identical. The average is the mathematical mean; the median is the midpoint where half the population is taller and half is shorter. For height data, both figures land at the 50th percentile." }
+        {
+            q: "How tall will my son be?",
+            a: "The most reliable estimate comes from a Khamis-Roche height predictor calculator, which analyzes age, height, weight, and parents’ heights."
+        },
+        {
+            q: "How accurate is a child height predictor?",
+            a: "Most calculators predict adult height within 2–4 inches (5–10 cm)."
+        },
+        {
+            q: "Can I predict my baby’s height?",
+            a: "Yes. The mid-parental height method can estimate adult height using the parents’ heights."
+        },
+        {
+            q: "How tall should my child be at their age?",
+            a: "Growth charts show typical height ranges for children. Most healthy children fall between the 3rd and 97th percentile."
+        },
+        {
+            q: "What is the most accurate height prediction method?",
+            a: "Bone age testing provides the most precise estimate in clinical settings, but Khamis-Roche calculators are the most practical option for parents."
+        }
     ];
 
     const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -280,7 +294,7 @@ export default function HeightCalculatorPage() {
     };
 
     return (
-        <div className="min-h-screen bg-bg text-foreground font-sans transition-colors duration-500 overflow-x-hidden">
+        <div className="min-h-screen bg-bg text-foreground font-saans transition-colors duration-500 overflow-x-hidden">
             {/* --- Navbar --- */}
             <header className="h-[70px] shrink-0 border-b border-border/50 bg-bg   flex items-center justify-between px-6 sm:px-12 z-50   top-0">
                 <div className="flex items-center gap-3 cursor-pointer">
