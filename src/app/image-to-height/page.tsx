@@ -41,7 +41,7 @@ export default function ImageToHeightPage() {
 
                 <nav className="hidden lg:flex items-center gap-10">
                     <Link href="/" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Home</Link>
-                    <Link href="/height-calculator" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors"> Child height calculator </Link>
+                    <Link href="/child-height-calculator" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors"> Child height calculator </Link>
                     <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors border-b-2 border-accent pb-1 flex items-center gap-2">
                         Image to Height <Box size={14} />
                     </Link>
@@ -96,7 +96,7 @@ export default function ImageToHeightPage() {
                                     className="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden"
                                 >
                                     <Link href="/" onClick={() => setIsNavMenuOpen(false)}><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Home</button></Link>
-                                    <Link href="/height-calculator" onClick={() => setIsNavMenuOpen(false)}><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Calculator</button></Link>
+                                    <Link href="/child-height-calculator" onClick={() => setIsNavMenuOpen(false)}><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Calculator</button></Link>
                                     <Link href="/image-to-height" onClick={() => setIsNavMenuOpen(false)}>
                                         <button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent bg-accent/10 rounded-xl transition-colors flex items-center justify-between">
                                             Image to Height <Box size={14} />

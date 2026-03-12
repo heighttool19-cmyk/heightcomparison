@@ -298,7 +298,7 @@ export default function HeightCalculatorPage() {
 
                 <nav className="hidden lg:flex items-center gap-10">
                     <Link href="/" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Home</Link>
-                    <Link href="/height-calculator" className="text-[15px] font-bold text-foreground transition-colors border-b-2 border-accent pb-1">Child Height Calculator</Link>
+                    <Link href="/child-height-calculator" className="text-[15px] font-bold text-foreground transition-colors border-b-2 border-accent pb-1">Child Height Calculator</Link>
                     <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors flex items-center gap-2">
                         Image to Height <Box size={14} />
                     </Link>
@@ -323,7 +323,7 @@ export default function HeightCalculatorPage() {
                             {isNavMenuOpen && (
                                 <motion.div initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 10, scale: 0.95 }} className="absolute right-0 mt-2 w-64 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden">
                                     <Link href="/"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Home</button></Link>
-                                    <Link href="/height-calculator"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground bg-accent/10 rounded-xl transition-colors">Child Height Calculator</button></Link>
+                                    <Link href="/child-height-calculator"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground bg-accent/10 rounded-xl transition-colors">Child Height Calculator</button></Link>
                                     <Link href="/image-to-height"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent hover:text-accent/80 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">Image to Height <Box size={14} /></button></Link>
                                     <Link href="/about"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">About</button></Link>
                                 </motion.div>
