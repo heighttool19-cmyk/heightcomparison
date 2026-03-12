@@ -41,7 +41,7 @@ export default function ImageToHeightPage() {
 
                 <nav className="hidden lg:flex items-center gap-10">
                     <Link href="/" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Home</Link>
-                    <Link href="/height-calculator" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Calculator</Link>
+                    <Link href="/height-calculator" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors"> Child height calculator </Link>
                     <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors border-b-2 border-accent pb-1 flex items-center gap-2">
                         Image to Height <Box size={14} />
                     </Link>

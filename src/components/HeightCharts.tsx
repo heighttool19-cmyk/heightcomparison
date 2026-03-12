@@ -228,7 +228,7 @@ export default function HeightCharts() {
                                                     value: 'Height (cm)',
                                                     angle: -90,
                                                     position: 'insideLeft',
-                                                    offset: isMobile ? 5 : 15,
+                                                    offset: isMobile ? 5 : 0,
                                                     fill: '#888888',
                                                     fontSize: isMobile ? 13 : 15,
                                                     style: { textAnchor: 'middle' },
@@ -256,9 +256,35 @@ export default function HeightCharts() {
                                                 align="center"
                                                 iconSize={isMobile ? 12 : 14}
                                             />
-                                            <Line type="monotone" dataKey="p3" name="3rd Percentile (Short Range)" stroke={color3} strokeWidth={isMobile ? 2.5 : 3} strokeDasharray="6 6" dot={{ r: isMobile ? 2 : 3, fill: color3 }} activeDot={{ r: 6 }} />
-                                            <Line type="monotone" dataKey="p50" name="50th Percentile (Average/Median)" stroke={color1} strokeWidth={isMobile ? 4 : 5} dot={{ r: isMobile ? 3 : 4, fill: color1 }} activeDot={{ r: isMobile ? 8 : 10 }} />
-                                            <Line type="monotone" dataKey="p97" name="97th Percentile (Tall Range)" stroke={color2} strokeWidth={isMobile ? 2.5 : 3} strokeDasharray="6 6" dot={{ r: isMobile ? 2 : 3, fill: color2 }} activeDot={{ r: 6 }} />
+                                            <Line
+                                                type="monotone"
+                                                dataKey="p3"
+                                                name="3rd Percentile (Short Range)"
+                                                stroke={color3}
+                                                strokeWidth={isMobile ? 2.5 : 3}
+                                                strokeDasharray="6 6"
+                                                dot={{ r: isMobile ? 2 : 3, fill: color3, strokeDasharray: 'none' }}
+                                                activeDot={{ r: 6, strokeDasharray: 'none' }}
+                                            />
+                                            <Line
+                                                type="monotone"
+                                                dataKey="p50"
+                                                name="50th Percentile (Average/Median)"
+                                                stroke={color1}
+                                                strokeWidth={isMobile ? 4 : 5}
+                                                dot={{ r: isMobile ? 3 : 4, fill: color1 }}
+                                                activeDot={{ r: isMobile ? 8 : 10 }}
+                                            />
+                                            <Line
+                                                type="monotone"
+                                                dataKey="p97"
+                                                name="97th Percentile (Tall Range)"
+                                                stroke={color2}
+                                                strokeWidth={isMobile ? 2.5 : 3}
+                                                strokeDasharray="6 6"
+                                                dot={{ r: isMobile ? 2 : 3, fill: color2, strokeDasharray: 'none' }}
+                                                activeDot={{ r: 6, strokeDasharray: 'none' }}
+                                            />
                                         </LineChart>
                                     </ResponsiveContainer>
                                 </div>
