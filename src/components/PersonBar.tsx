@@ -137,7 +137,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
             <div className="absolute inset-x-0 bottom-[60px] flex flex-col items-center justify-end">
                 {/* Indicator Line - Exactly at Height Line */}
                 <div
-                    className="w-[130%] h-[1.5px] bg-foreground/10 group-hover:bg-accent/40 shadow-sm transition-all duration-500 absolute"
+                    className="w-[108%] h-[1.5px] bg-foreground/35 group-hover:bg-accent/70 shadow-sm transition-all duration-500 absolute"
                     style={{
                         bottom: `${barHeightPx}px`,
                         zIndex: 20
@@ -212,13 +212,13 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
 
             {/* Inline Name, Edit & Delete (Below Ruler Zero Line) */}
             <div
-                className="absolute inset-x-0 bottom-0 h-[65px] flex flex-col items-center justify-center gap-1 pointer-events-auto hide-on-export"
+                className="absolute inset-x-0 bottom-0 h-[65px] flex flex-col items-center justify-center gap-0 pointer-events-auto hide-on-export"
                 style={{
                     transform: `scale(${zoom < 0.8 ? Math.max(0.7, zoom + 0.3) : 1})`,
                     transformOrigin: 'top center'
                 }}
             >
-                <span className="text-[11px] font-black text-foreground/70 uppercase tracking-tight truncate w-full text-center px-1"
+                <span className="text-[12px] font-black text-foreground/70 uppercase tracking-tight truncate w-full text-center px-1"
                     style={{ lineHeight: 1.1 }}>
                     {person.name}
                 </span>
@@ -233,16 +233,16 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                         </span>
                     </div>
                 ) : (
-                    <div className="flex items-center gap-1.5 bg-surface border border-border/60 rounded-xl px-2.5 py-1.5 focus-within:border-accent/60 backdrop-blur-md shadow-sm transition-all group-hover:border-accent/50 ring-1 ring-black/5 dark:ring-white/5 mt-1">
+                    <div className="flex items-center gap-1 bg-surface border border-border/60 rounded-xl px-1.5 py-0.5 focus-within:border-accent/60 backdrop-blur-md shadow-sm transition-all group-hover:border-accent/50 ring-1 ring-black/5 dark:ring-white/5 mt-1">
                         <input
                             type="number"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             onBlur={handleBlur}
                             onKeyDown={handleKeyDown}
-                            className="w-10 sm:w-12 bg-transparent text-xs sm:text-[13px] font-mono font-black text-center text-foreground focus:outline-none"
+                            className="w-8 sm:w-12 bg-transparent text-xs sm:text-[13px] font-mono font-black text-center text-foreground focus:outline-none"
                         />
-                        <span className="text-[9px] sm:text-[10px] font-mono font-black text-muted uppercase tracking-tighter">cm</span>
+                        <span className="text-[11px] sm:text-[10px] font-mono font-black text-muted uppercase tracking-tighter">cm</span>
                         {onRemove && (
                             <button
                                 onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}

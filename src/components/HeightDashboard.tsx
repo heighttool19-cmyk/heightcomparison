@@ -545,14 +545,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 {/* 2. Left Native Menu (Desktop) / Top Menu (Mobile) */}
                 {!readOnly && (
                     <motion.aside
-                        initial={{ x: -85, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                         className="
                     shrink-0 w-full h-[80px] bg-bg border-b overflow-hidden border-border/50 z-40
                     flex overflow-x-auto overflow-y-hidden gap-0 custom-scrollbar
                     sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col sm:py-0 sm:px-0 sm:gap-0
-                ">
+                    initial={{ x: -85, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+              ">
                         <motion.div
                             className="flex sm:flex-col h-full w-full"
                             variants={{
@@ -705,12 +705,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             style={{ height: requiredCanvasHeight }}
                         >
                             <Ruler scale={scale} maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300} canvasHeight={canvasHeight} />
-
                             <AnimatePresence mode="popLayout" initial={false}>
                                 <div
                                     className="flex items-end h-full mt-auto"
                                     style={{
-                                        gap: `${Math.max(2, (isMobile ? 8 : 12) * state.zoom)}px`,
+                                        gap: `${Math.max(5, (isMobile ? 8 : 12) * state.zoom)}px`,
                                         transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
                                     }}
                                 >
@@ -931,7 +930,7 @@ const LeftNavItem = ({ icon, label, active = false, onClick }: { icon: React.Rea
         <div className={`${active ? 'scale-110' : ''} transition-transform`}>
             {icon}
         </div>
-        <span className="text-[10px] font-black tracking-[0.05em] uppercase text-center w-full px-1 whitespace-nowrap overflow-hidden text-ellipsis">
+        <span className="text-[8px] font-black tracking-[0.05em] uppercase text-center w-full px-1 whitespace-nowrap overflow-hidden text-ellipsis">
             {label}
         </span>
     </motion.button>

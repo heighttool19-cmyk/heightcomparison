@@ -65,7 +65,7 @@ function HandBone({ stage, isActive }: { stage: typeof stages[0]; isActive: bool
     const inactiveMetaColor = "var(--tw-colors-blue-400, #60a5fa)";
 
     return (
-        <svg viewBox="0 0 120 200" width="100%" className="max-w-[110px] block mx-auto py-4">
+        <svg viewBox="0 0 120 200" width="100%" className="max-w-[150px] block    will-change-transform" style={{ transform: 'translateZ(0)' }}>
             {/* Background glow */}
             {isActive && (
                 <motion.ellipse
@@ -197,7 +197,7 @@ export default function GrowthPlateExplainer() {
 
                         {/* Bone illustration */}
                         <div
-                            className="md:col-span-1 bg-bg border-2 rounded-3xl p-6 text-center transition-colors duration-500 shadow-inner flex flex-col justify-between"
+                            className="md:col-span-1 bg-bg border-2 rounded-3xl p-6 text-center transition-colors duration-500 shadow-inner flex flex-col justify-between align-center items-center"
                             style={{ borderColor: `${current.plateColor}40` }}
                         >
                             <HandBone stage={current} isActive={true} />
@@ -241,10 +241,12 @@ export default function GrowthPlateExplainer() {
                                     <span style={{ color: current.plateColor }}>{current.growth}%</span>
                                 </div>
                                 <div className="bg-surface rounded-full h-3 overflow-hidden border border-border/50">
-                                    <div
-                                        className="h-full rounded-full transition-all duration-1000 ease-out"
+                                    <motion.div
+                                        className="h-full rounded-full"
+                                        initial={{ width: 0 }}
+                                        animate={{ width: `${current.growth}%` }}
+                                        transition={{ duration: 1, ease: "easeOut" }}
                                         style={{
-                                            width: `${current.growth}%`,
                                             background: `linear-gradient(90deg, ${current.plateColor}, ${current.plateColor}99)`
                                         }}
                                     />
@@ -255,7 +257,7 @@ export default function GrowthPlateExplainer() {
                             </div>
 
                             {/* Description */}
-                            <AnimatePresence mode="wait">
+                            <AnimatePresence>
                                 <motion.div
                                     key={active}
                                     initial={{ opacity: 0, y: 5 }}

@@ -96,10 +96,10 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                 <button
                                     key={u}
                                     onClick={() => setUnit(u)}
-                                    className={`text-[10px] font-bold uppercase tracking-tight px-2.5 py-1 rounded border transition-all ${unit === u ? 'border-accent/40 text-accent bg-accent/5' : 'border-border text-muted/70 hover:text-muted hover:border-muted/30'
+                                    className={`text-[12px] font-bold uppercase tracking-tight px-2.5 py-1 rounded border transition-all ${unit === u ? 'border-accent/40 text-accent bg-accent/5' : 'border-border text-muted/70 hover:text-muted hover:border-muted/30'
                                         }`}
                                 >
-                                    {u === 'metric' ? 'Metric' : 'Imp'}
+                                    {u === 'metric' ? 'CM' : 'FT'}
                                 </button>
                             ))}
                         </div>

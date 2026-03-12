@@ -80,14 +80,14 @@ interface CustomTooltipProps {
 const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
         return (
-            <div className="bg-surface/90 backdrop-blur-md border border-border rounded-xl p-4 shadow-xl">
-                <p className="font-bold text-foreground mb-2">Age {label}</p>
-                <div className="space-y-1">
+            <div className="bg-surface/95 backdrop-blur-md border border-border rounded-xl p-2 sm:p-4 shadow-xl max-w-[180px] sm:max-w-none">
+                <p className="font-bold text-foreground mb-1 sm:mb-2 text-xs sm:text-base">Age {label}</p>
+                <div className="space-y-0.5 sm:space-y-1">
                     {payload.map((p: TooltipPayload, i: number) => (
-                        <div key={i} className="flex items-center gap-2 text-sm">
-                            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: p.color }} />
-                            <span className="text-muted">{p.name}:</span>
-                            <span className="font-bold" style={{ color: p.color }}>{p.value} cm</span>
+                        <div key={i} className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-sm">
+                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full flex-shrink-0" style={{ backgroundColor: p.color }} />
+                            <span className="text-muted truncate">{p.name.split(' (')[0]}:</span>
+                            <span className="font-bold whitespace-nowrap" style={{ color: p.color }}>{p.value} cm</span>
                         </div>
                     ))}
                 </div>
@@ -100,11 +100,22 @@ const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
 export default function HeightCharts() {
     const [activeChart, setActiveChart] = useState<"boys" | "girls">("boys");
     const [activeView, setActiveView] = useState<"chart" | "table">("chart");
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Initial check and listener for responsiveness
+    useState(() => {
+        if (typeof window !== 'undefined') {
+            const checkMobile = () => setIsMobile(window.innerWidth < 768);
+            checkMobile();
+            window.addEventListener('resize', checkMobile);
+            return () => window.removeEventListener('resize', checkMobile);
+        }
+    });
 
     const data = activeChart === "boys" ? boysData : girlsData;
-    const color1 = activeChart === "boys" ? "#3b82f6" : "#ec4899"; // p50
-    const color2 = activeChart === "boys" ? "#0ea5e9" : "#f59e0b"; // p97
-    const color3 = activeChart === "boys" ? "#8b5cf6" : "#10b981"; // p3
+    const color1 = activeChart === "boys" ? "#3b82f6" : "#ec4899"; // p50 (Median/Avg)
+    const color2 = activeChart === "boys" ? "#06b6d4" : "#f59e0b"; // p97 (Tall/FT color)
+    const color3 = activeChart === "boys" ? "#8b5cf6" : "#10b981"; // p3 (Short)
     const label = activeChart === "boys" ? "Boys" : "Girls";
 
     return (
@@ -115,7 +126,6 @@ export default function HeightCharts() {
             <div className="h-1.5 w-24 bg-accent rounded-full" />
             <p className="text-muted leading-relaxed max-w-3xl">
                 Based on CDC growth chart data — average & median height by age (ages 2–18).
-                The 50th percentile line is both the average and the median height.
             </p>
 
             <div className="bg-bg border border-border rounded-[2.5rem] p-6 md:p-10 relative overflow-hidden group shadow-sm transition-colors duration-500">
@@ -169,16 +179,39 @@ export default function HeightCharts() {
                                 <h3 className="text-center font-bold text-foreground mb-6 text-lg">
                                     {label} Height Percentile Chart (Ages 2–18)
                                 </h3>
-                                <div className="h-[400px] w-full">
+                                <div className="h-[300px] sm:h-[400px] md:h-[500px] w-full">
                                     <ResponsiveContainer width="100%" height="100%">
-                                        <LineChart data={data} margin={{ top: 8, right: 24, left: 0, bottom: 8 }}>
+                                        <LineChart
+                                            data={data}
+                                            margin={isMobile
+                                                ? { top: 8, right: 10, left: -25, bottom: 8 }
+                                                : { top: 8, right: 24, left: 0, bottom: 8 }
+                                            }
+                                        >
                                             <CartesianGrid strokeDasharray="3 3" stroke="#888888" strokeOpacity={0.15} />
-                                            <XAxis dataKey="age" stroke="#888888" tick={{ fill: "#888888" }} tickMargin={10} />
-                                            <YAxis stroke="#888888" tick={{ fill: "#888888" }} domain={[70, 200]} tickMargin={10} />
+                                            <XAxis
+                                                dataKey="age"
+                                                stroke="#888888"
+                                                tick={{ fill: "#888888", fontSize: isMobile ? 10 : 12 }}
+                                                tickMargin={isMobile ? 5 : 10}
+                                            />
+                                            <YAxis
+                                                stroke="#888888"
+                                                tick={{ fill: "#888888", fontSize: isMobile ? 10 : 12 }}
+                                                domain={[70, 200]}
+                                                tickMargin={isMobile ? 5 : 10}
+                                                hide={isMobile && activeView === 'chart'}
+                                            />
                                             <Tooltip content={<CustomTooltip />} />
-                                            <Legend wrapperStyle={{ paddingTop: "20px" }} />
+                                            <Legend
+                                                wrapperStyle={{
+                                                    paddingTop: isMobile ? "10px" : "20px",
+                                                    fontSize: isMobile ? "10px" : "12px"
+                                                }}
+                                                formatter={(value) => isMobile ? value.split(' (')[0] : value}
+                                            />
                                             <Line type="monotone" dataKey="p3" name="3rd Percentile (Short Range)" stroke={color3} strokeWidth={2} strokeDasharray="5 5" dot={false} />
-                                            <Line type="monotone" dataKey="p50" name="50th Percentile (Average/Median)" stroke={color1} strokeWidth={4} activeDot={{ r: 8 }} />
+                                            <Line type="monotone" dataKey="p50" name="50th Percentile (Average/Median)" stroke={color1} strokeWidth={isMobile ? 3 : 4} activeDot={{ r: isMobile ? 6 : 8 }} />
                                             <Line type="monotone" dataKey="p97" name="97th Percentile (Tall Range)" stroke={color2} strokeWidth={2} strokeDasharray="5 5" dot={false} />
                                         </LineChart>
                                     </ResponsiveContainer>
@@ -205,7 +238,7 @@ export default function HeightCharts() {
                                     <thead>
                                         <tr className="border-b-2 border-border">
                                             {["Age", "Boys Avg (cm)", "Boys Avg (ft)", "Boys Median", "Girls Avg (cm)", "Girls Avg (ft)", "Girls Median"].map(h => (
-                                                <th key={h} className="py-4 px-4 font-bold text-muted text-sm">{h}</th>
+                                                <th key={h} className="py-4 px-2 sm:px-2 font-bold text-muted text-[10px] sm:text-xs md:text-sm">{h}</th>
                                             ))}
                                         </tr>
                                     </thead>
@@ -219,13 +252,13 @@ export default function HeightCharts() {
                                             };
                                             return (
                                                 <tr key={row.age} className="hover:bg-surface/50 transition-colors">
-                                                    <td className="py-3 px-1 font-black text-foreground">{row.age} yrs</td>
-                                                    <td className="py-3 px-4 text-blue-500 font-semibold">{row.boysAvg}</td>
-                                                    <td className="py-3 px-4 text-blue-400 font-medium text-xs">{toFt(row.boysAvg)}</td>
-                                                    <td className="py-3 px-4 text-blue-500 font-semibold">{row.boysMedian}</td>
-                                                    <td className="py-3 px-4 text-pink-500 font-semibold">{row.girlsAvg}</td>
-                                                    <td className="py-3 px-4 text-pink-400 font-medium text-xs">{toFt(row.girlsAvg)}</td>
-                                                    <td className="py-3 px-4 text-pink-500 font-semibold">{row.girlsMedian}</td>
+                                                    <td className="py-3 px-1 font-black text-[#e94560]">{row.age} yrs</td>
+                                                    <td className="py-3 px-4 text-[#2660ea] font-semibold">{row.boysAvg}</td>
+                                                    <td className="py-3 px-4 text-[#2fd9f5] font-medium text-xs font-mono">{toFt(row.boysAvg)}</td>
+                                                    <td className="py-3 px-4 text-[#455eee] font-semibold">{row.boysMedian}</td>
+                                                    <td className="py-3 px-4 text-[#e94958] font-semibold">{row.girlsAvg}</td>
+                                                    <td className="py-3 px-4 text-[#bf964f] font-medium text-xs font-mono">{toFt(row.girlsAvg)}</td>
+                                                    <td className="py-3 px-4 text-[#72f7b4] font-semibold">{row.girlsMedian}</td>
                                                 </tr>
                                             );
                                         })}

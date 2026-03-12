@@ -209,7 +209,7 @@ export default function ImageToHeightPage() {
                                         <div className="w-12 h-12 rounded-2xl bg-bg border border-border flex items-center justify-center text-muted group-hover:text-accent group-hover:bg-accent/5 transition-all mb-4">
                                             {step.icon}
                                         </div>
-                                        <p className="text-[10px] font-black uppercase text-accent/60 mb-1 tracking-widest">Step 0{idx + 1}</p>
+                                        <p className="text-[14px] font-black uppercase text-accent/60 mb-1 tracking-widest">Step 0{idx + 1}</p>
                                         <h4 className="font-bold text-foreground mb-2">{step.title}</h4>
                                         <p className="text-xs text-muted leading-relaxed">{step.body}</p>
                                     </div>
