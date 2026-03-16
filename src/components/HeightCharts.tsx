@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const GEORGIA = "'Georgia', serif";
 
-// CDC Growth Chart Data (cm) — P3, P50 (Median), P97
+// CDC Growth Chart Data (cm) : P3, P50 (Median), P97
 const boysData = [
     { age: 2, p3: 81.7, p50: 87.1, p97: 93.0 },
     { age: 3, p3: 88.7, p50: 95.3, p97: 102.1 },
@@ -134,7 +134,7 @@ export default function HeightCharts() {
             </h2>
             <div className="h-1.5 w-24 bg-accent rounded-full" />
             <p className="text-muted leading-relaxed max-w-3xl">
-                Based on CDC growth chart data — average & median height by age (ages 2–18) — cm
+                Based on CDC growth chart data : average & median height by age (ages 2–18) : cm
             </p>
 
             <div className="bg-bg border border-border rounded-[2.5rem] p-4 sm:p-6 md:p-10 relative overflow-hidden group shadow-sm transition-colors duration-500">
@@ -197,8 +197,8 @@ export default function HeightCharts() {
                                         <LineChart
                                             data={data}
                                             margin={isMobile
-                                                ? { top: 20, right: 15, left: 15, bottom: 120 }
-                                                : { top: 20, right: 30, left: 15, bottom: 60 }
+                                                ? { top: 20, right: 15, left: 15, bottom: 30 }
+                                                : { top: 20, right: 30, left: 15, bottom: 20 }
                                             }
                                             style={{ fontFamily: GEORGIA }}
                                         >
@@ -288,8 +288,8 @@ export default function HeightCharts() {
                                         </LineChart>
                                     </ResponsiveContainer>
                                 </div>
-                                <p className="text-center text-[10px] sm:text-xs text-muted mt-8 sm:mt-10 uppercase tracking-wider font-bold" style={{ fontFamily: GEORGIA }}>
-                                    Source: CDC Growth Charts — National Center for Health Statistics
+                                <p className="text-center text-[10px] sm:text-xs text-muted  uppercase tracking-wider font-bold" style={{ fontFamily: GEORGIA }}>
+                                    Source: CDC Growth Charts : National Center for Health Statistics
                                 </p>
                             </motion.div>
                         )}
@@ -316,20 +316,20 @@ export default function HeightCharts() {
                                     </thead>
                                     <tbody className="divide-y divide-border/50 text-sm">
                                         {tableData.map((row) => (
-                                            <tr key={row.age} className="hover:bg-surface/50 transition-colors">
+                                            <tr key={row.age} className="hover:bg-surface/50 transition-colors text-center">
                                                 <td className="py-3 px-1 font-black text-[#e94560]">{row.age} yrs</td>
-                                                <td className="py-3 px-4 text-[#2660ea] font-semibold">{row.boysAvg}</td>
-                                                <td className="py-3 px-4 text-[#2fd9f5] font-medium text-xs font-mono">{toFt(row.boysAvg)}</td>
-                                                <td className="py-3 px-4 text-[#455eee] font-semibold">{row.boysMedian}</td>
-                                                <td className="py-3 px-4 text-[#e94958] font-semibold">{row.girlsAvg}</td>
-                                                <td className="py-3 px-4 text-[#bf964f] font-medium text-xs font-mono">{toFt(row.girlsAvg)}</td>
-                                                <td className="py-3 px-4 text-[#72f7b4] font-semibold">{row.girlsMedian}</td>
+                                                <td className="py-3 px-4 font-semibold text-[#4f8ef7]">{row.boysAvg}</td>
+                                                <td className="py-3 px-4 font-medium text-xs font-mono text-[#38d9f5]">{toFt(row.boysAvg)}</td>
+                                                <td className="py-3 px-4 font-semibold text-[#a78bfa]">{row.boysMedian}</td>
+                                                <td className="py-3 px-4 font-semibold text-[#f76fa1]">{row.girlsAvg}</td>
+                                                <td className="py-3 px-4 font-medium text-xs font-mono text-[#f7a24f]">{toFt(row.girlsAvg)}</td>
+                                                <td className="py-3 px-4 font-semibold text-[#7ef7b4]">{row.girlsMedian}</td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
                                 <p className="text-center text-xs text-muted mt-6 uppercase tracking-wider font-bold" style={{ fontFamily: GEORGIA }}>
-                                    Source: CDC Growth Charts — National Center for Health Statistics
+                                    Source: CDC Growth Charts : National Center for Health Statistics
                                 </p>
                             </motion.div>
                         )}
@@ -341,8 +341,12 @@ export default function HeightCharts() {
                         {[
                             { label: "Boys stop growing", value: "~18 yrs", color: "text-blue-500", bg: "bg-blue-500/10", border: "border-blue-500/20" },
                             { label: "Girls stop growing", value: "~15-16 yrs", color: "text-pink-500", bg: "bg-pink-500/10", border: "border-pink-500/20" },
-                            { label: "Boys median adult height", value: "172.2 cm", color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/20" },
-                            { label: "Girls median adult height", value: "160.1 cm", color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/20" },
+                            {
+                                label: "Boys median adult height", value: `172.2 cm / 5'8" `, color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/20"
+                            },
+                            {
+                                label: "Girls median adult height", value: `160.1 cm / 5'3"`, color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/20"
+                            },
                         ].map(card => (
                             <div key={card.label} className={`p-2 rounded-2xl border ${card.border} ${card.bg} text-center`} style={{ fontFamily: GEORGIA }}>
                                 <div className={`text-xl font-black ${card.color} mb-1`}>{card.value}</div>

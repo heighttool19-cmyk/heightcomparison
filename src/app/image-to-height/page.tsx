@@ -3,112 +3,25 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeftRight, Plus, Ruler, Trash2, Box, Moon, Sun, Monitor, Info, HelpCircle, CheckCircle2, Camera, Smartphone, ChevronDown, Menu } from 'lucide-react';
+import { ArrowLeftRight, Plus, Ruler, Trash2, Box, Moon, Sun, Monitor, HelpCircle, CheckCircle2, Camera, Smartphone, ChevronDown, Menu, Info } from 'lucide-react';
 import { useUnitStore, useThemeStore, usePersonStore } from '@/store';
 import { ImageMeasurement } from '@/components/ImageMeasurement';
+import Navbar from '@/components/Navbar';
 
 export default function ImageToHeightPage() {
     const { unitSystem, toggleUnitSystem } = useUnitStore();
     const { theme, toggleTheme } = useThemeStore();
     const { persons, removePerson } = usePersonStore();
-    const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
+    const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
     // Apply the theme to the <html> document root
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-    // No manual add logic needed anymore as per requirements
-
     return (
         <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
-            {/* Top Header */}
-            <header className="h-[70px] shrink-0 border-b border-border/50 bg-bg flex items-center justify-between px-6 sm:px-12 z-50">
-                <div className="flex items-center gap-3 cursor-pointer">
-                    <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
-                        <div className="flex items-end gap-[2px] h-4">
-                            <div className="w-1.5 h-full bg-white rounded-t-sm" />
-                            <div className="w-1.5 h-2/3 bg-white rounded-t-sm" />
-                            <div className="w-1.5 h-1/3 bg-white rounded-t-sm" />
-                        </div>
-                    </div>
-                    <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors">
-                        Height<span className="text-[#3B82F6]">Comparison</span>
-                    </h1>
-                </div>
-
-                <nav className="hidden lg:flex items-center gap-10">
-                    <Link href="/" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Home</Link>
-                    <Link href="/child-height-calculator" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors"> Child height calculator </Link>
-                    <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors border-b-2 border-accent pb-1 flex items-center gap-2">
-                        Image to Height <Box size={14} />
-                    </Link>
-                    <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">About</button>
-                </nav>
-
-                <div className="flex items-center gap-4">
-                    <button
-                        onClick={toggleUnitSystem}
-                        className="flex items-center gap-2 group hover:bg-item-hover px-4 py-2 rounded-xl transition-all border border-border bg-surface"
-                    >
-                        <ArrowLeftRight size={16} className="text-muted/50 group-hover:text-accent" />
-                        <span className="text-xs font-bold uppercase tracking-widest text-muted group-hover:text-foreground">
-                            {unitSystem === 'metric' ? 'cm' : 'ft'}
-                        </span>
-                    </button>
-
-                    {/* Theme Toggle Button */}
-                    <button
-                        onClick={toggleTheme}
-                        className="p-2 text-muted hover:text-foreground hover:bg-surface/50 rounded-full transition-colors flex items-center justify-center"
-                        title="Toggle Theme"
-                    >
-                        <AnimatePresence mode="popLayout" initial={false}>
-                            {theme === 'dark' ? (
-                                <motion.div key="moon" initial={{ rotate: -90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} exit={{ rotate: 90, scale: 0 }} transition={{ duration: 0.2 }}>
-                                    <Moon size={18} />
-                                </motion.div>
-                            ) : (
-                                <motion.div key="sun" initial={{ rotate: 90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} exit={{ rotate: -90, scale: 0 }} transition={{ duration: 0.2 }}>
-                                    <Sun size={18} />
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </button>
-
-                    {/* Mobile Hamburger Menu */}
-                    <div className="relative">
-                        <button
-                            className="lg:hidden p-2 text-muted hover:text-foreground transition-colors -ml-2"
-                            onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
-                        >
-                            <Menu size={24} />
-                        </button>
-
-                        <AnimatePresence>
-                            {isNavMenuOpen && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                    className="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden"
-                                >
-                                    <Link href="/" onClick={() => setIsNavMenuOpen(false)}><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Home</button></Link>
-                                    <Link href="/child-height-calculator" onClick={() => setIsNavMenuOpen(false)}><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Calculator</button></Link>
-                                    <Link href="/image-to-height" onClick={() => setIsNavMenuOpen(false)}>
-                                        <button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent bg-accent/10 rounded-xl transition-colors flex items-center justify-between">
-                                            Image to Height <Box size={14} />
-                                        </button>
-                                    </Link>
-                                    <button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>About</button>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
-                </div>
-            </header>
+            <Navbar activePage="image-to-height" />
 
             {/* Main Application Area - Mobile First stacking */}
             <main className="flex-1 flex flex-col md:flex-row relative p-4 gap-4 bg-canvas">
@@ -128,52 +41,76 @@ export default function ImageToHeightPage() {
                     </div>
 
                     {/* Comprehensive Content Section */}
-                    <div className="flex flex-col gap-12 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                    <div className="flex p-6 flex-col gap-12 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
 
                         {/* 1. Main Headline & Problem */}
                         <div className="space-y-6">
-                            <h2 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight">
-                                How to Measure Your Height Without a Measuring Tape — <span className="text-accent">Upload a Photo and Find Out Instantly</span>
-                            </h2>
+                            <h1 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight">
+                                Measure Your Height From a Photo. <span className="text-accent">No Tape Measure Needed.</span>
+                            </h1>
                             <div className="h-1.5 w-24 bg-accent rounded-full" />
+                            <p className="text-muted leading-relaxed text-lg max-w-3xl mt-6">
+                                Upload any photo with a door or known object in the frame. Set one reference point. Get your height in centimeters and feet and inches. Results land within 1 to 2 centimeters. Free, no sign-up, works on any device.
+                            </p>
+                            <div className="pt-2 flex flex-col items-start gap-3">
+                                <button
+                                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                    className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 flex items-center gap-2 active:scale-95"
+                                >
+                                    <Monitor size={16} /> Upload Your Photo and Measure Now
+                                </button>
+                                <p className="text-[11px] text-muted font-medium flex items-center gap-1.5 ml-2">
+                                    <CheckCircle2 size={12} className="text-accent" /> Accurate to 1–2 cm. Free. No account needed.
+                                </p>
+                            </div>
 
-                            <div className="grid md:grid-cols-5 gap-8 items-start">
-                                <div className="md:col-span-3 space-y-4">
-                                    <h3 className="text-xl font-bold text-foreground">The Problem With Measuring Your Own Height</h3>
+                            {/* Stacked Content Layout */}
+                            <div className="mt-12 space-y-12 max-w-3xl">
+
+                                {/* Problem Section */}
+                                <div className="space-y-4">
+                                    <h2 className="text-2xl font-bold text-foreground">The Problem With Measuring Your Own Height</h2>
                                     <p className="text-muted leading-relaxed">
-                                        Measuring your own height accurately is harder than it looks — especially alone.
-                                        Most people have tried the wall-and-book method. Stand straight, balance a hardback on your head, mark the wall, measure the mark.
-                                        Simple enough except you&apos;re probably hunching slightly, the book isn&apos;t perfectly level, or the tape isn&apos;t sitting flat on the floor.
-                                        The result is off by half an inch to a full inch without you realizing it.
+                                        Measuring your own height accurately is harder than it looks. Most people are off by half an inch to a full inch without realizing it.
                                     </p>
-                                    <div className="p-4 bg-accent/5 border-l-4 border-accent rounded-r-xl">
+                                    <p className="text-muted leading-relaxed">
+                                        The wall-and-book method fails in three specific ways. You are probably hunching slightly. The book is not perfectly level. The tape is not sitting flat on the floor. Each error is small. Together they push the reading off by more than you expect.
+                                    </p>
+                                    <div className="p-4 bg-accent/5 border-l-4 border-accent rounded-r-xl my-4">
                                         <p className="text-sm italic text-foreground/80">
-                                            &quot;One more thing most people don&apos;t know: you&apos;re up to 1 cm taller in the morning than at night. Your spine compresses slightly throughout the day.&quot;
+                                            There is one more thing most people miss. Your spine compresses under your body weight throughout the day. You stand up to one centimeter taller in the morning than at night. The time you measure actually changes the number.
                                         </p>
                                     </div>
                                     <p className="text-muted leading-relaxed">
-                                        Doing it alone makes it worse. Reaching up to mark a wall while keeping your heels flat and standing straight at the same time is awkward at best.
-                                        And most guides on how to measure your height at home assume you have a second person helping, which defeats the point.
-                                    </p>
+                                        Doing it alone makes everything worse. Standing straight, balancing a hardback on your head, marking a wall, and measuring the mark, all at once, is physically awkward. Most guides assume a second person is helping. That defeats the point.
+                                        <br /> There is a cleaner way.</p>
                                 </div>
-                                <div className="md:col-span-2 bg-surface border border-border rounded-3xl p-6 shadow-sm space-y-4">
-                                    <h4 className="font-black uppercase tracking-widest text-[10px] text-accent">Quick Workarounds</h4>
-                                    <div className="space-y-3">
+
+                                {/* Alternate Methods Section (Reformatted to match article flow) */}
+                                <div className="space-y-4">
+                                    <h2 className="text-2xl font-bold text-foreground">How to Measure Your Height Without a Measuring Tape</h2>
+                                    <p className="text-muted leading-relaxed">
+                                        Three methods work reliably when no tape measure is available. Each uses a fixed reference dimension to establish scale.
+                                    </p>
+
+                                    <div className="space-y-6 mt-6">
                                         {[
-                                            { title: "Doorframe Method", desc: "Standard doors are 203cm tall. Use them as a baseline." },
-                                            { title: "Arm Span Method", desc: "Wingspan fingertip-to-fingertip is roughly equal to height." },
-                                            { title: "Dollar Bill Method", desc: "A US dollar bill is 6.14 inches long. Stack and multiply." }
+                                            { title: "The doorframe method.", desc: "Standard US interior doors stand 80 inches (203 cm) tall. Stand in the frame, note where the top of your head falls, and you have a working estimate. Not precise to the half-inch, but accurate enough to know whether you are 5'8\" or 5'10\"." },
+                                            { title: "The arm span method.", desc: "Your fingertip-to-fingertip wingspan with arms fully extended matches your height within about one inch. If you know your arm span, you know your height." },
+                                            { title: "The dollar bill method.", desc: "A US dollar bill is 6.14 inches long. Mark your height on a wall, stack bills from the floor to the mark, count them, and multiply. Tedious, but mathematically sound." }
                                         ].map((item, i) => (
-                                            <div key={i} className="flex gap-3 items-start">
-                                                <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center text-accent text-[10px] font-bold shrink-0">{i + 1}</div>
+                                            <div key={i} className="flex gap-4 items-start">
+                                                <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xs font-bold shrink-0 mt-0.5">{i + 1}</div>
                                                 <div>
-                                                    <p className="text-xs font-bold text-foreground">{item.title}</p>
-                                                    <p className="text-[11px] text-muted leading-tight mt-0.5">{item.desc}</p>
+                                                    <h3 className="text-base font-bold text-foreground">{item.title}</h3>
+                                                    <p className="text-muted leading-relaxed mt-1">{item.desc}</p>
                                                 </div>
                                             </div>
                                         ))}
                                     </div>
-                                    <p className="text-[10px] text-muted italic pt-2 border-t border-border">Limitation: These get you close, not exact.</p>
+                                    <p className="text-muted leading-relaxed pt-6">
+                                        All three get you close. None gets you exact. Confirming the precise number still needs a calibrated reference at some point, unless you use a photo.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -182,36 +119,53 @@ export default function ImageToHeightPage() {
                         <div className="bg-bg border border-border rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group">
                             <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000" />
                             <div className="relative z-10 max-w-3xl">
-                                <h3 className="text-2xl font-black text-foreground mb-4">Using a Photo: The Most Reliable Shortcut</h3>
-                                <p className="text-muted leading-relaxed text-lg">
-                                    Every photo contains hidden scale information as long as you know the size of at least one object in it.
-                                    If either a standard door (203cm) or a credit card (85.6mm) appears in a photo with a person, the height is calculable.
-                                    The relationship between every object in the frame is mathematically fixed once you have one known measurement.
+                                <h2 className="text-2xl font-black text-foreground mb-4">How to Determine Your Height Without Measuring: Using a Photo</h2>
+                                <p className="text-muted leading-relaxed text-lg mb-4">
+                                    Every photo contains fixed scale data as long as one object of known size appears in the frame. A standard door is 203 cm. A credit card is 85.6 mm wide. When either appears alongside a person, that person&apos;s height is calculable from the image alone.
                                 </p>
+                                <p className="text-muted leading-relaxed text-lg mb-8">
+                                    That is exactly how this tool works. Upload a photo, identify one object you know the size of, and the tool calculates the height of anyone in the frame. No tape measure. No wall marks. No second person.
+                                </p>
+                                <button
+                                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                    className="bg-accent text-white px-8 py-3.5 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 flex items-center gap-2 active:scale-95 inline-flex"
+                                >
+                                    <Monitor size={16} /> Upload Your Photo and Measure Now
+                                </button>
                             </div>
                         </div>
 
                         {/* 3. Step-by-Step Visualization */}
-                        <div className="space-y-8">
+                        <div className="space-y-8 w-full">
                             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                                <h3 className="text-2xl font-black text-foreground">How It Works: Step-by-Step</h3>
-                                <span className="text-xs font-bold text-muted uppercase tracking-[0.2em] bg-surface border border-border px-4 py-1.5 rounded-full">Automated Process</span>
+                                {/* Responsive sizing + whitespace-nowrap ensures it stays on one line on all devices */}
+                                <h3 className="text-[1.35rem] sm:text-2xl md:text-3xl lg:text-[28px] xl:text-3xl font-black text-foreground whitespace-nowrap tracking-tight">
+                                    How the Image Height Tool Works: Step by Step
+                                </h3>
                             </div>
 
                             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                                 {[
-                                    { icon: <Camera size={20} />, title: "Upload Your Photo", body: "Select any photo where the subject is visible. For best results, use a full-body photo." },
-                                    { icon: <Ruler size={20} />, title: "Calibrate Measurement", body: "Mark a known object like a door (203cm) or card (8.56cm) to set the scale." },
-                                    { icon: <Smartphone size={20} />, title: "Measure Your Height", body: "Draw a line from the floor to the top of the subject's head." },
-                                    { icon: <CheckCircle2 size={20} />, title: "Get Your Results", body: "Our tool calculates the height instantly in both CM and FT/IN." }
+                                    { icon: <Camera size={20} />, title: "Upload your photo", body: "Use any photo that shows the full body, head to toe. Include at least one object of known size in the frame. A doorframe is the most reliable option." },
+                                    { icon: <Ruler size={20} />, title: "Calibrate with a known object", body: "Select the reference object and enter its real size. A standard US interior door at 203 cm (80 inches) is the best choice. Its size is fixed and consistent across US construction. The more accurate your reference, the more accurate your result." },
+                                    { icon: <Smartphone size={20} />, title: "Draw your measurement line", body: "Place a line from the floor beneath the subject's feet to the top of their head. Start from the floor, not the feet. That gap matters when footwear appears in the photo." },
+                                    { icon: <CheckCircle2 size={20} />, title: "Read your result and save to chart", body: "Your height appears in both centimeters and feet and inches. Hit \"Save to Chart\" to log it and compare against friends, athletes, celebrities, or anyone else." }
                                 ].map((step, idx) => (
-                                    <div key={idx} className="bg-surface border border-border p-6 rounded-3xl hover:border-accent/40 transition-all hover:translate-y-[-4px] group">
-                                        <div className="w-12 h-12 rounded-2xl bg-bg border border-border flex items-center justify-center text-muted group-hover:text-accent group-hover:bg-accent/5 transition-all mb-4">
+                                    <div key={idx} className="bg-surface border border-border p-6 rounded-2xl hover:border-accent/40 transition-all hover:translate-y-[-4px] group flex flex-col">
+                                        {/* Circular icon container to match screenshot */}
+                                        <div className="w-12 h-12 rounded-full bg-bg border border-border flex items-center justify-center text-muted group-hover:text-accent group-hover:bg-accent/5 transition-all mb-6">
                                             {step.icon}
                                         </div>
-                                        <p className="text-[14px] font-black uppercase text-accent/60 mb-1 tracking-widest">Step 0{idx + 1}</p>
-                                        <h4 className="font-bold text-foreground mb-2">{step.title}</h4>
-                                        <p className="text-xs text-muted leading-relaxed">{step.body}</p>
+                                        {/* Solid green step text */}
+                                        <p className="text-[14px] font-black uppercase text-accent mb-2 tracking-widest">
+                                            Step 0{idx + 1}
+                                        </p>
+                                        <h4 className="text-base font-bold text-foreground mb-3 leading-snug">
+                                            {step.title}
+                                        </h4>
+                                        <p className="text-[13px] text-muted leading-relaxed">
+                                            {step.body}
+                                        </p>
                                     </div>
                                 ))}
                             </div>
@@ -219,23 +173,23 @@ export default function ImageToHeightPage() {
 
                         {/* 4. Tips Section */}
                         <div className="space-y-6">
-                            <h3 className="text-2xl font-black text-foreground flex items-center gap-3">
-                                <Info className="text-accent" /> Tips for High Accuracy
-                            </h3>
+                            <h2 className="text-2xl font-black text-foreground flex items-center gap-3">
+                                <Info className="text-accent" /> How to Measure Your Height Accurately: Tips for the Best Result
+                            </h2>
                             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {[
-                                    { title: "Shoot Straight-on", desc: "Camera at chest height, pointed straight. Avoid high or low angles." },
-                                    { title: "Stand Straight", desc: "Heels flat, back straight, head level. Slouching introduces errors." },
-                                    { title: "Reference Placement", desc: "Keep the reference object close to the subject to avoid lens distortion." },
-                                    { title: "Standard Doors", desc: "Most reliable indoors. 203cm is the universal standard baseline." },
-                                    { title: "Full Body", desc: "Feet must be in view. Always measure from the floor, not the toes." }
+                                    { title: "Camera angle", desc: "Camera angle is the single biggest source of error in photo-based measurement. A phone aimed from below adds false height. From above it removes it. Set your camera at mid-chest height, pointed straight ahead." },
+                                    { title: "Reference Placement", desc: "Keep your reference object close to the subject in the frame. Lens distortion increases toward the edges of a photo. A reference object on one side of the frame and a subject on the other introduces small but real scale errors." },
+                                    { title: "Stand straight", desc: "Stand straight in the photo. Heels flat, back straight, head level. Posture errors in the photo produce the same measurement errors as posture errors against a wall." },
+                                    { title: "Show the full body", desc: "Show the full body. Cropped feet or a cropped head makes a floor-to-crown measurement impossible. Head to toe in the frame gives the cleanest result." },
+                                    { title: "Use a door", desc: "Use a door whenever possible. At 203 cm it is the most universally sized and most commonly photographed reference object in any indoor setting." }
                                 ].map((tip, i) => (
                                     <div key={i} className="flex gap-4 items-start">
                                         <div className="shrink-0 w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
                                             <Plus size={16} />
                                         </div>
                                         <div>
-                                            <h4 className="text-sm font-bold text-foreground leading-tight">{tip.title}</h4>
+                                            <h3 className="text-sm font-bold text-foreground leading-tight">{tip.title}</h3>
                                             <p className="text-xs text-muted mt-1 leading-relaxed">{tip.desc}</p>
                                         </div>
                                     </div>
@@ -243,51 +197,42 @@ export default function ImageToHeightPage() {
                             </div>
                         </div>
 
-                        {/* 5. Frequently Asked Questions — Accordion */}
+                        {/* 5. Frequently Asked Questions : Accordion */}
                         <div className="border border-border rounded-[2.5rem] overflow-hidden mb-20 bg-surface transition-colors duration-500">
                             {/* Header */}
                             <div className="px-8 md:px-12 pt-10 pb-8 text-center space-y-2 border-b border-border">
                                 <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
                                     <HelpCircle size={12} /> FAQ
                                 </div>
-                                <h3 className="text-3xl font-black text-foreground">Frequently Asked Questions</h3>
-                                <p className="text-sm text-muted">Everything you need to know about the image height tool</p>
+                                <h2 className="text-3xl font-black text-foreground">Frequently Asked Questions</h2>
                             </div>
 
                             {/* Accordion Items */}
                             <div className="px-6 md:px-10 py-6 flex flex-col gap-3">
                                 {[
                                     {
-                                        q: "How accurate is the photo measurement?",
-                                        a: "Typically within 1–2 cm. Accuracy depends on camera angle, distance, and calibration precision. Best results come from straight-on photos at waist height with a clearly visible reference object on the same plane as the subject."
+                                        q: "How accurate is height measurement from a photo?",
+                                        a: "Results land within 1 to 2 centimeters with a straight-on photo and a reliable reference object. Camera angle and calibration are the two main sources of error. For personal tracking and comparisons, that accuracy is more than enough."
                                     },
                                     {
                                         q: "What is the best object to use for calibration?",
-                                        a: "A standard interior door (203 cm / 6 ft 8 in) is the most reliable because it's a universal size. Credit cards (8.56 × 5.4 cm), A4 paper (29.7 cm tall), and standard rulers also work very well."
+                                        a: "A standard interior door at 203 cm (80 inches) is the most reliable choice. Its dimensions are fixed across US construction and it appears in a wide range of indoor photos. Credit cards at 85.6 mm wide and A4 paper at 297 mm both work as alternatives."
                                     },
                                     {
                                         q: "Can I measure someone else's height from a photo?",
-                                        a: "Yes — this tool works on any photo of any person or object. As long as there is one reference object of known size in the frame, you can calculate the height of anything else in the image."
+                                        a: "Yes. Upload any photo where the person appears next to a known object, calibrate, draw the line, read the result. The subject does not need to be present."
                                     },
                                     {
-                                        q: "Does it work for measuring celebrities?",
-                                        a: "Yes. If a paparazzi photo or red-carpet shot has a door, railing, or other known object visible alongside the celebrity, you can calibrate and measure with reasonable accuracy."
+                                        q: "Does it work for celebrities?",
+                                        a: "Yes, when the photo shows them next to a door or another object of known size. Photos taken from unusual angles produce less reliable results."
                                     },
                                     {
-                                        q: "Do I need to create an account?",
-                                        a: "No. The tool is completely free, requires no sign-up, and runs entirely in your browser. Nothing is uploaded to any server."
+                                        q: "Why do I measure taller in the morning?",
+                                        a: "Spinal discs compress under body weight throughout the day. That compression reduces standing height by up to one centimeter between morning and evening. Measuring at the same time each day gives the most consistent results over time."
                                     },
                                     {
-                                        q: "Is my uploaded photo stored or shared?",
-                                        a: "No. All image processing happens locally on your device using the browser's Canvas API. Your photos are never sent to a server, stored remotely, or shared with anyone."
-                                    },
-                                    {
-                                        q: "What photos give the best results?",
-                                        a: "Full-body photos taken straight-on (not at an angle), in good lighting, where both feet and top of head are clearly visible. Avoid wide-angle or fisheye lenses as they distort proportions."
-                                    },
-                                    {
-                                        q: "Can I use this on mobile?",
-                                        a: "Yes. The tool is fully mobile-compatible. Use fullscreen mode for more precise line-drawing, and the tap-to-draw feature lets you place start and end points with just two taps."
+                                        q: "Do I need an account?",
+                                        a: "No. The tool is free, requires no sign-up, and works on any device."
                                     }
                                 ].map((faq, idx) => {
                                     const isOpen = openFaqIndex === idx;
@@ -351,13 +296,13 @@ export default function ImageToHeightPage() {
 
                             {/* Footer CTA */}
                             <div className="px-8 md:px-12 pb-10 pt-4 border-t border-border flex flex-col items-center gap-4 text-center">
-                                <h4 className="text-xl font-bold text-foreground">No Tape Measure? No Problem.</h4>
-                                <p className="text-sm text-muted max-w-sm">Upload a photo, set your reference point, and get your measurement in under a minute.</p>
+                                <h2 className="text-xl font-bold text-foreground">No tape measure. No second person. No wall marks.</h2>
+                                <p className="text-sm text-muted max-w-sm">Upload a photo and get your height in under a minute.</p>
                                 <button
                                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                                     className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 flex items-center gap-2 active:scale-95"
                                 >
-                                    <Monitor size={16} /> Measure Now
+                                    <Monitor size={16} /> Upload Your Photo and Measure Now
                                 </button>
                             </div>
                         </div>
@@ -400,10 +345,9 @@ export default function ImageToHeightPage() {
                                         <p className="text-xs text-muted font-mono mt-0.5">Reference Object</p>
                                     </div>
                                 </div>
-                                {/* Notice the added pr-8 md:pr-10 here to match the persons list */}
                                 <div className="flex items-baseline justify-end gap-1.5 pr-8 md:pr-10">
                                     <span className="text-lg font-black text-foreground whitespace-nowrap">
-                                        {unitSystem === 'metric' ? '210.0' : (210 / 30.48).toFixed(1)}
+                                        {unitSystem === 'metric' ? '203.0' : (203 / 30.48).toFixed(1)}
                                     </span>
                                     <span className="text-[11px] font-bold text-muted uppercase whitespace-nowrap">
                                         {unitSystem === 'metric' ? 'cm' : 'ft'}
@@ -432,7 +376,6 @@ export default function ImageToHeightPage() {
                                             </div>
                                         </div>
 
-                                        {/* The fix: Added pr-8 to give the text room, and absolute positioned the button */}
                                         <div className="flex items-center pr-8 md:pr-10">
                                             <div className="flex items-baseline justify-end gap-1.5">
                                                 <span className="text-lg font-black text-foreground whitespace-nowrap">
@@ -443,7 +386,6 @@ export default function ImageToHeightPage() {
                                                 </span>
                                             </div>
 
-                                            {/* Button is now absolutely positioned to the right edge */}
                                             <button
                                                 onClick={() => removePerson(person.id)}
                                                 className="absolute right-3 w-8 h-8 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"

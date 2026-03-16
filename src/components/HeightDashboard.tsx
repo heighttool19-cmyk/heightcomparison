@@ -2,17 +2,18 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link as LinkIcon, ArrowLeftRight, Focus, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Person, Entity } from '../types';
+import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Sun, Moon, Menu, Link as LinkIcon, ArrowLeftRight, Focus, ChevronLeft, ChevronRight, Mountain as MountainIcon } from 'lucide-react';
+import { Person, Entity, Mountain } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
 import PersonBar from './PersonBar';
 import Ruler from './Ruler';
 import Sidebar from './Sidebar';
 import { usePersonStore } from '../store';
 import Link from 'next/link';
+import Navbar from './Navbar';
 
 
-type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
+type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON' | 'MOUNTAINS';
 
 interface HeightDashboardProps {
     readOnly?: boolean;
@@ -41,11 +42,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     const [activePanel, setActivePanel] = useState<PanelType>('ADD_PERSON');
     const [editingPersonId, setEditingPersonId] = useState<string | null>(null);
     const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
-    const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
     const [isCapturing, setIsCapturing] = useState(false);
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+    const [isHighlightingAddPerson, setIsHighlightingAddPerson] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const rulerScrollRef = useRef<HTMLDivElement>(null);
@@ -276,12 +277,19 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
         // 2. Horizontal Calculation (Guarantee 100% visibility)
         const basePersonWidth = mobile ? 90 : 120;
-        const baseGap = mobile ? 8 : 12;
+        const baseGap = mobile ? 12 : 16; // Increased gap for better spacing
         const ghostRefWidth = mobile ? 80 : 120;
-        const horizontalPadding = mobile ? 80 : 220; // Extra padding for ruler and safety
+        const horizontalPadding = mobile ? 100 : 260; // Increased padding for safety
+
+        // Estimate additional width needed for names. CRITICAL: At low zoom, labels are 
+        // relatively much larger than columns (min scale 0.7). We use a 1.5x multi 
+        // as a safety buffer for this relative growth.
+        const maxNameLength = persons.length > 0 ? Math.max(...persons.map(p => p.name.length)) : 0;
+        const estimatedNameWidth = (maxNameLength * 8.5 + 24) * 1.5;
+        const adjustedBaseWidth = Math.max(basePersonWidth, estimatedNameWidth);
 
         // Total width at zoom 1: (People * baseWidth) + (Gaps * baseGap) + Ghost
-        const totalContentWidthAtZoom1 = (persons.length * basePersonWidth) + (persons.length * baseGap) + ghostRefWidth;
+        const totalContentWidthAtZoom1 = (persons.length * adjustedBaseWidth) + (persons.length * baseGap) + ghostRefWidth;
         const horizontalZoom = (containerWidth - horizontalPadding) / totalContentWidthAtZoom1;
 
         // Take the more restrictive zoom (minimum) to ensure everything fits perfectly in BOTH dimensions
@@ -336,6 +344,24 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         triggerToast(`${entity.name} added to comparison`);
     };
 
+    const handleAddMountain = (mountain: Mountain) => {
+        if (persons.find(p => p.id === mountain.id)) return;
+        const newPerson: Person = {
+            id: mountain.id,
+            name: mountain.name,
+            heightCm: mountain.heightCm,
+            color: mountain.color,
+            icon: '⛰️',
+            isEntity: true
+        };
+        storeAddPerson(newPerson);
+        const tempPersons = [...persons, newPerson];
+        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom);
+        setState(s => ({ ...s, zoom: guardedZoom }));
+        setTimeout(handleAutoScale, 50);
+        triggerToast(`${mountain.name} added to comparison`);
+    };
+
     const handleRemovePerson = (id: string) => {
         storeRemovePerson(id);
     };
@@ -382,7 +408,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
     const handleShare = async () => {
         try {
-            await navigator.clipboard.writeText(window.location.href);
+            const encoded = btoa(encodeURIComponent(JSON.stringify({
+                persons,
+                unitSystem,
+                zoom: state.zoom
+            })));
+            const shareUrl = `${window.location.origin}/#${encoded}`;
+            await navigator.clipboard.writeText(shareUrl);
             triggerToast('Link copied to clipboard!');
         } catch (err) {
             console.error('Failed to copy', err);
@@ -456,98 +488,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             )}
 
             {/* 1. Global Top Header (New Navbar design) */}
-            {!readOnly && (
-                <motion.header
-                    initial={{ y: -70, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="h-[70px] shrink-0 border-b border-border/50 bg-bg flex items-center justify-between px-6 sm:px-12 z-50"
-                >
-                    {/* Left side: Logo & Brands */}
-                    <div className="flex items-center gap-3 cursor-pointer">
-                        {/* Logo Graphic */}
-                        <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
-                            <div className="flex items-end gap-[2px] h-4">
-                                <div className="w-1.5 h-full bg-white rounded-t-sm" />
-                                <div className="w-1.5 h-2/3 bg-white rounded-t-sm" />
-                                <div className="w-1.5 h-1/3 bg-white rounded-t-sm" />
-                            </div>
-                        </div>
-                        {/* Brand Name */}
-                        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors">
-                            Height<span className="text-[#3B82F6]">Comparison</span>
-                        </h1>
-                    </div>
-
-                    {/* Center: Navigation Links (Desktop only) */}
-                    <nav className="hidden lg:flex items-center gap-10">
-                        <Link href="/" className="text-[15px] font-medium text-foreground transition-colors">Home</Link>
-                        <Link href="/child-height-calculator" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors"> Child height calculator </Link>
-                        <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors flex items-center gap-2">
-                            Image to Height <Box size={14} />
-                        </Link>
-                        <button className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">About</button>
-                    </nav>
-
-                    {/* Right side: Auth & Theme */}
-                    <div className="flex items-center gap-6">
-                        {/* Theme Toggle Button */}
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2 text-muted hover:text-foreground hover:bg-surface/50 rounded-full transition-colors flex items-center justify-center"
-                            title="Toggle Theme"
-                        >
-                            <AnimatePresence mode="popLayout" initial={false}>
-                                {theme === 'dark' ? (
-                                    <motion.div key="moon" initial={{ rotate: -90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} exit={{ rotate: 90, scale: 0 }} transition={{ duration: 0.2 }}>
-                                        <Moon size={20} />
-                                    </motion.div>
-                                ) : (
-                                    <motion.div key="sun" initial={{ rotate: 90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} exit={{ rotate: -90, scale: 0 }} transition={{ duration: 0.2 }}>
-                                        <Sun size={20} />
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </button>
-
-                        {/* <button className="hidden sm:block text-[15px] font-medium text-muted hover:text-foreground transition-colors">
-                        Login
-                    </button>
-                    <button className="hidden sm:flex bg-[#3B82F6] hover:bg-blue-500 text-white font-semibold text-[15px] px-6 py-2.5 rounded-full shadow-lg shadow-blue-500/20 transition-all active:scale-95">
-                        Sign Up
-                    </button> */}
-                        {/* Mobile Hamburger Menu */}
-                        <div className="relative">
-                            <button
-                                className="lg:hidden p-2 text-muted hover:text-foreground transition-colors -ml-2"
-                                onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
-                            >
-                                <Menu size={24} />
-                            </button>
-
-                            <AnimatePresence>
-                                {isNavMenuOpen && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                        className="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden"
-                                    >
-                                        <Link href="/"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Home</button></Link>
-                                        <Link href="/child-height-calculator"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>Calculator</button></Link>
-                                        <Link href="/image-to-height" onClick={() => setIsNavMenuOpen(false)}>
-                                            <button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent hover:text-accent/80 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">
-                                                Image to Height <Box size={14} />
-                                            </button>
-                                        </Link>
-                                        <button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors" onClick={() => setIsNavMenuOpen(false)}>About</button>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-                    </div>
-                </motion.header>
-            )}
+            {!readOnly && <Navbar activePage="home" />}
 
             {/* Main Application Area */}
             <div className="flex flex-1 overflow-hidden relative flex-col md:flex-row custom-scrollbar bg-bg transition-colors duration-500">
@@ -572,10 +513,17 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             initial="hidden"
                             animate="show"
                         >
-                            <LeftNavItem icon={<UserPlus size={22} />} label="ADD PERSON" active={activePanel === 'ADD_PERSON'} onClick={() => { setActivePanel('ADD_PERSON'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                            <LeftNavItem
+                                icon={<UserPlus size={22} />}
+                                label="ADD PERSON"
+                                active={activePanel === 'ADD_PERSON'}
+                                isHighlighting={isHighlightingAddPerson && activePanel === 'ADD_PERSON'}
+                                onClick={() => { setActivePanel('ADD_PERSON'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }}
+                            />
                             <LeftNavItem icon={<Star size={22} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                             <LeftNavItem icon={<Ghost size={22} />} label="FICTIONAL" active={activePanel === 'FICTIONAL'} onClick={() => { setActivePanel('FICTIONAL'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                             <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                            <LeftNavItem icon={<MountainIcon size={22} />} label="MOUNTAINS" active={activePanel === 'MOUNTAINS'} onClick={() => { setActivePanel('MOUNTAINS'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                             <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                         </motion.div>
                     </motion.aside>
@@ -704,11 +652,19 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         </div>
                     </div>
 
-                    {/* CANVAS AREA — Split into fixed Ruler column + scrollable Persons column */}
+                    {/* CANVAS AREA : Split into fixed Ruler column + scrollable Persons column */}
                     <div
                         ref={containerRef}
                         className="order-1 canvas-export-area flex-1 relative flex flex-row m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl overflow-hidden"
                     >
+                        {/* 1. Website URL Label (Centered at the top of the EXPORT area) */}
+                        <div className="absolute top-8 left-1/2 -translate-x-1/2 z-[20] flex flex-col items-center opacity-40">
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-muted whitespace-nowrap">
+                                heightcomparison.vercel.app
+                            </span>
+                            <div className="h-[1px] w-12 bg-accent/30 mt-1.5" />
+                        </div>
+
                         {/* LEFT: Ruler Labels Panel (fixed width, only scrolls vertically) */}
                         <div
                             ref={rulerScrollRef}
@@ -716,7 +672,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             style={{ width: '5rem' }}
                             onScroll={() => syncScroll('ruler')}
                         >
-                            {/* Ruler labels only — inside a coordinated-height inner div */}
+                            {/* Ruler labels only : inside a coordinated-height inner div */}
                             <div
                                 className="relative"
                                 style={{ height: requiredCanvasHeight }}
@@ -741,7 +697,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 className="relative min-w-full w-max pr-24 md:pr-48 flex items-end"
                                 style={{ height: requiredCanvasHeight }}
                             >
-                                {/* Horizontal grid lines — extend across the persons area */}
+                                {/* Horizontal grid lines : extend across the persons area */}
                                 <Ruler
                                     mode="lines"
                                     scale={scale}
@@ -776,6 +732,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                     onClick={() => {
                                                         setActivePanel('ADD_PERSON');
                                                         setIsSidebarCollapsed(false);
+                                                        setIsHighlightingAddPerson(true);
+                                                        setTimeout(() => setIsHighlightingAddPerson(false), 2000);
                                                         if (typeof window !== 'undefined' && window.innerWidth < 768) {
                                                             setIsMobileDrawerOpen(true);
                                                         }
@@ -802,6 +760,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                             if (readOnly) return;
                                             setActivePanel('ADD_PERSON');
                                             setIsSidebarCollapsed(false);
+                                            setIsHighlightingAddPerson(true);
+                                            setTimeout(() => setIsHighlightingAddPerson(false), 2000);
                                             if (typeof window !== 'undefined' && window.innerWidth < 768) {
                                                 setIsMobileDrawerOpen(true);
                                             }
@@ -839,6 +799,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     onAdd={handleAddPerson}
                                     activePanel={activePanel}
                                     onAddEntity={handleAddEntity}
+                                    onAddMountain={handleAddMountain}
                                     onAddEntityExport={handleDownloadPNG}
                                     isCapturing={isCapturing}
                                     onRemove={handleRemovePerson}
@@ -928,7 +889,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         {activePanel === 'ADD_PERSON' ? 'Enter Details' :
                                             activePanel === 'CELEBRITIES' ? 'Celebrities' :
                                                 activePanel === 'FICTIONAL' ? 'Fictional' :
-                                                    activePanel.replace('_', ' ')}
+                                                    activePanel === 'MOUNTAINS' ? 'Mountains' :
+                                                        activePanel.replace('_', ' ')}
                                     </h3>
                                     <button
                                         onClick={() => setIsMobileDrawerOpen(false)}
@@ -945,6 +907,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         onAdd={(p) => { handleAddPerson(p); setIsMobileDrawerOpen(false); }}
                                         activePanel={activePanel}
                                         onAddEntity={(e) => { handleAddEntity(e); setIsMobileDrawerOpen(false); }}
+                                        onAddMountain={(m) => { handleAddMountain(m); setIsMobileDrawerOpen(false); }}
                                         onAddEntityExport={handleDownloadPNG}
                                         isCapturing={isCapturing}
                                         onRemove={handleRemovePerson}
@@ -964,12 +927,17 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     );
 };
 
-const LeftNavItem = ({ icon, label, active = false, onClick }: { icon: React.ReactNode, label: string, active?: boolean, onClick?: () => void }) => (
+const LeftNavItem = ({ icon, label, active = false, onClick, isHighlighting = false }: { icon: React.ReactNode, label: string, active?: boolean, onClick?: () => void, isHighlighting?: boolean }) => (
     <motion.button
         variants={{
             show: { y: 0, opacity: 1, scale: 1 },
             hidden: { y: 15, opacity: 0, scale: 0.9 }
         }}
+        animate={isHighlighting ? {
+            scale: [1, 1.1, 1],
+            backgroundColor: ['rgba(0,0,0,0)', 'rgba(34, 197, 94, 0.2)', 'rgba(0,0,0,0)'],
+            transition: { duration: 1.5, repeat: Infinity }
+        } : undefined}
         whileHover={{ scale: 1.02, backgroundColor: 'rgba(59, 130, 246, 0.05)' }}
         whileTap={{ scale: 0.98 }}
         onClick={onClick}

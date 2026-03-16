@@ -68,10 +68,15 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
     const baseWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? 90 : 120;
     const containerWidth = Math.max(65, baseWidth * zoom);
 
+    // CRITICAL: The name label uses a different scale logic at low zoom (min 0.7)
+    // to keep text readable. We must match this in the width calculation to prevent overlap.
+    const nameScale = zoom < 0.8 ? Math.max(0.7, zoom + 0.3) : 1;
+    const nameWidth = (person.name.length * 8.5 + 24) * nameScale;
+
     // For image persons: compute width from natural aspect ratio so image fills its bar properly
     const effectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(60, Math.round(barHeightPx * imageAspectRatio))
-        : containerWidth;
+        : Math.max(containerWidth, nameWidth);
 
     return (
         <motion.div
@@ -93,7 +98,8 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                 style={{
                     position: 'absolute',
                     bottom: `${barHeightPx + (60 * Math.min(1, zoom)) + 20}px`,
-                    width: '100%',
+                    width: 'max-content',
+                    minWidth: '100%',
                     zIndex: 30,
                     transform: `scale(${Math.min(1, Math.max(0.65, zoom + 0.1))})`,
                     transformOrigin: 'bottom center'
@@ -127,9 +133,9 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                     </div>
                 )}
                 {unitSystem === 'metric' ? (
-                    <span className="text-foreground text-[10px] md:text-[13px] font-bold w-full truncate px-1">cm: {person.heightCm.toFixed(1)}</span>
+                    <span className="text-foreground text-[10px] md:text-[13px] font-bold w-full whitespace-nowrap px-2">cm: {person.heightCm.toFixed(1)}</span>
                 ) : (
-                    <span className="text-foreground text-[10px] md:text-[13px] font-bold w-full truncate px-1">ft: {ftDisplay}</span>
+                    <span className="text-foreground text-[10px] md:text-[13px] font-bold w-full whitespace-nowrap px-2">ft: {ftDisplay}</span>
                 )}
             </div>
 
@@ -220,7 +226,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                     transformOrigin: 'top center'
                 }}
             >
-                <span className="text-[12px] font-black text-foreground/70 uppercase tracking-tight truncate w-full text-center px-1"
+                <span className="text-[12px] font-black text-foreground/70 uppercase tracking-tight whitespace-nowrap w-full text-center px-1"
                     style={{ lineHeight: 1.1 }}>
                     {person.name}
                 </span>

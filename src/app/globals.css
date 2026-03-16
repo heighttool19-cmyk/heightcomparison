@@ -10,7 +10,7 @@
   --accent: #1e974bff;
   --accent-secondary: #2563EB;
   --foreground: #FAFAFA;
-  --muted: #71717A;
+  --muted: #8f8f95ff;
   --ruler-text: #52525B;
   --baseline: #EF4444;
 
@@ -75,8 +75,8 @@ body {
 
 /* Smooth custom scrollbars */
 ::-webkit-scrollbar {
-  width: 8px; /* Slightly wider for better usability */
-  height: 8px;
+  width: 10px; /* Slightly wider for better usability */
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -85,7 +85,7 @@ body {
 
 /* Distinct, visible thumb color using foreground with opacity */
 ::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--foreground) 20%, transparent);
+  background: color-mix(in srgb, var(--foreground) 32%, transparent);
   border-radius: 10px;
   /* Add a border to give it a "floating" pill look */
   border: 2px solid var(--bg); 

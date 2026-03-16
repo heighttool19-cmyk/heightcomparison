@@ -46,7 +46,7 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove }) => {
                                     style={{ backgroundColor: person.color }}
                                 />
                                 <div className="flex flex-col">
-                                    <span className="text-xs font-black text-foreground leading-tight uppercase tracking-tight">
+                                    <span className="text-xs text-foreground leading-tight uppercase tracking-tight">
                                         {person.name}
                                     </span>
                                     <span className="text-[11px] font-mono font-black text-foreground/40 mt-0.5 uppercase">

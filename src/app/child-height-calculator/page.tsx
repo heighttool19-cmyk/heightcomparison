@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, Box, ChevronDown, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
-import { useThemeStore } from '@/store';
+import { useThemeStore, useUnitStore } from '@/store';
+import Navbar from '@/components/Navbar';
 import HeightDashboard from '@/components/HeightDashboard';
 import HeightCharts from '@/components/HeightCharts';
 import GrowthPlateExplainer from '@/components/GrowthPlateExplainer';
@@ -24,10 +25,18 @@ const tocItems = [
         subItems: [
             { id: 'height-calculator-based-on-parents', label: 'Based on Parents' },
             { id: 'khamis-roche-method', label: 'Khamis-Roche Method' },
-            { id: 'bone-age-method', label: 'Bone Age Method' }
+            {
+                id: 'bone-age-method',
+                label: 'Bone Age Method',
+                subItems: [
+                    { id: 'how-wrist-x-ray-predict-child-height', label: 'Wrist X-Ray Prediction' },
+                    { id: 'bayley-pinneau-method', label: 'Bayley-Pinneau Method' },
+                    { id: 'roche-wainer-thissen-method', label: 'Roche-Wainer-Thissen Method' }
+                ]
+            },
         ]
     },
-    { id: 'boys-height-predictor', label: 'Boys Height Predictor' },
+    { id: 'boys-height-predictor', label: 'Boys Height Predictor: Understanding Male Growth' },
     { id: 'how-to-get-taller-as-a-kid', label: 'How to Get Taller As A Kid' },
     { id: 'accuracy', label: 'Prediction Accuracy' },
     { id: 'child-height-calculator-faq', label: 'FAQ' }
@@ -38,8 +47,10 @@ export default function HeightCalculatorPage() {
     const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState<string>('');
 
-    // --- Shared State for Units ---
-    const [unit, setUnit] = useState<'metric' | 'us'>('us');
+    // NEW: Scroll locks to prevent observer from firing during manual clicks
+    const isClickScrolling = useRef(false);
+    const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+    const { unitSystem: unit, setUnitSystem } = useUnitStore();
 
     // --- State for Section 1: Child Height Predictor ---
     const [childAge, setChildAge] = useState<number | ''>('');
@@ -81,26 +92,97 @@ export default function HeightCalculatorPage() {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    // Intersection Observer for Active TOC state
+    // Body scroll lock when chart is open
     useEffect(() => {
+        if (showChart) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [showChart]);
+
+    // --- FIXED: Modal Back-Button Sync ---
+    useEffect(() => {
+        // 1. If modal isn't open, don't do anything
+        if (!showChart) return;
+
+        // 2. Push a dummy state so "Back" button has a target
+        window.history.pushState({ modalOpen: true }, "");
+
+        const handlePopState = (event: PopStateEvent) => {
+            // If the user clicks "Back", close the modal
+            setShowChart(false);
+        };
+
+        // 3. Listen for the back button
+        window.addEventListener("popstate", handlePopState);
+
+        return () => {
+            window.removeEventListener("popstate", handlePopState);
+
+            // 4. IMPORTANT: Only go back if the modal was closed manually 
+            // (by a button), NOT by the back button itself.
+            // This prevents the "double click to open" bug.
+            if (window.history.state?.modalOpen) {
+                window.history.back();
+            }
+        };
+    }, [showChart]);    // Intersection Observer for Active TOC state & URL Sync
+    useEffect(() => {
+        const visibleSections = new Map<string, IntersectionObserverEntry>();
+
         const observer = new IntersectionObserver(
             (entries) => {
+                // Ignore observer updates if we are actively scrolling from a click
+                if (isClickScrolling.current) return;
+
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        setActiveSection(entry.target.id);
+                        visibleSections.set(entry.target.id, entry);
+                    } else {
+                        visibleSections.delete(entry.target.id);
                     }
                 });
+
+                if (visibleSections.size > 0) {
+                    // Find the section closest to the top of the screen
+                    let closestSection = '';
+                    let minTop = Infinity;
+
+                    visibleSections.forEach((entry, id) => {
+                        const topPos = entry.boundingClientRect.top;
+                        // Look for elements below the 70px navbar
+                        if (topPos >= 0 && topPos < minTop) {
+                            minTop = topPos;
+                            closestSection = id;
+                        }
+                    });
+
+                    // Fallback
+                    if (!closestSection) {
+                        closestSection = Array.from(visibleSections.keys())[0];
+                    }
+
+                    if (closestSection && closestSection !== activeSection) {
+                        setActiveSection(closestSection);
+                        if (window.history.replaceState) {
+                            window.history.replaceState(null, '', `#${closestSection}`);
+                        }
+                    }
+                }
             },
-            // Triggers when a heading passes into the upper 40% of the viewport (below navbar)
-            { rootMargin: '-100px 0px -60% 0px' }
+            // -70px ensures the observer starts checking right below your sticky navbar
+            { rootMargin: '-70px 0px -40% 0px', threshold: 0 }
         );
 
-        const headings = document.querySelectorAll('h1[id], h2[id], h3[id]');
-        headings.forEach((heading) => observer.observe(heading));
+        const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], section[id], div[id]');
+        headings.forEach((h) => observer.observe(h));
 
         return () => observer.disconnect();
-    }, []);
-
+    }, [activeSection]);
     // Helpers
     const cmToFtIn = (cm: number) => {
         const totalInches = cm / 2.54;
@@ -120,7 +202,7 @@ export default function HeightCalculatorPage() {
         let pMotherCm = 0;
         let pFatherCm = 0;
 
-        if (unit === 'us') {
+        if (unit === 'imperial') {
             currentChildCm = ftInToCm(Number(childHtFt), Number(childHtIn));
             pMotherCm = ftInToCm(Number(motherHtFt), Number(motherHtIn));
             pFatherCm = ftInToCm(Number(fatherHtFt), Number(fatherHtIn));
@@ -206,7 +288,7 @@ export default function HeightCalculatorPage() {
     const calculateMidParental = () => {
         let pMotherCm = 0;
         let pFatherCm = 0;
-        if (unit === 'us') {
+        if (unit === 'imperial') {
             pMotherCm = ftInToCm(Number(parentMotherHtFt), Number(parentMotherHtIn));
             pFatherCm = ftInToCm(Number(parentFatherHtFt), Number(parentFatherHtIn));
         } else {
@@ -267,85 +349,58 @@ export default function HeightCalculatorPage() {
 
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-    // Component for reusable TOC items
     const TOCLink = ({ item, isSub = false }: { item: any, isSub?: boolean }) => {
-        const isActive = activeSection === item.id || (item.subItems && item.subItems.some((sub: any) => sub.id === activeSection));
+        const checkActiveRecursive = (node: any): boolean => {
+            if (activeSection === node.id) return true;
+            if (node.subItems) return node.subItems.some((sub: any) => checkActiveRecursive(sub));
+            return false;
+        };
+
+        const isActive = checkActiveRecursive(item);
+        const isGender = item.id.includes('boys') || item.id.includes('girls');
+        const activeColor = isGender ? 'text-green-500 border-green-500' : 'text-accent border-accent';
+
+        // NEW: Handle the click and lock the observer
+        const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+            // Lock the observer
+            isClickScrolling.current = true;
+            setActiveSection(item.id);
+
+            // Update the URL immediately
+            if (window.history.pushState) {
+                window.history.pushState(null, '', `#${item.id}`);
+            }
+
+            // Unlock the observer after the smooth scroll finishes (1000ms is usually safe)
+            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+            scrollTimeout.current = setTimeout(() => {
+                isClickScrolling.current = false;
+            }, 1000);
+        };
 
         return (
             <li className={`transition-all duration-300 ${isSub ? 'mt-2' : 'mt-3'}`}>
                 <a
                     href={`#${item.id}`}
-                    className={`block transition-all duration-300 border-l-2 pl-3 ${isActive
-                        ? 'text-accent font-bold border-accent translate-x-1'
-                        : 'text-muted hover:text-foreground border-transparent hover:border-border'
+                    onClick={handleLinkClick}
+                    className={`block transition-all duration-300 border-l-2 pl-3 ${isActive ? `${activeColor} font-bold translate-x-1` : 'text-muted hover:text-foreground border-transparent'
                         }`}
                 >
                     {item.label}
                 </a>
                 {item.subItems && (
                     <ul className="pl-4 ml-3 border-l border-border/50 mt-2 space-y-2">
-                        {item.subItems.map((sub: any) => (
-                            <TOCLink key={sub.id} item={sub} isSub={true} />
-                        ))}
+                        {item.subItems.map((sub: any) => <TOCLink key={sub.id} item={sub} isSub={true} />)}
                     </ul>
                 )}
             </li>
         );
     };
 
+
     return (
-        <div className="min-h-screen bg-bg text-foreground font-saans transition-colors duration-500 overflow-x-hidden">
-            {/* --- Navbar --- */}
-            <header className="h-[70px] shrink-0 border-b border-border/50 bg-bg   flex items-center justify-between px-6 sm:px-12 z-50   top-0">
-                <div className="flex items-center gap-3 cursor-pointer">
-                    <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
-                        <div className="flex items-end gap-[2px] h-4">
-                            <div className="w-1.5 h-full bg-white rounded-t-sm" />
-                            <div className="w-1.5 h-2/3 bg-white rounded-t-sm" />
-                            <div className="w-1.5 h-1/3 bg-white rounded-t-sm" />
-                        </div>
-                    </div>
-                    <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors">
-                        Height<span className="text-[#3B82F6]">Comparison</span>
-                    </h1>
-                </div>
-
-                <nav className="hidden lg:flex items-center gap-10">
-                    <Link href="/" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">Home</Link>
-                    <Link href="/child-height-calculator" className="text-[15px] font-bold text-foreground transition-colors border-b-2 border-accent pb-1">Child Height Calculator</Link>
-                    <Link href="/image-to-height" className="text-[15px] font-bold text-accent transition-colors flex items-center gap-2">
-                        Image to Height <Box size={14} />
-                    </Link>
-                    <Link href="/about" className="text-[15px] font-medium text-muted hover:text-foreground transition-colors">About</Link>
-                </nav>
-
-                <div className="flex items-center gap-4 sm:gap-6">
-                    <button onClick={toggleTheme} className="p-2 text-muted hover:text-foreground hover:bg-surface/50 rounded-full transition-colors flex items-center justify-center" title="Toggle Theme">
-                        <AnimatePresence mode="popLayout" initial={false}>
-                            {theme === 'dark' ? (
-                                <motion.div key="moon" initial={{ rotate: -90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} exit={{ rotate: 90, scale: 0 }} transition={{ duration: 0.2 }}><Moon size={20} /></motion.div>
-                            ) : (
-                                <motion.div key="sun" initial={{ rotate: 90, scale: 0 }} animate={{ rotate: 0, scale: 1 }} exit={{ rotate: -90, scale: 0 }} transition={{ duration: 0.2 }}><Sun size={20} /></motion.div>
-                            )}
-                        </AnimatePresence>
-                    </button>
-                    <div className="relative">
-                        <button className="lg:hidden p-2 text-muted hover:text-foreground transition-colors -ml-2" onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}>
-                            <Menu size={24} />
-                        </button>
-                        <AnimatePresence>
-                            {isNavMenuOpen && (
-                                <motion.div initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 10, scale: 0.95 }} className="absolute right-0 mt-2 w-64 bg-surface border border-border rounded-2xl shadow-2xl p-2 z-[60] lg:hidden">
-                                    <Link href="/"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">Home</button></Link>
-                                    <Link href="/child-height-calculator"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-foreground bg-accent/10 rounded-xl transition-colors">Child Height Calculator</button></Link>
-                                    <Link href="/image-to-height"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-accent hover:text-accent/80 hover:bg-white/5 rounded-xl transition-colors flex items-center justify-between">Image to Height <Box size={14} /></button></Link>
-                                    <Link href="/about"><button className="w-full text-left px-4 py-3 text-sm font-semibold text-muted hover:text-foreground hover:bg-white/5 rounded-xl transition-colors">About</button></Link>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
-                </div>
-            </header>
+        <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
+            <Navbar activePage="child-height-calculator" />
 
             {/* --- Main Content with Sidebar Grid --- */}
             <main className="flex-1 flex flex-col relative p-4 md:p-8 bg-canvas">
@@ -353,10 +408,12 @@ export default function HeightCalculatorPage() {
                 {/* Grid Layout: Mobile: 1 column | Desktop: 2 columns (Left sidebar for TOC, Right for content) */}
                 <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr] gap-8 mt-4 md:mt-8 mb-20 animate-in fade-in slide-in-from-bottom-4 duration-1000">
 
-                    {/* --- LEFT SIDEBAR: Sticky Table of Contents (Desktop Only) --- */}
-                    <div className="hidden lg:block relative">
-                        <div className="fixed top-24 bg-surface border border-border p-6 rounded-3xl shadow-sm text-left max-h-[calc(100vh-8rem)] overflow-y-auto custom-scrollbar">
-                            <h3 className="font-black text-foreground mb-4 uppercase tracking-widest text-xs border-b border-border pb-4">Table of Contents</h3>
+                    {/* --- LEFT SIDEBAR: fixed Table of Contents (Desktop Only) --- */}
+                    <div className="hidden lg:block">
+                        <div className="fixed top-24 left-10 xl:left-20 bg-surface border border-border p-6 rounded-3xl shadow-sm text-left max-h-[calc(100vh-8rem)] w-[240px] xl:w-[320px] overflow-y-auto custom-scrollbar">
+                            <h3 className="font-black text-foreground mb-4 uppercase tracking-widest text-xs border-b border-border pb-4">
+                                Table of Contents
+                            </h3>
                             <ul className="text-sm font-medium">
                                 {tocItems.map(item => (
                                     <TOCLink key={item.id} item={item} />
@@ -385,8 +442,7 @@ export default function HeightCalculatorPage() {
                             </h1>
                             <div className="h-1.5 w-24 bg-accent rounded-full mx-auto sm:mx-0" />
                             <p className="text-muted leading-relaxed text-lg max-w-2xl mx-auto sm:mx-0">
-                                Use our child height calculator to estimate how tall your child may grow as an adult. By entering a few basic details — such as your child’s age, height, weight, and parents’ heights — the calculator estimates their projected adult height using established scientific growth models.
-                            </p>
+                                Use our child height calculator to estimate how tall your child may grow as an adult. By entering a few basic details such as your child’s age, height, weight, and parents’ heights, the calculator estimates their projected adult height using established scientific growth models                            </p>
 
                             <div className="bg-surface border border-border p-6 rounded-2xl inline-block text-left mx-auto sm:mx-0 mt-4">
                                 <h3 className="font-bold text-foreground mb-3 uppercase tracking-widest text-xs text-accent">Many parents search questions like:</h3>
@@ -409,11 +465,12 @@ export default function HeightCalculatorPage() {
                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
                                 <div className="space-y-2">
                                     <h2 className="text-2xl font-black tracking-tight text-foreground">Height Predictor <span className="text-muted text-base font-medium ml-2 uppercase tracking-widest">(Khamis-Roche)</span></h2>
+                                    <div className="h-1.5 w-16 bg-accent rounded-full mx-auto sm:mx-0" />
                                 </div>
                                 {/* Synced Unit Toggle */}
                                 <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
-                                    <button onClick={() => setUnit('us')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'us' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
-                                    <button onClick={() => setUnit('metric')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
+                                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
+                                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
                                 </div>
                             </div>
 
@@ -525,7 +582,7 @@ export default function HeightCalculatorPage() {
                                             <div className="w-px h-10 bg-border" />
                                             <span className="text-4xl md:text-5xl font-black text-accent">{predictedKhamis.ft}&apos;{predictedKhamis.in}&quot;</span>
                                         </div>
-                                        <p className="text-xs font-bold text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">Target Range (±5 cm): {predictedKhamis.cm - 5} — {predictedKhamis.cm + 5} cm</p>
+                                        <p className="text-xs font-bold text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">Target Range (±5 cm): {predictedKhamis.cm - 5} : {predictedKhamis.cm + 5} cm</p>
 
                                         <button
                                             onClick={() => setShowChart(true)}
@@ -543,12 +600,15 @@ export default function HeightCalculatorPage() {
                         <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
                             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
                                 <div className="space-y-2">
-                                    <h2 className="text-2xl font-black tracking-tight text-foreground">Parent&apos;s Height Only <span className="text-muted text-base font-medium ml-2 uppercase tracking-widest">(Mid-Parental)</span></h2>
+                                    <h2 className="text-2xl font-black tracking-tight text-foreground">
+                                        Parent&apos;s Height Only <span className="text-muted text-base font-medium ml-2 uppercase tracking-widest">(Mid-Parental)</span></h2>
+                                    <div className="h-1.5 w-16 bg-accent rounded-full mx-auto sm:mx-0" />
                                 </div>
+
                                 {/* Synced Unit Toggle */}
                                 <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
-                                    <button onClick={() => setUnit('us')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'us' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
-                                    <button onClick={() => setUnit('metric')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
+                                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
+                                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
                                 </div>
                             </div>
 
@@ -598,38 +658,69 @@ export default function HeightCalculatorPage() {
 
                             <AnimatePresence>
                                 {predictedParentOnlyBoys && predictedParentOnlyGirls && (
-                                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                        <div className="p-6 bg-blue-500/5 border border-blue-500/20 rounded-2xl text-center flex flex-col items-center">
-                                            <p className="text-base font-black text-blue-500 mb-2 uppercase tracking-widest">Boys</p>
-                                            <p className="text-2xl font-black text-foreground mb-4">{predictedParentOnlyBoys.cm} cm / {predictedParentOnlyBoys.ft}&apos;{predictedParentOnlyBoys.in}&quot;</p>
+                                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                                        {/* Boys Result Card (Updated to match image style) */}
+                                        <div className="bg-accent/10 border border-accent/20 rounded-2xl p-6 text-center shadow-lg shadow-accent/5">
+                                            <p className="text-base font-black text-accent uppercase tracking-widest mb-2">Estimated Adult Height (Boys)</p>
+                                            <div className="flex items-center justify-center gap-4">
+                                                <span className="text-4xl md:text-5xl font-black text-foreground">
+                                                    {predictedParentOnlyBoys.cm} <span className="text-xl md:text-2xl text-accent">cm</span>
+                                                </span>
+                                                <div className="w-px h-10 bg-border" />
+                                                <span className="text-4xl md:text-5xl font-black text-accent">
+                                                    {predictedParentOnlyBoys.ft}&apos;{predictedParentOnlyBoys.in}&quot;
+                                                </span>
+                                            </div>
+                                            <p className="text-xs font-bold text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">
+                                                Target Range (±5 cm): {predictedParentOnlyBoys.cm - 5} : {predictedParentOnlyBoys.cm + 5} cm
+                                            </p>
+
                                             <button
                                                 onClick={() => handleShowMidParentalChart('male', predictedParentOnlyBoys.raw, predictedParentOnlyBoys.fCm, predictedParentOnlyBoys.mCm)}
-                                                className="text-[10px] font-black uppercase tracking-widest text-[#3b82f6] hover:text-[#3b82f6]/80 flex items-center gap-1 group"
+                                                className="w-full mt-6 bg-accent hover:bg-accent/90 text-white font-black py-4 rounded-xl transition-all shadow-xl shadow-accent/20 flex items-center justify-center gap-2 group"
                                             >
-                                                View Chart
-                                                <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                                                View Comparison Chart
+                                                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                                             </button>
                                         </div>
-                                        <div className="p-6 bg-pink-500/5 border border-pink-500/20 rounded-2xl text-center flex flex-col items-center">
-                                            <p className="text-base font-black text-pink-500 mb-2 uppercase tracking-widest">Girls</p>
-                                            <p className="text-2xl font-black text-foreground mb-4">{predictedParentOnlyGirls.cm} cm / {predictedParentOnlyGirls.ft}&apos;{predictedParentOnlyGirls.in}&quot;</p>
+
+                                        {/* Girls Result Card (Updated to match image style) */}
+                                        <div className="bg-accent/10 border border-accent/20 rounded-2xl p-6 text-center shadow-lg shadow-accent/5">
+                                            <p className="text-base font-black text-accent uppercase tracking-widest mb-2">Estimated Adult Height (Girls)</p>
+                                            <div className="flex items-center justify-center gap-4">
+                                                <span className="text-4xl md:text-5xl font-black text-foreground">
+                                                    {predictedParentOnlyGirls.cm} <span className="text-xl md:text-2xl text-accent">cm</span>
+                                                </span>
+                                                <div className="w-px h-10 bg-border" />
+                                                <span className="text-4xl md:text-5xl font-black text-accent">
+                                                    {predictedParentOnlyGirls.ft}&apos;{predictedParentOnlyGirls.in}&quot;
+                                                </span>
+                                            </div>
+                                            <p className="text-xs font-bold text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">
+                                                Target Range (±5 cm): {predictedParentOnlyGirls.cm - 5} : {predictedParentOnlyGirls.cm + 5} cm
+                                            </p>
+
                                             <button
                                                 onClick={() => handleShowMidParentalChart('female', predictedParentOnlyGirls.raw, predictedParentOnlyGirls.fCm, predictedParentOnlyGirls.mCm)}
-                                                className="text-[10px] font-black uppercase tracking-widest text-[#ec4899] hover:text-[#ec4899]/80 flex items-center gap-1 group"
+                                                className="w-full mt-6 bg-accent hover:bg-accent/90 text-white font-black py-4 rounded-xl transition-all shadow-xl shadow-accent/20 flex items-center justify-center gap-2 group"
                                             >
-                                                View Chart
-                                                <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                                                View Comparison Chart
+                                                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                                             </button>
                                         </div>
+
                                     </motion.div>
                                 )}
                             </AnimatePresence>
                         </section>
 
                         {/* SECTION 3: Height Converter */}
-                        <section>
+                        <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
                             <div className="space-y-4 mb-8 text-center sm:text-left">
-                                <h2 className="text-3xl md:text-4xl font-black text-foreground leading-[1.1] tracking-tight">Quick Height Converter</h2>
+                                <h2 className="text-2xl font-black tracking-tight text-foreground leading-[1.1] tracking-tight">
+                                    Quick Height Converter
+                                </h2>
                                 <div className="h-1.5 w-16 bg-accent rounded-full mx-auto sm:mx-0" />
                             </div>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -687,7 +778,7 @@ export default function HeightCalculatorPage() {
                                     A child’s final adult height is influenced by both genetics and environmental factors. Height is considered a polygenic trait, meaning it is influenced by many genes rather than a single genetic factor. Researchers studying human growth and development estimate that genetics explains most of the variation in adult height, while environmental influences determine how fully that genetic potential is reached.
                                 </p>
 
-                                <h3 className="text-xl font-bold text-foreground mt-8 mb-2">Genetics — The Biggest Factor</h3>
+                                <h3 className="text-xl font-bold text-foreground mt-8 mb-2">Genetics : The Biggest Factor</h3>
                                 <p className="text-muted leading-relaxed">
                                     Genetics plays the largest role in determining how tall a person becomes. Researchers estimate that 60–80% of adult height is inherited from parents. Children of taller parents tend to grow taller, while children of shorter parents often grow closer to that range.
                                 </p>
@@ -728,7 +819,7 @@ export default function HeightCalculatorPage() {
                                 </div>
                             </section>
 
-                            <div className="grid md:grid-cols-2 gap-8">
+                            <div className="grid md:grid-cols-1 gap-8">
                                 <section className="space-y-4">
                                     <h2 id="when-do-boys-stop-growing" className="text-2xl font-black tracking-tight text-blue-500 scroll-mt-24">When Do Boys Stop Growing?</h2>
                                     <p className="text-muted leading-relaxed">Boys usually experience their main growth spurt during puberty. The typical growth timeline for boys looks like this:</p>
@@ -758,7 +849,14 @@ export default function HeightCalculatorPage() {
                             <section className="space-y-4">
                                 <h2 id="boys-girls-growth-charts" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24">Boys & Girls Height Growth Charts</h2>
                                 <p className="text-muted leading-relaxed">
-                                    CDC growth charts provide a useful reference for child development. Growth charts compare a child’s height with population averages and show where they fall within percentile ranges. The 50th percentile represents the average height as well as median for children of the same age and sex.
+                                    <a
+                                        href="https://www.cdc.gov/growthcharts/cdc-growth-charts.htm"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-accent font-semibold hover:underline"
+                                    >
+                                        CDC growth charts
+                                    </a> provide a useful reference for child development. Growth charts compare a child’s height with population averages and show where they fall within percentile ranges. The 50th percentile represents the average height as well as median for children of the same age and sex.
                                 </p>
                                 <p className="text-muted leading-relaxed">
                                     Healthy children typically fall between the 3rd percentile and the 97th percentile. Pediatricians usually focus less on a single measurement and more on whether children stay on a consistent growth curve over time.
@@ -777,7 +875,8 @@ export default function HeightCalculatorPage() {
                                 </p>
 
                                 <div className="space-y-8">
-                                    <div className="bg-surface border border-border p-6 md:p-8 rounded-3xl">
+                                    <div className="bg-surface border border-border p-6 md:p-8 rounded-3xl relative overflow-hidden">
+                                        <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
                                         <h3 id="height-calculator-based-on-parents" className="text-xl font-bold text-foreground mb-3 scroll-mt-24">Height Calculator Based on Parents (Mid-Parental Height)</h3>
                                         <p className="text-muted leading-relaxed mb-4">
                                             The mid-parental height method is one of the simplest ways to estimate adult height. This formula calculates a child’s predicted height using the average height of both parents.
@@ -816,8 +915,8 @@ export default function HeightCalculatorPage() {
                                         </p>
                                     </div>
 
-                                    <div className="bg-surface border border-border p-6 md:p-8 rounded-3xl">
-                                        <h3 id="bone-age-method" className="text-xl font-bold text-foreground mb-3 scroll-mt-24">Bone Age Method (Clinical Height Prediction)</h3>
+                                    <div className="bg-surface border border-border p-6 md:p-8 rounded-3xl relative overflow-hidden">
+                                        <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />                                        <h3 id="bone-age-method" className="text-xl font-bold text-foreground mb-3 scroll-mt-24">Bone Age Method (Clinical Height Prediction)</h3>
                                         <p className="text-muted leading-relaxed">
                                             Doctors sometimes estimate adult height using bone age testing. This involves an X-ray of the left wrist and hand to determine how mature the bones are compared with the child’s chronological age.
                                         </p>
@@ -834,27 +933,33 @@ export default function HeightCalculatorPage() {
                             </section>
 
                             {/* VISUAL INSERTED AS REQUESTED */}
-                            <div className="scroll-mt-24">
+                            <div id='how-wrist-x-ray-predict-child-height' className="scroll-mt-24">
                                 <GrowthPlateExplainer />
                             </div>
 
-                            <section className="grid md:grid-cols-2 gap-8 pt-8">
-                                <div className="bg-surface border border-border p-6 md:p-8 rounded-3xl">
+                            {/* Added scroll-mt-24 to the parent section */}
+
+                            <section id='bayley-pinneau-method' className="grid md:grid-cols-1 gap-8 pt-8 scroll-mt-24">
+
+                                <div className="bg-surface border border-border p-6 md:p-8 rounded-3xl relative overflow-hidden ">
+                                    <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
                                     <h3 className="text-xl font-bold text-foreground mb-3">Bayley-Pinneau Method</h3>
                                     <p className="text-muted leading-relaxed">
                                         The Bayley Pinneau method combines bone age data with height for age tables. Doctors calculate the percentage of adult height the child has already reached. The remaining growth potential determines the final height estimate. This method works well but requires bone age testing.
                                     </p>
                                 </div>
-                                <div className="bg-surface border border-border p-6 md:p-8 rounded-3xl">
+                                {/* Added scroll-mt-24 to this div */}
+                                <div id='roche-wainer-thissen-method' className="bg-surface relative overflow-hidden  border border-border p-6 md:p-8 rounded-3xl scroll-mt-24">
                                     <h3 className="text-xl font-bold text-foreground mb-3">Roche-Wainer-Thissen Method</h3>
+                                    <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
                                     <p className="text-muted leading-relaxed">
                                         The Roche Wainer Thissen method uses several growth variables. The formula includes bone age, current height, weight, and parental heights. This approach improves accuracy in some cases. Because it requires clinical measurements, it is mostly used in medical settings.
                                     </p>
                                 </div>
                             </section>
 
-                            <section className="space-y-4">
-                                <h2 id="boys-height-predictor" className="text-2xl md:text-3xl font-black tracking-tight mt-8 scroll-mt-24">Boys Height Predictor: Understanding Male Growth</h2>
+                            <section id='boys-height-predictor' className="space-y-4 scroll-mt-24">
+                                <h2 className="text-2xl md:text-3xl font-black tracking-tight mt-8  ">Boys Height Predictor: Understanding Male Growth</h2>
                                 <p className="text-muted leading-relaxed">
                                     Male growth patterns differ from female growth patterns. Boys usually experience a later but longer growth spurt during puberty.
                                 </p>
@@ -895,7 +1000,7 @@ export default function HeightCalculatorPage() {
                             </section>
 
                             <section className="space-y-4">
-                                <h2 id="accuracy" className="text-2xl md:text-3xl font-black tracking-tight mt-8 scroll-mt-24">Why Height Predictions Aren’t Exact</h2>
+                                <h2 id="accuracy" className="text-2xl md:text-3xl font-black tracking-tight mt-8 scroll-mt-24">How Accurate Is Our Child Height Predictor?</h2>
                                 <p className="text-muted leading-relaxed">
                                     Our child height predictor calculator estimates adult height using the Khamis Roche growth model. This model uses real growth data collected from long term studies of children. Most predictions fall within five to ten centimeters of final adult height.
                                 </p>
@@ -917,7 +1022,7 @@ export default function HeightCalculatorPage() {
                                 <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
                                     HELP CENTER
                                 </div>
-                                <h2 id="child-height-calculator-faq" className="text-3xl font-black text-foreground scroll-mt-24">Frequently Asked Questions</h2>
+                                <h2 id="child-height-calculator-faq" className="text-3xl font-black text-foreground scroll-mt-40">Frequently Asked Questions</h2>
                                 <p className="text-sm text-muted">Scientific insights into your child&apos;s development</p>
                             </div>
 

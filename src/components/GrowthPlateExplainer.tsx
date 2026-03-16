@@ -11,7 +11,7 @@ const stages = [
         growth: 95,
         plateStatus: "Wide Open",
         plateColor: "#22d3ee", // cyan-400
-        description: "Growth plates are thick cartilage bands — soft, flexible, and highly active. Bones are growing rapidly. The wrist shows many separate small bone segments that haven't fused yet.",
+        description: "Growth plates are thick cartilage bands : soft, flexible, and highly active. Bones are growing rapidly. The wrist shows many separate small bone segments that haven't fused yet.",
         heightLeft: "~130–150 cm remaining",
         detail: "open",
     },
@@ -33,7 +33,7 @@ const stages = [
         growth: 40,
         plateStatus: "Accelerating",
         plateColor: "#fb923c", // orange-400
-        description: "Growth hormone surges during puberty, temporarily widening the growth plates again. This is the 'growth spurt' — kids can grow 8–12 cm in a single year. Bones are visibly thicker and longer.",
+        description: "Growth hormone surges during puberty, temporarily widening the growth plates again. This is the 'growth spurt' : kids can grow 8–12 cm in a single year. Bones are visibly thicker and longer.",
         heightLeft: "~20–40 cm remaining",
         detail: "spurt",
     },
@@ -44,7 +44,7 @@ const stages = [
         growth: 5,
         plateStatus: "Closing",
         plateColor: "#f87171", // red-400
-        description: "Growth plates are almost fully fused into solid bone — this process is called epiphyseal closure. Once closed, no further height growth is possible. The wrist bones now look nearly identical to an adult's.",
+        description: "Growth plates are almost fully fused into solid bone : this process is called epiphyseal closure. Once closed, no further height growth is possible. The wrist bones now look nearly identical to an adult's.",
         heightLeft: "~0–3 cm remaining",
         detail: "closed",
     },
@@ -65,7 +65,7 @@ function HandBone({ stage, isActive }: { stage: typeof stages[0]; isActive: bool
     const inactiveMetaColor = "var(--tw-colors-blue-400, #60a5fa)";
 
     return (
-        <svg viewBox="0 0 130 200" width="120%" style={{ maxWidth: 200, display: "block", margin: "0 auto" }}>
+        <svg viewBox="0 0 135 200" width="100%" style={{ maxWidth: 200, display: "block", margin: "0 auto" }}>
             {/* Background glow */}
             {isActive && (
                 <motion.ellipse
@@ -152,15 +152,15 @@ export default function GrowthPlateExplainer() {
     const current = stages[active];
 
     return (
-        <div className="space-y-6 mt-12">
+        <div className="space-y-6 mt-12 scroll-mt-32">
             <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm">
                     BONE AGE EXPLAINED
                 </div>
-                <h2 className="text-3xl md:text-5xl font-black text-foreground tracking-tight leading-[1.1]">
+                <h4 className="text-2xl md:text-4xl font-black text-foreground tracking-tight leading-[1.1]">
                     How a <span style={{ color: current.plateColor, transition: "color 0.4s" }}>Wrist X-Ray</span> Predicts <br className="hidden md:block" />
                     a Child&apos;s Height
-                </h2>
+                </h4>
                 <div className="h-1.5 w-24 bg-accent rounded-full" />
                 <p className="text-muted leading-relaxed text-lg max-w-3xl">
                     Growth plates are thin strips of cartilage near the end of long bones. Their thickness on an X-ray reveals the most accurate estimation of final adult height.
@@ -273,9 +273,9 @@ export default function GrowthPlateExplainer() {
                                     {/* Key insight */}
                                     <div className="mt-4 p-5 rounded-r-xl border-l-4 font-medium text-sm text-muted leading-relaxed"
                                         style={{ borderLeftColor: current.plateColor, backgroundColor: `${current.plateColor}10` }}>
-                                        {current.detail === "open" && "📍 A 3-year-old with a bone age of 5 still has massive growth ahead — but doctors can already estimate how tall they'll likely be."}
-                                        {current.detail === "active" && "📍 Bone age and chronological age often match here. A mismatch — like an 8-year-old with bone age 10 — signals earlier puberty and slightly less final height."}
-                                        {current.detail === "spurt" && "📍 This is why 13-year-olds can outgrow their shoes in 6 months. The X-ray at this stage is the most revealing — it predicts whether the spurt has more to give."}
+                                        {current.detail === "open" && "📍 A 3-year-old with a bone age of 5 still has massive growth ahead : but doctors can already estimate how tall they'll likely be."}
+                                        {current.detail === "active" && "📍 Bone age and chronological age often match here. A mismatch : like an 8-year-old with bone age 10 : signals earlier puberty and slightly less final height."}
+                                        {current.detail === "spurt" && "📍 This is why 13-year-olds can outgrow their shoes in 6 months. The X-ray at this stage is the most revealing : it predicts whether the spurt has more to give."}
                                         {current.detail === "closed" && "📍 Once growth plates fully fuse, no intervention increases height. The X-ray at 18 looks almost identical to one taken at 25."}
                                     </div>
                                 </motion.div>

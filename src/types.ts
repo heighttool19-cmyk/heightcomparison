@@ -99,3 +99,13 @@ export interface Entity {
   icon: string; // SVG or emoji
   color: string;
 }
+
+export type MountainCategory = 'Asia' | 'Europe' | 'North America' | 'Africa' | 'South America' | 'Antarctica' | 'Oceania';
+
+export interface Mountain {
+  id: string;
+  name: string;
+  heightCm: number;
+  category: MountainCategory;
+  color: string;
+}

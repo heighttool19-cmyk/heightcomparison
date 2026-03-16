@@ -300,7 +300,7 @@ export const useImageMeasurement = () => {
         setMode('calibrating'); setCalibLine(null); setMeasLine(null);
         setFirstPoint(null); setLivePoint(null); setIsDragging(false);
         setIsSavedToChart(false); setShowCalibModal(false);
-        toast('Recalibrating — draw a new reference line.', 'info');
+        toast('Recalibrating : draw a new reference line.', 'info');
     };
 
     const handleAutoScan = async () => {
@@ -417,7 +417,7 @@ export const useImageMeasurement = () => {
                 setMeasLine(null);
                 setShowCropModal(false);
                 setPendingUrl(null);
-                toast('Image ready — draw a calibration line.', 'success');
+                toast('Image ready : draw a calibration line.', 'success');
             }
         };
         img.src = pendingUrl;
