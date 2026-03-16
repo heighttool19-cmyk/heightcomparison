@@ -658,11 +658,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         className="order-1 canvas-export-area flex-1 relative flex flex-row m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl overflow-hidden"
                     >
                         {/* 1. Website URL Label (Centered at the top of the EXPORT area) */}
-                        <div className="absolute top-8 left-1/2 -translate-x-1/2 z-[20] flex flex-col items-center opacity-40">
-                            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-muted whitespace-nowrap">
+                        <div className="absolute top-4 sm:top-8 left-1/2 -translate-x-1/2 z-[20] flex flex-col items-center opacity-40">
+                            <span className="text-[7px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] text-muted whitespace-nowrap">
                                 heightcomparison.vercel.app
                             </span>
-                            <div className="h-[1px] w-12 bg-accent/30 mt-1.5" />
+                            <div className="h-[1px] w-8 sm:w-12 bg-accent/30 mt-1 sm:mt-1.5" />
                         </div>
 
                         {/* LEFT: Ruler Labels Panel (fixed width, only scrolls vertically) */}
@@ -732,7 +732,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                     onClick={() => {
                                                         setActivePanel('ADD_PERSON');
                                                         setIsSidebarCollapsed(false);
-                                                        setIsHighlightingAddPerson(true);
+                                                        // setIsHighlightingAddPerson(true);
                                                         setTimeout(() => setIsHighlightingAddPerson(false), 2000);
                                                         if (typeof window !== 'undefined' && window.innerWidth < 768) {
                                                             setIsMobileDrawerOpen(true);
