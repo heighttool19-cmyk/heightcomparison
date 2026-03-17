@@ -20,7 +20,7 @@ const EditPersonForm = dynamic(() => import('./EditPersonForm'));
 const CelebritiesPanel = dynamic(() => import('./CelebritiesPanel'), { loading: () => <LoadingPanel /> });
 const FictionalPanel = dynamic(() => import('./FictionalPanel').then(mod => mod.FictionalPanel), { loading: () => <LoadingPanel /> });
 const EntitiesPanel = dynamic(() => import('./EntitiesPanel'), { loading: () => <LoadingPanel /> });
-const MountainsPanel = dynamic<any>(() => import('./MountainsPanel'), { loading: () => <LoadingPanel /> });
+const MountainsPanel = dynamic(() => import('./MountainsPanel'), { loading: () => <LoadingPanel /> });
 
 interface SidebarProps {
     persons: Person[];
@@ -37,9 +37,12 @@ interface SidebarProps {
     onEditCancel?: () => void;
     onAddEntityExport?: () => void;
     isCapturing?: boolean;
+    onEditRequest?: (id: string) => void;
+    onReorder?: (id: string, direction: 'up' | 'down') => void;
+    highlight?: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEntity, onAddMountain, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel, onAddEntityExport, isCapturing }) => {
+const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEntity, onAddMountain, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel, onAddEntityExport, isCapturing, onEditRequest, onReorder, highlight }) => {
     return (
         <aside className="w-full h-full flex flex-col bg-transparent">
             <div className={`flex flex-col h-full overflow-y-auto custom-scrollbar ${activePanel === 'CELEBRITIES' || activePanel === 'FICTIONAL' || activePanel === 'ENTITIES' ? '' : 'p-5 gap-6'}`}>
@@ -54,7 +57,13 @@ const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEnt
                             className="flex flex-col gap-6"
                         >
                             <AddPersonForm onAdd={onAdd} personCount={personCount} />
-                            <PersonChart persons={persons} onRemove={onRemove} />
+                            <PersonChart
+                                persons={persons}
+                                onRemove={onRemove}
+                                onEdit={onEditRequest}
+                                onReorder={onReorder}
+                                highlight={highlight}
+                            />
                             <QuickAddPresets onAdd={onAdd} scale={scale} zoom={zoom} />
                         </motion.div>
                     )}
@@ -124,7 +133,13 @@ const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEnt
                             className="flex flex-col gap-6"
                         >
                             <AddImageForm onAdd={onAdd} />
-                            <PersonChart persons={persons} onRemove={onRemove} />
+                            <PersonChart
+                                persons={persons}
+                                onRemove={onRemove}
+                                onEdit={onEditRequest}
+                                onReorder={onReorder}
+                                highlight={highlight}
+                            />
                         </motion.div>
                     )}
                     {activePanel === 'EDIT_PERSON' && editingPerson && onEditSave && onEditCancel && (

@@ -48,25 +48,25 @@ const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
                 <nav className="hidden lg:flex items-center gap-10 mr-4">
                     <Link
                         href="/"
-                        className={`text-[15px] font-medium transition-colors ${activePage === 'home' ? 'text-accent font-bold border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
+                        className={`text-[15px] font-extrabold transition-colors ${activePage === 'home' ? 'text-accent font-bold border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
                     >
                         Home
                     </Link>
                     <Link
                         href="/child-height-calculator"
-                        className={`text-[15px] font-medium transition-colors ${activePage === 'child-height-calculator' ? 'text-accent font-bold border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
+                        className={`text-[15px] font-extrabold transition-colors ${activePage === 'child-height-calculator' ? 'text-accent font-bold border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
                     >
                         Child Height Calculator
                     </Link>
                     <Link
                         href="/image-to-height"
-                        className={`text-[15px] font-medium transition-colors flex items-center gap-2 ${activePage === 'image-to-height' ? 'text-accent font-bold border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
+                        className={`text-[15px] font-extrabold transition-colors flex items-center gap-2 ${activePage === 'image-to-height' ? 'text-accent font-bold border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
                     >
                         Image to Height <Box size={14} />
                     </Link>
                     <Link
                         href="/about"
-                        className={`text-[15px] font-medium transition-colors ${activePage === 'about' ? 'text-accent font-bold border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
+                        className={`text-[15px] font-extrabold transition-colors ${activePage === 'about' ? 'text-accent font-bold border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
                     >
                         About
                     </Link>
@@ -79,7 +79,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
                     title="Toggle unit system"
                 >
                     <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-muted group-hover:text-foreground">
+                    <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-muted group-hover:text-foreground">
                         {unitSystem === 'metric' ? 'cm' : 'ft/in'}
                     </span>
                 </button>

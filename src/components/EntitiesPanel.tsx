@@ -82,14 +82,15 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchQuery(e.target.value);
-        // setIsSearching(true);
-        // setTimeout(() => setIsSearching(false), 200);
     };
 
     return (
         <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
             {/* Header Area */}
-            <PanelHeader title="Entities & Objects" subtitle="Compare real-world dimensions" />
+            <PanelHeader
+                title="Entities & Objects"
+                subtitle={searchQuery ? `${filteredEntities.length} matching results` : `Compare ${entities.length} real-world dimensions`}
+            />
 
             <div className="px-6 pb-2 shrink-0">
                 {/* Search Input */}
@@ -132,13 +133,13 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                                 className="space-y-4"
                             >
                                 {/* Section Header */}
-                                <div className="flex items-center justify-between">
-                                    <h3 className="text-[11px] font-bold tracking-wider text-muted uppercase">
-                                        {category.toUpperCase()}
+                                <div className="flex items-center justify-between border-b border-border/30 pb-1">
+                                    <h3 className="text-[10px] font-bold tracking-wider text-muted uppercase">
+                                        {category}
                                     </h3>
-                                    <div className="bg-bg border border-border/50 rounded px-1.5 py-0.5">
-                                        <span className="text-[9px] font-bold text-muted uppercase">{ents.length} FOUND</span>
-                                    </div>
+                                    <span className="text-[9px] font-bold text-accent px-1.5 py-0.5 bg-accent/5 rounded">
+                                        {ents.length} items
+                                    </span>
                                 </div>
 
                                 {/* Cards Grid */}

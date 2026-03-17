@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sun, Moon, Menu, Box, ChevronDown, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ChevronDown, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import { useThemeStore, useUnitStore } from '@/store';
 import Navbar from '@/components/Navbar';
@@ -43,8 +43,8 @@ const tocItems = [
 ];
 
 export default function HeightCalculatorPage() {
-    const { theme, toggleTheme } = useThemeStore();
-    const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
+    const { theme } = useThemeStore();
+    // const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState<string>('');
 
     // NEW: Scroll locks to prevent observer from firing during manual clicks
@@ -112,7 +112,7 @@ export default function HeightCalculatorPage() {
         // 2. Push a dummy state so "Back" button has a target
         window.history.pushState({ modalOpen: true }, "");
 
-        const handlePopState = (event: PopStateEvent) => {
+        const handlePopState = () => {
             // If the user clicks "Back", close the modal
             setShowChart(false);
         };
@@ -349,10 +349,10 @@ export default function HeightCalculatorPage() {
 
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-    const TOCLink = ({ item, isSub = false }: { item: any, isSub?: boolean }) => {
-        const checkActiveRecursive = (node: any): boolean => {
+    const TOCLink = ({ item, isSub = false }: { item: { id: string; label: string; subItems?: { id: string; label: string }[] }, isSub?: boolean }) => {
+        const checkActiveRecursive = (node: { id: string; subItems?: { id: string; label: string }[] }): boolean => {
             if (activeSection === node.id) return true;
-            if (node.subItems) return node.subItems.some((sub: any) => checkActiveRecursive(sub));
+            if (node.subItems) return node.subItems.some((sub: { id: string; label: string }) => checkActiveRecursive(sub));
             return false;
         };
 
@@ -361,7 +361,7 @@ export default function HeightCalculatorPage() {
         const activeColor = isGender ? 'text-green-500 border-green-500' : 'text-accent border-accent';
 
         // NEW: Handle the click and lock the observer
-        const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        const handleLinkClick = () => {
             // Lock the observer
             isClickScrolling.current = true;
             setActiveSection(item.id);
@@ -390,7 +390,7 @@ export default function HeightCalculatorPage() {
                 </a>
                 {item.subItems && (
                     <ul className="pl-4 ml-3 border-l border-border/50 mt-2 space-y-2">
-                        {item.subItems.map((sub: any) => <TOCLink key={sub.id} item={sub} isSub={true} />)}
+                        {item.subItems.map((sub: { id: string; label: string }) => <TOCLink key={sub.id} item={sub} isSub={true} />)}
                     </ul>
                 )}
             </li>

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Edit2, Trash2 } from 'lucide-react';
 import { Person } from '../types';
 import { useUnitStore } from '../store';
@@ -61,19 +61,20 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
     const ftValue = Math.floor(totalInches / 12);
     const inValue = totalInches % 12;
     const ftDisplay = `${person.heightCm < 0 ? '-' : ''}${ftValue}' ${inValue}''`;
+    const ftDisplayShort = `${ftValue}'${inValue}"`;
 
     const springConfig = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
     // Dynamic width calculation for true 2D zoom
     const baseWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? 90 : 120;
-    const containerWidth = Math.max(65, baseWidth * zoom);
+    // const containerWidth = Math.max(50, baseWidth * zoom);
+    const containerWidth = zoom < 0.3 ? Math.max(30, baseWidth * zoom * 0.3) : Math.max(50, baseWidth * zoom);
 
-    // CRITICAL: The name label uses a different scale logic at low zoom (min 0.7)
-    // to keep text readable. We must match this in the width calculation to prevent overlap.
-    const nameScale = zoom < 0.8 ? Math.max(0.7, zoom + 0.3) : 1;
+    // CRITICAL: The name label uses a different scale logic at low zoom (min 0.6)
+    const nameScale = zoom < 0.8 ? Math.max(0.4, zoom + 0.1) : 1;
     const nameWidth = (person.name.length * 8.5 + 24) * nameScale;
 
-    // For image persons: compute width from natural aspect ratio so image fills its bar properly
+    // For image persons: compute width from natural aspect ratio
     const effectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(60, Math.round(barHeightPx * imageAspectRatio))
         : Math.max(containerWidth, nameWidth);
@@ -84,71 +85,106 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
-            className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end"
+            className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
             style={{ width: `${effectiveWidth}px` }}
             onClick={() => {
                 if (window.innerWidth < 768) {
                     setIsMenuOpen(!isMenuOpen);
+                } else if (onEditRequest) {
+                    onEditRequest(person.id);
                 }
             }}
         >
-            {/* Stacked Labels - Matching the exact reference image */}
+            {/* Persistent Top Label - Responsive Scaling (Current Style) */}
             <div
-                className={`flex flex-col items-center justify-center rounded-[1rem] bg-surface/90 backdrop-blur-md border border-border/50 shadow-premium px-1 py-1.5 md:py-2 text-center pointer-events-none transition-all duration-500 ${isMenuOpen ? 'border-accent/60 bg-surface' : 'group-hover:border-accent/40'}`}
+                className="absolute left-1/2 flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
                 style={{
-                    position: 'absolute',
-                    bottom: `${barHeightPx + (60 * Math.min(1, zoom)) + 20}px`,
+                    bottom: `${barHeightPx + 68}px`,
                     width: 'max-content',
-                    minWidth: '100%',
-                    zIndex: 30,
-                    transform: `scale(${Math.min(1, Math.max(0.65, zoom + 0.1))})`,
+                    transform: `translateX(-50%) scale(${Math.max(0.8, Math.min(1.2, zoom))})`,
+                    transformOrigin: 'bottom'
+                }}
+            >
+                <span className="text-[10px] sm:text-[11px] m-auto font-black text-foreground uppercase tracking-tighter whitespace-nowrap leading-none shadow-sm  text-center  max-w-[80px] text-center bg-bg/40 backdrop-blur-sm rounded px-1">
+                    {person.name}
+                </span>
+                <span className="text-[9px] sm:text-[10px] font-bold text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/40 backdrop-blur-sm rounded px-1">
+                    {unitSystem === 'metric' ? `${Math.round(person.heightCm)} cm` : `$${ftDisplayShort} ft`}
+                </span>
+            </div>
+
+            {/* Hover Detail Card - Appears on hover/tap (Current Style) */}
+            <div
+                className={`
+                    flex flex-col items-center justify-center text-center pointer-events-none
+                    absolute left-1/2 -translate-x-1/2
+                    bg-surface/98 backdrop-blur-xl border-2 border-accent/20 rounded-2xl
+                    px-4 py-3 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]
+                    transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)]
+                    ${(isMenuOpen || !readOnly) ? 'z-50' : 'z-40'}
+                    opacity-0 scale-50 translate-y-4
+                    group-hover:opacity-100 group-hover:scale-110 group-hover:translate-y-0
+                    ${isMenuOpen ? 'opacity-100 scale-110 translate-y-0' : ''}
+                `}
+                style={{
+                    bottom: `${barHeightPx + 65}px`,
+                    width: 'max-content',
+                    minWidth: '100px',
                     transformOrigin: 'bottom center'
                 }}
             >
-                {/* Hover/Tap Action Menu */}
+                {/* Person Name - Detailed */}
+                <span className="text-xs font-black text-foreground uppercase tracking-tight whitespace-nowrap leading-tight mb-1 border-b border-border/50 pb-1 w-full text-center">
+                    {person.name}
+                </span>
+
+                {/* Height Stats */}
+                <div className="flex flex-col items-center text-center">
+                    <span className="text-sm font-black text-accent whitespace-nowrap leading-none">
+                        {person.heightCm.toFixed(1)} cm
+                    </span>
+                    <span className="text-[11px] font-bold text-muted whitespace-nowrap leading-tight mt-1 opacity-80">
+                        {ftDisplay}
+                    </span>
+                </div>
+
+                {/* Action buttons inside the card */}
                 {!readOnly && (
-                    <div
-                        className={`absolute -top-12 left-1/2 -translate-x-1/2 flex items-center gap-2 transition-all duration-300 pointer-events-auto hide-on-export
-                        ${isMenuOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-75 md:scale-75 md:group-hover:opacity-100 md:group-hover:scale-100'}
-                    `}
-                    >
+                    <div className="flex items-center gap-3 mt-3 pointer-events-auto w-full justify-center">
                         {onEditRequest && (
                             <button
                                 onClick={(e) => { e.stopPropagation(); onEditRequest(person.id); }}
-                                className="w-10 h-10 rounded-full bg-accent hover:bg-accent-secondary flex items-center justify-center shadow-xl text-white transition-all active:scale-90"
+                                className="w-8 h-8 rounded-full bg-accent/10 hover:bg-accent text-accent hover:text-white flex items-center justify-center transition-all active:scale-90 border border-accent/30 shadow-sm"
                                 aria-label={`Edit ${person.name}`}
                             >
-                                <Edit2 size={16} strokeWidth={3} />
+                                <Edit2 size={14} strokeWidth={2.5} />
                             </button>
                         )}
                         {onRemove && (
                             <button
                                 onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}
-                                className="w-10 h-10 rounded-full bg-red-500 hover:bg-red-400 flex items-center justify-center shadow-xl text-white transition-all active:scale-90"
+                                className="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white flex items-center justify-center transition-all active:scale-90 border border-red-500/30 shadow-sm"
                                 aria-label={`Remove ${person.name}`}
                             >
-                                <Trash2 size={16} strokeWidth={3} />
+                                <Trash2 size={14} strokeWidth={2.5} />
                             </button>
                         )}
                     </div>
                 )}
-                {unitSystem === 'metric' ? (
-                    <span className="text-foreground text-[10px] md:text-[13px] font-bold w-full whitespace-nowrap px-2">cm: {person.heightCm.toFixed(1)}</span>
-                ) : (
-                    <span className="text-foreground text-[10px] md:text-[13px] font-bold w-full whitespace-nowrap px-2">ft: {ftDisplay}</span>
-                )}
             </div>
 
-            {/* Absolute Coordinate Wrapper */}
-            <div className="absolute inset-x-0 bottom-[60px] flex flex-col items-center justify-end">
-                {/* Indicator Line - Exactly at Height Line */}
+            {/* Silhouette Area - Aligned at 60px baseline - From User Snippet */}
+            <div className="absolute inset-x-0 bottom-[60px] flex flex-col items-center justify-end overflow-visible">
+                {/* Indicator Line - Neon Line at Height Boundary */}
                 <div
-                    className="w-[104%] h-[1px] absolute transition-all duration-500 neon-indicator group-hover:brightness-150"
+                    className=" h-[1px] absolute transition-all duration-500 neon-indicator group-hover:brightness-150"
                     style={{
+                        width: `${containerWidth * 0.8}px`,
                         bottom: `${barHeightPx}px`,
                         zIndex: 20
                     }}
                 />
+
                 {/* Silhouette - Clipped to exact height boundary */}
                 <div
                     className="flex flex-col items-center justify-end relative transition-opacity group-hover:opacity-100"
@@ -161,9 +197,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                             style={{ height: barHeightPx }}
                             transition={springConfig}
                         >
-                            {/* Proportional Full-Height Image */}
                             <div className="relative z-20 h-full w-auto">
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                     src={person.imgUrl}
                                     alt={person.name}
@@ -218,15 +252,16 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                 </div>
             </div>
 
-            {/* Inline Name, Edit & Delete (Below Ruler Zero Line) */}
+            {/* Bottom Label: Name + Height - Responsive and robust (Current Style) */}
             <div
-                className="absolute inset-x-0 bottom-0 h-[65px] flex flex-col items-center justify-center gap-0 pointer-events-auto hide-on-export"
+                className="absolute left-1/2 bottom-0 h-[60px] flex flex-col items-center justify-center gap-0 pointer-events-auto hide-on-export"
                 style={{
-                    transform: `scale(${zoom < 0.8 ? Math.max(0.7, zoom + 0.3) : 1})`,
+                    width: 'max-content',
+                    transform: `translateX(-50%) scale(${zoom < 0.6 ? Math.max(0.5, zoom + 0.1) : (zoom < 0.8 ? zoom + 0.2 : 1)})`,
                     transformOrigin: 'top center'
                 }}
             >
-                <span className="text-[12px] font-black text-foreground/70 uppercase tracking-tight whitespace-nowrap w-full text-center px-1"
+                <span className="text-[12px] font-black text-foreground/70 uppercase tracking-tight whitespace-nowrap text-center px-1"
                     style={{ lineHeight: 1.1 }}>
                     {person.name}
                 </span>
@@ -248,10 +283,10 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                             onChange={(e) => setInputValue(e.target.value)}
                             onBlur={handleBlur}
                             onKeyDown={handleKeyDown}
-                            className="w-8 sm:w-12 bg-transparent text-xs sm:text-[13px] font-mono font-black text-center text-foreground focus:outline-none"
+                            className="w-6 sm:w-8 bg-transparent text-xs sm:text-[13px] font-mono font-black text-center text-foreground focus:outline-none"
                         />
                         <span className="text-[11px] sm:text-[10px] font-mono font-black text-muted uppercase tracking-tighter">cm</span>
-                        {onRemove && (
+                        {/* {onRemove && (
                             <button
                                 onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}
                                 className="ml-1 p-1 text-muted hover:text-red-500 hover:bg-red-400 rounded-md transition-all active:scale-95"
@@ -259,7 +294,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                             >
                                 <Trash2 size={14} strokeWidth={2.5} />
                             </button>
-                        )}
+                        )} */}
                     </div>
                 )}
             </div>

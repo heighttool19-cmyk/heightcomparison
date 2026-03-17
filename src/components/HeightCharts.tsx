@@ -129,9 +129,9 @@ export default function HeightCharts() {
 
     return (
         <div className="space-y-6 mt-12" style={{ fontFamily: GEORGIA }}>
-            <h2 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight">
+            {/* <h2 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight">
                 Boys & Girls <span className={activeChart === "boys" ? "text-blue-500" : "text-pink-500"}>Height Growth Charts</span>
-            </h2>
+            </h2> */}
             <div className="h-1.5 w-24 bg-accent rounded-full" />
             <p className="text-muted leading-relaxed max-w-3xl">
                 Based on CDC growth chart data : average & median height by age (ages 2–18) : cm

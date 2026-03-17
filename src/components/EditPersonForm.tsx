@@ -29,6 +29,8 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
     const [heightIn, setHeightIn] = useState<string>(inch.toString());
 
     const [color, setColor] = useState(person.color || COLOR_PALETTE[2]);
+    const [icon, setIcon] = useState(person.icon || '');
+    const [error, setError] = useState<string | null>(null);
 
     const handleSave = () => {
         let finalHeightCm = 0;
@@ -40,15 +42,19 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
             finalHeightCm = (f * 30.48) + (i * 2.54);
         }
 
-        if (finalHeightCm > 0) {
-            onSave({
-                ...person,
-                name: name || (gender === 'male' ? 'Man' : gender === 'female' ? 'Woman' : 'Person'),
-                heightCm: finalHeightCm,
-                gender,
-                color,
-            });
+        if (finalHeightCm < 30 || finalHeightCm > 1000) {
+            setError('Height must be between 30cm and 1000cm');
+            return;
         }
+
+        onSave({
+            ...person,
+            name: name || (gender === 'male' ? 'Man' : gender === 'female' ? 'Woman' : 'Person'),
+            heightCm: finalHeightCm,
+            gender,
+            color,
+            icon: person.isEntity ? (icon || person.icon) : undefined
+        });
     };
 
     return (
@@ -73,17 +79,29 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                 </motion.button>
             </div>
 
+            {/* Error Message */}
+            {error && (
+                <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    className="bg-red-500/10 border border-red-500/20 text-red-500 text-[10px] font-bold uppercase tracking-wider p-3 rounded-xl flex items-center gap-2"
+                >
+                    <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                    {error}
+                </motion.div>
+            )}
+
             {/* Gender Toggle */}
             <div className="flex p-0.5 bg-surface rounded-2xl border border-border">
                 <button
-                    onClick={() => setGender('male')}
+                    onClick={() => { setGender('male'); setIcon(''); }}
                     className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Male
                 </button>
                 <button
-                    onClick={() => setGender('female')}
+                    onClick={() => { setGender('female'); setIcon(''); }}
                     className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
@@ -103,6 +121,19 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                         className="w-full bg-bg border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
                     />
                 </div>
+
+                {person.isEntity && (
+                    <div className="space-y-1.5">
+                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Icon / Emoji</label>
+                        <input
+                            type="text"
+                            placeholder="Enter single emoji or icon"
+                            value={icon}
+                            onChange={(e) => setIcon(e.target.value)}
+                            className="w-full bg-bg border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
+                        />
+                    </div>
+                )}
 
                 {/* Unit & Height Container */}
                 <div className="space-y-1.5">
@@ -129,7 +160,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                                     type="number"
                                     placeholder="Height"
                                     value={heightCm}
-                                    onChange={(e) => setHeightCm(e.target.value)}
+                                    onChange={(e) => { setHeightCm(e.target.value); setError(null); }}
                                     className="w-full bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
                                 />
                                 <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center justify-center">
@@ -143,7 +174,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                                         type="number"
                                         placeholder="Ft"
                                         value={heightFt}
-                                        onChange={(e) => setHeightFt(e.target.value)}
+                                        onChange={(e) => { setHeightFt(e.target.value); setError(null); }}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
@@ -155,7 +186,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                                         type="number"
                                         placeholder="In"
                                         value={heightIn}
-                                        onChange={(e) => setHeightIn(e.target.value)}
+                                        onChange={(e) => { setHeightIn(e.target.value); setError(null); }}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">

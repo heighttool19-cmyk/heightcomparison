@@ -158,7 +158,7 @@ export default function GrowthPlateExplainer() {
                     BONE AGE EXPLAINED
                 </div>
                 <h4 className="text-2xl md:text-4xl font-black text-foreground tracking-tight leading-[1.1]">
-                    How a <span style={{ color: current.plateColor, transition: "color 0.4s" }}>Wrist X-Ray</span> Predicts <br className="hidden md:block" />
+                    How a <span style={{ color: current.plateColor, transition: "color 0.4s" }}>Wrist X-Ray</span> Predicts
                     a Child&apos;s Height
                 </h4>
                 <div className="h-1.5 w-24 bg-accent rounded-full" />

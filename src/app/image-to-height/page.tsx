@@ -1,16 +1,16 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeftRight, Plus, Ruler, Trash2, Box, Moon, Sun, Monitor, HelpCircle, CheckCircle2, Camera, Smartphone, ChevronDown, Menu, Info } from 'lucide-react';
+import { Plus, Ruler, Trash2, Monitor, HelpCircle, CheckCircle2, Camera, Smartphone, ChevronDown, Info } from 'lucide-react';
 import { useUnitStore, useThemeStore, usePersonStore } from '@/store';
 import { ImageMeasurement } from '@/components/ImageMeasurement';
 import Navbar from '@/components/Navbar';
 
 export default function ImageToHeightPage() {
-    const { unitSystem, toggleUnitSystem } = useUnitStore();
-    const { theme, toggleTheme } = useThemeStore();
+    const { unitSystem } = useUnitStore();
+    const { theme } = useThemeStore();
     const { persons, removePerson } = usePersonStore();
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
