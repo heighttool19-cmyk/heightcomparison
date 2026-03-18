@@ -12,7 +12,6 @@ import { usePersonStore } from '../store';
 // import Link from 'next/link';
 import Navbar from './Navbar';
 import LZString from 'lz-string';
-import { stat } from 'fs';
 
 
 type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
@@ -76,7 +75,29 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 const hash = window.location.hash.slice(1);
                 if (!hash) return;
 
-                const decoded = JSON.parse(decodeURIComponent(atob(hash)));
+                let decoded: any = null;
+
+                // Detection: LZString encoded URLs usually don't start with JSON-Base64 chars like 'ey' ({"...)
+                // We attempt LZString first as it's our new standard
+                const lzDecoded = LZString.decompressFromEncodedURIComponent(hash);
+                if (lzDecoded) {
+                    try {
+                        decoded = JSON.parse(lzDecoded);
+                    } catch (e) {
+                        // Not LZString JSON, try legacy
+                    }
+                }
+
+                if (!decoded) {
+                    // Legacy Base64-JSON
+                    try {
+                        decoded = JSON.parse(decodeURIComponent(atob(hash)));
+                    } catch (e) {
+                        console.error("Legacy hash decode failed:", e);
+                    }
+                }
+
+                if (!decoded) return;
 
                 // Hydrate Zustand from URL if present
                 if (decoded.unitSystem) {
@@ -87,11 +108,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     storeSetPersons(decoded.persons);
                 }
 
-                setState({
-                    zoom: decoded.zoom || 1.0,
-                });
+                if (decoded.zoom) {
+                    setState(s => ({ ...s, zoom: decoded.zoom }));
+                }
             } catch (e) {
-                console.error("Hash decode failed:", e);
+                console.error("Hash hydration failed:", e);
             }
         }
     }, [storeSetPersons, readOnly]); // Run once on mount
@@ -100,12 +121,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     useEffect(() => {
         if (readOnly) return;
         if (typeof window !== 'undefined') {
-            const encoded = btoa(encodeURIComponent(JSON.stringify({
+            const dataToSync = {
                 persons,
                 unitSystem,
                 zoom: state.zoom
-            })));
-            window.history.replaceState(null, '', `#${encoded}`);
+            };
+            // Use LZString for more compact and robust sync
+            const compact = LZString.compressToEncodedURIComponent(JSON.stringify(dataToSync));
+            window.history.replaceState(null, '', `#${compact}`);
         }
     }, [state.zoom, unitSystem, persons, readOnly]);
 
@@ -478,42 +501,21 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
 
     const handleShare = async () => {
-        // 1. Create a compact array
-        // Format: [zoomInt, unitSystem(0 or 1), personCount, ...personData]
-        const data = [
-            Math.round(state.zoom * 100),
-            unitSystem === 'metric' ? 0 : 1,
-            persons.length
-        ];
+        try {
+            const dataToShare = {
+                persons,
+                unitSystem,
+                zoom: state.zoom
+            };
+            const compact = LZString.compressToEncodedURIComponent(JSON.stringify(dataToShare));
+            const shareUrl = `${window.location.origin}/#${compact}`;
 
-        const encoder = new TextEncoder();
-
-        persons.forEach(p => {
-            data.push(p.heightCm); // 1 byte (0-255)
-            data.push(p.gender === 'male' ? 0 : p.gender === 'female' ? 1 : 2);
-
-            // Convert hex color to 3 bytes
-            const hex = p.color.replace('#', '');
-            data.push(parseInt(hex.substring(0, 2), 16));
-            data.push(parseInt(hex.substring(2, 4), 16));
-            data.push(parseInt(hex.substring(4, 6), 16));
-
-            // Name is the only "heavy" part - we'll add length then the string
-            const nameBytes = encoder.encode(p.name);
-            data.push(nameBytes.length);
-            data.push(...nameBytes);
-        });
-
-        // 2. Convert to Base64
-        const uint8 = new Uint8Array(data);
-        const base64 = btoa(String.fromCharCode(...uint8))
-            .replace(/\+/g, '-') // URL safe
-            .replace(/\//g, '_')
-            .replace(/=+$/, '');
-
-        const shareUrl = `${window.location.origin}/#v2${base64}`;
-        await navigator.clipboard.writeText(shareUrl);
-        triggerToast('Ultra-compact link copied!');
+            await navigator.clipboard.writeText(shareUrl);
+            triggerToast('Share link copied!');
+        } catch (err) {
+            console.error('Failed to copy', err);
+            triggerToast('Failed to copy link');
+        }
     };
     const handleDownloadPNG = async () => {
         if (!containerRef.current) return;
