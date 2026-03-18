@@ -89,7 +89,7 @@ export interface FictionalCharacter {
   category: FictionalCategory;
   color: string;
 }
-export type EntityCategory = 'Landmarks' | 'Nature' | 'Transport' | 'Animals' | 'Dinosaurs' | 'Objects' | 'Human Averages' | 'Fictional Averages' | 'All';
+export type EntityCategory = 'Mountains' | 'Landmarks' | 'Nature' | 'Transport' | 'Animals' | 'Dinosaurs' | 'Objects' | 'Human Averages' | 'Fictional Averages' | 'All';
 
 export interface Entity {
   id: string;

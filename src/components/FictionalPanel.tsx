@@ -70,7 +70,11 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
     return (
         <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
             {/* Header */}
-            <PanelHeader title="Fictional Entities" subtitle="Add iconic characters to your chart" />
+            <PanelHeader
+                title="Fictional Entities"
+                subtitle="Add iconic characters to your chart"
+                count={filteredCharacters.length}
+            />
 
             <div className="px-6 pb-2 shrink-0">
                 {/* Search */}
@@ -112,15 +116,6 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                                 exit={{ opacity: 0 }}
                                 className="space-y-4"
                             >
-                                {/* Section Header */}
-                                <div className="flex items-center justify-between">
-                                    <h3 className="text-[11px] font-bold tracking-wider text-muted uppercase">
-                                        {category.toUpperCase()}
-                                    </h3>
-                                    <div className="bg-bg border border-border/50 rounded px-1.5 py-0.5">
-                                        <span className="text-[9px] font-bold text-muted uppercase">{chars.length} FOUND</span>
-                                    </div>
-                                </div>
 
                                 {/* Cards Grid */}
                                 <div className="flex flex-col gap-2.5">

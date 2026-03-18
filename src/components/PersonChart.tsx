@@ -29,7 +29,7 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove, onEdit, on
                 className={`px-6 py-4 flex items-center justify-between sticky top-0 bg-surface z-10 border-y border-border transition-colors duration-500 ${highlight ? 'bg-accent/10 border-accent/50 group' : ''}`}
             >
                 <h2 className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70 flex items-center gap-2">
-                    Your List <span className="text-accent">{persons.length}</span>
+                    Your List
                     {highlight && (
                         <motion.div
                             initial={{ scale: 0.5, opacity: 0 }}
@@ -82,8 +82,8 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove, onEdit, on
                                     className="w-2.5 h-2.5 rounded-full shadow-sm shrink-0"
                                     style={{ backgroundColor: person.color }}
                                 />
-                                <div className="flex flex-col items-center text-center">
-                                    <span className="text-[11px] font-bold text-foreground leading-tight uppercase tracking-tight">
+                                <div className="flex flex-col items-center text-left">
+                                    <span className="text-[11px] font-mono text-foreground leading-tight uppercase tracking-tight">
                                         {person.name}
                                     </span>
                                     <span className="text-[10px] font-mono font-black text-foreground/40 mt-0.5 uppercase">

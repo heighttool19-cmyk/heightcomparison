@@ -4,11 +4,12 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Ruler, Target, Check, X } from 'lucide-react';
 import { cn } from '../../../../lib/utils';
+import { handleInputChange } from '@/utils/input';
 
 interface CalibrationModalProps {
     showCalibModal: boolean;
-    calibCm: string;
-    setCalibCm: (val: string) => void;
+    calibCm: number | '';
+    setCalibCm: (val: number | '') => void;
     applyPreset: (cm: number, label: string) => void;
     confirmCalib: () => void;
     cancelCalib: () => void;
@@ -43,13 +44,13 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
                             ].map(p => (
                                 <button key={p.label} onClick={() => applyPreset(p.cm, p.label)}
                                     className={cn("px-3 py-1.5 rounded-lg border text-[10px] font-bold flex items-center gap-1.5 transition-all",
-                                        calibCm === String(p.cm) ? "border-accent text-accent bg-accent/10" : "border-border text-muted hover:border-accent/40 hover:text-foreground")}>
+                                        calibCm === p.cm ? "border-accent text-accent bg-accent/10" : "border-border text-muted hover:border-accent/40 hover:text-foreground")}>
                                     <Target className="w-3 h-3" /> {p.label}
                                 </button>
                             ))}
                         </div>
                         <div className="relative">
-                            <input type="number" value={calibCm} onChange={e => setCalibCm(e.target.value)}
+                            <input type="number" value={calibCm} onChange={e => handleInputChange(e, setCalibCm)}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-accent font-black outline-none focus:border-accent transition-all pr-14 focus:ring-1 focus:ring-accent/20" />
                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-foreground/40">CM</span>
                         </div>

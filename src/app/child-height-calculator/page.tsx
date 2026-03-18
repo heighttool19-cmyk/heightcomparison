@@ -10,6 +10,7 @@ import HeightDashboard from '@/components/HeightDashboard';
 import HeightCharts from '@/components/HeightCharts';
 import GrowthPlateExplainer from '@/components/GrowthPlateExplainer';
 import { Person } from '@/types';
+import { handleInputChange } from '@/utils/input';
 
 // Structured TOC data for easy rendering and active state tracking
 const tocItems = [
@@ -477,7 +478,7 @@ export default function HeightCalculatorPage() {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                                 <div className="space-y-2">
                                     <label className="text-base font-semibold text-muted">Child&apos;s Age (Years)</label>
-                                    <input type="number" min="0" value={childAge} onChange={e => setChildAge(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                    <input type="number" min="0" value={childAge} onChange={e => handleInputChange(e, setChildAge)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
                                 </div>
                                 <div className="space-y-2">
                                     <label className="text-base font-semibold text-muted">Gender</label>
@@ -492,17 +493,17 @@ export default function HeightCalculatorPage() {
                                     <label className="text-base font-semibold text-muted">Child&apos;s Current Height</label>
                                     {unit === 'metric' ? (
                                         <div className="relative">
-                                            <input type="number" value={childHtCm} onChange={e => setChildHtCm(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 110" />
+                                            <input type="number" value={childHtCm} onChange={e => handleInputChange(e, setChildHtCm)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 110" />
                                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                                         </div>
                                     ) : (
                                         <div className="flex gap-2">
                                             <div className="relative flex-1">
-                                                <input type="number" value={childHtFt} onChange={e => setChildHtFt(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 3" />
+                                                <input type="number" value={childHtFt} onChange={e => handleInputChange(e, setChildHtFt)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 3" />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                                             </div>
                                             <div className="relative flex-1">
-                                                <input type="number" value={childHtIn} onChange={e => setChildHtIn(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                                <input type="number" value={childHtIn} onChange={e => handleInputChange(e, setChildHtIn)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                                             </div>
                                         </div>
@@ -513,12 +514,12 @@ export default function HeightCalculatorPage() {
                                     <label className="text-base font-semibold text-muted">Child&apos;s Current Weight </label>
                                     {unit === 'metric' ? (
                                         <div className="relative">
-                                            <input type="number" value={childWtKg} onChange={e => setChildWtKg(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 20" />
+                                            <input type="number" value={childWtKg} onChange={e => handleInputChange(e, setChildWtKg)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 20" />
                                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">kg</span>
                                         </div>
                                     ) : (
                                         <div className="relative">
-                                            <input type="number" value={childWtLbs} onChange={e => setChildWtLbs(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 45" />
+                                            <input type="number" value={childWtLbs} onChange={e => handleInputChange(e, setChildWtLbs)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 45" />
                                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">lbs</span>
                                         </div>
                                     )}
@@ -529,17 +530,17 @@ export default function HeightCalculatorPage() {
                                     <label className="text-base font-semibold text-muted">Mother&apos;s Height</label>
                                     {unit === 'metric' ? (
                                         <div className="relative">
-                                            <input type="number" value={motherHtCm} onChange={e => setMotherHtCm(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 165" />
+                                            <input type="number" value={motherHtCm} onChange={e => handleInputChange(e, setMotherHtCm)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 165" />
                                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                                         </div>
                                     ) : (
                                         <div className="flex gap-2">
                                             <div className="relative flex-1">
-                                                <input type="number" value={motherHtFt} onChange={e => setMotherHtFt(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                                <input type="number" value={motherHtFt} onChange={e => handleInputChange(e, setMotherHtFt)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                                             </div>
                                             <div className="relative flex-1">
-                                                <input type="number" value={motherHtIn} onChange={e => setMotherHtIn(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                                <input type="number" value={motherHtIn} onChange={e => handleInputChange(e, setMotherHtIn)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                                             </div>
                                         </div>
@@ -550,17 +551,17 @@ export default function HeightCalculatorPage() {
                                     <label className="text-base font-semibold text-muted">Father&apos;s Height</label>
                                     {unit === 'metric' ? (
                                         <div className="relative">
-                                            <input type="number" value={fatherHtCm} onChange={e => setFatherHtCm(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" />
+                                            <input type="number" value={fatherHtCm} onChange={e => handleInputChange(e, setFatherHtCm)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" />
                                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                                         </div>
                                     ) : (
                                         <div className="flex gap-2">
                                             <div className="relative flex-1">
-                                                <input type="number" value={fatherHtFt} onChange={e => setFatherHtFt(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                                <input type="number" value={fatherHtFt} onChange={e => handleInputChange(e, setFatherHtFt)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                                             </div>
                                             <div className="relative flex-1">
-                                                <input type="number" value={fatherHtIn} onChange={e => setFatherHtIn(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" />
+                                                <input type="number" value={fatherHtIn} onChange={e => handleInputChange(e, setFatherHtIn)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                                             </div>
                                         </div>
@@ -617,17 +618,23 @@ export default function HeightCalculatorPage() {
                                     <label className="text-base font-semibold text-muted">Mother&apos;s Height</label>
                                     {unit === 'metric' ? (
                                         <div className="relative">
-                                            <input type="number" value={parentMotherHtCm} onChange={e => setParentMotherHtCm(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 165" />
+                                            <input
+                                                type="number"
+                                                value={parentMotherHtCm}
+                                                onChange={e => handleInputChange(e, setParentMotherHtCm)}
+                                                className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors"
+                                                placeholder="e.g. 165"
+                                            />
                                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                                         </div>
                                     ) : (
                                         <div className="flex gap-2">
                                             <div className="relative flex-1">
-                                                <input type="number" value={parentMotherHtFt} onChange={e => setParentMotherHtFt(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                                <input type="number" value={parentMotherHtFt} onChange={e => handleInputChange(e, setParentMotherHtFt)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                                             </div>
                                             <div className="relative flex-1">
-                                                <input type="number" value={parentMotherHtIn} onChange={e => setParentMotherHtIn(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                                <input type="number" value={parentMotherHtIn} onChange={e => handleInputChange(e, setParentMotherHtIn)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                                             </div>
                                         </div>
@@ -637,17 +644,17 @@ export default function HeightCalculatorPage() {
                                     <label className="text-base font-semibold text-muted">Father&apos;s Height</label>
                                     {unit === 'metric' ? (
                                         <div className="relative">
-                                            <input type="number" value={parentFatherHtCm} onChange={e => setParentFatherHtCm(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" />
+                                            <input type="number" value={parentFatherHtCm} onChange={e => handleInputChange(e, setParentFatherHtCm)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" />
                                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                                         </div>
                                     ) : (
                                         <div className="flex gap-2">
                                             <div className="relative flex-1">
-                                                <input type="number" value={parentFatherHtFt} onChange={e => setParentFatherHtFt(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                                <input type="number" value={parentFatherHtFt} onChange={e => handleInputChange(e, setParentFatherHtFt)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                                             </div>
                                             <div className="relative flex-1">
-                                                <input type="number" value={parentFatherHtIn} onChange={e => setParentFatherHtIn(Number(e.target.value))} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" />
+                                                <input type="number" value={parentFatherHtIn} onChange={e => handleInputChange(e, setParentFatherHtIn)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" />
                                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                                             </div>
                                         </div>
@@ -727,7 +734,7 @@ export default function HeightCalculatorPage() {
                                 <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm hover:border-accent/40 transition-colors">
                                     <h3 className="font-semibold text-muted mb-4 uppercase text-xs tracking-widest">cm → ft/in</h3>
                                     <div className="relative mb-4">
-                                        <input type="number" min="0" value={convCmInput} onChange={e => setConvCmInput(e.target.value)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors text-lg font-medium" placeholder="Centimeters" />
+                                        <input type="number" min="0" value={convCmInput} onChange={e => handleInputChange(e, setConvCmInput)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors text-lg font-medium" placeholder="Centimeters" />
                                         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold text-xs uppercase">cm</span>
                                     </div>
                                     <div className="h-14 flex items-center justify-center font-mono font-bold text-2xl text-accent bg-accent/5 rounded-xl border border-accent/10">{getCmToFtInDisplay()}</div>
@@ -737,10 +744,10 @@ export default function HeightCalculatorPage() {
                                     <h3 className="font-semibold text-muted mb-4 uppercase text-xs tracking-widest">ft/in → cm</h3>
                                     <div className="flex gap-2 mb-4">
                                         <div className="relative flex-1">
-                                            <input type="number" min="0" value={convFtInput} onChange={e => setConvFtInput(e.target.value)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors text-lg font-medium" placeholder="Feet" />
+                                            <input type="number" min="0" value={convFtInput} onChange={e => handleInputChange(e, setConvFtInput)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors text-lg font-medium" placeholder="Feet" />
                                         </div>
                                         <div className="relative flex-1">
-                                            <input type="number" min="0" value={convInInput} onChange={e => setConvInInput(e.target.value)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors text-lg font-medium" placeholder="Inches" />
+                                            <input type="number" min="0" value={convInInput} onChange={e => handleInputChange(e, setConvInInput)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors text-lg font-medium" placeholder="Inches" />
                                         </div>
                                     </div>
                                     <div className="h-14 flex items-center justify-center font-mono font-bold text-2xl text-accent bg-accent/5 rounded-xl border border-accent/10">{getFtInToCmDisplay()}</div>

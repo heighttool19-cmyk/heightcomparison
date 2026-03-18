@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { Gender, UnitSystem, COLOR_PALETTE, uid, Person } from '../types';
+import { handleInputChange } from '../utils/input';
 
 interface AddPersonFormProps {
     onAdd: (person: Person) => void;
@@ -14,17 +15,17 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
     const [gender, setGender] = useState<Gender>('male');
     const [name, setName] = useState('');
     const [unit, setUnit] = useState<UnitSystem>('metric');
-    const [heightCm, setHeightCm] = useState<string>('');
-    const [heightFt, setHeightFt] = useState<string>('');
-    const [heightIn, setHeightIn] = useState<string>('');
+    const [heightCm, setHeightCm] = useState<number | ''>('');
+    const [heightFt, setHeightFt] = useState<number | ''>('');
+    const [heightIn, setHeightIn] = useState<number | ''>('');
     const [color, setColor] = useState(COLOR_PALETTE[personCount % 8]);
     const handleAdd = () => {
         let finalHeightCm = 0;
         if (unit === 'metric') {
-            finalHeightCm = parseFloat(heightCm) || 0;
+            finalHeightCm = typeof heightCm === 'number' ? heightCm : 0;
         } else {
-            const ft = parseFloat(heightFt) || 0;
-            const inch = parseFloat(heightIn) || 0;
+            const ft = typeof heightFt === 'number' ? heightFt : 0;
+            const inch = typeof heightIn === 'number' ? heightIn : 0;
             finalHeightCm = (ft * 30.48) + (inch * 2.54);
         }
 
@@ -112,7 +113,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                     type="number"
                                     placeholder="Height"
                                     value={heightCm}
-                                    onChange={(e) => setHeightCm(e.target.value)}
+                                    onChange={(e) => handleInputChange(e, setHeightCm)}
                                     className="w-full bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
                                 />
                                 <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center justify-center">
@@ -126,7 +127,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                         type="number"
                                         placeholder="Ft"
                                         value={heightFt}
-                                        onChange={(e) => setHeightFt(e.target.value)}
+                                        onChange={(e) => handleInputChange(e, setHeightFt)}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
@@ -138,7 +139,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                         type="number"
                                         placeholder="In"
                                         value={heightIn}
-                                        onChange={(e) => setHeightIn(e.target.value)}
+                                        onChange={(e) => handleInputChange(e, setHeightIn)}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">

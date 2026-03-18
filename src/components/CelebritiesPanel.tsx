@@ -106,7 +106,11 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
     return (
         <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
             {/* 1. Header Area */}
-            <PanelHeader title="Celebrity Selection" subtitle="Add icons to your comparison chart" />
+            <PanelHeader
+                title="Celebrity Selection"
+                subtitle="Add icons to your comparison chart"
+                count={filteredCelebrities.length}
+            />
 
             <div className="px-6 pb-2 shrink-0">
                 {/* Search Input */}
@@ -148,15 +152,6 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                                 exit={{ opacity: 0 }}
                                 className="space-y-4"
                             >
-                                {/* Section Header */}
-                                <div className="flex items-center justify-between">
-                                    <h3 className="text-[11px] font-bold tracking-wider text-muted uppercase">
-                                        {category.toUpperCase()}
-                                    </h3>
-                                    <div className="bg-bg border border-border/50 rounded px-1.5 py-0.5">
-                                        <span className="text-[9px] font-bold text-muted uppercase">{celebs.length} FOUND</span>
-                                    </div>
-                                </div>
 
                                 {/* Cards Grid */}
                                 <div className="flex flex-col gap-2.5">

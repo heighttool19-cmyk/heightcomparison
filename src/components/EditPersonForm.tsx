@@ -5,6 +5,7 @@ import { ChevronRight, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Gender, UnitSystem, COLOR_PALETTE, Person } from '../types';
 import { useUnitStore } from '../store';
+import { handleInputChange } from '../utils/input';
 
 interface EditPersonFormProps {
     person: Person;
@@ -19,14 +20,14 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
     const [name, setName] = useState(person.name);
     const [unit, setUnit] = useState<UnitSystem>(globalUnit);
 
-    const [heightCm, setHeightCm] = useState<string>(Math.round(person.heightCm).toString());
+    const [heightCm, setHeightCm] = useState<number | ''>(Math.round(person.heightCm));
 
     const ftDecimal = person.heightCm * 0.0328084;
     const ft = Math.floor(ftDecimal);
     const inch = Math.round((ftDecimal - ft) * 12);
 
-    const [heightFt, setHeightFt] = useState<string>(ft.toString());
-    const [heightIn, setHeightIn] = useState<string>(inch.toString());
+    const [heightFt, setHeightFt] = useState<number | ''>(ft);
+    const [heightIn, setHeightIn] = useState<number | ''>(inch);
 
     const [color, setColor] = useState(person.color || COLOR_PALETTE[2]);
     const [icon, setIcon] = useState(person.icon || '');
@@ -35,10 +36,10 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
     const handleSave = () => {
         let finalHeightCm = 0;
         if (unit === 'metric') {
-            finalHeightCm = parseFloat(heightCm) || 0;
+            finalHeightCm = typeof heightCm === 'number' ? heightCm : 0;
         } else {
-            const f = parseFloat(heightFt) || 0;
-            const i = parseFloat(heightIn) || 0;
+            const f = typeof heightFt === 'number' ? heightFt : 0;
+            const i = typeof heightIn === 'number' ? heightIn : 0;
             finalHeightCm = (f * 30.48) + (i * 2.54);
         }
 
@@ -160,7 +161,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                                     type="number"
                                     placeholder="Height"
                                     value={heightCm}
-                                    onChange={(e) => { setHeightCm(e.target.value); setError(null); }}
+                                    onChange={(e) => { handleInputChange(e, setHeightCm); setError(null); }}
                                     className="w-full bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
                                 />
                                 <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center justify-center">
@@ -174,7 +175,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                                         type="number"
                                         placeholder="Ft"
                                         value={heightFt}
-                                        onChange={(e) => { setHeightFt(e.target.value); setError(null); }}
+                                        onChange={(e) => { handleInputChange(e, setHeightFt); setError(null); }}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
@@ -186,7 +187,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                                         type="number"
                                         placeholder="In"
                                         value={heightIn}
-                                        onChange={(e) => { setHeightIn(e.target.value); setError(null); }}
+                                        onChange={(e) => { handleInputChange(e, setHeightIn); setError(null); }}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">

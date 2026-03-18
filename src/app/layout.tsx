@@ -10,6 +10,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Height Comparison Tool | Visualize & Compare Heights Online",
   description: "The ultimate tool to compare heights of people, celebrities, buildings, and objects. Visualize differences in real-world scale with premium glassmorphism design.",
+  robots: "index, follow",
 };
 
 export const viewport: Viewport = {

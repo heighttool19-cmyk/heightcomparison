@@ -334,7 +334,7 @@ export default function ImageToHeightPage() {
 
                         <div className="space-y-3 mt-2 pr-2 pb-4">
                             {/* Locked Standard Door */}
-                            <div className="bg-bg border border-border rounded-2xl p-4 flex items-center justify-between relative overflow-hidden group">
+                            {/* <div className="bg-bg border border-border rounded-2xl p-4 flex items-center justify-between relative overflow-hidden group">
                                 <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-foreground/20" />
                                 <div className="flex items-center gap-3 pl-2">
                                     <div className="w-10 h-10 rounded-xl bg-surface border border-border flex items-center justify-center text-foreground/40">
@@ -354,7 +354,7 @@ export default function ImageToHeightPage() {
                                     </span>
                                 </div>
 
-                            </div>
+                            </div> */}
 
                             <AnimatePresence>
                                 {persons.map(person => (
@@ -378,8 +378,8 @@ export default function ImageToHeightPage() {
 
                                         <div className="flex items-center pr-8 md:pr-10">
                                             <div className="flex items-baseline justify-end gap-1.5">
-                                                <span className="text-lg font-black text-foreground whitespace-nowrap">
-                                                    {unitSystem === 'metric' ? person.heightCm.toFixed(1) : (person.heightCm / 30.48).toFixed(1)}
+                                                <span className="text-sm font-black text-foreground whitespace-nowrap">
+                                                    {unitSystem === 'metric' ? person.heightCm : (person.heightCm / 30.48).toFixed(1)}
                                                 </span>
                                                 <span className="text-[11px] font-bold text-muted uppercase whitespace-nowrap">
                                                     {unitSystem === 'metric' ? 'cm' : 'ft'}

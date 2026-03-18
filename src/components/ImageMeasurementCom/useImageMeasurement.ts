@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import { useHeightStore } from '@/store/useHeightStore';
 import { usePersonStore, useUnitStore } from '@/store';
 import { Gender } from '@/types';
+import { handleInputChange } from '@/utils/input';
 
 /* ─────────────────────────── Types ─────────────────────────── */
 export interface Point { x: number; y: number; }
@@ -46,7 +47,7 @@ export const useImageMeasurement = () => {
     const [measLine, setMeasLine] = useState<Line | null>(null);
 
     const [showCalibModal, setShowCalibModal] = useState(false);
-    const [calibCm, setCalibCm] = useState('203');
+    const [calibCm, setCalibCm] = useState<number | ''>(203);
 
     const [isScanning, setIsScanning] = useState(false);
     const [isSavedToChart, setIsSavedToChart] = useState(false);
@@ -291,7 +292,7 @@ export const useImageMeasurement = () => {
     const confirmCalib = () => {
         if (!calibLine) return;
         const dist = Math.hypot(calibLine.p2.x - calibLine.p1.x, calibLine.p2.y - calibLine.p1.y);
-        setCalibrationDetails(dist, parseFloat(calibCm) || 203);
+        setCalibrationDetails(dist, Number(calibCm) || 203);
         setShowCalibModal(false); setMode('measuring');
         toast('Calibration set! Now draw a line on the target.', 'success');
     };
@@ -423,7 +424,7 @@ export const useImageMeasurement = () => {
         img.src = pendingUrl;
     };
     const closeCropModal = () => { setShowCropModal(false); setPendingUrl(null); };
-    const applyPreset = (cm: number, label: string) => { setCalibCm(cm.toString()); toast(`Preset: ${label} (${cm} cm)`, 'info'); };
+    const applyPreset = (cm: number, label: string) => { setCalibCm(cm); toast(`Preset: ${label} (${cm} cm)`, 'info'); };
 
     const handleSaveToChart = () => {
         if (calculatedHeight <= 0) {

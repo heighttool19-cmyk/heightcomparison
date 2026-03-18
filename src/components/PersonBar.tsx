@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Edit2, Trash2 } from 'lucide-react';
 import { Person } from '../types';
 import { useUnitStore } from '../store';
+import { handleInputChange } from '../utils/input';
 
 interface PersonBarProps {
     person: Person;
@@ -19,7 +20,7 @@ interface PersonBarProps {
 const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly }) => {
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    const [inputValue, setInputValue] = React.useState(person.heightCm.toString());
+    const [inputValue, setInputValue] = React.useState<number | ''>(person.heightCm);
     const [imageAspectRatio, setImageAspectRatio] = React.useState<number | null>(null);
 
     const handleImageLoad = React.useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -30,15 +31,15 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
     }, []);
 
     React.useEffect(() => {
-        setInputValue(person.heightCm.toString());
+        setInputValue(person.heightCm);
     }, [person.heightCm]);
 
     const submitHeight = () => {
-        const val = parseFloat(inputValue);
+        const val = Number(inputValue);
         if (!isNaN(val) && val > 0 && onHeightChange) {
             onHeightChange(val);
         } else {
-            setInputValue(person.heightCm.toString());
+            setInputValue(person.heightCm);
         }
     };
 
@@ -60,24 +61,41 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
     const totalInches = Math.round(Math.abs(person.heightCm * 0.393701));
     const ftValue = Math.floor(totalInches / 12);
     const inValue = totalInches % 12;
-    const ftDisplay = `${person.heightCm < 0 ? '-' : ''}${ftValue}' ${inValue}''`;
-    const ftDisplayShort = `${ftValue}'${inValue}"`;
+    const negative = person.heightCm < 0 ? '-' : '';
+    // For very tall objects, show feet only (no inches) for brevity
+    const ftDisplay = ftValue >= 1000
+        ? `${negative}${ftValue.toLocaleString()} ft`
+        : `${negative}${ftValue}' ${inValue}''`;
+    const ftDisplayShort = ftValue >= 1000
+        ? `${negative}${ftValue.toLocaleString()}ft`
+        : `${negative}${ftValue}'${inValue}"`;
+
+    // For metric: switch to metres above 10m (1000cm)
+    const isTall = person.heightCm >= 1000;
+    const metricDisplay = isTall
+        ? `${(person.heightCm / 100).toFixed(person.heightCm % 100 === 0 ? 0 : 1)} m`
+        : `${Math.round(person.heightCm)} cm`;
+    const metricDisplayShort = isTall
+        ? `${(person.heightCm / 100 % 1 === 0 ? (person.heightCm / 100).toFixed(0) : (person.heightCm / 100).toFixed(1))}m`
+        : `${Math.round(person.heightCm)}cm`;
 
     const springConfig = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
     // Dynamic width calculation for true 2D zoom
     const baseWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? 90 : 120;
     // const containerWidth = Math.max(50, baseWidth * zoom);
-    const containerWidth = zoom < 0.3 ? Math.max(30, baseWidth * zoom * 0.3) : Math.max(50, baseWidth * zoom);
+    const containerWidth = zoom < 0.3 ? Math.max(30, baseWidth * zoom * 0.3)
+        : Math.max(50, baseWidth * zoom);
 
     // CRITICAL: The name label uses a different scale logic at low zoom (min 0.6)
     const nameScale = zoom < 0.8 ? Math.max(0.4, zoom + 0.1) : 1;
     const nameWidth = (person.name.length * 8.5 + 24) * nameScale;
+    const mobile = (typeof window !== 'undefined' && window.innerWidth < 768);
 
     // For image persons: compute width from natural aspect ratio
     const effectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(60, Math.round(barHeightPx * imageAspectRatio))
-        : Math.max(containerWidth, nameWidth);
+        : mobile ? ((Math.max(containerWidth, nameWidth)) / 1.5) : Math.max(containerWidth, nameWidth);
 
     return (
         <motion.div
@@ -101,15 +119,15 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                 style={{
                     bottom: `${barHeightPx + 68}px`,
                     width: 'max-content',
-                    transform: `translateX(-50%) scale(${Math.max(0.8, Math.min(1.2, zoom))})`,
+                    transform: `translateX(-50%) scale(${zoom < 0.8 ? Math.max(0.3, zoom * 1.1) : Math.min(1.1, zoom * 0.8)})`,
                     transformOrigin: 'bottom'
                 }}
             >
-                <span className="text-[10px] sm:text-[11px] m-auto font-black text-foreground uppercase tracking-tighter whitespace-nowrap leading-none shadow-sm  text-center  max-w-[80px] text-center bg-bg/40 backdrop-blur-sm rounded px-1">
+                <span className="text-[11px] font-bold text-white/90 uppercase tracking-wider whitespace-nowrap text-center drop-shadow-sm max-w-[140px]   px-1">
                     {person.name}
                 </span>
-                <span className="text-[9px] sm:text-[10px] font-bold text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/40 backdrop-blur-sm rounded px-1">
-                    {unitSystem === 'metric' ? `${Math.round(person.heightCm)} cm` : `$${ftDisplayShort} ft`}
+                <span className="text-[9px] sm:text-[10px] font-bold text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/40 backdrop-blur-sm rounded px-1 text-center">
+                    {unitSystem === 'metric' ? metricDisplayShort : `${ftDisplayShort} ft`}
                 </span>
             </div>
 
@@ -141,10 +159,10 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                 {/* Height Stats */}
                 <div className="flex flex-col items-center text-center">
                     <span className="text-sm font-black text-accent whitespace-nowrap leading-none">
-                        {person.heightCm.toFixed(1)} cm
+                        {unitSystem === 'metric' ? metricDisplay : ftDisplay}
                     </span>
                     <span className="text-[11px] font-bold text-muted whitespace-nowrap leading-tight mt-1 opacity-80">
-                        {ftDisplay}
+                        {unitSystem === 'metric' ? ftDisplay : metricDisplay}
                     </span>
                 </div>
 
@@ -257,30 +275,30 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                 className="absolute left-1/2 bottom-0 h-[60px] flex flex-col items-center justify-center gap-0 pointer-events-auto hide-on-export"
                 style={{
                     width: 'max-content',
-                    transform: `translateX(-50%) scale(${zoom < 0.6 ? Math.max(0.5, zoom + 0.1) : (zoom < 0.8 ? zoom + 0.2 : 1)})`,
+                    transform: `translateX(-50%) scale(${zoom < 0.8 ? Math.max(0.35, zoom * 1.1) : Math.min(1.2, zoom)})`,
                     transformOrigin: 'top center'
                 }}
             >
-                <span className="text-[12px] font-black text-foreground/70 uppercase tracking-tight whitespace-nowrap text-center px-1"
+                <span className="text-[12px] font-black text-foreground/70 uppercase tracking-tight whitespace-nowrap text-center px-1 max-w-[120px]  "
                     style={{ lineHeight: 1.1 }}>
                     {person.name}
                 </span>
 
                 {readOnly ? (
-                    <div className="flex items-center gap-1.5 bg-surface/50 border border-border/40 rounded-xl px-4 py-1.5 backdrop-blur-md shadow-sm mt-1 transition-all">
+                    <div className="flex items-center gap-1.5 bg-surface/50 border border-border/40 rounded-xl px-4 py-1.5 backdrop-blur-md shadow-sm transition-all">
                         <span className="text-xs sm:text-[13px] font-mono font-black text-foreground whitespace-nowrap">
                             {unitSystem === 'metric'
-                                ? `${person.heightCm.toFixed(1)} cm`
+                                ? metricDisplay
                                 : ftDisplay
                             }
                         </span>
                     </div>
                 ) : (
-                    <div className="flex items-center gap-1 bg-surface border border-border/60 rounded-xl px-1.5 py-0.5 focus-within:border-accent/60 backdrop-blur-md shadow-sm transition-all group-hover:border-accent/50 ring-1 ring-black/5 dark:ring-white/5 mt-1">
+                    <div className="flex items-center gap-1 bg-surface border border-border/60 rounded-xl px-1.5 py-0.5 focus-within:border-accent/60 backdrop-blur-md shadow-sm transition-all group-hover:border-accent/50 ring-1 ring-black/5 dark:ring-white/5">
                         <input
                             type="number"
                             value={inputValue}
-                            onChange={(e) => setInputValue(e.target.value)}
+                            onChange={(e) => handleInputChange(e, setInputValue)}
                             onBlur={handleBlur}
                             onKeyDown={handleKeyDown}
                             className="w-6 sm:w-8 bg-transparent text-xs sm:text-[13px] font-mono font-black text-center text-foreground focus:outline-none"

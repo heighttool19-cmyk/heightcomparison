@@ -4,6 +4,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Person, uid, HEIGHT_LIMITS, UnitSystem } from '../types';
 import { UploadCloud, Crop, Check, X, RotateCcw, Move } from 'lucide-react';
+import { handleInputChange } from '../utils/input';
 
 interface AddImageFormProps {
     onAdd: (person: Person) => void;
@@ -25,23 +26,23 @@ interface DragState {
 }
 
 const RESIZE_HANDLES = [
-    { id: 'n',  cursor: 'ns-resize',    style: { top: -5,    left: '50%', transform: 'translateX(-50%)' } },
-    { id: 's',  cursor: 'ns-resize',    style: { bottom: -5, left: '50%', transform: 'translateX(-50%)' } },
-    { id: 'e',  cursor: 'ew-resize',    style: { right: -5,  top: '50%',  transform: 'translateY(-50%)' } },
-    { id: 'w',  cursor: 'ew-resize',    style: { left: -5,   top: '50%',  transform: 'translateY(-50%)' } },
-    { id: 'ne', cursor: 'nesw-resize',  style: { top: -5,    right: -5 } },
-    { id: 'nw', cursor: 'nwse-resize',  style: { top: -5,    left: -5  } },
-    { id: 'se', cursor: 'nwse-resize',  style: { bottom: -5, right: -5 } },
-    { id: 'sw', cursor: 'nesw-resize',  style: { bottom: -5, left: -5  } },
+    { id: 'n', cursor: 'ns-resize', style: { top: -5, left: '50%', transform: 'translateX(-50%)' } },
+    { id: 's', cursor: 'ns-resize', style: { bottom: -5, left: '50%', transform: 'translateX(-50%)' } },
+    { id: 'e', cursor: 'ew-resize', style: { right: -5, top: '50%', transform: 'translateY(-50%)' } },
+    { id: 'w', cursor: 'ew-resize', style: { left: -5, top: '50%', transform: 'translateY(-50%)' } },
+    { id: 'ne', cursor: 'nesw-resize', style: { top: -5, right: -5 } },
+    { id: 'nw', cursor: 'nwse-resize', style: { top: -5, left: -5 } },
+    { id: 'se', cursor: 'nwse-resize', style: { bottom: -5, right: -5 } },
+    { id: 'sw', cursor: 'nesw-resize', style: { bottom: -5, left: -5 } },
 ];
 
 const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
     // Form state
     const [name, setName] = useState('');
     const [unit, setUnit] = useState<UnitSystem>('metric');
-    const [heightCm, setHeightCm] = useState<string>('170');
-    const [heightFt, setHeightFt] = useState<string>('5');
-    const [heightIn, setHeightIn] = useState<string>('7');
+    const [heightCm, setHeightCm] = useState<number | ''>(170);
+    const [heightFt, setHeightFt] = useState<number | ''>(5);
+    const [heightIn, setHeightIn] = useState<number | ''>(7);
     const [error, setError] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -64,13 +65,13 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
 
         let finalHeightCm = 0;
         if (unit === 'metric') {
-            finalHeightCm = parseFloat(heightCm) || 0;
+            finalHeightCm = typeof heightCm === 'number' ? heightCm : 0;
             if (finalHeightCm < HEIGHT_LIMITS.MIN_CM || finalHeightCm > HEIGHT_LIMITS.MAX_CM) {
                 setError(`Height must be between ${HEIGHT_LIMITS.MIN_CM} and ${HEIGHT_LIMITS.MAX_CM} cm.`);
                 return;
             }
         } else {
-            finalHeightCm = (parseFloat(heightFt) || 0) * 30.48 + (parseFloat(heightIn) || 0) * 2.54;
+            finalHeightCm = (Number(heightFt) || 0) * 30.48 + (Number(heightIn) || 0) * 2.54;
             if (finalHeightCm < HEIGHT_LIMITS.MIN_CM || finalHeightCm > HEIGHT_LIMITS.MAX_CM) {
                 setError('Height outside allowed range.'); return;
             }
@@ -131,7 +132,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
         setDragState({ type: handle === 'move' ? 'move' : 'resize', handle, startMouseX: x, startMouseY: y, startBox: { ...cropBox } });
     };
 
-const onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
+    const onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
         if (!dragState) return;
         e.preventDefault();
         const { x, y } = getCoords(e);
@@ -176,15 +177,15 @@ const onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
             const sx = naturalSize.w / imgDisplaySize.w;
             const sy = naturalSize.h / imgDisplaySize.h;
             const canvas = document.createElement('canvas');
-            canvas.width  = Math.round(cropBox.w * sx);
+            canvas.width = Math.round(cropBox.w * sx);
             canvas.height = Math.round(cropBox.h * sy);
             const ctx = canvas.getContext('2d');
             if (!ctx) return;
             ctx.drawImage(img, cropBox.x * sx, cropBox.y * sy, cropBox.w * sx, cropBox.h * sy, 0, 0, canvas.width, canvas.height);
 
             let finalH = 0;
-            if (unit === 'metric') finalH = parseFloat(heightCm) || 170;
-            else finalH = (parseFloat(heightFt) || 5) * 30.48 + (parseFloat(heightIn) || 7) * 2.54;
+            if (unit === 'metric') finalH = Number(heightCm) || 170;
+            else finalH = (Number(heightFt) || 5) * 30.48 + (Number(heightIn) || 7) * 2.54;
 
             onAdd({
                 id: uid(),
@@ -198,7 +199,7 @@ const onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
             setShowCropModal(false);
             setPendingImageUrl(null);
             setName('');
-            setHeightCm('170');
+            setHeightCm(170);
         };
         img.src = pendingImageUrl;
     };
@@ -246,19 +247,19 @@ const onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
                     </div>
                     {unit === 'metric' ? (
                         <div className="flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
-                            <input type="number" placeholder="Height" value={heightCm} onChange={e => setHeightCm(e.target.value)}
+                            <input type="number" placeholder="Height" value={heightCm} onChange={e => handleInputChange(e, setHeightCm)}
                                 className="flex-1 bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none" />
                             <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center">CM</div>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                <input type="number" placeholder="Ft" value={heightFt} onChange={e => setHeightFt(e.target.value)}
+                                <input type="number" placeholder="Ft" value={heightFt} onChange={e => handleInputChange(e, setHeightFt)}
                                     className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none" />
                                 <div className="px-2 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center shrink-0">FT</div>
                             </div>
                             <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                <input type="number" placeholder="In" value={heightIn} onChange={e => setHeightIn(e.target.value)}
+                                <input type="number" placeholder="In" value={heightIn} onChange={e => handleInputChange(e, setHeightIn)}
                                     className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none" />
                                 <div className="px-2 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center shrink-0">IN</div>
                             </div>

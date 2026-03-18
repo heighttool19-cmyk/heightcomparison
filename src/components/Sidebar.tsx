@@ -3,7 +3,7 @@
 import React from 'react';
 import dynamic from 'next/dynamic';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Person, Entity, Mountain } from '../types';
+import { Person, Entity } from '../types';
 
 const LoadingPanel = () => (
     <div className="flex-1 flex flex-col items-center justify-center h-full w-full opacity-50 space-y-4 min-h-[300px]">
@@ -20,7 +20,6 @@ const EditPersonForm = dynamic(() => import('./EditPersonForm'));
 const CelebritiesPanel = dynamic(() => import('./CelebritiesPanel'), { loading: () => <LoadingPanel /> });
 const FictionalPanel = dynamic(() => import('./FictionalPanel').then(mod => mod.FictionalPanel), { loading: () => <LoadingPanel /> });
 const EntitiesPanel = dynamic(() => import('./EntitiesPanel'), { loading: () => <LoadingPanel /> });
-const MountainsPanel = dynamic(() => import('./MountainsPanel'), { loading: () => <LoadingPanel /> });
 
 interface SidebarProps {
     persons: Person[];
@@ -31,7 +30,6 @@ interface SidebarProps {
     zoom: number;
     activePanel?: string;
     personCount: number;
-    onAddMountain?: (mountain: Mountain) => void;
     editingPerson?: Person;
     onEditSave?: (person: Person) => void;
     onEditCancel?: () => void;
@@ -42,7 +40,7 @@ interface SidebarProps {
     highlight?: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEntity, onAddMountain, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel, onAddEntityExport, isCapturing, onEditRequest, onReorder, highlight }) => {
+const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEntity, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel, onAddEntityExport, isCapturing, onEditRequest, onReorder, highlight }) => {
     return (
         <aside className="w-full h-full flex flex-col bg-transparent">
             <div className={`flex flex-col h-full overflow-y-auto custom-scrollbar ${activePanel === 'CELEBRITIES' || activePanel === 'FICTIONAL' || activePanel === 'ENTITIES' ? '' : 'p-5 gap-6'}`}>
@@ -93,21 +91,6 @@ const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEnt
                                 onClose={onEditCancel || (() => { })}
                                 onExport={onAddEntityExport}
                                 isCapturing={isCapturing}
-                            />
-                        </motion.div>
-                    )}
-                    {activePanel === 'MOUNTAINS' && (
-                        <motion.div
-                            key="mountains"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 20 }}
-                            transition={{ duration: 0.2 }}
-                            className="flex-1 flex flex-col h-full w-full"
-                        >
-                            <MountainsPanel
-                                onAddMountain={onAddMountain || (() => { })}
-                                onClose={onEditCancel || (() => { })}
                             />
                         </motion.div>
                     )}

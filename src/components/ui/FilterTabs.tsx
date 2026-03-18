@@ -25,19 +25,11 @@ export const FilterTabs: React.FC<FilterTabsProps> = ({
                         onClick={() => onSelectCategory(category)}
                         aria-label={`Show ${category}`}
                         className={`whitespace-nowrap rounded-full px-3.5 py-1.5 text-[11px] font-bold transition-all duration-300 flex items-center gap-2 ${activeCategory === category
-                                ? 'bg-accent text-white'
-                                : 'bg-bg text-muted hover:text-foreground'
+                            ? 'bg-accent text-white'
+                            : 'bg-bg text-muted hover:text-foreground'
                             }`}
                     >
                         <span>{category}</span>
-                        {categoryCounts && categoryCounts[category] !== undefined && (
-                            <span
-                                className={`text-[9px] px-1.5 py-0.5 rounded-full ${activeCategory === category ? 'bg-white/20' : 'bg-surface/50'
-                                    }`}
-                            >
-                                {categoryCounts[category]}
-                            </span>
-                        )}
                     </button>
                 ))}
             </div>

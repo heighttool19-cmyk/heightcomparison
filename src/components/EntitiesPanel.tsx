@@ -89,7 +89,8 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
             {/* Header Area */}
             <PanelHeader
                 title="Entities & Objects"
-                subtitle={searchQuery ? `${filteredEntities.length} matching results` : `Compare ${entities.length} real-world dimensions`}
+                subtitle="Compare real-world dimensions on your chart"
+                count={filteredEntities.length}
             />
 
             <div className="px-6 pb-2 shrink-0">
@@ -132,15 +133,6 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                                 exit={{ opacity: 0 }}
                                 className="space-y-4"
                             >
-                                {/* Section Header */}
-                                <div className="flex items-center justify-between border-b border-border/30 pb-1">
-                                    <h3 className="text-[10px] font-bold tracking-wider text-muted uppercase">
-                                        {category}
-                                    </h3>
-                                    <span className="text-[9px] font-bold text-accent px-1.5 py-0.5 bg-accent/5 rounded">
-                                        {ents.length} items
-                                    </span>
-                                </div>
 
                                 {/* Cards Grid */}
                                 <div className="flex flex-col gap-2.5">

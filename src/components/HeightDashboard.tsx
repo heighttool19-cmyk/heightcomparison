@@ -11,14 +11,16 @@ import Sidebar from './Sidebar';
 import { usePersonStore } from '../store';
 // import Link from 'next/link';
 import Navbar from './Navbar';
+import LZString from 'lz-string';
+import { stat } from 'fs';
 
 
-type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON' | 'MOUNTAINS';
+type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
 
 interface HeightDashboardProps {
     readOnly?: boolean;
-    initialPersons?: Person[];
     onClose?: () => void;
+    initialPersons?: Person[];
 }
 
 const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, initialPersons, onClose }) => {
@@ -188,7 +190,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     }, []);
 
     // Zoom Boundaries
-    const MIN_ZOOM = 0.25;
+    const MIN_ZOOM = 0.05;
     const MAX_ZOOM = 8.00;
 
     const handleZoom = (delta: number) => {
@@ -259,60 +261,95 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         };
     }, [state.zoom]); // We depend on state.zoom for starting pinch zoom accurately
 
-    const handleAutoScale = () => {
+    const handleAutoScale = React.useCallback(() => {
         if (persons.length === 0 || canvasHeight === 0) return;
 
-        const personsScroll = personsScrollRef.current;
-        if (!personsScroll) return;
+        const doScale = () => {
+            const personsScroll = personsScrollRef.current;
+            const mobile = isMobile || (typeof window !== 'undefined' && window.innerWidth < 768);
 
-        const availableWidth = personsScroll.getBoundingClientRect().width;
-        const mobile = typeof window !== 'undefined' ? window.innerWidth < 768 : false;
+            // Use getBoundingClientRect; fall back to window width on mobile when layout hasn't settled
+            const rawWidth = personsScroll?.getBoundingClientRect().width ?? 0;
+            const availableWidth = rawWidth > 50 ? rawWidth : (typeof window !== 'undefined' ? window.innerWidth : 375);
 
-        const heights = persons.map(p => p.heightCm);
-        const maxHeightCm = Math.max(180, ...heights);
-        const fitScale = Math.max(0.1, (canvasHeight - 200) / maxHeightCm);
+            // Use actual canvasHeight; fall back to window.innerHeight minus toolbar estimate
+            const usableCanvasH = canvasHeight > 0
+                ? canvasHeight
+                : (typeof window !== 'undefined' ? window.innerHeight - 250 : 500);
 
-        // 1. VERTICAL: Make tallest person occupy ~55% of canvas height (leave room for labels)
-        const targetHeightPx = canvasHeight * (mobile ? 0.45 : 0.55);
-        const verticalZoom = targetHeightPx / (maxHeightCm * fitScale);
+            const heights = persons.map(p => p.heightCm);
+            const maxHeightCm = Math.max(1, ...heights);
+            const fitScale = (usableCanvasH - 200) / maxHeightCm;
+            if (fitScale <= 0) return;
 
-        // 2. HORIZONTAL: Calculate zoom to fit all bars across the width
-        const n = persons.length;
-        const baseWidth = mobile ? 90 : 120;
-        const avgNameLen = persons.reduce((a, b) => a + b.name.length, 0) / n;
-        const baseNameWidth = (avgNameLen * 8.5 + 24);
+            const n = persons.length;
 
-        // PersonBar uses max(55, baseWidth * z, baseNameWidth * max(0.6, z + 0.2))
-        // We calculate width assuming the floor might be hit
-        const perPersonZoomWidth = Math.max(baseWidth, baseNameWidth);
-        const fixedNameOffset = baseNameWidth * 0.2 * n; // The "0.2" in (z + 0.2)
+            // VERTICAL fill — larger % for fewer bars so they really fill the canvas
+            // Desktop: 1-2: 85%, 3-5: 78%, 6-10: 65%, 11+: 55%
+            // Mobile:  always generous since screen is small
+            const verticalFill = mobile
+                ? (n <= 4 ? 0.75 : n <= 10 ? 0.62 : 0.50)
+                : (n <= 2 ? 0.85 : n <= 5 ? 0.78 : n <= 10 ? 0.65 : 0.55);
 
-        const gapBase = mobile ? 6 : 12;
-        const totalGapZoomWidth = (n - 1) * gapBase;
+            const targetHeightPx = usableCanvasH * verticalFill;
+            const verticalZoom = targetHeightPx * 0.18 / (maxHeightCm * fitScale);
 
-        const ghostWidth = 70;
-        const horizontalPadding = mobile ? 50 : 100;
-        const internalMargins = 80; // More safety
+            // HORIZONTAL: on mobile always allow scroll, prioritise vertical fill.
+            // On desktop try to fit everyone across the width.
+            let idealZoom: number;
+            if (mobile) {
+                if (n <= 3) {
+                    idealZoom = verticalZoom * 3;
+                } else if (n <= 5) {
+                    idealZoom = verticalZoom * 2;
+                } else {
+                    idealZoom = verticalZoom;
+                }
+            } else {
+                const baseWidth = 120;
+                const avgNameLen = persons.reduce((a, b) => a + b.name.length, 0) / n;
+                const baseNameWidth = avgNameLen * 8.5 + 24;
+                const perPersonZoomWidth = Math.max(baseWidth, baseNameWidth);
+                const fixedNameOffset = baseNameWidth * 0.2 * n;
+                const totalZoomable = n * perPersonZoomWidth + (n - 1) * 12;
+                const totalFixed = 100 + 70 + fixedNameOffset + 80;
+                const horizontalZoom = (availableWidth - totalFixed) / totalZoomable;
+                // If there are very few people (<= 3) allow them to be big — just use vertical
+                if (n <= 8) {
+                    idealZoom = verticalZoom * 5;
+                }
+                else {
+                    idealZoom = Math.min(verticalZoom, horizontalZoom > 0 ? horizontalZoom : verticalZoom) * 2.5;
+                }
+            }
 
-        const totalFixed = horizontalPadding + ghostWidth + fixedNameOffset + internalMargins;
-        const totalZoomable = (n * perPersonZoomWidth) + totalGapZoomWidth;
+            setState(s => ({
+                ...s,
+                zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom))
+            }));
+        };
 
-        let horizontalZoom = (availableWidth - totalFixed) / totalZoomable;
+        // Run immediately then retry after paint (critical for mobile layout settle)
+        doScale();
+        setTimeout(doScale, 150);
+        triggerToast('View optimized');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [persons, canvasHeight, isMobile]);
 
-        // If many people, we hit the 55px floor. 
-        // n * 55 + (n-1) * gap_at_z + padding = availableWidth
-        // gap_at_z = max(8, gapBase * z)
-        // Let's check if the resulting Zoom is too small or if we should just clamp
-
-        // Take the MORE RESTRICTIVE (smaller) zoom so everything fits in BOTH dimensions
-        const idealZoom = Math.min(verticalZoom, horizontalZoom > 0 ? horizontalZoom : verticalZoom);
-
-        setState(s => ({
-            ...s,
-            zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom))
-        }));
-        triggerToast('View optimized for all subjects');
-    };
+    // 🔑 Auto-fit whenever persons list changes (add / remove)
+    const prevPersonsLenRef = React.useRef(0);
+    useEffect(() => {
+        const prev = prevPersonsLenRef.current;
+        const curr = persons.length;
+        prevPersonsLenRef.current = curr;
+        // Trigger scale whenever persons count changes but chart has settled
+        if (curr > 0 && canvasHeight > 0) {
+            const delay = curr !== prev ? 200 : 0; // slightly longer delay for DOM reflow
+            const t = setTimeout(handleAutoScale, delay);
+            return () => clearTimeout(t);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [persons.length, canvasHeight]);
 
     // Auto-zoom Guard logic
     const applyAutoZoomGuard = (currentPersons: Person[], currentHeight: number, currentZoom: number) => {
@@ -333,10 +370,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
     const handleAddPerson = (person: Person) => {
         storeAddPerson(person);
-        const tempPersons = [...persons, person];
-        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom);
-        setState(s => ({ ...s, zoom: guardedZoom }));
-        setTimeout(handleAutoScale, 50);
+        // Auto-scale effect handles zoom automatically via the persons.length useEffect
     };
 
     const handleAddEntity = (entity: Entity) => {
@@ -350,43 +384,17 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             isEntity: true
         };
         storeAddPerson(newPerson);
-        const tempPersons = [...persons, newPerson];
-        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom);
-        setState(s => ({ ...s, zoom: guardedZoom }));
-        setTimeout(handleAutoScale, 50);
-        triggerToast(`${entity.name} added to comparison`);
+        triggerToast(`${entity.name} added`);
     };
 
-    const handleAddMountain = (mountain: Mountain) => {
-        if (persons.find(p => p.id === mountain.id)) return;
-        const newPerson: Person = {
-            id: mountain.id,
-            name: mountain.name,
-            heightCm: mountain.heightCm,
-            color: mountain.color,
-            icon: '⛰️',
-            isEntity: true
-        };
-        storeAddPerson(newPerson);
-        const tempPersons = [...persons, newPerson];
-        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom);
-        setState(s => ({ ...s, zoom: guardedZoom }));
-        setTimeout(handleAutoScale, 50);
-        triggerToast(`${mountain.name} added to comparison`);
-    };
 
     const handleRemovePerson = (id: string) => {
         storeRemovePerson(id);
-        // Re-scale after removal so figures expand to fill the space
-        setTimeout(() => {
-            // Only auto-scale if there are remaining persons
-            const remaining = persons.filter(p => p.id !== id);
-            if (remaining.length > 0) {
-                handleAutoScale();
-            } else {
-                setState(s => ({ ...s, zoom: 1.0 }));
-            }
-        }, 150);
+        // Auto-scale effect handles zoom via persons.length useEffect.
+        // Reset zoom if last person removed.
+        if (persons.length <= 1) {
+            setState(s => ({ ...s, zoom: 1.0 }));
+        }
     };
 
     const handleReorderPerson = (id: string, direction: 'up' | 'down') => {
@@ -453,21 +461,60 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         setTimeout(() => setShowToast(false), 2500);
     };
 
-    const handleShare = async () => {
-        try {
-            const encoded = btoa(encodeURIComponent(JSON.stringify({
-                persons,
-                unitSystem,
-                zoom: state.zoom
-            })));
-            const shareUrl = `${window.location.origin}/#${encoded}`;
-            await navigator.clipboard.writeText(shareUrl);
-            triggerToast('Link copied to clipboard!');
-        } catch (err) {
-            console.error('Failed to copy', err);
-        }
-    };
+    // const handleShare = async () => {
+    //     try {
+    //         const encoded = btoa(encodeURIComponent(JSON.stringify({
+    //             persons,
+    //             unitSystem,
+    //             zoom: state.zoom
+    //         })));
+    //         const shareUrl = `${window.location.origin}/#${encoded}`;
+    //         await navigator.clipboard.writeText(shareUrl);
+    //         triggerToast('Link copied to clipboard!');
+    //     } catch (err) {
+    //         console.error('Failed to copy', err);
+    //     }
+    // };
 
+
+    const handleShare = async () => {
+        // 1. Create a compact array
+        // Format: [zoomInt, unitSystem(0 or 1), personCount, ...personData]
+        const data = [
+            Math.round(state.zoom * 100),
+            unitSystem === 'metric' ? 0 : 1,
+            persons.length
+        ];
+
+        const encoder = new TextEncoder();
+
+        persons.forEach(p => {
+            data.push(p.heightCm); // 1 byte (0-255)
+            data.push(p.gender === 'male' ? 0 : p.gender === 'female' ? 1 : 2);
+
+            // Convert hex color to 3 bytes
+            const hex = p.color.replace('#', '');
+            data.push(parseInt(hex.substring(0, 2), 16));
+            data.push(parseInt(hex.substring(2, 4), 16));
+            data.push(parseInt(hex.substring(4, 6), 16));
+
+            // Name is the only "heavy" part - we'll add length then the string
+            const nameBytes = encoder.encode(p.name);
+            data.push(nameBytes.length);
+            data.push(...nameBytes);
+        });
+
+        // 2. Convert to Base64
+        const uint8 = new Uint8Array(data);
+        const base64 = btoa(String.fromCharCode(...uint8))
+            .replace(/\+/g, '-') // URL safe
+            .replace(/\//g, '_')
+            .replace(/=+$/, '');
+
+        const shareUrl = `${window.location.origin}/#v2${base64}`;
+        await navigator.clipboard.writeText(shareUrl);
+        triggerToast('Ultra-compact link copied!');
+    };
     const handleDownloadPNG = async () => {
         if (!containerRef.current) return;
         try {
@@ -570,7 +617,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             <LeftNavItem icon={<Star size={22} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                             <LeftNavItem icon={<Ghost size={22} />} label="FICTIONAL" active={activePanel === 'FICTIONAL'} onClick={() => { setActivePanel('FICTIONAL'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                             <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                            <LeftNavItem icon={<MountainIcon size={22} />} label="MOUNTAINS" active={activePanel === 'MOUNTAINS'} onClick={() => { setActivePanel('MOUNTAINS'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                             <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                         </motion.div>
                     </motion.aside>
@@ -672,7 +718,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                 step={0.1}
                                                 value={state.zoom}
                                                 onChange={(e) => setState(s => ({ ...s, zoom: parseFloat(e.target.value) }))}
-                                                className="w-24 h-1.5 bg-border/50 rounded-lg appearance-none cursor-pointer accent-accent"
+                                                className="w-24 h-1.5 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
                                             />
                                             <ZoomIn size={14} className="text-muted/40" />
                                         </div>
@@ -756,6 +802,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     scale={scale}
                                     maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300}
                                     canvasHeight={canvasHeight}
+                                    zoom={state.zoom}
                                 />
                             </div>
                         </div>
@@ -777,12 +824,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     scale={scale}
                                     maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300}
                                     canvasHeight={canvasHeight}
+                                    zoom={state.zoom}
                                 />
                                 <AnimatePresence mode="popLayout" initial={false}>
                                     <div
                                         className="flex flex-nowrap items-end h-full w-max mt-auto pl-14"
                                         style={{
-                                            gap: `${Math.max(8, (isMobile ? 6 : 12) * Math.min(1.2, state.zoom))}px`,
+                                            gap: `${Math.max(2, (isMobile ? state.zoom < 0.5 ? 0 : 10 : 12) * Math.min(1.2, state.zoom))}px`,
                                             transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
                                         }}
                                     >
@@ -872,7 +920,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     personCount={persons.length}
                                     onAdd={handleAddPerson}
                                     onAddEntity={handleAddEntity}
-                                    onAddMountain={handleAddMountain}
                                     onRemove={handleRemovePerson}
                                     onEditRequest={(id) => {
                                         setEditingPersonId(id);
@@ -969,8 +1016,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         {activePanel === 'ADD_PERSON' ? 'Enter Details' :
                                             activePanel === 'CELEBRITIES' ? 'Celebrities' :
                                                 activePanel === 'FICTIONAL' ? 'Fictional' :
-                                                    activePanel === 'MOUNTAINS' ? 'Mountains' :
-                                                        activePanel.replace('_', ' ')}
+                                                    activePanel.replace('_', ' ')}
                                     </h3>
                                     <button
                                         onClick={() => setIsMobileDrawerOpen(false)}
@@ -987,7 +1033,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         onAdd={(p) => { handleAddPerson(p); setIsMobileDrawerOpen(false); }}
                                         activePanel={activePanel}
                                         onAddEntity={(e) => { handleAddEntity(e); setIsMobileDrawerOpen(false); }}
-                                        onAddMountain={(m) => { handleAddMountain(m); setIsMobileDrawerOpen(false); }}
                                         onAddEntityExport={handleDownloadPNG}
                                         isCapturing={isCapturing}
                                         onRemove={handleRemovePerson}

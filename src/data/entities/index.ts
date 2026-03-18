@@ -6,6 +6,7 @@ import { objects_data } from './objects';
 import { transport_data } from './transport';
 import { human_averages_data } from './human_averages';
 import { fictional_averages_data } from './fictional_averages';
+import { mountains_data } from './mountains';
 
 const COLOR_PALETTE = [
   '#F59E0B', '#10B981', '#3B82F6', '#6366F1', '#8B5CF6', '#EC4899', '#F43F5E',
@@ -25,6 +26,7 @@ function processData(data: RawEntity[], prefix: string): Entity[] {
 export const entities: Entity[] = [
   ...processData(animals_data as RawEntity[], 'animal'),
   ...processData(landmarks_data as RawEntity[], 'landmark'),
+  ...processData(mountains_data as RawEntity[], 'mountain'),
   ...processData(dinosaurs_data as RawEntity[], 'dinosaur'),
   ...processData(objects_data as RawEntity[], 'object'),
   ...processData(transport_data as RawEntity[], 'transport'),
