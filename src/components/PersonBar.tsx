@@ -95,7 +95,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
     // For image persons: compute width from natural aspect ratio
     const effectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(60, Math.round(barHeightPx * imageAspectRatio))
-        : mobile ? ((Math.max(containerWidth, nameWidth)) / 1.5) : Math.max(containerWidth, nameWidth);
+        : mobile ? ((Math.max(containerWidth, nameWidth)) / 1) : Math.max(containerWidth, nameWidth);
 
     return (
         <motion.div

@@ -832,7 +832,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     <div
                                         className="flex flex-nowrap items-end h-full w-max mt-auto pl-14"
                                         style={{
-                                            gap: `${Math.max(2, (isMobile ? state.zoom < 0.5 ? 0 : 10 : 12) * Math.min(1.2, state.zoom))}px`,
+                                            gap: `${Math.max(8, (isMobile ? state.zoom < 0.5 ? 0 : 10 : 12) * Math.min(1.2, state.zoom))}px`,
                                             transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
                                         }}
                                     >
