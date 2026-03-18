@@ -20,11 +20,11 @@ export default function ImageToHeightPage() {
     }, [theme]);
 
     return (
-        <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
+        <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 overflow-x-hidden">
             <Navbar activePage="image-to-height" />
 
             {/* Main Application Area - Mobile First stacking */}
-            <main className="flex-1 flex flex-col md:flex-row relative p-4 gap-4 bg-canvas">
+            <main className="flex-1 flex flex-col md:flex-row relative p-4 gap-4 bg-canvas overflow-x-hidden w-full">
 
                 {/* Right Panel (Tool & Content) - Shown first on mobile */}
                 <div className="md:w-[72%] w-full flex flex-col gap-4 pb-10 order-1 md:order-2">
@@ -139,7 +139,7 @@ export default function ImageToHeightPage() {
                         <div className="space-y-8 w-full">
                             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                                 {/* Responsive sizing + whitespace-nowrap ensures it stays on one line on all devices */}
-                                <h3 className="text-[1.35rem] sm:text-2xl md:text-3xl lg:text-[28px] xl:text-3xl font-black text-foreground whitespace-nowrap tracking-tight">
+                                <h3 className="text-[1.35rem] sm:text-2xl md:text-3xl lg:text-[28px] xl:text-3xl font-black text-foreground tracking-tight">
                                     How the Image Height Tool Works: Step by Step
                                 </h3>
                             </div>
