@@ -903,7 +903,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 animate={{ y: 0 }}
                                 exit={{ y: '100%' }}
                                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                                className="sm:hidden fixed bottom-0 left-0 right-0 h-[80vh] bg-surface rounded-t-[2rem] z-50 overflow-hidden flex flex-col shadow-2xl border-t border-border"
+                                className="sm:hidden fixed bottom-0 left-0 right-0 h-[80vh] bg-surface rounded-t-[2rem] z-200 overflow-hidden flex flex-col shadow-2xl border-t border-border"
                             >
                                 <div className="flex items-center justify-between px-6 py-5 border-b border-border/30 bg-surface/50 backdrop-blur-md sticky top-0 z-20">
                                     <h3 className="text-sm font-black uppercase tracking-[0.2em] text-foreground/90">
