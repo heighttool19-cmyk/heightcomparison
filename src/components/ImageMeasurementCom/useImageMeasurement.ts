@@ -4,7 +4,7 @@ import { useRef, useState, useEffect, useCallback } from 'react';
 import { useHeightStore } from '@/store/useHeightStore';
 import { usePersonStore, useUnitStore } from '@/store';
 import { Gender } from '@/types';
-import { handleInputChange } from '@/utils/input';
+import { getOptimizedDataUrl } from '@/utils/image';
 
 /* ─────────────────────────── Types ─────────────────────────── */
 export interface Point { x: number; y: number; }
@@ -403,7 +403,7 @@ export const useImageMeasurement = () => {
             c.width = Math.round(cropBox.w * sx); c.height = Math.round(cropBox.h * sy);
             const ctx = c.getContext('2d'); if (!ctx) return;
             ctx.drawImage(img, cropBox.x * sx, cropBox.y * sy, cropBox.w * sx, cropBox.h * sy, 0, 0, c.width, c.height);
-            const croppedDataUrl = c.toDataURL('image/png', 0.95);
+            const croppedDataUrl = getOptimizedDataUrl(c, 1024);
 
             if (isSavingCrop) {
                 setSavedSubjectUrl(croppedDataUrl);

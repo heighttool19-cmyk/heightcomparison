@@ -6,16 +6,25 @@ import { useUnitStore } from '../store';
 interface RulerProps {
     scale: number;
     maxHeightCm: number;
-    canvasHeight?: number;
+    containerHeight?: number;
+    personCount?: number;
     /** 'full' = labels+lines (legacy), 'labels' = only left label col, 'lines' = only horizontal lines */
     mode?: 'full' | 'labels' | 'lines';
+    isFullscreen?: boolean;
 }
 
-const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight, mode = 'full' }) => {
+const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, containerHeight, personCount, mode = 'full', isFullscreen = false }) => {
     const { unitSystem } = useUnitStore();
 
     const tickInterval = useMemo(() => {
-        const baseMin = 40 / scale; // Ensure at least 40px between lines
+        // Dynamic density based on personCount
+        let baseMin = 40;
+        if (personCount !== undefined) {
+            if (personCount <= 3) baseMin = 25; // More dense
+            else if (personCount >= 15) baseMin = 65; // Less dense
+        }
+
+        const rawMin = baseMin / scale; // Ensure at least baseMin px between lines
         const intervals = [
             5, 10, 20, 25, 50, 100, 200, 250, 500, 1000,
             2000, 2500, 5000, 10000, 20000, 25000, 50000,
@@ -23,26 +32,36 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, canvasHeight, mode = 
         ];
         let chosen = intervals[intervals.length - 1];
         for (const i of intervals) {
-            if (i >= baseMin) {
+            if (i >= rawMin) {
                 chosen = i;
                 break;
             }
         }
         return chosen;
-    }, [scale]);
+    }, [scale, personCount]);
 
     const ticks = useMemo(() => {
         const minTick = 0;
 
+        // Determine the maximum visible height in CM based on available space
         let maxVisibleCm = maxHeightCm;
-        if (canvasHeight && scale > 0) {
-            maxVisibleCm = Math.max(maxHeightCm, (canvasHeight * 2) / scale);
+        if (containerHeight && scale > 0) {
+            const containerMaxCm = (containerHeight - 100) / scale;
+            maxVisibleCm = Math.max(maxHeightCm, containerMaxCm);
         }
 
-        const maxTick = Math.max(300, Math.ceil(maxVisibleCm / tickInterval) * tickInterval + (tickInterval * 2));
+        const baseMaxTick = Math.ceil(maxVisibleCm / tickInterval) * tickInterval;
+        const maxTick = Math.max(maxHeightCm > 300 ? 0 : 300, baseMaxTick);
+
         const tickCount = Math.floor((maxTick - minTick) / tickInterval);
-        return Array.from({ length: tickCount + 1 }, (_, i) => minTick + (i * tickInterval));
-    }, [tickInterval, maxHeightCm, canvasHeight, scale]);
+        return Array.from({ length: tickCount + 1 }, (_, i) => minTick + (i * tickInterval))
+            .filter(tick => {
+                const heightPx = tick * scale;
+                const topBuffer = isFullscreen ? 160 : 40;
+                if (containerHeight && (heightPx + 60) > (containerHeight - topBuffer)) return false;
+                return true;
+            });
+    }, [tickInterval, maxHeightCm, containerHeight, scale]);
 
     const showLabels = mode === 'full' || mode === 'labels';
     const showLines = mode === 'full' || mode === 'lines';

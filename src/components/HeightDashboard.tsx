@@ -1,18 +1,16 @@
 'use client';
 
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Link as LinkIcon, ArrowLeftRight, Focus, ChevronLeft, ChevronRight, Mountain as MountainIcon, Trash2, RotateCcw, Edit2 } from 'lucide-react';
+import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Link as LinkIcon, ArrowLeftRight, Focus, ChevronLeft, ChevronRight, Mountain as MountainIcon, Trash2, RotateCcw, Edit2, Maximize, Minimize } from 'lucide-react';
 import { Person, Entity, Mountain } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
 import PersonBar from './PersonBar';
 import Ruler from './Ruler';
 import Sidebar from './Sidebar';
 import { usePersonStore } from '../store';
-// import Link from 'next/link';
 import Navbar from './Navbar';
 import LZString from 'lz-string';
-
 
 type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
 
@@ -21,6 +19,21 @@ interface HeightDashboardProps {
     onClose?: () => void;
     initialPersons?: Person[];
 }
+
+// Help function (Pure) - moved outside to avoid dependency overhead
+const applyAutoZoomGuard = (currentPersons: Person[], currentHeight: number, currentZoom: number, MAX_ZOOM: number) => {
+    if (currentPersons.length === 0 || currentHeight === 0) return currentZoom;
+    const heights = currentPersons.map(p => p.heightCm);
+    const maxHeightCm = Math.max(210, ...heights);
+    const fitScale = Math.max(0, (currentHeight - 200) / maxHeightCm);
+
+    const shortestPx = Math.min(...heights) * fitScale * currentZoom;
+    if (shortestPx > 0 && shortestPx < 80) {
+        const requiredZoom = 80 / (Math.min(...heights) * fitScale);
+        return Math.max(currentZoom, Math.min(MAX_ZOOM, requiredZoom));
+    }
+    return currentZoom;
+};
 
 const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, initialPersons, onClose }) => {
     const {
@@ -47,15 +60,46 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
     const [isCapturing, setIsCapturing] = useState(false);
-    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+    const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
     const [isHighlightingAddPerson, setIsHighlightingAddPerson] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isConfirmingClear, setIsConfirmingClear] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+
     const containerRef = useRef<HTMLDivElement>(null);
     const rulerScrollRef = useRef<HTMLDivElement>(null);
     const personsScrollRef = useRef<HTMLDivElement>(null);
+
+    const triggerToast = (msg: string) => {
+        setToastMessage(msg);
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 2500);
+    };
+
+    const toggleFullscreen = useCallback(() => {
+        if (!document.fullscreenElement) {
+            if (containerRef.current) {
+                containerRef.current.requestFullscreen().catch((err) => {
+                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        const handleFullscreenChange = () => {
+            setIsFullscreen(!!document.fullscreenElement);
+        };
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    }, []);
+
     // Sync vertical scroll between ruler and persons panels
-    const syncScroll = React.useCallback((source: 'ruler' | 'persons') => {
+    const syncScroll = useCallback((source: 'ruler' | 'persons') => {
         if (source === 'persons' && rulerScrollRef.current && personsScrollRef.current) {
             rulerScrollRef.current.scrollTop = personsScrollRef.current.scrollTop;
         } else if (source === 'ruler' && personsScrollRef.current && rulerScrollRef.current) {
@@ -77,20 +121,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 if (!hash) return;
 
                 let decoded: any = null;
-
-                // Detection: LZString encoded URLs usually don't start with JSON-Base64 chars like 'ey' ({"...)
-                // We attempt LZString first as it's our new standard
                 const lzDecoded = LZString.decompressFromEncodedURIComponent(hash);
                 if (lzDecoded) {
                     try {
                         decoded = JSON.parse(lzDecoded);
-                    } catch (e) {
-                        // Not LZString JSON, try legacy
-                    }
+                    } catch (e) { }
                 }
 
                 if (!decoded) {
-                    // Legacy Base64-JSON
                     try {
                         decoded = JSON.parse(decodeURIComponent(atob(hash)));
                     } catch (e) {
@@ -100,15 +138,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
                 if (!decoded) return;
 
-                // Hydrate Zustand from URL if present
                 if (decoded.unitSystem) {
                     useUnitStore.setState({ unitSystem: decoded.unitSystem });
                 }
-
                 if (decoded.persons) {
                     storeSetPersons(decoded.persons);
                 }
-
                 if (decoded.zoom) {
                     setState(s => ({ ...s, zoom: decoded.zoom }));
                 }
@@ -116,7 +151,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 console.error("Hash hydration failed:", e);
             }
         }
-    }, [storeSetPersons, readOnly]); // Run once on mount
+    }, [storeSetPersons, readOnly]);
 
     // 2. URL Hash Encoding Sync
     useEffect(() => {
@@ -127,7 +162,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 unitSystem,
                 zoom: state.zoom
             };
-            // Use LZString for more compact and robust sync
             const compact = LZString.compressToEncodedURIComponent(JSON.stringify(dataToSync));
             window.history.replaceState(null, '', `#${compact}`);
         }
@@ -135,7 +169,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
     // Pinch Zoom Tracking
     const touchStartRef = useRef<number | null>(null);
-    // const initialZoomRef = useRef<number>(1);
 
     // ResizeObserver & Wheel Events
     useEffect(() => {
@@ -153,63 +186,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         });
         observer.observe(container);
 
-        // Ctrl + Mouse Wheel Zoom logic
-        const handleWheel = (e: WheelEvent) => {
-            if (e.ctrlKey || e.metaKey) {
-                e.preventDefault();
-                // Positive delta = Scroll Down = Zoom Out
-                const delta = e.deltaY > 0 ? -0.1 : 0.1;
-                setState(s => ({
-                    ...s,
-                    zoom: Math.max(0.25, Math.min(8.00, s.zoom + delta))
-                }));
-            }
-        };
-        container.addEventListener('wheel', handleWheel, { passive: false });
-
-        // Touch Pinch Zoom logic
-        const handleTouchStart = (e: TouchEvent) => {
-            if (e.touches.length === 2) {
-                const dist = Math.hypot(
-                    e.touches[0].clientX - e.touches[1].clientX,
-                    e.touches[0].clientY - e.touches[1].clientY
-                );
-                touchStartRef.current = dist;
-            }
-        };
-
-        const handleTouchMove = (e: TouchEvent) => {
-            if (e.touches.length === 2 && touchStartRef.current !== null) {
-                e.preventDefault(); // Prevent standard page zoom
-                const dist = Math.hypot(
-                    e.touches[0].clientX - e.touches[1].clientX,
-                    e.touches[0].clientY - e.touches[1].clientY
-                );
-
-                setState(s => {
-                    if (touchStartRef.current === null) return s;
-                    const ratio = dist / touchStartRef.current;
-                    const newZoom = Math.max(0.25, Math.min(8.00, s.zoom * ratio));
-                    touchStartRef.current = dist; // Update start for smooth continuous translation
-                    return { ...s, zoom: newZoom };
-                });
-            }
-        };
-
-        const handleTouchEnd = () => {
-            touchStartRef.current = null;
-        };
-
-        container.addEventListener('touchstart', handleTouchStart);
-        container.addEventListener('touchmove', handleTouchMove, { passive: false });
-        container.addEventListener('touchend', handleTouchEnd);
-
         return () => {
             observer.disconnect();
-            container.removeEventListener('wheel', handleWheel);
-            container.removeEventListener('touchstart', handleTouchStart);
-            container.removeEventListener('touchmove', handleTouchMove);
-            container.removeEventListener('touchend', handleTouchEnd);
         };
     }, []);
 
@@ -242,8 +220,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
         const handleTouchStart = (e: TouchEvent) => {
             if (e.touches.length === 2) {
-                // Not calling e.preventDefault() here to let user pan if they want, 
-                // but pinch usually implies preventDefault in touchmove
                 initialPinchDist = Math.hypot(
                     e.touches[0].pageX - e.touches[1].pageX,
                     e.touches[0].pageY - e.touches[1].pageY
@@ -283,9 +259,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             container.removeEventListener('touchmove', handleTouchMove);
             container.removeEventListener('touchend', handleTouchEnd);
         };
-    }, [state.zoom]); // We depend on state.zoom for starting pinch zoom accurately
+    }, [state.zoom, handleZoom]);
 
-    const handleAutoScale = React.useCallback(() => {
+    const handleAutoScale = useCallback(() => {
         if (persons.length === 0 || canvasHeight === 0 || !personsScrollRef.current) return;
 
         const doScale = () => {
@@ -295,26 +271,18 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             const n = persons.length;
             const baseBarWidth = mobile ? 90 : 120;
             const baseGap = 12;
-            // Account for ghost column (70px) + spacer (80-160px) + left padding (~56px)
             const fixedElements = readOnly ? 56 : (mobile ? 200 : 300);
 
-            // Total width everything needs at zoom=1
             const totalWidthAtZoom1 = (n * baseBarWidth) + ((n - 1) * baseGap) + fixedElements;
-
-            // Horizontal zoom: shrink everything to fit within available width
             const horizontalZoom = availableWidth / totalWidthAtZoom1;
 
-            // Vertical zoom: tallest person fills ~75% of canvas
             const heights = persons.map(p => p.heightCm);
             const maxHeightCm = Math.max(1, ...heights);
             const fitScale = (canvasHeight - 120) / maxHeightCm;
             if (fitScale <= 0) return;
             const verticalZoom = (canvasHeight * 0.75) / (maxHeightCm * fitScale);
 
-            // Take the MINIMUM — this guarantees ALL bars fit on screen
             let idealZoom = Math.min(horizontalZoom, verticalZoom);
-
-            // Allow zoom to go very low (0.05) so even 50+ figures fit
             idealZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom));
 
             setState(s => ({ ...s, zoom: idealZoom }));
@@ -323,48 +291,25 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         doScale();
         setTimeout(doScale, 150);
         triggerToast('View optimized');
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [persons.length, canvasHeight, readOnly]);
+    }, [persons, canvasHeight, readOnly, MIN_ZOOM, MAX_ZOOM]);
 
-    // 🔑 Auto-fit whenever persons list changes (add / remove)
-    const prevPersonsLenRef = React.useRef(0);
+    const prevPersonsLenRef = useRef(0);
     useEffect(() => {
         const prev = prevPersonsLenRef.current;
         const curr = persons.length;
         prevPersonsLenRef.current = curr;
-        // Trigger scale whenever persons count changes but chart has settled
         if (curr > 0 && canvasHeight > 0) {
-            const delay = curr !== prev ? 200 : 0; // slightly longer delay for DOM reflow
+            const delay = curr !== prev ? 200 : 0;
             const t = setTimeout(handleAutoScale, delay);
             return () => clearTimeout(t);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [persons.length, canvasHeight]);
-
-    // Auto-zoom Guard logic
-    const applyAutoZoomGuard = (currentPersons: Person[], currentHeight: number, currentZoom: number) => {
-        if (currentPersons.length === 0 || currentHeight === 0) return currentZoom;
-        const heights = currentPersons.map(p => p.heightCm);
-        const maxHeightCm = Math.max(210, ...heights);
-        const fitScale = Math.max(0, (currentHeight - 200) / maxHeightCm);
-
-        const shortestPx = Math.min(...heights) * fitScale * currentZoom;
-        if (shortestPx > 0 && shortestPx < 80) {
-            // Increase zoom to make shortest exactly 80px, but clamp to max
-            // Guard never decreases user-set zoom
-            const requiredZoom = 80 / (Math.min(...heights) * fitScale);
-            return Math.max(currentZoom, Math.min(MAX_ZOOM, requiredZoom));
-        }
-        return currentZoom;
-    };
+    }, [persons.length, canvasHeight, handleAutoScale]);
 
     const handleAddPerson = (person: Person) => {
         storeAddPerson(person);
-        // Auto-scale effect handles zoom automatically via the persons.length useEffect
     };
 
     const handleAddEntity = (entity: Entity) => {
-        // if (persons.find(p => p.i d === entity.id)) return;
         const uniqueId = `${entity.id}-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`;
         const newPerson: Person = {
             id: uniqueId,
@@ -378,15 +323,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         triggerToast(`${entity.name} added`);
     };
 
-
-    const handleRemovePerson = (id: string) => {
+    const handleRemovePerson = useCallback((id: string) => {
         storeRemovePerson(id);
-        // Auto-scale effect handles zoom via persons.length useEffect.
-        // Reset zoom if last person removed.
         if (persons.length <= 1) {
             setState(s => ({ ...s, zoom: 1.0 }));
         }
-    };
+    }, [storeRemovePerson, persons.length]);
 
     const handleReorderPerson = (id: string, direction: 'up' | 'down') => {
         const index = persons.findIndex(p => p.id === id);
@@ -415,27 +357,27 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         setIsConfirmingClear(false);
     };
 
-    const handleUpdatePersonHeight = (id: string, newHeightCm: number) => {
+    const handleUpdatePersonHeight = useCallback((id: string, newHeightCm: number) => {
         const clamped = Math.min(400, Math.max(50, newHeightCm));
         storeUpdatePerson(id, { heightCm: clamped });
         const tempPersons = persons.map(p => p.id === id ? { ...p, heightCm: clamped } : p);
-        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom);
+        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom, MAX_ZOOM);
         setState(s => ({ ...s, zoom: guardedZoom }));
-    };
+    }, [storeUpdatePerson, persons, canvasHeight, state.zoom, MAX_ZOOM]);
 
-    const handleEditRequest = (id: string) => {
+    const handleEditRequest = useCallback((id: string) => {
         setEditingPersonId(id);
         setActivePanel('EDIT_PERSON');
         setIsSidebarCollapsed(false);
         if (typeof window !== 'undefined' && window.innerWidth < 768) {
             setIsMobileDrawerOpen(true);
         }
-    };
+    }, [setEditingPersonId, setActivePanel, setIsSidebarCollapsed, setIsMobileDrawerOpen]);
 
     const handleEditSave = (updatedPerson: Person) => {
         storeUpdatePerson(updatedPerson.id, updatedPerson);
         const tempPersons = persons.map(p => p.id === updatedPerson.id ? updatedPerson : p);
-        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom);
+        const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom, MAX_ZOOM);
         setState(s => ({ ...s, zoom: guardedZoom }));
         setActivePanel('ADD_PERSON');
         setEditingPersonId(null);
@@ -448,28 +390,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         setActivePanel('ADD_PERSON');
         setEditingPersonId(null);
     };
-
-    const triggerToast = (msg: string) => {
-        setToastMessage(msg);
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 2500);
-    };
-
-    // const handleShare = async () => {
-    //     try {
-    //         const encoded = btoa(encodeURIComponent(JSON.stringify({
-    //             persons,
-    //             unitSystem,
-    //             zoom: state.zoom
-    //         })));
-    //         const shareUrl = `${window.location.origin}/#${encoded}`;
-    //         await navigator.clipboard.writeText(shareUrl);
-    //         triggerToast('Link copied to clipboard!');
-    //     } catch (err) {
-    //         console.error('Failed to copy', err);
-    //     }
-    // };
-
 
     const handleShare = async () => {
         try {
@@ -488,6 +408,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             triggerToast('Failed to copy link');
         }
     };
+
     const handleDownloadPNG = async () => {
         if (!containerRef.current) return;
         try {
@@ -499,7 +420,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             const personsContainer = personsScrollRef.current;
             const rulerContainer = rulerScrollRef.current;
 
-            // Save original styles
             const origExportWidth = exportContainer.style.width;
             const origExportHeight = exportContainer.style.height;
             const origPersonsOverflow = personsContainer?.style.overflow;
@@ -509,11 +429,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             let targetHeight = exportContainer.offsetHeight;
 
             if (personsContainer && rulerContainer) {
-                // Determine full scrollable area
                 targetWidth = rulerContainer.offsetWidth + personsContainer.scrollWidth;
                 targetHeight = Math.max(exportContainer.offsetHeight, personsContainer.scrollHeight + 100);
 
-                // Force full expansion on the live DOM so html-to-image captures everything
                 exportContainer.style.width = `${targetWidth}px`;
                 exportContainer.style.height = `${targetHeight}px`;
 
@@ -521,10 +439,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 rulerContainer.style.overflow = 'visible';
             }
 
-            // Wait a tick for CSS to apply (hiding inline inputs AND layout expansions)
             await new Promise(resolve => setTimeout(resolve, 800));
 
-            // Dynamic import html-to-image only when needed
             const htmlToImage = await import('html-to-image');
             const dataUrl = await htmlToImage.toPng(exportContainer, {
                 pixelRatio: 2,
@@ -533,7 +449,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 height: targetHeight,
             });
 
-            // Restore original styles immediately
             exportContainer.style.width = origExportWidth;
             exportContainer.style.height = origExportHeight;
             if (personsContainer) personsContainer.style.overflow = origPersonsOverflow || '';
@@ -554,30 +469,29 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         }
     };
 
-
-
-    // Scale Engine Calculation
     const scale = useMemo(() => {
         if (canvasHeight === 0) return 0;
         const heights = persons.length > 0 ? persons.map(p => p.heightCm) : [0];
         const maxHeightCm = Math.max(210, ...heights);
-        const fitScale = Math.max(0, (canvasHeight - 200) / maxHeightCm); // Reserve space for toolbars/padding
+        const fitScale = Math.max(0, (canvasHeight - 200) / maxHeightCm);
         return fitScale * state.zoom;
     }, [canvasHeight, persons, state.zoom]);
 
-    // Calculate required height for scrollability to fix clipping on zooming out
-    const requiredCanvasHeight = useMemo(() => {
-        if (persons.length === 0) return '100%';
-        const maxHeightPx = Math.max(...persons.map(p => p.heightCm)) * scale;
+    const totalHeight = useMemo(() => {
+        if (persons.length === 0) return canvasHeight;
+        const heights = persons.map(p => p.heightCm);
+        const maxHeightPx = Math.max(...heights) * scale;
         // heightPx + 60px bottom offset + ~180px for top labels and clearance
         const needed = maxHeightPx + 240;
-        return needed > canvasHeight ? `${needed}px` : '100%';
+        return Math.max(canvasHeight, needed);
     }, [persons, scale, canvasHeight]);
+
+    const requiredCanvasHeight = useMemo(() => {
+        return persons.length === 0 || totalHeight <= canvasHeight ? '100%' : `${totalHeight}px`;
+    }, [persons.length, totalHeight, canvasHeight]);
 
     return (
         <div className="flex flex-col h-screen bg-bg overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 relative">
-
-            {/* Close Button for specific readonly integrations */}
             {readOnly && onClose && (
                 <button
                     onClick={onClose}
@@ -588,13 +502,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 </button>
             )}
 
-            {/* 1. Global Top Header (New Navbar design) */}
             {!readOnly && <Navbar activePage="home" />}
 
-            {/* Main Application Area */}
             <div className="flex flex-1 overflow-hidden relative flex-col md:flex-row custom-scrollbar bg-bg transition-colors duration-500">
-
-                {/* 2. Left Native Menu (Desktop) / Top Menu (Mobile) */}
                 {!readOnly && (
                     <motion.aside
                         transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -604,16 +514,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col sm:py-0 sm:px-0 sm:gap-0
                     initial={{ x: -85, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
-              ">
-                        <motion.div
-                            className="flex sm:flex-col h-full w-full"
-                            variants={{
-                                show: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
-                                hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } }
-                            }}
-                            initial="hidden"
-                            animate="show"
-                        >
+               ">
+                        <div className="flex sm:flex-col h-full w-full">
                             <LeftNavItem
                                 icon={<UserPlus size={22} />}
                                 label="ADD PERSON"
@@ -625,25 +527,19 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             <LeftNavItem icon={<Ghost size={22} />} label="FICTIONAL" active={activePanel === 'FICTIONAL'} onClick={() => { setActivePanel('FICTIONAL'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                             <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                             <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                        </motion.div>
+                        </div>
                     </motion.aside>
                 )}
 
-                {/* Center Column: Canvas */}
                 <motion.main
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-                    className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500 pb-14"
+                    className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500 "
                 >
-                    {/* Top Canvas Toolbar */}
                     <div className="order-2 sm:order-first px-4 sm:px-8 py-4 z-30">
                         <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-3 px-4 sm:px-6 backdrop-blur-md shadow-2xl overflow-x-auto custom-scrollbar flex-nowrap">
-
-                            {/* Left Side: Units & Zoom Group */}
                             <div className="flex items-center gap-4 sm:gap-6">
-
-                                {/* 1. UNIT TOGGLE (Now First) */}
                                 <button
                                     onClick={toggleUnitSystem}
                                     className="shrink-0 flex items-center gap-1.5 group hover:bg-item-hover px-2 py-1.5 rounded-xl transition-all"
@@ -653,22 +549,15 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         {unitSystem === 'metric' ? 'cm → ft' : 'ft → cm'}
                                     </span>
                                 </button>
-
-                                {/* Divider */}
                                 <div className="hidden sm:block w-px h-6 bg-white/10 shrink-0" />
-
-                                {/* 2. Zoom Controls Container */}
                                 <div className="flex shrink-0 items-center gap-1 sm:gap-2">
                                     <button
                                         onClick={() => handleZoom(0.1)}
                                         className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
                                         title="Zoom In"
-                                        aria-label="Zoom In"
                                     >
                                         <ZoomIn size={18} strokeWidth={2.5} />
                                     </button>
-
-                                    {/* Zoom Input Box */}
                                     <div className="bg-item-hover rounded-lg px-2 py-1.5 flex items-center gap-0.5 border border-toolbar-border">
                                         <input
                                             type="number"
@@ -680,27 +569,21 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         />
                                         <span className="text-[9px] font-bold text-muted/30">%</span>
                                     </div>
-
                                     <button
                                         onClick={() => handleZoom(-0.1)}
                                         className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
                                         title="Zoom Out"
-                                        aria-label="Zoom Out"
                                     >
                                         <ZoomOut size={18} strokeWidth={2.5} />
                                     </button>
-
-                                    {/* Sub-actions: Auto & Slider (Preserved) */}
                                     <div className="flex items-center gap-1 ml-2 border-l border-white/10 pl-3">
                                         <button
                                             onClick={handleAutoScale}
                                             className="p-2 text-primary hover:bg-primary/10 transition-all rounded-lg"
                                             title="Auto Fit All"
-                                            aria-label="Auto Fit All"
                                         >
                                             <Focus size={18} strokeWidth={2.5} />
                                         </button>
-
                                         <button
                                             onClick={() => {
                                                 setActivePanel('ADD_PERSON');
@@ -711,11 +594,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                             }}
                                             className="p-1.5 sm:p-2 text-emerald-500 hover:bg-emerald-500/10 transition-all rounded-lg shrink-0"
                                             title="Edit List"
-                                            aria-label="Edit List"
                                         >
                                             <Edit2 size={16} strokeWidth={2.5} className="sm:w-[18px] sm:h-[18px]" />
                                         </button>
-
                                         <div className="hidden sm:flex items-center gap-2 px-2">
                                             <ZoomOut size={14} className="text-muted/40" />
                                             <input
@@ -732,22 +613,17 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Right Side: Actions Group */}
                             <div className="flex items-center gap-2 sm:gap-4">
                                 <button
                                     onClick={handleClearAll}
                                     className="flex items-center gap-2 text-sm font-medium text-muted hover:text-red-500 px-3 py-2 transition-all group"
-                                    aria-label="Clear All"
                                 >
                                     <Trash2 size={18} className="text-muted/50 group-hover:text-red-500 transition-colors" />
                                     <span className="hidden sm:inline">Clear All</span>
                                 </button>
-
                                 <button
                                     onClick={() => setState(s => ({ ...s, zoom: 1.0 }))}
                                     className="flex items-center gap-2 text-sm font-medium text-muted hover:text-foreground px-3 py-2 transition-all group"
-                                    aria-label="Reset Zoom"
                                 >
                                     <RotateCcw size={18} className="text-muted/50 group-hover:text-accent transition-colors" />
                                     <span className="hidden sm:inline text-xs">Reset</span>
@@ -755,17 +631,21 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 <button
                                     onClick={handleShare}
                                     className="shrink-0 flex items-center gap-1 text-[10px] sm:text-xs font-medium text-muted hover:text-foreground px-2 py-1.5 transition-all group"
-                                    aria-label="Share Comparison"
                                 >
                                     <LinkIcon size={16} className="text-muted/50 group-hover:text-accent transition-colors" />
                                     <span className="hidden lg:inline">Share</span>
                                 </button>
-
+                                {/* <button
+                                    onClick={toggleFullscreen}
+                                    className="shrink-0 flex items-center gap-1.5 p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
+                                    title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+                                >
+                                    {isFullscreen ? <Minimize size={18} /> : <Maximize size={18} />}
+                                </button> */}
                                 <button
                                     onClick={handleDownloadPNG}
                                     disabled={isCapturing}
                                     className="shrink-0 flex items-center gap-1.5 bg-accent/10 text-accent border border-accent/20 px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-xl text-[10px] sm:text-sm font-bold hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 whitespace-nowrap min-w-0"
-                                    aria-label="Download Comparison as PNG"
                                 >
                                     {isCapturing ? (
                                         <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
@@ -779,28 +659,49 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         </div>
                     </div>
 
-                    {/* CANVAS AREA : Split into fixed Ruler column + scrollable Persons column */}
                     <div
                         ref={containerRef}
-                        className="order-1 canvas-export-area flex-1 relative flex flex-col m-4 rounded-[2rem] border border-border/50 bg-canvas shadow-2xl overflow-hidden"
+                        className={`order-1 canvas-export-area flex-1 relative flex flex-col transition-all duration-500 overflow-hidden bg-canvas shadow-2xl ${isFullscreen
+                            ? 'm-0 rounded-none w-screen h-screen'
+                            : 'm-4 rounded-[2rem] border border-border/50'
+                            }`}
                     >
-                        {/* 1. Website URL Label (At the top of the EXPORT area, not overlapping canvas) */}
-                        <div className="w-full pt-4 pb-2 sm:pt-6 sm:pb-3 flex flex-col items-center opacity-40 shrink-0 bg-canvas z-20 border-b border-border/5">
-                            <span className="text-[7px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.4em] text-muted whitespace-nowrap">
+                        {/* Fullscreen Toggle Button (Overlay) */}
+                        <button
+                            onClick={toggleFullscreen}
+                            className={`absolute z-[100] transition-all duration-300 flex items-center justify-center active:scale-90
+                                ${isFullscreen
+                                    ? 'top-4 right-4 sm:top-8 sm:right-8 p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 border border-white/20 shadow-2xl'
+                                    : 'top-3 right-3 sm:top-5 sm:right-5 p-2 text-muted/50 hover:text-foreground hover:bg-white/5 rounded-xl border border-transparent hover:border-white/10'
+                                }`}
+                            title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+                        >
+                            {isFullscreen ? (
+                                <X size={isMobile ? 20 : 28} className="transition-transform duration-300 group-hover:rotate-90" />
+                            ) : (
+                                <Maximize size={isMobile ? 18 : 22} strokeWidth={2.5} />
+                            )}
+                        </button>
+                        <div className={`w-full flex flex-col items-center shrink-0 bg-canvas z-20 border-b border-border/5 transition-all duration-300 ${isFullscreen
+                            ? 'pt-8 pb-4'
+                            : 'pt-4 pb-2 sm:pt-6 sm:pb-3 opacity-40'
+                            }`}>
+                            <span className={`font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-muted whitespace-nowrap transition-all duration-300 ${isFullscreen
+                                ? 'text-[12px] sm:text-lg lg:text-2xl'
+                                : 'text-[7px] sm:text-[10px]'
+                                }`}>
                                 heightcomparison.vercel.app
                             </span>
-                            <div className="h-[1px] w-8 sm:w-12 bg-accent/30 mt-1 sm:mt-1.5" />
+                            {isFullscreen && <div className="h-[2px] w-12 sm:w-24 bg-accent/40 mt-2 sm:mt-4" />}
+                            {!isFullscreen && <div className="h-[1px] w-8 sm:w-12 bg-accent/30 mt-1 sm:mt-1.5" />}
                         </div>
 
-                        {/* INNER WRAPPER FOR SCROLL AREAS */}
                         <div className="flex-1 flex flex-row relative overflow-hidden w-full">
-
                             <div
                                 ref={rulerScrollRef}
                                 className="shrink-0 relative bg-canvas z-10 overflow-hidden custom-scrollbar w-16 sm:w-20 lg:w-24"
                                 onScroll={() => syncScroll('ruler')}
                             >
-                                {/* Ruler labels only : inside a coordinated-height inner div */}
                                 <div
                                     className="relative"
                                     style={{ height: requiredCanvasHeight }}
@@ -809,28 +710,29 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         mode="labels"
                                         scale={scale}
                                         maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300}
-                                        canvasHeight={canvasHeight}
+                                        containerHeight={totalHeight}
+                                        personCount={persons.length}
+                                        isFullscreen={isFullscreen}
                                     />
                                 </div>
                             </div>
 
-                            {/* RIGHT: Persons scroll area (scrolls both X and Y, with grid lines) */}
                             <div
                                 ref={personsScrollRef}
                                 className="flex-1 relative overflow-x-auto overflow-y-auto custom-scrollbar chart-grid scroll-smooth"
                                 onScroll={() => syncScroll('persons')}
                             >
-                                {/* Unified Absolute Coordinate Grid Container */}
                                 <div
                                     className="relative min-w-max flex items-end pr-24 md:pr-48"
                                     style={{ height: requiredCanvasHeight }}
                                 >
-                                    {/* Horizontal grid lines : extend across the persons area */}
                                     <Ruler
                                         mode="lines"
                                         scale={scale}
                                         maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300}
-                                        canvasHeight={canvasHeight}
+                                        containerHeight={totalHeight}
+                                        personCount={persons.length}
+                                        isFullscreen={isFullscreen}
                                     />
                                     <AnimatePresence mode="popLayout" initial={false}>
                                         <div
@@ -854,14 +756,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                 />
                                             ))}
 
-                                            {/* Ghost Column + (Only show if there are existing persons) */}
                                             {!readOnly && persons.length > 0 && (
                                                 <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: '70px' }}>
                                                     <button
                                                         onClick={() => {
                                                             setActivePanel('ADD_PERSON');
                                                             setIsSidebarCollapsed(false);
-                                                            // setIsHighlightingAddPerson(true);
                                                             setTimeout(() => setIsHighlightingAddPerson(false), 2000);
                                                             if (typeof window !== 'undefined' && window.innerWidth < 768) {
                                                                 setIsMobileDrawerOpen(true);
@@ -873,8 +773,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                     </button>
                                                 </div>
                                             )}
-
-                                            {/* Dedicated Scroll Spacer */}
                                             <div className="w-20 md:w-40 shrink-0 pointer-events-none" />
                                         </div>
                                     </AnimatePresence>
@@ -889,14 +787,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                 if (readOnly) return;
                                                 setActivePanel('ADD_PERSON');
                                                 setIsSidebarCollapsed(false);
-                                                // setIsHighlightingAddPerson(true);
-                                                setTimeout(() => setIsHighlightingAddPerson(false), 2000);
                                                 if (typeof window !== 'undefined' && window.innerWidth < 768) {
                                                     setIsMobileDrawerOpen(true);
                                                 }
                                             }}
                                             className={`empty-door flex items-center justify-center group ${!readOnly ? 'cursor-pointer hover:border-accent' : ''}`}
-                                            aria-label="Add a person to get started"
                                         >
                                             <Plus size={40} className={`text-muted/20 transition-colors ${!readOnly ? 'group-hover:text-accent/60' : ''}`} />
                                         </motion.button>
@@ -910,7 +805,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     </div>
                 </motion.main>
 
-                {/* 3. Sidebar - Hidden on tiny Mobile, Visible on sm+ */}
                 {!readOnly && (
                     <div className="hidden sm:flex shrink-0 relative z-30">
                         <motion.div
@@ -929,10 +823,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     onAdd={handleAddPerson}
                                     onAddEntity={handleAddEntity}
                                     onRemove={handleRemovePerson}
-                                    onEditRequest={(id) => {
-                                        setEditingPersonId(id);
-                                        setActivePanel('EDIT_PERSON');
-                                    }}
+                                    onEditRequest={handleEditRequest}
                                     onReorder={handleReorderPerson}
                                     scale={scale}
                                     zoom={state.zoom}
@@ -947,7 +838,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             </div>
                         </motion.div>
 
-                        {/* Toggle Button Anchor (Always visible at the edge of the sidebar/canvas) */}
                         <button
                             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
                             className={`
@@ -971,7 +861,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 )}
             </div>
 
-            {/* Share Toast Notification */}
             <AnimatePresence>
                 {showToast && (
                     <motion.div
@@ -987,20 +876,17 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 )}
             </AnimatePresence>
 
-            {/* Mobile FAB */}
             {!readOnly && (
                 <div className="sm:hidden fixed bottom-6 right-6 z-40">
                     <button
                         onClick={() => setIsMobileDrawerOpen(true)}
                         className="w-14 h-14 bg-accent hover:bg-accent-secondary rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all"
-                        aria-label="Open Add Person Menu"
                     >
                         <Plus size={24} strokeWidth={3} />
                     </button>
                 </div>
             )}
 
-            {/* Mobile Bottom Drawer */}
             {!readOnly && (
                 <AnimatePresence>
                     {isMobileDrawerOpen && (
@@ -1029,7 +915,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     <button
                                         onClick={() => setIsMobileDrawerOpen(false)}
                                         className="p-2 bg-bg border border-border/50 rounded-xl text-muted hover:text-foreground transition-all active:scale-95"
-                                        aria-label="Close Mobile Menu"
                                     >
                                         <X size={20} strokeWidth={3} />
                                     </button>
@@ -1058,7 +943,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 </AnimatePresence>
             )}
 
-            {/* Clear All Confirmation Modal */}
             <AnimatePresence>
                 {isConfirmingClear && (
                     <motion.div
@@ -1080,7 +964,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             <p className="text-muted/80 mb-8 sm:mb-10 text-sm">
                                 Are you sure you want to remove all subjects from the chart? This action cannot be undone.
                             </p>
-
                             <div className="flex justify-end gap-3 w-full">
                                 <button
                                     onClick={() => setIsConfirmingClear(false)}
@@ -1118,11 +1001,11 @@ const LeftNavItem = ({ icon, label, active = false, onClick, isHighlighting = fa
         whileTap={{ scale: 0.98 }}
         onClick={onClick}
         className={`
-            flex flex-col items-center justify-center gap-2 py-3 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4
-            ${active
+        flex flex-col items-center justify-center gap-2 py-3 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4
+        ${active
                 ? 'bg-accent/10 text-accent border-accent shadow-sm'
                 : 'text-muted hover:text-foreground border-transparent'}
-        `}
+    `}
     >
         <div className={`${active ? 'scale-110' : ''} transition-transform`}>
             {icon}

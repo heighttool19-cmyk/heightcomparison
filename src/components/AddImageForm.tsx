@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Person, uid, HEIGHT_LIMITS, UnitSystem } from '../types';
 import { UploadCloud, Crop, Check, X, RotateCcw, Move } from 'lucide-react';
 import { handleInputChange } from '../utils/input';
+import { getOptimizedDataUrl } from '../utils/image';
 
 interface AddImageFormProps {
     onAdd: (person: Person) => void;
@@ -193,7 +194,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                 heightCm: finalH,
                 gender: 'other',
                 color: '#3B82F6',
-                imgUrl: canvas.toDataURL('image/png', 0.95),
+                imgUrl: getOptimizedDataUrl(canvas, 1024),
             });
 
             setShowCropModal(false);

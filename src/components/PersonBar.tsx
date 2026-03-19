@@ -18,7 +18,7 @@ interface PersonBarProps {
     canvasHeight?: number;
 }
 
-const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly, canvasHeight }) => {
+const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly, canvasHeight }) => {
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [inputValue, setInputValue] = React.useState<number | ''>(person.heightCm);
@@ -57,7 +57,14 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
 
     // Head/Body proportions ensuring total = barHeightPx exactly
     const headDiameter = barHeightPx * 0.15;
-    const bodyHeight = barHeightPx - headDiameter;
+    const bodyHeight = barHeightPx - (headDiameter);
+
+    // Width should be proportional to height to maintain silhouette look, but scaled by zoom
+    // We target a default 120px width at 170cm height and zoom 1
+    const proportionalBaseWidth = (person.heightCm / 170) * 120;
+    // Cap proportional width range for massive objects (mountains/entities)
+    const cappedBaseWidth = Math.min(300, Math.max(80, proportionalBaseWidth));
+    const containerWidth = cappedBaseWidth * zoom;
 
     const totalInches = Math.round(Math.abs(person.heightCm * 0.393701));
     const ftValue = Math.floor(totalInches / 12);
@@ -82,19 +89,17 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
 
     const springConfig = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
-    // Width: no floor — bars shrink to whatever auto-fit zoom dictates
-    const baseWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? 90 : 120;
-    const containerWidth = baseWidth * zoom;
-
     // Text scales down proportionally with zoom, floor at 0.4
     const nameScale = Math.max(0.4, Math.min(1, zoom * 1.2));
     const showLabels = zoom >= 0.15; // hide labels at very low zoom to prevent overlap
     const mobile = (typeof window !== 'undefined' && window.innerWidth < 768);
 
     // Image aspect ratio calculation — also scales with zoom
+    // Widest part (head or body) should be used for effectiveWidth to prevent overlap
+    const silhouetteWidth = Math.max(containerWidth, headDiameter);
     const effectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(5, Math.round(barHeightPx * imageAspectRatio))
-        : Math.max(5, containerWidth);
+        : Math.max(5, silhouetteWidth);
 
     // Safely cap hover and label heights so they don't clip off the top of the canvas
     const safeCanvasHeight = canvasHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);
@@ -114,7 +119,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
-            className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
+            className="relative group pointer-events-auto overflow-hidden shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
             style={{ width: `${effectiveWidth}px` }}
             onClick={() => {
                 if (window.innerWidth < 768) {
@@ -136,7 +141,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                         transformOrigin: 'bottom'
                     }}
                 >
-                    <span className="text-[0.46em] font-bold text-white/90 uppercase tracking-wider whitespace-nowrap text-center drop-shadow-sm truncate max-w-full px-1">
+                    <span className="text-[0.62em] font-bold text-white/90 uppercase tracking-wider whitespace-nowrap text-center drop-shadow-sm truncate max-w-full px-1">
                         {person.name}
                     </span>
                     <span className="text-[9px] sm:text-[10px] font-bold text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/40 backdrop-blur-sm rounded px-1 text-center">
@@ -211,7 +216,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                 <div
                     className=" h-[1px] absolute transition-all duration-500 neon-indicator group-hover:brightness-150"
                     style={{
-                        width: `${containerWidth * 0.8}px`,
+                        width: `${containerWidth * 0.7}px`,
                         bottom: `${barHeightPx}px`,
                         zIndex: 20
                     }}
@@ -260,7 +265,8 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                                 layout
                                 className="rounded-t-[2rem] sm:rounded-t-[3.5rem] shadow-2xl relative z-10 overflow-hidden"
                                 style={{
-                                    width: `${headDiameter * 2.2}px`,
+                                    // width: `${headDiameter * 2.2}px`,
+                                    width: `${effectiveWidth}px`,
                                     backgroundColor: person.color || '#6366F1',
                                     backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.15) 0%, transparent 20%, rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.2) 100%)`
                                 }}
@@ -271,9 +277,8 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                     )}
                 </div>
             </div>
-
         </motion.div>
     );
-};
+});
 
 export default PersonBar;
