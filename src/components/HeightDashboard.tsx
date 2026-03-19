@@ -214,7 +214,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     }, []);
 
     // Zoom Boundaries
-    const MIN_ZOOM = 0.05;
+    const MIN_ZOOM = 0.0001;
     const MAX_ZOOM = 8.00;
 
     const handleZoom = (delta: number) => {
@@ -286,79 +286,45 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     }, [state.zoom]); // We depend on state.zoom for starting pinch zoom accurately
 
     const handleAutoScale = React.useCallback(() => {
-        if (persons.length === 0 || canvasHeight === 0) return;
+        if (persons.length === 0 || canvasHeight === 0 || !personsScrollRef.current) return;
 
         const doScale = () => {
-            const personsScroll = personsScrollRef.current;
-            const mobile = isMobile || (typeof window !== 'undefined' && window.innerWidth < 768);
-
-            // Use getBoundingClientRect; fall back to window width on mobile when layout hasn't settled
-            const rawWidth = personsScroll?.getBoundingClientRect().width ?? 0;
-            const availableWidth = rawWidth > 50 ? rawWidth : (typeof window !== 'undefined' ? window.innerWidth : 375);
-
-            // Use actual canvasHeight; fall back to window.innerHeight minus toolbar estimate
-            const usableCanvasH = canvasHeight > 0
-                ? canvasHeight
-                : (typeof window !== 'undefined' ? window.innerHeight - 250 : 500);
-
-            const heights = persons.map(p => p.heightCm);
-            const maxHeightCm = Math.max(1, ...heights);
-            const fitScale = (usableCanvasH - 200) / maxHeightCm;
-            if (fitScale <= 0) return;
+            const mobile = typeof window !== 'undefined' && window.innerWidth < 768;
+            const availableWidth = personsScrollRef.current?.getBoundingClientRect().width || (mobile ? 300 : 800);
 
             const n = persons.length;
+            const baseBarWidth = mobile ? 90 : 120;
+            const baseGap = 12;
+            // Account for ghost column (70px) + spacer (80-160px) + left padding (~56px)
+            const fixedElements = readOnly ? 56 : (mobile ? 200 : 300);
 
-            // VERTICAL fill — larger % for fewer bars so they really fill the canvas
-            // Desktop: 1-2: 85%, 3-5: 78%, 6-10: 65%, 11+: 55%
-            // Mobile:  always generous since screen is small
-            const verticalFill = mobile
-                ? (n <= 4 ? 0.75 : n <= 10 ? 0.62 : 0.50)
-                : (n <= 2 ? 0.85 : n <= 5 ? 0.78 : n <= 10 ? 0.65 : 0.55);
+            // Total width everything needs at zoom=1
+            const totalWidthAtZoom1 = (n * baseBarWidth) + ((n - 1) * baseGap) + fixedElements;
 
-            const targetHeightPx = usableCanvasH * verticalFill;
-            const verticalZoom = targetHeightPx * 0.18 / (maxHeightCm * fitScale);
+            // Horizontal zoom: shrink everything to fit within available width
+            const horizontalZoom = availableWidth / totalWidthAtZoom1;
 
-            // HORIZONTAL: on mobile always allow scroll, prioritise vertical fill.
-            // On desktop try to fit everyone across the width.
-            let idealZoom: number;
-            if (mobile) {
-                if (n <= 3) {
-                    idealZoom = verticalZoom * 3;
-                } else if (n <= 5) {
-                    idealZoom = verticalZoom * 2;
-                } else {
-                    idealZoom = verticalZoom;
-                }
-            } else {
-                const baseWidth = 120;
-                const avgNameLen = persons.reduce((a, b) => a + b.name.length, 0) / n;
-                const baseNameWidth = avgNameLen * 8.5 + 24;
-                const perPersonZoomWidth = Math.max(baseWidth, baseNameWidth);
-                const fixedNameOffset = baseNameWidth * 0.2 * n;
-                const totalZoomable = n * perPersonZoomWidth + (n - 1) * 12;
-                const totalFixed = 100 + 70 + fixedNameOffset + 80;
-                const horizontalZoom = (availableWidth - totalFixed) / totalZoomable;
-                // If there are very few people (<= 3) allow them to be big — just use vertical
-                if (n <= 8) {
-                    idealZoom = verticalZoom * 5;
-                }
-                else {
-                    idealZoom = Math.min(verticalZoom, horizontalZoom > 0 ? horizontalZoom : verticalZoom) * 2.5;
-                }
-            }
+            // Vertical zoom: tallest person fills ~75% of canvas
+            const heights = persons.map(p => p.heightCm);
+            const maxHeightCm = Math.max(1, ...heights);
+            const fitScale = (canvasHeight - 120) / maxHeightCm;
+            if (fitScale <= 0) return;
+            const verticalZoom = (canvasHeight * 0.75) / (maxHeightCm * fitScale);
 
-            setState(s => ({
-                ...s,
-                zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom))
-            }));
+            // Take the MINIMUM — this guarantees ALL bars fit on screen
+            let idealZoom = Math.min(horizontalZoom, verticalZoom);
+
+            // Allow zoom to go very low (0.05) so even 50+ figures fit
+            idealZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom));
+
+            setState(s => ({ ...s, zoom: idealZoom }));
         };
 
-        // Run immediately then retry after paint (critical for mobile layout settle)
         doScale();
         setTimeout(doScale, 150);
         triggerToast('View optimized');
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [persons, canvasHeight, isMobile]);
+    }, [persons.length, canvasHeight, readOnly]);
 
     // 🔑 Auto-fit whenever persons list changes (add / remove)
     const prevPersonsLenRef = React.useRef(0);
@@ -856,7 +822,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             >
                                 {/* Unified Absolute Coordinate Grid Container */}
                                 <div
-                                    className="relative min-w-max pr-24 md:pr-48 flex items-end"
+                                    className="relative min-w-max flex items-end pr-24 md:pr-48"
                                     style={{ height: requiredCanvasHeight }}
                                 >
                                     {/* Horizontal grid lines : extend across the persons area */}
@@ -868,9 +834,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     />
                                     <AnimatePresence mode="popLayout" initial={false}>
                                         <div
-                                            className="flex flex-nowrap items-end h-full w-max mt-auto pl-14"
+                                            className="flex flex-nowrap items-end h-full w-max mt-auto pl-6 sm:pl-14"
                                             style={{
-                                                gap: `${Math.max(8, (isMobile ? state.zoom < 0.5 ? 0 : 10 : 12) * Math.min(1.2, state.zoom))}px`,
+                                                gap: `${Math.max(1, Math.round(12 * state.zoom))}px`,
                                                 transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
                                             }}
                                         >

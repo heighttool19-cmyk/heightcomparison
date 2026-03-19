@@ -82,24 +82,19 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
 
     const springConfig = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
-    // Dynamic width calculation for true 2D zoom
+    // Width: no floor — bars shrink to whatever auto-fit zoom dictates
     const baseWidth = typeof window !== 'undefined' && window.innerWidth < 768 ? 90 : 120;
-    // const containerWidth = Math.max(50, baseWidth * zoom);
-    const containerWidth = zoom < 0.3 ? Math.max(30, baseWidth * zoom * 0.3)
-        : Math.max(50, baseWidth * zoom);
+    const containerWidth = baseWidth * zoom;
 
-    // CRITICAL: The name label uses a different scale logic at low zoom (min 0.6)
-    const nameScale = zoom < 0.8 ? Math.max(0.4, zoom + 0.1) : 1;
-    const nameWidth = (person.name.length * 8.5 + 24) * nameScale;
+    // Text scales down proportionally with zoom, floor at 0.4
+    const nameScale = Math.max(0.4, Math.min(1, zoom * 1.2));
+    const showLabels = zoom >= 0.15; // hide labels at very low zoom to prevent overlap
     const mobile = (typeof window !== 'undefined' && window.innerWidth < 768);
 
-    // Limit nameWidth impact to prevent huge gaps between bars
-    const boundedNameWidth = Math.min(nameWidth, containerWidth * 1.5);
-
-    // For image persons: compute width from natural aspect ratio
+    // Image aspect ratio calculation — also scales with zoom
     const effectiveWidth = person.imgUrl && imageAspectRatio
-        ? Math.max(60, Math.round(barHeightPx * imageAspectRatio))
-        : mobile ? Math.max(containerWidth, boundedNameWidth * 0.8) : Math.max(containerWidth, boundedNameWidth);
+        ? Math.max(5, Math.round(barHeightPx * imageAspectRatio))
+        : Math.max(5, containerWidth);
 
     // Safely cap hover and label heights so they don't clip off the top of the canvas
     const safeCanvasHeight = canvasHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);
@@ -129,23 +124,26 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                 }
             }}
         >
-            {/* Persistent Top Label - Responsive Scaling (Current Style) */}
-            <div
-                className="absolute left-1/2 flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
-                style={{
-                    bottom: `${labelBottom}px`,
-                    width: 'max-content',
-                    transform: `translateX(-50%) scale(${zoom < 0.8 ? Math.max(0.3, zoom * 1.1) : Math.min(1.1, zoom * 0.8)})`,
-                    transformOrigin: 'bottom'
-                }}
-            >
-                <span className="text-[11px] font-bold text-white/90 uppercase tracking-wider whitespace-nowrap text-center drop-shadow-sm max-w-[140px]   px-1">
-                    {person.name}
-                </span>
-                <span className="text-[9px] sm:text-[10px] font-bold text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/40 backdrop-blur-sm rounded px-1 text-center">
-                    {unitSystem === 'metric' ? metricDisplayShort : `${ftDisplayShort} ft`}
-                </span>
-            </div>
+            {/* Persistent Top Label - Hidden at very low zoom to prevent overlap */}
+            {showLabels && (
+                <div
+                    className="absolute left-1/2 flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
+                    style={{
+                        bottom: `${labelBottom}px`,
+                        width: 'max-content',
+                        maxWidth: `${Math.max(50, effectiveWidth * 1.8)}px`,
+                        transform: `translateX(-50%) scale(${nameScale})`,
+                        transformOrigin: 'bottom'
+                    }}
+                >
+                    <span className="text-[0.46em] font-bold text-white/90 uppercase tracking-wider whitespace-nowrap text-center drop-shadow-sm truncate max-w-full px-1">
+                        {person.name}
+                    </span>
+                    <span className="text-[9px] sm:text-[10px] font-bold text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/40 backdrop-blur-sm rounded px-1 text-center">
+                        {unitSystem === 'metric' ? metricDisplayShort : `${ftDisplayShort} ft`}
+                    </span>
+                </div>
+            )}
 
             {/* Hover Detail Card - Appears on hover/tap (Current Style) */}
             <div
