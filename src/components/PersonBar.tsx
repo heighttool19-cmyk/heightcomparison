@@ -119,7 +119,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
-            className="relative group pointer-events-auto overflow-hidden shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
+            className="relative group pointer-events-auto  shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
             style={{ width: `${effectiveWidth}px` }}
             onClick={() => {
                 if (window.innerWidth < 768) {
