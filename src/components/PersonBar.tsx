@@ -61,7 +61,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
     // Width should be proportional to height to maintain silhouette look, but scaled by zoom
     // We target a default 120px width at 170cm height and zoom 1
-    const proportionalBaseWidth = (person.heightCm / 170) * 120;
+    const proportionalBaseWidth = Math.min(150, (person.heightCm / 170) * 120);
     // Cap proportional width range for massive objects (mountains/entities)
     const cappedBaseWidth = Math.min(300, Math.max(80, proportionalBaseWidth));
     const containerWidth = cappedBaseWidth * zoom;
