@@ -15,9 +15,10 @@ interface PersonBarProps {
     onRemove?: (id: string) => void;
     onHeightChange?: (val: number) => void;
     readOnly?: boolean;
+    canvasHeight?: number;
 }
 
-const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly }) => {
+const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly, canvasHeight }) => {
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [inputValue, setInputValue] = React.useState<number | ''>(person.heightCm);
@@ -92,10 +93,25 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
     const nameWidth = (person.name.length * 8.5 + 24) * nameScale;
     const mobile = (typeof window !== 'undefined' && window.innerWidth < 768);
 
+    // Limit nameWidth impact to prevent huge gaps between bars
+    const boundedNameWidth = Math.min(nameWidth, containerWidth * 1.5);
+
     // For image persons: compute width from natural aspect ratio
     const effectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(60, Math.round(barHeightPx * imageAspectRatio))
-        : mobile ? ((Math.max(containerWidth, nameWidth)) / 1) : Math.max(containerWidth, nameWidth);
+        : mobile ? Math.max(containerWidth, boundedNameWidth * 0.8) : Math.max(containerWidth, boundedNameWidth);
+
+    // Safely cap hover and label heights so they don't clip off the top of the canvas
+    const safeCanvasHeight = canvasHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);
+    const labelBottomRaw = barHeightPx + 68;
+    const tooltipBottomRaw = barHeightPx + 65;
+
+    // We add some buffer from the top of the canvas (150px for toolbars/padding)
+    const maxLabelBottom = safeCanvasHeight - 100;
+    const maxTooltipBottom = safeCanvasHeight - 180;
+
+    const labelBottom = Math.min(labelBottomRaw, maxLabelBottom);
+    const tooltipBottom = Math.min(tooltipBottomRaw, maxTooltipBottom);
 
     return (
         <motion.div
@@ -117,7 +133,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
             <div
                 className="absolute left-1/2 flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
                 style={{
-                    bottom: `${barHeightPx + 68}px`,
+                    bottom: `${labelBottom}px`,
                     width: 'max-content',
                     transform: `translateX(-50%) scale(${zoom < 0.8 ? Math.max(0.3, zoom * 1.1) : Math.min(1.1, zoom * 0.8)})`,
                     transformOrigin: 'bottom'
@@ -145,7 +161,7 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                     ${isMenuOpen ? 'opacity-100 scale-110 translate-y-0' : ''}
                 `}
                 style={{
-                    bottom: `${barHeightPx + 65}px`,
+                    bottom: `${tooltipBottom}px`,
                     width: 'max-content',
                     minWidth: '100px',
                     transformOrigin: 'bottom center'
@@ -225,18 +241,6 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                                 />
                             </div>
                         </motion.div>
-                    ) : person.isEntity ? (
-                        <motion.div
-                            layout
-                            className="rounded-t-3xl shadow-2xl relative z-10"
-                            style={{
-                                width: `${Math.max(40, containerWidth * 0.6)}px`,
-                                height: barHeightPx,
-                                backgroundColor: person.color || '#6366F1',
-                                backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.1) 0%, transparent 20%, rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.2) 100%)`
-                            }}
-                            transition={springConfig}
-                        />
                     ) : (
                         <div className="flex flex-col items-center justify-end h-full opacity-100 group-hover:opacity-100 transition-all duration-500">
                             {/* Head */}
@@ -270,52 +274,6 @@ const PersonBar: React.FC<PersonBarProps> = ({ person, scale, zoom, onEditReques
                 </div>
             </div>
 
-            {/* Bottom Label: Name + Height - Responsive and robust (Current Style) */}
-            <div
-                className="absolute left-1/2 bottom-0 h-[60px] flex flex-col items-center justify-center gap-0 pointer-events-auto hide-on-export"
-                style={{
-                    width: 'max-content',
-                    transform: `translateX(-50%) scale(${zoom < 0.8 ? Math.max(0.35, zoom * 1.1) : Math.min(1.2, zoom)})`,
-                    transformOrigin: 'top center'
-                }}
-            >
-                <span className="text-[12px] font-black text-foreground/70 uppercase tracking-tight whitespace-nowrap text-center px-1 max-w-[120px]  "
-                    style={{ lineHeight: 1.1 }}>
-                    {person.name}
-                </span>
-
-                {readOnly ? (
-                    <div className="flex items-center gap-1.5 bg-surface/50 border border-border/40 rounded-xl px-4 py-1.5 backdrop-blur-md shadow-sm transition-all">
-                        <span className="text-xs sm:text-[13px] font-mono font-black text-foreground whitespace-nowrap">
-                            {unitSystem === 'metric'
-                                ? metricDisplay
-                                : ftDisplay
-                            }
-                        </span>
-                    </div>
-                ) : (
-                    <div className="flex items-center gap-1 bg-surface border border-border/60 rounded-xl px-1.5 py-0.5 focus-within:border-accent/60 backdrop-blur-md shadow-sm transition-all group-hover:border-accent/50 ring-1 ring-black/5 dark:ring-white/5">
-                        <input
-                            type="number"
-                            value={inputValue}
-                            onChange={(e) => handleInputChange(e, setInputValue)}
-                            onBlur={handleBlur}
-                            onKeyDown={handleKeyDown}
-                            className="w-6 sm:w-8 bg-transparent text-xs sm:text-[13px] font-mono font-black text-center text-foreground focus:outline-none"
-                        />
-                        <span className="text-[11px] sm:text-[10px] font-mono font-black text-muted uppercase tracking-tighter">cm</span>
-                        {/* {onRemove && (
-                            <button
-                                onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}
-                                className="ml-1 p-1 text-muted hover:text-red-500 hover:bg-red-400 rounded-md transition-all active:scale-95"
-                                title="Remove"
-                            >
-                                <Trash2 size={14} strokeWidth={2.5} />
-                            </button>
-                        )} */}
-                    </div>
-                )}
-            </div>
         </motion.div>
     );
 };

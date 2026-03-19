@@ -72,18 +72,6 @@ export const human_averages_data = [
     "icon": "🏢"
   },
   {
-    "name": "World Male",
-    "heightCm": 171,
-    "category": "Human Averages",
-    "icon": "🏢"
-  },
-  {
-    "name": "World Female",
-    "heightCm": 159,
-    "category": "Human Averages",
-    "icon": "🏢"
-  },
-  {
     "name": "Netherlands Male",
     "heightCm": 183,
     "category": "Human Averages",
@@ -440,18 +428,6 @@ export const human_averages_data = [
   {
     "name": "Average Swimmer",
     "heightCm": 185,
-    "category": "Human Averages",
-    "icon": "🏢"
-  },
-  {
-    "name": "Average Male (World)",
-    "heightCm": 171,
-    "category": "Human Averages",
-    "icon": "🏢"
-  },
-  {
-    "name": "Average Female (World)",
-    "heightCm": 159,
     "category": "Human Averages",
     "icon": "🏢"
   },

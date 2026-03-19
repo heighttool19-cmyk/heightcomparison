@@ -127,7 +127,7 @@ const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEnt
                     )}
                     {activePanel === 'EDIT_PERSON' && editingPerson && onEditSave && onEditCancel && (
                         <motion.div
-                            key="edit_person"
+                            key={`edit_${editingPerson.id}`}
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
