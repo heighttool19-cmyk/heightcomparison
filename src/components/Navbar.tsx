@@ -144,6 +144,9 @@ const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
                                         <Link href="/child-height-calculator" onClick={() => setIsNavMenuOpen(false)}>
                                             <button className={`w-full text-left px-4 py-3 text-base font-bold rounded-2xl transition-all ${activePage === 'child-height-calculator' ? 'text-white bg-white/10' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>Child Height Calculator</button>
                                         </Link>
+                                        <Link href="/height-weight-percentile-calculator" onClick={() => setIsNavMenuOpen(false)}>
+                                            <button className={`w-full text-left px-4 py-3 text-base font-bold rounded-2xl transition-all ${activePage === 'height-weight-percentile-calculator' ? 'text-white bg-white/10' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>Height Weight Percentile Calculator</button>
+                                        </Link>
                                         <Link href="/image-to-height" onClick={() => setIsNavMenuOpen(false)}>
                                             <button className={`w-full text-left px-4 py-3 text-base font-bold rounded-2xl transition-all flex items-center justify-between ${activePage === 'image-to-height' ? 'text-[#22C55E] bg-[#22C55E]/10' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
                                                 Image to Height <Box size={18} className={activePage === 'image-to-height' ? 'text-[#22C55E]' : ''} />

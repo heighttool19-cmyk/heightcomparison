@@ -114,67 +114,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    // 2. URL Hash Hydration (Client-side only)
-    useEffect(() => {
-        if (readOnly) return;
-        if (typeof window !== 'undefined' && window.location.hash) {
-            try {
-                const hash = window.location.hash.slice(1);
-                if (!hash) {
-                    setIsHydrated(true);
-                    return;
-                }
-
-                let decoded: any = null;
-                const lzDecoded = LZString.decompressFromEncodedURIComponent(hash);
-                if (lzDecoded) {
-                    try {
-                        decoded = JSON.parse(lzDecoded);
-                    } catch (e) { }
-                }
-
-                if (!decoded) {
-                    try {
-                        decoded = JSON.parse(decodeURIComponent(atob(hash)));
-                    } catch (e) {
-                        console.error("Legacy hash decode failed:", e);
-                    }
-                }
-
-                if (!decoded) {
-                    setIsHydrated(true);
-                    return;
-                }
-
-                if (decoded.unitSystem) {
-                    useUnitStore.setState({ unitSystem: decoded.unitSystem });
-                }
-                if (decoded.persons) {
-                    storeSetPersons(decoded.persons);
-                }
-                if (decoded.zoom) {
-                    setState(s => ({ ...s, zoom: decoded.zoom }));
-                }
-            } catch (e) {
-                console.error("Hash hydration failed:", e);
-            }
-        }
-        setIsHydrated(true);
-    }, [storeSetPersons, readOnly]);
-
-    // 2. URL Hash Encoding Sync
-    useEffect(() => {
-        if (readOnly || !isHydrated) return;
-        if (typeof window !== 'undefined') {
-            const dataToSync = {
-                persons,
-                unitSystem,
-                zoom: state.zoom
-            };
-            const compact = LZString.compressToEncodedURIComponent(JSON.stringify(dataToSync));
-            window.history.replaceState(null, '', `#${compact}`);
-        }
-    }, [state.zoom, unitSystem, persons, readOnly, isHydrated]);
 
     // Pinch Zoom Tracking
     const touchStartRef = useRef<number | null>(null);
@@ -400,14 +339,22 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         setEditingPersonId(null);
     };
 
+    // --- 1. The Share Handler ---
     const handleShare = async () => {
         try {
-            const dataToShare = {
-                persons,
-                unitSystem,
-                zoom: state.zoom
+            // Minify data before compressing
+            const minifiedData = {
+                u: unitSystem === 'metric' ? 1 : 0,
+                z: Math.round(state.zoom * 100) / 100,
+                p: persons.map(p => [
+                    p.name,
+                    Math.round(p.heightCm * 10) / 10,
+                    p.color ? p.color.replace('#', '') : '',
+                    p.gender === 'female' ? 1 : (p.gender === 'male' ? 2 : 0),
+                    p.imgUrl || ''
+                ])
             };
-            const compact = LZString.compressToEncodedURIComponent(JSON.stringify(dataToShare));
+            const compact = LZString.compressToEncodedURIComponent(JSON.stringify(minifiedData));
             const shareUrl = `${window.location.origin}/#${compact}`;
 
             await navigator.clipboard.writeText(shareUrl);
@@ -417,6 +364,95 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             triggerToast('Failed to copy link');
         }
     };
+
+    // --- 2. URL Hash Encoding Sync ---
+    useEffect(() => {
+        if (readOnly || !isHydrated) return;
+        if (typeof window !== 'undefined') {
+            // Minify data before syncing to URL
+            const minifiedData = {
+                u: unitSystem === 'metric' ? 1 : 0,
+                z: Math.round(state.zoom * 100) / 100,
+                p: persons.map(p => [
+                    p.name,
+                    Math.round(p.heightCm * 10) / 10,
+                    p.color ? p.color.replace('#', '') : '',
+                    p.gender === 'female' ? 1 : (p.gender === 'male' ? 2 : 0),
+                    p.imgUrl || ''
+                ])
+            };
+            const compact = LZString.compressToEncodedURIComponent(JSON.stringify(minifiedData));
+            window.history.replaceState(null, '', `#${compact}`);
+        }
+    }, [state.zoom, unitSystem, persons, readOnly, isHydrated]);
+
+    // --- 3. URL Hash Hydration ---
+    useEffect(() => {
+        if (readOnly) return;
+        if (typeof window !== 'undefined' && window.location.hash) {
+            try {
+                const hash = window.location.hash.slice(1);
+                if (!hash) {
+                    setIsHydrated(true);
+                    return;
+                }
+
+                let decoded: any = null;
+                const lzDecoded = LZString.decompressFromEncodedURIComponent(hash);
+                if (lzDecoded) {
+                    try {
+                        decoded = JSON.parse(lzDecoded);
+                    } catch (e) { }
+                }
+
+                if (!decoded) {
+                    try {
+                        decoded = JSON.parse(decodeURIComponent(atob(hash)));
+                    } catch (e) {
+                        console.error("Legacy hash decode failed:", e);
+                    }
+                }
+
+                if (!decoded) {
+                    setIsHydrated(true);
+                    return;
+                }
+
+                // UNPACK LOGIC: Support both new minified format and old legacy format
+                if (decoded.u !== undefined) {
+                    // It's the new minified format
+                    useUnitStore.setState({ unitSystem: decoded.u === 1 ? 'metric' : 'imperial' });
+                    if (decoded.z) setState(s => ({ ...s, zoom: decoded.z }));
+
+                    if (decoded.p && Array.isArray(decoded.p)) {
+                        const restoredPersons: Person[] = decoded.p.map((arr: any) => ({
+                            id: `shared-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`, // Gen new ID
+                            name: arr[0],
+                            heightCm: arr[1],
+                            color: arr[2] ? `#${arr[2]}` : '#3b82f6',
+                            gender: arr[3] === 1 ? 'female' : (arr[3] === 2 ? 'male' : undefined),
+                            imgUrl: arr[4] || undefined,
+                            isEntity: !arr[3]
+                        }));
+                        storeSetPersons(restoredPersons);
+                    }
+                } else if (decoded.unitSystem) {
+                    // It's the old legacy format (keeps old links working)
+                    useUnitStore.setState({ unitSystem: decoded.unitSystem });
+                    if (decoded.persons) {
+                        storeSetPersons(decoded.persons);
+                    }
+                    if (decoded.zoom) {
+                        setState(s => ({ ...s, zoom: decoded.zoom }));
+                    }
+                }
+
+            } catch (e) {
+                console.error("Hash hydration failed:", e);
+            }
+        }
+        setIsHydrated(true);
+    }, [storeSetPersons, readOnly]);
 
     const handleDownloadPNG = async () => {
         if (!containerRef.current) return;

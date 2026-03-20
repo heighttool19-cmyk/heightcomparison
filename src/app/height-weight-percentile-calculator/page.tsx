@@ -69,9 +69,9 @@ export default function PercentileCalculatorClient() {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
+    // Intersection Observer for Active TOC state & URL Sync
     useEffect(() => {
         const visibleSections = new Map<string, IntersectionObserverEntry>();
-        let historyTimeout: NodeJS.Timeout;
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -103,8 +103,10 @@ export default function PercentileCalculatorClient() {
 
                     if (closestSection && closestSection !== activeSection) {
                         setActiveSection(closestSection);
-                        clearTimeout(historyTimeout);
-                        historyTimeout = setTimeout(() => {
+
+                        // DEBOUNCE URL UPDATE
+                        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+                        scrollTimeout.current = setTimeout(() => {
                             if (window.history.replaceState) {
                                 window.history.replaceState(null, '', `#${closestSection}`);
                             }
@@ -115,13 +117,19 @@ export default function PercentileCalculatorClient() {
             { rootMargin: '-70px 0px -40% 0px', threshold: 0 }
         );
 
-        const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], section[id], div[id]');
+        // Dynamically grab all IDs listed in the TOC to observe
+        const headings = document.querySelectorAll(
+            tocItems.flatMap(item => {
+                const ids = [`#${item.id}`];
+                if (item.subItems) {
+                    item.subItems.forEach(sub => ids.push(`#${sub.id}`));
+                }
+                return ids;
+            }).join(', ')
+        );
         headings.forEach((h) => observer.observe(h));
 
-        return () => {
-            observer.disconnect();
-            clearTimeout(historyTimeout);
-        };
+        return () => observer.disconnect();
     }, [activeSection]);
 
     const TOCLink = ({ item, isSub = false }: { item: { id: string; label: string; subItems?: { id: string; label: string }[] }, isSub?: boolean }) => {
