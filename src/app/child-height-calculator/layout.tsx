@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Child Height Predictor : How Tall Will My Child Be? | Free Calculator",
-    description: "Use our free child height predictor to estimate how tall your child will be. Based on Khamis-Roche and mid-parental height methods. Includes boys & girls growth charts.",
+    title: "Children's Height Calculator - Height Prediction Calculator",
+    description: " Predict your child’s future height with our Height Predictor Calculator. This Projected height calculator uses proven methods to predict adult height.",
 };
 
 export default function HeightCalculatorLayout({

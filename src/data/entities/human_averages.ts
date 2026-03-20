@@ -431,16 +431,5 @@ export const human_averages_data = [
     "category": "Human Averages",
     "icon": "🏢"
   },
-  {
-    "name": "Average Male (USA)",
-    "heightCm": 176,
-    "category": "Human Averages",
-    "icon": "🏢"
-  },
-  {
-    "name": "Average Female (USA)",
-    "heightCm": 163,
-    "category": "Human Averages",
-    "icon": "🏢"
-  }
+
 ];

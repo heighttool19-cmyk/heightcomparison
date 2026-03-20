@@ -58,7 +58,7 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, containerHeight, pers
             .filter(tick => {
                 const heightPx = tick * scale;
                 const topBuffer = isFullscreen ? 160 : 40;
-                if (containerHeight && (heightPx + 60) > (containerHeight - topBuffer)) return false;
+                if (containerHeight && (heightPx + 20) > (containerHeight - topBuffer)) return false;
                 return true;
             });
     }, [tickInterval, maxHeightCm, containerHeight, scale]);
@@ -88,7 +88,7 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, containerHeight, pers
                     <div
                         key={tick}
                         className="absolute inset-x-0 flex items-center group/tick h-0"
-                        style={{ bottom: `${heightPx + 60}px` }}
+                        style={{ bottom: `${heightPx + 20}px` }}
                     >
                         {/* CM & FT Labels */}
                         {showLabels && (

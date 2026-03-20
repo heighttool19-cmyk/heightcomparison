@@ -16,9 +16,11 @@ interface PersonBarProps {
     onHeightChange?: (val: number) => void;
     readOnly?: boolean;
     canvasHeight?: number;
+    isActiveMenu?: boolean;
+    onSetActiveMenu?: (active: boolean) => void;
 }
 
-const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly, canvasHeight }) => {
+const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly, canvasHeight, isActiveMenu, onSetActiveMenu }) => {
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [inputValue, setInputValue] = React.useState<number | ''>(person.heightCm);
@@ -103,8 +105,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
     // Safely cap hover and label heights so they don't clip off the top of the canvas
     const safeCanvasHeight = canvasHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);
-    const labelBottomRaw = barHeightPx + 68;
-    const tooltipBottomRaw = barHeightPx + 65;
+    const labelBottomRaw = barHeightPx + 28;
+    const tooltipBottomRaw = barHeightPx + 25;
 
     // We add some buffer from the top of the canvas (150px for toolbars/padding)
     const maxLabelBottom = safeCanvasHeight - 100;
@@ -116,14 +118,19 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     return (
         <motion.div
             initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0, width: effectiveWidth }}
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
             className="relative group pointer-events-auto  shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
             style={{ width: `${effectiveWidth}px` }}
-            onClick={() => {
-                if (window.innerWidth < 768) {
-                    setIsMenuOpen(!isMenuOpen);
+            onClick={(e) => {
+                e.stopPropagation(); // Prevent trigger "click outside" on the dashboard
+                if (window.innerWidth < 768 || (isActiveMenu !== undefined && onSetActiveMenu)) {
+                    if (onSetActiveMenu) {
+                        onSetActiveMenu(!isActiveMenu);
+                    } else {
+                        setIsMenuOpen(!isMenuOpen);
+                    }
                 } else if (onEditRequest) {
                     onEditRequest(person.id);
                 }
@@ -141,7 +148,12 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                         transformOrigin: 'bottom'
                     }}
                 >
-                    <span className="text-[0.62em] font-bold text-white/90 uppercase tracking-wider whitespace-nowrap text-center drop-shadow-sm truncate max-w-full px-1">
+                    <span className="text-[0.6em] font-bold text-white/90 uppercase tracking-wider whitespace-nowrap text-center drop-shadow-sm  max-w-full px-1"
+                        style={{
+                            transform: `scale(${nameScale * 0.8})`,
+                            transformOrigin: 'bottom'
+                        }}
+                    >
                         {person.name}
                     </span>
                     <span className="text-[9px] sm:text-[10px] font-bold text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/40 backdrop-blur-sm rounded px-1 text-center">
@@ -161,7 +173,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                     ${(isMenuOpen || !readOnly) ? 'z-50' : 'z-40'}
                     opacity-0 scale-50 translate-y-4
                     group-hover:opacity-100 group-hover:scale-110 group-hover:translate-y-0
-                    ${isMenuOpen ? 'opacity-100 scale-110 translate-y-0' : ''}
+                    ${(isActiveMenu || isMenuOpen) ? 'opacity-100 scale-110 translate-y-0' : ''}
                 `}
                 style={{
                     bottom: `${tooltipBottom}px`,
@@ -210,14 +222,14 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 )}
             </div>
 
-            {/* Silhouette Area - Aligned at 60px baseline - From User Snippet */}
-            <div className="absolute inset-x-0 bottom-[60px] flex flex-col items-center justify-end overflow-visible">
+            {/* Silhouette Area - Aligned at 20px baseline - From User Snippet */}
+            <div className="absolute inset-x-0 bottom-[20px] flex flex-col items-center justify-end overflow-visible">
                 {/* Indicator Line - Neon Line at Height Boundary */}
-                <div
-                    className=" h-[1px] absolute transition-all duration-500 neon-indicator group-hover:brightness-150"
+                <motion.div
+                    animate={{ width: containerWidth * 0.7, bottom: barHeightPx }}
+                    className=" h-[1px] absolute transition-none duration-0 neon-indicator group-hover:brightness-150"
+                    transition={springConfig}
                     style={{
-                        width: `${containerWidth * 0.7}px`,
-                        bottom: `${barHeightPx}px`,
                         zIndex: 20
                     }}
                 />
@@ -235,11 +247,13 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                             transition={springConfig}
                         >
                             <div className="relative z-20 h-full w-auto">
-                                <img
+                                <motion.img
                                     src={person.imgUrl}
                                     alt={person.name}
                                     onLoad={handleImageLoad}
-                                    style={{ height: `${barHeightPx}px`, width: 'auto', objectFit: 'contain', display: 'block' }}
+                                    animate={{ height: barHeightPx }}
+                                    transition={springConfig}
+                                    style={{ width: 'auto', objectFit: 'contain', display: 'block' }}
                                     className="drop-shadow-2xl"
                                 />
                             </div>
@@ -266,11 +280,10 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                                 className="rounded-t-[2rem] sm:rounded-t-[3.5rem] shadow-2xl relative z-10 overflow-hidden"
                                 style={{
                                     // width: `${headDiameter * 2.2}px`,
-                                    width: `${effectiveWidth}px`,
                                     backgroundColor: person.color || '#6366F1',
                                     backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.15) 0%, transparent 20%, rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.2) 100%)`
                                 }}
-                                animate={{ height: bodyHeight }}
+                                animate={{ height: bodyHeight, width: effectiveWidth }}
                                 transition={springConfig}
                             />
                         </div>

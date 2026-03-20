@@ -51,7 +51,7 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
                             onClick={() => handlePresetClick(preset)}
                             className="flex items-center justify-between p-3.5 rounded-2xl bg-bg border border-border hover:border-accent/40 transition-all text-left shadow-sm group"
                         >
-                            <span className="text-[11px] font-black text-foreground group-hover:text-accent transition-colors uppercase leading-none">
+                            <span className="text-[11px] font-mono text-foreground group-hover:text-accent transition-colors uppercase leading-none">
                                 {preset.name}
                             </span>
                             <div className="flex items-center gap-2">

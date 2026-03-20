@@ -65,6 +65,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     const [isMobile, setIsMobile] = useState(false);
     const [isConfirmingClear, setIsConfirmingClear] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const [isHydrated, setIsHydrated] = useState(readOnly); // Start as hydrated if readOnly as we don't care about hash sync then
+    const [activePersonMenuId, setActivePersonMenuId] = useState<string | null>(null);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const rulerScrollRef = useRef<HTMLDivElement>(null);
@@ -118,7 +120,10 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         if (typeof window !== 'undefined' && window.location.hash) {
             try {
                 const hash = window.location.hash.slice(1);
-                if (!hash) return;
+                if (!hash) {
+                    setIsHydrated(true);
+                    return;
+                }
 
                 let decoded: any = null;
                 const lzDecoded = LZString.decompressFromEncodedURIComponent(hash);
@@ -136,7 +141,10 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     }
                 }
 
-                if (!decoded) return;
+                if (!decoded) {
+                    setIsHydrated(true);
+                    return;
+                }
 
                 if (decoded.unitSystem) {
                     useUnitStore.setState({ unitSystem: decoded.unitSystem });
@@ -151,11 +159,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 console.error("Hash hydration failed:", e);
             }
         }
+        setIsHydrated(true);
     }, [storeSetPersons, readOnly]);
 
     // 2. URL Hash Encoding Sync
     useEffect(() => {
-        if (readOnly) return;
+        if (readOnly || !isHydrated) return;
         if (typeof window !== 'undefined') {
             const dataToSync = {
                 persons,
@@ -165,7 +174,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             const compact = LZString.compressToEncodedURIComponent(JSON.stringify(dataToSync));
             window.history.replaceState(null, '', `#${compact}`);
         }
-    }, [state.zoom, unitSystem, persons, readOnly]);
+    }, [state.zoom, unitSystem, persons, readOnly, isHydrated]);
 
     // Pinch Zoom Tracking
     const touchStartRef = useRef<number | null>(null);
@@ -289,9 +298,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         };
 
         doScale();
-        setTimeout(doScale, 150);
+        setTimeout(doScale, 450);
         triggerToast('View optimized');
-    }, [persons, canvasHeight, readOnly, MIN_ZOOM, MAX_ZOOM]);
+    }, [persons, canvasHeight, readOnly, MIN_ZOOM, MAX_ZOOM, isSidebarCollapsed]);
 
     const prevPersonsLenRef = useRef(0);
     useEffect(() => {
@@ -473,7 +482,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         if (canvasHeight === 0) return 0;
         const heights = persons.length > 0 ? persons.map(p => p.heightCm) : [0];
         const maxHeightCm = Math.max(210, ...heights);
-        const fitScale = Math.max(0, (canvasHeight - 200) / maxHeightCm);
+        const fitScale = Math.max(0, (canvasHeight - 160) / maxHeightCm);
         return fitScale * state.zoom;
     }, [canvasHeight, persons, state.zoom]);
 
@@ -481,8 +490,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         if (persons.length === 0) return canvasHeight;
         const heights = persons.map(p => p.heightCm);
         const maxHeightPx = Math.max(...heights) * scale;
-        // heightPx + 60px bottom offset + ~180px for top labels and clearance
-        const needed = maxHeightPx + 240;
+        // heightPx + 20px bottom offset + ~180px for top labels and clearance
+        const needed = maxHeightPx + 200;
         return Math.max(canvasHeight, needed);
     }, [persons, scale, canvasHeight]);
 
@@ -536,6 +545,10 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
                     className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500 "
+                    onClick={(e) => {
+                        // Close person menu when clicking the broad background
+                        if (activePersonMenuId) setActivePersonMenuId(null);
+                    }}
                 >
                     <div className="order-2 sm:order-first px-4 sm:px-8 py-4 z-30">
                         <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-3 px-4 sm:px-6 backdrop-blur-md shadow-2xl overflow-x-auto custom-scrollbar flex-nowrap">
@@ -750,6 +763,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                     zoom={state.zoom}
                                                     readOnly={readOnly}
                                                     canvasHeight={canvasHeight}
+                                                    isActiveMenu={activePersonMenuId === person.id}
+                                                    onSetActiveMenu={(active: boolean) => setActivePersonMenuId(active ? person.id : null)}
                                                     onEditRequest={!readOnly ? handleEditRequest : undefined}
                                                     onRemove={!readOnly ? handleRemovePerson : undefined}
                                                     onHeightChange={!readOnly ? (val) => handleUpdatePersonHeight(person.id, val) : undefined}

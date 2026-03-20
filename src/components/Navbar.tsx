@@ -8,7 +8,7 @@ import { useThemeStore, useUnitStore } from '@/store';
 import { useEffect } from 'react';
 
 interface NavbarProps {
-    activePage: 'home' | 'child-height-calculator' | 'image-to-height' | 'about';
+    activePage: 'home' | 'child-height-calculator' | 'height-weight-percentile-calculator' | 'image-to-height' | 'about';
 }
 
 const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
@@ -57,6 +57,12 @@ const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
                         className={`text-[15px] font-extrabold transition-colors ${activePage === 'child-height-calculator' ? 'text-accent font-bold border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
                     >
                         Child Height Calculator
+                    </Link>
+                    <Link
+                        href="/height-weight-percentile-calculator"
+                        className={`text-[15px] font-extrabold transition-colors ${activePage === 'height-weight-percentile-calculator' ? 'text-accent font-bold border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
+                    >
+                        Height Weight Percentile Calculator
                     </Link>
                     <Link
                         href="/image-to-height"

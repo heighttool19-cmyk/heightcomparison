@@ -8,9 +8,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Height Comparison Tool | Visualize & Compare Heights Online",
-  description: "The ultimate tool to compare heights of people, celebrities, buildings, and objects. Visualize differences in real-world scale with premium glassmorphism design.",
-  robots: "index, follow",
+  title: "Height Comparison Chart - Person Height, Character Height & More",
+  description: "Use Height Comparison Tool to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: true,
+    },
+  },
 };
 
 export const viewport: Viewport = {

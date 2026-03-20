@@ -4,9 +4,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
-import { useThemeStore, useUnitStore } from '@/store';
+import { useRouter } from 'next/navigation';
+import LZString from 'lz-string';
+import { useThemeStore, useUnitStore, usePersonStore } from '@/store';
 import Navbar from '@/components/Navbar';
-import HeightDashboard from '@/components/HeightDashboard';
 import HeightCharts from '@/components/HeightCharts';
 import GrowthPlateExplainer from '@/components/GrowthPlateExplainer';
 import { Person } from '@/types';
@@ -44,6 +45,7 @@ const tocItems = [
 ];
 
 export default function HeightCalculatorPage() {
+    const router = useRouter();
     const { theme } = useThemeStore();
     // const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState<string>('');
@@ -52,6 +54,7 @@ export default function HeightCalculatorPage() {
     const isClickScrolling = useRef(false);
     const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
     const { unitSystem: unit, setUnitSystem } = useUnitStore();
+    const { setPersons: storeSetPersons } = usePersonStore();
 
     // --- State for Section 1: Child Height Predictor ---
     const [childAge, setChildAge] = useState<number | ''>('');
@@ -85,7 +88,6 @@ export default function HeightCalculatorPage() {
     const [convInInput, setConvInInput] = useState<string>('');
 
     // --- State for Chart Visualization ---
-    const [showChart, setShowChart] = useState(false);
     const [chartPersons, setChartPersons] = useState<Person[]>([]);
 
     // Theme sync
@@ -93,47 +95,24 @@ export default function HeightCalculatorPage() {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    // Body scroll lock when chart is open
-    useEffect(() => {
-        if (showChart) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => {
-            document.body.style.overflow = '';
+    const handleViewInDashboard = (personsToView: Person[]) => {
+        // 1. Update the store directly for immediate internal navigation
+        storeSetPersons(personsToView);
+        useUnitStore.setState({ unitSystem: unit });
+
+        // 2. Also update hash for sharing/bookmarking
+        const dataToSync = {
+            persons: personsToView,
+            unitSystem: unit,
+            zoom: 1.0 // Default zoom for new view
         };
-    }, [showChart]);
-
-    // --- FIXED: Modal Back-Button Sync ---
-    useEffect(() => {
-        // 1. If modal isn't open, don't do anything
-        if (!showChart) return;
-
-        // 2. Push a dummy state so "Back" button has a target
-        window.history.pushState({ modalOpen: true }, "");
-
-        const handlePopState = () => {
-            // If the user clicks "Back", close the modal
-            setShowChart(false);
-        };
-
-        // 3. Listen for the back button
-        window.addEventListener("popstate", handlePopState);
-
-        return () => {
-            window.removeEventListener("popstate", handlePopState);
-
-            // 4. IMPORTANT: Only go back if the modal was closed manually 
-            // (by a button), NOT by the back button itself.
-            // This prevents the "double click to open" bug.
-            if (window.history.state?.modalOpen) {
-                window.history.back();
-            }
-        };
-    }, [showChart]);    // Intersection Observer for Active TOC state & URL Sync
+        const compact = LZString.compressToEncodedURIComponent(JSON.stringify(dataToSync));
+        router.push(`/#${compact}`);
+    };
+    // Intersection Observer for Active TOC state & URL Sync
     useEffect(() => {
         const visibleSections = new Map<string, IntersectionObserverEntry>();
+        let historyTimeout: NodeJS.Timeout;
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -168,22 +147,31 @@ export default function HeightCalculatorPage() {
                     }
 
                     if (closestSection && closestSection !== activeSection) {
+                        // 1. Instantly update the TOC highlight (lightweight)
                         setActiveSection(closestSection);
-                        if (window.history.replaceState) {
-                            window.history.replaceState(null, '', `#${closestSection}`);
-                        }
+
+                        // 2. DEBOUNCE the heavy URL update (Fixes the blank rendering bug)
+                        clearTimeout(historyTimeout);
+                        historyTimeout = setTimeout(() => {
+                            if (window.history.replaceState) {
+                                window.history.replaceState(null, '', `#${closestSection}`);
+                            }
+                        }, 150); // Waits 150ms after scrolling stops before updating URL
                     }
                 }
             },
-            // -70px ensures the observer starts checking right below your sticky navbar
             { rootMargin: '-70px 0px -40% 0px', threshold: 0 }
         );
 
         const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], section[id], div[id]');
         headings.forEach((h) => observer.observe(h));
 
-        return () => observer.disconnect();
+        return () => {
+            observer.disconnect();
+            clearTimeout(historyTimeout); // Cleanup
+        };
     }, [activeSection]);
+
     // Helpers
     const cmToFtIn = (cm: number) => {
         const totalInches = cm / 2.54;
@@ -274,8 +262,7 @@ export default function HeightCalculatorPage() {
             { id: 'mother', name: 'Mother', heightCm: mCm, color: '#ec4899', isEntity: false },
             { id: 'child', name: gender === 'male' ? 'Son' : 'Daughter', heightCm: predictedCm, color: '#10b981', isEntity: false }
         ];
-        setChartPersons(persons);
-        setShowChart(true);
+        handleViewInDashboard(persons);
     };
 
     const clearKhamis = () => {
@@ -404,25 +391,18 @@ export default function HeightCalculatorPage() {
             <Navbar activePage="child-height-calculator" />
 
             {/* --- Main Content with Sidebar Grid --- */}
-            <main className="flex-1 flex flex-col relative p-4 md:p-8 bg-canvas">
-
-                {/* Grid Layout: Mobile: 1 column | Desktop: 2 columns (Left sidebar for TOC, Right for content) */}
-                <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr] xl:grid-cols-[300px_1fr] gap-8 mt-4 md:mt-8 mb-20 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-
-                    {/* --- LEFT SIDEBAR: fixed Table of Contents (Desktop Only) --- */}
-                    <div className="hidden lg:block">
-                        <div className="fixed top-24 left-10 xl:left-20 bg-surface border border-border p-6 rounded-3xl shadow-sm text-left max-h-[calc(100vh-8rem)] w-[240px] xl:w-[320px] overflow-y-auto custom-scrollbar">
-                            <h3 className="font-black text-foreground mb-4 uppercase tracking-widest text-xs border-b border-border pb-4">
-                                Table of Contents
-                            </h3>
-                            <ul className="text-sm font-medium">
-                                {tocItems.map(item => (
-                                    <TOCLink key={item.id} item={item} />
-                                ))}
-                            </ul>
-                        </div>
+            <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 relative">
+                <aside className="w-full md:w-72 shrink-0 order-2 md:order-1">
+                    <div className="md:sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl">
+                        <h3 className="text-sm font-black uppercase tracking-[0.2em]">Table of Contents</h3>
+                        <ul className="text-sm font-medium">
+                            {tocItems.map(item => (
+                                <TOCLink key={item.id} item={item} />
+                            ))}
+                        </ul>
                     </div>
-
+                </aside>
+                <div className="flex-1 min-w-0 order-1 md:order-2">
                     {/* --- RIGHT CONTENT AREA --- */}
                     <div className="flex flex-col gap-12 w-full min-w-0 max-w-4xl mx-auto">
 
@@ -586,7 +566,7 @@ export default function HeightCalculatorPage() {
                                         <p className="text-xs font-bold text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">Target Range (±5 cm): {predictedKhamis.cm - 5} : {predictedKhamis.cm + 5} cm</p>
 
                                         <button
-                                            onClick={() => setShowChart(true)}
+                                            onClick={() => handleViewInDashboard(chartPersons)}
                                             className="w-full mt-6 bg-accent hover:bg-accent/90 text-white font-black py-4 rounded-xl transition-all shadow-xl shadow-accent/20 flex items-center justify-center gap-2 group"
                                         >
                                             View Comparison Chart
@@ -1107,18 +1087,6 @@ export default function HeightCalculatorPage() {
                 </div>
             </footer>
 
-            {/* Comparison Chart Overlay */}
-            <AnimatePresence>
-                {showChart && chartPersons && (
-                    <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95 }} className="fixed inset-0 z-[60] bg-bg overflow-hidden">
-                        <HeightDashboard
-                            readOnly={true}
-                            initialPersons={chartPersons}
-                            onClose={() => setShowChart(false)}
-                        />
-                    </motion.div>
-                )}
-            </AnimatePresence>
         </div>
     );
 }

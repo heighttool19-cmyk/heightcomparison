@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/:path*',
+        missing: [
+          {
+            type: 'header',
+            key: 'RSC',
+          },
+          {
+            type: 'header',
+            key: 'Next-Router-Prefetch',
+          },
+        ],
         headers: [
           {
             key: 'X-Robots-Tag',
