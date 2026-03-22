@@ -34,9 +34,9 @@ export default function HeightDifferenceChart() {
                         <tr key={i} className="border-b border-border hover:bg-surface/50 transition-colors">
                             <td className="p-3 font-bold text-[#1A56DB]">{r.a}</td>
                             <td className="p-3 font-bold text-[#0694A2]">{r.b}</td>
-                            <td className="p-3 font-black text-foreground">{r.diff}</td>
+                            <td className="p-3 font-black text-[#f7a24f]">{r.diff}</td>
                             <td className="p-3">
-                                <span className={`rounded-md px-2.5 py-1 text-xs font-bold ${isDark ? 'bg-blue-900/30 text-blue-400' : 'bg-[#1a56db12] bg-opacity-10 text-[#1A56DB]'}`}>
+                                <span className={`rounded-md px-2.5 py-1 text-xs font-bold ${isDark ? 'bg-blue-900/30 text-[#7ef7b4]' : 'bg-[#1a56db12] bg-opacity-10 text-[#1A56DB]'}`}>
                                     {r.pct}
                                 </span>
                             </td>

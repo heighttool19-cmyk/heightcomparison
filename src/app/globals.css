@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap');
 @import "tailwindcss";
 
-:root, [data-theme="dark"] {
+:root,
+[data-theme="dark"] {
   /* Refined Dark Theme Palette */
   --bg: #101011;
   --surface: #121214;
@@ -58,7 +59,7 @@
   --color-toolbar-border: var(--toolbar-border);
   --color-item-hover: var(--item-hover);
   --shadow-premium: var(--shadow);
-  
+
   --font-sans: var(--font-inter), sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
@@ -75,7 +76,8 @@ body {
 
 /* Smooth custom scrollbars */
 ::-webkit-scrollbar {
-  width: 10px; /* Slightly wider for better usability */
+  width: 10px;
+  /* Slightly wider for better usability */
   height: 10px;
 }
 
@@ -88,7 +90,7 @@ body {
   background: color-mix(in srgb, var(--foreground) 32%, transparent);
   border-radius: 10px;
   /* Add a border to give it a "floating" pill look */
-  border: 2px solid var(--bg); 
+  border: 2px solid var(--bg);
 }
 
 /* Darker on hover for interactive feedback */
@@ -108,53 +110,55 @@ body {
 }
 
 .chart-grid {
-    background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
-                      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-    background-size: 40px 40px;
+  background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-:root, [data-theme="dark"] {
-    --grid-color: rgba(255, 255, 255, 0.03);
+:root,
+[data-theme="dark"] {
+  --grid-color: rgba(255, 255, 255, 0.03);
 }
 
 [data-theme="light"] {
-    --grid-color: rgba(0, 0, 0, 0.03);
+  --grid-color: rgba(0, 0, 0, 0.03);
 }
 
 
 
 .hide-on-export {
-    transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 body.is-capturing .hide-on-export {
-    display: none !important;
+  display: none !important;
 }
 
 .empty-door {
-    width: clamp(100px, 30vw, 140px);
-    height: clamp(160px, 45vw, 220px);
-    border: 3px dashed var(--border);
-    border-radius: 1.5rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.02));
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: clamp(100px, 30vw, 140px);
+  height: clamp(160px, 45vw, 220px);
+  border: 3px dashed var(--border);
+  border-radius: 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.02));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .empty-door:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 [data-theme="dark"] .empty-door {
-    border-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 [data-theme="light"] .empty-door {
-    border-color: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.1);
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -165,10 +169,11 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
 /* Theme-Synced Fluorescent Line */
 .neon-indicator {
   background-color: var(--accent);
-  box-shadow: 
+  box-shadow:
     0 0 2px 0px var(--accent),
     0 0 6px 1px color-mix(in srgb, var(--accent) 40%, transparent),
     0 0 12px 3px color-mix(in srgb, var(--accent) 15%, transparent);
