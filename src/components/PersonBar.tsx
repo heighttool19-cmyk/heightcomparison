@@ -96,7 +96,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     const showLabels = zoom >= 0.15; // hide labels at very low zoom to prevent overlap
     const mobile = (typeof window !== 'undefined' && window.innerWidth < 768);
 
-    // Image aspect ratio calculation — also scales with zoom
+    // Image aspect ratio calculation : also scales with zoom
     // Widest part (head or body) should be used for effectiveWidth to prevent overlap
     const silhouetteWidth = Math.max(containerWidth, headDiameter);
     const effectiveWidth = person.imgUrl && imageAspectRatio

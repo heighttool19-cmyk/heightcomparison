@@ -536,18 +536,17 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     }, [persons.length, totalHeight, canvasHeight]);
 
     return (
-        <div className="flex flex-col h-screen bg-bg overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 relative">
-            {readOnly && onClose && (
-                <button
-                    onClick={onClose}
-                    className="absolute top-4 right-4 z-[70] p-3 text-white bg-red-500/90 hover:bg-red-600 rounded-full shadow-2xl backdrop-blur-md transition-all sm:top-6 sm:right-6"
-                    title="Close Chart"
-                >
-                    <X size={24} strokeWidth={3} />
-                </button>
-            )}
+        <div className="flex flex-col h-full bg-bg overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 relative">            {readOnly && onClose && (
+            <button
+                onClick={onClose}
+                className="absolute top-4 right-4 z-[70] p-3 text-white bg-red-500/90 hover:bg-red-600 rounded-full shadow-2xl backdrop-blur-md transition-all sm:top-6 sm:right-6"
+                title="Close Chart"
+            >
+                <X size={24} strokeWidth={3} />
+            </button>
+        )}
 
-            {!readOnly && <Navbar activePage="home" />}
+            {/* {!readOnly && <Navbar activePage="home" />} */}
 
             <div className="flex flex-1 overflow-hidden relative flex-col md:flex-row custom-scrollbar bg-bg transition-colors duration-500">
                 {!readOnly && (
@@ -586,7 +585,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         if (activePersonMenuId) setActivePersonMenuId(null);
                     }}
                 >
-                    <div className="order-2 sm:order-first px-4 sm:px-8 py-4 z-30">
+                    <div className="order-2 sm:order-first px-4 sm:px-8 pt-4 z-30">
                         <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-3 px-4 sm:px-6 backdrop-blur-md shadow-2xl overflow-x-auto custom-scrollbar flex-nowrap">
                             <div className="flex items-center gap-4 sm:gap-6">
                                 <button
