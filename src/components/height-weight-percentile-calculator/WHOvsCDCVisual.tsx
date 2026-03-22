@@ -85,6 +85,10 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
         ? [0, 0.5, 1, 1.5, 2]
         : [2, 5, 8, 11, 14, 17, 20];
 
+    // UPDATED: High contrast text colors for axes
+    const axisTextColor = isDark ? "#cbd5e1" : "#475569";
+    const gridLineColor = isDark ? "#475569" : "#cbd5e1";
+
     return (
         <div style={{ fontFamily: "Georgia, serif" }}>
             {/* Card header */}
@@ -94,7 +98,7 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
             }}>
                 <div style={{
                     width: 28, height: 28, borderRadius: 6,
-                    background: "rgba(255,255,255,0.2)",
+                    background: "rgba(255,255,255,0.25)", // UPDATED: slightly brighter background
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: 14
                 }}>
@@ -102,76 +106,79 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
                 </div>
                 <div>
                     <p style={{ margin: 0, fontSize: 13, fontWeight: 800, color: "white" }}>{title}</p>
-                    <p style={{ margin: 0, fontSize: 10, color: "rgba(255,255,255,0.75)" }}>{subtitle}</p>
+                    <p style={{ margin: 0, fontSize: 10, color: "rgba(255,255,255,0.85)" }}>{subtitle}</p>
                 </div>
             </div>
 
             {/* Chart */}
-            <div style={{ background: isDark ? "#101011" : "#f8fafc", border: `1px solid ${color}30`, borderTop: "none", borderRadius: "0 0 12px 12px", padding: "10px 6px 6px" }}>
+            <div style={{ background: isDark ? "#101011" : "#f8fafc", border: `1px solid ${color}40`, borderTop: "none", borderRadius: "0 0 12px 12px", padding: "10px 6px 6px" }}>
                 <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", display: "block" }}>
-                    {/* Grid */}
+                    {/* Grid - UPDATED contrast */}
                     {hTicks.map(h => (
                         <line key={h} x1={pL} y1={toY(h)} x2={pL + plotW} y2={toY(h)}
-                            stroke={isDark ? "#334155" : "#e2e8f0"} strokeWidth="0.8" />
+                            stroke={gridLineColor} strokeWidth="1" />
                     ))}
                     {ageTicks.map(a => (
                         <line key={a} x1={toX(a)} y1={pT} x2={toX(a)} y2={pT + plotH}
-                            stroke={isDark ? "#334155" : "#e2e8f0"} strokeWidth="0.8" />
+                            stroke={gridLineColor} strokeWidth="1" />
                     ))}
 
-                    {/* P25–P75 shaded band */}
-                    <path d={bandPath} fill={bandColor} opacity={isDark ? "0.15" : "0.5"} />
+                    {/* P25–P75 shaded band - UPDATED opacities for better visibility */}
+                    <path d={bandPath} fill={bandColor} opacity={isDark ? "0.25" : "0.65"} />
 
-                    {/* Curves */}
+                    {/* Curves - UPDATED stroke widths and opacities */}
                     {["p95", "p75", "p50", "p25", "p5"].map((k, i) => (
                         <path key={k} d={path(k)} fill="none"
                             stroke={color}
-                            strokeWidth={k === "p50" ? 2 : 1}
+                            strokeWidth={k === "p50" ? 2.5 : 1.5}
                             strokeDasharray={k === "p50" ? "none" : k === "p95" || k === "p5" ? "3,2" : "none"}
-                            opacity={k === "p50" ? 1 : k === "p95" || k === "p5" ? 0.4 : 0.65}
+                            opacity={k === "p50" ? 1 : k === "p95" || k === "p5" ? 0.6 : 0.85}
                         />
                     ))}
 
                     {/* Axes */}
-                    <line x1={pL} y1={pT} x2={pL} y2={pT + plotH} stroke={isDark ? "#475569" : "#cbd5e1"} strokeWidth="1.2" />
-                    <line x1={pL} y1={pT + plotH} x2={pL + plotW} y2={pT + plotH} stroke={isDark ? "#475569" : "#cbd5e1"} strokeWidth="1.2" />
+                    <line x1={pL} y1={pT} x2={pL} y2={pT + plotH} stroke={gridLineColor} strokeWidth="1.5" />
+                    <line x1={pL} y1={pT + plotH} x2={pL + plotW} y2={pT + plotH} stroke={gridLineColor} strokeWidth="1.5" />
 
                     {/* Y labels */}
                     {hTicks.map(h => (
                         <text key={h} x={pL - 4} y={toY(h) + 3.5}
-                            textAnchor="end" fontSize="8" fill={isDark ? "#64748b" : "#94a3b8"} fontFamily="Georgia, serif">{h}</text>
+                            textAnchor="end" fontSize="8" fill={axisTextColor} fontFamily="Georgia, serif">{h}</text>
                     ))}
                     {/* X labels */}
                     {ageTicks.map(a => (
                         <text key={a} x={toX(a)} y={pT + plotH + 14}
-                            textAnchor="middle" fontSize="8" fill={isDark ? "#64748b" : "#94a3b8"} fontFamily="Georgia, serif">
+                            textAnchor="middle" fontSize="8" fill={axisTextColor} fontFamily="Georgia, serif">
                             {maxH <= 95 ? (a === 0 ? "Birth" : `${a}y`) : `${a}`}
                         </text>
                     ))}
 
                     {/* Axis titles */}
-                    <text x={10} y={pT + plotH / 2} textAnchor="middle" fontSize="7.5" fill={isDark ? "#64748b" : "#94a3b8"}
+                    <text x={10} y={pT + plotH / 2} textAnchor="middle" fontSize="7.5" fill={axisTextColor}
                         fontFamily="Georgia, serif" transform={`rotate(-90,10,${pT + plotH / 2})`}>
                         {maxH <= 95 ? "Length (cm)" : "Height (cm)"}
                     </text>
-                    <text x={pL + plotW / 2} y={H - 2} textAnchor="middle" fontSize="7.5" fill={isDark ? "#64748b" : "#94a3b8"}
+                    <text x={pL + plotW / 2} y={H - 2} textAnchor="middle" fontSize="7.5" fill={axisTextColor}
                         fontFamily="Georgia, serif">Age (years)</text>
 
-                    {/* P labels on right */}
+                    {/* P labels on right - UPDATED for Dark Mode Legibility */}
                     {["p95", "p75", "p50", "p25", "p5"].map(k => {
                         const last = data[data.length - 1];
                         return (
                             <text key={k} x={toX(last.age) + 2} y={toY(last[k]) + 3}
-                                fontSize="7" fill={color} fontFamily="Georgia, serif"
-                                opacity={k === "p50" ? 1 : 0.7} fontWeight={k === "p50" ? 700 : 400}>
+                                fontSize="7"
+                                fill={isDark ? "#e2e8f0" : color} // Forces white/light-gray in dark mode
+                                fontFamily="Georgia, serif"
+                                opacity={k === "p50" ? 1 : 0.85}
+                                fontWeight={k === "p50" ? 700 : 500}>
                                 {k.replace("p", "")}
                             </text>
                         );
                     })}
                 </svg>
 
-                {/* Mini legend */}
-                <div style={{ display: "flex", gap: 10, paddingLeft: 8, paddingBottom: 4, flexWrap: "wrap" }}>
+                {/* Mini legend - UPDATED stroke widths and contrast */}
+                <div style={{ display: "flex", justifyContent: "center", gap: 10, paddingLeft: 8, paddingBottom: 4, paddingTop: 8, flexWrap: "wrap" }}>
                     {[
                         { style: "solid", label: "50th (median)" },
                         { style: "dashed", label: "25th / 75th" },
@@ -180,12 +187,12 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
                         <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 4 }}>
                             <svg width="18" height="8">
                                 <line x1="0" y1="4" x2="18" y2="4"
-                                    stroke={color} strokeWidth={l.style === "solid" ? 2 : 1.2}
+                                    stroke={color} strokeWidth={l.style === "solid" ? 2.5 : 1.5}
                                     strokeDasharray={l.style === "dashed" ? "3,2" : l.style === "dotted" ? "2,2" : "none"}
-                                    opacity={l.style === "solid" ? 1 : 0.6}
+                                    opacity={l.style === "solid" ? 1 : 0.8}
                                 />
                             </svg>
-                            <span style={{ fontSize: 8.5, color: isDark ? "#94a3b8" : "#64748b", fontFamily: "Georgia, serif" }}>{l.label}</span>
+                            <span style={{ fontSize: 8.5, color: isDark ? "#cbd5e1" : "#475569", fontFamily: "Georgia, serif" }}>{l.label}</span>
                         </div>
                     ))}
                 </div>
@@ -203,11 +210,15 @@ export default function WHOvsCDCVisual() {
         { lo: 2, hi: 20, source: "CDC", color: CDC_COLOR, bg: "#eff6ff", darkBg: "#172554", label: "CDC Growth Charts", note: "Ages 2–20 · Standing height · US population data" },
     ];
 
+    // UPDATED text colors for better contrast
+    const mutedText = isDark ? "#cbd5e1" : "#64748b";
+    const darkMutedText = isDark ? "#94a3b8" : "#475569";
+
     return (
         <div className={`w-full max-w-[720px] mx-auto rounded-2xl overflow-hidden shadow-2xl transition-colors duration-500 ${isDark ? 'bg-surface border border-border' : 'bg-white border border-[#e2e8f0]'}`} style={{ fontFamily: "Georgia, serif" }}>
             {/* Header */}
             <div style={{ background: isDark ? "#101011" : "#0f172a", padding: "16px 24px", borderBottom: isDark ? '1px solid var(--border)' : 'none' }}>
-                <p style={{ margin: 0, fontSize: 11, color: isDark ? "#64748b" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#cbd5e1", textTransform: "uppercase", letterSpacing: "0.1em" }}>
                     Reference Data Guide
                 </p>
                 <h3 style={{ margin: "3px 0 0", fontSize: 17, fontWeight: 800, color: "white" }}>
@@ -217,17 +228,17 @@ export default function WHOvsCDCVisual() {
 
             {/* Age timeline switcher */}
             <div style={{ padding: "20px 24px 0" }}>
-                <p style={{ margin: "0 0 10px", fontSize: 11, color: isDark ? "#94a3b8" : "#64748b", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                <p style={{ margin: "0 0 10px", fontSize: 11, color: mutedText, textTransform: "uppercase", letterSpacing: "0.1em" }}>
                     Age range → data source
                 </p>
 
                 {/* Visual timeline */}
                 <div style={{ position: "relative", marginBottom: 24 }}>
-                    {/* Track */}
+                    {/* Track - UPDATED Dark mode gradient to be brighter */}
                     <div style={{
                         height: 10, borderRadius: 99,
-                        background: isDark ? "linear-gradient(to right, #164e63 0%, #164e63 9.1%, #1e3a8a 9.1%, #1e3a8a 100%)" : "linear-gradient(to right, #cffafe 0%, #cffafe 9.1%, #dbeafe 9.1%, #dbeafe 100%)",
-                        border: isDark ? "1px solid var(--border)" : "1px solid #e2e8f0"
+                        background: isDark ? "linear-gradient(to right, #0e7490 0%, #0e7490 9.1%, #1d4ed8 9.1%, #1d4ed8 100%)" : "linear-gradient(to right, #cffafe 0%, #cffafe 9.1%, #dbeafe 9.1%, #dbeafe 100%)",
+                        border: isDark ? "1px solid #334155" : "1px solid #cbd5e1"
                     }} />
 
                     {/* Transition marker at age 2 */}
@@ -237,13 +248,13 @@ export default function WHOvsCDCVisual() {
                     }}>
                         <div style={{
                             width: 18, height: 18, borderRadius: "50%",
-                            background: isDark ? "#1e293b" : "white", border: `3px solid ${isDark ? '#cbd5e1' : '#64748b'}`,
+                            background: isDark ? "#1e293b" : "white", border: `3px solid ${isDark ? '#e2e8f0' : '#475569'}`,
                             boxShadow: "0 1px 6px rgba(0,0,0,0.15)"
                         }} />
                         <div style={{
-                            position: "absolute", top: 22, left: "50%",
+                            position: "absolute", top: 36, left: "50%",
                             transform: "translateX(-50%)",
-                            background: isDark ? "white" : "#0f172a", color: isDark ? "black" : "white",
+                            background: isDark ? "#e2e8f0" : "#0f172a", color: isDark ? "#0f172a" : "white",
                             padding: "2px 7px", borderRadius: 4,
                             fontSize: 9, fontWeight: 700, whiteSpace: "nowrap"
                         }}>
@@ -251,22 +262,22 @@ export default function WHOvsCDCVisual() {
                         </div>
                     </div>
 
-                    {/* WHO label */}
-                    <div style={{ position: "absolute", top: 16, left: "3%", fontSize: 10, fontWeight: 700, color: WHO_COLOR }}>
+                    {/* WHO label - Brightened in dark mode */}
+                    <div style={{ position: "absolute", top: 16, left: "3%", fontSize: 10, fontWeight: 800, color: isDark ? "#67e8f9" : WHO_COLOR }}>
                         WHO
                     </div>
-                    {/* CDC label */}
-                    <div style={{ position: "absolute", top: 16, left: "52%", fontSize: 10, fontWeight: 700, color: CDC_COLOR }}>
+                    {/* CDC label - Brightened in dark mode */}
+                    <div style={{ position: "absolute", top: 16, left: "52%", fontSize: 10, fontWeight: 800, color: isDark ? "#93c5fd" : CDC_COLOR }}>
                         CDC
                     </div>
 
-                    {/* Age end labels */}
-                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: 14, paddingTop: 20 }}>
-                        <span style={{ fontSize: 9.5, color: isDark ? "#64748b" : "#94a3b8" }}>Birth</span>
-                        <span style={{ fontSize: 9.5, color: isDark ? "#64748b" : "#94a3b8" }}>5 yrs</span>
-                        <span style={{ fontSize: 9.5, color: "#94a3b8" }}>10 yrs</span>
-                        <span style={{ fontSize: 9.5, color: isDark ? "#64748b" : "#94a3b8" }}>15 yrs</span>
-                        <span style={{ fontSize: 9.5, color: isDark ? "#64748b" : "#94a3b8" }}>20 yrs</span>
+                    {/* Age end labels - UPDATED Contrast */}
+                    <div style={{ display: "flex", justifyContent: "space-between", marginTop: 24, paddingTop: 20 }}>
+                        <span style={{ fontSize: 9.5, color: mutedText }}>Birth</span>
+                        <span style={{ fontSize: 9.5, color: mutedText }}>5 yrs</span>
+                        <span style={{ fontSize: 9.5, color: darkMutedText }}>10 yrs</span>
+                        <span style={{ fontSize: 9.5, color: mutedText }}>15 yrs</span>
+                        <span style={{ fontSize: 9.5, color: mutedText }}>20 yrs</span>
                     </div>
                 </div>
 
@@ -274,7 +285,7 @@ export default function WHOvsCDCVisual() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-5">
                     {TIMELINE.map(t => (
                         <div key={t.source} style={{
-                            border: `2px solid ${t.color}40`,
+                            border: `2px solid ${t.color}50`,
                             background: isDark ? t.darkBg : t.bg,
                             borderRadius: 12, padding: "14px 16px"
                         }}>
@@ -293,7 +304,7 @@ export default function WHOvsCDCVisual() {
                             <p style={{ margin: "0 0 4px", fontSize: 12, fontWeight: 700, color: isDark ? "white" : t.color }}>
                                 {t.label}
                             </p>
-                            <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#64748b", lineHeight: 1.5 }}>
+                            <p style={{ margin: 0, fontSize: 11, color: mutedText, lineHeight: 1.5 }}>
                                 {t.note}
                             </p>
                         </div>
@@ -303,11 +314,11 @@ export default function WHOvsCDCVisual() {
 
             {/* Divider */}
             <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "0 24px 16px" }}>
-                <div style={{ flex: 1, height: 1, background: isDark ? "var(--border)" : "#e2e8f0" }} />
-                <span style={{ fontSize: 11, color: isDark ? "#64748b" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+                <div style={{ flex: 1, height: 1, background: isDark ? "#334155" : "#cbd5e1" }} />
+                <span style={{ fontSize: 11, color: mutedText, textTransform: "uppercase", letterSpacing: "0.1em" }}>
                     Growth curves side by side
                 </span>
-                <div style={{ flex: 1, height: 1, background: isDark ? "var(--border)" : "#e2e8f0" }} />
+                <div style={{ flex: 1, height: 1, background: isDark ? "#334155" : "#cbd5e1" }} />
             </div>
 
             {/* Side-by-side charts (Responsive Grid) */}
@@ -336,12 +347,12 @@ export default function WHOvsCDCVisual() {
 
             {/* Bottom note */}
             <div style={{
-                borderTop: `1px solid ${isDark ? 'var(--border)' : '#f1f5f9'}`,
+                borderTop: `1px solid ${isDark ? '#334155' : '#e2e8f0'}`,
                 padding: "12px 24px 16px",
                 background: isDark ? "#101011" : "#f8fafc"
             }}>
-                <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#94a3b8", lineHeight: 1.7 }}>
-                    <strong style={{ color: isDark ? "white" : "#475569" }}>Why two sources?</strong> WHO standards were built from children raised in optimal conditions across six countries, making them an international reference for early growth. CDC charts are based on US population data and are standard in American clinical practice for children aged 2 and above. This calculator switches automatically between them based on the age entered.
+                <p style={{ margin: 0, fontSize: 11, color: mutedText, lineHeight: 1.7 }}>
+                    <strong style={{ color: isDark ? "white" : "#334155" }}>Why two sources?</strong> WHO standards were built from children raised in optimal conditions across six countries, making them an international reference for early growth. CDC charts are based on US population data and are standard in American clinical practice for children aged 2 and above. This calculator switches automatically between them based on the age entered.
                 </p>
             </div>
         </div>

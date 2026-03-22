@@ -5,7 +5,7 @@ export const metadata: Metadata = {
     description: " Predict your child’s future height with our Height Predictor Calculator. This Projected height calculator uses proven methods to predict adult height.",
 };
 
-export default function HeightCalculatorLayout({
+export default function ChildHeightCalculatorLayout({
     children,
 }: {
     children: React.ReactNode;

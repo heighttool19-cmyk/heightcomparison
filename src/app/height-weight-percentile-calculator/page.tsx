@@ -181,33 +181,32 @@ export default function PercentileCalculatorClient() {
             <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-4 md:p-8 relative">
 
                 {/* --- LEFT SIDEBAR: Table of Contents --- */}
-                <aside className="w-full md:w-72 shrink-0 order-2 md:order-1">
-                    <div className="md:sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl">
-                        <h3 className="text-sm font-black uppercase tracking-[0.2em] mb-4">Table of Contents</h3>
-                        <ul className="text-sm font-medium">
+                <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
+                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl">
+                        <h3 className="text-sm font-black uppercase tracking-[0.2em]">Table of Contents</h3>
+                        <ul className="text-sm font-medium mt-4">
                             {tocItems.map(item => (
                                 <TOCLink key={item.id} item={item} />
                             ))}
                         </ul>
                     </div>
                 </aside>
-
                 {/* --- RIGHT CONTENT AREA --- */}
                 <div className="flex-1 min-w-0 order-1 md:order-2">
                     <div className="flex flex-col gap-12 w-full min-w-0 max-w-4xl mx-auto">
 
                         {/* Mobile TOC */}
-                        <div className="block md:hidden bg-surface border border-border p-6 rounded-3xl shadow-sm text-left">
+                        {/* <div className="block md:hidden bg-surface border border-border p-6 rounded-3xl shadow-sm text-left">
                             <h3 className="font-black text-foreground mb-4 uppercase tracking-widest text-sm border-b border-border pb-4">Table of Contents</h3>
                             <ul className="text-sm font-medium">
                                 {tocItems.map(item => (
                                     <TOCLink key={item.id} item={item} />
                                 ))}
                             </ul>
-                        </div>
+                        </div> */}
 
                         {/* Title Section */}
-                        <div className="space-y-6 text-center sm:text-left">
+                        <div className="space-y-6 text-center sm:text-left mt-4">
                             <h1 id="height-and-weight-percentile-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
                                 Height and Weight Percentile Calculator
                             </h1>
@@ -505,27 +504,54 @@ export default function PercentileCalculatorClient() {
                                 <li>Whether a child recovers well after illness or low birth weight</li>
                             </ul>
                             <p className="text-muted leading-relaxed mt-4">
-                                The pediatric height weight percentile calculator is a starting point for these conversations, not a replacement for them. Clinicians plot results on a CDC growth chart across multiple visits and look for consistent tracking along the same percentile band rather than focusing on any single number.
+                                The pediatric height weight percentile calculator is a starting point for these conversations, not a replacement for them. Clinicians plot results on a <a
+                                    href='https://www.cdc.gov/growthcharts/cdc-growth-charts.htm'
+                                    target='_blank'
+                                    className='text-accent'
+                                >
+                                    CDC growth chart
+                                </a> across multiple visits and look for consistent tracking along the same percentile band rather than focusing on any single number.
                             </p>
                         </section>
 
                         <section id="try-the-height-and-weight-percentile-calculator" className="bg-surface border border-border rounded-3xl p-8 md:p-12 text-center scroll-mt-24 shadow-xl">
-                            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground mb-4">Try the Height and Weight Percentile Calculator</h2>
-                            <p className="text-muted leading-relaxed mb-8 max-w-2xl mx-auto">
+                            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground mb-4">
+                                Try the Height and Weight Percentile Calculator
+                            </h2>
+                            <p className="text-muted leading-relaxed mb-10 max-w-2xl mx-auto">
                                 Enter your age, height, and weight above to get your result from the height and weight percentile calculator instantly.
                             </p>
 
-                            <div className="grid sm:grid-cols-2 gap-4 text-left max-w-2xl mx-auto mb-8">
-                                <div className="flex items-center gap-2 text-sm font-medium text-foreground"><CheckCircle2 className="text-accent w-4 h-4 shrink-0" /> Works for babies, toddlers, children, and adults</div>
-                                <div className="flex items-center gap-2 text-sm font-medium text-foreground"><CheckCircle2 className="text-accent w-4 h-4 shrink-0" /> Separate results for height and weight percentile</div>
-                                <div className="flex items-center gap-2 text-sm font-medium text-foreground"><CheckCircle2 className="text-accent w-4 h-4 shrink-0" /> Plain-language interpretation included</div>
-                                <div className="flex items-center gap-2 text-sm font-medium text-foreground"><CheckCircle2 className="text-accent w-4 h-4 shrink-0" /> Based on WHO and CDC reference data</div>
-                                <div className="flex items-center gap-2 text-sm font-medium text-foreground"><CheckCircle2 className="text-accent w-4 h-4 shrink-0" /> Free, no account, any device</div>
+                            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-6 text-left max-w-2xl mx-auto mb-10">
+                                <div className="flex items-start gap-3 text-base font-medium text-foreground">
+                                    <CheckCircle2 className="text-accent w-5 h-5 shrink-0 mt-[2px]" />
+                                    <span>Works for babies, toddlers, children, and adults</span>
+                                </div>
+
+                                <div className="flex items-start gap-3 text-base font-medium text-foreground">
+                                    <CheckCircle2 className="text-accent w-5 h-5 shrink-0 mt-[2px]" />
+                                    <span>Separate results for height and weight percentile</span>
+                                </div>
+
+                                <div className="flex items-start gap-3 text-base font-medium text-foreground">
+                                    <CheckCircle2 className="text-accent w-5 h-5 shrink-0 mt-[2px]" />
+                                    <span>Plain-language interpretation included</span>
+                                </div>
+
+                                <div className="flex items-start gap-3 text-base font-medium text-foreground">
+                                    <CheckCircle2 className="text-accent w-5 h-5 shrink-0 mt-[2px]" />
+                                    <span>Based on WHO and CDC reference data</span>
+                                </div>
+
+                                <div className="flex items-start gap-3 text-base font-medium text-foreground">
+                                    <CheckCircle2 className="text-accent w-5 h-5 shrink-0 mt-[2px]" />
+                                    <span>Free, no account, any device</span>
+                                </div>
                             </div>
 
                             <button
                                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-block"
+                                className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-block"
                             >
                                 Scroll to top and calculate now ↑
                             </button>

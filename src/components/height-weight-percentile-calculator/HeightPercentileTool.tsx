@@ -338,7 +338,7 @@ export default function HeightPercentileTool() {
     return (
         <div style={{ fontFamily: "Georgia, serif", padding: "0 0 60px" }} className="w-full">
             {/* Header */}
-            <div style={{
+            {/* <div style={{
                 background: isDark ? "var(--surface)" : "white", borderBottom: `1px solid ${isDark ? 'var(--border)' : '#e2e8f0'}`,
                 padding: "20px 24px", textAlign: "center", borderRadius: "1.5rem 1.5rem 0 0",
                 boxShadow: isDark ? "none" : "0 1px 12px rgba(0,0,0,0.05)"
@@ -352,7 +352,7 @@ export default function HeightPercentileTool() {
                 <p style={{ margin: "4px 0 0", fontSize: 12, color: isDark ? "#64748b" : "#94a3b8" }}>
                     WHO &amp; CDC reference data · Instant results
                 </p>
-            </div>
+            </div> */}
 
             <div style={{ maxWidth: 520, margin: "0 auto", padding: "0 16px" }}>
 

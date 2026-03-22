@@ -392,10 +392,10 @@ export default function HeightCalculatorPage() {
 
             {/* --- Main Content with Sidebar Grid --- */}
             <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 relative">
-                <aside className="w-full md:w-72 shrink-0 order-2 md:order-1">
-                    <div className="md:sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl">
+                <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
+                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl">
                         <h3 className="text-sm font-black uppercase tracking-[0.2em]">Table of Contents</h3>
-                        <ul className="text-sm font-medium">
+                        <ul className="text-sm font-medium mt-4">
                             {tocItems.map(item => (
                                 <TOCLink key={item.id} item={item} />
                             ))}
@@ -407,17 +407,17 @@ export default function HeightCalculatorPage() {
                     <div className="flex flex-col gap-12 w-full min-w-0 max-w-4xl mx-auto">
 
                         {/* Mobile TOC (Shows only on small screens before content) */}
-                        <div className="block lg:hidden bg-surface border border-border p-6 rounded-3xl shadow-sm text-left">
+                        {/* <div className="block lg:hidden bg-surface border border-border p-6 rounded-3xl shadow-sm text-left">
                             <h3 className="font-black text-foreground mb-4 uppercase tracking-widest text-sm border-b border-border pb-4">Table of Contents</h3>
                             <ul className="text-sm font-medium">
                                 {tocItems.map(item => (
                                     <TOCLink key={item.id} item={item} />
                                 ))}
                             </ul>
-                        </div>
+                        </div> */}
 
                         {/* INTRO CONTENT */}
-                        <div className="space-y-6 text-center sm:text-left">
+                        <div className="space-y-6 text-center sm:text-left mt-4">
                             <h1 id="child-height-predictor-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
                                 Child Height Predictor Calculator
                             </h1>
