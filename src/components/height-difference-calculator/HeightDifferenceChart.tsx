@@ -36,7 +36,7 @@ export default function HeightDifferenceChart() {
                             <td className="p-3 font-bold text-[#0694A2]">{r.b}</td>
                             <td className="p-3 font-black text-[#f7a24f]">{r.diff}</td>
                             <td className="p-3">
-                                <span className={`rounded-md px-2.5 py-1 text-xs font-bold ${isDark ? 'bg-blue-900/30 text-[#7ef7b4]' : 'bg-[#1a56db12] bg-opacity-10 text-[#1A56DB]'}`}>
+                                <span className={`rounded-md px-2.5 py-1 text-xs font-bold ${isDark ? 'bg-blue-900/30 text-[#7ef7b4]' : 'bg-[#1a56db12] bg-opacity-10 text-[#d2691e]'}`}>
                                     {r.pct}
                                 </span>
                             </td>
