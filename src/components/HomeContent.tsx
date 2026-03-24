@@ -459,7 +459,7 @@ export default function HomeContent() {
                                 <div className="bg-surface rounded-2xl p-6 border border-border shadow-sm flex flex-col">
                                     <div className="text-[15px] font-bold mb-3 flex items-center gap-2.5 text-foreground">
                                         <svg width="16" height="16" viewBox="0 0 14 14" fill="none" className="shrink-0"><path d="M7 1v8M4 6l3 3 3-3M2 11v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="#22c55e" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                        Download PNG — free, no watermark
+                                        Download PNG : free, no watermark
                                     </div>
                                     <div className="text-[14px] text-muted leading-[1.6] mb-4 flex-1">Hit Download PNG and your chart saves as a clean labeled image, No watermark, unlimited downloads, no account. Clean enough for social media, Discord, or any message thread.</div>
                                     <div className="text-[12px] font-medium text-muted/70 pt-3 border-t border-border leading-[1.5]">No watermark · Unlimited · No account · Any time</div>
