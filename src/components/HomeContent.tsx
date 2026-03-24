@@ -7,10 +7,10 @@ import Link from 'next/link';
 import { PanelType } from '../types';
 
 const QA = [
-    {
-        q: "What is a height comparison tool?",
-        a: "A height comparison tool converts two or more height measurements into proportional bars on a side-by-side visual chart  showing the exact size relationship between people, characters, or objects at true scale. This tool supports people, celebrities, fictional characters, real-world objects, and uploaded photos, all on one proportional chart that updates in real time."
-    },
+    // {
+    //     q: "What is a height comparison tool?",
+    //     a: "A height comparison tool converts two or more height measurements into proportional bars on a side-by-side visual chart  showing the exact size relationship between people, characters, or objects at true scale. This tool supports people, celebrities, fictional characters, real-world objects, and uploaded photos, all on one proportional chart that updates in real time."
+    // },
     {
         q: "How do I compare two people's heights side by side?",
         a: "Click Add Person in the left sidebar, enter the first height, pick a color, and hit Add Person. Repeat for the second. Your side-by-side chart renders instantly and updates every time you change a value. Use the cm → ft/in toggle to switch units without re-entering anything."
@@ -19,14 +19,14 @@ const QA = [
         q: "How does the chart calculate proportions?",
         a: "Each bar scales to the exact mathematical ratio between heights. If Person A is 170 cm and Person B is 185 cm, the second bar renders at exactly 1.09× the first (185 ÷ 170 = 1.088...). The ratio is calculated from your entered values with no rounding. What you see on screen is mathematically accurate."
     },
-    {
-        q: "Can I compare my height with celebrities?",
-        a: "Yes. Add yourself with Add Person, then click Celebrities and search any name. Categories include Athletes, Bollywood, British, and Asian Celebs. Hit + and the celebrity drops onto your chart alongside you at accurate proportional scale."
-    },
-    {
-        q: "Can I compare anime character heights?",
-        a: "Yes. Click the Fictional icon in the left sidebar and search by character name or series. The database covers Attack on Titan, Dragon Ball, One Piece, Demon Slayer, and thousands more. All heights come from official source material."
-    },
+    // {
+    //     q: "Can I compare my height with celebrities?",
+    //     a: "Yes. Add yourself with Add Person, then click Celebrities and search any name. Categories include Athletes, Bollywood, British, and Asian Celebs. Hit + and the celebrity drops onto your chart alongside you at accurate proportional scale."
+    // },
+    // {
+    //     q: "Can I compare anime character heights?",
+    //     a: "Yes. Click the Fictional icon in the left sidebar and search by character name or series. The database covers Attack on Titan, Dragon Ball, One Piece, Demon Slayer, and thousands more. All heights come from official source material."
+    // },
     {
         q: "How many people can I add to one comparison?",
         a: "There is no limit. Add as many people, celebrities, characters, or objects as you want. Each entry gets its own color so the chart stays readable regardless of how many subjects are present. The bars rescale automatically every time you add someone new."
