@@ -9,7 +9,7 @@ import { PanelType } from '../types';
 const QA = [
     {
         q: "What is a height comparison tool?",
-        a: "A height comparison tool converts two or more height measurements into proportional bars on a side-by-side visual chart — showing the exact size relationship between people, characters, or objects at true scale. This tool supports people, celebrities, fictional characters, real-world objects, and uploaded photos, all on one proportional chart that updates in real time."
+        a: "A height comparison tool converts two or more height measurements into proportional bars on a side-by-side visual chart  showing the exact size relationship between people, characters, or objects at true scale. This tool supports people, celebrities, fictional characters, real-world objects, and uploaded photos, all on one proportional chart that updates in real time."
     },
     {
         q: "How do I compare two people's heights side by side?",
@@ -90,7 +90,7 @@ export default function HomeContent() {
                             </h1>
 
                             <p className="text-muted leading-relaxed text-lg max-w-3xl mx-auto sm:mx-0">
-                                Use this free tool to compare heights online instantly,senter any heights and get a proportional side-by-side visual that updates in real time. No account, no setup, just jump straight in.
+                                Use this free tool to compare heights online instantly , senter any heights and get a proportional side-by-side visual that updates in real time. No account, no setup, just jump straight in.
                             </p>
 
                             <div className="flex items-start gap-2 p-3 bg-[#EAF3DE] dark:bg-[#27500A]/20 border border-[#C0DD97] dark:border-[#27500A]/40 rounded-lg mb-4 text-[13px] text-[#27500A] dark:text-[#EAF3DE] leading-[1.6]">
@@ -102,7 +102,7 @@ export default function HomeContent() {
                                 <p className="mb-3 text-[14px] text-muted leading-[1.7]">
                                     A height comparison tool converts any two or more heights into a visual chart, each bar scaled to the exact mathematical ratio between the entered measurements                                </p>
                                 <p className="m-0 text-[14px] text-muted leading-[1.7]">
-                                    The same proportional scale applies whether you are comparing two people, a person against a celebrity, fictional characters from the same series, or a human height against a real-world object like Mt Everest at 8,848 m. Every subject type,people, celebrities, fictional characters, entities, and uploaded photos shares one accurate visual scale. Results update in real time with no account or setup required.
+                                    The same proportional scale applies whether you are comparing two people, a person against a celebrity, fictional characters from the same series, or a human height against a real-world object like Mt Everest at 8,848 m. Every subject type, people, celebrities, fictional characters, entities, and uploaded photos shares one accurate visual scale. Results update in real time with no account or setup required.
                                 </p>
                             </div>
 
@@ -216,7 +216,7 @@ export default function HomeContent() {
                                     <div className="flex-1 p-5 md:p-8">
                                         <h3 className="hidden sm:block text-[18px] font-bold text-foreground mb-3">Step 1: Get Your Numbers Together</h3>
                                         <p className="text-[14px] text-muted leading-[1.7] mb-4">
-                                            Decide what you want to compare. Two friends, a celebrity and yourself, a group of anime characters, a person standing next to the CN Tower  whatever you are curious about. Heights work in centimeters or feet and inches. Switch between them at any time using the toggle at the top of the chart.
+                                            Decide what you want to compare. Two friends, a celebrity and yourself, a group of anime characters, a person standing next to the CN Tower ,  whatever you are curious about. Heights work in centimeters or feet and inches. Switch between them at any time using the toggle at the top of the chart.
                                         </p>
                                         <div className="bg-bg border border-border rounded-xl p-4 mt-2 flex gap-3 items-start text-[13px] text-muted">
                                             <span className="text-[10px] font-black text-[#22c55e] uppercase tracking-[0.1em] shrink-0 mt-[3px]">Tip</span>
@@ -240,7 +240,7 @@ export default function HomeContent() {
                                     </div>
                                     <div className="flex-1 p-5 md:p-8">
                                         <h3 className="hidden sm:block text-[18px] font-bold text-foreground mb-3">Step 2: Build Your Chart</h3>
-                                        <p className="text-[14px] text-muted leading-[1.7] mb-3">The left sidebar has five icons. Each one opens a different input panel. Mix and match as many types as you want : they all appear on the same proportional chart together.</p>
+                                        <p className="text-[14px] text-muted leading-[1.7] mb-3">The left sidebar has five icons. Each one opens a different input panel. Mix and match as many types as you want , they all appear on the same proportional chart together.</p>
                                         <div className="space-y-3 mb-5">
                                             <p className="text-[14px] text-muted leading-[1.7]"><button onClick={() => openDashboardPanel('ADD_PERSON')} className="text-foreground font-bold hover:text-[#22c55e] transition-colors bg-transparent border-none p-0 cursor-pointer">Add Person</button> : Enter a name (optional), select Male or Female, type a height in cm or ft/in, and pick a color. Hit Add Person and your bar appears instantly.</p>
                                             <p className="text-[14px] text-muted leading-[1.7]"><button onClick={() => openDashboardPanel('CELEBRITIES')} className="text-foreground font-bold hover:text-[#EF9F27] transition-colors bg-transparent border-none p-0 cursor-pointer">Celebrities</button> : Search any name across Athletes, Bollywood, British, Asian Celebs, and more. Every result shows height in both cm and ft/in. Hit + and they are on your chart.</p>
@@ -275,16 +275,16 @@ export default function HomeContent() {
                                 <div className="flex flex-col sm:flex-row">
                                     <div className="sm:w-[70px] flex sm:flex-col items-center sm:pt-6 p-4 sm:p-0 bg-bg border-b sm:border-b-0 sm:border-r border-border gap-3 sm:gap-0">
                                         <div className="w-[36px] h-[36px] rounded-full bg-[#22c55e] text-white text-[15px] font-black flex items-center justify-center shadow-md">3</div>
-                                        <h3 className="text-[16px] font-bold text-foreground sm:hidden">Step 3: See the Difference  Then Share It</h3>
+                                        <h3 className="text-[16px] font-bold text-foreground sm:hidden">Step 3: See the Difference , Then Share It</h3>
                                     </div>
                                     <div className="flex-1 p-5 md:p-8">
                                         <h3 className="hidden sm:block text-[18px] font-bold text-foreground mb-3">Step 3: See the Difference  Then Share It</h3>
-                                        <p className="text-[14px] text-muted leading-[1.7] mb-3">Every bar is labeled with name and height. The gap between any two subjects is visible straight away. Add more people, change a color, swap a height  the chart updates instantly every time.</p>
+                                        <p className="text-[14px] text-muted leading-[1.7] mb-3">Every bar is labeled with name and height. The gap between any two subjects is visible straight away. Add more people, change a color, swap a height , the chart updates instantly every time.</p>
                                         <p className="text-[14px] text-muted leading-[1.7] mb-5">Hit <strong className="text-foreground">Download PNG</strong> to save a clean chart image  no watermark, completely free. Or hit <strong className="text-foreground">Share</strong> to get a direct link. Drop it in a group chat, post it on social media, add it to a Discord server, or share it in a presentation.</p>
 
                                         <div className="bg-bg border border-border rounded-xl p-4 flex gap-3 items-start text-[13px] text-muted">
                                             <span className="text-[10px] font-black text-[#22c55e] uppercase tracking-[0.1em] shrink-0 mt-[2px]">Tip</span>
-                                            <span>Planning a wedding and want to coordinate bridesmaids with groomsmen by height? Add the whole party, assign each person a color, and see at a glance which pairings work best visually  no awkward surprises on the day.</span>
+                                            <span>Planning a wedding and want to coordinate bridesmaids with groomsmen by height? Add the whole party, assign each person a color, and see at a glance which pairings work best visually , no awkward surprises on the day.</span>
                                         </div>
                                     </div>
                                 </div>
@@ -318,7 +318,7 @@ export default function HomeContent() {
                                 </div>
                                 <div className="bg-surface rounded-2xl p-6 border border-border shadow-sm">
                                     <div className="text-[15px] font-bold text-foreground mb-2">Character height comparison for creative work</div>
-                                    <div className="text-[14px] text-muted leading-[1.6]">Writers, artists, and fandom communities use this to visualize character height relationships for stories, artwork, and community discussions. Thousands of verified character heights ready to search.</div>
+                                    <div className="text-[14px] text-muted leading-[1.6]">Writers, artists, and fandom communities use this to visualize character height relationships for stories, artwork, and community discussions.</div>
                                 </div>
                                 <div className="bg-surface rounded-2xl p-6 border border-border shadow-sm">
                                     <div className="text-[15px] font-bold text-foreground mb-2">No unit conversions or manual calculations</div>
@@ -413,7 +413,7 @@ export default function HomeContent() {
                                         <svg width="16" height="16" viewBox="0 0 14 14" fill="none" className="shrink-0"><rect x="1" y="4" width="3" height="9" rx="1" fill="#22c55e" /><rect x="5.5" y="2" width="3" height="11" rx="1" fill="#378ADD" /><rect x="10" y="6" width="3" height="7" rx="1" fill="#9FE1CB" /></svg>
                                         Instant height generator
                                     </div>
-                                    <div className="text-[14px] text-muted leading-[1.6] mb-4 flex-1">Type any height and your visual chart appears straight away. The chart updates live as you type no submit button no reload. Switch between cm and ft/in any time with one tap.</div>
+                                    <div className="text-[14px] text-muted leading-[1.6] mb-4 flex-1">Type any height and your visual chart appears straight away. The chart updates live as you type , no submit button no reload. Switch between cm and ft/in any time with one tap.</div>
                                     <div className="text-[12px] font-medium text-muted/70 pt-3 border-t border-border leading-[1.5]">Live updates · cm ↔ ft/in · Unlimited comparisons · Scales to 10,000 m </div>
                                 </div>
                                 <div className="bg-surface rounded-2xl p-6 border border-border shadow-sm flex flex-col">
@@ -437,7 +437,7 @@ export default function HomeContent() {
                                         <svg width="16" height="16" viewBox="0 0 14 14" fill="none" className="shrink-0"><rect x="2" y="2" width="10" height="10" rx="2" stroke="#9F77DD" strokeWidth="1.3" /><path d="M5 7l2 2 4-4" stroke="#9F77DD" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
                                         Full character library, free
                                     </div>
-                                    <div className="text-[14px] text-muted leading-[1.6] mb-4 flex-1">Anime, Cartoons, DC Comics, and Fantasy — all with verified heights from official source material. Search by character name or browse by franchise. No subscription required.</div>
+                                    <div className="text-[14px] text-muted leading-[1.6] mb-4 flex-1">Anime, Cartoons, DC Comics, and Fantasy , all with verified heights from official source material. Search by character name or browse by franchise. No subscription required.</div>
                                     <div className="text-[12px] font-medium text-muted/70 pt-3 border-t border-border leading-[1.5]">Goku 175 cm · Piccolo 226 cm · Vegeta 164 cm · thousands more</div>
                                 </div>
                                 <div className="bg-surface rounded-2xl p-6 border border-border shadow-sm flex flex-col">
@@ -461,7 +461,7 @@ export default function HomeContent() {
                                         <svg width="16" height="16" viewBox="0 0 14 14" fill="none" className="shrink-0"><path d="M7 1v8M4 6l3 3 3-3M2 11v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="#22c55e" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
                                         Download PNG — free, no watermark
                                     </div>
-                                    <div className="text-[14px] text-muted leading-[1.6] mb-4 flex-1">Hit Download PNG and your chart saves as a clean labeled image. No watermark, unlimited downloads, no account. Clean enough for social media, Discord, or any message thread.</div>
+                                    <div className="text-[14px] text-muted leading-[1.6] mb-4 flex-1">Hit Download PNG and your chart saves as a clean labeled image, No watermark, unlimited downloads, no account. Clean enough for social media, Discord, or any message thread.</div>
                                     <div className="text-[12px] font-medium text-muted/70 pt-3 border-t border-border leading-[1.5]">No watermark · Unlimited · No account · Any time</div>
                                 </div>
                                 <div className="bg-surface rounded-2xl p-6 border border-border shadow-sm flex flex-col">
@@ -469,7 +469,7 @@ export default function HomeContent() {
                                         <svg width="16" height="16" viewBox="0 0 14 14" fill="none" className="shrink-0"><path d="M9 2l3 3-3 3M5 12l-3-3 3-3M12 5H7a4 4 0 00-4 4" stroke="#185FA5" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
                                         Shareable link
                                     </div>
-                                    <div className="text-[14px] text-muted leading-[1.6] mb-4 flex-1">Hit Share to get a direct URL to your exact chart. Send it to anyone — they open the same comparison you built in their browser. No account needed on their end either.</div>
+                                    <div className="text-[14px] text-muted leading-[1.6] mb-4 flex-1">Hit Share to get a direct URL to your exact chart. Send it to anyone , they open the same comparison you built in their browser. No account needed on their end either.</div>
                                     <div className="text-[12px] font-medium text-muted/70 pt-3 border-t border-border leading-[1.5]">Instant link · No account · Any browser · Any device</div>
                                 </div>
                             </div>
@@ -491,22 +491,19 @@ export default function HomeContent() {
                                 Here is exactly where the data comes from and how the proportions are calculated.
                             </p>
 
-                            <div className="grid sm:grid-cols-2 gap-4">
-                                <div className="bg-surface rounded-2xl p-5 border border-border shadow-sm">
-                                    <div className="text-[14px] font-bold text-foreground mb-2">Bar proportions</div>
-                                    <div className="text-[13px] text-muted leading-[1.6]">Each bar is the exact mathematical ratio of the heights entered. 185 cm ÷ 170 cm = 1.09. The chart renders the second bar at precisely 1.09 times the first. No rounding. No visual approximation.</div>
-                                </div>
+                            <div className="grid sm:grid-cols-3 gap-4">
                                 <div className="bg-surface rounded-2xl p-5 border border-border shadow-sm">
                                     <div className="text-[14px] font-bold text-foreground mb-2">Celebrity heights</div>
-                                    <div className="text-[13px] text-muted leading-[1.6]">Sourced from verified public records and official biographical sources. Where multiple sources conflict, the most widely cited verified figure is used.</div>
+                                    <div className="text-[13px] text-muted leading-[1.6]">Sourced from verified public records and official biographical sources. Where multiple sources conflict, the most widely cited verified figure is used.
+                                    </div>
                                 </div>
                                 <div className="bg-surface rounded-2xl p-5 border border-border shadow-sm">
                                     <div className="text-[14px] font-bold text-foreground mb-2">Fictional character heights</div>
-                                    <div className="text-[13px] text-muted leading-[1.6]">Drawn from official franchise material — published manga, anime production guides, game databases, and officially licensed character wikis. Not user estimates.</div>
+                                    <div className="text-[13px] text-muted leading-[1.6]">Drawn from official franchise material published manga, anime production guides, game databases, and officially licensed character wikis. Not user estimates.</div>
                                 </div>
                                 <div className="bg-surface rounded-2xl p-5 border border-border shadow-sm">
                                     <div className="text-[14px] font-bold text-foreground mb-2">Objects and entity dimensions</div>
-                                    <div className="text-[13px] text-muted leading-[1.6]">Verified from established real-world specifications. Buildings from architectural records. Animals from zoological databases. Natural landmarks from geographic surveys.</div>
+                                    <div className="text-[13px] text-muted leading-[1.6]">Verified from established real-world specifications. Buildings from architectural records. Animals from verified wildlife and natural history records. Natural landmarks from geographic surveys.</div>
                                 </div>
                             </div>
                         </section>
@@ -601,7 +598,7 @@ export default function HomeContent() {
                         <div className="bg-surface rounded-3xl p-8 text-center border border-border my-4 shadow-xl">
                             <h2 className="text-2xl font-black text-foreground mb-3">Ready to See the Difference?</h2>
                             <p className="text-[14px] text-muted mb-8 max-w-xl mx-auto">Scroll back up, add a few heights, and see your comparison in seconds. No sign-up, no cost — just jump straight in.</p>
-                             <div className="flex flex-wrap justify-center gap-4">
+                            <div className="flex flex-wrap justify-center gap-4">
                                 <button onClick={() => openDashboardPanel('ADD_PERSON')} className="inline-flex items-center gap-2 h-12 px-6 bg-[#22c55e] border-none rounded-full text-white text-[14px] font-bold cursor-pointer hover:bg-green-600 transition-all shadow-md hover:-translate-y-0.5">
                                     ↑ Start Comparing Heights
                                 </button>
@@ -613,233 +610,233 @@ export default function HomeContent() {
 
 
 
-                    {/* SECTION: Why Choose This Height Comparison Tool? */}
-                    <section id="why-choose-this-height-comparison-tool" className="space-y-4 scroll-mt-24">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="flex-1 h-px bg-border" />
-                            <div className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted whitespace-nowrap">Why choose this tool</div>
-                            <div className="flex-1 h-px bg-border" />
-                        </div>
-
-                        <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">Why Choose This Height Comparison Tool?</h2>
-
-                        <div className="grid sm:grid-cols-2 gap-4 my-8">
-                            <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
-                                <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
-                                    <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </div>
-                                <div>
-                                    <strong className="block text-foreground text-[14px] mb-[4px]">Mathematically precise, every time</strong>
-                                    <span className="text-[13px] text-muted leading-[1.6]">Every bar renders to the exact proportional ratio of the heights entered. 185 cm is always 1.09× the bar height of 170 cm. No visual approximation.</span>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
-                                <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
-                                    <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </div>
-                                <div>
-                                    <strong className="block text-foreground text-[14px] mb-[4px]">Five input types, one chart</strong>
-                                    <span className="text-[13px] text-muted leading-[1.6]">People, celebrities, fictional characters, real-world objects, and uploaded photos all share one proportional scale. No switching apps or tabs.</span>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
-                                <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
-                                    <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </div>
-                                <div>
-                                    <strong className="block text-foreground text-[14px] mb-[4px]">Verified data in every database</strong>
-                                    <span className="text-[13px] text-muted leading-[1.6]">Celebrity, character, and entity heights come from verified records and official material — not crowd estimates or user submissions.</span>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
-                                <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
-                                    <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </div>
-                                <div>
-                                    <strong className="block text-foreground text-[14px] mb-[4px]">Ready in thirty seconds</strong>
-                                    <span className="text-[13px] text-muted leading-[1.6]">Open the page, click Add Person, type a height. Your first comparison is on screen before you finish reading this sentence. No tutorial, no setup.</span>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
-                                <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
-                                    <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </div>
-                                <div>
-                                    <strong className="block text-foreground text-[14px] mb-[4px]">PNG with no watermark, ever</strong>
-                                    <span className="text-[13px] text-muted leading-[1.6]">Download a clean labeled chart any time. Unlimited, watermark-free, no account required. Part of the free tool — not an upgrade.</span>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
-                                <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
-                                    <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </div>
-                                <div>
-                                    <strong className="block text-foreground text-[14px] mb-[4px]">Live updates, no reloads</strong>
-                                    <span className="text-[13px] text-muted leading-[1.6]">Every new person, color change, or height edit appears on the chart straight away. No submit button, no delay, no refresh.</span>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
-                                <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
-                                    <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </div>
-                                <div>
-                                    <strong className="block text-foreground text-[14px] mb-[4px]">Part of a full height toolkit</strong>
-                                    <span className="text-[13px] text-muted leading-[1.6]">Alongside the comparison tool: a Height Difference Calculator, Height Percentile Calculator, Ideal Body Weight Calculator, and Average Height by Country data table.</span>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
-                                <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
-                                    <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                                </div>
-                                <div>
-                                    <strong className="block text-foreground text-[14px] mb-[4px]">Genuinely free, nothing hidden</strong>
-                                    <span className="text-[13px] text-muted leading-[1.6]">Every feature is included at no cost. No freemium tier, no locked features, no subscription. Open it and use all of it right now.</span>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-
-
-                    {/* SECTION: Frequently Asked Questions */}
-                    <section id="frequently-asked-questions" className="scroll-mt-24">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="flex-1 h-px bg-border" />
-                            <div className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted whitespace-nowrap">Got questions?</div>
-                            <div className="flex-1 h-px bg-border" />
-                        </div>
-
-                        <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground mb-8">Frequently Asked Questions</h2>
-
-                        {/* FAQ Accordion Section */}
-                        <div className="border border-border rounded-[2.5rem] overflow-hidden bg-surface transition-colors duration-500 shadow-sm mt-4">
-                            <div className="px-8 md:px-12 pt-10 pb-8 text-center sm:text-left space-y-2 border-b border-border">
-                                <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
-                                    <HelpCircle size={12} /> HELP CENTER
-                                </div>
-                                <h2 id="frequently-asked-questions" className="text-3xl font-black text-foreground scroll-mt-24">Frequently Asked Questions</h2>
+                        {/* SECTION: Why Choose This Height Comparison Tool? */}
+                        <section id="why-choose-this-height-comparison-tool" className="space-y-4 scroll-mt-24">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="flex-1 h-px bg-border" />
+                                <div className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted whitespace-nowrap">Why choose this tool</div>
+                                <div className="flex-1 h-px bg-border" />
                             </div>
 
-                            <div className="px-6 md:px-10 py-6 flex flex-col gap-3">
-                                {QA.map((item, idx) => {
-                                    const isOpen = openFaqIndex === idx;
-                                    return (
-                                        <div
-                                            key={idx}
-                                            className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5' : 'border-border bg-bg hover:border-accent/30'}`}
-                                        >
-                                            <button
-                                                className="w-full flex items-center justify-between px-5 py-4 text-left gap-4 group"
-                                                onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">Why Choose This Height Comparison Tool?</h2>
+
+                            <div className="grid sm:grid-cols-2 gap-4 my-8">
+                                <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
+                                    <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
+                                        <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                    </div>
+                                    <div>
+                                        <strong className="block text-foreground text-[14px] mb-[4px]">Mathematically precise, every time</strong>
+                                        <span className="text-[13px] text-muted leading-[1.6]">Every bar renders to the exact proportional ratio of the heights entered. 185 cm is always 1.09× the bar height of 170 cm. No visual approximation.</span>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
+                                    <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
+                                        <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                    </div>
+                                    <div>
+                                        <strong className="block text-foreground text-[14px] mb-[4px]">Five input types, one chart</strong>
+                                        <span className="text-[13px] text-muted leading-[1.6]">People, celebrities, fictional characters, real-world objects, and uploaded photos all share one proportional scale. No switching apps or tabs.</span>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
+                                    <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
+                                        <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                    </div>
+                                    <div>
+                                        <strong className="block text-foreground text-[14px] mb-[4px]">Verified data in every database</strong>
+                                        <span className="text-[13px] text-muted leading-[1.6]">Celebrity, character, and entity heights come from verified records and official material — not crowd estimates or user submissions.</span>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
+                                    <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
+                                        <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                    </div>
+                                    <div>
+                                        <strong className="block text-foreground text-[14px] mb-[4px]">Ready in thirty seconds</strong>
+                                        <span className="text-[13px] text-muted leading-[1.6]">Open the page, click Add Person, type a height. Your first comparison is on screen before you finish reading this sentence. No tutorial, no setup.</span>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
+                                    <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
+                                        <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                    </div>
+                                    <div>
+                                        <strong className="block text-foreground text-[14px] mb-[4px]">PNG with no watermark, ever</strong>
+                                        <span className="text-[13px] text-muted leading-[1.6]">Download a clean labeled chart any time. Unlimited, watermark-free, no account required. Part of the free tool — not an upgrade.</span>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
+                                    <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
+                                        <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                    </div>
+                                    <div>
+                                        <strong className="block text-foreground text-[14px] mb-[4px]">Live updates, no reloads</strong>
+                                        <span className="text-[13px] text-muted leading-[1.6]">Every new person, color change, or height edit appears on the chart straight away. No submit button, no delay, no refresh.</span>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
+                                    <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
+                                        <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                    </div>
+                                    <div>
+                                        <strong className="block text-foreground text-[14px] mb-[4px]">Part of a full height toolkit</strong>
+                                        <span className="text-[13px] text-muted leading-[1.6]">Alongside the comparison tool: a Height Difference Calculator, Height Percentile Calculator, Ideal Body Weight Calculator, and Average Height by Country data table.</span>
+                                    </div>
+                                </div>
+                                <div className="flex items-start gap-3 p-5 bg-surface rounded-2xl border border-border shadow-sm">
+                                    <div className="w-6 h-6 rounded-full bg-[#EAF3DE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#C0DD97] dark:border-emerald-500/30">
+                                        <svg width="12" height="12" viewBox="0 0 10 10" fill="none"><path d="M2 5l2 2 4-4" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                    </div>
+                                    <div>
+                                        <strong className="block text-foreground text-[14px] mb-[4px]">Genuinely free, nothing hidden</strong>
+                                        <span className="text-[13px] text-muted leading-[1.6]">Every feature is included at no cost. No freemium tier, no locked features, no subscription. Open it and use all of it right now.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+
+
+                        {/* SECTION: Frequently Asked Questions */}
+                        <section id="frequently-asked-questions" className="scroll-mt-24">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="flex-1 h-px bg-border" />
+                                <div className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted whitespace-nowrap">Got questions?</div>
+                                <div className="flex-1 h-px bg-border" />
+                            </div>
+
+                            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground mb-8">Frequently Asked Questions</h2>
+
+                            {/* FAQ Accordion Section */}
+                            <div className="border border-border rounded-[2.5rem] overflow-hidden bg-surface transition-colors duration-500 shadow-sm mt-4">
+                                <div className="px-8 md:px-12 pt-10 pb-8 text-center sm:text-left space-y-2 border-b border-border">
+                                    <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
+                                        <HelpCircle size={12} /> HELP CENTER
+                                    </div>
+                                    <h2 id="frequently-asked-questions" className="text-3xl font-black text-foreground scroll-mt-24">Frequently Asked Questions</h2>
+                                </div>
+
+                                <div className="px-6 md:px-10 py-6 flex flex-col gap-3">
+                                    {QA.map((item, idx) => {
+                                        const isOpen = openFaqIndex === idx;
+                                        return (
+                                            <div
+                                                key={idx}
+                                                className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5' : 'border-border bg-bg hover:border-accent/30'}`}
                                             >
-                                                <span className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>
-                                                <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className={`shrink-0 transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-muted'}`}>
-                                                    <ChevronDown size={18} />
-                                                </motion.div>
-                                            </button>
-                                            <AnimatePresence>
-                                                {isOpen && (
-                                                    <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
-                                                        <div className="px-5 pt-0 pb-5 border-t border-border/40">
-                                                            <p className="text-sm text-muted leading-relaxed pt-4">
-                                                                {item.a}
-                                                            </p>
-                                                        </div>
+                                                <button
+                                                    className="w-full flex items-center justify-between px-5 py-4 text-left gap-4 group"
+                                                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                                                >
+                                                    <span className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>
+                                                    <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }} className={`shrink-0 transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-muted'}`}>
+                                                        <ChevronDown size={18} />
                                                     </motion.div>
-                                                )}
-                                            </AnimatePresence>
-                                        </div>
-                                    );
-                                })}
+                                                </button>
+                                                <AnimatePresence>
+                                                    {isOpen && (
+                                                        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
+                                                            <div className="px-5 pt-0 pb-5 border-t border-border/40">
+                                                                <p className="text-sm text-muted leading-relaxed pt-4">
+                                                                    {item.a}
+                                                                </p>
+                                                            </div>
+                                                        </motion.div>
+                                                    )}
+                                                </AnimatePresence>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+
+                        </section>
+
+
+
+                        {/* Bottom CTA */}
+                        <div className="bg-surface rounded-3xl p-8 text-center border border-border my-4 shadow-xl">
+                            <h2 className="text-2xl font-black text-foreground mb-3">Go on — build your comparison.</h2>
+                            <p className="text-[14px] text-muted mb-8 max-w-xl mx-auto">Free. No account. No limits. Scroll back up and see exactly how any heights compare on a visual scale that actually makes sense.</p>
+                            <div className="flex flex-wrap justify-center gap-4">
+                                <button onClick={() => openDashboardPanel('ADD_PERSON')} className="inline-flex items-center gap-2 h-12 px-6 bg-[#22c55e] border-none rounded-full text-white text-[14px] font-bold cursor-pointer hover:bg-green-600 transition-all shadow-md hover:-translate-y-0.5">
+                                    ↑ Start Comparing
+                                </button>
+                                <button onClick={() => openDashboardPanel('CELEBRITIES')} className="inline-flex items-center gap-2 h-12 px-6 bg-bg border border-border rounded-full text-foreground text-[14px] font-bold cursor-pointer hover:bg-surface transition-all shadow-sm hover:-translate-y-0.5">
+                                    Explore Celebrity Heights
+                                </button>
                             </div>
                         </div>
 
-                    </section>
 
 
+                        {/* SECTION: Compare Heights Online — Tools and Articles */}
+                        <section id="compare-heights-online-tools-and-articles" className="space-y-4 scroll-mt-24">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="flex-1 h-px bg-border" />
+                                <div className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted whitespace-nowrap">Other tools and articles</div>
+                                <div className="flex-1 h-px bg-border" />
+                            </div>
 
-                    {/* Bottom CTA */}
-                    <div className="bg-surface rounded-3xl p-8 text-center border border-border my-4 shadow-xl">
-                        <h2 className="text-2xl font-black text-foreground mb-3">Go on — build your comparison.</h2>
-                        <p className="text-[14px] text-muted mb-8 max-w-xl mx-auto">Free. No account. No limits. Scroll back up and see exactly how any heights compare on a visual scale that actually makes sense.</p>
-                         <div className="flex flex-wrap justify-center gap-4">
-                            <button onClick={() => openDashboardPanel('ADD_PERSON')} className="inline-flex items-center gap-2 h-12 px-6 bg-[#22c55e] border-none rounded-full text-white text-[14px] font-bold cursor-pointer hover:bg-green-600 transition-all shadow-md hover:-translate-y-0.5">
-                                ↑ Start Comparing
-                            </button>
-                            <button onClick={() => openDashboardPanel('CELEBRITIES')} className="inline-flex items-center gap-2 h-12 px-6 bg-bg border border-border rounded-full text-foreground text-[14px] font-bold cursor-pointer hover:bg-surface transition-all shadow-sm hover:-translate-y-0.5">
-                                Explore Celebrity Heights
-                            </button>
-                        </div>
+                            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">Compare Heights Online — Tools and Articles</h2>
+
+                            <div className="grid sm:grid-cols-2 gap-4 my-8">
+                                <Link href="/height-difference-calculator" className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col">
+                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EAF3DE] dark:bg-emerald-900/30 text-[#27500A] dark:text-emerald-400 border border-[#C0DD97] dark:border-emerald-500/30 mb-3 uppercase tracking-wide">Tool</div>
+                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#22c55e] transition-colors">Height Difference Calculator</div>
+                                    <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Enter any two heights and get the exact gap in cm and inches, the percentage difference, and a visual bar comparison. Includes a reference chart for the most common height pairings.</div>
+                                    <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Try the calculator <ArrowRight size={14} /></div>
+                                </Link>
+
+                                <div className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
+                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EAF3DE] dark:bg-emerald-900/30 text-[#27500A] dark:text-emerald-400 border border-[#C0DD97] dark:border-emerald-500/30 mb-3 uppercase tracking-wide">Data</div>
+                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#22c55e] transition-colors">Average Height by Country</div>
+                                    <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Global height data for 46 countries. Sortable table, regional charts, a world map heatmap, and records for the world's tallest and shortest populations.</div>
+                                    <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Explore the data <ArrowRight size={14} /></div>
+                                </div>
+
+                                <Link href="/height-weight-percentile-calculator" className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col">
+                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Tool</div>
+                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">Height and Weight Percentile Calculator</div>
+                                    <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Find out where your height and weight sit within the population using WHO and CDC reference data. Works for babies, children, and adults.</div>
+                                    <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Try the tool <ArrowRight size={14} /></div>
+                                </Link>
+
+                                <div className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
+                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Tool</div>
+                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">Ideal Body Weight Calculator</div>
+                                    <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Calculate ideal body weight using the Devine, Robinson, and Hamwi formulas side by side. Results in kg and lb for men and women.</div>
+                                    <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Try the tool <ArrowRight size={14} /></div>
+                                </div>
+
+                                <Link href={"/image-to-height"} className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
+                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Guide</div>
+                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">How to Measure Your Height Accurately</div>
+                                    <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Why you are taller in the morning, how to use a photo to measure height without a tape measure, and where the wall-and-book method goes wrong.</div>
+                                    <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Read the guide <ArrowRight size={14} /></div>
+                                </Link>
+
+                                <div className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
+                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Data</div>
+                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">Tallest and Shortest People in History</div>
+                                    <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Verified Guinness World Records for Robert Wadlow, Chandra Bahadur Dangi, Zeng Jinlian, and Jyoti Amge — with a visual scale that puts their heights in perspective.</div>
+                                    <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Read the article <ArrowRight size={14} /></div>
+                                </div>
+                            </div>
+
+                            {/* Legal / Do not sell */}
+                            <div className="bg-surface rounded-xl p-5 border border-border mt-8 shadow-sm">
+                                <strong className="text-muted block text-[13px] mb-2">Do Not Sell or Share My Personal Information</strong>
+                                <p className="text-[13px] text-muted/80 leading-[1.7]">
+                                    We do not sell your personal information to third parties. Under the California Consumer Privacy Act (CCPA) and similar state laws, you have the right to opt out of data sharing for cross-context behavioral advertising. Visit our <Link href="/privacy" className="text-[#185FA5] dark:text-blue-400 underline hover:text-foreground transition-colors font-medium">Privacy Policy</Link> or contact us directly. Standard use of the height comparison tool collects no personal information and requires no account.
+                                </p>
+                            </div>
+                        </section>
+
                     </div>
-
-
-
-                    {/* SECTION: Compare Heights Online — Tools and Articles */}
-                    <section id="compare-heights-online-tools-and-articles" className="space-y-4 scroll-mt-24">
-                        <div className="flex items-center gap-3 mb-6">
-                            <div className="flex-1 h-px bg-border" />
-                            <div className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted whitespace-nowrap">Other tools and articles</div>
-                            <div className="flex-1 h-px bg-border" />
-                        </div>
-
-                        <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">Compare Heights Online — Tools and Articles</h2>
-
-                        <div className="grid sm:grid-cols-2 gap-4 my-8">
-                            <Link href="/height-difference-calculator" className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col">
-                                <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EAF3DE] dark:bg-emerald-900/30 text-[#27500A] dark:text-emerald-400 border border-[#C0DD97] dark:border-emerald-500/30 mb-3 uppercase tracking-wide">Tool</div>
-                                <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#22c55e] transition-colors">Height Difference Calculator</div>
-                                <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Enter any two heights and get the exact gap in cm and inches, the percentage difference, and a visual bar comparison. Includes a reference chart for the most common height pairings.</div>
-                                <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Try the calculator <ArrowRight size={14} /></div>
-                            </Link>
-
-                            <div className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
-                                <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EAF3DE] dark:bg-emerald-900/30 text-[#27500A] dark:text-emerald-400 border border-[#C0DD97] dark:border-emerald-500/30 mb-3 uppercase tracking-wide">Data</div>
-                                <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#22c55e] transition-colors">Average Height by Country</div>
-                                <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Global height data for 46 countries. Sortable table, regional charts, a world map heatmap, and records for the world's tallest and shortest populations.</div>
-                                <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Explore the data <ArrowRight size={14} /></div>
-                            </div>
-
-                            <Link href="/height-weight-percentile-calculator" className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col">
-                                <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Tool</div>
-                                <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">Height and Weight Percentile Calculator</div>
-                                <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Find out where your height and weight sit within the population using WHO and CDC reference data. Works for babies, children, and adults.</div>
-                                <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Try the tool <ArrowRight size={14} /></div>
-                            </Link>
-
-                            <div className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
-                                <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Tool</div>
-                                <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">Ideal Body Weight Calculator</div>
-                                <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Calculate ideal body weight using the Devine, Robinson, and Hamwi formulas side by side. Results in kg and lb for men and women.</div>
-                                <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Try the tool <ArrowRight size={14} /></div>
-                            </div>
-
-                            <Link href={"/image-to-height"} className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
-                                <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Guide</div>
-                                <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">How to Measure Your Height Accurately</div>
-                                <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Why you are taller in the morning, how to use a photo to measure height without a tape measure, and where the wall-and-book method goes wrong.</div>
-                                <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Read the guide <ArrowRight size={14} /></div>
-                            </Link>
-
-                            <div className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
-                                <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Data</div>
-                                <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">Tallest and Shortest People in History</div>
-                                <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Verified Guinness World Records for Robert Wadlow, Chandra Bahadur Dangi, Zeng Jinlian, and Jyoti Amge — with a visual scale that puts their heights in perspective.</div>
-                                <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Read the article <ArrowRight size={14} /></div>
-                            </div>
-                        </div>
-
-                        {/* Legal / Do not sell */}
-                        <div className="bg-surface rounded-xl p-5 border border-border mt-8 shadow-sm">
-                            <strong className="text-muted block text-[13px] mb-2">Do Not Sell or Share My Personal Information</strong>
-                            <p className="text-[13px] text-muted/80 leading-[1.7]">
-                                We do not sell your personal information to third parties. Under the California Consumer Privacy Act (CCPA) and similar state laws, you have the right to opt out of data sharing for cross-context behavioral advertising. Visit our <Link href="/privacy" className="text-[#185FA5] dark:text-blue-400 underline hover:text-foreground transition-colors font-medium">Privacy Policy</Link> or contact us directly. Standard use of the height comparison tool collects no personal information and requires no account.
-                            </p>
-                        </div>
-                    </section>
-
                 </div>
             </div>
-        </div>
         </div >
     );
 }
