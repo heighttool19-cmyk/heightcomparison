@@ -98,17 +98,9 @@ export default function HomeContent() {
                                 <span><strong>100% free — and we mean it.</strong> Celebrity database, fictional characters, real-world objects, image upload, PNG download, and share link. No account, no payment, no limits. Ever.</span>
                             </div>
 
-                            <div className="bg-surface border-l-4 border-[#22c55e] rounded-r-2xl p-5 my-6 shadow-sm">
-                                <p className="mb-3 text-[14px] text-muted leading-[1.7]">
-                                    A height comparison tool converts any two or more heights into a visual chart, each bar scaled to the exact mathematical ratio between the entered measurements                                </p>
-                                <p className="m-0 text-[14px] text-muted leading-[1.7]">
-                                    The same proportional scale applies whether you are comparing two people, a person against a celebrity, fictional characters from the same series, or a human height against a real-world object like Mt Everest at 8,848 m. Every subject type, people, celebrities, fictional characters, entities, and uploaded photos share one accurate visual scale. Results update in real time with no account or setup required.
-                                </p>
-                            </div>
 
-                            <div className="text-[13px] text-muted/80 p-3 border-l-2 border-border my-5 leading-[1.6]">
-                                For informational and entertainment use only. For clinical height assessment or medical growth tracking, consult a qualified healthcare provider.
-                            </div>
+
+
                         </div>
 
                         {/* SECTION: How Does a Height Comparison Chart Work? */}
@@ -125,6 +117,10 @@ export default function HomeContent() {
                                 A height comparison chart converts raw height measurements into visual charts, each bar represents the exact ratio between any two entered heights, rendered visually at true scale                            </p>
                             <p className="text-[15px] leading-[1.7] text-muted">
                                 If Person A is 170 cm and Person B is 185 cm, the second bar renders at exactly 1.09 times the height of the first. That ratio is calculated mathematically from the values entered no rounding, no visual approximation. What you see on screen matches what you would see standing in a room next to that person.
+                            </p>
+                            <p className="text-[15px] leading-[1.7] text-muted">
+                                The same proportional scale applies whether you are comparing two people, a person against a celebrity, fictional characters from the same series, or a human height against a real-world object like Mt Everest at 8,848 m. Every subject type, people, celebrities, fictional characters, entities, and uploaded photos share one accurate visual scale.
+
                             </p>
                             <p className="text-[15px] leading-[1.7] text-muted">
                                 That is why a 10 cm gap between two people near 160 cm reads completely differently from the same 10 cm gap between two people near 190 cm. The proportional scale makes both situations immediately visible and distinguishable without any calculation on your part.
