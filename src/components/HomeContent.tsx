@@ -102,7 +102,7 @@ export default function HomeContent() {
                                 <p className="mb-3 text-[14px] text-muted leading-[1.7]">
                                     A height comparison tool converts any two or more heights into a visual chart, each bar scaled to the exact mathematical ratio between the entered measurements                                </p>
                                 <p className="m-0 text-[14px] text-muted leading-[1.7]">
-                                    The same proportional scale applies whether you are comparing two people, a person against a celebrity, fictional characters from the same series, or a human height against a real-world object like Mt Everest at 8,848 m. Every subject type, people, celebrities, fictional characters, entities, and uploaded photos shares one accurate visual scale. Results update in real time with no account or setup required.
+                                    The same proportional scale applies whether you are comparing two people, a person against a celebrity, fictional characters from the same series, or a human height against a real-world object like Mt Everest at 8,848 m. Every subject type, people, celebrities, fictional characters, entities, and uploaded photos share one accurate visual scale. Results update in real time with no account or setup required.
                                 </p>
                             </div>
 
