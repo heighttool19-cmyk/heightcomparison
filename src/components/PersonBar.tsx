@@ -131,7 +131,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
             className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
             style={{
                 width: `${effectiveWidth}px`,
-                zIndex: Math.max(1, 2000 - Math.floor(person.heightCm)) // Shorter entities are "in front" (higher z-index)
+                // zIndex: Math.max(1, 2000 - Math.floor(person.heightCm)) // Shorter entities are "in front" (higher z-index)
             }}
             onClick={(e) => {
                 e.stopPropagation(); // Prevent trigger "click outside" on the dashboard
