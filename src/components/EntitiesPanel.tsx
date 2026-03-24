@@ -151,7 +151,7 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                                                         background: `linear-gradient(135deg, ${entity.color}dd, ${entity.color}88)`
                                                     }}
                                                 >
-                                                    {entity.icon}
+                                                    {entity.icon || entity.name.charAt(0)}
                                                 </div>
                                             }
                                         />

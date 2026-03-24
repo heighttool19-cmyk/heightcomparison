@@ -3,7 +3,7 @@
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Link as LinkIcon, ArrowLeftRight, Focus, ChevronLeft, ChevronRight, Mountain as MountainIcon, Trash2, RotateCcw, Edit2, Maximize, Minimize } from 'lucide-react';
-import { Person, Entity, Mountain } from '../types';
+import { Person, Entity, Mountain, PanelType } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
 import PersonBar from './PersonBar';
 import Ruler from './Ruler';
@@ -12,7 +12,7 @@ import { usePersonStore } from '../store';
 import Navbar from './Navbar';
 import LZString from 'lz-string';
 
-type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';
+
 
 interface HeightDashboardProps {
     readOnly?: boolean;
@@ -113,6 +113,21 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
+
+    // Handle open-dashboard-panel custom event
+    useEffect(() => {
+        const handleOpenPanel = (e: Event) => {
+            const customEvent = e as CustomEvent<PanelType>;
+            if (customEvent.detail) {
+                setActivePanel(customEvent.detail);
+                setIsSidebarCollapsed(false);
+                setIsMobileDrawerOpen(true);
+            }
+        };
+
+        window.addEventListener('open-dashboard-panel' as any, handleOpenPanel);
+        return () => window.removeEventListener('open-dashboard-panel' as any, handleOpenPanel);
+    }, []);
 
 
     // Pinch Zoom Tracking
@@ -265,6 +280,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             heightCm: entity.heightCm,
             color: entity.color,
             icon: entity.icon,
+            imgUrl: entity.imgUrl,
             isEntity: true
         };
         storeAddPerson(newPerson);
@@ -719,7 +735,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             onClick={toggleFullscreen}
                             className={`absolute z-[100] transition-all duration-300 flex items-center justify-center active:scale-90
                                 ${isFullscreen
-                                    ? 'top-4 right-4 sm:top-8 sm:right-8 p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white/20 border border-white/20 shadow-2xl'
+                                    ? 'top-4 right-4 sm:top-8 sm:right-8 p-3 bg-white/10 backdrop-blur-md rounded-full text-foreground hover:bg-white/20 border border-white/20 shadow-2xl'
                                     : 'top-3 right-3 sm:top-5 sm:right-5 p-2 text-muted/50 hover:text-foreground hover:bg-white/5 rounded-xl border border-transparent hover:border-white/10'
                                 }`}
                             title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
@@ -786,14 +802,15 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         <div
                                             className="flex flex-nowrap items-end h-full w-max mt-auto pl-6 sm:pl-14"
                                             style={{
-                                                gap: `${Math.max(1, Math.round(12 * state.zoom))}px`,
+                                                gap: `${Math.max(6, Math.round(18 * state.zoom))}px`,
                                                 transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
                                             }}
                                         >
-                                            {persons.map((person) => (
+                                            {persons.map((person, idx) => (
                                                 <PersonBar
                                                     key={person.id}
                                                     person={person}
+                                                    index={idx}
                                                     scale={scale}
                                                     zoom={state.zoom}
                                                     readOnly={readOnly}

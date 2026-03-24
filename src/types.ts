@@ -97,6 +97,7 @@ export interface Entity {
   heightCm: number;
   category: EntityCategory;
   icon: string; // SVG or emoji
+  imgUrl?: string;
   color: string;
 }
 
@@ -109,3 +110,5 @@ export interface Mountain {
   category: MountainCategory;
   color: string;
 }
+
+export type PanelType = 'ADD_PERSON' | 'CELEBRITIES' | 'ENTITIES' | 'FICTIONAL' | 'ADD_IMAGE' | 'EDIT_PERSON';

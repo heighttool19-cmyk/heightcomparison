@@ -18,9 +18,10 @@ interface PersonBarProps {
     canvasHeight?: number;
     isActiveMenu?: boolean;
     onSetActiveMenu?: (active: boolean) => void;
+    index?: number;
 }
 
-const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly, canvasHeight, isActiveMenu, onSetActiveMenu }) => {
+const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly, canvasHeight, isActiveMenu, onSetActiveMenu, index = 0 }) => {
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     const [inputValue, setInputValue] = React.useState<number | ''>(person.heightCm);
@@ -93,15 +94,21 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
     // Text scales down proportionally with zoom, floor at 0.4
     const nameScale = Math.max(0.4, Math.min(1, zoom * 1.2));
-    const showLabels = zoom >= 0.15; // hide labels at very low zoom to prevent overlap
+    const showLabels = zoom >= 0.08; // LOWER threshold, but staggered to prevent overlap
     const mobile = (typeof window !== 'undefined' && window.innerWidth < 768);
 
     // Image aspect ratio calculation : also scales with zoom
     // Widest part (head or body) should be used for effectiveWidth to prevent overlap
     const silhouetteWidth = Math.max(containerWidth, headDiameter);
-    const effectiveWidth = person.imgUrl && imageAspectRatio
+    // Cap width for large entities/landmarks to prevent horizontal sprawl
+    const maxEntityWidth = 400 * zoom;
+    const baseEffectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(5, Math.round(barHeightPx * imageAspectRatio))
         : Math.max(5, silhouetteWidth);
+
+    const effectiveWidth = (person.isEntity || person.heightCm > 500)
+        ? Math.min(maxEntityWidth, baseEffectiveWidth)
+        : baseEffectiveWidth;
 
     // Safely cap hover and label heights so they don't clip off the top of the canvas
     const safeCanvasHeight = canvasHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);
@@ -121,8 +128,11 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
             animate={{ opacity: 1, x: 0, width: effectiveWidth }}
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
-            className="relative group pointer-events-auto  shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
-            style={{ width: `${effectiveWidth}px` }}
+            className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
+            style={{
+                width: `${effectiveWidth}px`,
+                zIndex: Math.max(1, 2000 - Math.floor(person.heightCm)) // Shorter entities are "in front" (higher z-index)
+            }}
             onClick={(e) => {
                 e.stopPropagation(); // Prevent trigger "click outside" on the dashboard
                 if (window.innerWidth < 768 || (isActiveMenu !== undefined && onSetActiveMenu)) {
@@ -141,14 +151,14 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 <div
                     className="absolute left-1/2 flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
                     style={{
-                        bottom: `${labelBottom}px`,
+                        bottom: zoom < 0.2 ? `${labelBottom + (index % 2 === 0 ? 0 : 35)}px` : `${labelBottom}px`,
                         width: 'max-content',
                         maxWidth: `${Math.max(50, effectiveWidth * 1.8)}px`,
                         transform: `translateX(-50%) scale(${nameScale})`,
                         transformOrigin: 'bottom'
                     }}
                 >
-                    <span className="text-[0.6em] font-bold text-white/90 uppercase tracking-wider whitespace-nowrap text-center drop-shadow-sm  max-w-full px-1"
+                    <span className="text-[0.55em] font-bold  text-foreground uppercase tracking-wider whitespace-nowrap text-center drop-shadow-sm  max-w-full px-1"
                         style={{
                             transform: `scale(${nameScale * 0.8})`,
                             transformOrigin: 'bottom'
@@ -234,10 +244,10 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                     }}
                 />
 
-                {/* Silhouette - Clipped to exact height boundary */}
+                {/* Silhouette - Unclipped for images to allow full vertical extent */}
                 <div
                     className="flex flex-col items-center justify-end relative transition-opacity group-hover:opacity-100"
-                    style={{ height: barHeightPx, overflow: 'hidden' }}
+                    style={{ height: barHeightPx, overflow: person.imgUrl ? 'visible' : 'hidden' }}
                 >
                     {person.imgUrl ? (
                         <motion.div
@@ -253,8 +263,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                                     onLoad={handleImageLoad}
                                     animate={{ height: barHeightPx }}
                                     transition={springConfig}
-                                    style={{ width: 'auto', objectFit: 'contain', display: 'block' }}
-                                    className="drop-shadow-2xl"
+                                    style={{ width: 'auto', objectFit: 'contain', display: 'block', objectPosition: 'bottom' }}
+                                    className="drop-shadow-md"
                                 />
                             </div>
                         </motion.div>
