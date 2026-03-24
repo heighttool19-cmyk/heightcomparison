@@ -301,7 +301,7 @@ export default function HomeContent() {
                                 <div className="flex-1 h-px bg-border" />
                             </div>
 
-                            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">Why a Visual Height Comparison Shows More Than Numbers</h2>
+                            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">Why a Visual Height Comparison Chart Shows More Than Numbers</h2>
 
                             <p className="text-[15px] leading-[1.7] text-muted mb-8">
                                 A visual height comparison chart renders the mathematical relationship between two or more heights as a scaled visual — making the size difference between subjects immediately readable without calculation.
