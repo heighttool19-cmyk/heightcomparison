@@ -305,7 +305,7 @@ export const animals_data = [
     "heightCm": 90,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/sheep (1).svg"
+    "imgUrl": "/Avtars/entities/animals/sheep (1)-nobg.svg"
   },
   {
     "name": "Dog (Great Dane)",
@@ -326,7 +326,7 @@ export const animals_data = [
     "heightCm": 25,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Colored_cat_on_202603222024 (1).svg"
+    "imgUrl": "/Avtars/entities/animals/cat.svg"
   },
   {
     "name": "Rabbit",

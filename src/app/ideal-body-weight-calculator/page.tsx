@@ -580,11 +580,35 @@ export default function IdealBodyWeightPage() {
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-border/50 text-muted font-medium">
-                                            <tr><td className="px-4 py-3">Below 70%</td><td className="px-4 py-3">Severely underweight</td></tr>
-                                            <tr><td className="px-4 py-3">70 to 89%</td><td className="px-4 py-3">Underweight</td></tr>
-                                            <tr><td className="px-4 py-3 text-accent font-bold">90 to 110%</td><td className="px-4 py-3 text-accent font-bold">Normal weight</td></tr>
-                                            <tr><td className="px-4 py-3">110 to 120%</td><td className="px-4 py-3">Overweight</td></tr>
-                                            <tr><td className="px-4 py-3">Above 120%</td><td className="px-4 py-3">Obesity risk range</td></tr>
+                                            {/* Below 70% - Red/Danger Tint */}
+                                            <tr>
+                                                <td className="px-4  bg-red-500/10 py-3 text-red-600 dark:text-red-400 font-bold">Below 70%</td>
+                                                <td className="px-4 py-3 text-foreground font-bold">Severely underweight</td>
+                                            </tr>
+
+                                            {/* 70 to 89% - Amber/Warning Tint */}
+                                            <tr>
+                                                <td className="px-4  bg-amber-500/10 py-3 text-amber-600 dark:text-amber-400 font-bold">70 to 89%</td>
+                                                <td className="px-4 py-3 text-foreground font-bold">Underweight</td>
+                                            </tr>
+
+                                            {/* 90 to 110% - Green/Healthy Highlight */}
+                                            <tr>
+                                                <td className="px-4  bg-green-500/10 py-3 text-green-600 dark:text-green-400 font-bold">90 to 110%</td>
+                                                <td className="px-4 py-3 text-foreground font-bold">Normal weight</td>
+                                            </tr>
+
+                                            {/* 110 to 120% - Amber/Warning Tint */}
+                                            <tr>
+                                                <td className="px-4  bg-amber-500/10 py-3 text-amber-600 dark:text-amber-400 font-bold">110 to 120%</td>
+                                                <td className="px-4 py-3 text-foreground font-bold">Overweight</td>
+                                            </tr>
+
+                                            {/* Above 120% - Red/Danger Tint */}
+                                            <tr >
+                                                <td className="px-4 py-3  bg-red-500/10 text-red-600 dark:text-red-400 font-bold">Above 120%</td>
+                                                <td className="px-4 py-3 text-foreground font-bold">Obesity risk range</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
