@@ -1,12 +1,11 @@
 'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, CheckCircle2, HelpCircle, ArrowUpCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useThemeStore, useUnitStore } from '@/store';
 import Navbar from '@/components/Navbar';
-import HealthyWeightRange from '@/components/ideal-body-weight-calculator/HealthyWeightRange'; // Added the import here
+import HealthyWeightRange from '@/components/ideal-body-weight-calculator/HealthyWeightRange';
 
 // --- TOC Data ---
 const tocItems = [
@@ -75,7 +74,6 @@ export default function IdealBodyWeightPage() {
     const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
     // Calculator State
-    const [calcUnit, setCalcUnit] = useState<'metric' | 'imperial'>('metric');
     const [heightCm, setHeightCm] = useState<number | ''>('');
     const [heightFt, setHeightFt] = useState<number | ''>('');
     const [heightIn, setHeightIn] = useState<number | ''>('');
@@ -172,7 +170,7 @@ export default function IdealBodyWeightPage() {
     // Calculate IBW
     const getIBW = () => {
         let totalInches = 0;
-        if (calcUnit === 'metric') {
+        if (unitSystem === 'metric') {
             if (!heightCm) return null;
             totalInches = Number(heightCm) / 2.54;
         } else {
@@ -267,14 +265,14 @@ export default function IdealBodyWeightPage() {
 
                             {/* Controls */}
                             <div className="flex gap-2 mb-6">
-                                <button onClick={() => setCalcUnit('metric')} className={`flex-1 py-3 rounded-xl font-bold transition-all border-2 ${calcUnit === 'metric' ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Metric (kg / cm)</button>
-                                <button onClick={() => setCalcUnit('imperial')} className={`flex-1 py-3 rounded-xl font-bold transition-all border-2 ${calcUnit === 'imperial' ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Imperial (lb / ft-in)</button>
+                                <button onClick={() => setUnitSystem('metric')} className={`flex-1 py-3 rounded-xl font-bold transition-all border-2 ${unitSystem === 'metric' ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Metric (kg / cm)</button>
+                                <button onClick={() => setUnitSystem('imperial')} className={`flex-1 py-3 rounded-xl font-bold transition-all border-2 ${unitSystem === 'imperial' ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Imperial (lb / ft-in)</button>
                             </div>
 
                             <div className="grid sm:grid-cols-2 gap-6 mb-8">
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-muted uppercase tracking-wider">Height</label>
-                                    {calcUnit === 'metric' ? (
+                                    {unitSystem === 'metric' ? (
                                         <div className="relative">
                                             <input type="number" value={heightCm} onChange={(e) => setHeightCm(e.target.value === '' ? '' : Number(e.target.value))} placeholder="e.g. 175 cm" className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" />
                                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">cm</span>
