@@ -1,15 +1,5 @@
 import { Celebrity } from '../../types';
-import { asian_celebrities_data } from './asian_celebrities';
-import { athletes_data } from './athletes';
-import { bollywood_data } from './bollywood';
-import { british_celebrities_data } from './british_celebrities';
-import { politicians_data } from './politicians';
-import { hollywood_data } from './hollywood';
-import { musicians_data } from './musicians';
-import { nba_stars_data } from './nba_stars';
-import { reality_tv_stars_data } from './reality_tv_stars';
-import { historical_data } from './historical';
-import { models_data } from './models';
+// Static imports removed for code-splitting
 
 const COLOR_PALETTE = [
   '#F59E0B', '#10B981', '#3B82F6', '#6366F1', '#8B5CF6', '#EC4899', '#F43F5E',
@@ -26,16 +16,44 @@ function processData(data: RawCelebrity[], prefix: string): Celebrity[] {
   }));
 }
 
-export const celebrities: Celebrity[] = [
-  ...processData(asian_celebrities_data as RawCelebrity[], 'asian'),
-  ...processData(athletes_data as RawCelebrity[], 'athlete'),
-  ...processData(bollywood_data as RawCelebrity[], 'bollywood'),
-  ...processData(british_celebrities_data as RawCelebrity[], 'british'),
-  ...processData(politicians_data as RawCelebrity[], 'politician'),
-  ...processData(hollywood_data as RawCelebrity[], 'hollywood'),
-  ...processData(musicians_data as RawCelebrity[], 'musician'),
-  ...processData(nba_stars_data as RawCelebrity[], 'nba'),
-  ...processData(reality_tv_stars_data as RawCelebrity[], 'reality'),
-  ...processData(historical_data as RawCelebrity[], 'historical'),
-  ...processData(models_data as RawCelebrity[], 'Models')
-];
+export const getCelebrities = async (): Promise<Celebrity[]> => {
+  const [
+    { asian_celebrities_data },
+    { athletes_data },
+    { bollywood_data },
+    { british_celebrities_data },
+    { politicians_data },
+    { hollywood_data },
+    { musicians_data },
+    { nba_stars_data },
+    { reality_tv_stars_data },
+    { historical_data },
+    { models_data }
+  ] = await Promise.all([
+    import('./asian_celebrities'),
+    import('./athletes'),
+    import('./bollywood'),
+    import('./british_celebrities'),
+    import('./politicians'),
+    import('./hollywood'),
+    import('./musicians'),
+    import('./nba_stars'),
+    import('./reality_tv_stars'),
+    import('./historical'),
+    import('./models')
+  ]);
+
+  return [
+    ...processData(asian_celebrities_data as RawCelebrity[], 'asian'),
+    ...processData(athletes_data as RawCelebrity[], 'athlete'),
+    ...processData(bollywood_data as RawCelebrity[], 'bollywood'),
+    ...processData(british_celebrities_data as RawCelebrity[], 'british'),
+    ...processData(politicians_data as RawCelebrity[], 'politician'),
+    ...processData(hollywood_data as RawCelebrity[], 'hollywood'),
+    ...processData(musicians_data as RawCelebrity[], 'musician'),
+    ...processData(nba_stars_data as RawCelebrity[], 'nba'),
+    ...processData(reality_tv_stars_data as RawCelebrity[], 'reality'),
+    ...processData(historical_data as RawCelebrity[], 'historical'),
+    ...processData(models_data as RawCelebrity[], 'Models')
+  ];
+};

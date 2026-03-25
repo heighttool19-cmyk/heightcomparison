@@ -1,10 +1,8 @@
-'use client';
-
-import React, { useState, useMemo, useCallback } from 'react';
-import { Search, Plus } from 'lucide-react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
+import { Search, Plus, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Entity, EntityCategory } from '../types';
-import { entities } from '../data/entities';
+import { getEntities } from '../data/entities';
 import { FilterTabs } from './ui/FilterTabs';
 import { PanelHeader } from './ui/PanelHeader';
 import { PanelListItem } from './ui/PanelListItem';
@@ -16,13 +14,32 @@ interface EntitiesPanelProps {
     isCapturing?: boolean;
 }
 
-const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(entities.map(e => e.category)))];
-
 export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClose, onExport, isCapturing }) => {
+    const [entities, setEntities] = useState<Entity[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<EntityCategory>('All');
     const [visibleCount, setVisibleCount] = useState(30);
-    const [prevFilterKey, setPrevFilterKey] = useState(`${searchQuery}|${activeCategory}`);
+    const [prevFilterKey, setPrevFilterKey] = useState('');
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const data = await getEntities();
+                setEntities(data);
+            } catch (error) {
+                console.error('Failed to load entities:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadData();
+    }, []);
+
+    const DYNAMIC_CATEGORIES = useMemo(() => {
+        if (entities.length === 0) return ['All'];
+        return ['All', ...Array.from(new Set(entities.map(e => e.category)))];
+    }, [entities]);
 
     const filterKey = `${searchQuery}|${activeCategory}`;
     if (prevFilterKey !== filterKey) {
@@ -47,7 +64,7 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
         }
 
         return filtered;
-    }, [searchQuery, activeCategory]);
+    }, [entities, searchQuery, activeCategory]);
 
     // Grouping Logic (only group visible slice)
     const groupedEntities = useMemo(() => {
@@ -116,51 +133,57 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
 
             {/* List Area */}
             <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar" onScroll={handleScroll}>
-                <AnimatePresence mode="popLayout">
-                    {Object.keys(groupedEntities).length === 0 ? (
-                        <motion.div
-                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                            className="text-center py-12 text-muted font-medium"
-                        >
-                            No entities found matching &quot;{searchQuery}&quot;
-                        </motion.div>
-                    ) : (
-                        Object.entries(groupedEntities).map(([category, ents]) => (
+                {isLoading ? (
+                    <div className="flex flex-col items-center justify-center py-20 gap-3">
+                        <Loader2 className="animate-spin text-accent" size={32} />
+                        <p className="text-muted text-sm font-medium">Loading entities...</p>
+                    </div>
+                ) : (
+                    <AnimatePresence mode="popLayout">
+                        {Object.keys(groupedEntities).length === 0 ? (
                             <motion.div
-                                key={category}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0 }}
-                                className="space-y-4"
+                                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                className="text-center py-12 text-muted font-medium"
                             >
-
-                                {/* Cards Grid */}
-                                <div className="flex flex-col gap-2.5">
-                                    {ents.map(entity => (
-                                        <PanelListItem
-                                            key={entity.id}
-                                            id={entity.id}
-                                            name={entity.name}
-                                            heightString={getHeightString(entity.heightCm)}
-                                            onAdd={() => onAddEntity(entity)}
-                                            addAriaLabel={`Add ${entity.name} to comparison`}
-                                            avatarNode={
-                                                <div
-                                                    className="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center text-white font-bold text-lg border border-border/50 shadow-sm"
-                                                    style={{
-                                                        background: `linear-gradient(135deg, ${entity.color}dd, ${entity.color}88)`
-                                                    }}
-                                                >
-                                                    {entity.icon || entity.name.charAt(0)}
-                                                </div>
-                                            }
-                                        />
-                                    ))}
-                                </div>
+                                No entities found matching &quot;{searchQuery}&quot;
                             </motion.div>
-                        ))
-                    )}
-                </AnimatePresence>
+                        ) : (
+                            Object.entries(groupedEntities).map(([category, ents]) => (
+                                <motion.div
+                                    key={category}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0 }}
+                                    className="space-y-4"
+                                >
+                                    {/* Cards Grid */}
+                                    <div className="flex flex-col gap-2.5">
+                                        {ents.map(entity => (
+                                            <PanelListItem
+                                                key={entity.id}
+                                                id={entity.id}
+                                                name={entity.name}
+                                                heightString={getHeightString(entity.heightCm)}
+                                                onAdd={() => onAddEntity(entity)}
+                                                addAriaLabel={`Add ${entity.name} to comparison`}
+                                                avatarNode={
+                                                    <div
+                                                        className="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center text-white font-bold text-lg border border-border/50 shadow-sm"
+                                                        style={{
+                                                            background: `linear-gradient(135deg, ${entity.color}dd, ${entity.color}88)`
+                                                        }}
+                                                    >
+                                                        {entity.icon || entity.name.charAt(0)}
+                                                    </div>
+                                                }
+                                            />
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            ))
+                        )}
+                    </AnimatePresence>
+                )}
             </div>
 
             {/* Fixed CTA Bottom */}

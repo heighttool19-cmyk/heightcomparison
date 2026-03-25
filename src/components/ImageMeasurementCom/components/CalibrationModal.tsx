@@ -50,7 +50,8 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
                             ))}
                         </div>
                         <div className="relative">
-                            <input type="number" value={calibCm} onChange={e => handleInputChange(e, setCalibCm)}
+                            <label htmlFor="calib-cm-input" className="sr-only">Reference Size (CM)</label>
+                            <input id="calib-cm-input" type="number" value={calibCm} onChange={e => handleInputChange(e, setCalibCm)}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-accent font-black outline-none focus:border-accent transition-all pr-14 focus:ring-1 focus:ring-accent/20" />
                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-foreground/40">CM</span>
                         </div>

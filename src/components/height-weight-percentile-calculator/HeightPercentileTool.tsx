@@ -390,10 +390,11 @@ export default function HeightPercentileTool() {
 
                         {/* Height */}
                         <div style={{ marginBottom: 16 }}>
-                            <label style={labelStyle}>Height</label>
+                            <label htmlFor={unit === "metric" ? "height-input" : "ft-input"} style={labelStyle}>Height</label>
                             {unit === "metric" ? (
                                 <div style={{ position: "relative" }}>
                                     <input
+                                        id="height-input"
                                         type="number" placeholder="e.g. 175"
                                         value={height} onChange={e => setHeight(e.target.value)}
                                         style={{ ...inputStyle, paddingRight: 48 }}
@@ -404,11 +405,13 @@ export default function HeightPercentileTool() {
                                 <div style={{ display: "flex", gap: 10 }}>
                                     <div style={{ flex: 1, position: "relative" }}>
                                         <input id="ft-input" type="number" placeholder="5"
+                                            aria-label="Height in feet"
                                             style={{ ...inputStyle, paddingRight: 36 }} />
                                         <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>ft</span>
                                     </div>
                                     <div style={{ flex: 1, position: "relative" }}>
                                         <input id="in-input" type="number" placeholder="9"
+                                            aria-label="Height in inches"
                                             style={{ ...inputStyle, paddingRight: 36 }} />
                                         <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>in</span>
                                     </div>
@@ -418,8 +421,9 @@ export default function HeightPercentileTool() {
 
                         {/* Age */}
                         <div style={{ marginBottom: 16 }}>
-                            <label style={labelStyle}>Age (years)</label>
+                            <label htmlFor="age-input" style={labelStyle}>Age (years)</label>
                             <input
+                                id="age-input"
                                 type="number" placeholder="e.g. 25" min="0" max="100"
                                 value={age} onChange={e => setAge(e.target.value)}
                                 style={inputStyle}
@@ -447,8 +451,9 @@ export default function HeightPercentileTool() {
 
                         {/* Country */}
                         <div style={{ marginBottom: 24 }}>
-                            <label style={labelStyle}>Country</label>
+                            <label htmlFor="country-select" style={labelStyle}>Country</label>
                             <select
+                                id="country-select"
                                 value={country} onChange={e => setCountry(e.target.value)}
                                 style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}
                             >

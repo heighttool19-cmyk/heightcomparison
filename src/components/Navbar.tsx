@@ -83,7 +83,12 @@ const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
                             const active = isGroupActive(item.children);
                             return (
                                 <div key={idx} className="relative group py-4">
-                                    <button className={`flex items-center gap-1.5 whitespace-nowrap text-[14px] 2xl:text-[15px] font-extrabold transition-colors ${active ? 'text-accent' : 'text-muted hover:text-foreground'}`}>
+                                    <button
+                                        className={`flex items-center gap-1.5 whitespace-nowrap text-[14px] 2xl:text-[15px] font-extrabold transition-colors ${active ? 'text-accent' : 'text-muted hover:text-foreground'}`}
+                                        aria-expanded={active}
+                                        aria-haspopup="true"
+                                        aria-label={item.label}
+                                    >
                                         {item.label}
                                         <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
                                     </button>
@@ -124,12 +129,13 @@ const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
                 {/* Unit Toggle (Desktop) */}
                 <button
                     onClick={toggleUnitSystem}
-                    className="hidden md:flex items-center justify-center gap-2 group hover:bg-item-hover px-3 py-2 rounded-xl transition-all border border-border bg-surface w-[85px] sm:w-[95px] shrink-0"
-                    title="Toggle unit system"
+                    className="hidden md:flex items-center justify-center gap-2 group hover:bg-item-hover px-3 py-2 rounded-xl transition-all border border-border bg-surface w-[85px] sm:w-[130px] shrink-0"
+                    title={`Switch to ${unitSystem === 'metric' ? 'Imperial' : 'Metric'}`}
+                    aria-label={`Current unit system: ${unitSystem === 'metric' ? 'Metric' : 'Imperial'}. Click to toggle.`}
                 >
                     <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent shrink-0" />
                     <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-muted group-hover:text-foreground whitespace-nowrap">
-                        {unitSystem === 'metric' ? 'cm' : 'ft/in'}
+                        {unitSystem === 'metric' ? 'metric (cm)' : 'imperial (ft/in)'}
                     </span>
                 </button>
 
@@ -137,7 +143,8 @@ const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
                 <button
                     onClick={toggleTheme}
                     className="p-2 text-muted hover:text-foreground hover:bg-surface/50 rounded-full transition-colors flex items-center justify-center shrink-0"
-                    title="Toggle Theme"
+                    title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+                    aria-label={`Current theme: ${theme}. Click to toggle theme.`}
                 >
                     <AnimatePresence mode="popLayout" initial={false}>
                         {theme === 'dark' ? (

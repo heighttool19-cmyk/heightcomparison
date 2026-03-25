@@ -1,9 +1,10 @@
 'use client';
-import React, { useState, useMemo, useCallback } from 'react';
+
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Plus } from 'lucide-react';
-import { fictionalCharacters } from '../data/fictional';
-import { FictionalCategory, Person } from '../types';
+import { Search, Plus, Loader2 } from 'lucide-react';
+import { getFictionalCharacters } from '../data/fictional';
+import { FictionalCategory, Person, FictionalCharacter } from '../types';
 import { FilterTabs } from './ui/FilterTabs';
 import { PanelHeader } from './ui/PanelHeader';
 import { PanelListItem } from './ui/PanelListItem';
@@ -13,13 +14,32 @@ interface FictionalPanelProps {
     onClose: () => void;
 }
 
-const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(fictionalCharacters.map(c => c.category)))];
-
 export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onClose }) => {
+    const [fictionalCharacters, setFictionalCharacters] = useState<FictionalCharacter[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<FictionalCategory | 'All'>('All');
     const [visibleCount, setVisibleCount] = useState(30);
-    const [prevFilterKey, setPrevFilterKey] = useState(`${searchQuery}|${activeCategory}`);
+    const [prevFilterKey, setPrevFilterKey] = useState('');
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const data = await getFictionalCharacters();
+                setFictionalCharacters(data);
+            } catch (error) {
+                console.error('Failed to load fictional characters:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadData();
+    }, []);
+
+    const DYNAMIC_CATEGORIES = useMemo(() => {
+        if (fictionalCharacters.length === 0) return ['All'];
+        return ['All', ...Array.from(new Set(fictionalCharacters.map(c => c.category)))];
+    }, [fictionalCharacters]);
 
     const filterKey = `${searchQuery}|${activeCategory}`;
     if (prevFilterKey !== filterKey) {
@@ -42,11 +62,11 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
             const matchesCategory = activeCategory === 'All' || char.category === activeCategory;
             return matchesSearch && matchesCategory;
         });
-    }, [searchQuery, activeCategory]);
+    }, [fictionalCharacters, searchQuery, activeCategory]);
 
     // Grouping logic (only group visible slice)
     const groupedCharacters = useMemo(() => {
-        const groups: Record<string, typeof fictionalCharacters> = {};
+        const groups: Record<string, FictionalCharacter[]> = {};
         const sliced = filteredCharacters.slice(0, visibleCount);
 
         sliced.forEach(char => {
@@ -99,62 +119,68 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
 
             {/* List Area */}
             <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar" onScroll={handleScroll}>
-                <AnimatePresence mode="popLayout">
-                    {Object.keys(groupedCharacters).length === 0 ? (
-                        <motion.div
-                            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                            className="text-center py-12 text-muted font-medium"
-                        >
-                            No characters found matching &quot;{searchQuery}&quot;
-                        </motion.div>
-                    ) : (
-                        Object.entries(groupedCharacters).map(([category, chars]) => (
+                {isLoading ? (
+                    <div className="flex flex-col items-center justify-center py-20 gap-3">
+                        <Loader2 className="animate-spin text-accent" size={32} />
+                        <p className="text-muted text-sm font-medium">Loading characters...</p>
+                    </div>
+                ) : (
+                    <AnimatePresence mode="popLayout">
+                        {Object.keys(groupedCharacters).length === 0 ? (
                             <motion.div
-                                key={category}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0 }}
-                                className="space-y-4"
+                                initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                                className="text-center py-12 text-muted font-medium"
                             >
-
-                                {/* Cards Grid */}
-                                <div className="flex flex-col gap-2.5">
-                                    {chars.map(char => (
-                                        <PanelListItem
-                                            key={char.id}
-                                            id={char.id}
-                                            name={char.name}
-                                            heightString={getHeightString(char.heightCm)}
-                                            onAdd={() => {
-                                                const timestamp = Date.now();
-                                                const rand = Math.random().toString(36).substr(2, 9);
-                                                const newId = `person-${timestamp}-${rand}`;
-
-                                                onAddPerson({
-                                                    id: newId,
-                                                    name: char.name,
-                                                    heightCm: char.heightCm,
-                                                    color: char.color,
-                                                    gender: 'other',
-                                                });
-                                            }}
-                                            avatarNode={
-                                                <div
-                                                    className="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center text-white font-bold text-sm border border-border/50 shadow-sm"
-                                                    style={{
-                                                        background: `linear-gradient(135deg, ${char.color}dd, ${char.color}88)`
-                                                    }}
-                                                >
-                                                    {char.name.charAt(0)}
-                                                </div>
-                                            }
-                                        />
-                                    ))}
-                                </div>
+                                No characters found matching &quot;{searchQuery}&quot;
                             </motion.div>
-                        ))
-                    )}
-                </AnimatePresence>
+                        ) : (
+                            Object.entries(groupedCharacters).map(([category, chars]) => (
+                                <motion.div
+                                    key={category}
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0 }}
+                                    className="space-y-4"
+                                >
+                                    {/* Cards Grid */}
+                                    <div className="flex flex-col gap-2.5">
+                                        {chars.map(char => (
+                                            <PanelListItem
+                                                key={char.id}
+                                                id={char.id}
+                                                name={char.name}
+                                                heightString={getHeightString(char.heightCm)}
+                                                onAdd={() => {
+                                                    const timestamp = Date.now();
+                                                    const rand = Math.random().toString(36).substr(2, 9);
+                                                    const newId = `person-${timestamp}-${rand}`;
+
+                                                    onAddPerson({
+                                                        id: newId,
+                                                        name: char.name,
+                                                        heightCm: char.heightCm,
+                                                        color: char.color,
+                                                        gender: 'other',
+                                                    });
+                                                }}
+                                                avatarNode={
+                                                    <div
+                                                        className="w-10 h-10 rounded-xl shrink-0 flex items-center justify-center text-white font-bold text-sm border border-border/50 shadow-sm"
+                                                        style={{
+                                                            background: `linear-gradient(135deg, ${char.color}dd, ${char.color}88)`
+                                                        }}
+                                                    >
+                                                        {char.name.charAt(0)}
+                                                    </div>
+                                                }
+                                            />
+                                        ))}
+                                    </div>
+                                </motion.div>
+                            ))
+                        )}
+                    </AnimatePresence>
+                )}
             </div>
 
             {/* CTA Bottom */}

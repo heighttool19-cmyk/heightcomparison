@@ -13,10 +13,11 @@ interface RulerProps {
     isFullscreen?: boolean;
 }
 
-const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, containerHeight, personCount, mode = 'full', isFullscreen = false }) => {
+const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerHeight, personCount, mode = 'full', isFullscreen = false }) => {
     const { unitSystem } = useUnitStore();
 
     const tickInterval = useMemo(() => {
+        // ... component content ...
         // Dynamic density based on personCount
         let baseMin = 40;
         if (personCount !== undefined) {
@@ -132,6 +133,6 @@ const Ruler: React.FC<RulerProps> = ({ scale, maxHeightCm, containerHeight, pers
             })}
         </div>
     );
-};
+});
 
 export default Ruler;

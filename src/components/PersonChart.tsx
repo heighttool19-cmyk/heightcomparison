@@ -13,7 +13,7 @@ interface PersonChartProps {
     highlight?: boolean;
 }
 
-const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove, onEdit, onReorder, highlight }) => {
+const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove, onEdit, onReorder, highlight }) => {
     const listHeaderRef = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {
@@ -24,6 +24,7 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove, onEdit, on
 
     return (
         <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+            {/* ... component content ... */}
             <div
                 ref={listHeaderRef}
                 className={`px-6 py-4 flex items-center justify-between sticky top-0 bg-surface z-10 border-y border-border transition-colors duration-500 ${highlight ? 'bg-accent/10 border-accent/50 group' : ''}`}
@@ -129,6 +130,6 @@ const PersonChart: React.FC<PersonChartProps> = ({ persons, onRemove, onEdit, on
             </div>
         </div>
     );
-};
+});
 
 export default PersonChart;

@@ -40,11 +40,12 @@ function Silhouette({ heightPx, color, label, heightLabel }: { heightPx: number,
     );
 }
 
-function HeightInput({ label, value, onChange, isMetric, isDark }: { label: string, value: string, onChange: (v: string) => void, isMetric: boolean, isDark: boolean }) {
+function HeightInput({ id, label, value, onChange, isMetric, isDark }: { id: string, label: string, value: string, onChange: (v: string) => void, isMetric: boolean, isDark: boolean }) {
     return (
         <div className="flex-1 min-w-[140px]">
-            <p className="m-0 mb-2 text-[11px] font-bold text-muted uppercase tracking-[0.09em]">{label}</p>
+            <label htmlFor={id} className="m-0 mb-2 text-[11px] font-bold text-muted uppercase tracking-[0.09em] block">{label}</label>
             <input
+                id={id}
                 type="number"
                 value={value}
                 onChange={e => onChange(e.target.value)}
@@ -109,8 +110,8 @@ export default function CalculateHeightDifference() {
 
             {/* Inputs */}
             <div className="flex flex-wrap gap-4 mb-6">
-                <HeightInput label="Person 1" value={h1} onChange={setH1} isMetric={isMetric} isDark={isDark} />
-                <HeightInput label="Person 2" value={h2} onChange={setH2} isMetric={isMetric} isDark={isDark} />
+                <HeightInput id="h1" label="Person 1" value={h1} onChange={setH1} isMetric={isMetric} isDark={isDark} />
+                <HeightInput id="h2" label="Person 2" value={h2} onChange={setH2} isMetric={isMetric} isDark={isDark} />
             </div>
 
             {valid && diff >= 0 ? (

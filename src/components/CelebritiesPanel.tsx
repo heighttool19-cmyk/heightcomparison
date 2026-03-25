@@ -1,11 +1,11 @@
 'use client';
 
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import Image from 'next/image';
-import { Search, Plus } from 'lucide-react';
+import { Search, Plus, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Celebrity, CelebrityCategory, Person } from '../types';
-import { celebrities } from '../data/celebrities';
+import { getCelebrities } from '../data/celebrities';
 import { FilterTabs } from './ui/FilterTabs';
 import { PanelHeader } from './ui/PanelHeader';
 import { PanelListItem } from './ui/PanelListItem';
@@ -15,13 +15,32 @@ interface CelebritiesPanelProps {
     onClose: () => void;
 }
 
-const DYNAMIC_CATEGORIES = ['All', ...Array.from(new Set(celebrities.map(c => c.category)))];
-
 export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson, onClose }) => {
+    const [celebrities, setCelebrities] = useState<Celebrity[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
     const [activeCategory, setActiveCategory] = useState<'All' | CelebrityCategory>('All');
     const [visibleCount, setVisibleCount] = useState(30);
-    const [prevFilterKey, setPrevFilterKey] = useState(`${searchQuery}|${activeCategory}`);
+    const [prevFilterKey, setPrevFilterKey] = useState('');
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const data = await getCelebrities();
+                setCelebrities(data);
+            } catch (error) {
+                console.error('Failed to load celebrities:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadData();
+    }, []);
+
+    const DYNAMIC_CATEGORIES = useMemo(() => {
+        if (celebrities.length === 0) return ['All'];
+        return ['All', ...Array.from(new Set(celebrities.map(c => c.category)))];
+    }, [celebrities]);
 
     const filterKey = `${searchQuery}|${activeCategory}`;
     if (prevFilterKey !== filterKey) {
@@ -54,7 +73,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
         }
 
         return filtered;
-    }, [searchQuery, activeCategory]);
+    }, [celebrities, searchQuery, activeCategory]);
 
     // Grouping by Category (only if "All" is selected or grouping within a specific category)
     // Only group the sliced visible items to prevent massive rendering delays
@@ -81,10 +100,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
     }, [visibleCount, filteredCelebrities.length]);
 
     const handleAdd = (celeb: Celebrity) => {
-        // Generate ID outside the object literal to be cleaner
-        // eslint-disable-next-line react-hooks/purity
         const timestamp = Date.now();
-        // eslint-disable-next-line react-hooks/purity
         const rand = Math.random().toString(36).substr(2, 9);
         const newId = `person-${timestamp}-${rand}`;
 
@@ -92,11 +108,10 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
             id: newId,
             name: celeb.name,
             heightCm: celeb.heightCm,
-            gender: 'other', // fallback
+            gender: 'other', 
             color: celeb.color || '#3B82F6',
             imgUrl: celeb.imgUrl
         });
-        // Optional: Trigger a toast here if needed
     };
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -135,7 +150,13 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
 
             {/* 3. List Area */}
             <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6 custom-scrollbar" onScroll={handleScroll}>
-                <AnimatePresence mode="popLayout">
+                {isLoading ? (
+                    <div className="flex flex-col items-center justify-center py-20 gap-3">
+                        <Loader2 className="animate-spin text-accent" size={32} />
+                        <p className="text-muted text-sm font-medium">Loading celebrities...</p>
+                    </div>
+                ) : (
+                    <AnimatePresence mode="popLayout">
                     {Object.keys(groupedCelebrities).length === 0 ? (
                         <motion.div
                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -185,7 +206,8 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                             </motion.div>
                         ))
                     )}
-                </AnimatePresence>
+                    </AnimatePresence>
+                )}
             </div>
 
             {/* 4. Fixed CTA Bottom */}

@@ -268,11 +268,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         }
     }, [persons.length, canvasHeight, handleAutoScale]);
 
-    const handleAddPerson = (person: Person) => {
+    const handleAddPerson = useCallback((person: Person) => {
         storeAddPerson(person);
-    };
+    }, [storeAddPerson]);
 
-    const handleAddEntity = (entity: Entity) => {
+    const handleAddEntity = useCallback((entity: Entity) => {
         const uniqueId = `${entity.id}-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`;
         const newPerson: Person = {
             id: uniqueId,
@@ -285,7 +285,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         };
         storeAddPerson(newPerson);
         triggerToast(`${entity.name} added`);
-    };
+    }, [storeAddPerson]);
 
     const handleRemovePerson = useCallback((id: string) => {
         storeRemovePerson(id);
@@ -294,7 +294,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         }
     }, [storeRemovePerson, persons.length]);
 
-    const handleReorderPerson = (id: string, direction: 'up' | 'down') => {
+    const handleReorderPerson = useCallback((id: string, direction: 'up' | 'down') => {
         const index = persons.findIndex(p => p.id === id);
         if (index === -1) return;
 
@@ -307,19 +307,19 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             newPersons[newIndex] = temp;
             storeSetPersons(newPersons);
         }
-    };
+    }, [persons, storeSetPersons]);
 
-    const handleClearAll = () => {
+    const handleClearAll = useCallback(() => {
         if (persons.length === 0) return;
         setIsConfirmingClear(true);
-    };
+    }, [persons.length]);
 
-    const confirmClearAll = () => {
+    const confirmClearAll = useCallback(() => {
         storeSetPersons([]);
         setState(s => ({ ...s, zoom: 1.0 }));
         triggerToast('Chart cleared');
         setIsConfirmingClear(false);
-    };
+    }, [storeSetPersons]);
 
     const handleUpdatePersonHeight = useCallback((id: string, newHeightCm: number) => {
         const clamped = Math.min(400, Math.max(50, newHeightCm));
@@ -338,7 +338,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         }
     }, [setEditingPersonId, setActivePanel, setIsSidebarCollapsed, setIsMobileDrawerOpen]);
 
-    const handleEditSave = (updatedPerson: Person) => {
+    const handleEditSave = useCallback((updatedPerson: Person) => {
         storeUpdatePerson(updatedPerson.id, updatedPerson);
         const tempPersons = persons.map(p => p.id === updatedPerson.id ? updatedPerson : p);
         const guardedZoom = applyAutoZoomGuard(tempPersons, canvasHeight, state.zoom, MAX_ZOOM);
@@ -348,15 +348,15 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         if (typeof window !== 'undefined' && window.innerWidth < 768) {
             setIsMobileDrawerOpen(false);
         }
-    };
+    }, [storeUpdatePerson, persons, canvasHeight, state.zoom, MAX_ZOOM]);
 
-    const handleEditCancel = () => {
+    const handleEditCancel = useCallback(() => {
         setActivePanel('ADD_PERSON');
         setEditingPersonId(null);
-    };
+    }, []);
 
     // --- 1. The Share Handler ---
-    const handleShare = async () => {
+    const handleShare = useCallback(async () => {
         try {
             // Minify data before compressing
             const minifiedData = {
@@ -379,7 +379,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             console.error('Failed to copy', err);
             triggerToast('Failed to copy link');
         }
-    };
+    }, [unitSystem, state.zoom, persons]);
 
     // --- 2. URL Hash Encoding Sync ---
     useEffect(() => {
@@ -470,7 +470,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         setIsHydrated(true);
     }, [storeSetPersons, readOnly]);
 
-    const handleDownloadPNG = async () => {
+    const handleDownloadPNG = useCallback(async () => {
         if (!containerRef.current) return;
         try {
             setIsCapturing(true);
@@ -528,7 +528,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             setIsCapturing(false);
             document.body.classList.remove('is-capturing');
         }
-    };
+    }, [theme]);
 
     const scale = useMemo(() => {
         if (canvasHeight === 0) return 0;

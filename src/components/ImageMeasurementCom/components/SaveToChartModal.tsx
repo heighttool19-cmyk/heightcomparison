@@ -68,8 +68,9 @@ export const SaveToChartModal: React.FC<SaveToChartModalProps> = ({
 
                     <div className="space-y-4">
                         <div className="space-y-2">
-                            <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Custom Name</label>
+                            <label htmlFor="custom-name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Custom Name</label>
                             <input
+                                id="custom-name"
                                 type="text"
                                 placeholder="e.g. My Door, Office Chair"
                                 value={name}

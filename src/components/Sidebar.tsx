@@ -40,9 +40,10 @@ interface SidebarProps {
     highlight?: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEntity, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel, onAddEntityExport, isCapturing, onEditRequest, onReorder, highlight }) => {
+const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAdd, onAddEntity, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel, onAddEntityExport, isCapturing, onEditRequest, onReorder, highlight }) => {
     return (
         <aside className="w-full h-full flex flex-col bg-transparent">
+            {/* ... component content ... */}
             <div className={`flex flex-col h-full overflow-y-auto custom-scrollbar ${activePanel === 'CELEBRITIES' || activePanel === 'FICTIONAL' || activePanel === 'ENTITIES' ? '' : 'p-5 gap-6'}`}>
                 <AnimatePresence mode="popLayout" initial={false}>
                     {activePanel === 'ADD_PERSON' && (
@@ -145,7 +146,7 @@ const Sidebar: React.FC<SidebarProps> = ({ persons, personCount, onAdd, onAddEnt
             </div>
         </aside>
     );
-};
+});
 
 export default Sidebar;
 
