@@ -28,6 +28,7 @@ const NAVIGATION: NavItem[] = [
         children: [
             { label: 'Child Height Calculator', href: '/child-height-calculator', id: 'child-height-calculator' },
             { label: 'Height Weight Percentile Calculator', href: '/height-weight-percentile-calculator', id: 'height-weight-percentile-calculator' },
+            { label: 'Ideal Body Weight Calculator', href: '/ideal-body-weight-calculator', id: 'ideal-body-weight-calculator' },
             { label: 'Height Difference Calculator', href: '/height-difference-calculator', id: 'height-difference-calculator' },
             { label: 'Image to Height', href: '/image-to-height', id: 'image-to-height' },
         ]
