@@ -530,12 +530,12 @@ export default function IdealBodyWeightPage() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-accent font-semibold hover:underline"
-                                > CDC growth charts </a>
+                                > CDC growth charts </a>and
                                 <a href='https://www.who.int/tools/child-growth-standards'
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-accent font-semibold hover:underline"
-                                >and WHO Child Growth Standards</a> are the reference standards for pediatric growth assessment. A child&apos;s IBW is typically taken as the weight corresponding to the 50th percentile for their height on the appropriate growth chart.
+                                >  WHO Child Growth Standards</a> are the reference standards for pediatric growth assessment. A child&apos;s IBW is typically taken as the weight corresponding to the 50th percentile for their height on the appropriate growth chart.
                             </p>
                             <p className="text-muted leading-relaxed">
                                 The calculator switches to this growth-chart method automatically when an age under 18 is entered. The result appears as a weight range rather than a single figure. For pediatric weight concerns, always work with a pediatrician. Growth tracking across multiple visits is more informative than any single measurement.
