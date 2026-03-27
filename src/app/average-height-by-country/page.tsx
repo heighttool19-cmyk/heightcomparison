@@ -7,6 +7,224 @@ import Link from 'next/link';
 import { useThemeStore, useUnitStore } from '@/store';
 import Navbar from '@/components/Navbar';
 
+// --- Shared Constants & Visual Data ---
+const BLUE = "#1A56DB", TEAL = "#0694A2", AMBER = "#B45309", RED = "#C81E1E";
+
+const TOP10 = [
+    { name: "Netherlands", flag: "🇳🇱", male: 183.8, female: 170.4 },
+    { name: "Montenegro", flag: "🇲🇪", male: 183.3, female: 170.0 },
+    { name: "Estonia", flag: "🇪🇪", male: 182.8, female: 168.7 },
+    { name: "Bosnia", flag: "🇧🇦", male: 182.5, female: 167.5 },
+    { name: "Iceland", flag: "🇮🇸", male: 182.1, female: 168.9 },
+    { name: "Denmark", flag: "🇩🇰", male: 181.9, female: 169.5 },
+    { name: "Czechia", flag: "🇨🇿", male: 181.2, female: 168.0 },
+    { name: "Latvia", flag: "🇱🇻", male: 181.2, female: 168.8 },
+    { name: "Slovakia", flag: "🇸🇰", male: 181.0, female: 167.1 },
+    { name: "Ukraine", flag: "🇺🇦", male: 181.0, female: 166.6 },
+];
+
+const BOT10 = [
+    { name: "Timor-Leste", flag: "🇹🇱", male: 159.8, female: 152.3 },
+    { name: "Laos", flag: "🇱🇦", male: 162.0, female: 153.0 },
+    { name: "Guatemala", flag: "🇬🇹", male: 163.4, female: 149.4 },
+    { name: "Nepal", flag: "🇳🇵", male: 163.0, female: 150.9 },
+    { name: "Bangladesh", flag: "🇧🇩", male: 163.0, female: 152.1 },
+    { name: "Philippines", flag: "🇵🇭", male: 163.2, female: 149.6 },
+    { name: "Indonesia", flag: "🇮🇩", male: 163.6, female: 152.8 },
+    { name: "Sri Lanka", flag: "🇱🇰", male: 166.0, female: 153.0 },
+    { name: "India", flag: "🇮🇳", male: 166.5, female: 152.6 },
+    { name: "Pakistan", flag: "🇵🇰", male: 166.9, female: 154.2 },
+];
+
+const MVF = [
+    { n: "Netherlands", f: "🇳🇱", m: 183.8, w: 170.4 },
+    { n: "Denmark", f: "🇩🇰", m: 181.9, w: 169.5 },
+    { n: "Germany", f: "🇩🇪", m: 180.3, w: 166.2 },
+    { n: "USA", f: "🇺🇸", m: 176.9, w: 163.3 },
+    { n: "Iran", f: "🇮🇷", m: 175.6, w: 161.2 },
+    { n: "S. Korea", f: "🇰🇷", m: 175.5, w: 163.2 },
+    { n: "Japan", f: "🇯🇵", m: 170.8, w: 158.0 },
+    { n: "India", f: "🇮🇳", m: 166.5, w: 152.6 },
+    { n: "Bangladesh", f: "🇧🇩", m: 163.0, w: 152.1 },
+    { n: "Guatemala", f: "🇬🇹", m: 163.4, w: 149.4 },
+];
+
+const REGIONS = [
+    { name: "Northern Europe", avg: 181, color: "#1A56DB", ex: "Netherlands, Denmark, Norway" },
+    { name: "Eastern Europe", avg: 179, color: "#2563EB", ex: "Serbia, Ukraine, Poland" },
+    { name: "W. Europe", avg: 178, color: "#3B82F6", ex: "Germany, France, UK" },
+    { name: "N. America / Oceania", avg: 178, color: "#60A5FA", ex: "Canada, USA, Australia" },
+    { name: "Middle East", avg: 175, color: "#7DD3FC", ex: "Iran, Turkey" },
+    { name: "East Asia", avg: 173, color: "#86EFAC", ex: "China, South Korea, Japan" },
+    { name: "Latin America", avg: 169, color: "#FCD34D", ex: "Brazil, Mexico" },
+    { name: "South/SE Asia", avg: 164, color: "#FB923C", ex: "India, Indonesia, Nepal" },
+    { name: "Central America", avg: 162, color: "#EF4444", ex: "Guatemala, Honduras" },
+];
+
+const BELL_CONFIG = {
+    Male: {
+        mean: 171, sd: 7, color: BLUE, bandColor: "#7DD3FC",
+        label: "global male population",
+        pctLabel: "68% of men fall within ±1 standard deviation",
+        bands: [
+            { col: BLUE, label: "68% of men — within ±1σ (≈164–178 cm)" },
+            { col: "#7DD3FC", label: "95% of men — within ±2σ (≈157–185 cm)" },
+        ]
+    },
+    Female: {
+        mean: 159, sd: 6, color: TEAL, bandColor: "#99F6E4",
+        label: "global female population",
+        pctLabel: "68% of women fall within ±1 standard deviation",
+        bands: [
+            { col: TEAL, label: "68% of women — within ±1σ (≈153–165 cm)" },
+            { col: "#99F6E4", label: "95% of women — within ±2σ (≈147–171 cm)" },
+        ]
+    }
+} as const;
+
+// --- Helper Visual Components ---
+function Bars({ items, color, label }: { items: { n: string, f: string, v: number }[], color: string, label: string }) {
+    const vals = items.map(d => d.v);
+    const max = Math.max(...vals), min = Math.min(...vals), range = max - min;
+    return (
+        <div className="w-full min-w-[300px]">
+            {label && <p className="mb-2 text-[11px] text-muted uppercase tracking-[0.1em] font-bold">{label}</p>}
+            <div className="flex flex-col gap-2">
+                {items.map(d => {
+                    const pct = range > 0 ? ((d.v - min) / range) * 65 + 22 : 55;
+                    return (
+                        <div key={d.n} className="flex items-center gap-2.5">
+                            <div className="w-[115px] text-[11px] text-foreground text-right shrink-0">{d.f} {d.n}</div>
+                            <div className="flex-1 bg-border rounded-full h-2.5 overflow-hidden">
+                                <div style={{ height: "100%", width: `${pct}%`, background: color, borderRadius: 99 }} />
+                            </div>
+                            <div className="w-[55px] text-[11px] text-foreground">{d.v} cm</div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    );
+}
+
+function GroupedChart({ data, title }: { data: { n: string, f: string, m: number, w: number }[], title: string }) {
+    const W = 540, H = 240, pL = 26, pR = 14, pT = 14, pB = 48, plotW = W - pL - pR, plotH = H - pT - pB;
+    const minV = 145, maxV = 188, toY = (v: number) => pT + plotH - ((v - minV) / (maxV - minV)) * plotH;
+    const gW = plotW / data.length, bW = gW * 0.30, gap = gW * 0.04;
+    const yTicks = [150, 155, 160, 165, 170, 175, 180, 185];
+    return (
+        <div className="w-full min-w-[500px] mb-2">
+            {title && <p className="mb-2 text-[11px] text-muted uppercase tracking-[0.1em] font-bold">{title}</p>}
+            <svg viewBox={`0 0 ${W} ${H}`} className="w-full block">
+                {yTicks.map(t => (
+                    <g key={t}>
+                        <line x1={pL} y1={toY(t)} x2={pL + plotW} y2={toY(t)} stroke="var(--border)" strokeWidth="1" />
+                        <text x={pL - 3} y={toY(t) + 4} textAnchor="end" fontSize="8" fill="var(--muted)">{t}</text>
+                    </g>
+                ))}
+                {data.map((c, i) => {
+                    const cx = pL + i * gW + gW / 2;
+                    return (
+                        <g key={c.n}>
+                            <rect x={cx - bW - gap / 2} y={toY(c.m)} width={bW} height={toY(minV) - toY(c.m)} fill={BLUE} rx="3" opacity="0.88" />
+                            <rect x={cx + gap / 2} y={toY(c.w)} width={bW} height={toY(minV) - toY(c.w)} fill={TEAL} rx="3" opacity="0.88" />
+                            <text x={cx - bW / 2 - gap / 2} y={toY(c.m) - 3} textAnchor="middle" fontSize="7" fill={BLUE}>{c.m}</text>
+                            <text x={cx + bW / 2 + gap / 2} y={toY(c.w) - 3} textAnchor="middle" fontSize="7" fill={TEAL}>{c.w}</text>
+                            <text x={cx} y={pT + plotH + 12} textAnchor="middle" fontSize="8.5" fill="var(--foreground)">{c.f}</text>
+                            <text x={cx} y={pT + plotH + 23} textAnchor="middle" fontSize="7.5" fill="var(--foreground)">{c.n}</text>
+                        </g>
+                    );
+                })}
+                <line x1={pL} y1={pT} x2={pL} y2={pT + plotH} stroke="var(--border)" strokeWidth="1.2" />
+                <line x1={pL} y1={pT + plotH} x2={pL + plotW} y2={pT + plotH} stroke="var(--border)" strokeWidth="1.2" />
+                <rect x={pL + plotW - 78} y={pT + 2} width={9} height={9} fill={BLUE} rx="2" />
+                <text x={pL + plotW - 66} y={pT + 10} fontSize="9" fill="var(--foreground)">Male</text>
+                <rect x={pL + plotW - 34} y={pT + 2} width={9} height={9} fill={TEAL} rx="2" />
+                <text x={pL + plotW - 22} y={pT + 10} fontSize="9" fill="var(--foreground)">Female</text>
+            </svg>
+        </div>
+    );
+}
+
+function BellCurve({ mean, sd, color, bandColor, label, pctLabel }: any) {
+    const W = 520, H = 175, pL = 40, pR = 18, pT = 18, pB = 40;
+    const minX = mean - 3.5 * sd, maxX = mean + 3.5 * sd;
+    const gauss = (x: number) => Math.exp(-0.5 * ((x - mean) / sd) ** 2) / (sd * Math.sqrt(2 * Math.PI));
+    const peak = gauss(mean);
+    const plotW = W - pL - pR, plotH = H - pT - pB;
+    const toX = (v: number) => pL + ((v - minX) / (maxX - minX)) * plotW;
+    const toY = (p: number) => pT + plotH - (p / peak) * plotH * 0.84;
+    const pts = [];
+    for (let x = minX; x <= maxX; x += 0.5) pts.push({ x, y: gauss(x) });
+    const line = pts.map((p, i) => `${i === 0 ? "M" : "L"}${toX(p.x).toFixed(1)},${toY(p.y).toFixed(1)}`).join(" ");
+    const band = (lo: number, hi: number, col: string, op: number) => {
+        const b = []; for (let x = lo; x <= hi; x += 0.5) b.push([toX(x).toFixed(1), toY(gauss(x)).toFixed(1)]);
+        if (!b.length) return null;
+        const d = b.map(([x, y], i) => `${i === 0 ? "M" : "L"}${x},${y}`).join(" ") + ` L${toX(hi)},${toY(0)} L${toX(lo)},${toY(0)} Z`;
+        return <path d={d} fill={col} opacity={op} />;
+    };
+    const ticks = [mean - 3 * sd, mean - 2 * sd, mean - sd, mean, mean + sd, mean + 2 * sd, mean + 3 * sd];
+    return (
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full min-w-[500px] block">
+            {band(mean - sd, mean + sd, color, 0.13)}
+            {band(mean - 2 * sd, mean - sd, bandColor, 0.1)}
+            {band(mean + sd, mean + 2 * sd, bandColor, 0.1)}
+            <path d={line} fill="none" stroke={color} strokeWidth="2.2" />
+            <line x1={toX(mean)} y1={pT} x2={toX(mean)} y2={pT + plotH} stroke={color} strokeWidth="1.2" strokeDasharray="4,3" opacity="0.5" />
+            <text x={toX(mean)} y={pT - 4} textAnchor="middle" fontSize="9.5" fill={color} fontWeight="700">Global avg ≈ {mean} cm</text>
+            {ticks.map(t => <text key={t} x={toX(t)} y={pT + plotH + 13} textAnchor="middle" fontSize="8.5" fill="var(--muted)">{Math.round(t)}</text>)}
+            <line x1={pL} y1={pT + plotH} x2={pL + plotW} y2={pT + plotH} stroke="var(--border)" strokeWidth="1.2" />
+            <text x={pL + plotW / 2} y={H - 2} textAnchor="middle" fontSize="9" fill="var(--muted)">Height (cm) — {label}</text>
+            <text x={toX(mean)} y={toY(gauss(mean)) + 28} textAnchor="middle" fontSize="9.5" fill={color} fontWeight="700">{pctLabel}</text>
+            <text x={toX(mean - sd) - 2} y={pT + plotH + 26} textAnchor="middle" fontSize="8" fill="var(--muted)">−1σ</text>
+            <text x={toX(mean + sd) + 2} y={pT + plotH + 26} textAnchor="middle" fontSize="8" fill="var(--muted)">+1σ</text>
+        </svg>
+    );
+}
+
+function RegionMap() {
+    return (
+        <div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-4">
+                {REGIONS.map(r => (
+                    <div key={r.name} style={{ background: `${r.color}18`, borderColor: `${r.color}40` }} className="rounded-xl p-3 border-[1.5px]">
+                        <div className="flex items-center gap-1.5 mb-1">
+                            <div style={{ background: r.color }} className="w-2.5 h-2.5 rounded-full shrink-0" />
+                            <span className="text-[10px] font-bold text-foreground uppercase tracking-wider">{r.name}</span>
+                        </div>
+                        <div style={{ color: r.color }} className="text-base font-black">{r.avg} cm</div>
+                        <div className="text-[10px] text-muted mt-0.5">{r.ex}</div>
+                    </div>
+                ))}
+            </div>
+            <p className="mb-1 text-[10px] text-muted uppercase tracking-[0.1em] font-bold">Colour scale — average male height by region</p>
+            <div className="flex h-3 rounded-md overflow-hidden">
+                {["#1A56DB", "#2563EB", "#3B82F6", "#60A5FA", "#7DD3FC", "#86EFAC", "#FCD34D", "#FB923C", "#EF4444"].map(c => <div key={c} className="flex-1" style={{ background: c }} />)}
+            </div>
+            <div className="flex justify-between mt-1">
+                <span className="text-[9.5px] text-muted">180+ cm (tallest)</span>
+                <span className="text-[9.5px] text-muted">≤162 cm (shortest)</span>
+            </div>
+            <p className="mt-3 text-[11.5px] text-muted leading-relaxed">
+                Global height varies significantly across regions. Northern European countries such as the Netherlands consistently rank among the tallest populations, while some South Asian and Central American countries have shorter averages due to differences in genetics, nutrition, and socioeconomic conditions.            </p>
+        </div>
+    );
+}
+
+function Tabs({ options, active, onChange }: { options: string[], active: string, onChange: (val: string) => void }) {
+    return (
+        <div className="flex gap-2 mb-4 flex-wrap">
+            {options.map(o => (
+                <button key={o} onClick={() => onChange(o)}
+                    className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border-2 ${active === o ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>
+                    {o}
+                </button>
+            ))}
+        </div>
+    );
+}
+
+
 // --- TOC Data ---
 const tocItems = [
     { id: 'average-height-by-country', label: 'Average Height by Country' },
@@ -128,6 +346,18 @@ export default function page() {
     // Table State
     const [searchQuery, setSearchQuery] = useState('');
     const [sortConfig, setSortConfig] = useState<{ key: keyof typeof heightData[0] | null, direction: 'asc' | 'desc' }>({ key: 'rank', direction: 'asc' });
+
+    // Visual Component States
+    const [tallTab, setTallTab] = useState("Men");
+    const [shortTab, setShortTab] = useState("Men");
+    const [mvfView, setMvfView] = useState("Tallest vs Shortest");
+    const [bellSex, setBellSex] = useState<"Male" | "Female">("Male");
+
+    const maleTop10 = TOP10.map(c => ({ n: c.name, f: c.flag, v: c.male }));
+    const femTop10 = TOP10.map(c => ({ n: c.name, f: c.flag, v: c.female }));
+    const maleBot10 = BOT10.map(c => ({ n: c.name, f: c.flag, v: c.male }));
+    const femBot10 = BOT10.map(c => ({ n: c.name, f: c.flag, v: c.female }));
+    const regionBars = REGIONS.map(r => ({ n: r.name, f: "", v: r.avg }));
 
     // Sync Theme
     useEffect(() => {
@@ -372,9 +602,18 @@ export default function page() {
                         <section id="tallest-countries-in-the-world" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Tallest Countries in the World</h2>
 
-                            {/* PLACEHOLDER: BISWA'S VISUAL */}
-                            <div className="bg-bg border border-border border-dashed p-12 rounded-2xl flex items-center justify-center text-muted/50 my-6">
-                                [Visual: Dual horizontal bar chart — top 10 tallest nations, male and female, with sex toggle]
+                            <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm my-6 overflow-x-auto">
+                                <Tabs options={["Men", "Women"]} active={tallTab} onChange={setTallTab} />
+                                <Bars
+                                    items={tallTab === "Men" ? maleTop10 : femTop10}
+                                    color={tallTab === "Men" ? BLUE : TEAL}
+                                    label={`Top 10 tallest nations — ${tallTab === "Men" ? "Average male" : "Average female"} height (cm)`}
+                                />
+                                <p className="mt-4 text-[11.5px] text-muted leading-relaxed">
+                                    {tallTab === "Men"
+                                        ? "Dutch men average 183.8 cm, the highest recorded national average globally. Eight of the top ten tallest nations for men are European."
+                                        : "Dutch and Montenegrin women average 170.4 cm and 170.0 cm respectively — the tallest female populations on record. Latvia and Estonia follow closely."}
+                                </p>
                             </div>
 
                             <p className="text-muted leading-relaxed">
@@ -391,9 +630,18 @@ export default function page() {
                         <section id="shortest-countries-in-the-world" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Shortest Countries in the World</h2>
 
-                            {/* PLACEHOLDER: BISWA'S VISUAL */}
-                            <div className="bg-bg border border-border border-dashed p-12 rounded-2xl flex items-center justify-center text-muted/50 my-6">
-                                [Visual: Dual horizontal bar chart — 10 shortest nations, male and female, with sex toggle]
+                            <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm my-6 overflow-x-auto">
+                                <Tabs options={["Men", "Women"]} active={shortTab} onChange={setShortTab} />
+                                <Bars
+                                    items={shortTab === "Men" ? maleBot10 : femBot10}
+                                    color={shortTab === "Men" ? AMBER : RED}
+                                    label={`10 shortest nations — ${shortTab === "Men" ? "Average male" : "Average female"} height (cm)`}
+                                />
+                                <p className="mt-4 text-[11.5px] text-muted leading-relaxed">
+                                    {shortTab === "Men"
+                                        ? "Timor-Leste men average 159.8 cm, the shortest male average of any tracked nation. Six of the ten shortest countries for men are in South or Southeast Asia."
+                                        : "Guatemalan and Filipino women average around 149 cm, the lowest female averages in the Americas and Southeast Asia respectively."}
+                                </p>
                             </div>
 
                             <p className="text-muted leading-relaxed">
@@ -410,9 +658,14 @@ export default function page() {
                         <section id="tallest-and-shortest-countries-by-average-height" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Tallest and Shortest Countries by Average Height</h2>
 
-                            {/* PLACEHOLDER: BISWA'S VISUAL */}
-                            <div className="bg-bg border border-border border-dashed p-12 rounded-2xl flex items-center justify-center text-muted/50 my-6">
-                                [Visual: Grouped bar chart — 10 countries spanning the full global height range, male and female bars side by side]
+                            <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm my-6 overflow-x-auto">
+                                <Tabs options={["Tallest vs Shortest", "Top 10 tallest", "Bottom 10 shortest"]} active={mvfView} onChange={setMvfView} />
+                                {mvfView === "Tallest vs Shortest" && <GroupedChart data={MVF} title="10 countries spanning the full global height range — male (blue) and female (teal)" />}
+                                {mvfView === "Top 10 tallest" && <GroupedChart data={TOP10.map(c => ({ n: c.name, f: c.flag, m: c.male, w: c.female }))} title="Top 10 tallest nations — male vs female" />}
+                                {mvfView === "Bottom 10 shortest" && <GroupedChart data={BOT10.map(c => ({ n: c.name, f: c.flag, m: c.male, w: c.female }))} title="10 shortest nations — male vs female" />}
+                                <p className="mt-4 text-[11.5px] text-muted leading-relaxed">
+                                    Across all populations, men are taller than women by 12–15 cm. This gap holds consistent regardless of overall height level — it is nearly identical in the Netherlands and in Bangladesh.
+                                </p>
                             </div>
 
                             <p className="text-muted leading-relaxed">
@@ -438,6 +691,15 @@ export default function page() {
                             <p className="text-muted leading-relaxed">
                                 South Korean women at 163.2 cm stand notably taller than Japanese women at 158.0 cm, a gap that has grown over the past half-century. Filipino women average 149.6 cm and Guatemalan women 149.4 cm, the lowest verified female average in the Americas. The average height for women in Japan was around 148 cm in the 1950s and has since climbed by a full ten centimetres, one of the steepest documented rises for any female population.
                             </p>
+                            <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm my-6">
+                                <h3 className="font-bold text-foreground mb-6 uppercase tracking-widest text-xs border-b border-border/50 pb-3">
+                                    Average Male and Female Height — Top 10 Nations
+                                </h3>
+                                <div className="grid lg:grid-cols-2 gap-8 overflow-x-auto">
+                                    <Bars items={maleTop10} color={BLUE} label="Average male height (cm)" />
+                                    <Bars items={femTop10} color={TEAL} label="Average female height (cm)" />
+                                </div>
+                            </div>
                             <div className="bg-accent/10 border-l-4 border-accent p-4 rounded-r-xl mt-4">
                                 <p className="text-sm font-medium text-foreground/80">
                                     Across virtually every population, men are taller than women by 12 to 15 centimetres. This gap holds consistent across very different absolute height ranges, the difference in the Netherlands is roughly the same as in Bangladesh. It reflects hormonal differences during adolescence: testosterone drives a longer growth spurt in males, while earlier oestrogen onset in females closes growth plates sooner. The sex gap is not meaningfully affected by nutrition or economic development.
@@ -540,6 +802,17 @@ export default function page() {
                             <p className="text-muted leading-relaxed">
                                 The chart below shows how male height benchmarks stack up across major world regions, from Northern Europe at the top to Central America at the foot. Country-level data varies within each region.
                             </p>
+
+                            <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm my-6 overflow-x-auto grid grid-cols-1  gap-8">
+                                <div className="mt-8">
+                                    <Bars items={regionBars} color={BLUE} label="Approximate regional average male height (cm)" />
+                                    <p className="mt-3 text-[11.5px] text-muted leading-relaxed">
+                                        Regional figures are weighted averages. Individual countries within each region may sit above or below the band shown. Source: NCD-RisC and World Population Review.
+                                    </p>
+                                </div>
+                                <RegionMap />
+
+                            </div>
                         </section>
 
                         <section id="global-average-height" className="space-y-4 scroll-mt-24">
@@ -573,7 +846,6 @@ export default function page() {
                                 <p className="text-muted leading-relaxed text-sm">
                                     Robert Wadlow of Alton, Illinois remains the tallest person in documented human history at 272 cm (8'11"). His pituitary gland produced unchecked growth hormone from birth, and his height had not yet peaked when he died in 1940 aged 22. The Guinness record for the tallest living man belongs to Turkey's Sultan Kösen at 251 cm (8'3"), whose pituitary tumour was treated surgically, halting further growth.
                                 </p>
-
                             </section>
 
                             <section id="shortest-man-in-the-world" className="space-y-3 scroll-mt-24">
@@ -581,7 +853,6 @@ export default function page() {
                                 <p className="text-muted leading-relaxed text-sm">
                                     Chandra Bahadur Dangi of Nepal, verified by Guinness World Records in 2012, was the shortest adult male ever documented at 54.6 cm (1'9"). He lived to 75, working as a farmer and craftsman. He was measured for the first time by Guinness when already in his seventies, remarkable given the health complications often associated with severe growth disorders.
                                 </p>
-
                             </section>
 
                             <section id="tallest-female-in-the-world" className="space-y-3 scroll-mt-24">
@@ -630,11 +901,29 @@ export default function page() {
                         <section id="human-height-distribution" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Human Height Distribution</h2>
 
-                            {/* PLACEHOLDER: BISWA'S VISUAL */}
-                            <div className="bg-bg border border-border border-dashed p-12 rounded-2xl flex items-center justify-center text-muted/50 my-6">
-                                [Visual: Bell curve — shaded bands at ±1 SD (68%) and ±2 SD (95%), global male average marker at 171 cm]
+                            <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm my-6 overflow-x-auto">
+                                <Tabs options={["Male", "Female"]} active={bellSex} onChange={(val) => setBellSex(val as "Male" | "Female")} />
+                                <BellCurve
+                                    mean={BELL_CONFIG[bellSex].mean} sd={BELL_CONFIG[bellSex].sd}
+                                    color={BELL_CONFIG[bellSex].color} bandColor={BELL_CONFIG[bellSex].bandColor}
+                                    label={BELL_CONFIG[bellSex].label} pctLabel={BELL_CONFIG[bellSex].pctLabel}
+                                />
+                                <div className="flex gap-4 mt-4 flex-wrap">
+                                    {BELL_CONFIG[bellSex].bands.map((b: any) => (
+                                        <div key={b.label} className="flex items-center gap-2">
+                                            <div style={{ background: b.col, borderColor: b.col }} className="w-4 h-4 rounded opacity-35 border" />
+                                            <span className="text-[11.5px] text-muted">{b.label}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                                <p className="mt-3 text-[11.5px] text-muted leading-relaxed">
+                                    The global average male height is approximately 171 cm with a standard deviation of 7 cm. A man at 185 cm sits roughly two standard deviations above the mean — taller than approximately 97.5% of the world's male population.
+                                </p>
                             </div>
 
+                            <p className="pt-2 text-[11px] text-muted leading-relaxed">
+                                <strong className="text-foreground">Data sources:</strong> NCD Risk Factor Collaboration (NCD-RisC), "A century of trends in adult human height," eLife 2016. · World Population Review, Average Height by Country 2026. · World Health Organization (WHO), Global Health Observatory.
+                            </p>
 
                             <p className="text-muted leading-relaxed">
                                 Human height follows a normal distribution. When plotted across a large population, the data forms a near-perfect bell curve, most individuals fall close to the mean, with fewer people at either extreme. Roughly 68% of men fall within one standard deviation of the global mean, approximately 164 to 178 cm. The standard deviation for male height globally is approximately 7 cm. A man at 185 cm sits roughly two standard deviations above the global mean, taller than approximately 97.5% of the world's male population.
