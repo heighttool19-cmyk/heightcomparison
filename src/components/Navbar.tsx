@@ -29,6 +29,7 @@ const NAVIGATION: NavItem[] = [
             { label: 'Child Height Calculator', href: '/child-height-calculator', id: 'child-height-calculator' },
             { label: 'Height Weight Percentile Calculator', href: '/height-weight-percentile-calculator', id: 'height-weight-percentile-calculator' },
             { label: 'Ideal Body Weight Calculator', href: '/ideal-body-weight-calculator', id: 'ideal-body-weight-calculator' },
+            { label: 'Average Height by Country', href: '/average-height-by-country', id: 'average-height-by-country' },
             { label: 'Height Difference Calculator', href: '/height-difference-calculator', id: 'height-difference-calculator' },
             { label: 'Image to Height', href: '/image-to-height', id: 'image-to-height' },
         ]
@@ -129,7 +130,7 @@ const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
                 {/* Unit Toggle (Desktop) */}
                 <button
                     onClick={toggleUnitSystem}
-                    className="hidden md:flex items-center justify-center gap-2 group hover:bg-item-hover px-3 py-2 rounded-xl transition-all border border-border bg-surface w-[85px] sm:w-[130px] shrink-0"
+                    className="hidden md:flex items-center justify-center gap-2 group hover:bg-item-hover px-3 py-2 rounded-xl transition-all border border-border bg-surface w-[130px] sm:w-[180px] shrink-0"
                     title={`Switch to ${unitSystem === 'metric' ? 'Imperial' : 'Metric'}`}
                     aria-label={`Current unit system: ${unitSystem === 'metric' ? 'Metric' : 'Imperial'}. Click to toggle.`}
                 >
