@@ -713,7 +713,7 @@ export default function page() {
                         <section id="average-male-height-by-country" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Average Male Height by Country</h2>
                             <p className="text-muted leading-relaxed">
-                                The average height of a man worldwide is approximately 171 cm (5'7"). This figure masks a wide spread, from Netherlands men at 183.8 cm down to Timor-Leste at 159.8 cm. Northern and Eastern European men are the tallest group globally, averaging 178 to 184 cm. North Americans and Australians sit in the 176 to 179 cm band.
+                                The average height of a man worldwide is approximately 171 cm (5'7"). This figure masks a wide spread, from Dutch  men at 183.8 cm down to Timor-Leste at 159.8 cm. Northern and Eastern European men are the tallest group globally, averaging 178 to 184 cm. North Americans and Australians sit in the 176 to 179 cm band.
                             </p>
                             <p className="text-muted leading-relaxed">
                                 Japan at 170.8 cm sits noticeably shorter than South Korea at 175.5 cm — a gap that has widened as South Korean diets and healthcare improved faster following the 1960s economic boom. Iran at 175.6 cm sits mid-table. India at 166.5 cm and Bangladesh at 163 cm sit at the lower end of the Asian cohort. Guatemala at 163.4 cm and Timor-Leste at 159.8 cm reflect the most severe documented nutritional constraints on record.
@@ -723,7 +723,7 @@ export default function page() {
                         <section id="average-female-height-by-country" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Average Female Height by Country</h2>
                             <p className="text-muted leading-relaxed">
-                                The average height of a woman worldwide is approximately 159 cm (5'3"). Netherlands and Montenegrin women, averaging 170.4 cm and 170.0 cm respectively, are the tallest female populations on record. Russia at 164.5 cm consistently appears in global lists alongside Eastern European countries that make up most of the top ten.
+                                The average height of a woman worldwide is approximately 159 cm (5'3"). Dutch  and Montenegrin women, averaging 170.4 cm and 170.0 cm respectively, are the tallest female populations on record. Russia at 164.5 cm consistently appears in global lists alongside Eastern European countries that make up most of the top ten.
                             </p>
                             <p className="text-muted leading-relaxed">
                                 South Korean women at 163.2 cm stand notably taller than Japanese women at 158.0 cm, a gap that has grown over the past half-century. Filipino women average 149.6 cm and Guatemalan women 149.4 cm, the lowest verified female average in the Americas. The average height for women in Japan was around 148 cm in the 1950s and has since climbed by a full ten centimetres, one of the steepest documented rises for any female population.
