@@ -734,7 +734,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         ref={containerRef}
                         className={`order-1 canvas-export-area flex-1 relative flex flex-col transition-all duration-500 overflow-hidden bg-canvas shadow-2xl ${isFullscreen
                             ? 'm-0 rounded-none w-screen h-screen'
-                            : 'm-4 rounded-[2rem] border border-border/50'
+                            : 'm-4 mb-0 rounded-[2rem] border border-border/50'
                             }`}
                     >
                         {/* Fullscreen Toggle Button (Overlay) */}
