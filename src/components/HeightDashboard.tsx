@@ -238,8 +238,15 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             const availableWidth = personsScrollRef.current?.getBoundingClientRect().width || (mobile ? 300 : 800);
 
             const n = persons.length;
-            const baseBarWidth = mobile ? 48 : 120;
-            const baseGap = mobile ? 2 : 10;
+            // const densityMultiplier = n > 15 ? (mobile ? 3 : 1.05) : 1;
+            // The single-line ternary approach
+            const densityMultiplier = mobile
+                ? (n > 3 ? 1 + (n - 3) * 0.56 : 3)
+                : (n > 15 ? 1.05 : n > 20 ? 1.2 : 1.1);
+            const baseBarWidth = (mobile ? 48 : 120) * densityMultiplier;
+            const baseGap = (mobile ? 2 : 10) * densityMultiplier;
+            // const baseBarWidth = mobile ? 48 : 120;
+            // const baseGap = mobile ? 2 : 10;
             const fixedElements = readOnly ? 40 : (mobile ? 60 : 280);
 
             const totalWidthAtZoom1 = (n * baseBarWidth) + ((n - 1) * baseGap) + fixedElements;

@@ -105,6 +105,21 @@ body {
   background: var(--accent);
 }
 
+/* Specific TOC Scrollbar (Thinner and more subtle) */
+.custom-toc-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.custom-toc-scrollbar::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--foreground) 15%, transparent);
+  border: none;
+}
+
+.custom-toc-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--foreground) 25%, transparent);
+}
+
 .glass-surface {
   background: color-mix(in srgb, var(--surface) 80%, transparent);
   backdrop-filter: blur(12px);

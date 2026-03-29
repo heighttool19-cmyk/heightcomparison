@@ -371,7 +371,7 @@ export default function HeightCalculatorPage() {
                 <a
                     href={`#${item.id}`}
                     onClick={handleLinkClick}
-                    className={`block transition-all duration-300 border-l-2 pl-3 ${isActive ? `${activeColor} font-bold translate-x-1` : 'text-muted hover:text-foreground border-transparent'
+                    className={`block transition-all duration-300 border-l-2 pl-3 whitespace-nowrap ${isActive ? `${activeColor} font-bold translate-x-1` : 'text-muted hover:text-foreground border-transparent'
                         }`}
                 >
                     {item.label}
@@ -393,8 +393,8 @@ export default function HeightCalculatorPage() {
             {/* --- Main Content with Sidebar Grid --- */}
             <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 relative">
                 <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
-                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl">
-                        <h3 className="text-sm font-black uppercase tracking-[0.2em]">Table of Contents</h3>
+                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-auto custom-toc-scrollbar">
+                        <h3 className="text-sm font-black uppercase tracking-[0.2em] sticky top-0 bg-surface z-10 pb-2">Table of Contents</h3>
                         <ul className="text-sm font-medium mt-4">
                             {tocItems.map(item => (
                                 <TOCLink key={item.id} item={item} />

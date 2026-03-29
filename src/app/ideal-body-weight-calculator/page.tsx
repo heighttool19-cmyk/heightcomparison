@@ -155,7 +155,7 @@ export default function IdealBodyWeightPage() {
 
         return (
             <li className={`transition-all duration-300 ${isSub ? 'mt-2' : 'mt-3'}`}>
-                <a href={`#${item.id}`} onClick={handleLinkClick} className={`block transition-all duration-300 border-l-2 pl-3 ${isActive ? 'text-accent border-accent font-bold translate-x-1' : 'text-muted hover:text-foreground border-transparent'}`}>
+                <a href={`#${item.id}`} onClick={handleLinkClick} className={`block transition-all duration-300 border-l-2 pl-3 whitespace-nowrap ${isActive ? 'text-accent border-accent font-bold translate-x-1' : 'text-muted hover:text-foreground border-transparent'}`}>
                     {item.label}
                 </a>
                 {item.subItems && (
@@ -228,8 +228,8 @@ export default function IdealBodyWeightPage() {
             <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-4 md:p-8 relative">
                 {/* --- Sidebar TOC --- */}
                 <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
-                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl">
-                        <h3 className="text-sm font-black uppercase tracking-[0.2em]">Table of Contents</h3>
+                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-auto custom-toc-scrollbar">
+                        <h3 className="text-sm font-black uppercase tracking-[0.2em] sticky top-0 bg-surface z-10 pb-2">Table of Contents</h3>
                         <ul className="text-sm font-medium mt-4 table-of-contents">
                             {tocItems.map(item => (
                                 <TOCLink key={item.id} item={item} />
@@ -244,7 +244,7 @@ export default function IdealBodyWeightPage() {
 
                         {/* Intro */}
                         <div className="space-y-6 text-center sm:text-left mt-4">
-                            <h1 id="ideal-body-weight-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
+                            <h1 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
                                 Ideal Body Weight Calculator
                             </h1>
                             <div className="h-1.5 w-24 bg-accent rounded-full mx-auto sm:mx-0" />

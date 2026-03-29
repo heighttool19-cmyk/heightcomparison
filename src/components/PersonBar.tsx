@@ -209,23 +209,22 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
             </div>
 
             {/* Silhouette Area - Aligned at 20px baseline - From User Snippet */}
-            <div className="absolute inset-x-0 bottom-[20px] flex flex-col items-center justify-end overflow-visible">
+            <div className=" inset-x-0 bottom-[20px] flex flex-col items-center justify-end overflow-visible">
                 {/* Persistent Top Label - Now inside the baseline container to stay aligned with head */}
                 {showLabels && (
                     <div
-                        className="absolute left-1/2 flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
+                        className=" left-1/2 flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
                         style={{
-                            bottom: zoom < 0.2 ? `${barHeightPx + 5 + (index % 2 === 0 ? 0 : 25)}px` : `${barHeightPx + 5}px`,
+                            // bottom: zoom < 0.2 ? `${barHeightPx + 5 + (index % 2 === 0 ? 0 : 25)}px` : `${barHeightPx + 5}px`,
                             width: 'max-content',
                             maxWidth: `${Math.max(60, effectiveWidth * 2)}px`,
-                            transform: `translateX(-50%) scale(${nameScale})`,
+                            transform: `scale(${nameScale})`,
                             transformOrigin: 'bottom'
                         }}
                     >
                         <span className="text-[0.55em] font-black text-foreground uppercase tracking-wider whitespace-nowrap text-center drop-shadow-md max-w-full px-1"
                             style={{
                                 transform: `scale(${nameScale * 0.9})`,
-                                transformOrigin: 'bottom'
                             }}
                         >
                             {person.name}
