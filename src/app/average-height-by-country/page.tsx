@@ -844,7 +844,6 @@ export default function page() {
 
                         <section id="global-average-height" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Global Average Height</h2>
-                            <RegionMap />
 
                             <div className="grid sm:grid-cols-2 gap-4 my-6">
                                 <div className="bg-bg border border-border p-6 rounded-2xl flex flex-col justify-center text-center">
@@ -858,6 +857,7 @@ export default function page() {
                                     <span className="text-lg font-bold text-accent mt-1">5 ft 3 in</span>
                                 </div>
                             </div>
+                            <RegionMap />
 
                             <p className="text-muted leading-relaxed">
                                 <a href='https://www.who.int/data/gho' target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">The World Health Organization </a> and NCD Risk Factor Collaboration place the global average male height at approximately 171 cm and the global average female height at approximately 159 cm. These weighted figures pull lower than most Western country averages because they account for the large populations of South and Southeast Asia.
@@ -972,9 +972,9 @@ export default function page() {
                                         <tr className="hover:bg-bg/50 transition-colors">
                                             <td className="px-4 py-3">157 cm</td>
                                             <td className="px-4 py-3">164 cm</td>
-                                            <td className="px-4 py-3 font-bold text-foreground">
+                                            <td className="px-4 py-3 font-black text-base text-foreground">
                                                 171 cm
-                                                <span className="block text-[10px] font-sans text-muted font-normal uppercase tracking-wider mt-0.5">Male</span>
+                                                <span className="block text-[10px] font-sans text-muted font-bold uppercase tracking-wider mt-0.5">Male</span>
                                             </td>
                                             <td className="px-4 py-3">178 cm</td>
                                             <td className="px-4 py-3">185 cm</td>
@@ -983,9 +983,9 @@ export default function page() {
                                         <tr className="hover:bg-bg/50 transition-colors">
                                             <td className="px-4 py-3">147 cm</td>
                                             <td className="px-4 py-3">153 cm</td>
-                                            <td className="px-4 py-3 font-bold text-foreground">
+                                            <td className="px-4 py-3 font-black text-base text-foreground">
                                                 159 cm
-                                                <span className="block text-[10px] font-sans text-muted font-normal uppercase tracking-wider mt-0.5">Female</span>
+                                                <span className="block text-[10px] font-sans text-muted font-bold uppercase tracking-wider mt-0.5">Female</span>
                                             </td>
                                             <td className="px-4 py-3">165 cm</td>
                                             <td className="px-4 py-3">171 cm</td>
@@ -995,6 +995,7 @@ export default function page() {
                             </div>
                             <p className="text-xs text-center text-muted mt-2">Global male height distribution · SD ≈ 7 cm </p>
                             <p className="text-xs text-center text-muted mt-2">Global female height distribution · SD ≈ 6 cm </p>
+                            <p className="text-xs text-center text-muted mt-2">Sources : NCD -RisC </p>
                         </section>
 
                         <section id="why-average-height-differs-by-country" className="space-y-4 scroll-mt-24">
