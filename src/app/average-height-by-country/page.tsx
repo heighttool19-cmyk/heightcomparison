@@ -723,7 +723,7 @@ export default function page() {
                         <section id="average-female-height-by-country" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Average Female Height by Country</h2>
                             <p className="text-muted leading-relaxed">
-                                The average height of a woman worldwide is approximately 159 cm (5'3"). Dutch  and Montenegrin women, averaging 170.4 cm and 170.0 cm respectively, are the tallest female populations on record. Russia at 164.5 cm consistently appears in global lists alongside Eastern European countries that make up most of the top ten.
+                                The average height of a woman worldwide is approximately 159 cm (5'3"). Netherlands and Montenegrin women, averaging 170.4 cm and 170.0 cm respectively, are the tallest female populations on record. Russia at 164.5 cm consistently appears in global lists alongside Eastern European countries that make up most of the top ten.
                             </p>
                             <p className="text-muted leading-relaxed">
                                 South Korean women at 163.2 cm stand notably taller than Japanese women at 158.0 cm, a gap that has grown over the past half-century. Filipino women average 149.6 cm and Guatemalan women 149.4 cm, the lowest verified female average in the Americas. The average height for women in Japan was around 148 cm in the 1950s and has since climbed by a full ten centimetres, one of the steepest documented rises for any female population.
@@ -993,7 +993,8 @@ export default function page() {
                                     </tbody>
                                 </table>
                             </div>
-                            <p className="text-xs text-center text-muted mt-2">Global male height distribution · SD ≈ 7 cm · Source: NCD-RisC</p>
+                            <p className="text-xs text-center text-muted mt-2">Global male height distribution · SD ≈ 7 cm </p>
+                            <p className="text-xs text-center text-muted mt-2">Global female height distribution · SD ≈ 6 cm </p>
                         </section>
 
                         <section id="why-average-height-differs-by-country" className="space-y-4 scroll-mt-24">
