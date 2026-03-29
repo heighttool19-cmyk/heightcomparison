@@ -241,7 +241,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             // const densityMultiplier = n > 15 ? (mobile ? 3 : 1.05) : 1;
             // The single-line ternary approach
             const densityMultiplier = mobile
-                ? (n > 3 ? 1 + (n - 3) * 0.56 : 3)
+                ? (n > 3 ? 1 + (n - 3) * 0.56 : 2.65)
                 : (n > 15 ? 1.05 : n > 20 ? 1.2 : 1.1);
             const baseBarWidth = (mobile ? 48 : 120) * densityMultiplier;
             const baseGap = (mobile ? 2 : 10) * densityMultiplier;
