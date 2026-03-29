@@ -972,7 +972,7 @@ export default function page() {
                                         <tr className="hover:bg-bg/50 transition-colors">
                                             <td className="px-4 py-3">157 cm</td>
                                             <td className="px-4 py-3">164 cm</td>
-                                            <td className="px-4 py-3 font-black text-base text-foreground">
+                                            <td className="px-4 py-3 font-black text-lg text-accent">
                                                 171 cm
                                                 <span className="block text-[10px] font-sans text-muted font-bold uppercase tracking-wider mt-0.5">Male</span>
                                             </td>
@@ -983,7 +983,7 @@ export default function page() {
                                         <tr className="hover:bg-bg/50 transition-colors">
                                             <td className="px-4 py-3">147 cm</td>
                                             <td className="px-4 py-3">153 cm</td>
-                                            <td className="px-4 py-3 font-black text-base text-foreground">
+                                            <td className="px-4 py-3 font-black text-lg text-accent">
                                                 159 cm
                                                 <span className="block text-[10px] font-sans text-muted font-bold uppercase tracking-wider mt-0.5">Female</span>
                                             </td>

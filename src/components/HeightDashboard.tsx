@@ -92,9 +92,15 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         }
     }, []);
 
-    useEffect(() => {
+    React.useEffect(() => {
+        const updateHeight = () => {
+            const h = window.innerHeight;
+            const mobile = window.innerWidth < 768;
+            setCanvasHeight(mobile ? h - 180 : h - 250); // Use more height on mobile
+        };
         const handleFullscreenChange = () => {
             setIsFullscreen(!!document.fullscreenElement);
+            updateHeight();
         };
         document.addEventListener('fullscreenchange', handleFullscreenChange);
         return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
@@ -232,15 +238,16 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             const availableWidth = personsScrollRef.current?.getBoundingClientRect().width || (mobile ? 300 : 800);
 
             const n = persons.length;
-            const baseBarWidth = mobile ? 90 : 120;
-            const baseGap = 12;
-            const fixedElements = readOnly ? 56 : (mobile ? 200 : 300);
+            const baseBarWidth = mobile ? 48 : 120;
+            const baseGap = mobile ? 2 : 10;
+            const fixedElements = readOnly ? 40 : (mobile ? 60 : 280);
 
             const totalWidthAtZoom1 = (n * baseBarWidth) + ((n - 1) * baseGap) + fixedElements;
             const horizontalZoom = availableWidth / totalWidthAtZoom1;
 
             const heights = persons.map(p => p.heightCm);
             const maxHeightCm = Math.max(1, ...heights);
+            const totalHeight = maxHeightCm * 1.05; // Tight buffer to maximize figure size
             const fitScale = (canvasHeight - 120) / maxHeightCm;
             if (fitScale <= 0) return;
             const verticalZoom = (canvasHeight * 0.75) / (maxHeightCm * fitScale);
@@ -787,7 +794,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 onScroll={() => syncScroll('persons')}
                             >
                                 <div
-                                    className="relative min-w-max flex items-end pr-24 md:pr-48"
+                                    className="relative min-w-max flex items-end pr-8 md:pr-48"
                                     style={{ height: requiredCanvasHeight }}
                                 >
                                     <Ruler
@@ -800,9 +807,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     />
                                     <AnimatePresence mode="popLayout" initial={false}>
                                         <div
-                                            className="flex flex-nowrap items-end h-full w-max mt-auto pl-6 sm:pl-14"
+                                            className="flex flex-nowrap items-end h-full w-max mt-auto pl-1 sm:pl-14"
                                             style={{
-                                                gap: `${Math.max(6, Math.round(18 * state.zoom))}px`,
+                                                gap: `${Math.max(2, Math.round(18 * state.zoom))}px`,
                                                 transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
                                             }}
                                         >
@@ -836,7 +843,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                         }}
                                                         className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
                                                     >
-                                                        <UserPlus size={24} />
+                                                        <UserPlus size={16} />
                                                     </button>
                                                 </div>
                                             )}
@@ -947,9 +954,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 <div className="sm:hidden fixed bottom-6 right-6 z-40">
                     <button
                         onClick={() => setIsMobileDrawerOpen(true)}
-                        className="w-14 h-14 bg-accent hover:bg-accent-secondary rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all"
+                        className="w-12 h-12 bg-accent hover:bg-accent-secondary rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all"
                     >
-                        <Plus size={24} strokeWidth={3} />
+                        <Plus size={18} strokeWidth={3} />
                     </button>
                 </div>
             )}

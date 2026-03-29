@@ -112,8 +112,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
     // Safely cap hover and label heights so they don't clip off the top of the canvas
     const safeCanvasHeight = canvasHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);
-    const labelBottomRaw = barHeightPx + 28;
-    const tooltipBottomRaw = barHeightPx + 25;
+    const labelBottomRaw = barHeightPx + 10;
+    const tooltipBottomRaw = barHeightPx + 8;
 
     // We add some buffer from the top of the canvas (150px for toolbars/padding)
     const maxLabelBottom = safeCanvasHeight - 100;
@@ -147,30 +147,6 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
             }}
         >
             {/* Persistent Top Label - Hidden at very low zoom to prevent overlap */}
-            {showLabels && (
-                <div
-                    className="absolute left-1/2 flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
-                    style={{
-                        bottom: zoom < 0.2 ? `${labelBottom + (index % 2 === 0 ? 0 : 35)}px` : `${labelBottom}px`,
-                        width: 'max-content',
-                        maxWidth: `${Math.max(50, effectiveWidth * 1.8)}px`,
-                        transform: `translateX(-50%) scale(${nameScale})`,
-                        transformOrigin: 'bottom'
-                    }}
-                >
-                    <span className="text-[0.55em] font-bold  text-foreground uppercase tracking-wider whitespace-nowrap text-center drop-shadow-sm  max-w-full px-1"
-                        style={{
-                            transform: `scale(${nameScale * 0.8})`,
-                            transformOrigin: 'bottom'
-                        }}
-                    >
-                        {person.name}
-                    </span>
-                    <span className="text-[9px] sm:text-[10px] font-bold text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/40 backdrop-blur-sm rounded px-1 text-center">
-                        {unitSystem === 'metric' ? metricDisplayShort : `${ftDisplayShort} ft`}
-                    </span>
-                </div>
-            )}
 
             {/* Hover Detail Card - Appears on hover/tap (Current Style) */}
             <div
@@ -234,6 +210,32 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
             {/* Silhouette Area - Aligned at 20px baseline - From User Snippet */}
             <div className="absolute inset-x-0 bottom-[20px] flex flex-col items-center justify-end overflow-visible">
+                {/* Persistent Top Label - Now inside the baseline container to stay aligned with head */}
+                {showLabels && (
+                    <div
+                        className="absolute left-1/2 flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
+                        style={{
+                            bottom: zoom < 0.2 ? `${barHeightPx + 5 + (index % 2 === 0 ? 0 : 25)}px` : `${barHeightPx + 5}px`,
+                            width: 'max-content',
+                            maxWidth: `${Math.max(60, effectiveWidth * 2)}px`,
+                            transform: `translateX(-50%) scale(${nameScale})`,
+                            transformOrigin: 'bottom'
+                        }}
+                    >
+                        <span className="text-[0.55em] font-black text-foreground uppercase tracking-wider whitespace-nowrap text-center drop-shadow-md max-w-full px-1"
+                            style={{
+                                transform: `scale(${nameScale * 0.9})`,
+                                transformOrigin: 'bottom'
+                            }}
+                        >
+                            {person.name}
+                        </span>
+                        <span className="text-[9px] sm:text-[10px] font-black text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/60 backdrop-blur-sm rounded-sm px-1 text-center shadow-sm">
+                            {unitSystem === 'metric' ? metricDisplayShort : `${ftDisplayShort} ft`}
+                        </span>
+                    </div>
+                )}
+
                 {/* Indicator Line - Neon Line at Height Boundary */}
                 <motion.div
                     animate={{ width: containerWidth * 0.7, bottom: barHeightPx }}
