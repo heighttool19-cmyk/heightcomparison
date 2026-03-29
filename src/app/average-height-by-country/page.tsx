@@ -6,47 +6,48 @@ import { ChevronDown, HelpCircle, ArrowUpCircle, Search, ArrowUpDown } from 'luc
 import Link from 'next/link';
 import { useThemeStore, useUnitStore } from '@/store';
 import Navbar from '@/components/Navbar';
+import ReactCountryFlag from "react-country-flag";
 
 // --- Shared Constants & Visual Data ---
 const BLUE = "#1A56DB", TEAL = "#0694A2", AMBER = "#B45309", RED = "#C81E1E";
 
 const TOP10 = [
-    { name: "Netherlands", flag: "🇳🇱", male: 183.8, female: 170.4 },
-    { name: "Montenegro", flag: "🇲🇪", male: 183.3, female: 170.0 },
-    { name: "Estonia", flag: "🇪🇪", male: 182.8, female: 168.7 },
-    { name: "Bosnia", flag: "🇧🇦", male: 182.5, female: 167.5 },
-    { name: "Iceland", flag: "🇮🇸", male: 182.1, female: 168.9 },
-    { name: "Denmark", flag: "🇩🇰", male: 181.9, female: 169.5 },
-    { name: "Czechia", flag: "🇨🇿", male: 181.2, female: 168.0 },
-    { name: "Latvia", flag: "🇱🇻", male: 181.2, female: 168.8 },
-    { name: "Slovakia", flag: "🇸🇰", male: 181.0, female: 167.1 },
-    { name: "Ukraine", flag: "🇺🇦", male: 181.0, female: 166.6 },
+    { name: "Netherlands", code: "NL", male: 183.8, female: 170.4 },
+    { name: "Montenegro", code: "ME", male: 183.3, female: 170.0 },
+    { name: "Estonia", code: "EE", male: 182.8, female: 168.7 },
+    { name: "Bosnia", code: "BA", male: 182.5, female: 167.5 },
+    { name: "Iceland", code: "IS", male: 182.1, female: 168.9 },
+    { name: "Denmark", code: "DK", male: 181.9, female: 169.5 },
+    { name: "Czechia", code: "CZ", male: 181.2, female: 168.0 },
+    { name: "Latvia", code: "LV", male: 181.2, female: 168.8 },
+    { name: "Slovakia", code: "SK", male: 181.0, female: 167.1 },
+    { name: "Ukraine", code: "UA", male: 181.0, female: 166.6 },
 ];
 
 const BOT10 = [
-    { name: "Timor-Leste", flag: "🇹🇱", male: 159.8, female: 152.3 },
-    { name: "Laos", flag: "🇱🇦", male: 162.0, female: 153.0 },
-    { name: "Guatemala", flag: "🇬🇹", male: 163.4, female: 149.4 },
-    { name: "Nepal", flag: "🇳🇵", male: 163.0, female: 150.9 },
-    { name: "Bangladesh", flag: "🇧🇩", male: 163.0, female: 152.1 },
-    { name: "Philippines", flag: "🇵🇭", male: 163.2, female: 149.6 },
-    { name: "Indonesia", flag: "🇮🇩", male: 163.6, female: 152.8 },
-    { name: "Sri Lanka", flag: "🇱🇰", male: 166.0, female: 153.0 },
-    { name: "India", flag: "🇮🇳", male: 166.5, female: 152.6 },
-    { name: "Pakistan", flag: "🇵🇰", male: 166.9, female: 154.2 },
+    { name: "Timor-Leste", code: "TL", male: 159.8, female: 152.3 },
+    { name: "Laos", code: "LA", male: 162.0, female: 153.0 },
+    { name: "Guatemala", code: "GT", male: 163.4, female: 149.4 },
+    { name: "Nepal", code: "NP", male: 163.0, female: 150.9 },
+    { name: "Bangladesh", code: "BD", male: 163.0, female: 152.1 },
+    { name: "Philippines", code: "PH", male: 163.2, female: 149.6 },
+    { name: "Indonesia", code: "ID", male: 163.6, female: 152.8 },
+    { name: "Sri Lanka", code: "LK", male: 166.0, female: 153.0 },
+    { name: "India", code: "IN", male: 166.5, female: 152.6 },
+    { name: "Pakistan", code: "PK", male: 166.9, female: 154.2 },
 ];
 
 const MVF = [
-    { n: "Netherlands", f: "🇳🇱", m: 183.8, w: 170.4 },
-    { n: "Denmark", f: "🇩🇰", m: 181.9, w: 169.5 },
-    { n: "Germany", f: "🇩🇪", m: 180.3, w: 166.2 },
-    { n: "USA", f: "🇺🇸", m: 176.9, w: 163.3 },
-    { n: "Iran", f: "🇮🇷", m: 175.6, w: 161.2 },
-    { n: "S. Korea", f: "🇰🇷", m: 175.5, w: 163.2 },
-    { n: "Japan", f: "🇯🇵", m: 170.8, w: 158.0 },
-    { n: "India", f: "🇮🇳", m: 166.5, w: 152.6 },
-    { n: "Bangladesh", f: "🇧🇩", m: 163.0, w: 152.1 },
-    { n: "Guatemala", f: "🇬🇹", m: 163.4, w: 149.4 },
+    { n: "Netherlands", code: "NL", m: 183.8, w: 170.4 },
+    { n: "Denmark", code: "DK", m: 181.9, w: 169.5 },
+    { n: "Germany", code: "DE", m: 180.3, w: 166.2 },
+    { n: "USA", code: "US", m: 176.9, w: 163.3 },
+    { n: "Iran", code: "IR", m: 175.6, w: 161.2 },
+    { n: "S. Korea", code: "KR", m: 175.5, w: 163.2 },
+    { n: "Japan", code: "JP", m: 170.8, w: 158.0 },
+    { n: "India", code: "IN", m: 166.5, w: 152.6 },
+    { n: "Bangladesh", code: "BD", m: 163.0, w: 152.1 },
+    { n: "Guatemala", code: "GT", m: 163.4, w: 149.4 },
 ];
 
 const REGIONS = [
@@ -83,7 +84,7 @@ const BELL_CONFIG = {
 } as const;
 
 // --- Helper Visual Components ---
-function Bars({ items, color, label }: { items: { n: string, f: string, v: number }[], color: string, label: string }) {
+function Bars({ items, color, label }: { items: { n: string, code: string, v: number }[], color: string, label: string }) {
     const vals = items.map(d => d.v);
     const max = Math.max(...vals), min = Math.min(...vals), range = max - min;
     return (
@@ -94,7 +95,12 @@ function Bars({ items, color, label }: { items: { n: string, f: string, v: numbe
                     const pct = range > 0 ? ((d.v - min) / range) * 65 + 22 : 55;
                     return (
                         <div key={d.n} className="flex items-center gap-2.5">
-                            <div className="w-[115px] text-[11px] text-foreground text-right shrink-0">{d.f} {d.n}</div>
+                            <div className="w-[115px] text-[11px] text-foreground text-right shrink-0 flex items-center justify-end gap-2">
+                                {d.code && (
+                                    <ReactCountryFlag countryCode={d.code} svg style={{ width: '1.2em', height: '1.2em' }} title={d.n} />
+                                )}
+                                {d.n}
+                            </div>
                             <div className="flex-1 bg-border rounded-full h-2.5 overflow-hidden">
                                 <div style={{ height: "100%", width: `${pct}%`, background: color, borderRadius: 99 }} />
                             </div>
@@ -107,7 +113,7 @@ function Bars({ items, color, label }: { items: { n: string, f: string, v: numbe
     );
 }
 
-function GroupedChart({ data, title }: { data: { n: string, f: string, m: number, w: number }[], title: string }) {
+function GroupedChart({ data, title }: { data: { n: string, code: string, m: number, w: number }[], title: string }) {
     const W = 540, H = 240, pL = 26, pR = 14, pT = 14, pB = 48, plotW = W - pL - pR, plotH = H - pT - pB;
     const minV = 145, maxV = 188, toY = (v: number) => pT + plotH - ((v - minV) / (maxV - minV)) * plotH;
     const gW = plotW / data.length, bW = gW * 0.30, gap = gW * 0.04;
@@ -130,7 +136,7 @@ function GroupedChart({ data, title }: { data: { n: string, f: string, m: number
                             <rect x={cx + gap / 2} y={toY(c.w)} width={bW} height={toY(minV) - toY(c.w)} fill={TEAL} rx="3" opacity="0.88" />
                             <text x={cx - bW / 2 - gap / 2} y={toY(c.m) - 3} textAnchor="middle" fontSize="7" fill={BLUE}>{c.m}</text>
                             <text x={cx + bW / 2 + gap / 2} y={toY(c.w) - 3} textAnchor="middle" fontSize="7" fill={TEAL}>{c.w}</text>
-                            <text x={cx} y={pT + plotH + 12} textAnchor="middle" fontSize="8.5" fill="var(--foreground)">{c.f}</text>
+                            <text x={cx} y={pT + plotH + 12} textAnchor="middle" fontSize="8.5" fill="var(--foreground)">{c.code}</text>
                             <text x={cx} y={pT + plotH + 23} textAnchor="middle" fontSize="7.5" fill="var(--foreground)">{c.n}</text>
                         </g>
                     );
@@ -205,8 +211,6 @@ function RegionMap() {
                 <span className="text-[9.5px] text-muted">180+ cm (tallest)</span>
                 <span className="text-[9.5px] text-muted">≤162 cm (shortest)</span>
             </div>
-            <p className="mt-3 text-[11.5px] text-muted leading-relaxed">
-                Global height varies significantly across regions. Northern European countries such as the Netherlands consistently rank among the tallest populations, while some South Asian and Central American countries have shorter averages due to differences in genetics, nutrition, and socioeconomic conditions.            </p>
         </div>
     );
 }
@@ -265,12 +269,12 @@ const QA = [
     {
         id: "average-height-for-a-woman-worldwide",
         q: "What is an average height for a woman worldwide?",
-        a: "The global average height for adult women is approximately 159 cm (5'3\"). Dutch and Montenegrin women average around 170 cm. Women in Guatemala and the Philippines average closer to 149 to 150 cm. Most women in Western countries fall between 162 and 168 cm."
+        a: "The global average height for adult women is approximately 159 cm (5'3\"). Netherlands and Montenegrin women average around 170 cm. Women in Guatemala and the Philippines average closer to 149 to 150 cm. Most women in Western countries fall between 162 and 168 cm."
     },
     {
         id: "which-country-has-the-tallest-people",
         q: "Which country has the tallest people?",
-        a: "The Netherlands holds the top spot for both men and women in most recent datasets. Dutch men average 183.8 cm (approximately 6'0\") and Dutch women average 170.4 cm (5'7\"). Montenegro and Estonia follow closely. The Netherlands has held this position for several decades, attributed to dairy-rich diets, strong public health infrastructure, and genetic factors in the population."
+        a: "The Netherlands holds the top spot for both men and women in most recent datasets. Netherlands men average 183.8 cm (approximately 6'0\") and Netherlands women average 170.4 cm (5'7\"). Montenegro and Estonia follow closely. The Netherlands has held this position for several decades, attributed to dairy-rich diets, strong public health infrastructure, and genetic factors in the population."
     },
     {
         id: "has-average-human-height-been-increasing-over-time",
@@ -286,52 +290,52 @@ const QA = [
 
 // --- Global Height Table Data ---
 const heightData = [
-    { rank: 1, flag: '🇳🇱', name: 'Netherlands', maleCm: 183.8, femaleCm: 170.4 },
-    { rank: 2, flag: '🇲🇪', name: 'Montenegro', maleCm: 183.3, femaleCm: 170 },
-    { rank: 3, flag: '🇪🇪', name: 'Estonia', maleCm: 182.8, femaleCm: 168.7 },
-    { rank: 4, flag: '🇧🇦', name: 'Bosnia & Herz.', maleCm: 182.5, femaleCm: 167.5 },
-    { rank: 5, flag: '🇮🇸', name: 'Iceland', maleCm: 182.1, femaleCm: 168.9 },
-    { rank: 6, flag: '🇩🇰', name: 'Denmark', maleCm: 181.9, femaleCm: 169.5 },
-    { rank: 7, flag: '🇨🇿', name: 'Czechia', maleCm: 181.2, femaleCm: 168 },
-    { rank: 8, flag: '🇱🇻', name: 'Latvia', maleCm: 181.2, femaleCm: 168.8 },
-    { rank: 9, flag: '🇸🇰', name: 'Slovakia', maleCm: 181, femaleCm: 167.1 },
-    { rank: 10, flag: '🇺🇦', name: 'Ukraine', maleCm: 181, femaleCm: 166.6 },
-    { rank: 11, flag: '🇭🇷', name: 'Croatia', maleCm: 180.8, femaleCm: 166.8 },
-    { rank: 12, flag: '🇷🇸', name: 'Serbia', maleCm: 180.7, femaleCm: 168.3 },
-    { rank: 13, flag: '🇱🇹', name: 'Lithuania', maleCm: 180.7, femaleCm: 167.6 },
-    { rank: 14, flag: '🇵🇱', name: 'Poland', maleCm: 180.7, femaleCm: 165.8 },
-    { rank: 15, flag: '🇫🇮', name: 'Finland', maleCm: 180.6, femaleCm: 166.5 },
-    { rank: 16, flag: '🇳🇴', name: 'Norway', maleCm: 180.5, femaleCm: 166.5 },
-    { rank: 17, flag: '🇸🇪', name: 'Sweden', maleCm: 180.5, femaleCm: 166.7 },
-    { rank: 18, flag: '🇩🇪', name: 'Germany', maleCm: 180.3, femaleCm: 166.2 },
-    { rank: 19, flag: '🇬🇷', name: 'Greece', maleCm: 179.3, femaleCm: 165.8 },
-    { rank: 20, flag: '🇧🇪', name: 'Belgium', maleCm: 179.1, femaleCm: 163.4 },
-    { rank: 21, flag: '🇮🇪', name: 'Ireland', maleCm: 179, femaleCm: 164.5 },
-    { rank: 22, flag: '🇦🇺', name: 'Australia', maleCm: 178.8, femaleCm: 164.7 },
-    { rank: 23, flag: '🇨🇦', name: 'Canada', maleCm: 178.8, femaleCm: 164.7 },
-    { rank: 24, flag: '🇫🇷', name: 'France', maleCm: 178.6, femaleCm: 164.5 },
-    { rank: 25, flag: '🇬🇧', name: 'United Kingdom', maleCm: 178.2, femaleCm: 163.9 },
-    { rank: 26, flag: '🇳🇿', name: 'New Zealand', maleCm: 177.7, femaleCm: 164.7 },
-    { rank: 27, flag: '🇷🇺', name: 'Russia', maleCm: 176.7, femaleCm: 164.5 },
-    { rank: 28, flag: '🇺🇸', name: 'USA', maleCm: 176.9, femaleCm: 163.3 },
-    { rank: 29, flag: '🇹🇷', name: 'Turkey', maleCm: 176.4, femaleCm: 161.8 },
-    { rank: 30, flag: '🇪🇸', name: 'Spain', maleCm: 176.1, femaleCm: 162 },
-    { rank: 31, flag: '🇧🇷', name: 'Brazil', maleCm: 175.7, femaleCm: 162.4 },
-    { rank: 32, flag: '🇨🇳', name: 'China', maleCm: 175.7, femaleCm: 163.5 },
-    { rank: 33, flag: '🇮🇷', name: 'Iran', maleCm: 175.6, femaleCm: 161.2 },
-    { rank: 34, flag: '🇰🇷', name: 'South Korea', maleCm: 175.5, femaleCm: 163.2 },
-    { rank: 35, flag: '🇯🇵', name: 'Japan', maleCm: 170.8, femaleCm: 158 },
-    { rank: 36, flag: '🇲🇽', name: 'Mexico', maleCm: 169, femaleCm: 158 },
-    { rank: 37, flag: '🇮🇳', name: 'India', maleCm: 166.5, femaleCm: 152.6 },
-    { rank: 38, flag: '🇱🇰', name: 'Sri Lanka', maleCm: 166, femaleCm: 153 },
-    { rank: 39, flag: '🇵🇰', name: 'Pakistan', maleCm: 166.9, femaleCm: 154.2 },
-    { rank: 40, flag: '🇮🇩', name: 'Indonesia', maleCm: 163.6, femaleCm: 152.8 },
-    { rank: 41, flag: '🇵🇭', name: 'Philippines', maleCm: 163.2, femaleCm: 149.6 },
-    { rank: 42, flag: '🇧🇩', name: 'Bangladesh', maleCm: 163, femaleCm: 152.1 },
-    { rank: 43, flag: '🇳🇵', name: 'Nepal', maleCm: 163, femaleCm: 150.9 },
-    { rank: 44, flag: '🇬🇹', name: 'Guatemala', maleCm: 163.4, femaleCm: 149.4 },
-    { rank: 45, flag: '🇱🇦', name: 'Laos', maleCm: 162, femaleCm: 153 },
-    { rank: 46, flag: '🇹🇱', name: 'Timor-Leste', maleCm: 159.8, femaleCm: 152.3 }
+    { rank: 1, flag: 'NL', name: 'Netherlands', maleCm: 183.8, femaleCm: 170.4 },
+    { rank: 2, flag: 'ME', name: 'Montenegro', maleCm: 183.3, femaleCm: 170 },
+    { rank: 3, flag: 'EE', name: 'Estonia', maleCm: 182.8, femaleCm: 168.7 },
+    { rank: 4, flag: 'BA', name: 'Bosnia & Herz.', maleCm: 182.5, femaleCm: 167.5 },
+    { rank: 5, flag: 'IS', name: 'Iceland', maleCm: 182.1, femaleCm: 168.9 },
+    { rank: 6, flag: 'DK', name: 'Denmark', maleCm: 181.9, femaleCm: 169.5 },
+    { rank: 7, flag: 'CZ', name: 'Czechia', maleCm: 181.2, femaleCm: 168 },
+    { rank: 8, flag: 'LV', name: 'Latvia', maleCm: 181.2, femaleCm: 168.8 },
+    { rank: 9, flag: 'SK', name: 'Slovakia', maleCm: 181, femaleCm: 167.1 },
+    { rank: 10, flag: 'UA', name: 'Ukraine', maleCm: 181, femaleCm: 166.6 },
+    { rank: 11, flag: 'HR', name: 'Croatia', maleCm: 180.8, femaleCm: 166.8 },
+    { rank: 12, flag: 'RS', name: 'Serbia', maleCm: 180.7, femaleCm: 168.3 },
+    { rank: 13, flag: 'LT', name: 'Lithuania', maleCm: 180.7, femaleCm: 167.6 },
+    { rank: 14, flag: 'PL', name: 'Poland', maleCm: 180.7, femaleCm: 165.8 },
+    { rank: 15, flag: 'FI', name: 'Finland', maleCm: 180.6, femaleCm: 166.5 },
+    { rank: 16, flag: 'NO', name: 'Norway', maleCm: 180.5, femaleCm: 166.5 },
+    { rank: 17, flag: 'SE', name: 'Sweden', maleCm: 180.5, femaleCm: 166.7 },
+    { rank: 18, flag: 'DE', name: 'Germany', maleCm: 180.3, femaleCm: 166.2 },
+    { rank: 19, flag: 'GR', name: 'Greece', maleCm: 179.3, femaleCm: 165.8 },
+    { rank: 20, flag: 'BE', name: 'Belgium', maleCm: 179.1, femaleCm: 163.4 },
+    { rank: 21, flag: 'IE', name: 'Ireland', maleCm: 179, femaleCm: 164.5 },
+    { rank: 22, flag: 'AU', name: 'Australia', maleCm: 178.8, femaleCm: 164.7 },
+    { rank: 23, flag: 'CA', name: 'Canada', maleCm: 178.8, femaleCm: 164.7 },
+    { rank: 24, flag: 'FR', name: 'France', maleCm: 178.6, femaleCm: 164.5 },
+    { rank: 25, flag: 'GB', name: 'United Kingdom', maleCm: 178.2, femaleCm: 163.9 },
+    { rank: 26, flag: 'NZ', name: 'New Zealand', maleCm: 177.7, femaleCm: 164.7 },
+    { rank: 27, flag: 'RU', name: 'Russia', maleCm: 176.7, femaleCm: 164.5 },
+    { rank: 28, flag: 'US', name: 'USA', maleCm: 176.9, femaleCm: 163.3 },
+    { rank: 29, flag: 'TR', name: 'Turkey', maleCm: 176.4, femaleCm: 161.8 },
+    { rank: 30, flag: 'ES', name: 'Spain', maleCm: 176.1, femaleCm: 162 },
+    { rank: 31, flag: 'BR', name: 'Brazil', maleCm: 175.7, femaleCm: 162.4 },
+    { rank: 32, flag: 'CN', name: 'China', maleCm: 175.7, femaleCm: 163.5 },
+    { rank: 33, flag: 'IR', name: 'Iran', maleCm: 175.6, femaleCm: 161.2 },
+    { rank: 34, flag: 'KR', name: 'South Korea', maleCm: 175.5, femaleCm: 163.2 },
+    { rank: 35, flag: 'JP', name: 'Japan', maleCm: 170.8, femaleCm: 158 },
+    { rank: 36, flag: 'MX', name: 'Mexico', maleCm: 169, femaleCm: 158 },
+    { rank: 37, flag: 'IN', name: 'India', maleCm: 166.5, femaleCm: 152.6 },
+    { rank: 38, flag: 'LK', name: 'Sri Lanka', maleCm: 166, femaleCm: 153 },
+    { rank: 39, flag: 'PK', name: 'Pakistan', maleCm: 166.9, femaleCm: 154.2 },
+    { rank: 40, flag: 'ID', name: 'Indonesia', maleCm: 163.6, femaleCm: 152.8 },
+    { rank: 41, flag: 'PH', name: 'Philippines', maleCm: 163.2, femaleCm: 149.6 },
+    { rank: 42, flag: 'BD', name: 'Bangladesh', maleCm: 163, femaleCm: 152.1 },
+    { rank: 43, flag: 'NP', name: 'Nepal', maleCm: 163, femaleCm: 150.9 },
+    { rank: 44, flag: 'GT', name: 'Guatemala', maleCm: 163.4, femaleCm: 149.4 },
+    { rank: 45, flag: 'LA', name: 'Laos', maleCm: 162, femaleCm: 153 },
+    { rank: 46, flag: 'TL', name: 'Timor-Leste', maleCm: 159.8, femaleCm: 152.3 }
 ];
 
 export default function page() {
@@ -353,24 +357,35 @@ export default function page() {
     const [mvfView, setMvfView] = useState("Tallest vs Shortest");
     const [bellSex, setBellSex] = useState<"Male" | "Female">("Male");
 
-    const maleTop10 = TOP10.map(c => ({ n: c.name, f: c.flag, v: c.male }));
-    const femTop10 = TOP10.map(c => ({ n: c.name, f: c.flag, v: c.female }));
-    const maleBot10 = BOT10.map(c => ({ n: c.name, f: c.flag, v: c.male }));
-    const femBot10 = BOT10.map(c => ({ n: c.name, f: c.flag, v: c.female }));
-    const regionBars = REGIONS.map(r => ({ n: r.name, f: "", v: r.avg }));
+    // Top 10 sorted descending (Tallest to Shortest)
+    const maleTop10 = TOP10.map(c => ({ n: c.name, code: c.code, v: c.male })).sort((a, b) => b.v - a.v);
+    const femTop10 = TOP10.map(c => ({ n: c.name, code: c.code, v: c.female })).sort((a, b) => b.v - a.v);
+
+    // Bottom 10 sorted ascending (Shortest to Tallest)
+    const maleBot10 = BOT10.map(c => ({ n: c.name, code: c.code, v: c.male })).sort((a, b) => a.v - b.v);
+    const femBot10 = BOT10.map(c => ({ n: c.name, code: c.code, v: c.female })).sort((a, b) => a.v - b.v);
+    const regionBars = REGIONS.map(r => ({ n: r.name, code: "", v: r.avg }));
 
     // Sync Theme
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    // Intersection Observer for TOC
+    // 1. Keep a persistent reference to the active section so the observer doesn't have to reload
+    const activeSectionRef = useRef(activeSection);
+
+    useEffect(() => {
+        activeSectionRef.current = activeSection;
+    }, [activeSection]);
+
+    // 2. Intersection Observer for Active TOC state & URL Sync
     useEffect(() => {
         const visibleSections = new Map<string, IntersectionObserverEntry>();
         let historyTimeout: NodeJS.Timeout;
 
         const observer = new IntersectionObserver(
             (entries) => {
+                // Ignore observer updates if we are actively scrolling from a click
                 if (isClickScrolling.current) return;
 
                 entries.forEach((entry) => {
@@ -382,45 +397,67 @@ export default function page() {
                 });
 
                 if (visibleSections.size > 0) {
+                    // Find the section closest to the top of the screen
                     let closestSection = '';
-                    let minTop = Infinity;
+                    let minDistance = Infinity;
 
                     visibleSections.forEach((entry, id) => {
                         const topPos = entry.boundingClientRect.top;
-                        if (topPos >= 0 && topPos < minTop) {
-                            minTop = topPos;
+                        // Find the element whose top is closest to 0 (top of viewport)
+                        if (Math.abs(topPos) < minDistance) {
+                            minDistance = Math.abs(topPos);
                             closestSection = id;
                         }
                     });
 
+                    // Fallback
                     if (!closestSection) {
                         closestSection = Array.from(visibleSections.keys())[0];
                     }
 
-                    if (closestSection && closestSection !== activeSection) {
+                    // Compare against the Ref, not the State, to avoid infinite loops
+                    if (closestSection && closestSection !== activeSectionRef.current) {
+                        activeSectionRef.current = closestSection;
                         setActiveSection(closestSection);
 
+                        // DEBOUNCE the heavy URL update
                         clearTimeout(historyTimeout);
                         historyTimeout = setTimeout(() => {
                             if (window.history.replaceState) {
                                 window.history.replaceState(null, '', `#${closestSection}`);
                             }
-                        }, 150);
+                        }, 150); // Waits 150ms after scrolling stops before updating URL
                     }
                 }
             },
-            { rootMargin: '-70px 0px -40% 0px', threshold: 0 }
+            { rootMargin: '-100px 0px -40% 0px', threshold: 0 } // Adjusted for smoother detection
         );
 
-        const headings = document.querySelectorAll('h1[id], h2[id], h3[id], section[id]');
-        headings.forEach((h) => observer.observe(h));
+        // STRICT TARGETING: Recursively extract ONLY valid IDs from tocItems
+        const extractIds = (items: any[]): string[] => {
+            let ids: string[] = [];
+            items.forEach(item => {
+                ids.push(`#${item.id}`);
+                if (item.subItems) {
+                    ids = ids.concat(extractIds(item.subItems));
+                }
+            });
+            return ids;
+        };
+
+        const validSelectors = extractIds(tocItems).join(', ');
+
+        // Brief timeout ensures the DOM is fully rendered before we attach the observer
+        setTimeout(() => {
+            const headings = document.querySelectorAll(validSelectors);
+            headings.forEach((h) => observer.observe(h));
+        }, 100);
 
         return () => {
             observer.disconnect();
-            clearTimeout(historyTimeout);
+            clearTimeout(historyTimeout); // Cleanup
         };
-    }, [activeSection]);
-
+    }, []); // <--- EMPTY ARRAY IS CRITICAL. It forces the observer to load only ONCE.
     const TOCLink = ({ item, isSub = false }: { item: { id: string; label: string; subItems?: { id: string; label: string }[] }, isSub?: boolean }) => {
         const checkActiveRecursive = (node: { id: string; subItems?: { id: string; label: string }[] }): boolean => {
             if (activeSection === node.id) return true;
@@ -576,7 +613,7 @@ export default function page() {
                                                 <tr key={country.name} className="hover:bg-bg/50 transition-colors">
                                                     <td className="px-6 py-4">{country.rank}</td>
                                                     <td className="px-6 py-4 font-bold text-foreground flex items-center gap-2">
-                                                        <span>{country.flag}</span> {country.name}
+                                                        <ReactCountryFlag countryCode={country.flag} svg style={{ width: '1.5em', height: '1.5em' }} title={country.name} /> {country.name}
                                                     </td>
                                                     <td className="px-6 py-4 font-medium text-foreground">
                                                         {unitSystem === 'metric' ? `${country.maleCm} cm` : cmToFtIn(country.maleCm)}
@@ -611,8 +648,8 @@ export default function page() {
                                 />
                                 <p className="mt-4 text-[11.5px] text-muted leading-relaxed">
                                     {tallTab === "Men"
-                                        ? "Dutch men average 183.8 cm, the highest recorded national average globally. Eight of the top ten tallest nations for men are European."
-                                        : "Dutch and Montenegrin women average 170.4 cm and 170.0 cm respectively — the tallest female populations on record. Latvia and Estonia follow closely."}
+                                        ? "Netherlands men average 183.8 cm, the highest recorded national average globally. Eight of the top ten tallest nations for men are European."
+                                        : "Netherlands and Montenegrin women average 170.4 cm and 170.0 cm respectively — the tallest female populations on record. Latvia and Estonia follow closely."}
                                 </p>
                             </div>
 
@@ -661,8 +698,8 @@ export default function page() {
                             <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm my-6 overflow-x-auto">
                                 <Tabs options={["Tallest vs Shortest", "Top 10 tallest", "Bottom 10 shortest"]} active={mvfView} onChange={setMvfView} />
                                 {mvfView === "Tallest vs Shortest" && <GroupedChart data={MVF} title="10 countries spanning the full global height range — male (blue) and female (teal)" />}
-                                {mvfView === "Top 10 tallest" && <GroupedChart data={TOP10.map(c => ({ n: c.name, f: c.flag, m: c.male, w: c.female }))} title="Top 10 tallest nations — male vs female" />}
-                                {mvfView === "Bottom 10 shortest" && <GroupedChart data={BOT10.map(c => ({ n: c.name, f: c.flag, m: c.male, w: c.female }))} title="10 shortest nations — male vs female" />}
+                                {mvfView === "Top 10 tallest" && <GroupedChart data={TOP10.map(c => ({ n: c.name, code: c.code, m: c.male, w: c.female }))} title="Top 10 tallest nations — male vs female" />}
+                                {mvfView === "Bottom 10 shortest" && <GroupedChart data={BOT10.map(c => ({ n: c.name, code: c.code, m: c.male, w: c.female }))} title="10 shortest nations — male vs female" />}
                                 <p className="mt-4 text-[11.5px] text-muted leading-relaxed">
                                     Across all populations, men are taller than women by 12–15 cm. This gap holds consistent regardless of overall height level — it is nearly identical in the Netherlands and in Bangladesh.
                                 </p>
@@ -676,7 +713,7 @@ export default function page() {
                         <section id="average-male-height-by-country" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Average Male Height by Country</h2>
                             <p className="text-muted leading-relaxed">
-                                The average height of a man worldwide is approximately 171 cm (5'7"). This figure masks a wide spread, from Dutch men at 183.8 cm down to Timor-Leste at 159.8 cm. Northern and Eastern European men are the tallest group globally, averaging 178 to 184 cm. North Americans and Australians sit in the 176 to 179 cm band.
+                                The average height of a man worldwide is approximately 171 cm (5'7"). This figure masks a wide spread, from Netherlands men at 183.8 cm down to Timor-Leste at 159.8 cm. Northern and Eastern European men are the tallest group globally, averaging 178 to 184 cm. North Americans and Australians sit in the 176 to 179 cm band.
                             </p>
                             <p className="text-muted leading-relaxed">
                                 Japan at 170.8 cm sits noticeably shorter than South Korea at 175.5 cm — a gap that has widened as South Korean diets and healthcare improved faster following the 1960s economic boom. Iran at 175.6 cm sits mid-table. India at 166.5 cm and Bangladesh at 163 cm sit at the lower end of the Asian cohort. Guatemala at 163.4 cm and Timor-Leste at 159.8 cm reflect the most severe documented nutritional constraints on record.
@@ -686,20 +723,11 @@ export default function page() {
                         <section id="average-female-height-by-country" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Average Female Height by Country</h2>
                             <p className="text-muted leading-relaxed">
-                                The average height of a woman worldwide is approximately 159 cm (5'3"). Dutch and Montenegrin women, averaging 170.4 cm and 170.0 cm respectively, are the tallest female populations on record. Russia at 164.5 cm consistently appears in global lists alongside Eastern European countries that make up most of the top ten.
+                                The average height of a woman worldwide is approximately 159 cm (5'3"). Netherlands and Montenegrin women, averaging 170.4 cm and 170.0 cm respectively, are the tallest female populations on record. Russia at 164.5 cm consistently appears in global lists alongside Eastern European countries that make up most of the top ten.
                             </p>
                             <p className="text-muted leading-relaxed">
                                 South Korean women at 163.2 cm stand notably taller than Japanese women at 158.0 cm, a gap that has grown over the past half-century. Filipino women average 149.6 cm and Guatemalan women 149.4 cm, the lowest verified female average in the Americas. The average height for women in Japan was around 148 cm in the 1950s and has since climbed by a full ten centimetres, one of the steepest documented rises for any female population.
                             </p>
-                            <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm my-6">
-                                <h3 className="font-bold text-foreground mb-6 uppercase tracking-widest text-xs border-b border-border/50 pb-3">
-                                    Average Male and Female Height — Top 10 Nations
-                                </h3>
-                                <div className="grid lg:grid-cols-2 gap-8 overflow-x-auto">
-                                    <Bars items={maleTop10} color={BLUE} label="Average male height (cm)" />
-                                    <Bars items={femTop10} color={TEAL} label="Average female height (cm)" />
-                                </div>
-                            </div>
                             <div className="bg-accent/10 border-l-4 border-accent p-4 rounded-r-xl mt-4">
                                 <p className="text-sm font-medium text-foreground/80">
                                     Across virtually every population, men are taller than women by 12 to 15 centimetres. This gap holds consistent across very different absolute height ranges, the difference in the Netherlands is roughly the same as in Bangladesh. It reflects hormonal differences during adolescence: testosterone drives a longer growth spurt in males, while earlier oestrogen onset in females closes growth plates sooner. The sex gap is not meaningfully affected by nutrition or economic development.
@@ -712,84 +740,84 @@ export default function page() {
                             <div className="grid md:grid-cols-1 gap-4">
                                 {/* Country Card 1 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">Netherlands</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="NL" svg style={{ width: '1.2em', height: '1.2em' }} title="Netherlands" /> Netherlands</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">183.8 cm (6'0")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">170.4 cm (5'7")</span></div>
-                                    <p className="text-sm text-muted">Dutch men have topped global rankings for decades. Dairy-rich diets and universal healthcare drive the result.</p>
+                                    <p className="text-sm text-muted">Netherlands men have topped global rankings for decades. Dairy-rich diets and universal healthcare drive the result.</p>
                                 </div>
                                 {/* Country Card 2 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">United Kingdom</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="GB" svg style={{ width: '1.2em', height: '1.2em' }} title="United Kingdom" /> United Kingdom</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">178.2 cm (5'10")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">163.9 cm (5'5")</span></div>
                                     <p className="text-sm text-muted">UK sits mid-table in Europe. Heights vary by region — northern England and Scotland tend to average slightly taller.</p>
                                 </div>
                                 {/* Country Card 3 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">Japan</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="JP" svg style={{ width: '1.2em', height: '1.2em' }} title="Japan" /> Japan</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">170.8 cm (5'7")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">158.0 cm (5'2")</span></div>
                                     <p className="text-sm text-muted">Japanese heights have risen sharply since the 1950s. South Korean men at 175.5 cm have since overtaken their Japanese neighbours.</p>
                                 </div>
                                 {/* Country Card 4 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">Bangladesh</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="BD" svg style={{ width: '1.2em', height: '1.2em' }} title="Bangladesh" /> Bangladesh</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">163.0 cm (5'4")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">152.1 cm (4'12")</span></div>
                                     <p className="text-sm text-muted">High rates of childhood malnutrition have historically limited growth. Urban populations show modest gains over recent decades.</p>
                                 </div>
                                 {/* Country Card 5 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">Iran</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="IR" svg style={{ width: '1.2em', height: '1.2em' }} title="Iran" /> Iran</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">175.6 cm (5'9")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">161.2 cm (5'3")</span></div>
                                     <p className="text-sm text-muted">One of the fastest documented rises in the Middle East — average male height has increased an estimated 5 to 6 cm over 40 years.</p>
                                 </div>
                                 {/* Country Card 6 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">Canada</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="CA" svg style={{ width: '1.2em', height: '1.2em' }} title="Canada" /> Canada</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">178.8 cm (5'10")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">164.7 cm (5'5")</span></div>
                                     <p className="text-sm text-muted">Canada's figures mirror Australia's closely, reflecting a well-nourished, high-income population profile. Growth has plateaued since the 1990s.</p>
                                 </div>
                                 {/* Country Card 7 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">Ireland</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="IE" svg style={{ width: '1.2em', height: '1.2em' }} title="Ireland" /> Ireland</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">179.0 cm (5'10")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">164.5 cm (5'5")</span></div>
                                     <p className="text-sm text-muted">Ireland sits in the upper quarter of European rankings. Heights have risen steadily since the mid-20th century.</p>
                                 </div>
                                 {/* Country Card 8 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">Sri Lanka</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="LK" svg style={{ width: '1.2em', height: '1.2em' }} title="Sri Lanka" /> Sri Lanka</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">166.0 cm (5'5")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">153.0 cm (5'0")</span></div>
                                     <p className="text-sm text-muted">Urban populations in Colombo show measurable height gains over two generations. Rural areas have lagged due to food insecurity.</p>
                                 </div>
                                 {/* Country Card 9 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">South Korea</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="KR" svg style={{ width: '1.2em', height: '1.2em' }} title="South Korea" /> South Korea</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">175.5 cm (5'9")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">163.2 cm (5'4")</span></div>
                                     <p className="text-sm text-muted">One of the largest documented generational height increases ever recorded — men gained around 6 cm across two generations post-war.</p>
                                 </div>
                                 {/* Country Card 10 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">India</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="IN" svg style={{ width: '1.2em', height: '1.2em' }} title="India" /> India</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">166.5 cm (5'5")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">152.6 cm (5'0")</span></div>
                                     <p className="text-sm text-muted">India's national average masks large regional variation. Men in Punjab average around 172 to 174 cm. Urban areas show consistent gains.</p>
                                 </div>
                                 {/* Country Card 11 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">USA</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="US" svg style={{ width: '1.2em', height: '1.2em' }} title="USA" /> USA</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">176.9 cm (5'10")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">163.3 cm (5'4")</span></div>
                                     <p className="text-sm text-muted">The US was once third tallest globally. It now sits around 47th for men, reflecting diet quality diverging from European peers after the 1970s.</p>
                                 </div>
                                 {/* Country Card 12 */}
                                 <div className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-colors shadow-sm">
-                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2">Denmark</h3>
+                                    <h3 className="font-black text-lg text-foreground mb-3 border-b border-border/50 pb-2 flex items-center gap-2"><ReactCountryFlag countryCode="DK" svg style={{ width: '1.2em', height: '1.2em' }} title="Denmark" /> Denmark</h3>
                                     <div className="flex justify-between text-sm mb-1"><span className="text-muted font-bold uppercase tracking-wider">Male</span><span className="font-bold text-foreground">181.9 cm (5'11")</span></div>
                                     <div className="flex justify-between text-sm mb-3"><span className="text-muted font-bold uppercase tracking-wider">Female</span><span className="font-bold text-foreground">169.5 cm (5'7")</span></div>
                                     <p className="text-sm text-muted">Denmark consistently ranks in the global top five. Strong public healthcare and high dairy consumption from early childhood contribute.</p>
@@ -810,13 +838,13 @@ export default function page() {
                                         Regional figures are weighted averages. Individual countries within each region may sit above or below the band shown. Source: NCD-RisC and World Population Review.
                                     </p>
                                 </div>
-                                <RegionMap />
 
                             </div>
                         </section>
 
                         <section id="global-average-height" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Global Average Height</h2>
+                            <RegionMap />
 
                             <div className="grid sm:grid-cols-2 gap-4 my-6">
                                 <div className="bg-bg border border-border p-6 rounded-2xl flex flex-col justify-center text-center">
@@ -846,6 +874,7 @@ export default function page() {
                                 <p className="text-muted leading-relaxed text-sm">
                                     Robert Wadlow of Alton, Illinois remains the tallest person in documented human history at 272 cm (8'11"). His pituitary gland produced unchecked growth hormone from birth, and his height had not yet peaked when he died in 1940 aged 22. The Guinness record for the tallest living man belongs to Turkey's Sultan Kösen at 251 cm (8'3"), whose pituitary tumour was treated surgically, halting further growth.
                                 </p>
+
                             </section>
 
                             <section id="shortest-man-in-the-world" className="space-y-3 scroll-mt-24">
@@ -853,6 +882,7 @@ export default function page() {
                                 <p className="text-muted leading-relaxed text-sm">
                                     Chandra Bahadur Dangi of Nepal, verified by Guinness World Records in 2012, was the shortest adult male ever documented at 54.6 cm (1'9"). He lived to 75, working as a farmer and craftsman. He was measured for the first time by Guinness when already in his seventies, remarkable given the health complications often associated with severe growth disorders.
                                 </p>
+
                             </section>
 
                             <section id="tallest-female-in-the-world" className="space-y-3 scroll-mt-24">
@@ -916,14 +946,8 @@ export default function page() {
                                         </div>
                                     ))}
                                 </div>
-                                <p className="mt-3 text-[11.5px] text-muted leading-relaxed">
-                                    The global average male height is approximately 171 cm with a standard deviation of 7 cm. A man at 185 cm sits roughly two standard deviations above the mean — taller than approximately 97.5% of the world's male population.
-                                </p>
                             </div>
 
-                            <p className="pt-2 text-[11px] text-muted leading-relaxed">
-                                <strong className="text-foreground">Data sources:</strong> NCD Risk Factor Collaboration (NCD-RisC), "A century of trends in adult human height," eLife 2016. · World Population Review, Average Height by Country 2026. · World Health Organization (WHO), Global Health Observatory.
-                            </p>
 
                             <p className="text-muted leading-relaxed">
                                 Human height follows a normal distribution. When plotted across a large population, the data forms a near-perfect bell curve, most individuals fall close to the mean, with fewer people at either extreme. Roughly 68% of men fall within one standard deviation of the global mean, approximately 164 to 178 cm. The standard deviation for male height globally is approximately 7 cm. A man at 185 cm sits roughly two standard deviations above the global mean, taller than approximately 97.5% of the world's male population.
@@ -936,24 +960,35 @@ export default function page() {
                                 <table className="w-full text-sm text-center">
                                     <thead className="bg-bg border-b border-border text-foreground font-bold">
                                         <tr>
-                                            <th className="px-4 py-3">171 cm (global avg)</th>
-                                            <th className="px-4 py-3">−1 SD</th>
-                                            <th className="px-4 py-3">+1 SD</th>
                                             <th className="px-4 py-3">−2 SD</th>
+                                            <th className="px-4 py-3">−1 SD</th>
+                                            <th className="px-4 py-3">Global Avg</th>
+                                            <th className="px-4 py-3">+1 SD</th>
                                             <th className="px-4 py-3">+2 SD</th>
-                                            <th className="px-4 py-3">68%</th>
-                                            <th className="px-4 py-3">95%</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-border/50 text-muted font-mono">
+                                        {/* Male Row */}
                                         <tr className="hover:bg-bg/50 transition-colors">
-                                            <td className="px-4 py-3"></td>
-                                            <td className="px-4 py-3">164 cm (−1 SD)</td>
-                                            <td className="px-4 py-3">178 cm (+1 SD)</td>
-                                            <td className="px-4 py-3">157 cm (−2 SD)</td>
-                                            <td className="px-4 py-3">185 cm (+2 SD)</td>
-                                            <td className="px-4 py-3"></td>
-                                            <td className="px-4 py-3"></td>
+                                            <td className="px-4 py-3">157 cm</td>
+                                            <td className="px-4 py-3">164 cm</td>
+                                            <td className="px-4 py-3 font-bold text-foreground">
+                                                171 cm
+                                                <span className="block text-[10px] font-sans text-muted font-normal uppercase tracking-wider mt-0.5">Male</span>
+                                            </td>
+                                            <td className="px-4 py-3">178 cm</td>
+                                            <td className="px-4 py-3">185 cm</td>
+                                        </tr>
+                                        {/* Female Row */}
+                                        <tr className="hover:bg-bg/50 transition-colors">
+                                            <td className="px-4 py-3">147 cm</td>
+                                            <td className="px-4 py-3">153 cm</td>
+                                            <td className="px-4 py-3 font-bold text-foreground">
+                                                159 cm
+                                                <span className="block text-[10px] font-sans text-muted font-normal uppercase tracking-wider mt-0.5">Female</span>
+                                            </td>
+                                            <td className="px-4 py-3">165 cm</td>
+                                            <td className="px-4 py-3">171 cm</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -967,13 +1002,13 @@ export default function page() {
                                 Height is shaped by both genetics and environment. Genetics sets the theoretical ceiling, tall parents tend to produce taller children but whether a child reaches that ceiling depends almost entirely on what happens during the first two decades of life.
                             </p>
                             <p className="text-muted leading-relaxed">
-                                Nutrition is the single strongest environmental determinant of adult height. Adequate protein and micronutrients during the first 1,000 days of life are critical to skeletal development. Dairy and meat availability in childhood consistently predicts national height rankings.
+                                <span className='font-bold text-accent hover:underline' >Nutrition </span> is the single strongest environmental determinant of adult height. Adequate protein and micronutrients during the first 1,000 days of life are critical to skeletal development. Dairy and meat availability in childhood consistently predicts national height rankings.
                             </p>
                             <p className="text-muted leading-relaxed">
-                                Healthcare access determines whether childhood illnesses divert energy away from growth. Countries with strong vaccination rates and low disease burdens consistently rank taller.
+                                <span className='font-bold text-accent hover:underline' > Healthcare access </span> determines whether childhood illnesses divert energy away from growth. Countries with strong vaccination rates and low disease burdens consistently rank taller.
                             </p>
                             <p className="text-muted leading-relaxed">
-                                Economic development underpins both nutrition and healthcare. GDP per capita correlates strongly with average height because wealth enables better food, cleaner water, and medical care.
+                                <span className='font-bold text-accent hover:underline' >Economic development </span>   underpins both nutrition and healthcare. GDP per capita correlates strongly with average height because wealth enables better food, cleaner water, and medical care.
                             </p>
                             <div className="bg-accent/10 border-l-4 border-accent p-4 rounded-r-xl mt-4">
                                 <p className="text-sm font-medium text-foreground/80">

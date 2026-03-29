@@ -24,7 +24,6 @@ export const getEntities = async (): Promise<Entity[]> => {
     { objects_data },
     { transport_data },
     { human_averages_data },
-    { fictional_averages_data },
     { mountains_data }
   ] = await Promise.all([
     import('./animals'),
@@ -33,7 +32,6 @@ export const getEntities = async (): Promise<Entity[]> => {
     import('./objects'),
     import('./transport'),
     import('./human_averages'),
-    import('./fictional_averages'),
     import('./mountains')
   ]);
 
@@ -45,6 +43,5 @@ export const getEntities = async (): Promise<Entity[]> => {
     ...processData(objects_data as RawEntity[], 'object'),
     ...processData(transport_data as RawEntity[], 'transport'),
     ...processData(human_averages_data as RawEntity[], 'human'),
-    ...processData(fictional_averages_data as RawEntity[], 'fictional_avg'),
   ];
 };

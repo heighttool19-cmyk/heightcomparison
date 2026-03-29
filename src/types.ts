@@ -80,7 +80,7 @@ export interface Celebrity {
   color?: string;
 }
 
-export type FictionalCategory = 'Anime' | 'Cartoons' | 'DC Comics' | 'Fantasy' | 'Marvel' | 'Monsters & Kaiju' | 'TV Shows' | 'Video Games';
+export type FictionalCategory = 'Anime' | 'Cartoons' | 'DC Comics' | 'Fantasy' | 'Marvel' | 'Monsters & Kaiju' | 'TV Shows' | 'Video Games' | 'Fictional Averages';
 
 export interface FictionalCharacter {
   id: string;
@@ -88,8 +88,9 @@ export interface FictionalCharacter {
   heightCm: number;
   category: FictionalCategory;
   color: string;
+  icon?: string;
 }
-export type EntityCategory = 'Mountains' | 'Landmarks' | 'Nature' | 'Transport' | 'Animals' | 'Dinosaurs' | 'Objects' | 'Human Averages' | 'Fictional Averages' | 'All';
+export type EntityCategory = 'Mountains' | 'Landmarks' | 'Nature' | 'Transport' | 'Animals' | 'Dinosaurs' | 'Objects' | 'Human Averages' | 'All';
 
 export interface Entity {
   id: string;

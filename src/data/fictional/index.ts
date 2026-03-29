@@ -25,7 +25,8 @@ export const getFictionalCharacters = async (): Promise<FictionalCharacter[]> =>
     { marvel_data },
     { monsters_kaiju_data },
     { tv_shows_data },
-    { video_games_data }
+    { video_games_data },
+    { fictional_averages_data }
   ] = await Promise.all([
     import('./anime'),
     import('./cartoons'),
@@ -34,7 +35,8 @@ export const getFictionalCharacters = async (): Promise<FictionalCharacter[]> =>
     import('./marvel'),
     import('./monsters_kaiju'),
     import('./tv_shows'),
-    import('./video_games')
+    import('./video_games'),
+    import('./fictional_averages')
   ]);
 
   return [
@@ -46,5 +48,6 @@ export const getFictionalCharacters = async (): Promise<FictionalCharacter[]> =>
     ...processData(monsters_kaiju_data as RawCharacter[], 'monster'),
     ...processData(tv_shows_data as RawCharacter[], 'tvshow'),
     ...processData(video_games_data as RawCharacter[], 'videogame'),
+    ...processData(fictional_averages_data as RawCharacter[], 'fictional_avg'),
   ];
 };
