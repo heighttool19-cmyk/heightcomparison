@@ -640,47 +640,53 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         if (activePersonMenuId) setActivePersonMenuId(null);
                     }}
                 >
-                    <div className="order-2 sm:order-first px-4 sm:px-8 pt-4 z-30">
-                        <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-3 px-4 sm:px-6 backdrop-blur-md shadow-2xl overflow-x-auto custom-scrollbar flex-nowrap">
-                            <div className="flex items-center gap-4 sm:gap-6">
+                    <div className="order-2 sm:order-first px-2 sm:px-4 pt-4 z-30 w-full max-w-full">
+                        <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-3 sm:px-4 backdrop-blur-md shadow-2xl overflow-hidden flex-nowrap">
+
+                            {/* Left Section: Units & Zoom */}
+                            <div className="flex items-center gap-2 sm:gap-3">
                                 <button
                                     onClick={toggleUnitSystem}
-                                    className="shrink-0 flex items-center gap-1.5 group hover:bg-item-hover px-2 py-1.5 rounded-xl transition-all"
+                                    className="shrink-0 flex items-center gap-1.5 hover:bg-item-hover px-2 py-1.5 rounded-xl transition-all group"
                                 >
                                     <ArrowLeftRight size={16} className="text-muted/50 group-hover:text-accent" />
-                                    <span className="text-[10px] sm:text-xs font-black text-muted group-hover:text-foreground whitespace-nowrap">
+                                    <span className="text-[10px] font-black text-muted group-hover:text-foreground whitespace-nowrap">
                                         {unitSystem === 'metric' ? 'cm → ft' : 'ft → cm'}
                                     </span>
                                 </button>
-                                <div className="hidden sm:block w-px h-6 bg-white/10 shrink-0" />
-                                <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+
+                                <div className="hidden md:block w-px h-6 bg-white/10 shrink-0" />
+
+                                {/* Zoom Controls */}
+                                <div className="flex shrink-0 items-center gap-1">
                                     <button
                                         onClick={() => handleZoom(0.1)}
-                                        className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
-                                        title="Zoom In"
+                                        className="p-1.5 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
                                     >
-                                        <ZoomIn size={18} strokeWidth={2.5} />
+                                        <ZoomIn size={16} strokeWidth={2.5} />
                                     </button>
-                                    <div className="bg-item-hover rounded-lg px-2 py-1.5 flex items-center gap-0.5 border border-toolbar-border">
+
+                                    <div className="bg-item-hover rounded-lg px-1.5 py-1 flex items-center gap-0.5 border border-toolbar-border">
                                         <input
                                             type="number"
                                             value={Math.round(state.zoom * 100)}
                                             onChange={(e) => {
                                                 setState(s => ({ ...s, zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, (parseInt(e.target.value) || 100) / 100)) }));
                                             }}
-                                            className="w-6 sm:w-10 bg-transparent text-[10px] sm:text-[13px] font-mono font-bold text-center outline-none text-muted transition-colors focus:text-foreground"
+                                            className="w-8 bg-transparent text-[11px] font-mono font-bold text-center outline-none text-muted transition-colors focus:text-foreground"
                                         />
                                         <span className="text-[9px] font-bold text-muted/30">%</span>
                                     </div>
+
                                     <button
                                         onClick={() => handleZoom(-0.1)}
-                                        className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
-                                        title="Zoom Out"
+                                        className="p-1.5 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
                                     >
-                                        <ZoomOut size={18} strokeWidth={2.5} />
+                                        <ZoomOut size={16} strokeWidth={2.5} />
                                     </button>
-                                    <div className="hidden sm:flex items-center gap-2 px-2 border-l border-white/10 ml-2">
-                                        <ZoomOut size={14} className="text-muted/40" />
+
+                                    {/* Slider - only visible on larger displays to save space */}
+                                    <div className="hidden xl:flex items-center gap-2 px-2 border-l border-white/10 ml-1">
                                         <input
                                             type="range"
                                             min={MIN_ZOOM}
@@ -688,46 +694,52 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                             step={0.1}
                                             value={state.zoom}
                                             onChange={(e) => setState(s => ({ ...s, zoom: parseFloat(e.target.value) }))}
-                                            className="w-24 h-1.5 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
+                                            className="w-20 h-1 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
                                         />
-                                        <ZoomIn size={14} className="text-muted/40" />
                                     </div>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2 sm:gap-4">
+
+                            {/* Right Section: Actions */}
+                            <div className="flex items-center gap-1 sm:gap-2">
                                 <button
                                     onClick={() => setIsConfirmingClear(true)}
-                                    className="flex items-center gap-2 text-sm font-black text-muted hover:text-red-500 px-3 py-2 transition-all group"
+                                    className="flex items-center gap-1.5 text-[11px] font-black text-muted hover:text-red-500 px-2 py-1.5 transition-all group"
+                                    title="Clear All"
                                 >
-                                    <Trash2 size={18} className="text-muted/50 group-hover:text-red-500 transition-colors" />
-                                    <span className="hidden sm:inline">Clear All</span>
+                                    <Trash2 size={16} className="text-muted/50 group-hover:text-red-500 transition-colors" />
+                                    <span className="hidden lg:inline">Clear</span>
                                 </button>
+
                                 <button
                                     onClick={() => setState(s => ({ ...s, zoom: 1.0 }))}
-                                    className="flex items-center gap-2 text-sm font-black text-muted hover:text-foreground px-3 py-2 transition-all group"
+                                    className="flex items-center gap-1.5 text-[11px] font-black text-muted hover:text-foreground px-2 py-1.5 transition-all group"
+                                    title="Reset Zoom"
                                 >
-                                    <RotateCcw size={18} className="text-muted/50 group-hover:text-accent transition-colors" />
-                                    <span className="hidden sm:inline text-xs">Reset</span>
+                                    <RotateCcw size={16} className="text-muted/50 group-hover:text-accent transition-colors" />
+                                    <span className="hidden lg:inline">Reset</span>
                                 </button>
+
                                 <button
                                     onClick={handleShare}
-                                    className="shrink-0 flex items-center gap-1 text-[10px] sm:text-xs font-black text-muted hover:text-foreground px-2 py-1.5 transition-all group"
+                                    className="flex items-center gap-1.5 text-[11px] font-black text-muted hover:text-foreground px-2 py-1.5 transition-all group"
+                                    title="Share Link"
                                 >
                                     <LinkIcon size={16} className="text-muted/50 group-hover:text-accent transition-colors" />
                                     <span className="hidden lg:inline">Share</span>
                                 </button>
+
                                 <button
                                     onClick={handleDownloadPNG}
                                     disabled={isCapturing}
-                                    className="shrink-0 flex items-center gap-1.5 bg-accent/10 text-accent border border-accent/20 px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-xl text-[10px] sm:text-sm font-black hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 whitespace-nowrap min-w-0"
+                                    className="shrink-0 flex items-center gap-1.5 bg-accent/10 text-accent border border-accent/20 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[11px] font-black hover:bg-accent hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50"
                                 >
                                     {isCapturing ? (
                                         <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
                                     ) : (
-                                        <Download size={16} strokeWidth={2.5} />
+                                        <Download size={14} strokeWidth={2.5} />
                                     )}
-                                    <span className="hidden md:inline">Download PNG</span>
-                                    <span className="md:hidden">PNG</span>
+                                    <span className="hidden sm:inline">PNG</span>
                                 </button>
                             </div>
                         </div>
@@ -972,7 +984,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 animate={{ y: 0 }}
                                 exit={{ y: '100%' }}
                                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                                className="sm:hidden fixed bottom-0 left-0 right-0 h-[80vh] bg-surface rounded-t-[2rem] z-20 overflow-hidden flex flex-col shadow-2xl border-t border-border"
+                                className="sm:hidden fixed bottom-0 left-0 right-0 h-[80vh] bg-surface rounded-t-[2rem] z-200 overflow-hidden flex flex-col shadow-2xl border-t border-border"
                             >
                                 <div className="flex items-center justify-between px-6 py-5 border-b border-border/30 bg-surface/50 backdrop-blur-md sticky top-0 z-20">
                                     <h3 className="text-sm font-black uppercase tracking-[0.2em] text-foreground/90">
