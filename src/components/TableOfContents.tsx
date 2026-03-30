@@ -53,7 +53,6 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
                     if (closestSection && closestSection !== activeSectionRef.current) {
                         activeSectionRef.current = closestSection;
                         setActiveSection(closestSection);
-                        
                         if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
                         scrollTimeout.current = setTimeout(() => {
                             if (window.history.replaceState) {
@@ -119,11 +118,10 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
                 <a
                     href={`#${item.id}`}
                     onClick={handleLinkClick}
-                    className={`block transition-all duration-300 border-l-2 pl-2 whitespace-nowrap leading-tight ${
-                        isActive 
-                            ? 'text-accent border-accent font-bold' 
-                            : 'text-muted hover:text-foreground border-transparent'
-                    }`}
+                    className={`block transition-all duration-300 border-l-2 pl-2 whitespace-nowrap leading-tight ${isActive
+                        ? 'text-accent border-accent font-bold'
+                        : 'text-muted hover:text-foreground border-transparent'
+                        }`}
                 >
                     {item.label}
                 </a>
@@ -137,17 +135,40 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
     };
 
     return (
-        <div className="sticky top-24 bg-surface border border-border rounded-3xl pt-5 pb-5 pr-4 pl-2 shadow-xl max-h-[calc(100vh-120px)] overflow-auto custom-toc-scrollbar text-left scrollbar-thin scrollbar-thumb-accent/20 hover:scrollbar-thumb-accent/40 scrollbar-track-transparent">
-            <h3 className="text-sm font-black uppercase tracking-[0.2em] sticky top-0 bg-surface z-10 pb-2 border-b border-border/50 mb-4">
-                Table of Contents
-            </h3>
-            <ul className="text-sm font-medium">
-                {items.map(item => (
-                    <TOCLink key={item.id} item={item} />
-                ))}
-            </ul>
-        </div>
+        // <div className="sticky top-24 bg-surface border border-border rounded-3xl pt-5 pb-5 pr-4 pl-2 shadow-xl max-h-[calc(100vh-120px)] overflow-auto custom-toc-scrollbar text-left scrollbar-thin scrollbar-thumb-accent/20 hover:scrollbar-thumb-accent/40 scrollbar-track-transparent">
+        //     <h3 className="text-sm font-black uppercase tracking-[0.2em] sticky top-0 bg-surface z-10 pb-2 border-b border-border/50 mb-4">
+        //         Table of Contents
+        //     </h3>
+        //     <ul className="text-sm font-medium">
+        //         {items.map(item => (
+        //             <TOCLink key={item.id} item={item} />
+        //         ))}
+        //     </ul>
+        // </div>
+        <>
+            {/* OUTER WRAPPER: Handles the border, shadow, and clips any bleeding scrollbars with overflow-hidden */}
+            <div className="sticky top-24 bg-surface border border-border rounded-3xl shadow-xl max-h-[calc(100vh-120px)] flex flex-col overflow-hidden">
+
+                {/* FIXED HEADER: Stays perfectly still. Doesn't scroll left/right or up/down */}
+                <div className="pt-5 px-4 pb-3 border-b border-border/50 bg-surface shrink-0">
+                    <h3 className="text-sm font-black uppercase tracking-[0.2em] m-0">
+                        Table of Contents
+                    </h3>
+                </div>
+
+                {/* SCROLLING AREA: Handled safely inside the outer wrapper */}
+                <div className="flex-1 overflow-auto px-2 py-4 custom-toc-scrollbar text-left scrollbar-thin scrollbar-thumb-accent/20 hover:scrollbar-thumb-accent/40 scrollbar-track-transparent">
+                    <ul className="text-sm font-medium pr-4">
+                        {items.map(item => (
+                            <TOCLink key={item.id} item={item} />
+                        ))}
+                    </ul>
+                </div>
+
+            </div>
+        </>
     );
+
 };
 
 export default TableOfContents;
