@@ -35,36 +35,6 @@ const applyAutoZoomGuard = (currentPersons: Person[], currentHeight: number, cur
     return currentZoom;
 };
 
-const LeftNavItem = ({ icon, label, active = false, onClick, isHighlighting = false }: { icon: React.ReactNode, label: string, active?: boolean, onClick?: () => void, isHighlighting?: boolean }) => (
-    <motion.button
-        variants={{
-            show: { y: 0, opacity: 1, scale: 1 },
-            hidden: { y: 15, opacity: 0, scale: 0.9 }
-        }}
-        animate={isHighlighting ? {
-            scale: [1, 1.1, 1],
-            backgroundColor: ['rgba(0,0,0,0)', 'rgba(34, 197, 94, 0.2)', 'rgba(0,0,0,0)'],
-            transition: { duration: 1.5, repeat: Infinity }
-        } : undefined}
-        whileHover={{ scale: 1.02, backgroundColor: 'rgba(59, 130, 246, 0.05)' }}
-        whileTap={{ scale: 0.98 }}
-        onClick={onClick}
-        className={`
-        flex flex-col items-center justify-center gap-2 py-3 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4
-        ${active
-                ? 'bg-accent/10 text-accent border-accent shadow-sm'
-                : 'text-muted hover:text-foreground border-transparent'}
-    `}
-    >
-        <div className={`${active ? 'scale-110' : ''} transition-transform`}>
-            {icon}
-        </div>
-        <span className="text-[8px] font-black tracking-[0.05em] uppercase text-center w-full px-1 whitespace-nowrap overflow-hidden text-ellipsis">
-            {label}
-        </span>
-    </motion.button>
-);
-
 const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, initialPersons, onClose }) => {
     const {
         persons: storePersons,
@@ -596,25 +566,29 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     }, [persons.length, totalHeight, canvasHeight]);
 
     return (
-        <div className="flex flex-col h-full bg-bg overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 relative">
-            {readOnly && onClose && (
-                <button
-                    onClick={onClose}
-                    className="absolute top-4 right-4 z-[70] p-3 text-white bg-red-500/90 hover:bg-red-600 rounded-full shadow-2xl backdrop-blur-md transition-all sm:top-6 sm:right-6"
-                    title="Close Chart"
-                >
-                    <X size={24} strokeWidth={3} />
-                </button>
-            )}
+        <div className="flex flex-col h-full bg-bg overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 relative">            {readOnly && onClose && (
+            <button
+                onClick={onClose}
+                className="absolute top-4 right-4 z-[70] p-3 text-white bg-red-500/90 hover:bg-red-600 rounded-full shadow-2xl backdrop-blur-md transition-all sm:top-6 sm:right-6"
+                title="Close Chart"
+            >
+                <X size={24} strokeWidth={3} />
+            </button>
+        )}
+
+            {/* {!readOnly && <Navbar activePage="home" />} */}
 
             <div className="flex flex-1 overflow-hidden relative flex-col md:flex-row custom-scrollbar bg-bg transition-colors duration-500">
                 {!readOnly && (
                     <motion.aside
                         transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                        className="shrink-0 w-full h-[80px] bg-bg border-b overflow-hidden border-border/50 z-40 flex overflow-x-auto overflow-y-hidden gap-0 custom-scrollbar sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col sm:py-0 sm:px-0 sm:gap-0"
-                        initial={{ x: -85, opacity: 0 }}
+                        className="
+                    shrink-0 w-full h-[80px] bg-bg border-b overflow-hidden border-border/50 z-40
+                    flex overflow-x-auto overflow-y-hidden gap-0 custom-scrollbar
+                    sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col sm:py-0 sm:px-0 sm:gap-0
+                    initial={{ x: -85, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
-                    >
+               ">
                         <div className="flex sm:flex-col h-full w-full">
                             <LeftNavItem
                                 icon={<UserPlus size={22} />}
@@ -636,110 +610,128 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
                     className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500 "
-                    onClick={() => {
+                    onClick={(e) => {
+                        // Close person menu when clicking the broad background
                         if (activePersonMenuId) setActivePersonMenuId(null);
                     }}
                 >
-                    <div className="order-2 sm:order-first px-2 sm:px-4 pt-4 z-30 w-full max-w-full">
-                        <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-3 sm:px-4 backdrop-blur-md shadow-2xl overflow-hidden flex-nowrap">
-
-                            {/* Left Section: Units & Zoom */}
-                            <div className="flex items-center gap-2 sm:gap-3">
+                    <div className="order-2 sm:order-first px-4 sm:px-8 pt-4 z-30">
+                        <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-3 px-4 sm:px-6 backdrop-blur-md shadow-2xl overflow-x-auto custom-scrollbar flex-nowrap">
+                            <div className="flex items-center gap-4 sm:gap-6">
                                 <button
                                     onClick={toggleUnitSystem}
-                                    className="shrink-0 flex items-center gap-1.5 hover:bg-item-hover px-2 py-1.5 rounded-xl transition-all group"
+                                    className="shrink-0 flex items-center gap-1.5 group hover:bg-item-hover px-2 py-1.5 rounded-xl transition-all"
                                 >
                                     <ArrowLeftRight size={16} className="text-muted/50 group-hover:text-accent" />
-                                    <span className="text-[10px] font-black text-muted group-hover:text-foreground whitespace-nowrap">
+                                    <span className="text-[10px] sm:text-xs font-semibold text-muted group-hover:text-foreground whitespace-nowrap">
                                         {unitSystem === 'metric' ? 'cm → ft' : 'ft → cm'}
                                     </span>
                                 </button>
-
-                                <div className="hidden md:block w-px h-6 bg-white/10 shrink-0" />
-
-                                {/* Zoom Controls */}
-                                <div className="flex shrink-0 items-center gap-1">
+                                <div className="hidden sm:block w-px h-6 bg-white/10 shrink-0" />
+                                <div className="flex shrink-0 items-center gap-1 sm:gap-2">
                                     <button
                                         onClick={() => handleZoom(0.1)}
-                                        className="p-1.5 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
+                                        className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
+                                        title="Zoom In"
                                     >
-                                        <ZoomIn size={16} strokeWidth={2.5} />
+                                        <ZoomIn size={18} strokeWidth={2.5} />
                                     </button>
-
-                                    <div className="bg-item-hover rounded-lg px-1.5 py-1 flex items-center gap-0.5 border border-toolbar-border">
+                                    <div className="bg-item-hover rounded-lg px-2 py-1.5 flex items-center gap-0.5 border border-toolbar-border">
                                         <input
                                             type="number"
                                             value={Math.round(state.zoom * 100)}
                                             onChange={(e) => {
                                                 setState(s => ({ ...s, zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, (parseInt(e.target.value) || 100) / 100)) }));
                                             }}
-                                            className="w-8 bg-transparent text-[11px] font-mono font-bold text-center outline-none text-muted transition-colors focus:text-foreground"
+                                            className="w-6 sm:w-10 bg-transparent text-[10px] sm:text-[13px] font-mono font-bold text-center outline-none text-muted transition-colors focus:text-foreground"
                                         />
                                         <span className="text-[9px] font-bold text-muted/30">%</span>
                                     </div>
-
                                     <button
                                         onClick={() => handleZoom(-0.1)}
-                                        className="p-1.5 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
+                                        className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
+                                        title="Zoom Out"
                                     >
-                                        <ZoomOut size={16} strokeWidth={2.5} />
+                                        <ZoomOut size={18} strokeWidth={2.5} />
                                     </button>
-
-                                    {/* Slider - only visible on larger displays to save space */}
-                                    <div className="hidden xl:flex items-center gap-2 px-2 border-l border-white/10 ml-1">
-                                        <input
-                                            type="range"
-                                            min={MIN_ZOOM}
-                                            max={MAX_ZOOM}
-                                            step={0.1}
-                                            value={state.zoom}
-                                            onChange={(e) => setState(s => ({ ...s, zoom: parseFloat(e.target.value) }))}
-                                            className="w-20 h-1 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
-                                        />
+                                    <div className="flex items-center gap-1 ml-2 border-l border-white/10 pl-3">
+                                        <button
+                                            onClick={handleAutoScale}
+                                            className="p-2 text-primary hover:bg-primary/10 transition-all rounded-lg"
+                                            title="Auto Fit All"
+                                        >
+                                            <Focus size={18} strokeWidth={2.5} />
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                setActivePanel('ADD_PERSON');
+                                                setIsSidebarCollapsed(false);
+                                                if (isMobile) setIsMobileDrawerOpen(true);
+                                                setHighlightYourList(true);
+                                                setTimeout(() => setHighlightYourList(false), 2000);
+                                            }}
+                                            className="p-1.5 sm:p-2 text-emerald-500 hover:bg-emerald-500/10 transition-all rounded-lg shrink-0"
+                                            title="Edit List"
+                                        >
+                                            <Edit2 size={16} strokeWidth={2.5} className="sm:w-[18px] sm:h-[18px]" />
+                                        </button>
+                                        <div className="hidden sm:flex items-center gap-2 px-2">
+                                            <ZoomOut size={14} className="text-muted/80" />
+                                            <input
+                                                type="range"
+                                                min={MIN_ZOOM}
+                                                max={MAX_ZOOM}
+                                                step={0.1}
+                                                value={state.zoom}
+                                                onChange={(e) => setState(s => ({ ...s, zoom: parseFloat(e.target.value) }))}
+                                                className="w-24 h-1.5 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
+                                            />
+                                            <ZoomIn size={14} className="text-muted/80" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                            {/* Right Section: Actions */}
-                            <div className="flex items-center gap-1 sm:gap-2">
+                            <div className="flex items-center gap-2 sm:gap-4">
                                 <button
-                                    onClick={() => setIsConfirmingClear(true)}
-                                    className="flex items-center gap-1.5 text-[11px] font-black text-muted hover:text-red-500 px-2 py-1.5 transition-all group"
-                                    title="Clear All"
+                                    onClick={handleClearAll}
+                                    className="flex items-center gap-2 text-sm font-medium text-muted hover:text-red-500 px-3 py-2 transition-all group"
                                 >
-                                    <Trash2 size={16} className="text-muted/50 group-hover:text-red-500 transition-colors" />
-                                    <span className="hidden lg:inline">Clear</span>
+                                    <Trash2 size={18} className="text-muted/50 group-hover:text-red-500 transition-colors" />
+                                    <span className="hidden sm:inline">Clear All</span>
                                 </button>
-
                                 <button
                                     onClick={() => setState(s => ({ ...s, zoom: 1.0 }))}
-                                    className="flex items-center gap-1.5 text-[11px] font-black text-muted hover:text-foreground px-2 py-1.5 transition-all group"
-                                    title="Reset Zoom"
+                                    className="flex items-center gap-2 text-sm font-medium text-muted hover:text-foreground px-3 py-2 transition-all group"
                                 >
-                                    <RotateCcw size={16} className="text-muted/50 group-hover:text-accent transition-colors" />
-                                    <span className="hidden lg:inline">Reset</span>
+                                    <RotateCcw size={18} className="text-muted/50 group-hover:text-accent transition-colors" />
+                                    <span className="hidden sm:inline text-xs">Reset</span>
                                 </button>
-
                                 <button
                                     onClick={handleShare}
-                                    className="flex items-center gap-1.5 text-[11px] font-black text-muted hover:text-foreground px-2 py-1.5 transition-all group"
-                                    title="Share Link"
+                                    className="shrink-0 flex items-center gap-1 text-[10px] sm:text-xs font-medium text-muted hover:text-foreground px-2 py-1.5 transition-all group"
                                 >
                                     <LinkIcon size={16} className="text-muted/50 group-hover:text-accent transition-colors" />
                                     <span className="hidden lg:inline">Share</span>
                                 </button>
-
+                                {/* <button
+                                    onClick={toggleFullscreen}
+                                    className="shrink-0 flex items-center gap-1.5 p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
+                                    title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+                                >
+                                    {isFullscreen ? <Minimize size={18} /> : <Maximize size={18} />}
+                                </button> */}
                                 <button
                                     onClick={handleDownloadPNG}
                                     disabled={isCapturing}
-                                    className="shrink-0 flex items-center gap-1.5 bg-accent/10 text-accent border border-accent/20 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[11px] font-black hover:bg-accent hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50"
+                                    className="shrink-0 flex items-center gap-1.5 bg-accent/10 text-accent border border-accent/20 px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-xl text-[10px] sm:text-sm font-bold hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 whitespace-nowrap min-w-0"
                                 >
                                     {isCapturing ? (
                                         <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
                                     ) : (
-                                        <Download size={14} strokeWidth={2.5} />
+                                        <Download size={16} strokeWidth={2.5} />
                                     )}
-                                    <span className="hidden sm:inline">PNG</span>
+                                    <span className="hidden md:inline">Download PNG</span>
+                                    <span className="md:hidden">PNG</span>
                                 </button>
                             </div>
                         </div>
@@ -752,6 +744,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             : 'm-4 mb-0 rounded-[2rem] border border-border/50'
                             }`}
                     >
+                        {/* Fullscreen Toggle Button (Overlay) */}
                         <button
                             onClick={toggleFullscreen}
                             className={`absolute z-[100] transition-all duration-300 flex items-center justify-center active:scale-90
@@ -883,7 +876,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         >
                                             <Plus size={40} className={`text-muted/20 transition-colors ${!readOnly ? 'group-hover:text-accent/60' : ''}`} />
                                         </motion.button>
-                                        <span className="text-sm sm:text-lg lg:text-xl text-center font-black tracking-tight text-muted/50 bg-surface/50 px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl w-auto max-w-[90%]">
+                                        <span className="text-sm sm:text-lg lg:text-xl text-center font-bold tracking-tight text-muted/50 bg-surface/50 px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl w-auto max-w-[90%]">
                                             Add a person to get started
                                         </span>
                                     </div>
@@ -928,7 +921,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
                         <button
                             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                            className={`absolute top-1/2 -translate-y-1/2 w-8 h-12 bg-surface border border-border rounded-l-xl flex items-center justify-center text-muted hover:text-white hover:bg-accent hover:border-accent transition-all duration-300 shadow-2xl z-50 group right-full translate-x-[1px]`}
+                            className={`
+                            absolute top-1/2 -translate-y-1/2 w-8 h-12 
+                            bg-surface border border-border rounded-l-xl
+                            flex items-center justify-center text-muted 
+                            hover:text-white hover:bg-accent hover:border-accent
+                            transition-all duration-300 shadow-2xl z-50 group
+                            right-full translate-x-[1px]
+                        `}
                             style={{ borderRight: 'none' }}
                             title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
                         >
@@ -951,7 +951,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-surface border border-border text-foreground px-4 py-2 rounded-full shadow-2xl flex items-center gap-3 z-50 pointer-events-none"
                     >
                         <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                        <span className="text-sm font-black tracking-tight">{toastMessage}</span>
+                        <span className="text-sm font-bold tracking-tight">{toastMessage}</span>
                         <Check size={16} className="text-accent" />
                     </motion.div>
                 )}
@@ -1048,13 +1048,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             <div className="flex justify-end gap-3 w-full">
                                 <button
                                     onClick={() => setIsConfirmingClear(false)}
-                                    className="px-5 py-2.5 rounded-xl font-black text-muted hover:text-foreground hover:bg-bg transition-colors"
+                                    className="px-5 py-2.5 rounded-xl font-bold text-muted hover:text-foreground hover:bg-bg transition-colors"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     onClick={confirmClearAll}
-                                    className="px-5 py-2.5 rounded-xl font-black bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all"
+                                    className="px-5 py-2.5 rounded-xl font-bold bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all"
                                 >
                                     Clear All
                                 </button>
@@ -1066,5 +1066,35 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         </div>
     );
 };
+
+const LeftNavItem = ({ icon, label, active = false, onClick, isHighlighting = false }: { icon: React.ReactNode, label: string, active?: boolean, onClick?: () => void, isHighlighting?: boolean }) => (
+    <motion.button
+        variants={{
+            show: { y: 0, opacity: 1, scale: 1 },
+            hidden: { y: 15, opacity: 0, scale: 0.9 }
+        }}
+        animate={isHighlighting ? {
+            scale: [1, 1.1, 1],
+            backgroundColor: ['rgba(0,0,0,0)', 'rgba(34, 197, 94, 0.2)', 'rgba(0,0,0,0)'],
+            transition: { duration: 1.5, repeat: Infinity }
+        } : undefined}
+        whileHover={{ scale: 1.02, backgroundColor: 'rgba(59, 130, 246, 0.05)' }}
+        whileTap={{ scale: 0.98 }}
+        onClick={onClick}
+        className={`
+        flex flex-col items-center justify-center gap-2 py-3 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4
+        ${active
+                ? 'bg-accent/10 text-accent border-accent shadow-sm'
+                : 'text-muted hover:text-foreground border-transparent'}
+    `}
+    >
+        <div className={`${active ? 'scale-110' : ''} transition-transform`}>
+            {icon}
+        </div>
+        <span className="text-[8px] font-black tracking-[0.05em] uppercase text-center w-full px-1 whitespace-nowrap overflow-hidden text-ellipsis">
+            {label}
+        </span>
+    </motion.button>
+);
 
 export default HeightDashboard;

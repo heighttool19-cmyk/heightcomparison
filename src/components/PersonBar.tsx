@@ -128,14 +128,14 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
             animate={{ opacity: 1, x: 0, width: effectiveWidth }}
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
-            className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
+            className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end"
             style={{
                 width: `${effectiveWidth}px`,
-                // zIndex: Math.max(1, 2000 - Math.floor(person.heightCm)) // Shorter entities are "in front" (higher z-index)
+                zIndex: person.isEntity ? 10 : 20
             }}
             onClick={(e) => {
-                e.stopPropagation(); // Prevent trigger "click outside" on the dashboard
-                if (window.innerWidth < 768 || (isActiveMenu !== undefined && onSetActiveMenu)) {
+                e.stopPropagation();
+                if (window.innerWidth < 768) {
                     if (onSetActiveMenu) {
                         onSetActiveMenu(!isActiveMenu);
                     } else {
@@ -209,7 +209,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
             </div>
 
             {/* Silhouette Area - Aligned at 20px baseline - From User Snippet */}
-            <div className=" inset-x-0 bottom-[20px] flex flex-col items-center justify-end overflow-visible">
+            <div className="inset-x-0 flex flex-col items-center justify-end overflow-visible pb-0">
                 {/* Persistent Top Label - Now inside the baseline container to stay aligned with head */}
                 {showLabels && (
                     <div
@@ -237,8 +237,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
                 {/* Indicator Line - Neon Line at Height Boundary */}
                 <motion.div
-                    animate={{ width: containerWidth * 0.7, bottom: barHeightPx }}
-                    className=" h-[1px] absolute transition-none duration-0 neon-indicator group-hover:brightness-150"
+                    animate={{ width: containerWidth * 0.45 }}
+                    className=" h-[1px]  transition-none duration-0 neon-indicator group-hover:brightness-150"
                     transition={springConfig}
                     style={{
                         zIndex: 20
@@ -248,7 +248,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 {/* Silhouette - Unclipped for images to allow full vertical extent */}
                 <div
                     className="flex flex-col items-center justify-end relative transition-opacity group-hover:opacity-100"
-                    style={{ height: barHeightPx, overflow: person.imgUrl ? 'visible' : 'hidden' }}
+                    style={{ height: barHeightPx, overflow: 'visible' }}
                 >
                     {person.imgUrl ? (
                         <motion.div
