@@ -20,11 +20,11 @@ export default function ImageToHeightPage() {
     }, [theme]);
 
     return (
-        <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 overflow-x-hidden">
+        <div className="flex flex-col min-h-[100dvh] bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 overflow-x-hidden">
             <Navbar activePage="image-to-height" />
 
             {/* Main Application Area - Mobile First stacking */}
-            <main className="flex-1 flex flex-col md:flex-row relative p-4 gap-4 bg-canvas overflow-x-hidden w-full">
+            <main className="flex-1 flex flex-col justify-center align-center items-center md:flex-row relative p-4 gap-4 bg-canvas overflow-x-hidden w-full">
 
                 {/* Right Panel (Tool & Content) - Shown first on mobile */}
                 <div className="md:w-[72%] w-full flex flex-col gap-4 pb-10 order-1 md:order-2">
@@ -310,102 +310,7 @@ export default function ImageToHeightPage() {
                 </div>
 
                 {/* Left Panel (Comparison List) - Shown second on mobile */}
-                <div className="md:w-[28%] w-full flex flex-col gap-4 pb-10 order-2 md:order-1">
 
-                    {/* Simplified AISpace Welcome Card */}
-                    <div className="bg-surface border border-border rounded-3xl p-6 shadow-xl flex flex-col gap-3 relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-accent/50" />
-                        <h2 className="text-sm font-black uppercase tracking-[0.1em] text-foreground">
-                            Image to Height
-                        </h2>
-                        <p className="text-xs text-muted font-medium">
-                            Use advanced vision analysis to estimate heights from photographs.
-                        </p>
-                    </div>
-
-                    {/* Currently Comparing List */}
-                    <div className="bg-surface border border-border rounded-3xl p-6 shadow-xl flex flex-col gap-4 flex-1">
-                        <div>
-                            <h2 className="text-sm font-black uppercase tracking-[0.2em] text-foreground">
-                                Currently Comparing
-                            </h2>
-                            <p className="text-xs text-muted mt-1 font-medium">{persons.length} entities tracked</p>
-                        </div>
-
-                        <div className="space-y-3 mt-2 pr-2 pb-4">
-                            {/* Locked Standard Door */}
-                            {/* <div className="bg-bg border border-border rounded-2xl p-4 flex items-center justify-between relative overflow-hidden group">
-                                <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-foreground/20" />
-                                <div className="flex items-center gap-3 pl-2">
-                                    <div className="w-10 h-10 rounded-xl bg-surface border border-border flex items-center justify-center text-foreground/40">
-                                        <Ruler size={20} />
-                                    </div>
-                                    <div>
-                                        <h3 className="text-sm font-bold text-foreground">Standard Door</h3>
-                                        <p className="text-xs text-muted font-mono mt-0.5">Reference Object</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-baseline justify-end gap-1.5 pr-8 md:pr-10">
-                                    <span className="text-lg font-black text-foreground whitespace-nowrap">
-                                        {unitSystem === 'metric' ? '203.0' : (203 / 30.48).toFixed(1)}
-                                    </span>
-                                    <span className="text-[11px] font-bold text-muted uppercase whitespace-nowrap">
-                                        {unitSystem === 'metric' ? 'cm' : 'ft'}
-                                    </span>
-                                </div>
-
-                            </div> */}
-
-                            <AnimatePresence>
-                                {persons.map(person => (
-                                    <motion.div
-                                        key={person.id}
-                                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.9, x: -20 }}
-                                        className="bg-bg border border-border rounded-2xl p-4 flex items-center justify-between relative overflow-hidden group hover:border-border/80 transition-colors"
-                                    >
-                                        <div className="absolute left-0 top-0 bottom-0 w-1.5" style={{ backgroundColor: person.color }} />
-                                        <div className="flex items-center gap-3 pl-2">
-                                            <div className="w-10 h-10 rounded-xl bg-surface border border-border flex items-center justify-center font-black" style={{ color: person.color }}>
-                                                {person.name.charAt(0)}
-                                            </div>
-                                            <div>
-                                                <h3 className="text-sm font-bold text-foreground line-clamp-1">{person.name}</h3>
-                                                <p className="text-xs text-muted mt-0.5 capitalize">{person.gender || 'Object'}</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="flex items-center pr-8 md:pr-10">
-                                            <div className="flex items-baseline justify-end gap-1.5">
-                                                <span className="text-sm font-black text-foreground whitespace-nowrap">
-                                                    {unitSystem === 'metric' ? person.heightCm : (person.heightCm / 30.48).toFixed(1)}
-                                                </span>
-                                                <span className="text-[11px] font-bold text-muted uppercase whitespace-nowrap">
-                                                    {unitSystem === 'metric' ? 'cm' : 'ft'}
-                                                </span>
-                                            </div>
-
-                                            <button
-                                                onClick={() => removePerson(person.id)}
-                                                className="absolute right-3 w-8 h-8 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
-                                            >
-                                                <Trash2 size={14} />
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </AnimatePresence>
-
-                            {persons.length === 0 && (
-                                <div className="text-center py-8 px-4 border border-dashed border-border rounded-2xl">
-                                    <p className="text-xs font-bold text-muted tracking-wide uppercase">No items added yet</p>
-                                    <p className="text-xs text-muted/60 mt-1">Measure via image to start</p>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
             </main>
         </div>
     );

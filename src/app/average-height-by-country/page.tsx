@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { useThemeStore, useUnitStore } from '@/store';
 import Navbar from '@/components/Navbar';
 import ReactCountryFlag from "react-country-flag";
+import TableOfContents from '@/components/TableOfContents';
 
 // --- Shared Constants & Visual Data ---
 const BLUE = "#1A56DB", TEAL = "#0694A2", AMBER = "#B45309", RED = "#C81E1E";
@@ -220,7 +221,7 @@ function Tabs({ options, active, onChange }: { options: string[], active: string
         <div className="flex gap-2 mb-4 flex-wrap">
             {options.map(o => (
                 <button key={o} onClick={() => onChange(o)}
-                    className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border-2 ${active === o ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>
+                    className={`px-4 py-1.5 rounded-full text-xs font-black transition-all border-2 ${active === o ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>
                     {o}
                 </button>
             ))}
@@ -341,11 +342,7 @@ const heightData = [
 export default function page() {
     const { theme } = useThemeStore();
     const { unitSystem, setUnitSystem } = useUnitStore();
-    const [activeSection, setActiveSection] = useState<string>('');
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-    const isClickScrolling = useRef(false);
-    const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
     // Table State
     const [searchQuery, setSearchQuery] = useState('');
@@ -370,124 +367,6 @@ export default function page() {
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
-
-    // 1. Keep a persistent reference to the active section so the observer doesn't have to reload
-    const activeSectionRef = useRef(activeSection);
-
-    useEffect(() => {
-        activeSectionRef.current = activeSection;
-    }, [activeSection]);
-
-    // 2. Intersection Observer for Active TOC state & URL Sync
-    useEffect(() => {
-        const visibleSections = new Map<string, IntersectionObserverEntry>();
-        let historyTimeout: NodeJS.Timeout;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                // Ignore observer updates if we are actively scrolling from a click
-                if (isClickScrolling.current) return;
-
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        visibleSections.set(entry.target.id, entry);
-                    } else {
-                        visibleSections.delete(entry.target.id);
-                    }
-                });
-
-                if (visibleSections.size > 0) {
-                    // Find the section closest to the top of the screen
-                    let closestSection = '';
-                    let minDistance = Infinity;
-
-                    visibleSections.forEach((entry, id) => {
-                        const topPos = entry.boundingClientRect.top;
-                        // Find the element whose top is closest to 0 (top of viewport)
-                        if (Math.abs(topPos) < minDistance) {
-                            minDistance = Math.abs(topPos);
-                            closestSection = id;
-                        }
-                    });
-
-                    // Fallback
-                    if (!closestSection) {
-                        closestSection = Array.from(visibleSections.keys())[0];
-                    }
-
-                    // Compare against the Ref, not the State, to avoid infinite loops
-                    if (closestSection && closestSection !== activeSectionRef.current) {
-                        activeSectionRef.current = closestSection;
-                        setActiveSection(closestSection);
-
-                        // DEBOUNCE the heavy URL update
-                        clearTimeout(historyTimeout);
-                        historyTimeout = setTimeout(() => {
-                            if (window.history.replaceState) {
-                                window.history.replaceState(null, '', `#${closestSection}`);
-                            }
-                        }, 150); // Waits 150ms after scrolling stops before updating URL
-                    }
-                }
-            },
-            { rootMargin: '-100px 0px -40% 0px', threshold: 0 } // Adjusted for smoother detection
-        );
-
-        // STRICT TARGETING: Recursively extract ONLY valid IDs from tocItems
-        const extractIds = (items: any[]): string[] => {
-            let ids: string[] = [];
-            items.forEach(item => {
-                ids.push(`#${item.id}`);
-                if (item.subItems) {
-                    ids = ids.concat(extractIds(item.subItems));
-                }
-            });
-            return ids;
-        };
-
-        const validSelectors = extractIds(tocItems).join(', ');
-
-        // Brief timeout ensures the DOM is fully rendered before we attach the observer
-        setTimeout(() => {
-            const headings = document.querySelectorAll(validSelectors);
-            headings.forEach((h) => observer.observe(h));
-        }, 100);
-
-        return () => {
-            observer.disconnect();
-            clearTimeout(historyTimeout); // Cleanup
-        };
-    }, []); // <--- EMPTY ARRAY IS CRITICAL. It forces the observer to load only ONCE.
-    const TOCLink = ({ item, isSub = false }: { item: { id: string; label: string; subItems?: { id: string; label: string }[] }, isSub?: boolean }) => {
-        const checkActiveRecursive = (node: { id: string; subItems?: { id: string; label: string }[] }): boolean => {
-            if (activeSection === node.id) return true;
-            if (node.subItems) return node.subItems.some(sub => checkActiveRecursive(sub));
-            return false;
-        };
-
-        const isActive = checkActiveRecursive(item);
-
-        const handleLinkClick = () => {
-            isClickScrolling.current = true;
-            setActiveSection(item.id);
-            if (window.history.pushState) window.history.pushState(null, '', `#${item.id}`);
-            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-            scrollTimeout.current = setTimeout(() => { isClickScrolling.current = false; }, 1000);
-        };
-
-        return (
-            <li className={`transition-all duration-300 ${isSub ? 'mt-2' : 'mt-3'}`}>
-                <a href={`#${item.id}`} onClick={handleLinkClick} className={`block transition-all duration-300 border-l-2 pl-3 whitespace-nowrap ${isActive ? 'text-accent border-accent font-bold translate-x-1' : 'text-muted hover:text-foreground border-transparent'}`}>
-                    {item.label}
-                </a>
-                {item.subItems && (
-                    <ul className="pl-4 ml-3 border-l border-border/50 mt-2 space-y-2">
-                        {item.subItems.map(sub => <TOCLink key={sub.id} item={sub} isSub={true} />)}
-                    </ul>
-                )}
-            </li>
-        );
-    };
 
     // Helpers
     const cmToFtIn = (cm: number) => {
@@ -531,14 +410,7 @@ export default function page() {
 
                 {/* --- LEFT SIDEBAR (TOC) --- */}
                 <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
-                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-auto custom-toc-scrollbar">
-                        <h3 className="text-sm font-black uppercase tracking-[0.2em] sticky top-0 bg-surface z-10 pb-2">Table of Contents</h3>
-                        <ul className="text-sm font-medium mt-4">
-                            {tocItems.map(item => (
-                                <TOCLink key={item.id} item={item} />
-                            ))}
-                        </ul>
-                    </div>
+                    <TableOfContents items={tocItems} />
                 </aside>
 
                 {/* --- RIGHT CONTENT AREA --- */}
@@ -547,7 +419,7 @@ export default function page() {
 
                         {/* H1 Intro */}
                         <div className="space-y-6 text-center sm:text-left">
-                            <h1 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
+                            <h1 id="average-height-by-country" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
                                 Average Height by Country
                             </h1>
                             <div className="h-1.5 w-24 bg-accent rounded-full mx-auto sm:mx-0" />
@@ -568,8 +440,8 @@ export default function page() {
                                 <h2 className="text-2xl md:text-3xl font-black tracking-tight">Average Height by Country (Global Table)</h2>
                                 {/* Synced Unit Toggle */}
                                 <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
-                                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unitSystem === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
-                                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unitSystem === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
+                                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unitSystem === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
+                                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unitSystem === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
                                 </div>
                             </div>
 

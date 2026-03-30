@@ -11,6 +11,7 @@ import ExampleCalculationVisual from '@/components/height-weight-percentile-calc
 import HeightPercentileTool from '@/components/height-weight-percentile-calculator/HeightPercentileTool';
 import BellCurveIllustration from '@/components/height-weight-percentile-calculator/BellCurveIllustration';
 import WHOvsCDCVisual from '@/components/height-weight-percentile-calculator/WHOvsCDCVisual';
+import TableOfContents from '@/components/TableOfContents';
 // Strict SEO Anchor Linking
 const tocItems = [
     { id: 'calculate-your-height-and-weight-percentile', label: 'Calculate Your Height and Weight Percentile' },
@@ -59,120 +60,11 @@ const QA = [
 
 export default function PercentileCalculatorClient() {
     const { theme } = useThemeStore();
-    const [activeSection, setActiveSection] = useState<string>('');
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-    const isClickScrolling = useRef(false);
-    const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
-
-    // Intersection Observer for Active TOC state & URL Sync
-    useEffect(() => {
-        const visibleSections = new Map<string, IntersectionObserverEntry>();
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (isClickScrolling.current) return;
-
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        visibleSections.set(entry.target.id, entry);
-                    } else {
-                        visibleSections.delete(entry.target.id);
-                    }
-                });
-
-                if (visibleSections.size > 0) {
-                    let closestSection = '';
-                    let minTop = Infinity;
-
-                    visibleSections.forEach((entry, id) => {
-                        const topPos = entry.boundingClientRect.top;
-                        if (topPos >= 0 && topPos < minTop) {
-                            minTop = topPos;
-                            closestSection = id;
-                        }
-                    });
-
-                    if (!closestSection) {
-                        closestSection = Array.from(visibleSections.keys())[0];
-                    }
-
-                    if (closestSection && closestSection !== activeSection) {
-                        setActiveSection(closestSection);
-
-                        // DEBOUNCE URL UPDATE
-                        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-                        scrollTimeout.current = setTimeout(() => {
-                            if (window.history.replaceState) {
-                                window.history.replaceState(null, '', `#${closestSection}`);
-                            }
-                        }, 150);
-                    }
-                }
-            },
-            { rootMargin: '-70px 0px -40% 0px', threshold: 0 }
-        );
-
-        // Dynamically grab all IDs listed in the TOC to observe
-        const headings = document.querySelectorAll(
-            tocItems.flatMap(item => {
-                const ids = [`#${item.id}`];
-                if (item.subItems) {
-                    item.subItems.forEach(sub => ids.push(`#${sub.id}`));
-                }
-                return ids;
-            }).join(', ')
-        );
-        headings.forEach((h) => observer.observe(h));
-
-        return () => observer.disconnect();
-    }, [activeSection]);
-
-    const TOCLink = ({ item, isSub = false }: { item: { id: string; label: string; subItems?: { id: string; label: string }[] }, isSub?: boolean }) => {
-        const checkActiveRecursive = (node: { id: string; subItems?: { id: string; label: string }[] }): boolean => {
-            if (activeSection === node.id) return true;
-            if (node.subItems) return node.subItems.some((sub: { id: string; label: string }) => checkActiveRecursive(sub));
-            return false;
-        };
-
-        const isActive = checkActiveRecursive(item);
-
-        const handleLinkClick = () => {
-            isClickScrolling.current = true;
-            setActiveSection(item.id);
-
-            if (window.history.pushState) {
-                window.history.pushState(null, '', `#${item.id}`);
-            }
-
-            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-            scrollTimeout.current = setTimeout(() => {
-                isClickScrolling.current = false;
-            }, 1000);
-        };
-
-        return (
-            <li className={`transition-all duration-300 ${isSub ? 'mt-2' : 'mt-3'}`}>
-                <a
-                    href={`#${item.id}`}
-                    onClick={handleLinkClick}
-                    className={`block transition-all duration-300 border-l-2 pl-3 whitespace-nowrap ${isActive ? 'text-accent border-accent font-bold translate-x-1' : 'text-muted hover:text-foreground border-transparent'
-                        }`}
-                >
-                    {item.label}
-                </a>
-                {item.subItems && (
-                    <ul className="pl-4 ml-3 border-l border-border/50 mt-2 space-y-2">
-                        {item.subItems.map((sub: { id: string; label: string }) => <TOCLink key={sub.id} item={sub} isSub={true} />)}
-                    </ul>
-                )}
-            </li>
-        );
-    };
 
     return (
         <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
@@ -182,14 +74,7 @@ export default function PercentileCalculatorClient() {
 
                 {/* --- LEFT SIDEBAR: Table of Contents --- */}
                 <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
-                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-auto custom-toc-scrollbar text-left">
-                        <h3 className="text-sm font-black uppercase tracking-[0.2em] sticky top-0 bg-surface z-10 pb-2">Table of Contents</h3>
-                        <ul className="text-sm font-medium mt-4">
-                            {tocItems.map(item => (
-                                <TOCLink key={item.id} item={item} />
-                            ))}
-                        </ul>
-                    </div>
+                    <TableOfContents items={tocItems} />
                 </aside>
                 {/* --- RIGHT CONTENT AREA --- */}
                 <div className="flex-1 min-w-0 order-1 md:order-2">
@@ -207,7 +92,7 @@ export default function PercentileCalculatorClient() {
 
                         {/* Title Section */}
                         <div className="space-y-6 text-center sm:text-left mt-4">
-                            <h1 id="height-and-weight-percentile-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
+                            <h1 id="calculate-your-height-and-weight-percentile" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
                                 Height and Weight Percentile Calculator
                             </h1>
                             <div className="h-1.5 w-24 bg-accent rounded-full mx-auto sm:mx-0" />
@@ -349,7 +234,7 @@ export default function PercentileCalculatorClient() {
                                 </div>
 
                                 <div id="height-percentile-calculator-for-toddlers-and-kids" className="scroll-mt-24">
-                                    <h3 className="text-xl font-bold text-foreground mb-3">Height Percentile Calculator for Toddlers and Kids</h3>
+                                    <h3 className="text-xl font-bold text-foreground mb-3" >Height Percentile Calculator for Toddlers and Kids</h3>
                                     <p className="text-muted leading-relaxed">
                                         From age 2 through adolescence, the child height weight percentile calculator draws on <span className='text-accent font-bold'> CDC growth chart</span> reference data . Growth in this phase is steadier than in infancy but follows clear age-specific patterns. The child height percentile calculator accounts for age in months rather than years to keep results accurate for children who fall between birthdays.
                                     </p>

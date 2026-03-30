@@ -379,7 +379,7 @@ export default function HeightPercentileTool() {
                                         border: "1px solid " + (unit === u ? (isDark ? "var(--accent)" : "#4338ca") : (isDark ? "var(--border)" : "#e2e8f0")),
                                         background: unit === u ? (isDark ? "var(--accent)" : "#4338ca") : (isDark ? "transparent" : "white"),
                                         color: unit === u ? "white" : (isDark ? "#94a3b8" : "#64748b"),
-                                        fontSize: 13, fontWeight: 700, cursor: "pointer",
+                                        fontSize: 13, fontWeight: 900, cursor: "pointer",
                                         fontFamily: "Georgia, serif", transition: "all 0.2s"
                                     }}>
                                         {displayLabel}
@@ -440,7 +440,7 @@ export default function HeightPercentileTool() {
                                         border: "1px solid " + (gender === g ? (isDark ? "var(--accent)" : "#0f172a") : (isDark ? "var(--border)" : "#e2e8f0")),
                                         background: gender === g ? (isDark ? "var(--accent)" : "#0f172a") : (isDark ? "transparent" : "white"),
                                         color: gender === g ? "white" : (isDark ? "#94a3b8" : "#64748b"),
-                                        fontSize: 14, fontWeight: 700, cursor: "pointer",
+                                        fontSize: 14, fontWeight: 900, cursor: "pointer",
                                         fontFamily: "Georgia, serif", transition: "all 0.2s"
                                     }}>
                                         {g === "Male" ? "♂ Male" : "♀ Female"}
@@ -567,7 +567,7 @@ export default function HeightPercentileTool() {
                             <button onClick={() => setShowCard(true)} style={{
                                 width: "100%", padding: "13px 0", borderRadius: 12,
                                 border: `1px solid ${color}`, background: "transparent",
-                                color, fontSize: 14, fontWeight: 700, cursor: "pointer",
+                                color, fontSize: 14, fontWeight: 900, cursor: "pointer",
                                 fontFamily: "Georgia, serif", transition: "all 0.2s"
                             }}>
                                 📤 Share My Result

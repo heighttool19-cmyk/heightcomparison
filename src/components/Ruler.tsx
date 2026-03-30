@@ -94,11 +94,7 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                         {/* CM & FT Labels */}
                         {showLabels && (
                             <div
-                                className="sticky left-0 z-20 flex flex-col items-end w-full pr-3 pl-1 sm:pr-4 sm:pl-2 bg-canvas/40 backdrop-blur-[2px]"
-                                style={{
-                                    maskImage: 'linear-gradient(to right, black 80%, transparent)',
-                                    WebkitMaskImage: 'linear-gradient(to right, black 80%, transparent)'
-                                }}
+                                className="sticky left-0 z-20 flex flex-col items-start w-full pr-1 pl-2 sm:pr-2 sm:pl-3 bg-canvas/40 backdrop-blur-[2px]"
                             >
                                 {unitSystem === 'metric' ? (
                                     <span className={`text-[10px] sm:text-[11px] font-mono font-black transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>

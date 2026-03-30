@@ -4,17 +4,19 @@ import HomeContent from "@/components/HomeContent";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-bg">
+    <div className="flex flex-col min-h-[100dvh] bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 overflow-x-hidden">
 
-      {/* 1. Global Sticky Navbar */}
+      {/* Global Sticky Navbar */}
       <Navbar activePage="home" />
 
-      {/* 2. Interactive Dashboard (Calculates remaining screen height minus the 70px navbar) */}
-      <div className="w-full h-[calc(100vh-70px)] relative">
+      {/* FIXED: Changed min-h to h- so the chart knows EXACTLY how tall it should be.
+        Added shrink-0 so the HomeContent below doesn't compress this div.
+      */}
+      <div className="w-full h-[calc(100dvh-70px)] shrink-0 relative flex flex-col">
         <HeightDashboard />
       </div>
 
-      {/* 3. SEO Content (Users can just naturally scroll down to this) */}
+      {/* SEO Content */}
       <HomeContent />
 
     </div>

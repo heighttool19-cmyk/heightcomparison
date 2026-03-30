@@ -126,7 +126,7 @@ export default function HomeContent() {
                                 That is why a 10 cm gap between two people near 160 cm reads completely differently from the same 10 cm gap between two people near 190 cm. The proportional scale makes both situations immediately visible and distinguishable without any calculation on your part.
                             </p>
 
-                            <div className="bg-surface border border-border rounded-2xl overflow-hidden my-8 shadow-sm">
+                            <div className="bg-[#EAF3DE] dark:bg-[#27500A]/20 border border-border rounded-2xl overflow-hidden my-8 shadow-sm">
                                 <div className="p-4 border-b border-border flex items-center justify-between bg-bg/50">
                                     <span className="text-[13px] font-bold text-muted">Quick example — see the maths behind it</span>
                                     <span className="text-[10px] px-2.5 py-[3px] rounded-md font-bold bg-[#EAF3DE] dark:bg-[#27500A]/20 text-[#27500A] dark:text-[#EAF3DE] border border-[#C0DD97] dark:border-[#27500A]/40 uppercase tracking-wide">Worked example</span>
@@ -778,6 +778,8 @@ export default function HomeContent() {
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">Compare Heights Online — Tools and Articles</h2>
 
                             <div className="grid sm:grid-cols-2 gap-4 my-8">
+
+                                {/* Box 1 */}
                                 <Link href="/height-difference-calculator" className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col">
                                     <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EAF3DE] dark:bg-emerald-900/30 text-[#27500A] dark:text-emerald-400 border border-[#C0DD97] dark:border-emerald-500/30 mb-3 uppercase tracking-wide">Tool</div>
                                     <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#22c55e] transition-colors">Height Difference Calculator</div>
@@ -785,40 +787,46 @@ export default function HomeContent() {
                                     <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Try the calculator <ArrowRight size={14} /></div>
                                 </Link>
 
-                                <div className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
+                                {/* Box 2 */}
+                                <Link href="/average-height-by-country" className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
                                     <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EAF3DE] dark:bg-emerald-900/30 text-[#27500A] dark:text-emerald-400 border border-[#C0DD97] dark:border-emerald-500/30 mb-3 uppercase tracking-wide">Data</div>
                                     <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#22c55e] transition-colors">Average Height by Country</div>
                                     <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Global height data for 46 countries. Sortable table, regional charts, a world map heatmap, and records for the world's tallest and shortest populations.</div>
                                     <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Explore the data <ArrowRight size={14} /></div>
-                                </div>
+                                </Link>
 
-                                <Link href="/height-weight-percentile-calculator" className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col">
-                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Tool</div>
-                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">Height and Weight Percentile Calculator</div>
+                                {/* Box 3 */}
+                                <Link href="/height-weight-percentile-calculator" className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col">
+                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EAF3DE] dark:bg-emerald-900/30 text-[#27500A] dark:text-emerald-400 border border-[#C0DD97] dark:border-emerald-500/30 mb-3 uppercase tracking-wide">Tool</div>
+                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#22c55e] transition-colors">Height and Weight Percentile Calculator</div>
                                     <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Find out where your height and weight sit within the population using WHO and CDC reference data. Works for babies, children, and adults.</div>
                                     <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Try the tool <ArrowRight size={14} /></div>
                                 </Link>
 
-                                <div className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
-                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Tool</div>
-                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">Ideal Body Weight Calculator</div>
+                                {/* Box 4 */}
+                                <Link href="/ideal-body-weight-calculator" className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
+                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EAF3DE] dark:bg-emerald-900/30 text-[#27500A] dark:text-emerald-400 border border-[#C0DD97] dark:border-emerald-500/30 mb-3 uppercase tracking-wide">Tool</div>
+                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#22c55e] transition-colors">Ideal Body Weight Calculator</div>
                                     <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Calculate ideal body weight using the Devine, Robinson, and Hamwi formulas side by side. Results in kg and lb for men and women.</div>
                                     <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Try the tool <ArrowRight size={14} /></div>
-                                </div>
+                                </Link>
 
-                                <Link href={"/image-to-height"} className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
-                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Guide</div>
-                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">How to Measure Your Height Accurately</div>
+                                {/* Box 5 */}
+                                <Link href="/image-to-height" className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
+                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EAF3DE] dark:bg-emerald-900/30 text-[#27500A] dark:text-emerald-400 border border-[#C0DD97] dark:border-emerald-500/30 mb-3 uppercase tracking-wide">Guide</div>
+                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#22c55e] transition-colors">How to Measure Your Height Accurately</div>
                                     <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Why you are taller in the morning, how to use a photo to measure height without a tape measure, and where the wall-and-book method goes wrong.</div>
                                     <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Read the guide <ArrowRight size={14} /></div>
                                 </Link>
 
-                                <div className="bg-surface rounded-2xl p-6 border border-border hover:border-[#CECBF6] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
-                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EEEDFE] dark:bg-indigo-900/30 text-[#3C3489] dark:text-indigo-300 border border-[#CECBF6] dark:border-indigo-500/30 mb-3 uppercase tracking-wide">Data</div>
-                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#3C3489] dark:group-hover:text-indigo-400 transition-colors">Tallest and Shortest People in History</div>
-                                    <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Verified Guinness World Records for Robert Wadlow, Chandra Bahadur Dangi, Zeng Jinlian, and Jyoti Amge — with a visual scale that puts their heights in perspective.</div>
-                                    <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Read the article <ArrowRight size={14} /></div>
-                                </div>
+                                {/* Box 6 */}
+                                <Link href="/child-height-calculator" className="bg-surface rounded-2xl p-6 border-[1.5px] border-[#22c55e] hover:-translate-y-1 transition-all group shadow-sm flex flex-col cursor-pointer">
+                                    <div className="inline-flex self-start text-[10px] font-bold px-2 py-[2px] rounded-md bg-[#EAF3DE] dark:bg-emerald-900/30 text-[#27500A] dark:text-emerald-400 border border-[#C0DD97] dark:border-emerald-500/30 mb-3 uppercase tracking-wide">Tool</div>
+                                    <div className="text-[16px] font-bold text-foreground mb-2 leading-[1.4] group-hover:text-[#22c55e] transition-colors">Child Height Predictor</div>
+                                    <div className="text-[13px] text-muted leading-[1.6] flex-1 mb-4">Estimate how tall your child will grow as an adult using the scientifically backed Khamis-Roche method and Mid-Parental formulas.</div>
+                                    <div className="text-[12px] font-bold text-[#22c55e] mt-auto flex items-center gap-1.5 group-hover:gap-2 transition-all">Try the calculator <ArrowRight size={14} /></div>
+                                </Link>
+
                             </div>
 
                             {/* Legal / Do not sell */}

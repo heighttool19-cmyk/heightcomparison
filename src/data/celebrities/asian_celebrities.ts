@@ -19,13 +19,13 @@ export const asian_celebrities_data = [
   },
   {
     "name": "Tony Leung Chiu-wai",
-    "heightCm": 170,
+    "heightCm": 171,
     "gender": "Male",
     "category": "Asian Celebs"
   },
   {
     "name": "Andy Lau",
-    "heightCm": 175,
+    "heightCm": 174,
     "gender": "Male",
     "category": "Asian Celebs"
   },
@@ -115,7 +115,7 @@ export const asian_celebrities_data = [
   },
   {
     "name": "Rain (Jung Ji-hoon)",
-    "heightCm": 183,
+    "heightCm": 184,
     "gender": "Male",
     "category": "Asian Celebs"
   },
@@ -169,7 +169,7 @@ export const asian_celebrities_data = [
   },
   {
     "name": "Park Seo-joon",
-    "heightCm": 186,
+    "heightCm": 185,
     "gender": "Male",
     "category": "Asian Celebs"
   },

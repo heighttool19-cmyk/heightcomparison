@@ -95,13 +95,13 @@ export default function CalculateHeightDifference() {
             <div className="flex flex-wrap gap-2 mb-5">
                 <button
                     onClick={() => setUnitSystem('metric')}
-                    className={`px-5 py-2 rounded-full text-xs font-bold cursor-pointer transition-all shadow-sm border-2 ${isMetric ? 'bg-accent text-white border-accent shadow-md' : 'bg-surface text-muted border-border hover:text-foreground'}`}
+                    className={`px-5 py-2 rounded-full text-xs font-black cursor-pointer transition-all shadow-sm border-2 ${isMetric ? 'bg-accent text-white border-accent shadow-md' : 'bg-surface text-muted border-border hover:text-foreground'}`}
                 >
                     Metric (cm)
                 </button>
                 <button
                     onClick={() => setUnitSystem('imperial')}
-                    className={`px-5 py-2 rounded-full text-xs font-bold cursor-pointer transition-all shadow-sm border-2 ${!isMetric ? 'bg-accent text-white border-accent shadow-md' : 'bg-surface text-muted border-border hover:text-foreground'}`}
+                    className={`px-5 py-2 rounded-full text-xs font-black cursor-pointer transition-all shadow-sm border-2 ${!isMetric ? 'bg-accent text-white border-accent shadow-md' : 'bg-surface text-muted border-border hover:text-foreground'}`}
                 >
                     Imperial (in)
                 </button>

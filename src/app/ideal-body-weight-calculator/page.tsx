@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useThemeStore, useUnitStore } from '@/store';
 import Navbar from '@/components/Navbar';
 import HealthyWeightRange from '@/components/ideal-body-weight-calculator/HealthyWeightRange';
+import TableOfContents from '@/components/TableOfContents';
 
 // --- TOC Data ---
 const tocItems = [
@@ -67,11 +68,7 @@ const QA = [
 export default function IdealBodyWeightPage() {
     const { theme } = useThemeStore();
     const { unitSystem, setUnitSystem } = useUnitStore();
-    const [activeSection, setActiveSection] = useState<string>('');
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-    const isClickScrolling = useRef(false);
-    const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
     // Calculator State
     const [heightCm, setHeightCm] = useState<number | ''>('');
@@ -83,89 +80,6 @@ export default function IdealBodyWeightPage() {
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
-
-    useEffect(() => {
-        const visibleSections = new Map<string, IntersectionObserverEntry>();
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (isClickScrolling.current) return;
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        visibleSections.set(entry.target.id, entry);
-                    } else {
-                        visibleSections.delete(entry.target.id);
-                    }
-                });
-
-                if (visibleSections.size > 0) {
-                    let closestSection = '';
-                    let minTop = Infinity;
-                    visibleSections.forEach((entry, id) => {
-                        const topPos = entry.boundingClientRect.top;
-                        if (topPos >= 0 && topPos < minTop) {
-                            minTop = topPos;
-                            closestSection = id;
-                        }
-                    });
-
-                    if (!closestSection) closestSection = Array.from(visibleSections.keys())[0];
-                    if (closestSection && closestSection !== activeSection) {
-                        setActiveSection(closestSection);
-                        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-                        scrollTimeout.current = setTimeout(() => {
-                            if (window.history.replaceState) {
-                                window.history.replaceState(null, '', `#${closestSection}`);
-                            }
-                        }, 150);
-                    }
-                }
-            },
-            { rootMargin: '-70px 0px -40% 0px', threshold: 0 }
-        );
-
-        const headings = document.querySelectorAll(
-            tocItems.flatMap(item => {
-                const ids = [`#${item.id}`];
-                if (item.subItems) {
-                    item.subItems.forEach(sub => ids.push(`#${sub.id}`));
-                }
-                return ids;
-            }).join(', ')
-        );
-        headings.forEach((h) => observer.observe(h));
-        return () => observer.disconnect();
-    }, [activeSection]);
-
-    const TOCLink = ({ item, isSub = false }: { item: { id: string; label: string; subItems?: { id: string; label: string }[] }, isSub?: boolean }) => {
-        const checkActiveRecursive = (node: { id: string; subItems?: { id: string; label: string }[] }): boolean => {
-            if (activeSection === node.id) return true;
-            if (node.subItems) return node.subItems.some(sub => checkActiveRecursive(sub));
-            return false;
-        };
-
-        const isActive = checkActiveRecursive(item);
-
-        const handleLinkClick = () => {
-            isClickScrolling.current = true;
-            setActiveSection(item.id);
-            if (window.history.pushState) window.history.pushState(null, '', `#${item.id}`);
-            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-            scrollTimeout.current = setTimeout(() => { isClickScrolling.current = false; }, 1000);
-        };
-
-        return (
-            <li className={`transition-all duration-300 ${isSub ? 'mt-2' : 'mt-3'}`}>
-                <a href={`#${item.id}`} onClick={handleLinkClick} className={`block transition-all duration-300 border-l-2 pl-3 whitespace-nowrap ${isActive ? 'text-accent border-accent font-bold translate-x-1' : 'text-muted hover:text-foreground border-transparent'}`}>
-                    {item.label}
-                </a>
-                {item.subItems && (
-                    <ul className="pl-4 ml-3 border-l border-border/50 mt-2 space-y-2">
-                        {item.subItems.map(sub => <TOCLink key={sub.id} item={sub} isSub={true} />)}
-                    </ul>
-                )}
-            </li>
-        );
-    };
 
     // Calculate IBW
     const getIBW = () => {
@@ -228,14 +142,7 @@ export default function IdealBodyWeightPage() {
             <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-4 md:p-8 relative">
                 {/* --- Sidebar TOC --- */}
                 <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
-                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-auto custom-toc-scrollbar">
-                        <h3 className="text-sm font-black uppercase tracking-[0.2em] sticky top-0 bg-surface z-10 pb-2">Table of Contents</h3>
-                        <ul className="text-sm font-medium mt-4 table-of-contents">
-                            {tocItems.map(item => (
-                                <TOCLink key={item.id} item={item} />
-                            ))}
-                        </ul>
-                    </div>
+                    <TableOfContents items={tocItems} />
                 </aside>
 
                 {/* --- Main Content --- */}
@@ -244,7 +151,7 @@ export default function IdealBodyWeightPage() {
 
                         {/* Intro */}
                         <div className="space-y-6 text-center sm:text-left mt-4">
-                            <h1 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
+                            <h1 id="ideal-body-weight-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
                                 Ideal Body Weight Calculator
                             </h1>
                             <div className="h-1.5 w-24 bg-accent rounded-full mx-auto sm:mx-0" />
@@ -265,8 +172,8 @@ export default function IdealBodyWeightPage() {
 
                             {/* Controls */}
                             <div className="flex gap-2 mb-6">
-                                <button onClick={() => setUnitSystem('metric')} className={`flex-1 py-3 rounded-xl font-bold transition-all border-2 ${unitSystem === 'metric' ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Metric (kg / cm)</button>
-                                <button onClick={() => setUnitSystem('imperial')} className={`flex-1 py-3 rounded-xl font-bold transition-all border-2 ${unitSystem === 'imperial' ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Imperial (lb / ft-in)</button>
+                                <button onClick={() => setUnitSystem('metric')} className={`flex-1 py-3 rounded-xl font-black transition-all border-2 ${unitSystem === 'metric' ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Metric (kg / cm)</button>
+                                <button onClick={() => setUnitSystem('imperial')} className={`flex-1 py-3 rounded-xl font-black transition-all border-2 ${unitSystem === 'imperial' ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Imperial (lb / ft-in)</button>
                             </div>
 
                             <div className="grid sm:grid-cols-2 gap-6 mb-8">
@@ -295,8 +202,8 @@ export default function IdealBodyWeightPage() {
                                 <div className="space-y-2">
                                     <label className="text-sm font-bold text-muted uppercase tracking-wider">Sex</label>
                                     <div className="flex gap-2 h-[46px]">
-                                        <button onClick={() => setSex('male')} className={`flex-1 rounded-xl font-bold transition-all border-2 ${sex === 'male' ? 'bg-blue-500/10 text-blue-500 border-blue-500' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Male</button>
-                                        <button onClick={() => setSex('female')} className={`flex-1 rounded-xl font-bold transition-all border-2 ${sex === 'female' ? 'bg-pink-500/10 text-pink-500 border-pink-500' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Female</button>
+                                        <button onClick={() => setSex('male')} className={`flex-1 rounded-xl font-black transition-all border-2 ${sex === 'male' ? 'bg-blue-500/10 text-blue-500 border-blue-500' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Male</button>
+                                        <button onClick={() => setSex('female')} className={`flex-1 rounded-xl font-black transition-all border-2 ${sex === 'female' ? 'bg-pink-500/10 text-pink-500 border-pink-500' : 'bg-bg text-muted border-border hover:bg-surface'}`}>Female</button>
                                     </div>
                                 </div>
                                 <div className="space-y-2 sm:col-span-2">
@@ -379,7 +286,7 @@ export default function IdealBodyWeightPage() {
                                 </p>
                             </div>
 
-                            <div id="devine-formula" className="bg-surface border border-border p-6 md:p-8 rounded-3xl relative overflow-hidden scroll-mt-24">
+                            <div id='devine-formula' className="bg-surface border border-border p-6 md:p-8 rounded-3xl relative overflow-hidden scroll-mt-24">
                                 <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
                                 <h3 className="text-xl font-bold text-foreground mb-3">Devine Formula</h3>
                                 <p className="text-muted leading-relaxed mb-6">
@@ -446,7 +353,7 @@ export default function IdealBodyWeightPage() {
                                 </div>
                             </div>
 
-                            <div id="hamwi-formula" className="bg-surface border border-border p-6 md:p-8 rounded-3xl relative overflow-hidden scroll-mt-24">
+                            <div id='hamwi-formula' className="bg-surface border border-border p-6 md:p-8 rounded-3xl relative overflow-hidden scroll-mt-24">
                                 <div className="absolute top-0 left-0 w-1.5 h-full bg-accent" />
                                 <h3 className="text-xl font-bold text-foreground mb-3">Hamwi Formula</h3>
                                 <p className="text-muted leading-relaxed mb-6">

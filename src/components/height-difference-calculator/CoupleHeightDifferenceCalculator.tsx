@@ -61,7 +61,7 @@ export default function CoupleHeightDifferenceCalculator() {
                     <button
                         key={i}
                         onClick={() => setIdx(i)}
-                        className={`px-4 py-1.5 rounded-full text-[11.5px] font-bold cursor-pointer transition-colors border-2 ${i === idx ? 'bg-[#DB2777] text-white border-[#DB2777]' : 'bg-surface text-muted border-border hover:text-foreground'}`}
+                        className={`px-4 py-1.5 rounded-full text-[11.5px] font-black cursor-pointer transition-colors border-2 ${i === idx ? 'bg-[#DB2777] text-white border-[#DB2777]' : 'bg-surface text-muted border-border hover:text-foreground'}`}
                     >
                         {e.h1} cm / {e.h2} cm
                     </button>

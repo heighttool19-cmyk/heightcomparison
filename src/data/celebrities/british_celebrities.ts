@@ -25,7 +25,7 @@ export const british_celebrities_data = [
   },
   {
     "name": "Richard Burton",
-    "heightCm": 175,
+    "heightCm": 178,
     "gender": "Male",
     "category": "British Celebrities"
   },
@@ -37,7 +37,7 @@ export const british_celebrities_data = [
   },
   {
     "name": "Richard Harris",
-    "heightCm": 183,
+    "heightCm": 185,
     "gender": "Male",
     "category": "British Celebrities"
   },
@@ -49,7 +49,7 @@ export const british_celebrities_data = [
   },
   {
     "name": "David Niven",
-    "heightCm": 180,
+    "heightCm": 188,
     "gender": "Male",
     "category": "British Celebrities"
   },
@@ -283,13 +283,13 @@ export const british_celebrities_data = [
   },
   {
     "name": "Daniel Day-Lewis",
-    "heightCm": 188,
+    "heightCm": 187,
     "gender": "Male",
     "category": "British Celebrities"
   },
   {
     "name": "Gary Oldman",
-    "heightCm": 175,
+    "heightCm": 174,
     "gender": "Male",
     "category": "British Celebrities"
   },
@@ -331,7 +331,7 @@ export const british_celebrities_data = [
   },
   {
     "name": "Kenneth Branagh",
-    "heightCm": 178,
+    "heightCm": 177,
     "gender": "Male",
     "category": "British Celebrities"
   },
@@ -433,13 +433,13 @@ export const british_celebrities_data = [
   },
   {
     "name": "Eddie Redmayne",
-    "heightCm": 184,
+    "heightCm": 180,
     "gender": "Male",
     "category": "British Celebrities"
   },
   {
     "name": "Tom Hiddleston",
-    "heightCm": 188,
+    "heightCm": 187,
     "gender": "Male",
     "category": "British Celebrities"
   },
@@ -469,7 +469,7 @@ export const british_celebrities_data = [
   },
   {
     "name": "Dev Patel",
-    "heightCm": 188,
+    "heightCm": 187,
     "gender": "Male",
     "category": "British Celebrities"
   },
@@ -564,7 +564,7 @@ export const british_celebrities_data = [
     "category": "British Celebrities"
   },
   {
-    "name": "Reg\u00e9-Jean Page",
+    "name": "Regé-Jean Page",
     "heightCm": 180,
     "gender": "Male",
     "category": "British Celebrities"
@@ -607,19 +607,19 @@ export const british_celebrities_data = [
   },
   {
     "name": "Anya Taylor-Joy",
-    "heightCm": 169,
+    "heightCm": 173,
     "gender": "Female",
     "category": "British Celebrities"
   },
   {
     "name": "Jodie Comer",
-    "heightCm": 172,
+    "heightCm": 173,
     "gender": "Female",
     "category": "British Celebrities"
   },
   {
     "name": "Phoebe Waller-Bridge",
-    "heightCm": 177,
+    "heightCm": 176,
     "gender": "Female",
     "category": "British Celebrities"
   },
@@ -643,7 +643,7 @@ export const british_celebrities_data = [
   },
   {
     "name": "Claire Foy",
-    "heightCm": 163,
+    "heightCm": 162,
     "gender": "Female",
     "category": "British Celebrities"
   },
@@ -799,7 +799,7 @@ export const british_celebrities_data = [
   },
   {
     "name": "Rowan Atkinson",
-    "heightCm": 183,
+    "heightCm": 181,
     "gender": "Male",
     "category": "British Celebrities"
   },

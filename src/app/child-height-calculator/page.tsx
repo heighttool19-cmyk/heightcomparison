@@ -12,6 +12,7 @@ import HeightCharts from '@/components/HeightCharts';
 import GrowthPlateExplainer from '@/components/GrowthPlateExplainer';
 import { Person } from '@/types';
 import { handleInputChange } from '@/utils/input';
+import TableOfContents from '@/components/TableOfContents';
 
 // Structured TOC data for easy rendering and active state tracking
 const tocItems = [
@@ -47,12 +48,6 @@ const tocItems = [
 export default function HeightCalculatorPage() {
     const router = useRouter();
     const { theme } = useThemeStore();
-    // const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState<string>('');
-
-    // NEW: Scroll locks to prevent observer from firing during manual clicks
-    const isClickScrolling = useRef(false);
-    const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
     const { unitSystem: unit, setUnitSystem } = useUnitStore();
     const { setPersons: storeSetPersons } = usePersonStore();
 
@@ -109,68 +104,6 @@ export default function HeightCalculatorPage() {
         const compact = LZString.compressToEncodedURIComponent(JSON.stringify(dataToSync));
         router.push(`/#${compact}`);
     };
-    // Intersection Observer for Active TOC state & URL Sync
-    useEffect(() => {
-        const visibleSections = new Map<string, IntersectionObserverEntry>();
-        let historyTimeout: NodeJS.Timeout;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                // Ignore observer updates if we are actively scrolling from a click
-                if (isClickScrolling.current) return;
-
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        visibleSections.set(entry.target.id, entry);
-                    } else {
-                        visibleSections.delete(entry.target.id);
-                    }
-                });
-
-                if (visibleSections.size > 0) {
-                    // Find the section closest to the top of the screen
-                    let closestSection = '';
-                    let minTop = Infinity;
-
-                    visibleSections.forEach((entry, id) => {
-                        const topPos = entry.boundingClientRect.top;
-                        // Look for elements below the 70px navbar
-                        if (topPos >= 0 && topPos < minTop) {
-                            minTop = topPos;
-                            closestSection = id;
-                        }
-                    });
-
-                    // Fallback
-                    if (!closestSection) {
-                        closestSection = Array.from(visibleSections.keys())[0];
-                    }
-
-                    if (closestSection && closestSection !== activeSection) {
-                        // 1. Instantly update the TOC highlight (lightweight)
-                        setActiveSection(closestSection);
-
-                        // 2. DEBOUNCE the heavy URL update (Fixes the blank rendering bug)
-                        clearTimeout(historyTimeout);
-                        historyTimeout = setTimeout(() => {
-                            if (window.history.replaceState) {
-                                window.history.replaceState(null, '', `#${closestSection}`);
-                            }
-                        }, 150); // Waits 150ms after scrolling stops before updating URL
-                    }
-                }
-            },
-            { rootMargin: '-70px 0px -40% 0px', threshold: 0 }
-        );
-
-        const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], section[id], div[id]');
-        headings.forEach((h) => observer.observe(h));
-
-        return () => {
-            observer.disconnect();
-            clearTimeout(historyTimeout); // Cleanup
-        };
-    }, [activeSection]);
 
     // Helpers
     const cmToFtIn = (cm: number) => {
@@ -337,55 +270,6 @@ export default function HeightCalculatorPage() {
 
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-    const TOCLink = ({ item, isSub = false }: { item: { id: string; label: string; subItems?: { id: string; label: string }[] }, isSub?: boolean }) => {
-        const checkActiveRecursive = (node: { id: string; subItems?: { id: string; label: string }[] }): boolean => {
-            if (activeSection === node.id) return true;
-            if (node.subItems) return node.subItems.some((sub: { id: string; label: string }) => checkActiveRecursive(sub));
-            return false;
-        };
-
-        const isActive = checkActiveRecursive(item);
-        const isGender = item.id.includes('boys') || item.id.includes('girls');
-        const activeColor = isGender ? 'text-green-500 border-green-500' : 'text-accent border-accent';
-
-        // NEW: Handle the click and lock the observer
-        const handleLinkClick = () => {
-            // Lock the observer
-            isClickScrolling.current = true;
-            setActiveSection(item.id);
-
-            // Update the URL immediately
-            if (window.history.pushState) {
-                window.history.pushState(null, '', `#${item.id}`);
-            }
-
-            // Unlock the observer after the smooth scroll finishes (1000ms is usually safe)
-            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-            scrollTimeout.current = setTimeout(() => {
-                isClickScrolling.current = false;
-            }, 1000);
-        };
-
-        return (
-            <li className={`transition-all duration-300 ${isSub ? 'mt-2' : 'mt-3'}`}>
-                <a
-                    href={`#${item.id}`}
-                    onClick={handleLinkClick}
-                    className={`block transition-all duration-300 border-l-2 pl-3 whitespace-nowrap ${isActive ? `${activeColor} font-bold translate-x-1` : 'text-muted hover:text-foreground border-transparent'
-                        }`}
-                >
-                    {item.label}
-                </a>
-                {item.subItems && (
-                    <ul className="pl-4 ml-3 border-l border-border/50 mt-2 space-y-2">
-                        {item.subItems.map((sub: { id: string; label: string }) => <TOCLink key={sub.id} item={sub} isSub={true} />)}
-                    </ul>
-                )}
-            </li>
-        );
-    };
-
-
     return (
         <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
             <Navbar activePage="child-height-calculator" />
@@ -393,14 +277,7 @@ export default function HeightCalculatorPage() {
             {/* --- Main Content with Sidebar Grid --- */}
             <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 relative">
                 <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
-                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-auto custom-toc-scrollbar">
-                        <h3 className="text-sm font-black uppercase tracking-[0.2em] sticky top-0 bg-surface z-10 pb-2">Table of Contents</h3>
-                        <ul className="text-sm font-medium mt-4">
-                            {tocItems.map(item => (
-                                <TOCLink key={item.id} item={item} />
-                            ))}
-                        </ul>
-                    </div>
+                    <TableOfContents items={tocItems} />
                 </aside>
                 <div className="flex-1 min-w-0 order-1 md:order-2">
                     {/* --- RIGHT CONTENT AREA --- */}
@@ -450,8 +327,8 @@ export default function HeightCalculatorPage() {
                                 </div>
                                 {/* Synced Unit Toggle */}
                                 <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
-                                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
-                                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
+                                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
+                                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
                                 </div>
                             </div>
 
@@ -463,8 +340,8 @@ export default function HeightCalculatorPage() {
                                 <div className="space-y-2">
                                     <label className="text-base font-semibold text-muted">Gender</label>
                                     <div className="flex gap-2">
-                                        <button onClick={() => setChildGender('male')} className={`flex-1 py-3 rounded-xl border border-border font-semibold transition-all ${childGender === 'male' ? 'bg-blue-500/10 text-blue-500 border-blue-500' : 'bg-bg text-muted hover:bg-surface'}`}>Boy</button>
-                                        <button onClick={() => setChildGender('female')} className={`flex-1 py-3 rounded-xl border border-border font-semibold transition-all ${childGender === 'female' ? 'bg-pink-500/10 text-pink-500 border-pink-500' : 'bg-bg text-muted hover:bg-surface'}`}>Girl</button>
+                                        <button onClick={() => setChildGender('male')} className={`flex-1 py-3 rounded-xl border border-border font-black transition-all ${childGender === 'male' ? 'bg-blue-500/10 text-blue-500 border-blue-500' : 'bg-bg text-muted hover:bg-surface'}`}>Boy</button>
+                                        <button onClick={() => setChildGender('female')} className={`flex-1 py-3 rounded-xl border border-border font-black transition-all ${childGender === 'female' ? 'bg-pink-500/10 text-pink-500 border-pink-500' : 'bg-bg text-muted hover:bg-surface'}`}>Girl</button>
                                     </div>
                                 </div>
 
@@ -561,8 +438,8 @@ export default function HeightCalculatorPage() {
                             </div>
 
                             <div className="flex gap-4">
-                                <button onClick={calculateKhamis} className="flex-1 bg-accent hover:bg-accent/90 text-white font-bold py-3.5 rounded-xl transition-all shadow-lg active:scale-95">Calculate Height</button>
-                                <button onClick={clearKhamis} className="px-6 bg-bg border border-border text-muted font-bold rounded-xl hover:text-foreground transition-all">Clear</button>
+                                <button onClick={calculateKhamis} className="flex-1 bg-accent hover:bg-accent/90 text-white font-black py-3.5 rounded-xl transition-all shadow-lg active:scale-95">Calculate Height</button>
+                                <button onClick={clearKhamis} className="px-6 bg-bg border border-border text-muted font-black rounded-xl hover:text-foreground transition-all">Clear</button>
                             </div>
 
                             <AnimatePresence>
@@ -574,7 +451,7 @@ export default function HeightCalculatorPage() {
                                             <div className="w-px h-10 bg-border" />
                                             <span className="text-4xl md:text-5xl font-black text-accent">{predictedKhamis.ft}&apos;{predictedKhamis.in}&quot;</span>
                                         </div>
-                                        <p className="text-xs font-bold text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">Target Range (±5 cm): {predictedKhamis.cm - 5} : {predictedKhamis.cm + 5} cm</p>
+                                        <p className="text-xs font-black text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">Target Range (±5 cm): {predictedKhamis.cm - 5} : {predictedKhamis.cm + 5} cm</p>
 
                                         <button
                                             onClick={() => handleViewInDashboard(chartPersons)}
@@ -599,8 +476,8 @@ export default function HeightCalculatorPage() {
 
                                 {/* Synced Unit Toggle */}
                                 <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
-                                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
-                                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-bold transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
+                                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
+                                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
                                 </div>
                             </div>
 
@@ -659,7 +536,7 @@ export default function HeightCalculatorPage() {
                                     )}
                                 </div>
                             </div>
-                            <button onClick={calculateMidParental} className="w-full bg-surface border-2 border-border hover:border-accent hover:bg-accent/5 text-foreground font-bold py-3.5 rounded-xl transition-all shadow-sm active:scale-95">Calculate Estimate</button>
+                            <button onClick={calculateMidParental} className="w-full bg-surface border-2 border-border hover:border-accent hover:bg-accent/5 text-foreground font-black py-3.5 rounded-xl transition-all shadow-sm active:scale-95">Calculate Estimate</button>
 
                             <AnimatePresence>
                                 {predictedParentOnlyBoys && predictedParentOnlyGirls && (

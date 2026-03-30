@@ -12,6 +12,7 @@ import CalculateHeightDifference from '@/components/height-difference-calculator
 import CoupleHeightDifferenceCalculator from '@/components/height-difference-calculator/CoupleHeightDifferenceCalculator';
 import HeightDifferenceChart from '@/components/height-difference-calculator/HeightDifferenceChart';
 import VisualHeightComparison from '@/components/height-difference-calculator/VisualHeightComparison';
+import TableOfContents from '@/components/TableOfContents';
 
 const tocItems = [
     { id: 'calculate-height-difference', label: 'Calculate Height Difference' },
@@ -52,11 +53,7 @@ export default function HeightDifferencePage() {
     const { theme } = useThemeStore();
     const { unitSystem, setUnitSystem } = useUnitStore();
 
-    const [activeSection, setActiveSection] = useState<string>('');
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-    const isClickScrolling = useRef(false);
-    const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
     // Calculator State (for the main page logic, not the internal component)
     const [p1Cm, setP1Cm] = useState<number | ''>(180);
@@ -71,93 +68,7 @@ export default function HeightDifferencePage() {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
 
-    // Intersection Observer for TOC
-    useEffect(() => {
-        const visibleSections = new Map<string, IntersectionObserverEntry>();
-        let historyTimeout: NodeJS.Timeout;
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (isClickScrolling.current) return;
-
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        visibleSections.set(entry.target.id, entry);
-                    } else {
-                        visibleSections.delete(entry.target.id);
-                    }
-                });
-
-                if (visibleSections.size > 0) {
-                    let closestSection = '';
-                    let minTop = Infinity;
-
-                    visibleSections.forEach((entry, id) => {
-                        const topPos = entry.boundingClientRect.top;
-                        if (topPos >= 0 && topPos < minTop) {
-                            minTop = topPos;
-                            closestSection = id;
-                        }
-                    });
-
-                    if (!closestSection) {
-                        closestSection = Array.from(visibleSections.keys())[0];
-                    }
-
-                    if (closestSection && closestSection !== activeSection) {
-                        setActiveSection(closestSection);
-
-                        clearTimeout(historyTimeout);
-                        historyTimeout = setTimeout(() => {
-                            if (window.history.replaceState) {
-                                window.history.replaceState(null, '', `#${closestSection}`);
-                            }
-                        }, 150);
-                    }
-                }
-            },
-            { rootMargin: '-70px 0px -40% 0px', threshold: 0 }
-        );
-
-        const headings = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], section[id], div[id]');
-        headings.forEach((h) => observer.observe(h));
-
-        return () => {
-            observer.disconnect();
-            clearTimeout(historyTimeout);
-        };
-    }, [activeSection]);
-
-    const TOCLink = ({ item }: { item: { id: string; label: string } }) => {
-        const isActive = activeSection === item.id;
-        const activeColor = 'text-accent border-accent';
-
-        const handleLinkClick = () => {
-            isClickScrolling.current = true;
-            setActiveSection(item.id);
-
-            if (window.history.pushState) {
-                window.history.pushState(null, '', `#${item.id}`);
-            }
-
-            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-            scrollTimeout.current = setTimeout(() => {
-                isClickScrolling.current = false;
-            }, 1000);
-        };
-
-        return (
-            <li className="mt-3 transition-all duration-300">
-                <a
-                    href={`#${item.id}`}
-                    onClick={handleLinkClick}
-                    className={`block transition-all duration-300 border-l-2 pl-3 whitespace-nowrap ${isActive ? `${activeColor} font-bold translate-x-1` : 'text-muted hover:text-foreground border-transparent'}`}
-                >
-                    {item.label}
-                </a>
-            </li>
-        );
-    };
+    // Calculator Math Logic (for main page)
 
     // Calculator Math Logic (for main page)
     const getHeights = () => {
@@ -191,14 +102,7 @@ export default function HeightDifferencePage() {
 
                 {/* --- LEFT SIDEBAR (TOC) --- */}
                 <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
-                    <div className="sticky top-24 bg-surface border border-border rounded-3xl p-6 shadow-xl max-h-[calc(100vh-120px)] overflow-y-auto overflow-x-auto custom-toc-scrollbar">
-                        <h3 className="text-sm font-black uppercase tracking-[0.2em] sticky top-0 bg-surface z-10 pb-2">Table of Contents</h3>
-                        <ul className="text-sm font-medium mt-4">
-                            {tocItems.map(item => (
-                                <TOCLink key={item.id} item={item} />
-                            ))}
-                        </ul>
-                    </div>
+                    <TableOfContents items={tocItems} />
                 </aside>
                 {/* --- RIGHT CONTENT AREA --- */}
                 <div className="flex-1 min-w-0 order-1 md:order-2">
