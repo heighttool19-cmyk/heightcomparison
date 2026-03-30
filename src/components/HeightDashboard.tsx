@@ -615,128 +615,139 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         if (activePersonMenuId) setActivePersonMenuId(null);
                     }}
                 >
-                    <div className="order-2 sm:order-first px-4 sm:px-8 pt-4 z-30">
-                        <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-3 px-4 sm:px-6 backdrop-blur-md shadow-2xl overflow-x-auto custom-scrollbar flex-nowrap">
-                            <div className="flex items-center gap-4 sm:gap-6">
+                    <div className="order-2 sm:order-first px-2 lg:px-4 pt-4 z-30 w-full">
+                        <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-hidden flex-nowrap gap-1">
+
+                            {/* === LEFT SECTION === */}
+                            <div className="flex items-center gap-1 lg:gap-3 shrink-0">
+                                {/* Unit Toggle */}
                                 <button
                                     onClick={toggleUnitSystem}
-                                    className="shrink-0 flex items-center gap-1.5 group hover:bg-item-hover px-2 py-1.5 rounded-xl transition-all"
+                                    className="shrink-0 flex items-center gap-1 lg:gap-1.5 group hover:bg-item-hover px-1.5 lg:px-2 py-1.5 rounded-xl transition-all"
                                 >
-                                    <ArrowLeftRight size={16} className="text-muted/50 group-hover:text-accent" />
-                                    <span className="text-[10px] sm:text-xs font-semibold text-muted group-hover:text-foreground whitespace-nowrap">
+                                    <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent shrink-0" />
+                                    <span className="hidden sm:inline text-[10px] lg:text-xs font-semibold text-muted group-hover:text-foreground whitespace-nowrap">
                                         {unitSystem === 'metric' ? 'cm → ft' : 'ft → cm'}
                                     </span>
                                 </button>
-                                <div className="hidden sm:block w-px h-6 bg-white/10 shrink-0" />
-                                <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+
+                                <div className="hidden sm:block w-px h-5 bg-white/10 shrink-0 mx-0.5 lg:mx-0" />
+
+                                {/* Zoom Controls */}
+                                <div className="flex shrink-0 items-center gap-0.5 lg:gap-1">
                                     <button
                                         onClick={() => handleZoom(0.1)}
-                                        className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
+                                        className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
                                         title="Zoom In"
                                     >
-                                        <ZoomIn size={18} strokeWidth={2.5} />
+                                        <ZoomIn size={16} strokeWidth={2.5} className="shrink-0" />
                                     </button>
-                                    <div className="bg-item-hover rounded-lg px-2 py-1.5 flex items-center gap-0.5 border border-toolbar-border">
+                                    <div className="bg-item-hover rounded-lg px-1.5 lg:px-2 py-1 flex items-center gap-0.5 border border-toolbar-border">
                                         <input
                                             type="number"
                                             value={Math.round(state.zoom * 100)}
                                             onChange={(e) => {
                                                 setState(s => ({ ...s, zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, (parseInt(e.target.value) || 100) / 100)) }));
                                             }}
-                                            className="w-6 sm:w-10 bg-transparent text-[10px] sm:text-[13px] font-mono font-bold text-center outline-none text-muted transition-colors focus:text-foreground"
+                                            className="w-7 lg:w-9 bg-transparent text-[10px] lg:text-[12px] font-mono font-bold text-center outline-none text-muted transition-colors focus:text-foreground"
                                         />
                                         <span className="text-[9px] font-bold text-muted/30">%</span>
                                     </div>
                                     <button
                                         onClick={() => handleZoom(-0.1)}
-                                        className="p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
+                                        className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
                                         title="Zoom Out"
                                     >
-                                        <ZoomOut size={18} strokeWidth={2.5} />
+                                        <ZoomOut size={16} strokeWidth={2.5} className="shrink-0" />
                                     </button>
-                                    <div className="flex items-center gap-1 ml-2 border-l border-white/10 pl-3">
-                                        <button
-                                            onClick={handleAutoScale}
-                                            className="p-2 text-primary hover:bg-primary/10 transition-all rounded-lg"
-                                            title="Auto Fit All"
-                                        >
-                                            <Focus size={18} strokeWidth={2.5} />
-                                        </button>
-                                        <button
-                                            onClick={() => {
-                                                setActivePanel('ADD_PERSON');
-                                                setIsSidebarCollapsed(false);
-                                                if (isMobile) setIsMobileDrawerOpen(true);
-                                                setHighlightYourList(true);
-                                                setTimeout(() => setHighlightYourList(false), 2000);
-                                            }}
-                                            className="p-1.5 sm:p-2 text-emerald-500 hover:bg-emerald-500/10 transition-all rounded-lg shrink-0"
-                                            title="Edit List"
-                                        >
-                                            <Edit2 size={16} strokeWidth={2.5} className="sm:w-[18px] sm:h-[18px]" />
-                                        </button>
-                                        <div className="hidden sm:flex items-center gap-2 px-2">
-                                            <ZoomOut size={14} className="text-muted/80" />
-                                            <input
-                                                type="range"
-                                                min={MIN_ZOOM}
-                                                max={MAX_ZOOM}
-                                                step={0.1}
-                                                value={state.zoom}
-                                                onChange={(e) => setState(s => ({ ...s, zoom: parseFloat(e.target.value) }))}
-                                                className="w-24 h-1.5 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
-                                            />
-                                            <ZoomIn size={14} className="text-muted/80" />
-                                        </div>
-                                    </div>
+                                </div>
+
+                                {/* Auto-Fit & Edit List */}
+                                <div className="flex items-center gap-0.5 lg:gap-1 border-l border-white/10 pl-1 lg:pl-2 shrink-0">
+                                    <button
+                                        onClick={handleAutoScale}
+                                        className="p-1.5 lg:p-2 text-primary hover:bg-primary/10 transition-all rounded-lg shrink-0"
+                                        title="Auto Fit All"
+                                    >
+                                        <Focus size={16} strokeWidth={2.5} />
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            setActivePanel('ADD_PERSON');
+                                            setIsSidebarCollapsed(false);
+                                            if (isMobile) setIsMobileDrawerOpen(true);
+                                            setHighlightYourList(true);
+                                            setTimeout(() => setHighlightYourList(false), 2000);
+                                        }}
+                                        className="p-1.5 lg:p-2 text-emerald-500 hover:bg-emerald-500/10 transition-all rounded-lg shrink-0"
+                                        title="Edit List"
+                                    >
+                                        <Edit2 size={16} strokeWidth={2.5} />
+                                    </button>
+                                </div>
+
+                                {/* Slider - visible on larger screens, shrinks seamlessly */}
+                                <div className="hidden md:flex items-center gap-1.5 px-1 lg:px-2 shrink-0 border-l border-white/10 ml-0.5">
+                                    <ZoomOut size={12} className="text-muted/80 shrink-0" />
+                                    <input
+                                        type="range"
+                                        min={MIN_ZOOM}
+                                        max={MAX_ZOOM}
+                                        step={0.1}
+                                        value={state.zoom}
+                                        onChange={(e) => setState(s => ({ ...s, zoom: parseFloat(e.target.value) }))}
+                                        className="w-16 lg:w-20 h-1.5 bg-border rounded-lg appearance-none cursor-pointer accent-accent"
+                                    />
+                                    <ZoomIn size={12} className="text-muted/80 shrink-0" />
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2 sm:gap-4">
+
+                            {/* === RIGHT SECTION === */}
+                            <div className="flex items-center gap-0.5 lg:gap-2 shrink-0">
                                 <button
                                     onClick={handleClearAll}
-                                    className="flex items-center gap-2 text-sm font-medium text-muted hover:text-red-500 px-3 py-2 transition-all group"
+                                    className="flex items-center gap-1.5 text-[10px] lg:text-xs font-medium text-muted hover:text-red-500 px-1.5 lg:px-2 py-2 transition-all group shrink-0"
+                                    title="Clear All"
                                 >
-                                    <Trash2 size={18} className="text-muted/50 group-hover:text-red-500 transition-colors" />
-                                    <span className="hidden sm:inline">Clear All</span>
+                                    <Trash2 size={16} className="text-muted/50 group-hover:text-red-500 transition-colors shrink-0" />
+                                    <span className="hidden lg:inline whitespace-nowrap">Clear All</span>
                                 </button>
+
                                 <button
                                     onClick={() => setState(s => ({ ...s, zoom: 1.0 }))}
-                                    className="flex items-center gap-2 text-sm font-medium text-muted hover:text-foreground px-3 py-2 transition-all group"
+                                    className="flex items-center gap-1.5 text-[10px] lg:text-xs font-medium text-muted hover:text-foreground px-1.5 lg:px-2 py-2 transition-all group shrink-0"
+                                    title="Reset Zoom"
                                 >
-                                    <RotateCcw size={18} className="text-muted/50 group-hover:text-accent transition-colors" />
-                                    <span className="hidden sm:inline text-xs">Reset</span>
+                                    <RotateCcw size={16} className="text-muted/50 group-hover:text-accent transition-colors shrink-0" />
+                                    <span className="hidden lg:inline whitespace-nowrap">Reset</span>
                                 </button>
+
                                 <button
                                     onClick={handleShare}
-                                    className="shrink-0 flex items-center gap-1 text-[10px] sm:text-xs font-medium text-muted hover:text-foreground px-2 py-1.5 transition-all group"
+                                    className="flex items-center gap-1.5 text-[10px] lg:text-xs font-medium text-muted hover:text-foreground px-1.5 lg:px-2 py-1.5 transition-all group shrink-0"
+                                    title="Share"
                                 >
-                                    <LinkIcon size={16} className="text-muted/50 group-hover:text-accent transition-colors" />
-                                    <span className="hidden lg:inline">Share</span>
+                                    <LinkIcon size={16} className="text-muted/50 group-hover:text-accent transition-colors shrink-0" />
+                                    <span className="hidden xl:inline whitespace-nowrap">Share</span>
                                 </button>
-                                {/* <button
-                                    onClick={toggleFullscreen}
-                                    className="shrink-0 flex items-center gap-1.5 p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
-                                    title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-                                >
-                                    {isFullscreen ? <Minimize size={18} /> : <Maximize size={18} />}
-                                </button> */}
+
                                 <button
                                     onClick={handleDownloadPNG}
                                     disabled={isCapturing}
-                                    className="shrink-0 flex items-center gap-1.5 bg-accent/10 text-accent border border-accent/20 px-3 py-1.5 sm:px-6 sm:py-2.5 rounded-xl text-[10px] sm:text-sm font-bold hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 whitespace-nowrap min-w-0"
+                                    className="flex items-center gap-1 lg:gap-1.5 bg-accent/10 text-accent border border-accent/20 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 shrink-0 ml-0.5"
+                                    title="Download PNG"
                                 >
                                     {isCapturing ? (
-                                        <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                        <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin shrink-0" />
                                     ) : (
-                                        <Download size={16} strokeWidth={2.5} />
+                                        <Download size={14} strokeWidth={2.5} className="shrink-0" />
                                     )}
-                                    <span className="hidden md:inline">Download PNG</span>
-                                    <span className="md:hidden">PNG</span>
+                                    <span className="hidden lg:inline whitespace-nowrap">Download PNG</span>
+                                    <span className="hidden sm:inline lg:hidden whitespace-nowrap">PNG</span>
                                 </button>
                             </div>
                         </div>
                     </div>
-
                     <div
                         ref={containerRef}
                         className={`order-1 canvas-export-area flex-1 relative flex flex-col transition-all duration-500 overflow-hidden bg-canvas shadow-2xl ${isFullscreen

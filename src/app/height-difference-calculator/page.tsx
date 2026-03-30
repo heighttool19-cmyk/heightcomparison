@@ -95,7 +95,7 @@ export default function HeightDifferencePage() {
     const isValid = h1 > 0 && h2 > 0;
 
     return (
-        <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
+        <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 overflow-x-hidden">
             <Navbar activePage="height-difference-calculator" />
 
             <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-4 md:p-8 relative pt-8">

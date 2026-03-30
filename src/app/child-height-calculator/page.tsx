@@ -271,7 +271,7 @@ export default function HeightCalculatorPage() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500">
+        <div className="flex flex-col min-h-screen bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 overflow-x-hidden">
             <Navbar activePage="child-height-calculator" />
 
             {/* --- Main Content with Sidebar Grid --- */}
