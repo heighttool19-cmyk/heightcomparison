@@ -9,7 +9,6 @@ import PersonBar from './PersonBar';
 import Ruler from './Ruler';
 import Sidebar from './Sidebar';
 import { usePersonStore } from '../store';
-import Navbar from './Navbar';
 import LZString from 'lz-string';
 
 
@@ -250,41 +249,56 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         if (persons.length === 0 || canvasHeight === 0 || !personsScrollRef.current) return;
 
         const doScale = () => {
-            const mobile = typeof window !== 'undefined' && window.innerWidth < 768;
-            const availableWidth = personsScrollRef.current?.getBoundingClientRect().width || (mobile ? 300 : 800);
-
-            const n = persons.length;
-            // const densityMultiplier = n > 15 ? (mobile ? 3 : 1.05) : 1;
-            // The single-line ternary approach
-            const densityMultiplier = mobile
-                ? (n > 5 ? 1 + (n - 5) * 0.56 : 3)
-                : (n > 15 ? 1.05 : n > 20 ? 1.2 : 1.1);
-            const baseBarWidth = (mobile ? 48 : 120) * densityMultiplier;
-            const baseGap = (mobile ? 2 : 10) * densityMultiplier;
-            // const baseBarWidth = mobile ? 48 : 120;
-            // const baseGap = mobile ? 2 : 10;
-            const fixedElements = readOnly ? 40 : (mobile ? 60 : 280);
-
-            const totalWidthAtZoom1 = (n * baseBarWidth) + ((n - 1) * baseGap) + fixedElements;
-            const horizontalZoom = availableWidth / totalWidthAtZoom1;
+            const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+            const availableWidth = personsScrollRef.current?.getBoundingClientRect().width || (isMobile ? 300 : 800);
+            const availableHeight = canvasHeight;
 
             const heights = persons.map(p => p.heightCm);
-            const maxHeightCm = Math.max(1, ...heights);
-            const totalHeight = maxHeightCm * 1.05; // Tight buffer to maximize figure size
-            const fitScale = (canvasHeight - 120) / maxHeightCm;
-            if (fitScale <= 0) return;
-            const verticalZoom = (canvasHeight * 0.75) / (maxHeightCm * fitScale);
+            const maxHeight = Math.max(...heights);
+            const minHeight = Math.min(...heights);
+            const heightRatio = maxHeight / (minHeight || 1);
 
+            // --- HORIZONTAL CALCULATION ---
+            // Increase bar width on mobile if height ratio is extreme to maintain visibility
+            const mobileBarBase = heightRatio > 5 ? 60 : 48;
+            const baseBarWidth = (isMobile ? mobileBarBase : 120);
+            const baseGap = isMobile ? 8 : 20;
+
+            const totalWidthAtZoom1 = (persons.length * baseBarWidth) + ((persons.length - 1) * baseGap) + (isMobile ? 100 : 300);
+            const horizontalZoom = (availableWidth * 0.95) / totalWidthAtZoom1;
+
+            // --- VERTICAL CALCULATION (The "Elephant Fix") ---
+            // If height ratio is huge, we use a smaller buffer up top to keep the small person visible
+            const topPadding = isMobile ? 140 : 180;
+            const usableHeight = availableHeight - topPadding;
+
+            // We calculate scale based on the tallest entity
+            const currentScale = (canvasHeight - 160) / maxHeight;
+
+            // If the smallest person becomes too tiny (< 40px), we force a vertical zoom override
+            let verticalZoom = 1.0;
+            const minVisiblePx = minHeight * currentScale;
+            if (minVisiblePx < 40 && maxHeight > 500) {
+                // High-dynamic range mode: ensures the smallest person is at least 40px tall
+                verticalZoom = 40 / minVisiblePx;
+            } else {
+                // Standard fit
+                verticalZoom = (availableHeight * 0.75) / (maxHeight * currentScale);
+            }
+
+            // Final Ideal Zoom: prioritize seeing everyone, but don't let it get too small
             let idealZoom = Math.min(horizontalZoom, verticalZoom);
+
+            // Clamp to your existing limits
             idealZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom));
 
             setState(s => ({ ...s, zoom: idealZoom }));
         };
 
         doScale();
-        setTimeout(doScale, 450);
-        // triggerToast('View optimized');
-    }, [persons, canvasHeight, readOnly, MIN_ZOOM, MAX_ZOOM, isSidebarCollapsed]);
+        // Double-pass for layout stability
+        requestAnimationFrame(() => setTimeout(doScale, 100));
+    }, [persons, canvasHeight, MIN_ZOOM, MAX_ZOOM, isSidebarCollapsed]);
 
     const prevPersonsLenRef = useRef(0);
     useEffect(() => {
@@ -796,10 +810,16 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     <div
                         ref={containerRef}
                         className={`order-1 canvas-export-area p-4 flex-1 relative flex flex-col overflow-hidden bg-canvas shadow-2xl ${isFullscreen
-                                ? 'fixed inset-0 z-[9999] m-0 rounded-none w-screen h-[100dvh] transition-none'
-                                : 'm-4 mb-0 rounded-[2rem] border border-border/50 transition-all duration-500'
+                            ? 'fixed inset-0 z-[9999] m-0 rounded-none w-screen h-[100dvh] touch-none'
+                            : 'm-4 mb-0 rounded-[2rem] border border-border/50'
                             }`}
-                        style={isFullscreen ? { backgroundColor: 'var(--canvas)', willChange: 'transform' } : undefined}
+                        style={{
+                            height: isFullscreen ? '100dvh' : 'auto',
+                            backgroundColor: isFullscreen ? 'var(--canvas)' : undefined,
+                            WebkitOverflowScrolling: 'touch',
+                            transform: 'translateZ(0)',
+                            willChange: isFullscreen ? 'transform' : undefined
+                        }}
                     >
                         {/* Fullscreen Toggle Button (Overlay) */}
                         <button
@@ -871,7 +891,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     />
                                     <AnimatePresence mode="popLayout" initial={false}>
                                         <div
-                                            className="flex flex-nowrap items-end h-full w-max mt-auto pl-1 sm:pl-14"
+                                            className="flex flex-nowrap items-end h-full w-max mt-auto pl-4 sm:pl-14"
                                             style={{
                                                 gap: `${Math.max(2, Math.round(18 * state.zoom))}px`,
                                                 transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'

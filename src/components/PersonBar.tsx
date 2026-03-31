@@ -106,9 +106,13 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
         ? Math.max(5, Math.round(barHeightPx * imageAspectRatio))
         : Math.max(5, silhouetteWidth);
 
-    const effectiveWidth = (person.isEntity || person.heightCm > 500)
+    const rawEffectiveWidth = (person.isEntity || person.heightCm > 500)
         ? Math.min(maxEntityWidth, baseEffectiveWidth)
         : baseEffectiveWidth;
+
+    // FIX: Ensure bars never get thinner than 25px on mobile so they remain clickable
+    const minClickableWidth = mobile ? 25 : 15;
+    const effectiveWidth = Math.max(minClickableWidth, rawEffectiveWidth);
 
     // Safely cap hover and label heights so they don't clip off the top of the canvas
     const safeCanvasHeight = canvasHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);
@@ -125,31 +129,34 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     return (
         <motion.div
             initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0, width: effectiveWidth }}
+            animate={{ opacity: 1, x: 0, width: `${headDiameter * 2.2}px`, }}
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
             className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end"
             style={{
-                width: `${effectiveWidth}px`,
-                zIndex: person.isEntity ? 10 : 20,
-                touchAction: 'none',
+                // width: `${effectiveWidth}px`,
+                width: `${headDiameter * 2.2}px`,
+                zIndex: (isMenuOpen || isActiveMenu) ? 100 : (person.isEntity ? 10 : 20),
+                touchAction: 'pan-y',
                 WebkitTapHighlightColor: 'transparent',
             }}
         >
             {/* Persistent Top Label - Hidden at very low zoom to prevent overlap */}
 
-            {/* Hover Detail Card - Appears on hover/tap (Current Style) */}
+            {/* Hover Detail Card - Appears on hover/tap (Mobile Fixed) */}
             <div
                 className={`
-                    flex flex-col items-center justify-center text-center pointer-events-none
-                    absolute left-1/2 -translate-x-1/2
-                    bg-surface/98 backdrop-blur-xl border-2 border-accent/20 rounded-2xl
-                    px-4 py-3 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]
+        flex flex-col items-center justify-center text-center 
+        absolute left-1/2 -translate-x-1/2
+        bg-surface/98 backdrop-blur-xl border-2 border-accent/20 rounded-2xl
+        px-2 py-2 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]
                     transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)]
-                    ${(isMenuOpen || !readOnly) ? 'z-60' : 'z-40'}
-                    opacity-0 scale-50 translate-y-4
-                    group-hover:opacity-100 group-hover:scale-110 group-hover:translate-y-0
-                    ${(isActiveMenu || isMenuOpen) ? 'opacity-100 scale-110 translate-y-0' : ''}
+                    
+                    /* z-index: only high when menu is open */
+                    ${(isMenuOpen || isActiveMenu) ? 'z-[110] opacity-100 scale-110 translate-y-0 pointer-events-auto' : 'z-40 opacity-0 scale-50 translate-y-4 pointer-events-none'}
+                    
+                    /* Desktop hover fallback */
+                    group-hover:opacity-100 group-hover:scale-110 group-hover:translate-y-0 group-hover:pointer-events-auto
                 `}
                 style={{
                     bottom: `${tooltipBottom}px`,
@@ -157,9 +164,12 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                     minWidth: '100px',
                     transformOrigin: 'bottom center'
                 }}
+                /* FIX 3: Stop rogue background clicks if the user taps the empty space of the card */
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
             >
                 {/* Person Name - Detailed */}
-                <span className="text-xs font-black text-foreground uppercase tracking-tight whitespace-nowrap leading-tight mb-1 border-b border-border/50 pb-1 w-full text-center">
+                <span className="text-[10px] font-black text-foreground uppercase tracking-tight whitespace-nowrap leading-tight mb-1 border-b border-border/50 pb-1 w-full text-center">
                     {person.name}
                 </span>
 
@@ -175,12 +185,14 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
                 {/* Action buttons inside the card */}
                 {!readOnly && (
-                    <div className="flex items-center gap-3 mt-3 pointer-events-auto w-full justify-center">
+                    <div className="flex items-center gap-3 mt-3 w-full justify-center">
                         {onEditRequest && (
                             <button
+                                /* FIX 4: Use onPointerDown for zero-delay mobile tap detection */
+                                onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); onEditRequest(person.id); }}
                                 onClick={(e) => { e.stopPropagation(); e.preventDefault(); onEditRequest(person.id); }}
                                 className="w-8 h-8 rounded-full bg-accent/10 hover:bg-accent text-accent hover:text-white flex items-center justify-center transition-all active:scale-90 border border-accent/30 shadow-sm cursor-pointer"
-                                style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
+                                style={{ touchAction: 'none', WebkitTapHighlightColor: 'transparent' }}
                                 aria-label={`Edit ${person.name}`}
                             >
                                 <Edit2 size={14} strokeWidth={2.5} />
@@ -188,9 +200,10 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                         )}
                         {onRemove && (
                             <button
+                                onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); onRemove(person.id); }}
                                 onClick={(e) => { e.stopPropagation(); e.preventDefault(); onRemove(person.id); }}
                                 className="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white flex items-center justify-center transition-all active:scale-90 border border-red-500/30 shadow-sm cursor-pointer"
-                                style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
+                                style={{ touchAction: 'none', WebkitTapHighlightColor: 'transparent' }}
                                 aria-label={`Remove ${person.name}`}
                             >
                                 <Trash2 size={14} strokeWidth={2.5} />
@@ -206,6 +219,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 style={{
                     height: 'max-content',
                     minHeight: barHeightPx,
+                    // width: `${headDiameter * 2.2}px`,
                     touchAction: 'manipulation',
                     WebkitTapHighlightColor: 'transparent',
                 }}
@@ -230,7 +244,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                         style={{
                             // bottom: zoom < 0.2 ? `${barHeightPx + 5 + (index % 2 === 0 ? 0 : 25)}px` : `${barHeightPx + 5}px`,
                             width: 'max-content',
-                            maxWidth: `${Math.max(60, effectiveWidth * 2)}px`,
+                            maxWidth: `${Math.min(100, effectiveWidth)}px`,
                             transform: `scale(${nameScale})`,
                             transformOrigin: 'bottom'
                         }}
@@ -307,7 +321,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                                     backgroundColor: person.color || '#6366F1',
                                     backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.15) 0%, transparent 20%, rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.2) 100%)`
                                 }}
-                                animate={{ height: bodyHeight, width: effectiveWidth }}
+                                animate={{ height: bodyHeight, width: `${headDiameter * 2.2}px` }}
                                 transition={springConfig}
                             />
                         </div>
