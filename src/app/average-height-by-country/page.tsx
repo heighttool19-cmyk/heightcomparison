@@ -52,15 +52,15 @@ const MVF = [
 ];
 
 const REGIONS = [
-    { name: "Northern Europe", avg: 181, color: "#1A56DB", ex: "Netherlands, Denmark, Norway" },
-    { name: "Eastern Europe", avg: 179, color: "#2563EB", ex: "Serbia, Ukraine, Poland" },
-    { name: "W. Europe", avg: 178, color: "#3B82F6", ex: "Germany, France, UK" },
-    { name: "N. America / Oceania", avg: 178, color: "#60A5FA", ex: "Canada, USA, Australia" },
-    { name: "Middle East", avg: 175, color: "#7DD3FC", ex: "Iran, Turkey" },
-    { name: "East Asia", avg: 173, color: "#86EFAC", ex: "China, South Korea, Japan" },
-    { name: "Latin America", avg: 169, color: "#FCD34D", ex: "Brazil, Mexico" },
-    { name: "South/SE Asia", avg: 164, color: "#FB923C", ex: "India, Indonesia, Nepal" },
-    { name: "Central America", avg: 162, color: "#EF4444", ex: "Guatemala, Honduras" },
+    { name: "Northern Europe", codes: ["NL", "DK"], avg: 181, color: "#1A56DB", ex: "Netherlands, Denmark, Norway" },
+    { name: "Eastern Europe", codes: ["RS", "UA"], avg: 179, color: "#2563EB", ex: "Serbia, Ukraine, Poland" },
+    { name: "W. Europe", codes: ["DE", "FR"], avg: 178, color: "#3B82F6", ex: "Germany, France, UK" },
+    { name: "N. America / Oceania", codes: ["US", "AU"], avg: 178, color: "#60A5FA", ex: "Canada, USA, Australia" },
+    { name: "Middle East", codes: ["IR", "TR"], avg: 175, color: "#7DD3FC", ex: "Iran, Turkey" },
+    { name: "East Asia", codes: ["KR", "JP"], avg: 173, color: "#86EFAC", ex: "China, South Korea, Japan" },
+    { name: "Latin America", codes: ["BR", "MX"], avg: 169, color: "#FCD34D", ex: "Brazil, Mexico" },
+    { name: "South/SE Asia", codes: ["IN", "ID"], avg: 164, color: "#FB923C", ex: "India, Indonesia, Nepal" },
+    { name: "Central America", codes: ["GT", "HN"], avg: 162, color: "#EF4444", ex: "Guatemala, Honduras" },
 ];
 
 const BELL_CONFIG = {
@@ -85,7 +85,7 @@ const BELL_CONFIG = {
 } as const;
 
 // --- Helper Visual Components ---
-function Bars({ items, color, label }: { items: { n: string, code: string, v: number }[], color: string, label: string }) {
+function Bars({ items, color, label }: { items: { n: string, code: string | string[], v: number }[], color: string, label: string }) {
     const vals = items.map(d => d.v);
     const max = Math.max(...vals), min = Math.min(...vals), range = max - min;
     return (
@@ -96,11 +96,18 @@ function Bars({ items, color, label }: { items: { n: string, code: string, v: nu
                     const pct = range > 0 ? ((d.v - min) / range) * 65 + 22 : 55;
                     return (
                         <div key={d.n} className="flex items-center gap-2.5">
-                            <div className="w-[115px] text-[11px] text-foreground text-right shrink-0 flex items-center justify-end gap-2">
-                                {d.code && (
-                                    <ReactCountryFlag countryCode={d.code} svg style={{ width: '1.2em', height: '1.2em' }} title={d.n} />
-                                )}
-                                {d.n}
+                            {/* CHANGED HERE: justify-start, text-left, and a fixed width for flags to perfectly align the text */}
+                            <div className="w-[140px] text-[11px] text-foreground text-left shrink-0 flex items-center justify-start gap-2">
+                                {Array.isArray(d.code) ? (
+                                    <div className="flex gap-0.5 shrink-0 w-8">
+                                        {d.code.map(c => <ReactCountryFlag key={c} countryCode={c} svg style={{ width: '1.2em', height: '1.2em' }} title={c} />)}
+                                    </div>
+                                ) : d.code ? (
+                                    <div className="shrink-0 w-6 flex justify-start">
+                                        <ReactCountryFlag countryCode={d.code} svg style={{ width: '1.2em', height: '1.2em' }} title={d.n} />
+                                    </div>
+                                ) : null}
+                                <span >{d.n}</span>
                             </div>
                             <div className="flex-1 bg-border rounded-full h-2.5 overflow-hidden">
                                 <div style={{ height: "100%", width: `${pct}%`, background: color, borderRadius: 99 }} />
@@ -361,9 +368,8 @@ export default function page() {
     // Bottom 10 sorted ascending (Shortest to Tallest)
     const maleBot10 = BOT10.map(c => ({ n: c.name, code: c.code, v: c.male })).sort((a, b) => a.v - b.v);
     const femBot10 = BOT10.map(c => ({ n: c.name, code: c.code, v: c.female })).sort((a, b) => a.v - b.v);
-    const regionBars = REGIONS.map(r => ({ n: r.name, code: "", v: r.avg }));
+    const regionBars = REGIONS.map(r => ({ n: r.name, code: r.codes, v: r.avg }));
 
-    // Sync Theme
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
@@ -882,7 +888,7 @@ export default function page() {
                                 <span className='font-bold text-accent hover:underline' > Healthcare access </span> determines whether childhood illnesses divert energy away from growth. Countries with strong vaccination rates and low disease burdens consistently rank taller.
                             </p>
                             <p className="text-muted leading-relaxed">
-                                <span className='font-bold text-accent hover:underline' >Economic development </span>   underpins both nutrition and healthcare. GDP per capita correlates strongly with average height because wealth enables better food, cleaner water, and medical care.
+                                <span className='font-bold text-accent hover:underline' >Economic development </span>  underpins both nutrition and healthcare. GDP per capita correlates strongly with average height because wealth enables better food, cleaner water, and medical care.
                             </p>
                             <div className="bg-accent/10 border-l-4 border-accent p-4 rounded-r-xl mt-4">
                                 <p className="text-sm font-medium text-foreground/80">

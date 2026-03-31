@@ -264,7 +264,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 {/* Indicator Line - Positioned absolutely at the exact height boundary */}
                 <motion.div
                     animate={{ width: effectiveWidth }}
-                    className="absolute h-[2px] neon-indicator group-hover:brightness-150 left-1/2 -translate-x-1/2"
+                    className="absolute h-[1px] neon-indicator group-hover:brightness-150 left-1/2 -translate-x-1/2"
                     transition={springConfig}
                     style={{
                         bottom: `${barHeightPx}px`,
@@ -280,8 +280,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                     {person.imgUrl ? (
                         <motion.div
                             layout
-                            className="relative flex flex-col items-center justify-end object-contain"
-                            style={{ height: barHeightPx }}
+                            className="relative flex flex-col items-center justify-end"
+                            style={{ height: barHeightPx, width: '100%' }}
                             transition={springConfig}
                         >
                             <div className="relative z-20 h-full w-auto">
@@ -291,7 +291,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                                     onLoad={handleImageLoad}
                                     animate={{ height: barHeightPx }}
                                     transition={springConfig}
-                                    style={{ width: 'auto', objectFit: 'contain', display: 'block', objectPosition: 'bottom' }}
+                                    style={{ width: '100%', height: barHeightPx, objectFit: 'cover', display: 'block', objectPosition: 'bottom' }}
                                     className="drop-shadow-md"
                                 />
                             </div>
