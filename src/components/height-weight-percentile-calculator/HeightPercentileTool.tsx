@@ -470,7 +470,7 @@ export default function HeightPercentileTool() {
                             </div>
                         )}
 
-                        <button onClick={calculate} style={{
+                        <button onClick={calculate} className="btn-glow" style={{
                             width: "100%", padding: "15px 0", borderRadius: 12, border: "none",
                             background: animating
                                 ? (isDark ? "#334155" : "#94a3b8")

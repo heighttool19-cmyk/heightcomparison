@@ -51,7 +51,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
     const { unitSystem, toggleUnitSystem } = useUnitStore();
     const { theme } = useThemeStore();
-
+    const [zoomInput, setZoomInput] = useState(Math.round(state.zoom * 100).toString());
     const [canvasHeight, setCanvasHeight] = useState(0);
     const [activePanel, setActivePanel] = useState<PanelType>('ADD_PERSON');
     const [editingPersonId, setEditingPersonId] = useState<string | null>(null);
@@ -77,8 +77,22 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         setShowToast(true);
         setTimeout(() => setShowToast(false), 2500);
     };
-
+    useEffect(() => {
+        setZoomInput(Math.round(state.zoom * 100).toString());
+    }, [state.zoom]);
     const toggleFullscreen = useCallback(() => {
+        // iOS Safari does NOT support requestFullscreen() on iPhones.
+        // Detect iOS and use a CSS pseudo-fullscreen fallback instead.
+        const isIOS = typeof window !== 'undefined' &&
+            /iPhone|iPod/.test(navigator.userAgent) &&
+            !(window as any).MSStream;
+
+        if (isIOS) {
+            // Toggle pseudo-fullscreen state (CSS-based)
+            setIsFullscreen(prev => !prev);
+            return;
+        }
+
         if (!document.fullscreenElement) {
             if (containerRef.current) {
                 containerRef.current.requestFullscreen().catch((err) => {
@@ -267,7 +281,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
         doScale();
         setTimeout(doScale, 450);
-        triggerToast('View optimized');
+        // triggerToast('View optimized');
     }, [persons, canvasHeight, readOnly, MIN_ZOOM, MAX_ZOOM, isSidebarCollapsed]);
 
     const prevPersonsLenRef = useRef(0);
@@ -589,18 +603,18 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     initial={{ x: -85, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                ">
-                        <div className="flex sm:flex-col h-full w-full">
+                        <div className="flex sm:flex-col h-full w-full overflow-hidden">
                             <LeftNavItem
-                                icon={<UserPlus size={22} />}
+                                icon={<UserPlus size={18} />}
                                 label="ADD PERSON"
                                 active={activePanel === 'ADD_PERSON'}
                                 isHighlighting={isHighlightingAddPerson && activePanel === 'ADD_PERSON'}
                                 onClick={() => { setActivePanel('ADD_PERSON'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }}
                             />
-                            <LeftNavItem icon={<Star size={22} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                            <LeftNavItem icon={<Ghost size={22} />} label="FICTIONAL" active={activePanel === 'FICTIONAL'} onClick={() => { setActivePanel('FICTIONAL'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                            <LeftNavItem icon={<Box size={22} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
-                            <LeftNavItem icon={<ImageIcon size={22} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                            <LeftNavItem icon={<Star size={18} />} label="CELEBRITIES" active={activePanel === 'CELEBRITIES'} onClick={() => { setActivePanel('CELEBRITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                            <LeftNavItem icon={<Ghost size={18} />} label="FICTIONAL" active={activePanel === 'FICTIONAL'} onClick={() => { setActivePanel('FICTIONAL'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                            <LeftNavItem icon={<Box size={18} />} label="ENTITIES" active={activePanel === 'ENTITIES'} onClick={() => { setActivePanel('ENTITIES'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
+                            <LeftNavItem icon={<ImageIcon size={18} />} label="ADD IMAGE" active={activePanel === 'ADD_IMAGE'} onClick={() => { setActivePanel('ADD_IMAGE'); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
                         </div>
                     </motion.aside>
                 )}
@@ -615,7 +629,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         if (activePersonMenuId) setActivePersonMenuId(null);
                     }}
                 >
-                    <div className="order-2 sm:order-first px-2 lg:px-4 pt-4 z-30 w-full">
+                    <div className="order-2 sm:order-first px-2 lg:px-4 pt-4 z-30 w-full mb-4">
                         <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-hidden flex-nowrap gap-1">
 
                             {/* === LEFT SECTION === */}
@@ -645,9 +659,38 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     <div className="bg-item-hover rounded-lg px-1.5 lg:px-2 py-1 flex items-center gap-0.5 border border-toolbar-border">
                                         <input
                                             type="number"
-                                            value={Math.round(state.zoom * 100)}
+                                            value={zoomInput}
                                             onChange={(e) => {
-                                                setState(s => ({ ...s, zoom: Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, (parseInt(e.target.value) || 100) / 100)) }));
+                                                const newValue = e.target.value;
+                                                setZoomInput(newValue); // Update the text box immediately
+
+                                                // Try to parse what they typed
+                                                const parsed = parseInt(newValue);
+
+                                                // INSTANT APPLY: Only apply instantly if it's a valid number 
+                                                // AND it's greater than or equal to your MIN_ZOOM.
+                                                // (We don't clamp the max here while typing, to allow deleting/editing)
+                                                if (!isNaN(parsed) && parsed >= (MIN_ZOOM * 100)) {
+                                                    // Cap it at MAX_ZOOM if they type something huge
+                                                    const safeZoom = Math.min(MAX_ZOOM * 100, parsed);
+                                                    setState(s => ({ ...s, zoom: safeZoom / 100 }));
+                                                }
+                                            }}
+                                            onBlur={(e) => {
+                                                // SAFETY CATCH: When they click away, enforce the strict min/max limits
+                                                let parsed = parseInt(e.target.value);
+                                                if (isNaN(parsed)) parsed = 100; // Default if left blank
+
+                                                const clampedZoom = Math.max(MIN_ZOOM * 100, Math.min(MAX_ZOOM * 100, parsed));
+
+                                                // Finalize both the text box and the global state
+                                                setZoomInput(clampedZoom.toString());
+                                                setState(s => ({ ...s, zoom: clampedZoom / 100 }));
+                                            }}
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter') {
+                                                    e.currentTarget.blur(); // Triggers the safety catch above
+                                                }
                                             }}
                                             className="w-7 lg:w-9 bg-transparent text-[10px] lg:text-[12px] font-mono font-bold text-center outline-none text-muted transition-colors focus:text-foreground"
                                         />
@@ -666,7 +709,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 <div className="flex items-center gap-0.5 lg:gap-1 border-l border-white/10 pl-1 lg:pl-2 shrink-0">
                                     <button
                                         onClick={handleAutoScale}
-                                        className="p-1.5 lg:p-2 text-primary hover:bg-primary/10 transition-all rounded-lg shrink-0"
+                                        className="p-1.5 lg:p-2 text-primary hover:bg-accent/10 transition-all rounded-lg shrink-0"
                                         title="Auto Fit All"
                                     >
                                         <Focus size={16} strokeWidth={2.5} />
@@ -679,7 +722,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                             setHighlightYourList(true);
                                             setTimeout(() => setHighlightYourList(false), 2000);
                                         }}
-                                        className="p-1.5 lg:p-2 text-emerald-500 hover:bg-emerald-500/10 transition-all rounded-lg shrink-0"
+                                        className="p-1.5 lg:p-2  hover:bg-emerald-500/10 transition-all rounded-lg shrink-0"
                                         title="Edit List"
                                     >
                                         <Edit2 size={16} strokeWidth={2.5} />
@@ -734,7 +777,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 <button
                                     onClick={handleDownloadPNG}
                                     disabled={isCapturing}
-                                    className="flex items-center gap-1 lg:gap-1.5 bg-accent/10 text-accent border border-accent/20 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 shrink-0 ml-0.5"
+                                    className="flex items-center gap-1 lg:gap-1.5 bg-primary/10 text-primary border border-accent/20 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-lg shadow-accent/5 active:scale-95 disabled:opacity-50 shrink-0 ml-0.5"
                                     title="Download PNG"
                                 >
                                     {isCapturing ? (
@@ -750,10 +793,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     </div>
                     <div
                         ref={containerRef}
-                        className={`order-1 canvas-export-area flex-1 relative flex flex-col transition-all duration-500 overflow-hidden bg-canvas shadow-2xl ${isFullscreen
-                            ? 'm-0 rounded-none w-screen h-screen'
-                            : 'm-4 mb-0 rounded-[2rem] border border-border/50'
+                        className={`order-1 canvas-export-area p-4 flex-1 relative flex flex-col transition-all duration-500 overflow-hidden bg-canvas shadow-2xl ${isFullscreen
+                                ? 'fixed inset-0 z-[9999] m-0 rounded-none w-screen h-[100dvh]'
+                                : 'm-4 mb-0 rounded-[2rem] border border-border/50'
                             }`}
+                        style={isFullscreen ? { backgroundColor: 'var(--canvas)' } : undefined}
                     >
                         {/* Fullscreen Toggle Button (Overlay) */}
                         <button
@@ -849,7 +893,10 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                             ))}
 
                                             {!readOnly && persons.length > 0 && (
-                                                <div className="flex flex-col items-center justify-end h-full relative group hide-on-export pointer-events-auto shrink-0 pb-[60px]" style={{ width: '70px' }}>
+                                                <div
+                                                    className={`flex flex-col items-center justify-end h-full relative group hide-on-export shrink-0 pb-[60px] pointer-events-none ${activePersonMenuId ? 'opacity-0 invisible' : ''}`}
+                                                    style={{ width: '70px' }}
+                                                >
                                                     <button
                                                         onClick={() => {
                                                             setActivePanel('ADD_PERSON');
@@ -859,7 +906,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                                 setIsMobileDrawerOpen(true);
                                                             }
                                                         }}
-                                                        className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors"
+                                                        className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors cursor-pointer pointer-events-auto"
+                                                        style={{ touchAction: 'manipulation' }}
                                                     >
                                                         <UserPlus size={16} />
                                                     </button>
@@ -1093,16 +1141,18 @@ const LeftNavItem = ({ icon, label, active = false, onClick, isHighlighting = fa
         whileTap={{ scale: 0.98 }}
         onClick={onClick}
         className={`
-        flex flex-col items-center justify-center gap-2 py-3 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4
+        flex flex-col items-center justify-center gap-1.5 py-2 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4
+        min-w-0 cursor-pointer
         ${active
                 ? 'bg-accent/10 text-accent border-accent shadow-sm'
                 : 'text-muted hover:text-foreground border-transparent'}
     `}
+        style={{ touchAction: 'manipulation' }}
     >
-        <div className={`${active ? 'scale-110' : ''} transition-transform`}>
+        <div className={`${active ? 'scale-110' : ''} transition-transform shrink-0`}>
             {icon}
         </div>
-        <span className="text-[8px] font-black tracking-[0.05em] uppercase text-center w-full px-1 whitespace-nowrap overflow-hidden text-ellipsis">
+        <span className="text-[7px] sm:text-[8px] font-black tracking-[0.05em] uppercase text-center w-full px-0.5 whitespace-nowrap overflow-hidden text-ellipsis leading-tight">
             {label}
         </span>
     </motion.button>

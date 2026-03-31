@@ -109,12 +109,12 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
         setNaturalSize({ w: img.naturalWidth, h: img.naturalHeight });
         setImgDisplaySize({ w: dw, h: dh });
 
-        const pad = 0.075;
+        // INITIAL STATE FIXED: Set crop box to the full image dimensions (matches Reset)
         setCropBox({
-            x: Math.round(dw * pad),
-            y: Math.round(dh * pad),
-            w: Math.round(dw * (1 - pad * 2)),
-            h: Math.round(dh * (1 - pad * 2)),
+            x: 0,
+            y: 0,
+            w: dw,
+            h: dh,
         });
     }, []);
 

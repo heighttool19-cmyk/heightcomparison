@@ -128,10 +128,11 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
             animate={{ opacity: 1, x: 0, width: effectiveWidth }}
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
-            className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end"
+            className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end cursor-pointer"
             style={{
                 width: `${effectiveWidth}px`,
-                zIndex: person.isEntity ? 10 : 20
+                zIndex: person.isEntity ? 10 : 20,
+                touchAction: 'manipulation',
             }}
             onClick={(e) => {
                 e.stopPropagation();
@@ -189,7 +190,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                         {onEditRequest && (
                             <button
                                 onClick={(e) => { e.stopPropagation(); onEditRequest(person.id); }}
-                                className="w-8 h-8 rounded-full bg-accent/10 hover:bg-accent text-accent hover:text-white flex items-center justify-center transition-all active:scale-90 border border-accent/30 shadow-sm"
+                                className="w-8 h-8 rounded-full bg-accent/10 hover:bg-accent text-accent hover:text-white flex items-center justify-center transition-all active:scale-90 border border-accent/30 shadow-sm cursor-pointer"
+                                style={{ touchAction: 'manipulation' }}
                                 aria-label={`Edit ${person.name}`}
                             >
                                 <Edit2 size={14} strokeWidth={2.5} />
@@ -198,7 +200,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                         {onRemove && (
                             <button
                                 onClick={(e) => { e.stopPropagation(); onRemove(person.id); }}
-                                className="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white flex items-center justify-center transition-all active:scale-90 border border-red-500/30 shadow-sm"
+                                className="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white flex items-center justify-center transition-all active:scale-90 border border-red-500/30 shadow-sm cursor-pointer"
+                                style={{ touchAction: 'manipulation' }}
                                 aria-label={`Remove ${person.name}`}
                             >
                                 <Trash2 size={14} strokeWidth={2.5} />

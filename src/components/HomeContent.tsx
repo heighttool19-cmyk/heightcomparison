@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle, CheckCircle2, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
@@ -50,12 +50,7 @@ const QA = [
 ];
 
 export default function HomeContent() {
-    const [activeSection, setActiveSection] = useState<string>('');
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-
-    const isClickScrolling = useRef(false);
-    const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
-
 
 
     const scrollToTop = () => {
@@ -128,13 +123,16 @@ export default function HomeContent() {
 
                             <div className="bg-[#EAF3DE] dark:bg-[#27500A]/20 border border-border rounded-2xl overflow-hidden my-8 shadow-sm">
                                 <div className="p-4 border-b border-border flex items-center justify-between bg-bg/50">
-                                    <span className="text-[13px] font-bold text-muted">Quick example — see the maths behind it</span>
-                                    <span className="text-[10px] px-2.5 py-[3px] rounded-md font-bold bg-[#EAF3DE] dark:bg-[#27500A]/20 text-[#27500A] dark:text-[#EAF3DE] border border-[#C0DD97] dark:border-[#27500A]/40 uppercase tracking-wide">Worked example</span>
+                                    {/* Changed text-muted to text-slate-700 dark:text-muted */}
+                                    <span className="text-[13px] font-bold text-slate-700 dark:text-muted">Quick example — see the maths behind it</span>
+                                    {/* <span className="text-[10px] px-2.5 py-[3px] rounded-md font-bold bg-[#EAF3DE] dark:bg-[#27500A]/20 text-[#27500A] dark:text-[#EAF3DE] border border-[#C0DD97] dark:border-[#27500A]/40 uppercase tracking-wide">Worked example</span> */}
                                 </div>
                                 <div className="p-6">
                                     <div className="mb-5">
-                                        <div className="flex justify-between text-[12px] text-muted mb-1.5">
-                                            <span><strong className="text-foreground font-bold">Person A</strong></span>
+                                        {/* Changed text-muted to text-slate-700 dark:text-muted */}
+                                        <div className="flex justify-between text-[12px] text-slate-700 dark:text-muted mb-1.5">
+                                            {/* Changed text-foreground to text-slate-900 dark:text-foreground */}
+                                            <span><strong className="text-slate-900 dark:text-foreground font-bold">Person A</strong></span>
                                             <span className="text-[#185FA5] dark:text-blue-400 font-bold">170 cm (5&apos;7&quot;)</span>
                                         </div>
                                         <div className="h-[24px] bg-bg rounded overflow-hidden border border-border">
@@ -144,8 +142,10 @@ export default function HomeContent() {
                                         </div>
                                     </div>
                                     <div className="mb-0">
-                                        <div className="flex justify-between text-[12px] text-muted mb-1.5">
-                                            <span><strong className="text-foreground font-bold">Person B</strong></span>
+                                        {/* Changed text-muted to text-slate-700 dark:text-muted */}
+                                        <div className="flex justify-between text-[12px] text-slate-700 dark:text-muted mb-1.5">
+                                            {/* Changed text-foreground to text-slate-900 dark:text-foreground */}
+                                            <span><strong className="text-slate-900 dark:text-foreground font-bold">Person B</strong></span>
                                             <span className="text-[#0F6E56] dark:text-emerald-400 font-bold">185 cm (6&apos;1&quot;)</span>
                                         </div>
                                         <div className="h-[24px] bg-bg rounded overflow-hidden border border-border">
@@ -156,24 +156,30 @@ export default function HomeContent() {
                                     </div>
                                     <div className="grid grid-cols-3 gap-2 mt-6 pt-5 border-t border-border">
                                         <div className="text-center">
-                                            <div className="text-[18px] font-black text-foreground">15 cm</div>
-                                            <div className="text-[11px] text-muted mt-1 uppercase tracking-wide font-medium">Height difference</div>
+                                            {/* Changed text-foreground to text-slate-900 dark:text-foreground */}
+                                            <div className="text-[18px] font-black text-slate-900 dark:text-foreground">15 cm</div>
+                                            {/* Changed text-muted to text-slate-700 dark:text-muted */}
+                                            <div className="text-[11px] text-slate-700 dark:text-muted mt-1 uppercase tracking-wide font-medium">Height difference</div>
                                         </div>
                                         <div className="text-center">
-                                            <div className="text-[18px] font-black text-foreground">5.9 in</div>
-                                            <div className="text-[11px] text-muted mt-1 uppercase tracking-wide font-medium">In inches</div>
+                                            {/* Changed text-foreground to text-slate-900 dark:text-foreground */}
+                                            <div className="text-[18px] font-black text-slate-900 dark:text-foreground">5.9 in</div>
+                                            {/* Changed text-muted to text-slate-700 dark:text-muted */}
+                                            <div className="text-[11px] text-slate-700 dark:text-muted mt-1 uppercase tracking-wide font-medium">In inches</div>
                                         </div>
                                         <div className="text-center">
-                                            <div className="text-[18px] font-black text-foreground">1.09×</div>
-                                            <div className="text-[11px] text-muted mt-1 uppercase tracking-wide font-medium">Bar ratio (B to A)</div>
+                                            {/* Changed text-foreground to text-slate-900 dark:text-foreground */}
+                                            <div className="text-[18px] font-black text-slate-900 dark:text-foreground">1.09×</div>
+                                            {/* Changed text-muted to text-slate-700 dark:text-muted */}
+                                            <div className="text-[11px] text-slate-700 dark:text-muted mt-1 uppercase tracking-wide font-medium">Bar ratio (B to A)</div>
                                         </div>
                                     </div>
-                                    <div className="text-[12px] text-muted mt-5 text-center italic">
+                                    {/* Changed text-muted to text-slate-800 dark:text-muted for slightly better readability on the small italic text */}
+                                    <div className="text-[12px] text-slate-800 dark:text-muted mt-5 text-center italic">
                                         Bar ratio = 185 ÷ 170 = 1.09. Person B is 8.1% taller. No rounding. No estimates.
                                     </div>
                                 </div>
                             </div>
-
                             <div className="flex items-start gap-4 p-5 bg-surface rounded-2xl border border-border my-6 shadow-sm">
                                 <div className="w-10 h-10 rounded-xl bg-[#E1F5EE] dark:bg-emerald-900/30 flex items-center justify-center shrink-0 mt-[2px] border border-[#9FE1CB] dark:border-emerald-500/30">
                                     <svg width="18" height="18" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="#0F6E56" className="dark:stroke-emerald-400" strokeWidth="1.3" /><path d="M4 7h6M7 4v6" stroke="#0F6E56" className="dark:stroke-emerald-400" strokeWidth="1.3" strokeLinecap="round" /></svg>
@@ -595,7 +601,7 @@ export default function HomeContent() {
                             <h2 className="text-2xl font-black text-foreground mb-3">Ready to See the Difference?</h2>
                             <p className="text-[14px] text-muted mb-8 max-w-xl mx-auto">Scroll back up, add a few heights, and see your comparison in seconds. No sign-up, no cost — just jump straight in.</p>
                             <div className="flex flex-wrap justify-center gap-4">
-                                <button onClick={() => openDashboardPanel('ADD_PERSON')} className="inline-flex items-center gap-2 h-12 px-6 bg-[#22c55e] border-none rounded-full text-white text-[14px] font-bold cursor-pointer hover:bg-green-600 transition-all shadow-md hover:-translate-y-0.5">
+                                <button onClick={() => openDashboardPanel('ADD_PERSON')} className="inline-flex items-center gap-2 h-12 px-6 bg-[#22c55e] border-none rounded-full text-white text-[14px] font-bold cursor-pointer hover:bg-green-600 transition-all shadow-md hover:-translate-y-0.5 btn-glow">
                                     ↑ Start Comparing Heights
                                 </button>
                                 <button onClick={() => openDashboardPanel('CELEBRITIES')} className="inline-flex items-center gap-2 h-12 px-6 bg-bg border border-border rounded-full text-foreground text-[14px] font-bold cursor-pointer hover:bg-surface transition-all shadow-sm hover:-translate-y-0.5">
@@ -756,7 +762,7 @@ export default function HomeContent() {
                             <h2 className="text-2xl font-black text-foreground mb-3">Go on — build your comparison.</h2>
                             <p className="text-[14px] text-muted mb-8 max-w-xl mx-auto">Free. No account. No limits. Scroll back up and see exactly how any heights compare on a visual scale that actually makes sense.</p>
                             <div className="flex flex-wrap justify-center gap-4">
-                                <button onClick={() => openDashboardPanel('ADD_PERSON')} className="inline-flex items-center gap-2 h-12 px-6 bg-[#22c55e] border-none rounded-full text-white text-[14px] font-bold cursor-pointer hover:bg-green-600 transition-all shadow-md hover:-translate-y-0.5">
+                                <button onClick={() => openDashboardPanel('ADD_PERSON')} className="inline-flex items-center gap-2 h-12 px-6 bg-[#22c55e] border-none rounded-full text-white text-[14px] font-bold cursor-pointer hover:bg-green-600 transition-all shadow-md hover:-translate-y-0.5 btn-glow">
                                     ↑ Start Comparing
                                 </button>
                                 <button onClick={() => openDashboardPanel('CELEBRITIES')} className="inline-flex items-center gap-2 h-12 px-6 bg-bg border border-border rounded-full text-foreground text-[14px] font-bold cursor-pointer hover:bg-surface transition-all shadow-sm hover:-translate-y-0.5">

@@ -438,7 +438,7 @@ export default function HeightCalculatorPage() {
                             </div>
 
                             <div className="flex gap-4">
-                                <button onClick={calculateKhamis} className="flex-1 bg-accent hover:bg-accent/90 text-white font-black py-3.5 rounded-xl transition-all shadow-lg active:scale-95">Calculate Height</button>
+                                <button onClick={calculateKhamis} className="flex-1 bg-accent hover:bg-accent/90 text-white font-black py-3.5 rounded-xl transition-all shadow-lg btn-glow active:scale-95">Calculate Height</button>
                                 <button onClick={clearKhamis} className="px-6 bg-bg border border-border text-muted font-black rounded-xl hover:text-foreground transition-all">Clear</button>
                             </div>
 
@@ -536,7 +536,7 @@ export default function HeightCalculatorPage() {
                                     )}
                                 </div>
                             </div>
-                            <button onClick={calculateMidParental} className="w-full bg-surface border-2 border-border hover:border-accent hover:bg-accent/5 text-foreground font-black py-3.5 rounded-xl transition-all shadow-sm active:scale-95">Calculate Estimate</button>
+                            <button onClick={calculateMidParental} className="w-full bg-surface border-2 border-border hover:border-accent hover:bg-accent/5 text-foreground font-black py-3.5 rounded-xl transition-all shadow-sm btn-glow active:scale-95">Calculate Estimate</button>
 
                             <AnimatePresence>
                                 {predictedParentOnlyBoys && predictedParentOnlyGirls && (

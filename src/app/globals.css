@@ -10,6 +10,7 @@
   --border: #2f2f33ff;
   --accent: #1e974bff;
   --accent-secondary: #2563EB;
+  --accent-alpha: rgba(30, 151, 75, 0.2);
   --foreground: #FAFAFA;
   --muted: #8f8f95ff;
   --ruler-text: #52525B;
@@ -67,13 +68,26 @@
 }
 
 
+html, body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+}
+
 body {
   background: var(--bg);
   color: var(--foreground);
   font-family: var(--font-sans);
   transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-font-smoothing: antialiased;
+  /* Prevent horizontal shake on iOS Safari when edge-swiping */
   overflow-x: hidden;
+  /* Suppress elastic/momentum scroll on the body itself on iOS */
+  overscroll-behavior-x: none;
+  /* Enable momentum (inertia) scrolling on iOS — prevents blank screens during fast flings */
+  -webkit-overflow-scrolling: touch;
+  /* Tell the compositor to handle vertical scroll natively, not via JS */
+  touch-action: pan-y;
 }
 
 /* Smooth custom scrollbars */
@@ -139,6 +153,45 @@ body {
 
 [data-theme="light"] {
   --grid-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Global Interactive Feedback */
+@layer base {
+  /* Normalize tap highlight color for mobile WebKit browsers */
+  :root {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.08);
+  }
+
+  [data-theme="dark"] {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* 
+     Apply tactile feedback to all interactive elements.
+     Using :where() ensures low specificity so existing specialized 
+     styles (e.g. active:scale-95) are NOT overridden.
+  */
+  :where(button, a, [role="button"], input[type="submit"], input[type="button"], .click-feedback):active {
+    transform: scale(0.96);
+    filter: brightness(1.1);
+    box-shadow: 0 0 0 4px var(--accent-alpha);
+    transition: transform 0.05s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  /* Smooth transitions for high-quality feel */
+  :where(button, a, [role="button"], input[type="submit"], input[type="button"], .click-feedback) {
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, filter 0.2s ease;
+  }
+
+  /* Special Pulse/Glow for Result-Triggering CTAs */
+  .btn-glow:active {
+    animation: btn-click-pulse 0.4s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  @keyframes btn-click-pulse {
+    0% { box-shadow: 0 0 0 0 var(--accent-alpha); }
+    100% { box-shadow: 0 0 0 12px transparent; }
+  }
 }
 
 

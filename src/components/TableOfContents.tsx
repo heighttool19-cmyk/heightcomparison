@@ -20,73 +20,110 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
     const activeSectionRef = useRef<string>('');
 
     useEffect(() => {
-        const visibleSections = new Map<string, IntersectionObserverEntry>();
+        // MOBILE GUARD: Don't run the observer on mobile screens where the TOC is hidden.
+        // This prevents unnecessary re-renders (and blank screens) during fast scrolling.
+        const MOBILE_BREAKPOINT = 768;
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (isClickScrolling.current) return;
+        let observer: IntersectionObserver | null = null;
+        let cleanup: (() => void) | null = null;
 
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        visibleSections.set(entry.target.id, entry);
-                    } else {
-                        visibleSections.delete(entry.target.id);
-                    }
-                });
+        const setupObserver = () => {
+            // Tear down any existing observer before setting up a new one
+            if (cleanup) {
+                cleanup();
+                cleanup = null;
+            }
 
-                if (visibleSections.size > 0) {
-                    let closestSection = '';
-                    let minTop = Infinity;
+            // Skip observer on mobile — the TOC is hidden there via CSS
+            if (typeof window !== 'undefined' && window.innerWidth < MOBILE_BREAKPOINT) {
+                return;
+            }
 
-                    visibleSections.forEach((entry, id) => {
-                        const topPos = entry.boundingClientRect.top;
-                        if (topPos >= 0 && topPos < minTop) {
-                            minTop = topPos;
-                            closestSection = id;
+            const visibleSections = new Map<string, IntersectionObserverEntry>();
+
+            observer = new IntersectionObserver(
+                (entries) => {
+                    if (isClickScrolling.current) return;
+
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            visibleSections.set(entry.target.id, entry);
+                        } else {
+                            visibleSections.delete(entry.target.id);
                         }
                     });
 
-                    if (!closestSection) {
-                        closestSection = Array.from(visibleSections.keys())[0];
-                    }
+                    if (visibleSections.size > 0) {
+                        let closestSection = '';
+                        let minTop = Infinity;
 
-                    if (closestSection && closestSection !== activeSectionRef.current) {
-                        activeSectionRef.current = closestSection;
-                        setActiveSection(closestSection);
-                        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-                        scrollTimeout.current = setTimeout(() => {
-                            if (window.history.replaceState) {
-                                // Extract the current path without leading slash
-                                const currentPath = window.location.pathname.replace(/^\//, '');
-                                // If the section ID matches the simplified path, don't add the hash
-                                const newUrl = (closestSection === currentPath) ? window.location.pathname : `#${closestSection}`;
-                                window.history.replaceState(null, '', newUrl);
+                        visibleSections.forEach((entry, id) => {
+                            const topPos = entry.boundingClientRect.top;
+                            if (topPos >= 0 && topPos < minTop) {
+                                minTop = topPos;
+                                closestSection = id;
                             }
-                        }, 100);
-                    }
-                }
-            },
-            { rootMargin: '-10% 0px -40% 0px', threshold: 0 }
-        );
+                        });
 
-        const extractIds = (data: TOCItem[]): string[] => {
-            let ids: string[] = [];
-            data.forEach(item => {
-                ids.push(`#${item.id}`);
-                if (item.subItems) {
-                    ids = ids.concat(extractIds(item.subItems));
-                }
-            });
-            return ids;
+                        if (!closestSection) {
+                            closestSection = Array.from(visibleSections.keys())[0];
+                        }
+
+                        if (closestSection && closestSection !== activeSectionRef.current) {
+                            activeSectionRef.current = closestSection;
+                            setActiveSection(closestSection);
+                            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+                            scrollTimeout.current = setTimeout(() => {
+                                if (window.history.replaceState) {
+                                    const currentPath = window.location.pathname.replace(/^\//, '');
+                                    const newUrl = (closestSection === currentPath) ? window.location.pathname : `#${closestSection}`;
+                                    window.history.replaceState(null, '', newUrl);
+                                }
+                            }, 100);
+                        }
+                    }
+                },
+                { rootMargin: '-10% 0px -40% 0px', threshold: 0 }
+            );
+
+            const extractIds = (data: TOCItem[]): string[] => {
+                let ids: string[] = [];
+                data.forEach(item => {
+                    ids.push(`#${item.id}`);
+                    if (item.subItems) {
+                        ids = ids.concat(extractIds(item.subItems));
+                    }
+                });
+                return ids;
+            };
+
+            const selectors = extractIds(items).join(', ');
+            const headings = document.querySelectorAll(selectors);
+            headings.forEach((h) => observer!.observe(h));
+
+            cleanup = () => {
+                observer?.disconnect();
+                if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+            };
         };
 
-        const selectors = extractIds(items).join(', ');
-        const headings = document.querySelectorAll(selectors);
-        headings.forEach((h) => observer.observe(h));
+        // Run initial setup
+        setupObserver();
+
+        // Re-run when window resizes across the mobile breakpoint
+        let lastWasMobile = typeof window !== 'undefined' && window.innerWidth < MOBILE_BREAKPOINT;
+        const handleResize = () => {
+            const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
+            if (isMobile !== lastWasMobile) {
+                lastWasMobile = isMobile;
+                setupObserver();
+            }
+        };
+        window.addEventListener('resize', handleResize, { passive: true });
 
         return () => {
-            observer.disconnect();
-            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+            cleanup?.();
+            window.removeEventListener('resize', handleResize);
         };
     }, [items]); // Removed activeSection from dependencies
 
