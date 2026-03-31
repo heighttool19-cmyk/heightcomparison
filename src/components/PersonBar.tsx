@@ -98,10 +98,10 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     const mobile = (typeof window !== 'undefined' && window.innerWidth < 768);
 
     // Image aspect ratio calculation : also scales with zoom
-    // Widest part (head or body) should be used for effectiveWidth to prevent overlap
-    const silhouetteWidth = Math.max(containerWidth, headDiameter);
+    // User preferred silhouette width: 2.2x head diameter
+    const silhouetteWidth = headDiameter * 2.2;
     // Cap width for large entities/landmarks to prevent horizontal sprawl
-    const maxEntityWidth = 400 * zoom;
+    const maxEntityWidth = 800 * zoom;
     const baseEffectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(5, Math.round(barHeightPx * imageAspectRatio))
         : Math.max(5, silhouetteWidth);
@@ -129,13 +129,12 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     return (
         <motion.div
             initial={{ opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0, width: `${headDiameter * 2.2}px`, }}
+            animate={{ opacity: 1, x: 0, width: effectiveWidth }}
             exit={{ opacity: 0, x: -60 }}
             transition={springConfig}
             className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end"
             style={{
-                // width: `${effectiveWidth}px`,
-                width: `${headDiameter * 2.2}px`,
+                width: `${effectiveWidth}px`,
                 zIndex: (isMenuOpen || isActiveMenu) ? 100 : (person.isEntity ? 10 : 20),
                 touchAction: 'auto',
                 WebkitTapHighlightColor: 'transparent',
@@ -321,7 +320,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                                     backgroundColor: person.color || '#6366F1',
                                     backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.15) 0%, transparent 20%, rgba(255,255,255,0.1) 80%, rgba(255,255,255,0.2) 100%)`
                                 }}
-                                animate={{ height: bodyHeight, width: `${headDiameter * 2.2}px` }}
+                                animate={{ height: bodyHeight, width: effectiveWidth }}
                                 transition={springConfig}
                             />
                         </div>

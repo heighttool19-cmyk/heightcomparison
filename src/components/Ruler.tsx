@@ -16,7 +16,7 @@ interface RulerProps {
 const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerHeight, personCount, mode = 'full', isFullscreen = false }) => {
     const { unitSystem } = useUnitStore();
 
-    // 1. DYNAMIC INTERVAL BASED ON MAX HEIGHT
+    // 1. DYNAMIC EXACT INTERVAL (No forced clean numbers)
     const tickInterval = useMemo(() => {
         // Aim for roughly 10 major ticks to cover the tallest person
         const idealIntervalByHeight = maxHeightCm / 10;
@@ -32,20 +32,9 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
         // The required interval must satisfy BOTH the height requirement and the pixel density
         const requiredInterval = Math.max(idealIntervalByHeight, rawMinByScale);
 
-        const intervals = [
-            5, 10, 20, 25, 50, 100, 200, 250, 500, 1000,
-            2000, 2500, 5000, 10000, 20000, 25000, 50000,
-            100000, 200000, 250000, 500000, 1000000
-        ];
-
-        let chosen = intervals[intervals.length - 1];
-        for (const i of intervals) {
-            if (i >= requiredInterval) {
-                chosen = i;
-                break;
-            }
-        }
-        return chosen;
+        // Return the exact arbitrary interval, just rounded to the nearest whole number 
+        // to avoid messy decimal labels (e.g., returns exactly 13, 53, or 76)
+        return Math.max(1, Math.round(requiredInterval));
     }, [scale, maxHeightCm, personCount]);
 
     // 2. ANTI-CLIPPING LOGIC
@@ -93,9 +82,9 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                 const inValue = totalInches % 12;
                 const ftDisplay = `${isNegative ? '-' : ''}${ftValue}' ${inValue}''`;
 
-                const showLabelMetric = isZero || tick % (tickInterval >= 50 ? tickInterval : 50) === 0;
-                const showLabelImperial = isZero || tick % (tickInterval >= 30 ? tickInterval : 30) === 0;
-                const hasLabel = unitSystem === 'metric' ? showLabelMetric : showLabelImperial;
+                // Since our intervals are now entirely random (e.g., 13), modulo logic like "tick % 50 === 0" 
+                // will almost never be true. We just set hasLabel to true so every dynamically generated tick is labeled.
+                const hasLabel = true;
 
                 return (
                     <div
