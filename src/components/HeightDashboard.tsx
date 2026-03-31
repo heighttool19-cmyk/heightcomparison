@@ -273,7 +273,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             // --- VERTICAL CALCULATION ---
             const topPadding = isMobile ? 140 : 180;
             const usableHeight = availableHeight - topPadding;
-            
+
             // Standard fit scale
             const fitScale = (canvasHeight - 160) / maxHeight;
             if (fitScale <= 0) return;
@@ -290,7 +290,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
             // Final Ideal Zoom: prioritize seeing everyone horizontally on mobile
             let idealZoom = isMobile ? Math.min(horizontalZoom, verticalZoom) : Math.min(horizontalZoom, verticalZoom);
-            
+
             // If on mobile and many items, strongly bias towards horizontal fitting
             if (isMobile && persons.length > 10) {
                 idealZoom = Math.min(idealZoom, horizontalZoom);
@@ -653,7 +653,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     }}
                 >
                     <div className="order-2 sm:order-first px-2 lg:px-4 pt-4 z-30 w-full mb-4">
-                        <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-hidden flex-nowrap gap-1">
+                        <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-scroll flex-nowrap gap-1">
 
                             {/* === LEFT SECTION === */}
                             <div className="flex items-center gap-1 lg:gap-3 shrink-0">
@@ -776,7 +776,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     title="Clear All"
                                 >
                                     <Trash2 size={16} className="text-muted/50 group-hover:text-red-500 transition-colors shrink-0" />
-                                    <span className="hidden lg:inline whitespace-nowrap">Clear All</span>
+                                    <span className="hidden xl:inline whitespace-nowrap">Clear All</span>
                                 </button>
 
                                 <button
@@ -785,8 +785,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     title="Reset Zoom"
                                 >
                                     <RotateCcw size={16} className="text-muted/50 group-hover:text-accent transition-colors shrink-0" />
-                                    <span className="hidden lg:inline whitespace-nowrap">Reset</span>
-                                </button>
+                                    <span className="hidden xl:inline whitespace-nowrap">Reset</span>                                </button>
 
                                 <button
                                     onClick={handleShare}
@@ -808,8 +807,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     ) : (
                                         <Download size={14} strokeWidth={2.5} className="shrink-0" />
                                     )}
-                                    <span className="hidden lg:inline whitespace-nowrap">Download PNG</span>
-                                    <span className="hidden sm:inline lg:hidden whitespace-nowrap">PNG</span>
+                                    <span className="hidden xl:inline whitespace-nowrap">Download PNG</span>
+                                    <span className="hidden lg:inline lg:hidden whitespace-nowrap">PNG</span>
                                 </button>
                             </div>
                         </div>
