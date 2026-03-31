@@ -12,7 +12,7 @@ export default function Home() {
       {/* FIXED: Changed min-h to h- so the chart knows EXACTLY how tall it should be.
         Added shrink-0 so the HomeContent below doesn't compress this div.
       */}
-      <div className="w-full h-[92dvh] shrink-0 relative flex flex-col">
+      <div className="w-full h-[92dvh] relative flex flex-col">
         <HeightDashboard />
       </div>
 
