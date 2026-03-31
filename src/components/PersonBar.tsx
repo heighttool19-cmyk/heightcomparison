@@ -239,7 +239,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 {/* Persistent Top Label - Now inside the baseline container to stay aligned with head */}
                 {showLabels && (
                     <div
-                        className=" left-1/2 flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
+                        className="  flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
                         style={{
                             // bottom: zoom < 0.2 ? `${barHeightPx + 5 + (index % 2 === 0 ? 0 : 25)}px` : `${barHeightPx + 5}px`,
                             width: 'max-content',
@@ -248,9 +248,9 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                             transformOrigin: 'bottom'
                         }}
                     >
-                        <span className="text-[0.55em] font-black text-foreground uppercase tracking-wider whitespace-nowrap text-center drop-shadow-md max-w-full px-1"
+                        <span className="text-[0.55em] font-black text-foreground uppercase tracking-wider whitespace-nowrap text-center drop-shadow-md max-w-full  "
                             style={{
-                                transform: `scale(${nameScale * 0.9})`,
+                                transform: `scale(${nameScale * 0.75})`,
                             }}
                         >
                             {person.name}
