@@ -810,7 +810,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     <div
                         ref={containerRef}
                         className={`order-1 canvas-export-area p-4 flex-1 relative flex flex-col overflow-hidden bg-canvas shadow-2xl ${isFullscreen
-                            ? 'fixed inset-0 z-[9999] m-0 rounded-none w-screen h-[100dvh] touch-none'
+                            ? 'fixed inset-0 z-[9999] m-0 rounded-none w-screen h-[100dvh]'
                             : 'm-4 mb-0 rounded-[2rem] border border-border/50'
                             }`}
                         style={{
@@ -913,29 +913,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                     onHeightChange={!readOnly ? (val) => handleUpdatePersonHeight(person.id, val) : undefined}
                                                 />
                                             ))}
-
-                                            {!readOnly && persons.length > 0 && (
-                                                <div
-                                                    className={`flex flex-col items-center justify-end h-full relative group hide-on-export shrink-0 pb-[60px] pointer-events-none ${activePersonMenuId ? 'opacity-0 invisible' : ''}`}
-                                                    style={{ width: '70px' }}
-                                                >
-                                                    <button
-                                                        onClick={() => {
-                                                            setActivePanel('ADD_PERSON');
-                                                            setIsSidebarCollapsed(false);
-                                                            setTimeout(() => setIsHighlightingAddPerson(false), 2000);
-                                                            if (typeof window !== 'undefined' && window.innerWidth < 768) {
-                                                                setIsMobileDrawerOpen(true);
-                                                            }
-                                                        }}
-                                                        className="w-[80px] h-[120px] border-2 border-dashed border-border rounded-2xl flex items-center justify-center text-muted hover:text-foreground hover:border-accent transition-colors cursor-pointer pointer-events-auto"
-                                                        style={{ touchAction: 'manipulation' }}
-                                                    >
-                                                        <UserPlus size={16} />
-                                                    </button>
-                                                </div>
-                                            )}
-                                            <div className="w-20 md:w-40 shrink-0 pointer-events-none" />
                                         </div>
                                     </AnimatePresence>
                                 </div>
@@ -955,7 +932,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                             }}
                                             className={`empty-door flex items-center justify-center group ${!readOnly ? 'cursor-pointer hover:border-accent' : ''}`}
                                         >
-                                            <Plus size={40} className={`text-muted/20 transition-colors ${!readOnly ? 'group-hover:text-accent/60' : ''}`} />
                                         </motion.button>
                                         <span className="text-sm sm:text-lg lg:text-xl text-center font-bold tracking-tight text-muted/50 bg-surface/50 px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl w-auto max-w-[90%]">
                                             Add a person to get started

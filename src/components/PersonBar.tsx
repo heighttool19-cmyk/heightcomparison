@@ -137,7 +137,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 // width: `${effectiveWidth}px`,
                 width: `${headDiameter * 2.2}px`,
                 zIndex: (isMenuOpen || isActiveMenu) ? 100 : (person.isEntity ? 10 : 20),
-                touchAction: 'pan-y',
+                touchAction: 'auto',
                 WebkitTapHighlightColor: 'transparent',
             }}
         >

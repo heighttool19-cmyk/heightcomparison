@@ -358,14 +358,32 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                                     </div>
                                 </div>
 
-                                <div className="px-5 py-4 border-t border-border flex items-center justify-between gap-3 shrink-0 bg-surface">
-                                    <button onClick={resetCrop} className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/30 transition-all text-xs font-bold whitespace-nowrap">
-                                        <RotateCcw size={14} /> Reset
+                                <div className="px-3 py-4 border-t border-border flex items-center justify-between gap-2 shrink-0 bg-surface">
+                                    {/* Reset Button - Narrowed padding */}
+                                    <button
+                                        onClick={resetCrop}
+                                        className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/30 transition-all text-[11px] font-bold whitespace-nowrap"
+                                    >
+                                        <RotateCcw size={14} />
+                                        <span className="hidden xs:inline">Reset</span>
                                     </button>
-                                    <div className="flex gap-2 sm:gap-3">
-                                        <button onClick={closeModal} className="px-4 py-2.5 rounded-xl border border-border bg-bg text-muted hover:text-foreground transition-all text-xs font-bold">Cancel</button>
-                                        <button onClick={applyCrop} className="flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-xl bg-accent text-white font-black uppercase tracking-widest text-xs shadow-lg shadow-accent/20 hover:bg-accent-secondary transition-all active:scale-95 whitespace-nowrap">
-                                            <Check size={14} /> Apply Crop
+
+                                    <div className="flex items-center gap-2 min-w-0">
+                                        {/* Cancel Button */}
+                                        <button
+                                            onClick={closeModal}
+                                            className="px-3 py-2.5 rounded-xl border border-border bg-bg text-muted hover:text-foreground transition-all text-[11px] font-bold whitespace-nowrap"
+                                        >
+                                            Cancel
+                                        </button>
+
+                                        {/* Apply Crop Button - flex-1 and min-w-0 prevent cutting */}
+                                        <button
+                                            onClick={applyCrop}
+                                            className="flex-1 min-w-0 flex items-center justify-center gap-1.5 px-4 sm:px-6 py-2.5 rounded-xl bg-accent text-white font-black uppercase tracking-widest text-[9px] shadow-lg shadow-accent/20 hover:bg-accent-secondary transition-all active:scale-95 whitespace-nowrap"
+                                        >
+                                            <Check size={14} strokeWidth={3} />
+                                            <span>Apply Crop</span>
                                         </button>
                                     </div>
                                 </div>

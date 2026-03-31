@@ -198,13 +198,16 @@ export default function ImageToHeightPage() {
                         </div>
 
                         {/* 5. Frequently Asked Questions : Accordion */}
-                        <div className="border border-border rounded-[2.5rem] overflow-hidden mb-20 bg-surface transition-colors duration-500">
+                        {/* FAQ Accordion Section */}
+                        <div className="border border-border rounded-[2.5rem] overflow-hidden bg-surface transition-colors duration-500 shadow-sm mt-4 mb-20">
                             {/* Header */}
-                            <div className="px-8 md:px-12 pt-10 pb-8 text-center space-y-2 border-b border-border">
+                            <div className="px-8 md:px-12 pt-10 pb-8 text-center sm:text-left space-y-2 border-b border-border">
                                 <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
-                                    <HelpCircle size={12} /> FAQ
+                                    <HelpCircle size={12} /> HELP CENTER
                                 </div>
-                                <h2 className="text-3xl font-black text-foreground">Frequently Asked Questions</h2>
+                                <h2 id="frequently-asked-questions" className="text-3xl font-black text-foreground scroll-mt-24">
+                                    Frequently Asked Questions
+                                </h2>
                             </div>
 
                             {/* Accordion Items */}
@@ -234,33 +237,25 @@ export default function ImageToHeightPage() {
                                         q: "Do I need an account?",
                                         a: "No. The tool is free, requires no sign-up, and works on any device."
                                     }
-                                ].map((faq, idx) => {
+                                ].map((item, idx) => {
                                     const isOpen = openFaqIndex === idx;
                                     return (
                                         <div
                                             key={idx}
                                             className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen
-                                                ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5'
-                                                : 'border-border bg-bg hover:border-accent/30'
+                                                    ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5'
+                                                    : 'border-border bg-bg hover:border-accent/30'
                                                 }`}
                                         >
                                             {/* Trigger Button */}
                                             <button
-                                                onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
                                                 className="w-full flex items-center justify-between px-5 py-4 text-left gap-4 group"
+                                                onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
                                             >
-                                                <div className="flex items-center gap-3 min-w-0">
-                                                    <div className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300 ${isOpen
-                                                        ? 'bg-accent text-white shadow-md shadow-accent/30'
-                                                        : 'bg-accent/10 text-accent'
-                                                        }`}>
-                                                        <HelpCircle size={13} />
-                                                    </div>
-                                                    <span className={`text-sm font-bold transition-colors duration-200 truncate ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'
-                                                        }`}>
-                                                        {faq.q}
-                                                    </span>
-                                                </div>
+                                                <span className={`text-sm font-bold transition-colors duration-200 leading-tight ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'
+                                                    }`}>
+                                                    {item.q}
+                                                </span>
                                                 <motion.div
                                                     animate={{ rotate: isOpen ? 180 : 0 }}
                                                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -274,7 +269,6 @@ export default function ImageToHeightPage() {
                                             <AnimatePresence initial={false}>
                                                 {isOpen && (
                                                     <motion.div
-                                                        key="answer"
                                                         initial={{ height: 0, opacity: 0 }}
                                                         animate={{ height: 'auto', opacity: 1 }}
                                                         exit={{ height: 0, opacity: 0 }}
@@ -282,8 +276,8 @@ export default function ImageToHeightPage() {
                                                         className="overflow-hidden"
                                                     >
                                                         <div className="px-5 pt-0 pb-5 border-t border-border/40">
-                                                            <p className="text-sm text-muted leading-relaxed pl-10 pt-4">
-                                                                {faq.a}
+                                                            <p className="text-sm text-muted leading-relaxed pt-4">
+                                                                {item.a}
                                                             </p>
                                                         </div>
                                                     </motion.div>
@@ -292,18 +286,6 @@ export default function ImageToHeightPage() {
                                         </div>
                                     );
                                 })}
-                            </div>
-
-                            {/* Footer CTA */}
-                            <div className="px-8 md:px-12 pb-10 pt-4 border-t border-border flex flex-col items-center gap-4 text-center">
-                                <h2 className="text-xl font-bold text-foreground">No tape measure. No second person. No wall marks.</h2>
-                                <p className="text-sm text-muted max-w-sm">Upload a photo and get your height in under a minute.</p>
-                                <button
-                                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                                    className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 flex items-center gap-2 active:scale-95"
-                                >
-                                    <Monitor size={16} /> Upload Your Photo and Measure Now
-                                </button>
                             </div>
                         </div>
                     </div>
