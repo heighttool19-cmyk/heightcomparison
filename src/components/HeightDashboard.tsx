@@ -110,7 +110,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         const updateHeight = () => {
             const h = window.innerHeight;
             const mobile = window.innerWidth < 768;
-            setCanvasHeight(mobile ? h - 180 : h - 250); // Use more height on mobile
+            const isFS = !!document.fullscreenElement;
+            // In fullscreen, fill the whole screen. Otherwise, subtract offsets for toolbar/nav.
+            setCanvasHeight(isFS ? h : (mobile ? h - 180 : h - 250));
         };
         const handleFullscreenChange = () => {
             setIsFullscreen(!!document.fullscreenElement);
@@ -793,11 +795,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     </div>
                     <div
                         ref={containerRef}
-                        className={`order-1 canvas-export-area p-4 flex-1 relative flex flex-col transition-all duration-500 overflow-hidden bg-canvas shadow-2xl ${isFullscreen
-                                ? 'fixed inset-0 z-[9999] m-0 rounded-none w-screen h-[100dvh]'
-                                : 'm-4 mb-0 rounded-[2rem] border border-border/50'
+                        className={`order-1 canvas-export-area p-4 flex-1 relative flex flex-col overflow-hidden bg-canvas shadow-2xl ${isFullscreen
+                                ? 'fixed inset-0 z-[9999] m-0 rounded-none w-screen h-[100dvh] transition-none'
+                                : 'm-4 mb-0 rounded-[2rem] border border-border/50 transition-all duration-500'
                             }`}
-                        style={isFullscreen ? { backgroundColor: 'var(--canvas)' } : undefined}
+                        style={isFullscreen ? { backgroundColor: 'var(--canvas)', willChange: 'transform' } : undefined}
                     >
                         {/* Fullscreen Toggle Button (Overlay) */}
                         <button

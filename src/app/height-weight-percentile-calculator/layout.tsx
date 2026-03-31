@@ -1,5 +1,5 @@
 
-import type { Metadata, Viewport } from "next";
+import { type Metadata, type Viewport } from "next";
 
 export const metadata: Metadata = {
     title: 'Height and Weight Percentile Calculator for Babies, Kids & Adults',

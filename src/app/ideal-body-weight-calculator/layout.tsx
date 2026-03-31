@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from "next";
+import { type Metadata, type Viewport } from "next";
 
 export const metadata: Metadata = {
     title: "Calculate Ideal Body Weight & Adjusted body weight calculator",

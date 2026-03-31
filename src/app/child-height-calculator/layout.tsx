@@ -1,4 +1,4 @@
-import { Metadata, Viewport } from "next";
+import { type Metadata, type Viewport } from "next";
 
 export const metadata: Metadata = {
     title: "Children's Height Calculator - Height Prediction Calculator",
