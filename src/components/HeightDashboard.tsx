@@ -259,37 +259,44 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             const heightRatio = maxHeight / (minHeight || 1);
 
             // --- HORIZONTAL CALCULATION ---
-            // Increase bar width on mobile if height ratio is extreme to maintain visibility
-            const mobileBarBase = heightRatio > 5 ? 60 : 48;
-            const baseBarWidth = (isMobile ? mobileBarBase : 120);
-            const baseGap = isMobile ? 8 : 20;
+            // On mobile, if we have many people (14-15), we need to be very aggressive to avoid scrolling
+            const manyItems = persons.length > 8;
+            const baseBarWidth = isMobile ? (manyItems ? 36 : 48) : 120;
+            const baseGap = isMobile ? (manyItems ? 4 : 12) : 20;
 
-            const totalWidthAtZoom1 = (persons.length * baseBarWidth) + ((persons.length - 1) * baseGap) + (isMobile ? 100 : 300);
-            const horizontalZoom = (availableWidth * 0.95) / totalWidthAtZoom1;
+            // padding: pl-4 (16px) on mobile + right space buffer
+            const fixedOffset = isMobile ? 32 : 200;
 
-            // --- VERTICAL CALCULATION (The "Elephant Fix") ---
-            // If height ratio is huge, we use a smaller buffer up top to keep the small person visible
+            const totalWidthAtZoom1 = (persons.length * baseBarWidth) + ((persons.length - 1) * baseGap) + fixedOffset;
+            const horizontalZoom = (availableWidth * 0.96) / totalWidthAtZoom1;
+
+            // --- VERTICAL CALCULATION ---
             const topPadding = isMobile ? 140 : 180;
             const usableHeight = availableHeight - topPadding;
+            
+            // Standard fit scale
+            const fitScale = (canvasHeight - 160) / maxHeight;
+            if (fitScale <= 0) return;
 
-            // We calculate scale based on the tallest entity
-            const currentScale = (canvasHeight - 160) / maxHeight;
-
-            // If the smallest person becomes too tiny (< 40px), we force a vertical zoom override
+            // If the smallest person becomes too tiny (< 30px), we force a vertical zoom override
             let verticalZoom = 1.0;
-            const minVisiblePx = minHeight * currentScale;
-            if (minVisiblePx < 40 && maxHeight > 500) {
-                // High-dynamic range mode: ensures the smallest person is at least 40px tall
-                verticalZoom = 40 / minVisiblePx;
+            const minVisiblePx = minHeight * fitScale;
+            if (minVisiblePx < 25 && maxHeight > 400) {
+                // High-dynamic range mode: ensures the smallest person is at least 30px tall
+                verticalZoom = 30 / minVisiblePx;
             } else {
-                // Standard fit
-                verticalZoom = (availableHeight * 0.75) / (maxHeight * currentScale);
+                verticalZoom = (availableHeight * 0.72) / (maxHeight * fitScale);
             }
 
-            // Final Ideal Zoom: prioritize seeing everyone, but don't let it get too small
-            let idealZoom = Math.min(horizontalZoom, verticalZoom);
+            // Final Ideal Zoom: prioritize seeing everyone horizontally on mobile
+            let idealZoom = isMobile ? Math.min(horizontalZoom, verticalZoom) : Math.min(horizontalZoom, verticalZoom);
+            
+            // If on mobile and many items, strongly bias towards horizontal fitting
+            if (isMobile && persons.length > 10) {
+                idealZoom = Math.min(idealZoom, horizontalZoom);
+            }
 
-            // Clamp to your existing limits
+            // Clamp to existing limits
             idealZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom));
 
             setState(s => ({ ...s, zoom: idealZoom }));
@@ -893,7 +900,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         <div
                                             className="flex flex-nowrap items-end h-full w-max mt-auto pl-4 sm:pl-14"
                                             style={{
-                                                gap: `${Math.max(2, Math.round(18 * state.zoom))}px`,
+                                                gap: `${Math.max(2, Math.round(12 * state.zoom))}px`,
                                                 transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
                                             }}
                                         >

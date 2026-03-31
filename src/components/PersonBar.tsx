@@ -101,7 +101,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     // User preferred silhouette width: 2.2x head diameter
     const silhouetteWidth = headDiameter * 2.2;
     // Cap width for large entities/landmarks to prevent horizontal sprawl
-    const maxEntityWidth = 800 * zoom;
+    const maxEntityWidth = 200 * zoom;
     const baseEffectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(5, Math.round(barHeightPx * imageAspectRatio))
         : Math.max(5, silhouetteWidth);
@@ -110,8 +110,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
         ? Math.min(maxEntityWidth, baseEffectiveWidth)
         : baseEffectiveWidth;
 
-    // FIX: Ensure bars never get thinner than 25px on mobile so they remain clickable
-    const minClickableWidth = mobile ? 25 : 15;
+    // FIX: Ensure bars never get thinner than 20px on mobile so they remain clickable
+    const minClickableWidth = mobile ? (person.isEntity ? 25 : 20) : 15;
     const effectiveWidth = Math.max(minClickableWidth, rawEffectiveWidth);
 
     // Safely cap hover and label heights so they don't clip off the top of the canvas
@@ -236,12 +236,12 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                     }
                 }}
             >
-                {/* Persistent Top Label - Now inside the baseline container to stay aligned with head */}
+                {/* Persistent Top Label - Positioned absolutely above the indicator */}
                 {showLabels && (
                     <div
-                        className="  flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
+                        className="absolute flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
                         style={{
-                            // bottom: zoom < 0.2 ? `${barHeightPx + 5 + (index % 2 === 0 ? 0 : 25)}px` : `${barHeightPx + 5}px`,
+                            bottom: `${barHeightPx + 4}px`,
                             width: 'max-content',
                             maxWidth: `${Math.min(100, effectiveWidth)}px`,
                             transform: `scale(${nameScale})`,
@@ -250,7 +250,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                     >
                         <span className="text-[0.55em] font-black text-foreground uppercase tracking-wider whitespace-nowrap text-center drop-shadow-md max-w-full  "
                             style={{
-                                transform: `scale(${nameScale * 0.75})`,
+                                transform: `scale(${nameScale * 0.6})`,
                             }}
                         >
                             {person.name}
@@ -261,20 +261,21 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                     </div>
                 )}
 
-                {/* Indicator Line - Neon Line at Height Boundary */}
+                {/* Indicator Line - Positioned absolutely at the exact height boundary */}
                 <motion.div
-                    animate={{ width: containerWidth * 0.45 }}
-                    className=" h-[1px]  transition-none duration-0 neon-indicator group-hover:brightness-150"
+                    animate={{ width: effectiveWidth }}
+                    className="absolute h-[2px] neon-indicator group-hover:brightness-150 left-1/2 -translate-x-1/2"
                     transition={springConfig}
                     style={{
-                        zIndex: 20
+                        bottom: `${barHeightPx}px`,
+                        zIndex: 25
                     }}
                 />
 
                 {/* Silhouette - Unclipped for images to allow full vertical extent */}
                 <div
                     className="flex flex-col items-center justify-end relative transition-opacity group-hover:opacity-100"
-                    style={{ height: barHeightPx, overflow: 'visible' }}
+                    style={{ height: barHeightPx, overflow: 'visible', zIndex: 10 }}
                 >
                     {person.imgUrl ? (
                         <motion.div
