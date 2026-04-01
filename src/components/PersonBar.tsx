@@ -110,8 +110,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
         ? Math.min(maxEntityWidth, baseEffectiveWidth)
         : baseEffectiveWidth;
 
-    // FIX: Ensure bars never get thinner than 20px on mobile so they remain clickable
-    const minClickableWidth = mobile ? (person.isEntity ? 25 : 20) : 15;
+    // FIX: Ensure bars never get thinner than a minimum on mobile so they remain clickable
+    const minClickableWidth = mobile ? (person.isEntity ? 25 : 12) : 15;
     const effectiveWidth = Math.max(minClickableWidth, rawEffectiveWidth);
 
     // Safely cap hover and label heights so they don't clip off the top of the canvas

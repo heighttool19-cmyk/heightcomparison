@@ -70,6 +70,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     const containerRef = useRef<HTMLDivElement>(null);
     const rulerScrollRef = useRef<HTMLDivElement>(null);
     const personsScrollRef = useRef<HTMLDivElement>(null);
+    const handleAutoScaleRef = useRef<() => void>(() => {});
 
     const triggerToast = (msg: string) => {
         setToastMessage(msg);
@@ -116,6 +117,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         const handleFullscreenChange = () => {
             setIsFullscreen(!!document.fullscreenElement);
             updateHeight();
+            // Re-trigger autoScale after fullscreen layout settles
+            setTimeout(() => handleAutoScaleRef.current(), 400);
         };
         document.addEventListener('fullscreenchange', handleFullscreenChange);
         return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
@@ -249,54 +252,73 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         if (persons.length === 0 || canvasHeight === 0 || !personsScrollRef.current) return;
 
         const doScale = () => {
-            const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-            const availableWidth = personsScrollRef.current?.getBoundingClientRect().width || (isMobile ? 300 : 800);
+            const isMobileNow = typeof window !== 'undefined' && window.innerWidth < 768;
+            const isFSNow = !!document.fullscreenElement || isFullscreen;
+            const availableWidth = personsScrollRef.current?.getBoundingClientRect().width || (isMobileNow ? window.innerWidth - 40 : 800);
             const availableHeight = canvasHeight;
 
             const heights = persons.map(p => p.heightCm);
             const maxHeight = Math.max(...heights);
             const minHeight = Math.min(...heights);
-            const heightRatio = maxHeight / (minHeight || 1);
 
-            // --- HORIZONTAL CALCULATION ---
-            // On mobile, if we have many people (14-15), we need to be very aggressive to avoid scrolling
-            const manyItems = persons.length > 8;
-            const baseBarWidth = isMobile ? (manyItems ? 36 : 48) : 120;
-            const baseGap = isMobile ? (manyItems ? 4 : 12) : 20;
-
-            // padding: pl-4 (16px) on mobile + right space buffer
-            const fixedOffset = isMobile ? 32 : 200;
-
-            const totalWidthAtZoom1 = (persons.length * baseBarWidth) + ((persons.length - 1) * baseGap) + fixedOffset;
-            const horizontalZoom = (availableWidth * 0.96) / totalWidthAtZoom1;
-
-            // --- VERTICAL CALCULATION ---
-            const topPadding = isMobile ? 140 : 180;
-            const usableHeight = availableHeight - topPadding;
-
-            // Standard fit scale
+            // --- Standard fit scale (height → pixels) ---
             const fitScale = (canvasHeight - 160) / maxHeight;
             if (fitScale <= 0) return;
 
-            // If the smallest person becomes too tiny (< 30px), we force a vertical zoom override
+            // --- HORIZONTAL CALCULATION ---
+            // Compute actual per-person rendered width at zoom=1 using PersonBar's formula:
+            //   barHeightPx = heightCm * fitScale * zoom
+            //   headDiameter = barHeightPx * 0.15
+            //   silhouetteWidth = headDiameter * 2.2
+            // At zoom=1: barHeightPx = heightCm * fitScale
+            const personWidths = persons.map(p => {
+                const barH = p.heightCm * fitScale; // height in px at zoom=1
+                const headD = barH * 0.15;
+                const silW = headD * 2.2;
+                const minW = isMobileNow ? (p.isEntity ? 25 : 12) : 15;
+                return Math.max(minW, silW);
+            });
+
+            // Gap shrinks with person count on mobile
+            let gapAtZoom1: number;
+            if (isMobileNow) {
+                if (persons.length >= 10) gapAtZoom1 = 1;
+                else if (persons.length >= 6) gapAtZoom1 = 2;
+                else if (persons.length >= 3) gapAtZoom1 = 4;
+                else gapAtZoom1 = 8;
+            } else {
+                gapAtZoom1 = 20;
+            }
+
+            // Total content width at zoom=1
+            const paddingLeft = isMobileNow ? 16 : 56; // pl-4 vs pl-14
+            const paddingRight = isMobileNow ? 16 : 192; // pr-4 vs pr-48
+            const totalContentWidth = personWidths.reduce((sum, w) => sum + w, 0)
+                + (persons.length - 1) * gapAtZoom1
+                + paddingLeft + paddingRight;
+
+            // Zoom level that makes everything fit horizontally
+            const horizontalZoom = totalContentWidth > 0 ? (availableWidth * 0.98) / totalContentWidth : 1;
+
+            // --- VERTICAL CALCULATION ---
             let verticalZoom = 1.0;
             const minVisiblePx = minHeight * fitScale;
             if (minVisiblePx < 25 && maxHeight > 400) {
-                // High-dynamic range mode: ensures the smallest person is at least 30px tall
                 verticalZoom = 30 / minVisiblePx;
             } else {
                 verticalZoom = (availableHeight * 0.72) / (maxHeight * fitScale);
             }
 
-            // Final Ideal Zoom: prioritize seeing everyone horizontally on mobile
-            let idealZoom = isMobile ? Math.min(horizontalZoom, verticalZoom) : Math.min(horizontalZoom, verticalZoom);
-
-            // If on mobile and many items, strongly bias towards horizontal fitting
-            if (isMobile && persons.length > 10) {
-                idealZoom = Math.min(idealZoom, horizontalZoom);
+            // --- FINAL ZOOM ---
+            let idealZoom: number;
+            if (isMobileNow || isFSNow) {
+                // On mobile & fullscreen: ALWAYS prioritize horizontal fit so no scroll
+                idealZoom = Math.min(horizontalZoom, verticalZoom);
+            } else {
+                idealZoom = Math.min(horizontalZoom, verticalZoom);
             }
 
-            // Clamp to existing limits
+            // Clamp
             idealZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom));
 
             setState(s => ({ ...s, zoom: idealZoom }));
@@ -304,8 +326,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
         doScale();
         // Double-pass for layout stability
-        requestAnimationFrame(() => setTimeout(doScale, 100));
-    }, [persons, canvasHeight, MIN_ZOOM, MAX_ZOOM, isSidebarCollapsed]);
+        requestAnimationFrame(() => setTimeout(doScale, 300));
+    }, [persons, canvasHeight, isFullscreen, MIN_ZOOM, MAX_ZOOM, isSidebarCollapsed]);
+
+    // Keep ref in sync so fullscreenchange handler can call it
+    useEffect(() => {
+        handleAutoScaleRef.current = handleAutoScale;
+    }, [handleAutoScale]);
 
     const prevPersonsLenRef = useRef(0);
     useEffect(() => {
@@ -807,7 +834,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     ) : (
                                         <Download size={14} strokeWidth={2.5} className="shrink-0" />
                                     )}
-                                    <span className="hidden xl:inline whitespace-nowrap">Download PNG</span>
+                                    {/* <span className="hidden xl:inline whitespace-nowrap">Download PNG</span> */}
                                     <span className="hidden lg:inline lg:hidden whitespace-nowrap">PNG</span>
                                 </button>
                             </div>
@@ -830,25 +857,29 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         {/* Fullscreen Toggle Button (Overlay) */}
                         <button
                             onClick={toggleFullscreen}
-                            className={`absolute z-[100] transition-all duration-300 flex items-center justify-center active:scale-90
+                            className={`absolute z-[100] transition-all duration-300 flex items-center gap-1.5 sm:gap-2 justify-center active:scale-95
                                 ${isFullscreen
                                     ? 'top-4 right-4 sm:top-8 sm:right-8 p-3 bg-white/10 backdrop-blur-md rounded-full text-foreground hover:bg-white/20 border border-white/20 shadow-2xl'
-                                    : 'top-3 right-3 sm:top-5 sm:right-5 p-2 text-muted/50 hover:text-foreground hover:bg-white/5 rounded-xl border border-transparent hover:border-white/10'
+                                    : 'top-3 right-3 sm:top-5 sm:right-5 px-2.5 py-1.5 sm:px-3 sm:py-2 bg-surface/90 backdrop-blur-md text-foreground/80 hover:text-foreground hover:bg-accent hover:text-white rounded-xl border border-border/60 hover:border-accent shadow-lg hover:shadow-accent/20'
                                 }`}
                             title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
                         >
                             {isFullscreen ? (
                                 <X size={isMobile ? 20 : 28} className="transition-transform duration-300 group-hover:rotate-90" />
                             ) : (
-                                <Maximize size={isMobile ? 18 : 22} strokeWidth={2.5} />
+                                <>
+                                    <Maximize size={isMobile ? 14 : 16} strokeWidth={2.5} />
+                                    <span className="text-[10px] sm:text-xs font-bold tracking-wide">Fullscreen</span>
+                                </>
                             )}
                         </button>
                         <div className={`w-full flex flex-col items-center shrink-0 bg-canvas z-20 border-b border-border/5 transition-all duration-300 ${isFullscreen
-                            ? 'pt-8 pb-4'
-                            : 'pt-4 pb-2 sm:pt-6 sm:pb-3 opacity-40'
-                            }`}>
+                            ? 'pt-1 pb-0'
+                            : 'p-0 opacity-40'
+                            }`}
+                        >
                             <span className={`font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-muted whitespace-nowrap transition-all duration-300 ${isFullscreen
-                                ? 'text-[12px] sm:text-lg lg:text-2xl'
+                                ? 'text-[9px] sm:text-md lg:text-xl'
                                 : 'text-[7px] sm:text-[10px]'
                                 }`}>
                                 heightcomparison.vercel.app
@@ -860,7 +891,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         <div className="flex-1 flex flex-row relative overflow-hidden w-full">
                             <div
                                 ref={rulerScrollRef}
-                                className="shrink-0 relative bg-canvas z-10 overflow-hidden custom-scrollbar w-16 sm:w-20 lg:w-24"
+                                className="shrink-0 relative bg-canvas z-10 overflow-hidden custom-scrollbar w-10 sm:w-12 lg:w-14"
                                 onScroll={() => syncScroll('ruler')}
                             >
                                 <div
@@ -884,7 +915,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 onScroll={() => syncScroll('persons')}
                             >
                                 <div
-                                    className="relative min-w-max flex items-end pr-8 md:pr-48"
+                                    className={`relative flex items-end pr-4 md:pr-48 ${(!isMobile && persons.length > 0) ? 'min-w-max' : 'min-w-0 w-full'}`}
                                     style={{ height: requiredCanvasHeight }}
                                 >
                                     <Ruler
@@ -897,9 +928,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     />
                                     <AnimatePresence mode="popLayout" initial={false}>
                                         <div
-                                            className="flex flex-nowrap items-end h-full w-max mt-auto pl-4 sm:pl-14"
+                                            className={`flex flex-nowrap items-end h-full mt-auto pl-4 sm:pl-14 ${isMobile ? 'w-full' : 'w-max'}`}
                                             style={{
-                                                gap: `${Math.max(2, Math.round(12 * state.zoom))}px`,
+                                                gap: isMobile
+                                                    ? `${Math.max(1, Math.round((persons.length >= 10 ? 1 : persons.length >= 6 ? 2 : persons.length >= 3 ? 4 : 8) * state.zoom))}px`
+                                                    : `${Math.max(2, Math.round(12 * state.zoom))}px`,
                                                 transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
                                             }}
                                         >

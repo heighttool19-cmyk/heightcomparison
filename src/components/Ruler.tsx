@@ -56,8 +56,8 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                 const heightPx = tick * scale;
                 // To prevent clipping, we use a larger safe top buffer.
                 // If the bottom offset of the line plus our buffer exceeds the container, hide it.
-                const safeTopBuffer = isFullscreen ? 160 : 65; // Increased from 40 to 65 to ensure labels fit
-
+                // Inside the ticks useMemo:
+                const safeTopBuffer = isFullscreen ? 120 : 35; // Reduced from 160/65
                 if (containerHeight && (heightPx + 20) > (containerHeight - safeTopBuffer)) {
                     return false; // Cuts off this specific line
                 }
@@ -94,18 +94,18 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                     >
                         {/* CM & FT Labels */}
                         {showLabels && (
-                            <div className="  relative left-0 z-20 flex flex-col items-start w-full pr-1 pl-3 sm:pr-2 sm:pl-5 bg-canvas/40 backdrop-blur-[2px]"
+                            <div className="  relative left-0 z-20 flex flex-col items-start w-full  bg-canvas/40 backdrop-blur-[2px]"
                                 style={{ bottom: `15px` }}
                             >
                                 {unitSystem === 'metric' ? (
-                                    <span className={`text-[10px] sm:text-[11px] font-mono font-black leading-none transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                    <span className={`text-[9px] sm:text-[10px] font-mono font-black leading-none transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
                                         {hasLabel
                                             ? (tick >= 1000 ? `${(tick / 100).toLocaleString()} m` : `${tick.toLocaleString()} cm`)
                                             : (tick >= 1000 ? (tick / 100).toLocaleString() : tick.toLocaleString())
                                         }
                                     </span>
                                 ) : (
-                                    <span className={`text-[10px] sm:text-[11px] font-mono font-black leading-none transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                    <span className={`text-[9px] sm:text-[10px] font-mono font-black leading-none transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
                                         {ftDisplay}
                                     </span>
                                 )}
