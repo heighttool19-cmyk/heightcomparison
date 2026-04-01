@@ -13,7 +13,6 @@ export const FilterTabs: React.FC<FilterTabsProps> = ({
     categories,
     activeCategory,
     onSelectCategory,
-    categoryCounts,
     isSearching = false
 }) => {
     return (

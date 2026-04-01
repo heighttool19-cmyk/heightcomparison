@@ -142,4 +142,6 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
     );
 });
 
+PersonChart.displayName = 'PersonChart';
+
 export default PersonChart;

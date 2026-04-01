@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Edit2, Trash2 } from 'lucide-react';
 import { Person } from '../types';
 import { useUnitStore } from '../store';
-import { handleInputChange } from '../utils/input';
+// import { handleInputChange } from '../utils/input'; // Removed unused import
 
 interface PersonBarProps {
     person: Person;
@@ -21,10 +21,10 @@ interface PersonBarProps {
     index?: number;
 }
 
-const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, onEditRequest, onRemove, onHeightChange, readOnly, canvasHeight, isActiveMenu, onSetActiveMenu, index = 0 }) => {
+const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, onEditRequest, onRemove, readOnly, canvasHeight, isActiveMenu, onSetActiveMenu }) => {
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-    const [inputValue, setInputValue] = React.useState<number | ''>(person.heightCm);
+    // const [inputValue, setInputValue] = React.useState<number | ''>(person.heightCm);
     const [imageAspectRatio, setImageAspectRatio] = React.useState<number | null>(null);
 
     const handleImageLoad = React.useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -34,26 +34,18 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
         }
     }, []);
 
-    React.useEffect(() => {
-        setInputValue(person.heightCm);
-    }, [person.heightCm]);
+    // React.useEffect(() => {
+    //     setInputValue(person.heightCm);
+    // }, [person.heightCm]);
 
-    const submitHeight = () => {
-        const val = Number(inputValue);
-        if (!isNaN(val) && val > 0 && onHeightChange) {
-            onHeightChange(val);
-        } else {
-            setInputValue(person.heightCm);
-        }
-    };
 
-    const handleBlur = () => submitHeight();
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            submitHeight();
-            (e.target as HTMLElement).blur();
-        }
-    };
+    // const handleBlur = () => submitHeight();
+    // const handleKeyDown = (e: React.KeyboardEvent) => {
+    //     if (e.key === 'Enter') {
+    //         submitHeight();
+    //         (e.target as HTMLElement).blur();
+    //     }
+    // };
 
     // Total silhouette height in pixels
     const barHeightPx = person.heightCm * scale;
@@ -64,10 +56,6 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
     // Width should be proportional to height to maintain silhouette look, but scaled by zoom
     // We target a default 120px width at 170cm height and zoom 1
-    const proportionalBaseWidth = Math.min(150, (person.heightCm / 170) * 120);
-    // Cap proportional width range for massive objects (mountains/entities)
-    const cappedBaseWidth = Math.min(300, Math.max(80, proportionalBaseWidth));
-    const containerWidth = cappedBaseWidth * zoom;
 
     const totalInches = Math.round(Math.abs(person.heightCm * 0.393701));
     const ftValue = Math.floor(totalInches / 12);
@@ -116,14 +104,12 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
     // Safely cap hover and label heights so they don't clip off the top of the canvas
     const safeCanvasHeight = canvasHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);
-    const labelBottomRaw = barHeightPx + (mobile ? 25 : 10);
     const tooltipBottomRaw = barHeightPx + (mobile ? 45 : 12);
 
     // We add some buffer from the top of the canvas (150px for toolbars/padding)
-    const maxLabelBottom = safeCanvasHeight - 100;
     const maxTooltipBottom = safeCanvasHeight - 180;
 
-    const labelBottom = Math.min(labelBottomRaw, maxLabelBottom);
+    // const labelBottom = Math.min(labelBottomRaw, maxLabelBottom); // Removed unused variable
     const tooltipBottom = Math.min(tooltipBottomRaw, maxTooltipBottom);
 
     return (
@@ -331,5 +317,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
         </motion.div>
     );
 });
+
+PersonBar.displayName = 'PersonBar';
 
 export default PersonBar;

@@ -1,17 +1,19 @@
+import React from 'react';
+
 /**
  * Handles input changes for both number and text inputs.
  * For number inputs, it allows empty strings to prevent unwanted zero values.
  */
-export const handleInputChange = (
+export const handleInputChange = <T,>(
     e: React.ChangeEvent<HTMLInputElement>,
-    setter: (value: any) => void
+    setter: (value: T) => void
 ) => {
     const { value, type } = e.target;
 
     if (type === 'number') {
-        // If empty, set as "", otherwise convert to Number
-        setter(value === "" ? "" : Number(value));
+        const numVal = value === "" ? "" : Number(value);
+        setter(numVal as unknown as T);
     } else {
-        setter(value);
+        setter(value as unknown as T);
     }
 };

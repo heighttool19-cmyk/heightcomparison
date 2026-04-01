@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React from "react";
 import { useThemeStore } from "@/store"; // Adjust path as needed
 
 const WHO_BOYS = [
@@ -44,18 +44,17 @@ const BAND_CDC = "#dbeafe";
 interface SmallChartProps {
     title: string;
     subtitle: string;
-    data: any[];
+    data: ({ age: number, p5: number, p25: number, p50: number, p75: number, p95: number } & Record<string, number>)[];
     color: string;
     bandColor: string;
     minAge: number;
     maxAge: number;
     minH: number;
     maxH: number;
-    logoColor?: string;
     badge: string;
 }
 
-function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, minH, maxH, logoColor, badge }: SmallChartProps) {
+function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, minH, maxH, badge }: SmallChartProps) {
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
@@ -127,7 +126,7 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
                     <path d={bandPath} fill={bandColor} opacity={isDark ? "0.25" : "0.65"} />
 
                     {/* Curves - UPDATED stroke widths and opacities */}
-                    {["p95", "p75", "p50", "p25", "p5"].map((k, i) => (
+                    {["p95", "p75", "p50", "p25", "p5"].map((k) => (
                         <path key={k} d={path(k)} fill="none"
                             stroke={color}
                             strokeWidth={k === "p50" ? 2.5 : 1.5}

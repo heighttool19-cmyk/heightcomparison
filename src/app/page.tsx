@@ -1,22 +1,21 @@
+import React from 'react';
 import Navbar from "@/components/Navbar";
-import HeightDashboard from "@/components/HeightDashboard";
-import HomeContent from "@/components/HomeContent";
+import ThemeInitializer from '@/components/ThemeInitializer';
+import HomeContent from '@/components/HomeContent';
+import { DynamicHeightDashboard } from '@/components/DynamicHeightDashboard';
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-[100dvh] bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 overflow-x-hidden">
-
-      {/* Global Sticky Navbar */}
+    <div className="flex flex-col min-h-[100dvh] bg-bg font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 overflow-x-clip">
+      <ThemeInitializer />
       <Navbar activePage="home" />
 
-      {/* FIXED: Changed min-h to h- so the chart knows EXACTLY how tall it should be.
-        Added shrink-0 so the HomeContent below doesn't compress this div.
-      */}
-      <div className="w-full h-[92dvh] relative flex flex-col">
-        <HeightDashboard />
+      {/* Hero Section with Dashboard */}
+      <div className="w-full h-[92dvh] relative flex flex-col border-b border-border shadow-2xl">
+        <DynamicHeightDashboard />
       </div>
 
-      {/* SEO Content */}
+      {/* SEO Content - Rendered as pure server component for performance */}
       <HomeContent />
 
     </div>

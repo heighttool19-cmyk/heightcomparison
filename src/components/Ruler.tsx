@@ -120,7 +120,7 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                                     : hasLabel
                                         ? 'bg-foreground/20 group-hover/tick:bg-foreground/30 h-[1px]'
                                         : 'bg-foreground/5 group-hover/tick:bg-foreground/10 h-[1px]'
-                                    } mr-4`}
+                                    }`}
                             />
                         )}
                     </div>
@@ -129,5 +129,7 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
         </div>
     );
 });
+
+Ruler.displayName = 'Ruler';
 
 export default Ruler;

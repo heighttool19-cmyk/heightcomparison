@@ -136,7 +136,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
 
         const isActive = checkActiveRecursive(item);
 
-        const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const handleLinkClick = () => {
             isClickScrolling.current = true;
             setActiveSection(item.id);
 

@@ -48,9 +48,9 @@ function normalCDF(x: number, mean: number, sd: number) {
     return 0.5 * (1 + erf((x - mean) / (sd * Math.sqrt(2))));
 }
 
-function normalPDF(x: number, mean: number, sd: number) {
-    return Math.exp(-0.5 * Math.pow((x - mean) / sd, 2)) / (sd * Math.sqrt(2 * Math.PI));
-}
+// function normalPDF(x: number, mean: number, sd: number) {
+//     return Math.exp(-0.5 * Math.pow((x - mean) / sd, 2)) / (sd * Math.sqrt(2 * Math.PI));
+// }
 
 function getPercentile(heightCm: number, gender: string, age: number, country: string) {
     const clampedAge = Math.min(Math.max(Math.round(age), 0), 20);
@@ -95,8 +95,7 @@ function BellCurve({ percentile }: { percentile: number }) {
     const cutT = percentile / 100;
     const shadePts = pts.filter(p => p.t <= cutT);
     const lastShade = shadePts[shadePts.length - 1];
-    const [lastX, lastY] = toSVG(lastShade?.t ?? cutT, lastShade?.y ?? 0);
-    const [baseX] = toSVG(cutT, 0);
+    const [lastX] = toSVG(lastShade?.t ?? cutT, lastShade?.y ?? 0);
     const [startX] = toSVG(0, 0);
     const shadePath = shadePts.length
         ? shadePts.map((p, i) => {
@@ -106,7 +105,6 @@ function BellCurve({ percentile }: { percentile: number }) {
         : "";
 
     const markerX = PAD + cutT * plotW;
-    const markerTopY = H - 20 - (normalPDF(0, 0, 1) / maxY) * (H - 60) * 0.5;
 
     const ticks = [10, 25, 50, 75, 90];
     const { color } = getLabel(percentile);
@@ -172,7 +170,11 @@ function BellCurve({ percentile }: { percentile: number }) {
 }
 
 // ── Shareable Card ────────────────────────────────────────────────────────
-function ShareCard({ inputs, percentile, onClose }: { inputs: any, percentile: number, onClose: () => void }) {
+function ShareCard({ inputs, percentile, onClose }: {
+    inputs: { height: number, age: string, gender: string, country: string },
+    percentile: number,
+    onClose: () => void
+}) {
     const { label, color, bg } = getLabel(percentile);
     const [copied, setCopied] = useState(false);
     const { theme } = useThemeStore();
@@ -556,7 +558,7 @@ export default function HeightPercentileTool() {
                                 }} />
                             </div>
                             <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-                                {["Short", "Avg", "Tall"].map((l, i) => (
+                                {["Short", "Avg", "Tall"].map((l) => (
                                     <span key={l} style={{ fontSize: 10, color: isDark ? "#64748b" : "#94a3b8" }}>{l}</span>
                                 ))}
                             </div>

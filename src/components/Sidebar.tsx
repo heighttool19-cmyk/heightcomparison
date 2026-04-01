@@ -148,5 +148,7 @@ const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAd
     );
 });
 
+Sidebar.displayName = 'Sidebar';
+
 export default Sidebar;
 

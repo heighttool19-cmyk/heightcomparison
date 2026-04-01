@@ -48,7 +48,10 @@ const FORMULAS = [
 
 function kg2lbs(kg: number) { return Math.round(kg * 2.205); }
 
-function WeightTable({ data, sex }: { data: any[], sex: string }) {
+function WeightTable({ data, sex }: { 
+    data: ({ cm: number, ft: string, devine: number, hamwi: number, robinson: number, miller: number, bmiLo: number, bmiHi: number } & Record<string, string | number>)[], 
+    sex: string 
+}) {
     const [unit, setUnit] = useState("kg");
     const [hovered, setHovered] = useState<number | null>(null);
     const { theme } = useThemeStore();
@@ -120,7 +123,7 @@ function WeightTable({ data, sex }: { data: any[], sex: string }) {
                                     <td style={{ padding: "9px 12px", color: isDark ? "var(--muted)" : "#475569" }}>{row.ft}</td>
                                     {FORMULAS.map(f => (
                                         <td key={f.key} style={{ padding: "9px 12px", textAlign: "center", color: isDark ? "var(--foreground)" : "#1e293b" }}>
-                                            {fmt(row[f.key])}
+                                            {fmt(row[f.key] as number)}
                                         </td>
                                     ))}
                                     <td style={{ padding: "9px 12px", textAlign: "center" }}>

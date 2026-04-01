@@ -1,0 +1,75 @@
+﻿
+> heightcomparison@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.6 (Turbopack)
+- Experiments (use with caution):
+  ┬╖ optimizePackageImports
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 3.3s
+  Running TypeScript ...
+node.exe : Failed to compile.
+At C:\Program Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: 
+    (Failed to compile.:String) [], Remote  
+  Exception
+    + FullyQualifiedErrorId : NativeCommand 
+   Error
+ 
+
+./src/components/AddImageForm.tsx:252:124
+Type error: Argument of type 
+'Dispatch<SetStateAction<number | "">>' is 
+not assignable to parameter of type 
+'(value: string | number) => void'.
+  Types of parameters 'value' and 'value' 
+are incompatible.
+    Type 'string | number' is not 
+assignable to type 'SetStateAction<number | 
+"">'.
+      Type 'string' is not assignable to 
+type 'SetStateAction<number | "">'.
+
+[0m [90m 250 |[39m                     
+{unit [33m===[39m [32m'metric'[39m 
+[33m?[39m (
+ [90m 251 |[39m                         
+[33m<[39m[33mdiv[39m 
+className[33m=[39m[32m"flex bg-bg border 
+border-border rounded-2xl overflow-hidden 
+focus-within:border-accent/40 
+transition-all"[39m[33m>[39m
+[31m[1m>[22m[39m[90m 252 |[39m        
+                     
+[33m<[39m[33minput[39m 
+type[33m=[39m[32m"number"[39m 
+placeholder[33m=[39m[32m"Height"[39m 
+value[33m=[39m{heightCm} 
+onChange[33m=[39m{e [33m=>[39m 
+handleInputChange(e[33m,[39m 
+setHeightCm)} 
+className[33m=[39m[32m"flex-1 
+bg-transparent px-4 py-3 text-sm 
+text-foreground focus:outline-none"[39m 
+[33m/[39m[33m>[39m
+ [90m     |[39m                           
+                                            
+                                            
+         [31m[1m^[22m[39m
+ [90m 253 |[39m                           
+  [33m<[39m[33mdiv[39m 
+className[33m=[39m[32m"px-4 py-3 
+bg-surface text-foreground/60 font-mono 
+text-sm font-black border-l border-border 
+flex items-center"[39m[33m>[39m[33mCM[3
+9m[33m<[39m[33m/[39m[33mdiv[39m[33m>
+[39m
+ [90m 254 |[39m                         [
+33m<[39m[33m/[39m[33mdiv[39m[33m>[39m
+ [90m 255 |[39m                     ) 
+[33m:[39m ([0m
+Next.js build worker exited with code: 1 
+and signal: null

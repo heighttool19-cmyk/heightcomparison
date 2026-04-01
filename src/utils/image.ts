@@ -29,8 +29,9 @@ export const getOptimizedDataUrl = (canvas: HTMLCanvasElement, maxDim = 1024): s
     // Most modern browsers support WebP. Quality 0.8 is a great balance.
     try {
         return targetCanvas.toDataURL('image/webp', 0.8);
-    } catch (e) {
+    } catch (_e) {
         // Fallback if webp is not supported for any reason (very rare now)
+        console.error("WebP conversion failed:", _e);
         return targetCanvas.toDataURL('image/jpeg', 0.82);
     }
 };

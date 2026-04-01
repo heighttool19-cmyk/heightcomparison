@@ -2,8 +2,8 @@
 
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Link as LinkIcon, ArrowLeftRight, Focus, ChevronLeft, ChevronRight, Mountain as MountainIcon, Trash2, RotateCcw, Edit2, Maximize, Minimize } from 'lucide-react';
-import { Person, Entity, Mountain, PanelType } from '../types';
+import { ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost, ImageIcon, Check, Plus, X, Link as LinkIcon, ArrowLeftRight, Focus, ChevronLeft, ChevronRight, Trash2, RotateCcw, Edit2, Maximize } from 'lucide-react';
+import { Person, Entity, PanelType } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
 import PersonBar from './PersonBar';
 import Ruler from './Ruler';
@@ -60,7 +60,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     const [toastMessage, setToastMessage] = useState('');
     const [isCapturing, setIsCapturing] = useState(false);
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
-    const [isHighlightingAddPerson, setIsHighlightingAddPerson] = useState(false);
+    const [isHighlightingAddPerson] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
     const [isConfirmingClear, setIsConfirmingClear] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
@@ -70,7 +70,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     const containerRef = useRef<HTMLDivElement>(null);
     const rulerScrollRef = useRef<HTMLDivElement>(null);
     const personsScrollRef = useRef<HTMLDivElement>(null);
-    const handleAutoScaleRef = useRef<() => void>(() => {});
+    const handleAutoScaleRef = useRef<() => void>(() => { });
 
     const triggerToast = (msg: string) => {
         setToastMessage(msg);
@@ -85,7 +85,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         // Detect iOS and use a CSS pseudo-fullscreen fallback instead.
         const isIOS = typeof window !== 'undefined' &&
             /iPhone|iPod/.test(navigator.userAgent) &&
-            !(window as any).MSStream;
+            !(window as unknown as { MSStream: unknown }).MSStream;
 
         if (isIOS) {
             // Toggle pseudo-fullscreen state (CSS-based)
@@ -149,13 +149,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             }
         };
 
-        window.addEventListener('open-dashboard-panel' as any, handleOpenPanel);
-        return () => window.removeEventListener('open-dashboard-panel' as any, handleOpenPanel);
+        window.addEventListener('open-dashboard-panel', handleOpenPanel as EventListener);
+        return () => window.removeEventListener('open-dashboard-panel', handleOpenPanel as EventListener);
     }, []);
 
 
     // Pinch Zoom Tracking
-    const touchStartRef = useRef<number | null>(null);
+    // const touchStartRef = useRef<number | null>(null); // Removed unused ref
 
     // ResizeObserver & Wheel Events
     useEffect(() => {
@@ -182,12 +182,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     const MIN_ZOOM = 0.0001;
     const MAX_ZOOM = 8.00;
 
-    const handleZoom = (delta: number) => {
+    const handleZoom = useCallback((delta: number) => {
         setState(s => {
             const newZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, s.zoom + delta));
             return { ...s, zoom: newZoom };
         });
-    };
+    }, [MIN_ZOOM, MAX_ZOOM]);
 
     // Handle Zoom via Mouse Wheel (with Ctrl Key) and Touch Pinch
     useEffect(() => {
@@ -491,12 +491,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     return;
                 }
 
-                let decoded: any = null;
+                let decoded: { u?: number; z?: number; p?: [string, number, string, number, string][]; unitSystem?: string; persons?: Person[]; zoom?: number } | null = null;
                 const lzDecoded = LZString.decompressFromEncodedURIComponent(hash);
                 if (lzDecoded) {
                     try {
                         decoded = JSON.parse(lzDecoded);
-                    } catch (e) { }
+                    } catch (e) {
+                        console.error("LZ decode failed:", e);
+                    }
                 }
 
                 if (!decoded) {
@@ -515,29 +517,35 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 // UNPACK LOGIC: Support both new minified format and old legacy format
                 if (decoded.u !== undefined) {
                     // It's the new minified format
-                    useUnitStore.setState({ unitSystem: decoded.u === 1 ? 'metric' : 'imperial' });
-                    if (decoded.z) setState(s => ({ ...s, zoom: decoded.z }));
+                    const unit = decoded.u === 1 ? 'metric' : 'imperial';
+                    useUnitStore.setState({ unitSystem: unit });
+                    if (decoded.z !== undefined) {
+                        const z = decoded.z;
+                        setState(s => ({ ...s, zoom: z }));
+                    }
 
                     if (decoded.p && Array.isArray(decoded.p)) {
-                        const restoredPersons: Person[] = decoded.p.map((arr: any) => ({
+                        const restoredPersons: Person[] = (decoded.p as (string | number)[][]).map((arr) => ({
                             id: `shared-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`, // Gen new ID
-                            name: arr[0],
-                            heightCm: arr[1],
+                            name: String(arr[0]),
+                            heightCm: Number(arr[1]),
                             color: arr[2] ? `#${arr[2]}` : '#3b82f6',
                             gender: arr[3] === 1 ? 'female' : (arr[3] === 2 ? 'male' : undefined),
-                            imgUrl: arr[4] || undefined,
+                            imgUrl: arr[4] ? String(arr[4]) : undefined,
                             isEntity: !arr[3]
                         }));
                         storeSetPersons(restoredPersons);
                     }
                 } else if (decoded.unitSystem) {
                     // It's the old legacy format (keeps old links working)
-                    useUnitStore.setState({ unitSystem: decoded.unitSystem });
+                    const unit = decoded.unitSystem as 'metric' | 'imperial';
+                    useUnitStore.setState({ unitSystem: unit });
                     if (decoded.persons) {
                         storeSetPersons(decoded.persons);
                     }
-                    if (decoded.zoom) {
-                        setState(s => ({ ...s, zoom: decoded.zoom }));
+                    if (decoded.zoom !== undefined) {
+                        const z = decoded.zoom;
+                        setState(s => ({ ...s, zoom: z }));
                     }
                 }
 
@@ -674,7 +682,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
                     className="flex-1 flex flex-col relative min-w-0 bg-canvas min-h-[500px] xl:min-h-0 transition-colors duration-500 "
-                    onClick={(e) => {
+                    onClick={() => {
                         // Close person menu when clicking the broad background
                         if (activePersonMenuId) setActivePersonMenuId(null);
                     }}
@@ -742,6 +750,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                     e.currentTarget.blur(); // Triggers the safety catch above
                                                 }
                                             }}
+                                            aria-label="Zoom percentage"
                                             className="w-7 lg:w-9 bg-transparent text-[10px] lg:text-[12px] font-mono font-bold text-center outline-none text-muted transition-colors focus:text-foreground"
                                         />
                                         <span className="text-[9px] font-bold text-muted/30">%</span>
@@ -915,7 +924,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 onScroll={() => syncScroll('persons')}
                             >
                                 <div
-                                    className={`relative flex items-end pr-4 md:pr-48 ${(!isMobile && persons.length > 0) ? 'min-w-max' : 'min-w-0 w-full'}`}
+                                    className="relative min-w-full min-w-max flex items-end pr-8 md:pr-48"
                                     style={{ height: requiredCanvasHeight }}
                                 >
                                     <Ruler
