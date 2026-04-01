@@ -31,14 +31,42 @@ export default function HomeContent() {
                                 Use this free tool to compare heights online instantly. Enter any heights and get a proportional side-by-side visual that updates in real time. No account, no setup, just jump straight in.
                             </p>
 
-                            <div className="flex items-start gap-3 p-5 bg-[#EAF3DE] dark:bg-emerald-950/20 border-2 border-emerald-500/20 rounded-[2rem] mb-4 text-[14px] text-emerald-800 dark:text-emerald-300 leading-[1.7] shadow-lg shadow-emerald-500/5">
-                                <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center shrink-0 mt-1 shadow-md">
-                                    <svg width="18" height="18" viewBox="0 0 14 14" fill="none"><path d="M2 7l3 3 7-7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                            <div className="flex items-start gap-4 p-6 bg-emerald-200 border-2 border-emerald-500/10 rounded-[2rem] mb-6 shadow-[0_10px_30px_-15px_rgba(16,185,129,0.2)] transition-all hover:border-emerald-500/30 group">
+                                {/* Animated Icon Container */}
+                                <div className="w-10 h-10 rounded-full bg-emerald-500 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.4)] group-hover:scale-110 transition-transform duration-300">
+                                    <svg width="20" height="20" viewBox="0 0 14 14" fill="none">
+                                        <path d="M2 7l3 3 7-7" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
                                 </div>
-                                <span className="font-bold">
-                                    <strong className="text-emerald-600 dark:text-emerald-400 uppercase tracking-widest text-xs block mb-1">PRO GUARANTEE</strong>
-                                    100% free — and we mean it. Celebrity database, fictional characters, real-world objects, image upload, PNG download, and share link. No account, no payment, no limits. Ever.
-                                </span>
+
+                                <div className="flex flex-col group">
+                                    {/* Header with theme-synced gradient line */}
+                                    <div className="flex items-center gap-3 mb-2">
+                                        <strong className="text-accent uppercase tracking-[0.25em] text-[10px] font-black transition-colors">
+                                            Pro Guarantee
+                                        </strong>
+                                        <div className="h-[1px] flex-1 bg-gradient-to-r from-accent/30 to-transparent"></div>
+                                    </div>
+
+                                    <div className="space-y-2">
+                                        <p className="text-[15px] leading-relaxed text-foreground/90 font-medium tracking-tight">
+                                            <span className="inline-flex items-center justify-center px-2 py-0.5 rounded bg-accent/10 text-accent font-black text-[13px] mr-1 border border-accent/20">
+                                                100% FREE
+                                            </span>
+                                            — and we mean it. Access our celebrity database, fictional characters, real-world objects, and premium tools like PNG downloads and instant share links.
+                                        </p>
+
+                                        {/* Footnote with theme-synced interactive dots */}
+                                        <div className="flex flex-wrap gap-x-4 gap-y-1 pt-1">
+                                            {['No accounts', 'No payments', 'No limits. Ever.'].map((text) => (
+                                                <span key={text} className="text-[12px] font-bold italic text-muted group-hover:text-accent transition-colors flex items-center gap-1.5">
+                                                    <span className="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]"></span>
+                                                    {text}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -69,49 +97,84 @@ export default function HomeContent() {
                                 That is why a 10 cm gap between two people near 160 cm reads completely differently from the same 10 cm gap between two people near 190 cm. The proportional scale makes both situations immediately visible and distinguishable without any calculation on your part.
                             </p>
 
-                            <div className="bg-surface border-2 border-border/80 rounded-[2.5rem] overflow-hidden my-12 shadow-2xl transition-all hover:border-accent/30 group">
-                                <div className="p-6 border-b-2 border-border/80 flex items-center justify-between bg-bg/50 backdrop-blur-md">
-                                    <span className="text-[14px] font-black uppercase tracking-widest text-foreground opacity-60 group-hover:opacity-100 transition-opacity">Visual Ratio Engine — Verbatim accuracy</span>
+                            <div className="bg-[#A7F3D0] border-2 border-emerald-400/30 rounded-[2.5rem] overflow-hidden my-12 shadow-[0_20px_50px_rgba(16,185,129,0.15)] transition-all hover:border-emerald-500 group relative">
+
+                                {/* Header with matching solid background but slightly darker border */}
+                                <div className="p-6 border-b-2 border-emerald-400/20 flex items-center justify-between bg-white/10 backdrop-blur-sm">
+                                    <span className="text-[14px] font-black uppercase tracking-widest text-emerald-950 opacity-70 group-hover:opacity-100 transition-opacity">
+                                        Visual Ratio Engine — Verbatim accuracy
+                                    </span>
+                                    <div className="bg-emerald-500 px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-tighter shadow-sm">
+                                        Live
+                                    </div>
                                 </div>
+
                                 <div className="p-8 md:p-12">
+                                    {/* Person A Section */}
                                     <div className="mb-8">
-                                        <div className="flex justify-between text-[13px] font-black uppercase tracking-widest text-foreground/40 mb-3">
-                                            <span className="group-hover:text-blue-500 transition-colors">Person A</span>
-                                            <span className="text-blue-500 font-black">170 cm (5&apos;7&quot;)</span>
+                                        <div className="flex justify-between items-end text-[13px] font-black uppercase tracking-widest mb-3">
+                                            <span className="text-emerald-900/60 group-hover:text-blue-700 transition-colors">Person A</span>
+                                            <span className="text-blue-700 font-black bg-blue-500/10 px-2 py-0.5 rounded-md border border-blue-500/20">170 cm (5&apos;7&quot;)</span>
                                         </div>
-                                        <div className="h-[32px] bg-bg rounded-xl overflow-hidden border-2 border-border shadow-inner">
-                                            <div className="h-full bg-blue-500/10 border-r-4 border-r-blue-500 flex items-center pl-4" style={{ width: '92%' }}>
-                                                <span className="text-[12px] font-black text-blue-500">170.00</span>
+                                        {/* White Trough for maximum contrast against the green background */}
+                                        <div className="h-[40px] bg-white rounded-xl overflow-hidden border-2 border-emerald-300 shadow-inner p-1">
+                                            <div
+                                                className="h-full bg-blue-600 border-r-4 border-r-blue-800 flex items-center pl-4 rounded-lg transition-all duration-700"
+                                                style={{ width: '92%' }}
+                                            >
+                                                <span className="text-[12px] font-black text-white">170.00</span>
                                             </div>
                                         </div>
                                     </div>
+
+                                    {/* Person B Section */}
                                     <div className="mb-0">
-                                        <div className="flex justify-between text-[13px] font-black uppercase tracking-widest text-foreground/40 mb-3">
-                                            <span className="group-hover:text-emerald-500 transition-colors">Person B</span>
-                                            <span className="text-emerald-500 font-black">185 cm (6&apos;1&quot;)</span>
+                                        <div className="flex justify-between items-end text-[13px] font-black uppercase tracking-widest mb-3">
+                                            <span className="text-emerald-900/60 group-hover:text-emerald-800 transition-colors">Person B</span>
+                                            <span className="text-emerald-800 font-black bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">185 cm (6&apos;1&quot;)</span>
                                         </div>
-                                        <div className="h-[32px] bg-bg rounded-xl overflow-hidden border-2 border-border shadow-inner">
-                                            <div className="h-full bg-emerald-500/10 border-r-4 border-r-emerald-500 flex items-center pl-4" style={{ width: '100%' }}>
-                                                <span className="text-[12px] font-black text-emerald-500">185.00</span>
+                                        <div className="h-[40px] bg-white rounded-xl overflow-hidden border-2 border-emerald-300 shadow-inner p-1">
+                                            <div
+                                                className="h-full bg-emerald-600 border-r-4 border-r-emerald-800 flex items-center pl-4 rounded-lg transition-all duration-700"
+                                                style={{ width: '100%' }}
+                                            >
+                                                <span className="text-[12px] font-black text-white">185.00</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t-2 border-border/50">
-                                        <div className="text-center group-hover:scale-105 transition-transform">
-                                            <div className="text-[24px] font-black text-foreground tracking-tighter">15 cm</div>
-                                            <div className="text-[10px] text-muted mt-2 font-black uppercase tracking-widest opacity-60">Delta</div>
-                                        </div>
-                                        <div className="text-center group-hover:scale-105 transition-transform">
-                                            <div className="text-[24px] font-black text-foreground tracking-tighter">5.9 in</div>
-                                            <div className="text-[10px] text-muted mt-2 font-black uppercase tracking-widest opacity-60">Imperial</div>
-                                        </div>
-                                        <div className="text-center group-hover:scale-105 transition-transform">
-                                            <div className="text-[24px] font-black text-accent tracking-tighter">1.09×</div>
-                                            <div className="text-[10px] text-accent mt-2 font-black uppercase tracking-widest opacity-80 italic">Proportion</div>
-                                        </div>
+
+                                    {/* Stats Grid - Using darker text for the green bg */}
+                                    <div className="grid grid-cols-3 gap-6 mt-10 pt-10 border-t-2 border-emerald-400/20">
+                                        {[
+                                            { val: '15 cm', label: 'Delta' },
+                                            { val: '5.9 in', label: 'Imperial' },
+                                            { val: '1.09×', label: 'Proportion', special: true }
+                                        ].map((stat) => (
+                                            <div key={stat.label} className="text-center group-hover:scale-105 transition-transform">
+                                                <div className={`text-[24px] font-black tracking-tighter ${stat.special ? 'text-blue-700' : 'text-emerald-950'}`}>
+                                                    {stat.val}
+                                                </div>
+                                                <div className="text-[10px] text-emerald-900/50 mt-2 font-black uppercase tracking-widest">
+                                                    {stat.label}
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
-                                    <div className="text-[13px] text-muted mt-8 text-center italic font-bold opacity-60 leading-relaxed uppercase tracking-tight">
-                                        Bar ratio = 185 ÷ 170 = 1.09. Person B is 8.82% taller. Zero visual rounding.
+
+                                    {/* Footer Text using image-style labels */}
+                                    <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2">
+                                        <span className="text-[12px] font-bold italic text-emerald-900/70 flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+                                            Bar ratio = 1.09
+                                        </span>
+                                        <span className="text-[12px] font-bold italic text-emerald-900/70 flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-emerald-700"></span>
+                                            8.82% height gap
+                                        </span>
+                                        <span className="text-[12px] font-bold italic text-emerald-900/70 flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                            Zero visual rounding
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -459,8 +522,8 @@ export default function HomeContent() {
 
                         {/* SECTION: Frequently Asked Questions */}
                         <div id="frequently-asked-questions" className="scroll-mt-24">
-                            <FaqAccordion 
-                                items={HOME_FAQ} 
+                            <FaqAccordion
+                                items={HOME_FAQ}
                                 title="Height Comparison FAQ"
                                 description="Expert answers to common scaling and data questions"
                             />
