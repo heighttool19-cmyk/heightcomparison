@@ -50,7 +50,7 @@ export default function HomeContent() {
 
                                     <div className="space-y-2">
                                         <p className="text-[15px] leading-relaxed text-foreground/90 font-medium tracking-tight">
-                                            <span className="inline-flex items-center justify-center px-2 py-0.5 rounded bg-accent/10 text-accent font-black text-[13px] mr-1 border border-accent/20">
+                                            <span className="inline-flex items-center justify-center px-2 py-0.5 rounded bg-accent/10 text-foreground font-black text-[13px] mr-1 border border-accent/20">
                                                 100% FREE
                                             </span>
                                             — and we mean it. Access our celebrity database, fictional characters, real-world objects, and premium tools like PNG downloads and instant share links.
