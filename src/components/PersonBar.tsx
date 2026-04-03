@@ -48,7 +48,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     // };
 
     // Total silhouette height in pixels
-    const barHeightPx = person.heightCm * scale;
+    const rawBarHeightPx = person.heightCm * scale;
+    const barHeightPx = Number.isFinite(rawBarHeightPx) ? rawBarHeightPx : 0;
 
     // Head/Body proportions ensuring total = barHeightPx exactly
     const headDiameter = barHeightPx * 0.15;
@@ -97,10 +98,10 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     const rawEffectiveWidth = (person.isEntity || person.heightCm > 500)
         ? Math.min(maxEntityWidth, baseEffectiveWidth)
         : baseEffectiveWidth;
-
     // FIX: Ensure bars never get thinner than a minimum on mobile so they remain clickable
     const minClickableWidth = mobile ? (person.isEntity ? 25 : 12) : 15;
-    const effectiveWidth = Math.max(minClickableWidth, rawEffectiveWidth);
+    const rawCalcWidth = Math.max(minClickableWidth, rawEffectiveWidth);
+    const effectiveWidth = Number.isFinite(rawCalcWidth) ? rawCalcWidth : (mobile ? 40 : 120);
 
     // Safely cap hover and label heights so they don't clip off the top of the canvas
     const safeCanvasHeight = canvasHeight || (typeof window !== 'undefined' ? window.innerHeight : 800);

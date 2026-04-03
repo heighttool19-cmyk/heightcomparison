@@ -15,6 +15,8 @@ interface CanvasProps {
     mode: 'idle' | 'calibrating' | 'measuring';
     isScanning: boolean;
     fileInputRef: React.RefObject<HTMLInputElement | null>;
+    magnifierPoint: { x: number; y: number } | null;
+    isDrawing: boolean;
 }
 
 export const Canvas: React.FC<CanvasProps> = ({
@@ -26,13 +28,15 @@ export const Canvas: React.FC<CanvasProps> = ({
     displaySize,
     mode,
     isScanning,
-    fileInputRef
+    fileInputRef,
+    magnifierPoint,
+    isDrawing
 }) => {
     return (
         <div
             ref={wrapperRef}
             className={cn(
-                "relative w-full rounded-2xl border border-border overflow-hidden bg-black/40",
+                "relative w-full rounded-2xl border border-border overflow-hidden bg-black/40 shadow-inner",
                 !uploadedImage && "border-dashed min-h-[260px] flex items-center justify-center"
             )}
             style={displaySize ? { height: displaySize.h } : undefined}
@@ -44,7 +48,7 @@ export const Canvas: React.FC<CanvasProps> = ({
                         <Upload className="w-7 h-7 text-foreground/40 group-hover:text-accent transition-colors" />
                     </div>
                     <p className="font-semibold text-foreground/70">Click to upload an image</p>
-                    <p className="text-xs text-foreground/40 mt-1">PNG, JPG up to 10 MB</p>
+                    <p className="text-xs text-foreground/40 mt-1 uppercase tracking-widest font-black">PNG, JPG up to 10 MB</p>
                 </div>
             ) : (
                 <div className="absolute inset-0 flex items-center justify-center">
@@ -53,12 +57,48 @@ export const Canvas: React.FC<CanvasProps> = ({
                         onMouseDown={onCanvasMouseDown}
                         onTouchStart={onCanvasTouchStart}
                         className={cn(
-                            "block select-none touch-none max-w-full",
-                            mode === 'idle' ? "cursor-default" : "cursor-crosshair"
+                            "block select-none max-w-full",
+                            // touch-none only when drawing or about to draw
+                            (mode !== 'idle' && isDrawing) ? "touch-none cursor-crosshair" : "touch-pan-y cursor-default"
                         )}
                     />
                 </div>
             )}
+
+            {/* Magnifier for Mobile Precision */}
+            <AnimatePresence>
+                {magnifierPoint && displaySize && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0 }}
+                        className="absolute pointer-events-none z-[100] border-2 border-white shadow-2xl rounded-full overflow-hidden w-24 h-24 sm:w-32 sm:h-32"
+                        style={{
+                            left: magnifierPoint.x,
+                            top: magnifierPoint.y - 100, // Show above the finger
+                            transform: 'translate(-50%, -50%)',
+                        }}
+                    >
+                        <div
+                            className="bg-accent/20 w-full h-full"
+                            style={{
+                                backgroundImage: `url(${uploadedImage})`,
+                                backgroundSize: `${displaySize.w * 2}px ${displaySize.h * 2}px`,
+                                backgroundPosition: `-${magnifierPoint.x * 2 - (magnifierPoint.x > displaySize.w / 2 ? 48 : 64)}px -${magnifierPoint.y * 2 - (magnifierPoint.y > displaySize.h / 2 ? 48 : 64)}px`,
+                                // Simpler version: just center the point
+                                backgroundPositionX: -magnifierPoint.x * 2 + (window.innerWidth < 640 ? 48 : 64),
+                                backgroundPositionY: -magnifierPoint.y * 2 + (window.innerWidth < 640 ? 48 : 64),
+                            }}
+                        />
+                        {/* Crosshair in magnifier */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-full h-px bg-white/40" />
+                            <div className="h-full w-px bg-white/40" />
+                            <div className="w-2 h-2 rounded-full border border-white" />
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Scan animation */}
             <AnimatePresence>

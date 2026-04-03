@@ -33,6 +33,8 @@ export const ImageMeasurement: React.FC = () => {
         cropBox,
         cropDisplay,
         cropDrag,
+        magnifierPoint,
+        isDrawing,
         calibLine,
         firstPoint,
         onCanvasMouseDown,
@@ -112,6 +114,8 @@ export const ImageMeasurement: React.FC = () => {
                     mode={mode}
                     isScanning={isScanning}
                     fileInputRef={fileInputRef}
+                    magnifierPoint={magnifierPoint}
+                    isDrawing={isDrawing}
                 />
 
                 <CalibrationModal

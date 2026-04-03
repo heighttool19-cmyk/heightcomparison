@@ -621,7 +621,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         const heights = persons.length > 0 ? persons.map(p => p.heightCm) : [0];
         const maxHeightCm = Math.max(210, ...heights);
         const fitScale = Math.max(0, (canvasHeight - 160) / maxHeightCm);
-        return fitScale * state.zoom;
+        const finalScale = fitScale * state.zoom;
+        return Number.isFinite(finalScale) ? finalScale : 0;
     }, [canvasHeight, persons, state.zoom]);
 
     const totalHeight = useMemo(() => {
@@ -864,7 +865,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         }}
                     >
                         {/* Fullscreen Toggle Button (Overlay) */}
-                        <button
+                        {/* <button
                             onClick={toggleFullscreen}
                             className={`absolute z-[100] transition-all duration-300 flex items-center gap-1.5 sm:gap-2 justify-center active:scale-95
                                 ${isFullscreen
@@ -881,12 +882,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     <span className="text-[10px] sm:text-xs font-bold tracking-wide">Fullscreen</span>
                                 </>
                             )}
-                        </button>
-                        <div className={`w-full flex flex-col items-center shrink-0 bg-canvas z-20 border-b border-border/5 transition-all duration-300 ${isFullscreen
+                        </button> */}
+                        <div className={`w-full relative flex flex-col items-center justify-center py-2 shrink-0 bg-canvas z-20 border-b border-border/5 transition-all duration-300 ${isFullscreen
                             ? 'pt-1 pb-0'
-                            : 'p-0 opacity-40'
+                            : 'opacity-40'
                             }`}
                         >
+                            {/* CENTERED CONTENT */}
                             <span className={`font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-muted whitespace-nowrap transition-all duration-300 ${isFullscreen
                                 ? 'text-[9px] sm:text-md lg:text-xl'
                                 : 'text-[7px] sm:text-[10px]'
@@ -895,6 +897,27 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             </span>
                             {isFullscreen && <div className="h-[2px] w-12 sm:w-24 bg-accent/40 mt-2 sm:mt-4" />}
                             {!isFullscreen && <div className="h-[1px] w-8 sm:w-12 bg-accent/30 mt-1 sm:mt-1.5" />}
+
+                            {/* RIGHT-ALIGNED BUTTON */}
+                            {/* Added 'absolute', 'top-1/2', '-translate-y-1/2' for perfect vertical centering on the right */}
+                            <button
+                                onClick={toggleFullscreen}
+                                className={`absolute top-1/2 -translate-y-1/2 z-[100] transition-all duration-300 flex items-center gap-1.5 sm:gap-2 justify-center active:scale-95
+        ${isFullscreen
+                                        ? 'right-4 sm:right-8 p-3 bg-white/10 backdrop-blur-md rounded-full text-foreground hover:bg-white/20 border border-white/20 shadow-2xl'
+                                        : 'right-3 sm:right-5 px-2.5 py-1.5 sm:px-3 sm:py-2 bg-surface/90 backdrop-blur-md text-foreground/80 hover:text-foreground hover:bg-accent hover:text-white rounded-xl border border-border/60 hover:border-accent shadow-lg hover:shadow-accent/20'
+                                    }`}
+                                title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+                            >
+                                {isFullscreen ? (
+                                    <X size={isMobile ? 20 : 28} className="transition-transform duration-300 group-hover:rotate-90" />
+                                ) : (
+                                    <>
+                                        <Maximize size={isMobile ? 14 : 16} strokeWidth={2.5} />
+                                        <span className="text-[10px] sm:text-xs font-bold tracking-wide">Fullscreen</span>
+                                    </>
+                                )}
+                            </button>
                         </div>
 
                         <div className="flex-1 flex flex-row relative overflow-hidden w-full">

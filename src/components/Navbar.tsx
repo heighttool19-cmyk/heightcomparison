@@ -3,13 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Moon, Sun, Menu, ArrowLeftRight, ChevronDown } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { useThemeStore, useUnitStore } from '@/store';
 import ThemeInitializer from './ThemeInitializer';
-
-interface NavbarProps {
-    // Relaxed to string to allow future scalability without breaking TypeScript when you add new pages
-    activePage: string;
-}
 
 // 1. DATA-DRIVEN CONFIGURATION: Add future tools here once, and they populate everywhere automatically.
 type NavItem = {
@@ -37,7 +33,9 @@ const NAVIGATION: NavItem[] = [
     { label: 'About', href: '/about', id: 'about' },
 ];
 
-const Navbar: React.FC<NavbarProps> = ({ activePage }) => {
+const Navbar: React.FC = () => {
+    const pathname = usePathname();
+    const activePage = pathname === '/' ? 'home' : pathname.split('/').pop() || 'home';
     const { theme, toggleTheme } = useThemeStore();
     const { unitSystem, toggleUnitSystem } = useUnitStore();
     const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);

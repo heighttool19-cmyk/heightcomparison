@@ -62,6 +62,7 @@ export const useImageMeasurement = () => {
     const [cropDisplay, setCropDisplay] = useState({ w: 0, h: 0 });
     const [cropNatural, setCropNatural] = useState({ w: 0, h: 0 });
     const [cropDrag, setCropDrag] = useState<CropDrag | null>(null);
+    const [magnifierPoint, setMagnifierPoint] = useState<Point | null>(null);
 
     const [displaySize, setDisplaySize] = useState<{ w: number; h: number } | null>(null);
 
@@ -221,31 +222,55 @@ export const useImageMeasurement = () => {
         const onMouseMove = (e: MouseEvent) => {
             if (!isMouseDown.current || !firstPointRef.current) return;
             const pt = clientToCanvas(e.clientX, e.clientY);
-            if (pt) setLivePoint(pt);
+            if (pt) {
+                setLivePoint(pt);
+                setMagnifierPoint(pt); // Add magnifier on move
+            }
         };
         const onMouseUp = (e: MouseEvent) => {
             isMouseDown.current = false;
+            setMagnifierPoint(null); // Hide magnifier on up
             if (!firstPointRef.current || !isDraggingRef.current) return;
             const pt = clientToCanvas(e.clientX, e.clientY);
             if (!pt) return;
             const dist = Math.hypot(pt.x - firstPointRef.current.x, pt.y - firstPointRef.current.y);
-            if (dist > 10) commitLine(firstPointRef.current, pt);
+            if (dist > 5) commitLine(firstPointRef.current, pt); // Reduced threshold slightly for better mobile taps
             else setIsDragging(false);
         };
         const onTouchMove = (e: TouchEvent) => {
             if (!firstPointRef.current) return;
-            e.preventDefault();
+            // Removed e.preventDefault() here to allow scrolling if not drawing
+            // Actually, if we ARE drawing (firstPoint is set), we SHOULD prevent default.
+            if (firstPointRef.current) e.preventDefault();
             const pt = clientToCanvas(e.touches[0].clientX, e.touches[0].clientY);
-            if (pt) setLivePoint(pt);
+            if (pt) {
+                setLivePoint(pt);
+                setMagnifierPoint(pt);
+            }
         };
         const onTouchEnd = (e: TouchEvent) => {
-            if (!firstPointRef.current || !isDraggingRef.current) return;
+            setMagnifierPoint(null);
+            // If we have a first point but haven't "dragged" much, consider it a second point placement (tap-to-place)
+            if (!firstPointRef.current) return;
+            
             const t = e.changedTouches[0];
             const pt = clientToCanvas(t.clientX, t.clientY);
-            if (!pt) return;
+            if (!pt) {
+                if (!isDraggingRef.current) cancelDrawing();
+                return;
+            }
+
             const dist = Math.hypot(pt.x - firstPointRef.current.x, pt.y - firstPointRef.current.y);
-            if (dist > 10) commitLine(firstPointRef.current, pt);
-            else setIsDragging(false);
+            
+            // If we were dragging, commit the line. 
+            // If it was just a tap (small dist), and we already have a first point, commit it.
+            if (isDraggingRef.current || dist > 3) {
+                commitLine(firstPointRef.current, pt);
+            } else {
+                // It was a tap. If we don't have a first point yet, start one (handled in TouchStart).
+                // If we HAVE a first point, commit the line at this tap location.
+                commitLine(firstPointRef.current, pt);
+            }
         };
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
@@ -271,7 +296,7 @@ export const useImageMeasurement = () => {
         const pt = clientToCanvas(e.clientX, e.clientY);
         if (!pt) return;
         if (!firstPoint) {
-            setFirstPoint(pt); setLivePoint(pt); setIsDragging(true);
+            setFirstPoint(pt); setLivePoint(pt); setMagnifierPoint(pt); setIsDragging(true);
         } else {
             commitLine(firstPoint, pt);
         }
@@ -279,12 +304,18 @@ export const useImageMeasurement = () => {
 
     const onCanvasTouchStart = (e: React.TouchEvent) => {
         if (mode === 'idle') return;
-        e.preventDefault();
+        // Don't prevent default unless we're starting to draw
         const pt = clientToCanvas(e.touches[0].clientX, e.touches[0].clientY);
         if (!pt) return;
+
+        // If we are about to start a line or finish a line, then we prevent default.
+        // This allows scrolling the canvas if the user just swipes over it without intention to draw.
+        // On mobile, "tap to place" is safer.
         if (!firstPoint) {
-            setFirstPoint(pt); setLivePoint(pt); setIsDragging(true);
+            e.preventDefault();
+            setFirstPoint(pt); setLivePoint(pt); setMagnifierPoint(pt); setIsDragging(true);
         } else {
+            e.preventDefault();
             commitLine(firstPoint, pt);
         }
     };
@@ -359,8 +390,8 @@ export const useImageMeasurement = () => {
         const dw = Math.round(img.naturalWidth * sc), dh = Math.round(img.naturalHeight * sc);
         setCropNatural({ w: img.naturalWidth, h: img.naturalHeight });
         setCropDisplay({ w: dw, h: dh });
-        const pad = 0.05;
-        setCropBox({ x: Math.round(dw * pad), y: Math.round(dh * pad), w: Math.round(dw * (1 - pad * 2)), h: Math.round(dh * (1 - pad * 2)) });
+        // INITIAL STATE: Cover full image (matches Reset) - Fixed padding to 0
+        setCropBox({ x: 0, y: 0, w: dw, h: dh });
     }, []);
 
     const getCropPt = (e: React.MouseEvent | React.TouchEvent) => {
@@ -488,6 +519,7 @@ export const useImageMeasurement = () => {
         cropBox,
         cropDisplay,
         cropDrag,
+        magnifierPoint,
         displaySize,
         uploadedImage,
         calculatedHeight,
@@ -517,6 +549,7 @@ export const useImageMeasurement = () => {
         showSaveModal,
         setShowSaveModal,
         isSavingCrop,
-        savedSubjectUrl
+        savedSubjectUrl,
+        isDrawing: !!firstPoint
     };
 };

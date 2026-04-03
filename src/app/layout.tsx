@@ -1,6 +1,9 @@
 import { type Metadata, type Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/layout/Footer";
+import ThemeInitializer from "@/components/ThemeInitializer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -41,10 +44,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
-      >
-        {children}
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-bg text-foreground selection:bg-accent/20 transition-colors duration-500`}>
+        <ThemeInitializer />
+        <div className="flex flex-col min-h-[100dvh] overflow-x-clip">
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

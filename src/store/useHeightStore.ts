@@ -48,7 +48,7 @@ export const useHeightStore = create<HeightStoreState>((set) => ({
         return {
             calibrationPx: px,
             calibrationCm: cm,
-            calculatedHeight: newCalc
+            calculatedHeight: Number.isFinite(newCalc) ? newCalc : 0
         };
     }),
 
@@ -59,7 +59,7 @@ export const useHeightStore = create<HeightStoreState>((set) => ({
         }
         return {
             measurementPx: px,
-            calculatedHeight: newCalc
+            calculatedHeight: Number.isFinite(newCalc) ? newCalc : 0
         };
     }),
 
