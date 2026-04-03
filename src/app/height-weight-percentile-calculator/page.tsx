@@ -74,10 +74,25 @@ export default function PercentileCalculatorPage() {
 
                         <div className="bg-bg border border-border p-6 rounded-2xl my-6">
                             <h3 className="font-bold text-foreground mb-3 text-sm uppercase tracking-widest">Two reference points that clarify the scale:</h3>
-                            <ul className="space-y-2 text-muted">
-                                <li className="flex items-start gap-2 font-medium"><div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" /> <strong>50th percentile height</strong> = the average for that age and sex</li>
-                                <li className="flex items-start gap-2 font-medium"><div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" /> <strong>90th percentile height</strong> = taller than 90% of peers the same age</li>
-                            </ul>
+                            <div className="grid grid-cols-2 gap-x-3 gap-y-4 text-muted font-medium">
+                                {/* Row 1 */}
+                                <div className="flex items-start gap-2">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                                    <strong>50th percentile height</strong>
+                                </div>
+                                <div>
+                                    = the average for that age and sex
+                                </div>
+
+                                {/* Row 2 */}
+                                <div className="flex items-start gap-2">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                                    <strong>90th percentile height</strong>
+                                </div>
+                                <div>
+                                    = taller than 90% of peers the same age
+                                </div>
+                            </div>
                         </div>
 
                         <p className="text-muted leading-relaxed font-medium">
@@ -243,28 +258,28 @@ export default function PercentileCalculatorPage() {
                                     </tr>
                                 </thead>
                                 <tbody className="text-muted divide-y divide-border/50 font-medium">
-                                    <tr className="hover:bg-bg/50 transition-colors">
-                                        <td className="px-6 py-4 font-black text-accent text-lg">90 to 100</td>
+                                    <tr className="hover:bg-bg/50 transition-colors text-center">
+                                        <td className="px-2 py-4 font-black text-accent text-lg">90 to 100</td>
                                         <td className="px-6 py-4">Very tall compared to peers</td>
                                         <td className="px-6 py-4">Well above average for age and sex</td>
                                     </tr>
-                                    <tr className="hover:bg-bg/50 transition-colors">
-                                        <td className="px-6 py-4 font-black text-foreground">75 to 90</td>
+                                    <tr className="hover:bg-bg/50 transition-colors text-center">
+                                        <td className="px-2 py-4 font-black text-foreground">75 to 90</td>
                                         <td className="px-6 py-4">Above average</td>
                                         <td className="px-6 py-4">Taller than most peers</td>
                                     </tr>
-                                    <tr className="hover:bg-bg/50 transition-colors">
-                                        <td className="px-6 py-4 font-black text-foreground">25 to 75</td>
+                                    <tr className="hover:bg-bg/50 transition-colors text-center">
+                                        <td className="px-2 py-4 font-black text-foreground">25 to 75</td>
                                         <td className="px-6 py-4 italic">Average height range</td>
                                         <td className="px-6 py-4">Normal and expected for most people</td>
                                     </tr>
-                                    <tr className="hover:bg-bg/50 transition-colors">
-                                        <td className="px-6 py-4 font-black text-foreground">10 to 25</td>
+                                    <tr className="hover:bg-bg/50 transition-colors text-center">
+                                        <td className="px-2 py-4 font-black text-foreground">10 to 25</td>
                                         <td className="px-6 py-4">Below average</td>
                                         <td className="px-6 py-4">Shorter than most, within normal variation</td>
                                     </tr>
-                                    <tr className="hover:bg-bg/50 transition-colors border-l-4 border-red-500/20">
-                                        <td className="px-6 py-4 font-black text-red-500 text-lg">Below 10</td>
+                                    <tr className="hover:bg-bg/50 transition-colors text-center border-l-4 border-red-500/20">
+                                        <td className="px-2 py-4 font-black text-red-500 text-lg">Below 10</td>
                                         <td className="px-6 py-4">Significantly shorter than peers</td>
                                         <td className="px-6 py-4">Worth discussing with a healthcare provider</td>
                                     </tr>

@@ -40,7 +40,7 @@ export default function KhamisRocheCalculator() {
     const [fatherHtCm, setFatherHtCm] = useState<number | ''>('');
     const [fatherHtFt, setFatherHtFt] = useState<number | ''>('');
     const [fatherHtIn, setFatherHtIn] = useState<number | ''>('');
-    
+
     const [predictedKhamis, setPredictedKhamis] = useState<{ cm: number; ft: number; in: number } | null>(null);
     const [chartPersons, setChartPersons] = useState<Person[]>([]);
 
@@ -130,9 +130,21 @@ export default function KhamisRocheCalculator() {
                     <div className="h-1.5 w-16 bg-accent rounded-full mx-auto sm:mx-0" />
                 </div>
                 {/* Synced Unit Toggle */}
-                <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
-                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
-                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
+                <div className="w-full sm:w-auto bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
+                    {/* 2. Added flex-1 to both buttons so they share the space equally */}
+                    {/* 3. Slightly increased padding (py-2) on mobile for better touch targets */}
+                    <button
+                        onClick={() => setUnitSystem('imperial')}
+                        className={`flex-1 px-4 py-2 sm:py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}
+                    >
+                        US (ft/in)
+                    </button>
+                    <button
+                        onClick={() => setUnitSystem('metric')}
+                        className={`flex-1 px-4 py-2 sm:py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}
+                    >
+                        Metric (cm)
+                    </button>
                 </div>
             </div>
 

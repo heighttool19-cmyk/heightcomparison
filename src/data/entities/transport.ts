@@ -3,7 +3,8 @@ export const transport_data = [
     "name": "Boeing 747",
     "heightCm": 1950,
     "category": "Transport",
-    "icon": "🏢"
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/transport/boeing747.svg"
   },
   {
     "name": "Airbus A380",

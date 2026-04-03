@@ -338,7 +338,7 @@ export default function HeightPercentileTool() {
     };
 
     return (
-        <div style={{ fontFamily: "Georgia, serif", padding: "0 0 60px" }} className="w-full">
+        <div style={{ fontFamily: "Georgia, serif", padding: "0 0 " }} className="w-full">
             {/* Header */}
             {/* <div style={{
                 background: isDark ? "var(--surface)" : "white", borderBottom: `1px solid ${isDark ? 'var(--border)' : '#e2e8f0'}`,

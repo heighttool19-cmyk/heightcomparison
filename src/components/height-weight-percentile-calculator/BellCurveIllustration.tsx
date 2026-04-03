@@ -52,11 +52,15 @@ export default function BellCurveIllustration() {
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
-    const W = 680, H = 280;
-    const padL = 48, padR = 32, padT = 36, padB = 52;
+    // const W = 680, H = 280;
+    // const padL = 48, padR = 32, padT = 36, padB = 52;
+    // const plotW = W - padL - padR;
+    // const plotH = H - padT - padB;
+    // Increased height (H) for a taller curve, and top padding (padT) so the tooltip doesn't clip
+    const W = 720, H = 360;
+    const padL = 48, padR = 32, padT = 52, padB = 52;
     const plotW = W - padL - padR;
     const plotH = H - padT - padB;
-
     const zMin = -3.6, zMax = 3.6;
     const zRange = zMax - zMin;
 
@@ -118,185 +122,186 @@ export default function BellCurveIllustration() {
                 </p>
             </div>
 
-            {/* SVG */}
-            <svg
-                viewBox={`0 0 ${W} ${H}`}
-                style={{ width: "100%", display: "block", cursor: "default" }}
-            >
-                <defs>
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-                        <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                    </filter>
-                </defs>
+            <div className="w-full overflow-x-auto pb-2">
+                <svg
+                    viewBox={`0 0 ${W} ${H}`}
+                    /* NEW: Added minWidth: "640px" so it forces a zoom/scroll on small screens */
+                    style={{ width: "100%", minWidth: "640px", display: "block", cursor: "default" }}
+                >
+                    <defs>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                            <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                        </filter>
+                    </defs>
 
-                {/* Gridlines */}
-                {[0.25, 0.5, 0.75, 1].map(frac => {
-                    const y = yToSVG(normalPDF(0) * frac);
-                    return (
-                        <line key={frac} x1={padL} y1={y} x2={W - padR} y2={y}
-                            stroke={isDark ? "#334155" : "#f1f5f9"} strokeWidth="1" />
-                    );
-                })}
+                    {/* Gridlines */}
+                    {[0.25, 0.5, 0.75, 1].map(frac => {
+                        const y = yToSVG(normalPDF(0) * frac);
+                        return (
+                            <line key={frac} x1={padL} y1={y} x2={W - padR} y2={y}
+                                stroke={isDark ? "#334155" : "#f1f5f9"} strokeWidth="1" />
+                        );
+                    })}
 
-                {/* Colored bands */}
-                {bands.map((b, i) => {
-                    const isActive = activeMarker !== null &&
-                        PERCENTILE_MARKERS.indexOf(activeMarker) !== -1 &&
-                        ((b.lo < activeMarker && b.hi >= activeMarker) || (b.lo === 0 && activeMarker === 5) || (b.hi === 100 && activeMarker === 95));
-                    return (
-                        <path
-                            key={i}
-                            d={bandPath(b.lo, b.hi)}
-                            fill={b.color}
-                            opacity={activeMarker === null ? b.opacity : (isActive ? b.opacity * (isDark ? 3.0 : 2.2) : b.opacity * 0.3)}
-                            style={{ transition: "opacity 0.3s" }}
-                        />
-                    );
-                })}
+                    {/* Colored bands */}
+                    {bands.map((b, i) => {
+                        const isActive = activeMarker !== null &&
+                            PERCENTILE_MARKERS.indexOf(activeMarker) !== -1 &&
+                            ((b.lo < activeMarker && b.hi >= activeMarker) || (b.lo === 0 && activeMarker === 5) || (b.hi === 100 && activeMarker === 95));
+                        return (
+                            <path
+                                key={i}
+                                d={bandPath(b.lo, b.hi)}
+                                fill={b.color}
+                                opacity={activeMarker === null ? b.opacity : (isActive ? b.opacity * (isDark ? 3.0 : 2.2) : b.opacity * 0.3)}
+                                style={{ transition: "opacity 0.3s" }}
+                            />
+                        );
+                    })}
 
-                {/* Curve */}
-                <path d={pathD} fill="none" stroke={isDark ? "#94a3b8" : "#475569"} strokeWidth="2.5" strokeLinejoin="round" />
+                    {/* Curve */}
+                    <path d={pathD} fill="none" stroke={isDark ? "#94a3b8" : "#475569"} strokeWidth="2.5" strokeLinejoin="round" />
 
-                {/* Baseline */}
-                <line x1={padL} y1={baseY} x2={W - padR} y2={baseY} stroke={isDark ? "#475569" : "#cbd5e1"} strokeWidth="1.5" />
+                    {/* Baseline */}
+                    <line x1={padL} y1={baseY} x2={W - padR} y2={baseY} stroke={isDark ? "#475569" : "#cbd5e1"} strokeWidth="1.5" />
 
-                {/* Percentile marker lines + labels */}
-                {PERCENTILE_MARKERS.map(pct => {
-                    const z = zFromP(pct / 100);
-                    const x = zToX(z);
-                    const isHov = hovered === pct;
-                    const col = COLORS[pct].label;
+                    {/* Percentile marker lines + labels */}
+                    {PERCENTILE_MARKERS.map(pct => {
+                        const z = zFromP(pct / 100);
+                        const x = zToX(z);
+                        const isHov = hovered === pct;
+                        const col = COLORS[pct].label;
 
-                    return (
-                        <g key={pct}
-                            onMouseEnter={() => setHovered(pct)}
-                            onMouseLeave={() => setHovered(null)}
-                            style={{ cursor: "pointer" }}
-                        >
-                            {/* Hover hitbox */}
-                            <rect x={x - 18} y={padT} width={36} height={plotH + padB - 8} fill="transparent" />
+                        return (
+                            <g key={pct}
+                                onMouseEnter={() => setHovered(pct)}
+                                onMouseLeave={() => setHovered(null)}
+                                style={{ cursor: "pointer" }}
+                            >
+                                {/* Hover hitbox */}
+                                <rect x={x - 18} y={padT} width={36} height={plotH + padB - 8} fill="transparent" />
 
-                            {/* Vertical dashed line */}
+                                {/* Vertical dashed line */}
+                                <line
+                                    x1={x} y1={padT + 6} x2={x} y2={baseY}
+                                    stroke={col}
+                                    strokeWidth={isHov ? 2 : 1.2}
+                                    strokeDasharray={isHov ? "none" : "4,3"}
+                                    opacity={isHov ? 1 : 0.6}
+                                    style={{ transition: "all 0.2s" }}
+                                />
+
+                                {/* Circle on curve */}
+                                <circle
+                                    cx={x} cy={yToSVG(normalPDF(z))} r={isHov ? 6 : 4}
+                                    fill={col} stroke={isDark ? "#1e293b" : "white"} strokeWidth="2"
+                                    filter={isHov ? "url(#glow)" : "none"}
+                                    style={{ transition: "all 0.2s" }}
+                                />
+
+                                {/* Percentile badge */}
+                                <rect
+                                    x={x - 17} y={padT - 28} width={34} height={22} rx={5}
+                                    fill={isHov ? col : (isDark ? "#1e293b" : "white")}
+                                    stroke={col} strokeWidth={isHov ? 0 : 1.5}
+                                    style={{ transition: "all 0.2s" }}
+                                />
+                                <text
+                                    x={x} y={padT - 12}
+                                    textAnchor="middle" fontSize="11" fontWeight="800"
+                                    fill={isHov ? "white" : col}
+                                    fontFamily="Georgia, serif"
+                                    style={{ transition: "all 0.2s" }}
+                                >
+                                    {pct}th
+                                </text>
+
+                                {/* Bottom label */}
+                                <text
+                                    x={x} y={baseY + 18}
+                                    textAnchor="middle" fontSize="9.5"
+                                    fill={isHov ? col : (isDark ? "#94a3b8" : "#94a3b8")}
+                                    fontFamily="Georgia, serif" fontWeight={isHov ? "700" : "400"}
+                                    style={{ transition: "all 0.2s" }}
+                                >
+                                    p{pct}
+                                </text>
+                            </g>
+                        );
+                    })}
+
+                    {/* Sample dot */}
+                    {showSample && (
+                        <g>
+                            {/* Drop line */}
                             <line
-                                x1={x} y1={padT + 6} x2={x} y2={baseY}
-                                stroke={col}
-                                strokeWidth={isHov ? 2 : 1.2}
-                                strokeDasharray={isHov ? "none" : "4,3"}
-                                opacity={isHov ? 1 : 0.6}
-                                style={{ transition: "all 0.2s" }}
+                                x1={sampleX} y1={sampleCurveY + 8}
+                                x2={sampleX} y2={baseY}
+                                stroke="#7c3aed" strokeWidth="1.5" strokeDasharray="3,3"
+                                opacity="0.7"
                             />
-
-                            {/* Circle on curve */}
+                            {/* Dot on curve */}
                             <circle
-                                cx={x} cy={yToSVG(normalPDF(z))} r={isHov ? 6 : 4}
-                                fill={col} stroke={isDark ? "#1e293b" : "white"} strokeWidth="2"
-                                filter={isHov ? "url(#glow)" : "none"}
-                                style={{ transition: "all 0.2s" }}
-                            />
-
-                            {/* Percentile badge */}
-                            <rect
-                                x={x - 17} y={padT - 28} width={34} height={22} rx={5}
-                                fill={isHov ? col : (isDark ? "#1e293b" : "white")}
-                                stroke={col} strokeWidth={isHov ? 0 : 1.5}
-                                style={{ transition: "all 0.2s" }}
+                                cx={sampleX} cy={sampleCurveY}
+                                r="9" fill="#7c3aed" stroke={isDark ? "#1e293b" : "white"} strokeWidth="3"
+                                filter="url(#glow)"
                             />
                             <text
-                                x={x} y={padT - 12}
-                                textAnchor="middle" fontSize="11" fontWeight="800"
-                                fill={isHov ? "white" : col}
-                                fontFamily="Georgia, serif"
-                                style={{ transition: "all 0.2s" }}
+                                x={sampleX} y={sampleCurveY + 4.5}
+                                textAnchor="middle" fontSize="9" fontWeight="900"
+                                fill="white" fontFamily="Georgia, serif"
                             >
-                                {pct}th
+                                {SAMPLE_PERCENTILE}
                             </text>
 
-                            {/* Bottom label */}
+                            {/* FIX 1: Widened and repositioned label callout */}
+                            <rect
+                                x={sampleX - 67} y={sampleCurveY - 48}
+                                width={134} height={38} rx={6}
+                                fill="#7c3aed"
+                            />
+                            <polygon
+                                points={`${sampleX - 5},${sampleCurveY - 15} ${sampleX + 5},${sampleCurveY - 15} ${sampleX},${sampleCurveY - 8}`}
+                                fill="#7c3aed"
+                            />
                             <text
-                                x={x} y={baseY + 18}
-                                textAnchor="middle" fontSize="9.5"
-                                fill={isHov ? col : (isDark ? "#94a3b8" : "#94a3b8")}
-                                fontFamily="Georgia, serif" fontWeight={isHov ? "700" : "400"}
-                                style={{ transition: "all 0.2s" }}
+                                x={sampleX} y={sampleCurveY - 33}
+                                textAnchor="middle" fontSize="10" fontWeight="800"
+                                fill="white" fontFamily="Georgia, serif"
                             >
-                                p{pct}
+                                Sample: 72nd percentile
+                            </text>
+                            <text
+                                x={sampleX} y={sampleCurveY - 19}
+                                textAnchor="middle" fontSize="9"
+                                fill="rgba(255,255,255,0.85)" fontFamily="Georgia, serif"
+                            >
+                                Taller than 72% of peers
                             </text>
                         </g>
-                    );
-                })}
+                    )}
 
-                {/* Sample dot */}
-                {showSample && (
-                    <g>
-                        {/* Drop line */}
-                        <line
-                            x1={sampleX} y1={sampleCurveY + 8}
-                            x2={sampleX} y2={baseY}
-                            stroke="#7c3aed" strokeWidth="1.5" strokeDasharray="3,3"
-                            opacity="0.7"
-                        />
-                        {/* Dot on curve */}
-                        <circle
-                            cx={sampleX} cy={sampleCurveY}
-                            r="9" fill="#7c3aed" stroke={isDark ? "#1e293b" : "white"} strokeWidth="3"
-                            filter="url(#glow)"
-                        />
-                        <text
-                            x={sampleX} y={sampleCurveY + 4.5}
-                            textAnchor="middle" fontSize="9" fontWeight="900"
-                            fill="white" fontFamily="Georgia, serif"
-                        >
-                            {SAMPLE_PERCENTILE}
-                        </text>
+                    {/* Y-axis label */}
+                    <text
+                        x={14} y={padT + plotH / 2}
+                        textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"}
+                        fontFamily="Georgia, serif"
+                        transform={`rotate(-90, 14, ${padT + plotH / 2})`}
+                    >
+                        Population frequency
+                    </text>
 
-                        {/* FIX 1: Widened and repositioned label callout */}
-                        <rect
-                            x={sampleX - 67} y={sampleCurveY - 48}
-                            width={134} height={38} rx={6}
-                            fill="#7c3aed"
-                        />
-                        <polygon
-                            points={`${sampleX - 5},${sampleCurveY - 15} ${sampleX + 5},${sampleCurveY - 15} ${sampleX},${sampleCurveY - 8}`}
-                            fill="#7c3aed"
-                        />
-                        <text
-                            x={sampleX} y={sampleCurveY - 33}
-                            textAnchor="middle" fontSize="10" fontWeight="800"
-                            fill="white" fontFamily="Georgia, serif"
-                        >
-                            Sample: 72nd percentile
-                        </text>
-                        <text
-                            x={sampleX} y={sampleCurveY - 19}
-                            textAnchor="middle" fontSize="9"
-                            fill="rgba(255,255,255,0.85)" fontFamily="Georgia, serif"
-                        >
-                            Taller than 72% of peers
-                        </text>
-                    </g>
-                )}
-
-                {/* Y-axis label */}
-                <text
-                    x={14} y={padT + plotH / 2}
-                    textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"}
-                    fontFamily="Georgia, serif"
-                    transform={`rotate(-90, 14, ${padT + plotH / 2})`}
-                >
-                    Population frequency
-                </text>
-
-                {/* X-axis label */}
-                <text
-                    x={padL + plotW / 2} y={H - 4}
-                    textAnchor="middle" fontSize="10" fill={isDark ? "#94a3b8" : "#94a3b8"}
-                    fontFamily="Georgia, serif"
-                >
-                    Height (relative to population average)
-                </text>
-            </svg>
-
+                    {/* X-axis label */}
+                    <text
+                        x={padL + plotW / 2} y={H - 4}
+                        textAnchor="middle" fontSize="10" fill={isDark ? "#94a3b8" : "#94a3b8"}
+                        fontFamily="Georgia, serif"
+                    >
+                        Height (relative to population average)
+                    </text>
+                </svg>
+            </div>
             {/* FIX 2: Fixed height tooltip container prevents layout shift & hover loops */}
             <div style={{
                 minHeight: 84, // Increased and locked to accommodate 2 lines easily

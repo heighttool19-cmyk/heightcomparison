@@ -82,7 +82,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     const springConfig = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
     // Text scales down proportionally with zoom, floor at 0.4
-    const nameScale = Math.max(0.4, Math.min(1, zoom * 1.2));
+    const nameScale = Math.max(0.3, Math.min(1, zoom * 1.4));
     const showLabels = zoom >= 0.08; // LOWER threshold, but staggered to prevent overlap
     const mobile = (typeof window !== 'undefined' && window.innerWidth < 768);
 
@@ -90,7 +90,10 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     // User preferred silhouette width: 2.2x head diameter
     const silhouetteWidth = headDiameter * 2.2;
     // Cap width for large entities/landmarks to prevent horizontal sprawl
-    const maxEntityWidth = 200 * zoom;
+    // If it's a wide entity (aspect ratio > 1), we allow a much larger cap to prevent clipping
+    const horizontalSwayFactor = (imageAspectRatio && imageAspectRatio > 1) ? imageAspectRatio : 1;
+    const maxEntityWidth = 400 * zoom * horizontalSwayFactor;
+
     const baseEffectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(5, Math.round(barHeightPx * imageAspectRatio))
         : Math.max(5, silhouetteWidth);
@@ -235,7 +238,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                             transformOrigin: 'bottom'
                         }}
                     >
-                        <span className="text-[0.55em] font-black text-foreground uppercase tracking-wider whitespace-nowrap text-center drop-shadow-md max-w-full  "
+                        <span className="text-[0.55em] font-black text-foreground uppercase text-center drop-shadow-md "
                             style={{
                                 transform: `scale(${nameScale * 0.6})`,
                             }}
@@ -251,7 +254,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 {/* Indicator Line - Positioned absolutely at the exact height boundary */}
                 <motion.div
                     animate={{ width: effectiveWidth }}
-                    className="absolute h-[1px] neon-indicator group-hover:brightness-150 left-1/2 -translate-x-1/2"
+                    className="absolute h-[1px] neon-indicator group-hover:brightness-150 "
                     transition={springConfig}
                     style={{
                         bottom: `${barHeightPx}px`,
@@ -278,7 +281,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                                     onLoad={handleImageLoad}
                                     animate={{ height: barHeightPx }}
                                     transition={springConfig}
-                                    style={{ width: '100%', height: barHeightPx, objectFit: 'cover', display: 'block', objectPosition: 'bottom' }}
+                                    style={{ width: '100%', height: barHeightPx, objectFit: 'contain', display: 'block', objectPosition: 'bottom' }}
                                     className="drop-shadow-md"
                                 />
                             </div>

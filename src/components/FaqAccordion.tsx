@@ -58,7 +58,7 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
             <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground mb-8">Frequently Asked Questions</h2>
 
             <div className="border border-border rounded-[2.5rem] overflow-hidden bg-surface transition-colors duration-500 shadow-sm mt-4">
-                <div className="px-8 md:px-12 pt-10 pb-8 text-center sm:text-left space-y-2 border-b border-border">
+                <div className="px-8 md:px-12 pt-4 pb-8 text-center sm:text-left space-y-2 border-b border-border">
                     <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
                         <HelpCircle size={12} /> HELP CENTER
                     </div>
@@ -75,7 +75,7 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
                                 className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5' : 'border-border bg-bg hover:border-accent/30'}`}
                             >
                                 <button
-                                    className="w-full flex items-center justify-between px-5 py-4 text-left gap-4 group"
+                                    className="w-full flex items-center justify-between px-6 py-4 text-left  group"
                                     onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
                                 >
                                     <span className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>

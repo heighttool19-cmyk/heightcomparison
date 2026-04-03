@@ -55,7 +55,7 @@ export default function HomeContent() {
                                                 <span className="inline-block align-middle px-2 py-0.5 rounded bg-accent/10 text-accent font-black text-[13px] mr-1 border border-accent/20">
                                                     100% FREE
                                                 </span>
-                                                <span className="align-middle">
+                                                <span className="align-middle text-black font-bold">
                                                     — and we mean it. Access our celebrity database, fictional characters, real-world objects, and premium tools like PNG downloads and instant share links.
                                                 </span>
                                             </p>

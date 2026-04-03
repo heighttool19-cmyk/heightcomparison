@@ -68,7 +68,7 @@ function PercentileBar({ percentile }: { percentile: number }) {
     return (
         <div style={{ fontFamily: "Georgia, serif" }} className="w-full">
             <p style={{ margin: "0 0 12px", fontSize: 11, color: isDark ? "#94a3b8" : "#64748b", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                Percentile Scale — Where 55 sits
+                Percentile Scale — Where {percentile} sits
             </p>
 
             {/* Zone labels above bar */}
@@ -83,14 +83,23 @@ function PercentileBar({ percentile }: { percentile: number }) {
                             onMouseLeave={() => setHoveredZone(null)}
                         >
                             <span style={{
-                                fontSize: 9.5, fontWeight: isActive ? 800 : 500,
+                                /* 1. Fluid font size shrinks slightly on tiny screens */
+                                fontSize: "clamp(7.5px, 2.2vw, 9.5px)",
+                                fontWeight: isActive ? 800 : 500,
                                 color: isActive || isHov ? z.color : (isDark ? "#475569" : "#94a3b8"),
                                 transition: "color 0.2s",
-                                display: "block", lineHeight: 1.3
+                                display: "block",
+                                /* 2. Tighter line height to make stacked wrapped text look neat */
+                                lineHeight: 1.1,
+                                /* 3. Allow normal wrapping instead of forcing a single line */
+                                whiteSpace: "normal",
+                                wordBreak: "break-word"
                             }}
-                                className="px-0.5 truncate"
+                                /* 4. REMOVED the 'truncate' class so content is never hidden! */
+                                className="px-0.5"
                             >
-                                {z.label}
+                                {/* 5. The '\u200B' gives mobile browsers permission to drop the 2nd half to a new line cleanly! */}
+                                {z.label.replace('–', '–\u200B')}
                             </span>
                         </div>
                     );
@@ -177,8 +186,15 @@ function PercentileBar({ percentile }: { percentile: number }) {
                     alignItems: "center", justifyContent: "center",
                     flexDirection: "column"
                 }}>
-                    <span style={{ color: "white", fontSize: 17, fontWeight: 900, lineHeight: 1 }}>{percentile}</span>
-                    <span style={{ color: "rgba(255,255,255,0.8)", fontSize: 9 }}>th</span>
+                    <span style={{ display: "inline-flex", alignItems: "baseline", whiteSpace: "nowrap" }}>
+                        <span style={{ color: "white", fontSize: 17, fontWeight: 900, lineHeight: 1 }}>
+                            {percentile}
+                        </span>
+                        {/* Optional: Added marginLeft: 1 or 2 if you need a tiny gap between the number and "th" */}
+                        <span style={{ color: "rgba(255,255,255,0.8)", fontSize: 9 }}>
+                            th
+                        </span>
+                    </span>
                 </div>
                 <div>
                     <p style={{ margin: 0, fontSize: 13, fontWeight: 800, color: zone.color }}>

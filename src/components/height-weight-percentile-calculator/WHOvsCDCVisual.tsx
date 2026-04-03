@@ -58,8 +58,9 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
-    const W = 300, H = 200;
-    const pL = 38, pR = 18, pT = 18, pB = 38;
+    // 1. INCREASED HEIGHT & PADDING FOR MORE BREATHING ROOM
+    const W = 360, H = 280;
+    const pL = 38, pR = 26, pT = 20, pB = 40;
     const plotW = W - pL - pR;
     const plotH = H - pT - pB;
 
@@ -84,7 +85,6 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
         ? [0, 0.5, 1, 1.5, 2]
         : [2, 5, 8, 11, 14, 17, 20];
 
-    // UPDATED: High contrast text colors for axes
     const axisTextColor = isDark ? "#cbd5e1" : "#475569";
     const gridLineColor = isDark ? "#475569" : "#cbd5e1";
 
@@ -97,7 +97,7 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
             }}>
                 <div style={{
                     width: 28, height: 28, borderRadius: 6,
-                    background: "rgba(255,255,255,0.25)", // UPDATED: slightly brighter background
+                    background: "rgba(255,255,255,0.25)",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: 14
                 }}>
@@ -112,7 +112,7 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
             {/* Chart */}
             <div style={{ background: isDark ? "#101011" : "#f8fafc", border: `1px solid ${color}40`, borderTop: "none", borderRadius: "0 0 12px 12px", padding: "10px 6px 6px" }}>
                 <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", display: "block" }}>
-                    {/* Grid - UPDATED contrast */}
+                    {/* Grid */}
                     {hTicks.map(h => (
                         <line key={h} x1={pL} y1={toY(h)} x2={pL + plotW} y2={toY(h)}
                             stroke={gridLineColor} strokeWidth="1" />
@@ -122,14 +122,14 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
                             stroke={gridLineColor} strokeWidth="1" />
                     ))}
 
-                    {/* P25–P75 shaded band - UPDATED opacities for better visibility */}
+                    {/* P25–P75 shaded band */}
                     <path d={bandPath} fill={bandColor} opacity={isDark ? "0.25" : "0.65"} />
 
-                    {/* Curves - UPDATED stroke widths and opacities */}
+                    {/* Curves - 2. MADE 50TH THICKER, OTHERS THINNER */}
                     {["p95", "p75", "p50", "p25", "p5"].map((k) => (
                         <path key={k} d={path(k)} fill="none"
                             stroke={color}
-                            strokeWidth={k === "p50" ? 2.5 : 1.5}
+                            strokeWidth={k === "p50" ? 3 : 1.2}
                             strokeDasharray={k === "p50" ? "none" : k === "p95" || k === "p5" ? "3,2" : "none"}
                             opacity={k === "p50" ? 1 : k === "p95" || k === "p5" ? 0.6 : 0.85}
                         />
@@ -160,23 +160,23 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
                     <text x={pL + plotW / 2} y={H - 2} textAnchor="middle" fontSize="7.5" fill={axisTextColor}
                         fontFamily="Georgia, serif">Age (years)</text>
 
-                    {/* P labels on right - UPDATED for Dark Mode Legibility */}
+                    {/* P labels on right - 3. MUTED CLUTTER & HIGHLIGHTED 50TH */}
                     {["p95", "p75", "p50", "p25", "p5"].map(k => {
                         const last = data[data.length - 1];
                         return (
-                            <text key={k} x={toX(last.age) + 2} y={toY(last[k]) + 3}
-                                fontSize="7"
-                                fill={isDark ? "#e2e8f0" : color} // Forces white/light-gray in dark mode
+                            <text key={k} x={toX(last.age) + 4} y={toY(last[k]) + 3}
+                                fontSize={k === "p50" ? "9" : "7.5"}
+                                fill={k === "p50" ? (isDark ? "white" : color) : (isDark ? "#64748b" : "#94a3b8")}
                                 fontFamily="Georgia, serif"
                                 opacity={k === "p50" ? 1 : 0.85}
-                                fontWeight={k === "p50" ? 700 : 500}>
+                                fontWeight={k === "p50" ? 800 : 500}>
                                 {k.replace("p", "")}
                             </text>
                         );
                     })}
                 </svg>
 
-                {/* Mini legend - UPDATED stroke widths and contrast */}
+                {/* Mini legend */}
                 <div style={{ display: "flex", justifyContent: "center", gap: 10, paddingLeft: 8, paddingBottom: 4, paddingTop: 8, flexWrap: "wrap" }}>
                     {[
                         { style: "solid", label: "50th (median)" },
@@ -186,7 +186,7 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
                         <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 4 }}>
                             <svg width="18" height="8">
                                 <line x1="0" y1="4" x2="18" y2="4"
-                                    stroke={color} strokeWidth={l.style === "solid" ? 2.5 : 1.5}
+                                    stroke={color} strokeWidth={l.style === "solid" ? 3 : 1.2}
                                     strokeDasharray={l.style === "dashed" ? "3,2" : l.style === "dotted" ? "2,2" : "none"}
                                     opacity={l.style === "solid" ? 1 : 0.8}
                                 />
@@ -329,7 +329,7 @@ export default function WHOvsCDCVisual() {
                     color={WHO_COLOR}
                     bandColor={BAND_WHO}
                     minAge={0} maxAge={2}
-                    minH={40} maxH={95}
+                    minH={45} maxH={95}
                     badge="🌍"
                 />
                 <SmallChart
@@ -339,7 +339,7 @@ export default function WHOvsCDCVisual() {
                     color={CDC_COLOR}
                     bandColor={BAND_CDC}
                     minAge={2} maxAge={20}
-                    minH={75} maxH={200}
+                    minH={80} maxH={200}
                     badge="🇺🇸"
                 />
             </div>

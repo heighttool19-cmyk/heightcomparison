@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section with Dashboard */}
-      <div className="w-full h-[92dvh] relative flex flex-col border-b border-border shadow-2xl">
+      <div className="w-full h-[92svh] relative flex flex-col border-b border-border shadow-2xl">
         <DynamicHeightDashboard />
       </div>
 

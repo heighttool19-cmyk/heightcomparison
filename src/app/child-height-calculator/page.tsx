@@ -189,11 +189,11 @@ export default function HeightCalculatorPage() {
                                     <div className="grid sm:grid-cols-2 gap-6 mb-6">
                                         <div className="bg-bg border border-border p-5 rounded-2xl border-l-4 border-l-blue-500">
                                             <span className="font-black text-foreground block mb-2 text-xs uppercase tracking-widest text-blue-500">For Boys (US Units)</span>
-                                            <code className="text-foreground text-base font-black tracking-tight bg-blue-500/10 px-3 py-1 rounded-lg">(Father + Mother + 5 in) ÷ 2</code>
+                                            <code className="text-foreground text-base font-black tracking-tight bg-blue-500/10 px-1 py-1 rounded-lg">(Father + Mother + 5 in) ÷ 2</code>
                                         </div>
                                         <div className="bg-bg border border-border p-5 rounded-2xl border-l-4 border-l-pink-500">
                                             <span className="font-black text-foreground block mb-2 text-xs uppercase tracking-widest text-pink-500">For Girls (US Units)</span>
-                                            <code className="text-foreground text-base font-black tracking-tight bg-pink-500/10 px-3 py-1 rounded-lg">(Father + Mother - 5 in) ÷ 2</code>
+                                            <code className="text-foreground text-base font-black tracking-tight bg-pink-500/10 px-1 py-1 rounded-lg">(Father + Mother - 5 in) ÷ 2</code>
                                         </div>
                                     </div>
                                     <p className="text-muted leading-relaxed font-medium italic">
@@ -321,8 +321,8 @@ export default function HeightCalculatorPage() {
 
                     {/* FAQ Accordion Section */}
                     <div id="child-height-calculator-faq" className="scroll-mt-24">
-                        <FaqAccordion 
-                            items={CHILD_HEIGHT_QA} 
+                        <FaqAccordion
+                            items={CHILD_HEIGHT_QA}
                             description="Scientific insights into your child's development"
                         />
                     </div>
@@ -332,7 +332,7 @@ export default function HeightCalculatorPage() {
                         <h3 className="font-extrabold text-foreground mb-6 uppercase tracking-[0.2em] text-[10px] opacity-60">Scientific Bibliography & Data Sources</h3>
                         <ul className="space-y-4 break-words overflow-hidden list-disc pl-5 marker:text-accent/40">
                             <li>Centers for Disease Control and Prevention. CDC Growth Charts. <br /><a href="https://www.cdc.gov/growthcharts" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.cdc.gov/growthcharts</a></li>
-                            <li>National Institutes of Health. Child Growth and Development Overview. <br /><a href=" National Institutes of Health. Child Growth and Development Overview" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.nichd.nih.gov/health/topics/childgrowth</a></li>
+                            <li>National Institutes of Health. Child Growth and Development Overview. <br /><a href="https://www.nichd.nih.gov/health/topics/childgrowth" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.nichd.nih.gov/health/topics/childgrowth</a></li>
                             <li>Silventoinen K. Determinants of variation in adult body height. Journal of Biosocial Science. <br /><a href="https://doi.org/10.1017/S0021932003006429" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://doi.org/10.1017/S0021932003006429</a></li>
                             <li>World Health Organization. Child Growth Standards. <br /><a href="https://www.who.int/tools/child-growth-standards" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.who.int/tools/child-growth-standards</a></li>
                             <li>National Sleep Foundation. Growth Hormone and Sleep in Children. <br /><a href="https://www.sleepfoundation.org/children-and-sleep" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.sleepfoundation.org/children-and-sleep</a></li>

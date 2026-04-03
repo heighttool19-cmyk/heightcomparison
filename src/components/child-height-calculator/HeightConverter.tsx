@@ -32,33 +32,41 @@ export default function HeightConverter() {
                 </h2>
                 <div className="h-1.5 w-16 bg-accent rounded-full mx-auto sm:mx-0" />
             </div>
-            
-            <div className="flex flex-col md:flex-row items-center gap-6">
-                <div className="flex-1 w-full relative">
-                    <label htmlFor="conv-cm" className="text-sm font-bold text-muted mb-2 block text-center md:text-left">Centimeters</label>
-                    <input
-                        id="conv-cm"
-                        type="number"
-                        value={convCm}
-                        onChange={e => {
-                            handleInputChange(e, setConvCm as (val: string | number) => void);
-                            const val = e.target.value;
-                            if (val) {
-                                const cm = Number(val);
-                                const { ft, in: inc } = cmToFtIn(cm);
-                                setConvFt(ft);
-                                setConvIn(inc);
-                            } else {
-                                setConvFt('');
-                                setConvIn('');
-                            }
-                        }}
-                        className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors"
-                        placeholder="e.g. 170"
-                    />
-                    <span className="absolute right-4 top-[44px] text-muted">cm</span>
-                </div>
 
+            <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex-1 w-full">
+                    <label htmlFor="conv-cm" className="text-sm font-bold text-muted mb-2 block text-center md:text-left">
+                        Centimeters
+                    </label>
+
+                    {/* NEW RELATIVE WRAPPER */}
+                    <div className="relative w-full">
+                        <input
+                            id="conv-cm"
+                            type="number"
+                            value={convCm}
+                            onChange={e => {
+                                handleInputChange(e, setConvCm as (val: string | number) => void);
+                                const val = e.target.value;
+                                if (val) {
+                                    const cm = Number(val);
+                                    const { ft, in: inc } = cmToFtIn(cm);
+                                    setConvFt(ft);
+                                    setConvIn(inc);
+                                } else {
+                                    setConvFt('');
+                                    setConvIn('');
+                                }
+                            }}
+                            /* Added pr-12 here so typing a long number doesn't overlap the "cm" text */
+                            className="w-full bg-bg border border-border rounded-xl px-4 pr-12 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors"
+                            placeholder="e.g. 170"
+                        />
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">
+                            cm
+                        </span>
+                    </div>
+                </div>
                 <div className="hidden md:flex shrink-0 w-12 h-12 bg-accent/10 rounded-full items-center justify-center text-accent mt-6">
                     <ArrowLeftRight size={24} />
                 </div>
