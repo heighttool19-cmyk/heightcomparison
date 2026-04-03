@@ -128,12 +128,12 @@ export default function HeightCharts() {
     const label = activeChart === "boys" ? "Boys" : "Girls";
 
     return (
-        <div className="space-y-6 mt-2" style={{ fontFamily: GEORGIA }}>
+        <div className="space-y-6 mt-2 flex flex-col justify-center align-center items-center" style={{ fontFamily: GEORGIA }}>
             {/* <h2 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight">
                 Boys & Girls <span className={activeChart === "boys" ? "text-blue-500" : "text-pink-500"}>Height Growth Charts</span>
             </h2> */}
             {/* <div className="h-1.5 w-24 bg-accent rounded-full" /> */}
-            <p className="text-muted leading-relaxed max-w-3xl">
+            <p className="text-muted leading-relaxed max-w-3xl text-center">
                 Based on CDC growth chart data : average & median height by age (ages 2–18) : cm
             </p>
 
@@ -142,7 +142,7 @@ export default function HeightCharts() {
                 <div className="relative z-10 mx-auto space-y-8">
 
                     {/* Toggles */}
-                    <div className="flex flex-col sm:flex-col items-center justify-center gap-6 pt-4">
+                    <div className="flex flex-row sm:flex-row items-center justify-center gap-6 pt-4">
                         <div className="bg-bg border border-border p-1 rounded-full flex">
                             {["boys", "girls"].map(g => (
                                 <button

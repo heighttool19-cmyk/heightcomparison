@@ -634,10 +634,10 @@ export default function HeightCalculatorPage() {
                         </section>
 
                         {/* GROWTH PLATE VISUALIZER */}
-                        <div id='how-wrist-x-ray-predict-child-height' className="scroll-mt-24 bg-surface border border-border rounded-3xl overflow-hidden p-2 shadow-xl" style={{ minHeight: '400px' }}>
+                        {/* <div id='how-wrist-x-ray-predict-child-height' className="scroll-mt-24 bg-surface border border-border rounded-3xl overflow-hidden p-2 shadow-xl" style={{ minHeight: '400px' }}>
                             <DynamicGrowthPlateExplainer />
                         </div>
-
+ */}
 
 
                         {/* SUPPLEMENTARY CLINICAL METHODS */}

@@ -61,7 +61,7 @@ export const CHILD_HEIGHT_TOC = [
         id: 'bone-age-method',
         label: 'Bone Age Method',
         subItems: [
-            { id: 'how-wrist-x-ray-predict-child-height', label: 'Wrist X-Ray Prediction' },
+            // { id: 'how-wrist-x-ray-predict-child-height', label: 'Wrist X-Ray Prediction' },
             { id: 'bayley-pinneau-method', label: 'Bayley-Pinneau Method' },
             { id: 'roche-wainer-thissen-method', label: 'Roche-Wainer-Thissen Method' }
         ]
