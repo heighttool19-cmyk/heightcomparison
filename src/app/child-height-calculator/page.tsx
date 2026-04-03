@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2 } from 'lucide-react';
+import { AlertCircle, ArrowUpCircle, CheckCircle2 } from 'lucide-react';
 import Link from 'next/link';
 import TableOfContents from '@/components/TableOfContents';
 import KhamisRocheCalculator from '@/components/child-height-calculator/KhamisRocheCalculator';
@@ -29,7 +29,7 @@ export default function HeightCalculatorPage() {
                             Use this height calculator  to estimate the future height of children, teenagers, and adults based on age, genetics, and growth patterns.
                             This calculator uses the Khamis-Roche method, one of the most accurate height prediction models available. If your child is under four, or you are pregnant and curious about your baby's expected height, use the Mid-Parental Height Formula below instead, given below                        </p>
 
-                        <div className="bg-surface border border-border p-6 rounded-2xl inline-block text-left mx-auto sm:mx-0 mt-4 border-l-4 border-l-accent">
+                        {/* <div className="bg-surface border border-border p-6 rounded-2xl inline-block text-left mx-auto sm:mx-0 mt-4 border-l-4 border-l-accent">
                             <h3 className="font-bold text-foreground mb-3 uppercase tracking-widest text-xs">Many parents search questions like:</h3>
                             <ul className="space-y-2 text-sm text-muted font-black uppercase tracking-wider">
                                 <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-accent" /> How tall will my child be?</li>
@@ -42,7 +42,7 @@ export default function HeightCalculatorPage() {
                         <p className="text-muted leading-relaxed text-md max-w-3xl mx-auto sm:mx-0 font-medium">
                             A height predictor calculator provides a useful estimate based on genetics and current growth measurements. While no tool can guarantee an exact number, these models often come surprisingly close when accurate inputs are used.
                             Our calculator uses the Khamis-Roche height prediction method, one of the most widely used formulas for estimating adult height without requiring medical tests or X-rays.
-                        </p>
+                        </p> */}
                     </div>
 
                     {/* SECTION 1: KHAMIS ROCHE */}
@@ -56,76 +56,235 @@ export default function HeightCalculatorPage() {
 
                     {/* SEO CONTENT SECTION */}
                     <div className="space-y-12 text-foreground mt-8">
-
                         <section className="space-y-4">
-                            <h2 id="how-tall-will-my-child-be" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">How Tall Will My Child Be?</h2>
+                            <h2 id="how-does-a-height-calculator-work" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
+                                How Does a Height Calculator Work?
+                            </h2>
                             <p className="text-muted leading-relaxed font-medium">
-                                At some point, nearly every parent wonders about their child’s future height. Maybe your toddler already seems taller than other kids their age. Or maybe your child suddenly shot up several inches during a growth spurt. It’s natural to start asking questions like “how tall will my kid be?”
+                                A height calculator is a tool that combines current measurements (age, height, weight, and parental heights) and applies them to population growth data to produce a likely height range.
                             </p>
-                            <p className="text-muted leading-relaxed font-medium">
-                                The honest answer is that no one can predict adult height with complete certainty. However, research on child growth patterns has made it possible to estimate adult height fairly accurately.
-                            </p>
+
+
                             <div className="bg-surface border border-border p-6 rounded-2xl my-6 border-l-4 border-l-accent">
-                                <h3 className="font-bold text-foreground mb-3 text-sm uppercase tracking-widest text-accent">Modern height prediction calculators analyze several key factors:</h3>
+                                {/* <h3 className="font-bold text-foreground mb-3 text-sm uppercase tracking-widest text-accent">
+                                    How the prediction process works:
+                                </h3> */}
                                 <ul className="space-y-2 text-muted font-medium">
-                                    <li className="flex items-center gap-2"><CheckCircle2 className="text-accent w-4 h-4" /> Genetics from parents</li>
-                                    <li className="flex items-center gap-2"><CheckCircle2 className="text-accent w-4 h-4" /> Current growth measurements</li>
-                                    <li className="flex items-center gap-2"><CheckCircle2 className="text-accent w-4 h-4" /> Statistical growth patterns observed in large populations</li>
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle2 className="text-accent w-4 h-4 mt-1 flex-shrink-0" />
+                                        <span><strong>1. Enter measurements:</strong> child's age, current height, weight, and both parents' heights. More inputs produce more accurate results.</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle2 className="text-accent w-4 h-4 mt-1 flex-shrink-0" />
+                                        <span><strong>2. The model calculates:</strong> the calculator applies the growth formula to population data, adjusting for age, sex, and genetics.</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle2 className="text-accent w-4 h-4 mt-1 flex-shrink-0" />
+                                        <span><strong>3. Get a predicted height range:</strong> The result is a likely adult height estimate, shown as a range rather than a single exact number.</span>
+                                    </li>
                                 </ul>
                             </div>
-                            <p className="text-muted leading-relaxed font-medium">
+
+                            {/* <p className="text-muted leading-relaxed font-medium">
                                 These tools provide an estimated adult height range, which can help parents understand how their child’s development compares with typical growth patterns. The important thing to remember is that predictions are guidelines rather than guarantees.
-                            </p>
+                            </p> */}
                         </section>
+                        <section className="space-y-6">
+                            <div className="space-y-4">
+                                <h2 id="how-tall-will-my-child-be" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
+                                    How Tall Will My Child Be?
+                                </h2>
+                                <p className="text-muted leading-relaxed font-medium">
+                                    No tool can predict a child's future height with complete certainty. However, research on child growth patterns makes it possible to estimate adult height with reasonable accuracy.
+                                </p>
+                            </div>
 
-                        <section className="space-y-4">
-                            <h2 id="what-determines-child-height" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">What Determines a Child’s Height?</h2>
-                            <p className="text-muted leading-relaxed font-medium">
-                                A child’s final adult height is influenced by both genetics and environmental factors. Height is considered a polygenic trait, meaning it is influenced by many genes rather than a single genetic factor. Researchers studying human growth and development estimate that genetics explains most of the variation in adult height, while environmental influences determine how fully that genetic potential is reached.
-                            </p>
-
-                            <h3 className="text-xl font-black text-foreground mt-8 mb-2 uppercase tracking-wide opacity-80">Genetics : The Biggest Factor</h3>
-                            <p className="text-muted leading-relaxed font-medium">
-                                Genetics plays the largest role in determining how tall a person becomes. Researchers estimate that 60–80% of adult height is inherited from parents. Children of taller parents tend to grow taller, while children of shorter parents often grow closer to that range.
-                            </p>
-                            <p className="text-muted leading-relaxed font-medium">
-                                However, height inheritance isn’t perfectly predictable. Scientists frequently observe something known as regression toward the mean, where children of very tall or very short parents end up closer to the average population height.
-                            </p>
-
-                            <h3 className="text-xl font-black text-foreground mt-8 mb-2 uppercase tracking-wide opacity-80">Nutrition, Sleep, and Physical Activity</h3>
-                            <p className="text-muted leading-relaxed font-medium">
-                                The remaining 20–40% of height potential comes from environmental influences.
-                            </p>
-
-                            <div className="grid md:grid-cols-3 gap-6 mt-6">
-                                <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm hover:border-accent/30 transition-all">
-                                    <h4 className="font-extrabold text-foreground text-lg mb-2 uppercase tracking-tight">Nutrition</h4>
-                                    <p className="text-sm text-muted leading-relaxed mb-3 font-medium">Healthy bone development requires adequate nutrition during childhood. Important nutrients include:</p>
-                                    <ul className="text-sm text-muted space-y-1 list-disc pl-4 marker:text-accent font-medium">
-                                        <li>Protein</li>
-                                        <li>Calcium</li>
-                                        <li>Vitamin D</li>
-                                        <li>Zinc</li>
-                                    </ul>
-                                    <p className="text-sm text-muted mt-3 font-medium">Long-term nutritional deficiencies can slow growth and affect final adult height.</p>
-                                </div>
-                                <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm hover:border-accent/30 transition-all">
-                                    <h4 className="font-extrabold text-foreground text-lg mb-2 uppercase tracking-tight">Sleep</h4>
-                                    <p className="text-sm text-muted leading-relaxed mb-3 font-medium">During deep sleep, the body releases growth hormone, which stimulates bone development and tissue growth. Recommendations:</p>
-                                    <ul className="text-sm text-muted space-y-1 list-disc pl-4 marker:text-accent font-medium">
-                                        <li>9–11 hours for school-age children</li>
-                                        <li>8–10 hours for teenagers</li>
-                                    </ul>
-                                    <p className="text-sm text-muted mt-3 font-medium">Growth hormone stimulates cell regeneration, making sleep vital for development.</p>
-                                </div>
-                                <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm hover:border-accent/30 transition-all">
-                                    <h4 className="font-extrabold text-foreground text-lg mb-2 uppercase tracking-tight">Physical Activity</h4>
-                                    <p className="text-sm text-muted leading-relaxed font-medium">Regular exercise supports bone strength and overall development. Activities such as running, jumping, and sports encourage healthy growth, although exercise alone cannot increase height beyond genetic potential.</p>
+                            <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] border-l-4 border-l-accent shadow-sm">
+                                <h3 className="font-bold text-foreground mb-6 text-sm uppercase tracking-widest text-accent">
+                                    Modern height prediction calculators analyze three key factors:
+                                </h3>
+                                <div className="grid md:grid-cols-3 gap-6">
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-2 text-foreground font-black uppercase text-xs tracking-tight">
+                                            <CheckCircle2 className="text-accent w-4 h-4" /> Genetics
+                                        </div>
+                                        <p className="text-sm text-muted font-medium">responsible for 60–80% of final height.</p>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-2 text-foreground font-black uppercase text-xs tracking-tight">
+                                            <CheckCircle2 className="text-accent w-4 h-4" /> Current Growth
+                                        </div>
+                                        <p className="text-sm text-muted font-medium">Age, height, and weight measurements refine the estimate.</p>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-2 text-foreground font-black uppercase text-xs tracking-tight">
+                                            <CheckCircle2 className="text-accent w-4 h-4" /> Statistics
+                                        </div>
+                                        <p className="text-sm text-muted font-medium">Growth patterns observed across large populations by age and sex.</p>
+                                    </div>
                                 </div>
                             </div>
-                        </section>
 
-                        <div className="grid md:grid-cols-1 gap-8">
+                            <p className="text-muted leading-relaxed font-medium">
+                                The result is an estimated adult height range: a useful guideline, not a guarantee. Children's growth patterns are individual and can vary significantly based on health, nutrition, and timing of puberty.
+                            </p>
+                        </section><section className="space-y-8 pt-8">
+                            <div className="space-y-4">
+                                <h2 id="how-tall-will-i-be" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
+                                    How Tall Will I Be? Calculator for Teens & Adults
+                                </h2>
+                                <p className="text-muted leading-relaxed font-medium">
+                                    Teens asking "how tall will I be" can use the  Khamis roche calculator. Enter your current age, height, weight, and your parents' heights for the most accurate estimate.
+                                </p>
+                            </div>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {/* TEENS CARD */}
+                                <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] relative overflow-hidden group hover:border-blue-500/30 transition-all shadow-sm">
+                                    <div className="absolute top-0 left-0 w-2 h-full bg-blue-500/20 group-hover:bg-blue-500 transition-all" />
+                                    <h3 className="text-xl font-black text-foreground mb-4 uppercase tracking-tighter flex items-center gap-2">
+                                        <span className="text-2xl">🧑</span> Teens (Under 18)
+                                    </h3>
+                                    <p className="text-muted leading-relaxed font-medium text-sm mb-4">
+                                        Growth plates are still open. The Khamis-Roche calculator gives the best estimate. Use current measurements for maximum accuracy.
+                                    </p>
+                                    <ul className="space-y-3 text-muted font-medium text-sm">
+                                        <li className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                            Most reliable between ages 4–17
+                                        </li>
+                                        <li className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                            Accuracy improves as you get closer to adult height
+                                        </li>
+                                        <li className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                            Boys often grow until 18; girls until 15–16
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                {/* ADULTS CARD */}
+                                <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
+                                    <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
+                                    <h3 className="text-xl font-black text-foreground mb-4 uppercase tracking-tighter flex items-center gap-2">
+                                        <span className="text-2xl">🧑‍🦳</span> Adults (18+)
+                                    </h3>
+                                    <p className="text-muted leading-relaxed font-medium text-sm mb-4">
+                                        Growth plates close after puberty. For adults, height prediction is no longer relevant, but the Mid-Parental Height Formula can still estimate what height their children may reach.
+                                    </p>
+                                    <ul className="space-y-3 text-muted font-medium text-sm">
+                                        <li className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                                            Adult height is already determined
+                                        </li>
+                                        <li className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                                            Use the Parent's Height tool to predict children's height
+                                        </li>
+                                        <li className="flex items-start gap-2">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
+                                            Use the height converter for unit conversion
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div className="bg-red-500/5 border border-red-500/20 p-6 rounded-2xl">
+                                <p className="text-sm font-bold text-foreground leading-relaxed">
+                                    <span className="text-red-500 uppercase tracking-widest mr-2">Important Limitation:</span>
+                                    No height calculator can account for medical conditions, growth hormone disorders, or premature puberty. If growth seems unusually fast or slow, consult a pediatrician.
+                                </p>
+                            </div>
+                        </section>
+                        <div className="mt-12 mb-8 flex flex-col items-center justify-center text-center">
+                            <div className="h-px w-full bg-gradient-to-r from-transparent via-border to-transparent mb-8" />
+
+                            <p className="text-muted leading-relaxed font-bold uppercase text-xs tracking-[0.2em] mb-4 opacity-70">
+                                Ready to get your height prediction?
+                            </p>
+
+                            {/* Using a standard anchor tag with an ID reference */}
+                            <Link
+                                href="#top"
+                                className="group relative flex flex-col items-center gap-2 bg-surface border border-border p-6 rounded-[2rem] hover:border-accent/50 transition-all shadow-sm hover:shadow-xl active:scale-95 no-underline"
+                            >
+                                <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-[2rem]" />
+
+                                <span className="text-accent animate-bounce">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="3"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path d="m18 15-6-6-6 6" />
+                                    </svg>
+                                </span>
+
+                                <span className="text-xl md:text-2xl font-black text-foreground uppercase tracking-tighter">
+                                    Use the Height Calculator
+                                </span>
+
+                                <span className="text-xs font-bold text-muted uppercase tracking-widest opacity-60">
+                                    The calculator is at the top of this page
+                                </span>
+                            </Link>
+                        </div>
+                        <section className="space-y-4">
+                            <h2 id="what-determines-child-height" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
+                                What Determines a Child’s Height?
+                            </h2>
+                            <p className="text-muted leading-relaxed font-medium">
+                                A child's final adult height is shaped by two of factors: genetics and environment. Understanding both helps set realistic expectations for height prediction.
+                            </p>
+
+                            <div className="grid md:grid-cols-3 gap-6 mt-8">
+                                {/* GENETICS CARD */}
+                                <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm hover:border-accent/30 transition-all border-l-4 border-l-accent">
+                                    <h4 className="font-black text-foreground text-lg mb-3 uppercase tracking-tight flex items-center gap-2">
+                                        🧬 Genetics
+                                    </h4>
+                                    <p className="text-sm text-muted leading-relaxed font-medium">
+                                        Accounts for <strong>60–80%</strong> of final height. Children of taller parents tend to be taller, but children of very tall or very short parents often grow closer to the average population height, a phenomenon called <strong>regression toward the mean.</strong>
+                                    </p>
+                                </div>
+
+                                {/* NUTRITION & SLEEP CARD */}
+                                <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm hover:border-accent/30 transition-all border-l-4 border-l-green-500">
+                                    <h4 className="font-black text-foreground text-lg mb-3 uppercase tracking-tight flex items-center gap-2">
+                                        🥦 Nutrition & Sleep
+                                    </h4>
+                                    <p className="text-sm text-muted leading-relaxed font-medium mb-3">
+                                        Remaining <strong>20–40%</strong> comes from environment.
+                                    </p>
+                                    <ul className="text-xs text-muted space-y-2 font-bold uppercase tracking-wider">
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500" /> Protein, Calcium, Vitamin D, Zinc</li>
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500" /> 9–11 hrs sleep (School-age)</li>
+                                        <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-green-500" /> 8–10 hrs for teenagers</li>
+                                    </ul>
+                                </div>
+
+                                {/* GROWTH TIMING CARD */}
+                                <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm hover:border-accent/30 transition-all border-l-4 border-l-amber-500">
+                                    <h4 className="font-black text-foreground text-lg mb-3 uppercase tracking-tight flex items-center gap-2">
+                                        ⏱ Growth Timing
+                                    </h4>
+                                    <p className="text-sm text-muted leading-relaxed font-medium">
+                                        Early puberty may produce a taller child temporarily but a shorter adult. Late puberty often results in a longer growth window and greater final height.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* <p className="text-muted leading-relaxed font-medium mt-6">
+                                While researchers studying human growth and development estimate that genetics explains most of the variation, environmental influences determine how fully that genetic potential is reached.
+                            </p> */}
+                        </section>
+                        {/* <div className="grid md:grid-cols-1 gap-8">
                             <section className="space-y-4">
                                 <h2 id="when-do-boys-stop-growing" className="text-2xl font-black tracking-tight text-blue-500 uppercase tracking-tight scroll-mt-24">When Do Boys Stop Growing?</h2>
                                 <p className="text-muted leading-relaxed font-medium">Boys usually experience their main growth spurt during puberty. The typical growth timeline for boys looks like this:</p>
@@ -150,10 +309,12 @@ export default function HeightCalculatorPage() {
                                     Most girls reach their adult height between 15 and 16 years old. Because girls experience puberty earlier, they often appear taller than boys during late childhood.
                                 </p>
                             </section>
-                        </div>
+                        </div> */}
 
                         <section className="space-y-4">
-                            <h2 id="boys-girls-growth-charts" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">Boys & Girls Height Growth Charts</h2>
+                            <h2 id="boys-girls-growth-charts" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
+                                Average Height by Age (Growth Charts)
+                            </h2>
                             <p className="text-muted leading-relaxed font-medium">
                                 <a
                                     href="https://www.cdc.gov/growthcharts/cdc-growth-charts.htm"
@@ -162,30 +323,214 @@ export default function HeightCalculatorPage() {
                                     className="text-accent font-black hover:underline px-1"
                                 >
                                     CDC growth charts
-                                </a> provide a useful reference for child development. Growth charts compare a child’s height with population averages and show where they fall within percentile ranges. The 50th percentile represents the average height as well as median for children of the same age and sex.
+                                </a>
+                                track average height and weight from birth to young adulthood, covering boys and girls from ages 2 through 18. They show where a child falls on the height percentile chart relative to peers.
                             </p>
-                            <p className="text-muted leading-relaxed font-medium">
-                                Healthy children typically fall between the 3rd percentile and the 97th percentile. Pediatricians usually focus less on a single measurement and more on whether children stay on a consistent growth curve over time.
-                            </p>
-                        </section>
 
+                            <div className="bg-surface border border-border p-6 rounded-2xl my-6 border-l-4 border-l-accent shadow-sm">
+                                <div className="space-y-4">
+                                    <p className="text-muted leading-relaxed font-medium">
+                                        The <strong>50th percentile</strong> represents the median height for that age and sex. Healthy children typically fall between the 3rd and 97th percentile.
+                                    </p>
+                                    <div className="flex items-start gap-3 bg-accent/5 p-4 rounded-xl border border-accent/10">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
+                                        <p className="text-sm font-bold text-foreground leading-relaxed italic">
+                                            Note: Pediatricians focus less on a single measurement and more on whether a child stays on a consistent growth curve over time.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                         <div className="scroll-mt-24 bg-surface border border-border rounded-3xl overflow-hidden p-2 shadow-xl" style={{ minHeight: '600px' }}>
                             <DynamicHeightCharts />
                         </div>
+                        <section className="space-y-6 pt-8">
+                            <div className="space-y-4">
+                                <h2 id="height-prediction-comparison" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
+                                    Height Calculator vs. Growth Charts
+                                </h2>
+                                <p className="text-muted leading-relaxed font-medium">
+                                    Different tools answer different questions. Use this comparison to understand when to use each method for the most accurate insights.
+                                </p>
+                            </div>
+
+                            <div className="overflow-x-auto rounded-[2rem] border border-border bg-surface shadow-sm">
+                                <table className="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr className="bg-accent/5 border-b border-border">
+                                            <th className="p-4 md:p-6 text-xs font-black uppercase tracking-widest text-foreground">Factor</th>
+                                            <th className="p-4 md:p-6 text-xs font-black uppercase tracking-widest text-accent">Height Calculator</th>
+                                            <th className="p-4 md:p-6 text-xs font-black uppercase tracking-widest text-foreground">Growth Chart</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="text-sm">
+                                        <tr className="border-b border-border hover:bg-accent/[0.02] transition-colors">
+                                            <td className="p-4 md:p-6 font-bold text-foreground uppercase text-[10px] tracking-wider opacity-60">Purpose</td>
+                                            <td className="p-4 md:p-6 text-muted font-medium">Predict future adult height</td>
+                                            <td className="p-4 md:p-6 text-muted font-medium">Track current growth vs peers</td>
+                                        </tr>
+                                        <tr className="border-b border-border hover:bg-accent/[0.02] transition-colors">
+                                            <td className="p-4 md:p-6 font-bold text-foreground uppercase text-[10px] tracking-wider opacity-60">Data needed</td>
+                                            <td className="p-4 md:p-6 text-muted font-medium">Age, height, weight, parent heights</td>
+                                            <td className="p-4 md:p-6 text-muted font-medium">Age + current height</td>
+                                        </tr>
+                                        <tr className="border-b border-border hover:bg-accent/[0.02] transition-colors">
+                                            <td className="p-4 md:p-6 font-bold text-foreground uppercase text-[10px] tracking-wider opacity-60">Best for</td>
+                                            <td className="p-4 md:p-6 text-muted font-medium">Parents, teens, curiosity</td>
+                                            <td className="p-4 md:p-6 text-muted font-medium">Monitoring growth over time</td>
+                                        </tr>
+                                        <tr className="border-b border-border hover:bg-accent/[0.02] transition-colors">
+                                            <td className="p-4 md:p-6 font-bold text-foreground uppercase text-[10px] tracking-wider opacity-60">Requires doctor</td>
+                                            <td className="p-4 md:p-6 text-accent font-medium">No (use online)</td>
+                                            <td className="p-4 md:p-6 text-accent font-medium">No (use online)</td>
+                                        </tr>
+                                        <tr className="border-b border-border hover:bg-accent/[0.02] transition-colors">
+                                            <td className="p-4 md:p-6 font-bold text-foreground uppercase text-[10px] tracking-wider opacity-60">Typical accuracy</td>
+                                            <td className="p-4 md:p-6 text-accent font-medium">±2–4 inches</td>
+                                            <td className="p-4 md:p-6 text-accent font-medium">Shows percentile, not prediction</td>
+                                        </tr>
+                                        <tr className="hover:bg-accent/[0.02] transition-colors">
+                                            <td className="p-4 md:p-6 font-bold text-foreground uppercase text-[10px] tracking-wider opacity-60">Works without parents</td>
+                                            <td className="p-4 md:p-6 text-accent font-medium">⚡ Partial (less accurate)</td>
+                                            <td className="p-4 md:p-6 text-accent font-medium">✓ Yes</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+
+                        <div className="grid md:grid-cols-1 gap-8">
+                            {/* BOYS GROWTH SECTION */}
+                            <section className="space-y-4 bg-blue-500/5 p-6 md:p-8 rounded-[2.5rem] border border-blue-500/10 shadow-sm">
+                                <h2 id="when-do-boys-stop-growing" className="text-2xl font-black tracking-tight text-blue-500 uppercase scroll-mt-24">
+                                    When Do Boys Stop Growing?
+                                </h2>
+                                <p className="text-muted leading-relaxed font-medium">
+                                    Boys usually experience their main growth spurt during <strong>puberty</strong>. The typical growth timeline looks like this:
+                                </p>
+                                <ul className="text-muted space-y-3 list-none font-bold uppercase tracking-wide text-xs">
+                                    <li className="flex items-center gap-3">
+                                        <div className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                                        <span>Early puberty: Age 11–12</span>
+                                    </li>
+                                    <li className="flex items-center gap-3">
+                                        <div className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                                        <span>Rapid growth: Ages 13–15</span>
+                                    </li>
+                                    <li className="flex items-center gap-3">
+                                        <div className="w-2 h-2 rounded-full bg-blue-500 shrink-0" />
+                                        <span>Growth slows: Age 16–17</span>
+                                    </li>
+                                </ul>
+                                <div className="bg-surface/50 border border-blue-500/20 p-4 rounded-2xl mt-4">
+                                    <p className="text-sm text-muted leading-relaxed font-medium">
+                                        During peak puberty, boys can grow <strong>3–4 inches per year</strong>. Most stop growing around age 18, though small increases can occur until age 20.
+                                    </p>
+                                </div>
+                            </section>
+
+                            {/* GIRLS GROWTH SECTION */}
+                            <section className="space-y-4 bg-pink-500/5 p-6 md:p-8 rounded-[2.5rem] border border-pink-500/10 shadow-sm">
+                                <h2 id="when-do-girls-stop-growing" className="text-2xl font-black tracking-tight text-pink-500 uppercase scroll-mt-24">
+                                    When Do Girls Stop Growing?
+                                </h2>
+                                <p className="text-muted leading-relaxed font-medium">
+                                    Girls generally begin puberty earlier than boys. Their typical growth timeline is more accelerated:
+                                </p>
+                                <ul className="text-muted space-y-3 list-none font-bold uppercase tracking-wide text-xs">
+                                    <li className="flex items-center gap-3">
+                                        <div className="w-2 h-2 rounded-full bg-pink-500 shrink-0" />
+                                        <span>Puberty begins: Age 9–10</span>
+                                    </li>
+                                    <li className="flex items-center gap-3">
+                                        <div className="w-2 h-2 rounded-full bg-pink-500 shrink-0" />
+                                        <span>Peak growth spurt: Ages 10–14</span>
+                                    </li>
+                                    <li className="flex items-center gap-3">
+                                        <div className="w-2 h-2 rounded-full bg-pink-500 shrink-0" />
+                                        <span>Adult height reached: Age 15–16</span>
+                                    </li>
+                                </ul>
+                                <div className="bg-surface/50 border border-pink-500/20 p-4 rounded-2xl mt-4">
+                                    <p className="text-sm text-muted leading-relaxed font-medium">
+                                        Because girls start earlier, they often appear taller than boys during late childhood before boys catch up during their later spurt.
+                                    </p>
+                                </div>
+                            </section>
+                        </div>
+
+
 
                         <section className="space-y-6 pt-8">
-                            <h2 id="predict-child-height" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">How to Predict Your Child’s Height</h2>
+                            <h2 id="predict-child-height" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">Height prediction methods Explained</h2>
+                            <h4 className="text-xl font-black text-foreground mt-2 uppercase tracking-tighter">
+                                How to Predict Your Child's Height
+                            </h4>
                             <p className="text-muted leading-relaxed mb-6 font-medium">
-                                There are several methods researchers use to estimate adult height. Height prediction models rely on anthropometric measurements, including height, weight, and age. These measurements are analyzed using population growth data and statistical distributions to estimate a likely adult height range.
+                                Researchers use several formulas to estimate adult height. Each method balances accuracy against the data it requires.
+
                             </p>
 
                             <div className="space-y-8">
+                                {/* KHAMIS-ROCHE METHOD */}
                                 <div className="bg-surface border border-border p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
                                     <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
-                                    <h3 id="height-calculator-based-on-parents" className="text-2xl font-black text-foreground mb-4 scroll-mt-24 uppercase tracking-tighter">Height Calculator Based on Parents (Mid-Parental Height)</h3>
+
+                                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                        <span className="bg-green-100 text-green-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
+                                            Most Accurate
+                                        </span>
+                                        <h3 id="khamis-roche-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                            Khamis-Roche Method
+                                        </h3>
+                                    </div>
+
+                                    <p className="text-muted leading-relaxed  font-medium">
+                                        Considered the most accurate height prediction method that does not require bone age testing. Analyzes four inputs: child's age, height, weight, and average height of both parents.                                    </p>
+                                    <p className="text-muted leading-relaxed mb-6 font-medium">Developed after studying thousands of children's growth patterns using linear regression analysis applied to population-level growth data. Because it includes current body measurements, it outperforms genetics-only formulas.</p>
+                                    <div className="p-6 bg-accent/5 rounded-2xl border border-accent/20 mb-6">
+                                        <p className="text-sm font-black text-foreground mb-3 uppercase tracking-widest">Typical prediction accuracy:</p>
+                                        <ul className="text-foreground text-base space-y-3 font-black uppercase tracking-tight">
+                                            <li className="flex items-center gap-3"><CheckCircle2 className="text-accent w-4 h-4" /> ±2.1 inches for boys</li>
+                                            <li className="flex items-center gap-3"><CheckCircle2 className="text-accent w-4 h-4" /> ±1.7 inches for girls</li>
+                                            <li className="flex items-center gap-3"><CheckCircle2 className="text-accent w-4 h-4" /> Best for children older than 4 years</li>
+                                            <li className="flex items-center gap-3"><CheckCircle2 className="text-accent w-4 h-4" /> Most reliable non-clinical prediction</li>
+                                            <li className="flex items-center gap-3"><CheckCircle2 className="text-accent w-4 h-4" /> ✓ Used by this calculator</li>
+                                        </ul>
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <p className="text-sm font-bold text-foreground uppercase tracking-widest opacity-70">
+                                            Have your child's age, height, weight, and parents' heights ready?
+                                        </p>
+                                        <Link
+                                            href="#top"
+                                            className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
+                                        >
+                                            <ArrowUpCircle size={18} /> Calculate with Khamis-Roche Now ↑
+                                        </Link>
+                                    </div>
+                                </div>
+
+                                {/* MID-PARENTAL HEIGHT */}
+                                <div className="bg-surface border border-border p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
+                                    <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
+
+                                    {/* BADGE AND HEADING CONTAINER */}
+                                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                        <span className="bg-green-100 text-green-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
+                                            SIMPLE
+                                        </span>
+                                        <h3 id="height-calculator-based-on-parents" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                            Height Predictor Based on Parents (Mid-Parental Height Formula)
+                                        </h3>
+                                    </div>
+
                                     <p className="text-muted leading-relaxed mb-6 font-medium">
-                                        The mid-parental height method is one of the simplest ways to estimate adult height. This formula calculates a child’s predicted height using the average height of both parents.
+                                        The Mid-Parental Height Formula is the simplest way to estimate a child's adult height using only the parents' heights. It requires no medical testing and works for any age, including babies and unborn children.
                                     </p>
+
                                     <div className="grid sm:grid-cols-2 gap-6 mb-6">
                                         <div className="bg-bg border border-border p-5 rounded-2xl border-l-4 border-l-blue-500">
                                             <span className="font-black text-foreground block mb-2 text-xs uppercase tracking-widest text-blue-500">For Boys (US Units)</span>
@@ -196,75 +541,254 @@ export default function HeightCalculatorPage() {
                                             <code className="text-foreground text-base font-black tracking-tight bg-pink-500/10 px-1 py-1 rounded-lg">(Father + Mother - 5 in) ÷ 2</code>
                                         </div>
                                     </div>
-                                    <p className="text-muted leading-relaxed font-medium italic">
-                                        This method usually predicts adult height within about ±4 inches (10 cm). Because it requires only parental height, it can also be used as a baby height calculator.
-                                    </p>
-                                </div>
 
-                                <div className="bg-surface border border-border p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
-                                    <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
-                                    <h3 id="khamis-roche-method" className="text-2xl font-black text-foreground mb-4 scroll-mt-24 uppercase tracking-tighter">Khamis-Roche Method</h3>
-                                    <p className="text-muted leading-relaxed mb-6 font-medium">
-                                        The Khamis-Roche method is widely considered the most accurate height prediction model that does not require bone age testing. This method analyzes four factors: child’s age, child’s height, child’s weight, and average height of both parents.
-                                    </p>
-                                    <p className="text-muted leading-relaxed mb-6 font-medium">
-                                        Researchers developed the formula after studying the growth patterns of thousands of children. Because the model includes current body measurements, it produces more accurate predictions than formulas based only on genetics.
-                                    </p>
                                     <div className="p-6 bg-accent/5 rounded-2xl border border-accent/20 mb-6">
-                                        <p className="text-sm font-black text-foreground mb-3 uppercase tracking-widest">Typical prediction accuracy:</p>
-                                        <ul className="text-foreground text-base space-y-2 font-black uppercase tracking-tight">
-                                            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 rounded-full bg-accent" /> ±2.1 inches for boys</li>
-                                            <li className="flex items-center gap-3"><div className="w-1.5 h-1.5 rounded-full bg-accent" /> ±1.7 inches for girls</li>
+                                        <ul className="text-foreground text-base space-y-3 font-black uppercase tracking-tight">
+                                            <li className="flex items-start gap-3">
+                                                <CheckCircle2 className="text-accent w-4 h-4 mt-1 shrink-0" />
+                                                <span>Works for babies and young children when no current growth data is available</span>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <CheckCircle2 className="text-accent w-4 h-4 mt-1 shrink-0" />
+                                                <span>Typical accuracy: within ±4 inches (10 cm) of final adult height</span>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <CheckCircle2 className="text-accent w-4 h-4 mt-1 shrink-0" />
+                                                <span>Does not account for current growth trajectory. Use Khamis-Roche for children over 4</span>
+                                            </li>
+                                            <li className="flex items-start gap-3">
+                                                <CheckCircle2 className="text-accent w-4 h-4 mt-1 shrink-0" />
+                                                <span>Can also be used as a rough baby height calculator or for unborn children</span>
+                                            </li>
                                         </ul>
                                     </div>
-                                    <p className="text-muted leading-relaxed font-medium">
-                                        For children older than four years, the Khamis-Roche calculator is usually the most reliable prediction method available outside a medical setting.
-                                    </p>
+
+                                    <div className="space-y-4">
+                                        <p className="text-sm font-bold text-foreground uppercase tracking-widest opacity-70">
+                                            Only have parents' heights? Use the Mid-Parental Height Formula calculator above.
+                                        </p>
+                                        <Link
+                                            href="#top"
+                                            className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
+                                        >
+                                            <ArrowUpCircle size={18} /> Scroll to top and calculate now ↑
+                                        </Link>
+                                    </div>
                                 </div>
 
-                                <div className="bg-surface border border-border p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
+                                {/*  BONE AGE METHOD */}
+                                {/* <div className="bg-surface border border-border p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
                                     <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
                                     <h3 id="bone-age-method" className="text-2xl font-black text-foreground mb-4 scroll-mt-24 uppercase tracking-tighter">Bone Age Method (Clinical Height Prediction)</h3>
                                     <p className="text-muted leading-relaxed font-medium">
-                                        Doctors sometimes estimate adult height using bone age testing. This involves an X-ray of the left wrist and hand to determine how mature the bones are compared with the child’s chronological age.
+                                        Doctors use X-rays of the left wrist to determine how mature the bones are compared with chronological age. Growth plates are thin cartilage bands; their thickness reveals how much growth remains.
                                     </p>
-                                    <p className="text-muted leading-relaxed mt-6 mb-4 font-bold uppercase text-xs tracking-widest opacity-70">Two commonly used evaluation methods include:</p>
+                                    <p className="text-muted leading-relaxed mt-6 mb-4 font-bold uppercase text-xs tracking-widest opacity-70">Clinical evaluation methods include:</p>
                                     <ul className="text-foreground space-y-3 font-black uppercase tracking-tight">
                                         <li className="flex items-center gap-3"><CheckCircle2 className="text-accent w-4 h-4" /> Greulich-Pyle method</li>
                                         <li className="flex items-center gap-3"><CheckCircle2 className="text-accent w-4 h-4" /> Tanner-Whitehouse method</li>
                                     </ul>
                                     <p className="text-muted leading-relaxed mt-6 font-medium">
-                                        If bone development is ahead or behind typical growth patterns, doctors can estimate how much growth remains. Bone age testing is usually used only when doctors suspect growth disorders or delayed puberty.
+                                        This is the most accurate prediction method available, but is usually reserved for cases where doctors suspect growth disorders or delayed puberty.
                                     </p>
+                                </div> */}
+                            </div>
+                        </section>
+
+                        {/* BONE AGE METHOD */}
+                        <section className="space-y-6 pt-8">
+                            <div className="bg-surface border border-border p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
+                                <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
+
+                                {/* BADGE AND HEADING CONTAINER */}
+                                <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                    <span className="bg-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
+                                        CLINICAL
+                                    </span>
+                                    <h3 id="bone-age-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                        Bone Age Method (Wrist X-Ray)
+                                    </h3>
+                                </div>
+
+                                <p className="text-muted leading-relaxed mb-6 font-medium">
+                                    Doctors use X-rays of the left wrist to assess growth plate maturity. Growth plates are thin cartilage bands. Their thickness reveals how much growth remains.
+                                </p>
+
+                                <div className="p-6 bg-accent/5 rounded-2xl border border-accent/20 mb-6">
+                                    <ul className="text-foreground text-base space-y-3 font-black uppercase tracking-tight">
+                                        <li className="flex items-start gap-3">
+                                            <CheckCircle2 className="text-accent w-4 h-4 mt-1 shrink-0" />
+                                            <span>Most accurate prediction method available</span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <CheckCircle2 className="text-accent w-4 h-4 mt-1 shrink-0" />
+                                            <span>Used only when doctors suspect growth disorders</span>
+                                        </li>
+                                        <li className="flex items-start gap-3">
+                                            <CheckCircle2 className="text-accent w-4 h-4 mt-1 shrink-0" />
+                                            <span>Evaluation methods: Greulich-Pyle, Tanner-Whitehouse</span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </section>
 
+                        {/* GROWTH PLATE VISUALIZER */}
                         <div id='how-wrist-x-ray-predict-child-height' className="scroll-mt-24 bg-surface border border-border rounded-3xl overflow-hidden p-2 shadow-xl" style={{ minHeight: '400px' }}>
                             <DynamicGrowthPlateExplainer />
                         </div>
 
-                        <section id='bayley-pinneau-method' className="grid md:grid-cols-1 gap-8 pt-8 scroll-mt-24">
-                            <div className="bg-surface border border-border p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
+
+
+                        {/* SUPPLEMENTARY CLINICAL METHODS */}
+                        <section className="grid md:grid-cols-1 gap-8 pt-8 scroll-mt-24">
+                            {/* BAYLEY-PINNEAU */}
+                            <div id='bayley-pinneau-method' className="bg-surface border border-border p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
                                 <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
-                                <h3 className="text-2xl font-black text-foreground mb-4 uppercase tracking-tighter">Bayley-Pinneau Method</h3>
+                                <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                    <span className="bg-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
+                                        CLINICAL
+                                    </span>
+                                    <h3 className="text-2xl font-black text-foreground uppercase tracking-tighter">
+                                        Bayley-Pinneau Method
+                                    </h3>
+                                </div>
                                 <p className="text-muted leading-relaxed font-medium">
-                                    The Bayley Pinneau method combines bone age data with height for age tables. Doctors calculate the percentage of adult height the child has already reached. The remaining growth potential determines the final height estimate. This method works well but requires bone age testing.
+                                    Combines bone age data with height-for-age tables. Calculates the percentage of adult height already achieved to determine remaining growth potential. Requires bone age testing.
                                 </p>
                             </div>
+
+                            {/* ROCHE-WAINER-THISSEN */}
                             <div id='roche-wainer-thissen-method' className="bg-surface border border-border p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm scroll-mt-24">
                                 <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
-                                <h3 className="text-2xl font-black text-foreground mb-4 uppercase tracking-tighter">Roche-Wainer-Thissen Method</h3>
+                                <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                    <span className="bg-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
+                                        CLINICAL
+                                    </span>
+                                    <h3 className="text-2xl font-black text-foreground uppercase tracking-tighter">
+                                        Roche-Wainer-Thissen Method
+                                    </h3>
+                                </div>
                                 <p className="text-muted leading-relaxed font-medium">
-                                    The Roche Wainer Thissen method uses several growth variables. The formula includes bone age, current height, weight, and parental heights. This approach improves accuracy in some cases. Because it requires clinical measurements, it is mostly used in medical settings.
+                                    Uses bone age, current height, weight, and parental heights. Improves accuracy in some cases over Khamis-Roche but requires clinical bone age measurement. Primarily used in medical settings.
                                 </p>
                             </div>
                         </section>
 
-                        <section id='boys-height-predictor' className="space-y-4 scroll-mt-24">
-                            <h2 className="text-2xl md:text-3xl font-black tracking-tight mt-8 uppercase">Boys Height Predictor: Understanding Male Growth</h2>
+                        <section id="increase" className="space-y-6">
+                            <div className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[#3B6CF4] mb-1.5 flex items-center gap-1.5">
+                                Height growth
+                            </div>
+                            <h2 className="text-2xl md:text-3xl font-black tracking-tight mt-8 scroll-mt-24 uppercase">
+                                Can You <span className="text-[#3B6CF4]">Increase Height</span>?
+                            </h2>
+                            <p className="text-muted leading-relaxed font-medium text-[14px]">
+                                Your genes largely decide how tall you'll be. But how well you eat, sleep, and stay active during childhood can make a real difference in whether you reach that potential.
+                            </p>
+
+                            <div className="grid md:grid-cols-3 gap-6 mt-4">
+                                {/* Nutrition */}
+                                <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
+                                    <h4 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent flex items-center gap-2">
+                                        <span className="text-lg">🥗</span> Nutrition
+                                    </h4>
+                                    <p className="text-sm text-muted font-medium leading-relaxed mb-2">
+                                        Adequate nutrition supports bone development. Key nutrients:
+                                    </p>
+                                    <ul className="text-sm text-muted font-medium space-y-1 list-none p-0 m-0">
+                                        <li>Protein</li>
+                                        <li>Calcium</li>
+                                        <li>Vitamin D</li>
+                                        <li>Zinc</li>
+                                    </ul>
+                                </div>
+
+                                {/* Sleep */}
+                                <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
+                                    <h4 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent flex items-center gap-2">
+                                        <span className="text-lg">😴</span> Adequate Sleep
+                                    </h4>
+                                    <p className="text-sm text-muted font-medium leading-relaxed mb-2">
+                                        Growth hormone peaks during deep sleep.
+                                    </p>
+                                    <ul className="text-sm text-muted font-medium space-y-1 list-none p-0 m-0">
+                                        <li>9–11 hrs for school-age children</li>
+                                        <li>8–10 hrs for teenagers</li>
+                                    </ul>
+                                </div>
+
+                                {/* Exercise */}
+                                <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
+                                    <h4 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent flex items-center gap-2">
+                                        <span className="text-lg">🏃</span> Regular Exercise
+                                    </h4>
+                                    <p className="text-sm text-muted font-medium leading-relaxed">
+                                        Supports bone strength and overall development. Running, jumping, and sports encourage healthy bone growth.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Warning Box */}
+                            <div className="bg-[#fffbeb] border border-[#fde68a] border-l-4 border-l-[#f59e0b] rounded-r-2xl p-6 mt-6">
+                                <p className="text-sm text-[#78350f] font-medium leading-relaxed">
+                                    <strong>Important:</strong> No exercise, supplement, or stretching program can increase height once growth plates close. Predictions are estimates. Genetics is the dominant factor.
+                                </p>
+                            </div>
+                        </section>
+
+
+                        {/* <section className="space-y-4">
+                            <h2 id="height-calculator-accuracy" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">How Accurate Is a Height Calculator?</h2>
                             <p className="text-muted leading-relaxed font-medium">
-                                Male growth patterns differ from female growth patterns. Boys usually experience a later but longer growth spurt during puberty.
+                                This height predictor uses the Khamis-Roche growth model, trained on long-term studies of child growth data.
+                            </p>
+
+                            <div className="bg-surface border border-border p-6 rounded-2xl my-6 border-l-4 border-l-accent">
+                                <ul className="space-y-3 text-muted font-medium">
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle2 className="text-accent w-4 h-4 mt-1 flex-shrink-0" />
+                                        Most predictions fall within 5–10 cm (2–4 inches) of final adult height
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle2 className="text-accent w-4 h-4 mt-1 flex-shrink-0" />
+                                        Accuracy is highest when the child is older than 4 years
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle2 className="text-accent w-4 h-4 mt-1 flex-shrink-0" />
+                                        Accurate height and weight measurements improve results significantly
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle2 className="text-accent w-4 h-4 mt-1 flex-shrink-0" />
+                                        Correct parent height data is required for reliable output
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <AlertCircle className="w-4 h-4 mt-1 flex-shrink-0" />
+                                        Results are a likely range, not an exact value
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <AlertCircle className="w-4 h-4 mt-1 flex-shrink-0" />
+                                        Not suitable for children with known growth disorders
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <AlertCircle className="w-4 h-4 mt-1 flex-shrink-0" />
+                                        Early or late puberty can reduce prediction accuracy
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <p className="text-muted leading-relaxed font-medium">
+                                The result represents a likely range rather than an exact value.
+                            </p>
+
+                            <div className="bg-muted/30 p-4 rounded-xl border border-border text-xs text-muted-foreground">
+                                <strong>Medical disclaimer:</strong> This height calculator is for informational purposes only. It is not a substitute for professional medical advice. If you have concerns about your child's growth, consult a qualified pediatrician or endocrinologist.
+                            </div>
+                        </section> */}
+
+                        <section id='boys-height-predictor' className="space-y-4 scroll-mt-24">
+                            <h2 className="text-2xl md:text-3xl font-black tracking-tight mt-8 uppercase">Understanding Growth Timelines</h2>
+                            <p className="text-muted leading-relaxed font-medium">
+                                Male and female growth patterns differ significantly. Boys usually experience a later but longer growth spurt, while girls reach adult height earlier.
                             </p>
                             <p className="text-muted leading-relaxed mt-4 font-bold uppercase text-xs tracking-widest opacity-80">During peak puberty growth:</p>
                             <ul className="text-foreground space-y-3 font-black uppercase tracking-tight">
@@ -272,23 +796,23 @@ export default function HeightCalculatorPage() {
                                 <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-pink-500" /> Girls grow around 2.5–3 inches per year</li>
                             </ul>
                             <p className="text-muted leading-relaxed mt-6 font-medium">
-                                Because boys start puberty later, they may appear shorter than girls during early adolescence before eventually catching up. If you are trying to estimate how tall your son will be, a Khamis-Roche height predictor typically provides the most accurate estimate.
+                                Early puberty may produce a taller child temporarily but a shorter adult, whereas late puberty often results in a longer growth window and greater final height.
                             </p>
                         </section>
 
                         <section className="space-y-6">
-                            <h2 id="how-to-get-taller-as-a-kid" className="text-2xl md:text-3xl font-black tracking-tight mt-8 scroll-mt-24 uppercase">How to Get Taller As A Kid</h2>
+                            <h2 id="how-to-get-taller-as-a-kid" className="text-2xl md:text-3xl font-black tracking-tight mt-8 scroll-mt-24 uppercase">Factors Affecting Height</h2>
                             <p className="text-muted leading-relaxed font-medium">
-                                Genetics determines the maximum height a person can reach, but lifestyle factors influence whether that potential is achieved.
+                                Genetics determines the maximum potential, but lifestyle factors influence whether that potential is achieved.
                             </p>
                             <div className="grid md:grid-cols-3 gap-6 mt-4">
                                 <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
                                     <h4 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent">Healthy Diet</h4>
-                                    <p className="text-sm text-muted font-medium leading-relaxed">Balanced nutrition supports bone growth and development.</p>
+                                    <p className="text-sm text-muted font-medium leading-relaxed">Protein, Calcium, Vitamin D, and Zinc support bone development.</p>
                                 </div>
                                 <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
                                     <h4 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent">Adequate Sleep</h4>
-                                    <p className="text-sm text-muted font-medium leading-relaxed">Growth hormone peaks during deep sleep, making consistent sleep schedules important.</p>
+                                    <p className="text-sm text-muted font-medium leading-relaxed">9–11 hrs for school-age; 8–10 hrs for teens. Growth hormone peaks during deep sleep.</p>
                                 </div>
                                 <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
                                     <h4 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent">Regular Exercise</h4>
@@ -297,7 +821,7 @@ export default function HeightCalculatorPage() {
                             </div>
                             <div className="bg-accent/5 border-l-4 border-accent p-6 rounded-r-3xl mt-6">
                                 <p className="text-sm font-bold text-foreground leading-relaxed italic">
-                                    However, it’s important to understand that no exercise routine, supplement, or stretching program can increase height once growth plates close.
+                                    Note: No exercise or supplement can increase height once growth plates close. If growth seems unusually fast or slow, consult a pediatrician.
                                 </p>
                             </div>
                         </section>
@@ -320,15 +844,116 @@ export default function HeightCalculatorPage() {
                     </div>
 
                     {/* FAQ Accordion Section */}
-                    <div id="child-height-calculator-faq" className="scroll-mt-24">
+                    <section id="child-height-calculator-faq" className="scroll-mt-24 space-y-6">
+                        <div className="space-y-4">
+                            <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase text-foreground">
+                                Height Calculator FAQs
+                            </h2>
+                            {/* <div className="bg-surface border border-border p-6 rounded-2xl inline-block text-left mx-auto sm:mx-0 mt-4 border-l-4 border-l-accent">
+                                <h3 className="font-bold text-foreground mb-3 uppercase tracking-widest text-xs">Many parents search questions like:</h3>
+                                <ul className="space-y-2 text-sm text-muted font-black uppercase tracking-wider">
+                                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-accent" /> How tall will my child be?</li>
+                                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-accent" /> How tall will my son be?</li>
+                                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-accent" /> How tall will I be when I grow up?</li>
+                                    <li className="flex items-center gap-2"><div className="w-1.5 h-1.5 rounded-full bg-accent" /> How can you determine how tall you will be?</li>
+                                </ul>
+                            </div> */}
+
+
+                            <div className="flex items-center gap-2 pt-4">
+                                <span className="text-xl">🙋</span>
+                                <h3 className="font-bold uppercase tracking-wider text-sm">Frequently Asked Questions</h3>
+                            </div>
+                        </div>
+
                         <FaqAccordion
                             items={CHILD_HEIGHT_QA}
                             description="Scientific insights into your child's development"
                         />
-                    </div>
+                    </section>
+                    {/* Related Tools Section */}
+                    <section id="related-tools" className="space-y-6 scroll-mt-24">
+                        <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase text-foreground">
+                            Related Tools
+                        </h2>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {/* Height Comparison Tool */}
+                            <div className="bg-surface border border-border p-6 rounded-2xl flex flex-col h-full">
+                                <span className="text-2xl mb-4">📏</span>
+                                <h3 className="font-bold text-foreground mb-2">Height Comparison Tool</h3>
+                                <p className="text-muted text-sm leading-relaxed mb-6 flex-grow">
+                                    Visualize height differences between people, celebrities, and objects on a proportional scale.
+                                </p>
+                                <Link href="/" className="text-[#3B6CF4] font-bold text-sm flex items-center gap-1 hover:underline">
+                                    Compare heights →
+                                </Link>
+                            </div>
+
+                            {/* Image to Height Tool */}
+                            {/* Corrected Related Tool Block */}
+                            <div className="bg-surface border border-border p-6 rounded-2xl flex flex-col h-full">
+                                <span className="text-2xl mb-4">📸</span>
+                                <h3 className="font-bold text-foreground mb-2">Image to Height Tool</h3>
+                                <p className="text-muted text-sm leading-relaxed mb-6 flex-grow">
+                                    Estimate height from photos by comparing subjects against known reference objects or surroundings.
+                                </p>
+                                <Link href="/image-to-height" className="text-[#3B6CF4] font-bold text-sm flex items-center gap-1 hover:underline">
+                                    Estimate from image →
+                                </Link>
+                            </div>
+                            {/* Height & Weight Percentile */}
+                            <div className="bg-surface border border-border p-6 rounded-2xl flex flex-col h-full">
+                                <span className="text-2xl mb-4">📊</span>
+                                <h3 className="font-bold text-foreground mb-2">Height & Weight Percentile</h3>
+                                <p className="text-muted text-sm leading-relaxed mb-6 flex-grow">
+                                    Find where your child's height and weight sit within the population using WHO and CDC data.
+                                </p>
+                                <Link href="/height-weight-percentile-calculator" className="text-[#3B6CF4] font-bold text-sm flex items-center gap-1 hover:underline">
+                                    Check percentile →
+                                </Link>
+                            </div>
+
+                            {/* Average Height by Country */}
+                            <div className="bg-surface border border-border p-6 rounded-2xl flex flex-col h-full">
+                                <span className="text-2xl mb-4">🌍</span>
+                                <h3 className="font-bold text-foreground mb-2">Average Height by Country</h3>
+                                <p className="text-muted text-sm leading-relaxed mb-6 flex-grow">
+                                    Global height data for 46 countries. Sortable table, regional charts, and world map.
+                                </p>
+                                <Link href="/average-height-by-country" className="text-[#3B6CF4] font-bold text-sm flex items-center gap-1 hover:underline">
+                                    Explore data →
+                                </Link>
+                            </div>
+
+                            {/* Ideal Body Weight Calculator */}
+                            <div className="bg-surface border border-border p-6 rounded-2xl flex flex-col h-full">
+                                <span className="text-2xl mb-4">🏋️</span>
+                                <h3 className="font-bold text-foreground mb-2">Ideal Body Weight Calculator</h3>
+                                <p className="text-muted text-sm leading-relaxed mb-6 flex-grow">
+                                    Calculate ideal weight using Devine, Robinson, and Hamwi formulas side by side.
+                                </p>
+                                <Link href="/ideal-body-weight-calculator" className="text-[#3B6CF4] font-bold text-sm flex items-center gap-1 hover:underline">
+                                    Calculate IBW →
+                                </Link>
+                            </div>
+
+                            {/* Height Difference Calculator */}
+                            <div className="bg-surface border border-border p-6 rounded-2xl flex flex-col h-full">
+                                <span className="text-2xl mb-4">📐</span>
+                                <h3 className="font-bold text-foreground mb-2">Height Difference Calculator</h3>
+                                <p className="text-muted text-sm leading-relaxed mb-6 flex-grow">
+                                    Calculate the exact gap between two heights in cm, inches, and percentage difference.
+                                </p>
+                                <Link href="/height-difference-calculator" className="text-[#3B6CF4] font-bold text-sm flex items-center gap-1 hover:underline">
+                                    Calculate difference →
+                                </Link>
+                            </div>
+                        </div>
+                    </section>
 
                     {/* References Section */}
-                    <div className="bg-surface border border-border rounded-[2.5rem] p-8 md:p-12 text-sm text-muted mt-8 font-medium shadow-sm">
+                    <div id="references" className="bg-surface border border-border rounded-[2.5rem] p-8 md:p-12 text-sm text-muted mt-8 font-medium shadow-sm scroll-mt-24">
                         <h3 className="font-extrabold text-foreground mb-6 uppercase tracking-[0.2em] text-[10px] opacity-60">Scientific Bibliography & Data Sources</h3>
                         <ul className="space-y-4 break-words overflow-hidden list-disc pl-5 marker:text-accent/40">
                             <li>Centers for Disease Control and Prevention. CDC Growth Charts. <br /><a href="https://www.cdc.gov/growthcharts" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.cdc.gov/growthcharts</a></li>
@@ -336,7 +961,7 @@ export default function HeightCalculatorPage() {
                             <li>Silventoinen K. Determinants of variation in adult body height. Journal of Biosocial Science. <br /><a href="https://doi.org/10.1017/S0021932003006429" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://doi.org/10.1017/S0021932003006429</a></li>
                             <li>World Health Organization. Child Growth Standards. <br /><a href="https://www.who.int/tools/child-growth-standards" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.who.int/tools/child-growth-standards</a></li>
                             <li>National Sleep Foundation. Growth Hormone and Sleep in Children. <br /><a href="https://www.sleepfoundation.org/children-and-sleep" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.sleepfoundation.org/children-and-sleep</a></li>
-                            <li>American Academy of Pediatrics. Physical Development in Adolescence. <br /><a href="https://www.healthychildren.org" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.healthychildren.org</a></li>
+                            {/* <li>American Academy of Pediatrics. Physical Development in Adolescence. <br /><a href="https://www.healthychildren.org" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.healthychildren.org</a></li> */}
                             <li>Khamis HJ, Roche AF. Predicting adult stature without using skeletal age. Pediatrics. <br /><a href="https://pubmed.ncbi.nlm.nih.gov/8616011/" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://pubmed.ncbi.nlm.nih.gov/8616011/</a></li>
                             <li>Tanner JM. Growth at Adolescence. Blackwell Scientific Publications.</li>
                             <li>Greulich WW, Pyle SI. Radiographic Atlas of Skeletal Development of the Hand and Wrist.</li>

@@ -26,11 +26,12 @@ export default function HeightConverter() {
 
     return (
         <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
-            <div className="space-y-4 mb-8 text-center sm:text-left">
-                <h2 className="text-2xl font-black tracking-tight text-foreground leading-[1.1]">
-                    Quick Height Converter
-                </h2>
-                <div className="h-1.5 w-16 bg-accent rounded-full mx-auto sm:mx-0" />
+            <div className="space-y-4 mb-8">
+                <h2 className="text-3xl font-black tracking-tight text-foreground uppercase">Quick Height Converter</h2>
+                <p className="text-muted font-medium leading-relaxed">
+                    🔄 Convert cm to feet and inches, feet and inches to cm, or meters to feet instantly
+                </p>
+                <div className="h-1.5 w-16 bg-accent rounded-full" />
             </div>
 
             <div className="flex flex-col md:flex-row items-center gap-6">
@@ -61,6 +62,7 @@ export default function HeightConverter() {
                             /* Added pr-12 here so typing a long number doesn't overlap the "cm" text */
                             className="w-full bg-bg border border-border rounded-xl px-4 pr-12 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors"
                             placeholder="e.g. 170"
+                            aria-label="Height in Centimeters"
                         />
                         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">
                             cm
@@ -92,6 +94,7 @@ export default function HeightConverter() {
                                 }}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors"
                                 placeholder="e.g. 5"
+                                aria-label="Height in Feet"
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                         </div>
@@ -109,6 +112,7 @@ export default function HeightConverter() {
                                 }}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors"
                                 placeholder="e.g. 7"
+                                aria-label="Height in Inches"
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                         </div>

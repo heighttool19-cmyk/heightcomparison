@@ -128,11 +128,11 @@ export default function HeightCharts() {
     const label = activeChart === "boys" ? "Boys" : "Girls";
 
     return (
-        <div className="space-y-6 mt-12" style={{ fontFamily: GEORGIA }}>
+        <div className="space-y-6 mt-2" style={{ fontFamily: GEORGIA }}>
             {/* <h2 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight">
                 Boys & Girls <span className={activeChart === "boys" ? "text-blue-500" : "text-pink-500"}>Height Growth Charts</span>
             </h2> */}
-            <div className="h-1.5 w-24 bg-accent rounded-full" />
+            {/* <div className="h-1.5 w-24 bg-accent rounded-full" /> */}
             <p className="text-muted leading-relaxed max-w-3xl">
                 Based on CDC growth chart data : average & median height by age (ages 2–18) : cm
             </p>
@@ -342,10 +342,10 @@ export default function HeightCharts() {
                             { label: "Boys stop growing", value: "~18 yrs", color: "text-blue-500", bg: "bg-blue-500/10", border: "border-blue-500/20" },
                             { label: "Girls stop growing", value: "~15-16 yrs", color: "text-pink-500", bg: "bg-pink-500/10", border: "border-pink-500/20" },
                             {
-                                label: "Boys median adult height", value: `172.2 cm / 5'8" `, color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/20"
+                                label: "Average adult male height (US)", value: `172.2 cm / 5'8" `, color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/20"
                             },
                             {
-                                label: "Girls median adult height", value: `160.1 cm / 5'3"`, color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/20"
+                                label: "Average adult female height (US)", value: `160.1 cm / 5'3"`, color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/20"
                             },
                         ].map(card => (
                             <div key={card.label} className={`p-2 rounded-2xl border ${card.border} ${card.bg} text-center`} style={{ fontFamily: GEORGIA }}>

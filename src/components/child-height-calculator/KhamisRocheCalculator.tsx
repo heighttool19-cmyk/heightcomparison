@@ -124,10 +124,16 @@ export default function KhamisRocheCalculator() {
 
     return (
         <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-                <div className="space-y-2">
-                    <h2 className="text-2xl font-black tracking-tight text-foreground">Height Predictor <span className="text-muted text-base font-medium ml-2 uppercase tracking-widest">(Khamis-Roche)</span></h2>
-                    <div className="h-1.5 w-16 bg-accent rounded-full mx-auto sm:mx-0" />
+            <div className="flex flex-col mb-8 gap-4">
+                <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                        <h2 id="calculator" className="text-3xl font-black tracking-tight text-foreground uppercase">Height Predictor</h2>
+                        <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20">Khamis-Roche</span>
+                    </div>
+                    <p className="text-muted font-medium leading-relaxed">
+                        ⚡ Instant height prediction using scientific growth models. Estimate predicted height based on age and parents
+                    </p>
+                    <div className="h-1.5 w-16 bg-accent rounded-full" />
                 </div>
                 {/* Synced Unit Toggle */}
                 <div className="w-full sm:w-auto bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
@@ -151,7 +157,7 @@ export default function KhamisRocheCalculator() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                 <div className="space-y-2">
                     <label htmlFor="child-age-years" className="text-base font-semibold text-muted">Child&apos;s Age (Years)</label>
-                    <input id="child-age-years" type="number" min="0" value={childAge} onChange={e => handleInputChange(e, setChildAge as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                    <input id="child-age-years" type="number" min="0" value={childAge} onChange={e => handleInputChange(e, setChildAge as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Child's Age in Years" />
                 </div>
                 <div className="space-y-2">
                     <label className="text-base font-semibold text-muted">Gender</label>
@@ -167,19 +173,19 @@ export default function KhamisRocheCalculator() {
                     {unit === 'metric' ? (
                         <div className="relative">
                             <label htmlFor="child-height-cm" className="sr-only">Child&apos;s Current Height (cm)</label>
-                            <input id="child-height-cm" type="number" value={childHtCm} onChange={e => handleInputChange(e, setChildHtCm as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 110" />
+                            <input id="child-height-cm" type="number" value={childHtCm} onChange={e => handleInputChange(e, setChildHtCm as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 110" aria-label="Child's Current Height in Centimeters" />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
                                 <label htmlFor="child-height-ft" className="sr-only">Child&apos;s Current Height (ft)</label>
-                                <input id="child-height-ft" type="number" value={childHtFt} onChange={e => handleInputChange(e, setChildHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 3" />
+                                <input id="child-height-ft" type="number" value={childHtFt} onChange={e => handleInputChange(e, setChildHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 3" aria-label="Child's Current Height in Feet" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                             </div>
                             <div className="relative flex-1">
                                 <label htmlFor="child-height-in" className="sr-only">Child&apos;s Current Height (in)</label>
-                                <input id="child-height-in" type="number" value={childHtIn} onChange={e => handleInputChange(e, setChildHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                <input id="child-height-in" type="number" value={childHtIn} onChange={e => handleInputChange(e, setChildHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Child's Current Height in Inches" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                             </div>
                         </div>
@@ -191,13 +197,13 @@ export default function KhamisRocheCalculator() {
                     {unit === 'metric' ? (
                         <div className="relative">
                             <label htmlFor="child-weight-kg" className="sr-only">Child&apos;s Current Weight (kg)</label>
-                            <input id="child-weight-kg" type="number" value={childWtKg} onChange={e => handleInputChange(e, setChildWtKg as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 20" />
+                            <input id="child-weight-kg" type="number" value={childWtKg} onChange={e => handleInputChange(e, setChildWtKg as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 20" aria-label="Child's Current Weight in Kilograms" />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">kg</span>
                         </div>
                     ) : (
                         <div className="relative">
                             <label htmlFor="child-weight-lbs" className="sr-only">Child&apos;s Current Weight (lbs)</label>
-                            <input id="child-weight-lbs" type="number" value={childWtLbs} onChange={e => handleInputChange(e, setChildWtLbs as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 45" />
+                            <input id="child-weight-lbs" type="number" value={childWtLbs} onChange={e => handleInputChange(e, setChildWtLbs as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 45" aria-label="Child's Current Weight in Pounds" />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">lbs</span>
                         </div>
                     )}
@@ -209,19 +215,19 @@ export default function KhamisRocheCalculator() {
                     {unit === 'metric' ? (
                         <div className="relative">
                             <label htmlFor="mother-height-cm" className="sr-only">Mother&apos;s Height (cm)</label>
-                            <input id="mother-height-cm" type="number" value={motherHtCm} onChange={e => handleInputChange(e, setMotherHtCm as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 165" />
+                            <input id="mother-height-cm" type="number" value={motherHtCm} onChange={e => handleInputChange(e, setMotherHtCm as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 165" aria-label="Mother's Height in Centimeters" />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
                                 <label htmlFor="mother-height-ft" className="sr-only">Mother&apos;s Height (ft)</label>
-                                <input id="mother-height-ft" type="number" value={motherHtFt} onChange={e => handleInputChange(e, setMotherHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                <input id="mother-height-ft" type="number" value={motherHtFt} onChange={e => handleInputChange(e, setMotherHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Feet" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                             </div>
                             <div className="relative flex-1">
                                 <label htmlFor="mother-height-in" className="sr-only">Mother&apos;s Height (in)</label>
-                                <input id="mother-height-in" type="number" value={motherHtIn} onChange={e => handleInputChange(e, setMotherHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                <input id="mother-height-in" type="number" value={motherHtIn} onChange={e => handleInputChange(e, setMotherHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Inches" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                             </div>
                         </div>
@@ -233,19 +239,19 @@ export default function KhamisRocheCalculator() {
                     {unit === 'metric' ? (
                         <div className="relative">
                             <label htmlFor="father-height-cm" className="sr-only">Father&apos;s Height (cm)</label>
-                            <input id="father-height-cm" type="number" value={fatherHtCm} onChange={e => handleInputChange(e, setFatherHtCm as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" />
+                            <input id="father-height-cm" type="number" value={fatherHtCm} onChange={e => handleInputChange(e, setFatherHtCm as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" aria-label="Father's Height in Centimeters" />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
                                 <label htmlFor="father-height-ft" className="sr-only">Father&apos;s Height (ft)</label>
-                                <input id="father-height-ft" type="number" value={fatherHtFt} onChange={e => handleInputChange(e, setFatherHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                <input id="father-height-ft" type="number" value={fatherHtFt} onChange={e => handleInputChange(e, setFatherHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Father's Height in Feet" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                             </div>
                             <div className="relative flex-1">
                                 <label htmlFor="father-height-in" className="sr-only">Father&apos;s Height (in)</label>
-                                <input id="father-height-in" type="number" value={fatherHtIn} onChange={e => handleInputChange(e, setFatherHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" />
+                                <input id="father-height-in" type="number" value={fatherHtIn} onChange={e => handleInputChange(e, setFatherHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" aria-label="Father's Height in Inches" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                             </div>
                         </div>

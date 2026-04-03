@@ -33,7 +33,7 @@ export default function MidParentalCalculator() {
     const [parentFatherHtCm, setParentFatherHtCm] = useState<number | ''>('');
     const [parentFatherHtFt, setParentFatherHtFt] = useState<number | ''>('');
     const [parentFatherHtIn, setParentFatherHtIn] = useState<number | ''>('');
-    
+
     const [predictedParentOnlyBoys, setPredictedParentOnlyBoys] = useState<{ cm: number; ft: number; in: number; raw: number; fCm: number; mCm: number } | null>(null);
     const [predictedParentOnlyGirls, setPredictedParentOnlyGirls] = useState<{ cm: number; ft: number; in: number; raw: number; fCm: number; mCm: number } | null>(null);
 
@@ -62,17 +62,32 @@ export default function MidParentalCalculator() {
 
     return (
         <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-                <div className="space-y-2">
-                    <h2 className="text-2xl font-black tracking-tight text-foreground">
-                        Parent&apos;s Height Only <span className="text-muted text-base font-medium ml-2 uppercase tracking-widest">(Mid-Parental)</span></h2>
-                    <div className="h-1.5 w-16 bg-accent rounded-full mx-auto sm:mx-0" />
+            <div className="flex flex-col mb-8 gap-4">
+                <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                        <h2 id="how-to-predict" className="text-3xl font-black tracking-tight text-foreground uppercase">Parent&apos;s Height Only</h2>
+                        <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20">Mid-Parental</span>
+                    </div>
+                    <p className="text-muted font-medium leading-relaxed">
+                        📐 Estimate predicted height using only parents&apos; heights. Works for babies, very young children, and unborn babies too. If you are pregnant, enter both parents&apos; heights to get your child&apos;s estimated adult height range.
+                    </p>
+                    <div className="h-1.5 w-16 bg-accent rounded-full" />
                 </div>
 
                 {/* Synced Unit Toggle */}
-                <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
-                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>US (ft/in)</button>
-                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>Metric (cm)</button>
+                <div className="w-full sm:w-auto bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
+                    <button
+                        onClick={() => setUnitSystem('imperial')}
+                        className={`flex-1 px-4 py-2 sm:py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}
+                    >
+                        US (ft/in)
+                    </button>
+                    <button
+                        onClick={() => setUnitSystem('metric')}
+                        className={`flex-1 px-4 py-2 sm:py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}
+                    >
+                        Metric (cm)
+                    </button>
                 </div>
             </div>
 
@@ -89,6 +104,7 @@ export default function MidParentalCalculator() {
                                 onChange={e => handleInputChange(e, setParentMotherHtCm as (val: string | number) => void)}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors"
                                 placeholder="e.g. 165"
+                                aria-label="Mother's Height in Centimeters"
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                         </div>
@@ -96,12 +112,12 @@ export default function MidParentalCalculator() {
                         <div className="flex gap-2">
                             <div className="relative flex-1">
                                 <label htmlFor="p-mother-height-ft" className="sr-only">Mother&apos;s Height (ft)</label>
-                                <input id="p-mother-height-ft" type="number" value={parentMotherHtFt} onChange={e => handleInputChange(e, setParentMotherHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                <input id="p-mother-height-ft" type="number" value={parentMotherHtFt} onChange={e => handleInputChange(e, setParentMotherHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Feet" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                             </div>
                             <div className="relative flex-1">
                                 <label htmlFor="p-mother-height-in" className="sr-only">Mother&apos;s Height (in)</label>
-                                <input id="p-mother-height-in" type="number" value={parentMotherHtIn} onChange={e => handleInputChange(e, setParentMotherHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                <input id="p-mother-height-in" type="number" value={parentMotherHtIn} onChange={e => handleInputChange(e, setParentMotherHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Inches" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                             </div>
                         </div>
@@ -112,19 +128,19 @@ export default function MidParentalCalculator() {
                     {unit === 'metric' ? (
                         <div className="relative">
                             <label htmlFor="p-father-height-cm" className="sr-only">Father&apos;s Height (cm)</label>
-                            <input id="p-father-height-cm" type="number" value={parentFatherHtCm} onChange={e => handleInputChange(e, setParentFatherHtCm as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" />
+                            <input id="p-father-height-cm" type="number" value={parentFatherHtCm} onChange={e => handleInputChange(e, setParentFatherHtCm as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" aria-label="Father's Height in Centimeters" />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
                                 <label htmlFor="p-father-height-ft" className="sr-only">Father&apos;s Height (ft)</label>
-                                <input id="p-father-height-ft" type="number" value={parentFatherHtFt} onChange={e => handleInputChange(e, setParentFatherHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" />
+                                <input id="p-father-height-ft" type="number" value={parentFatherHtFt} onChange={e => handleInputChange(e, setParentFatherHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Father's Height in Feet" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                             </div>
                             <div className="relative flex-1">
                                 <label htmlFor="p-father-height-in" className="sr-only">Father&apos;s Height (in)</label>
-                                <input id="p-father-height-in" type="number" value={parentFatherHtIn} onChange={e => handleInputChange(e, setParentFatherHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" />
+                                <input id="p-father-height-in" type="number" value={parentFatherHtIn} onChange={e => handleInputChange(e, setParentFatherHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" aria-label="Father's Height in Inches" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                             </div>
                         </div>
@@ -213,7 +229,6 @@ export default function MidParentalCalculator() {
                             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                         </button>
                     </div>
-
                 </div>
             )}
         </section>
