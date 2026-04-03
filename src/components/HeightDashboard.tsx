@@ -462,22 +462,29 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     // --- 2. URL Hash Encoding Sync ---
     useEffect(() => {
         if (readOnly || !isHydrated) return;
-        if (typeof window !== 'undefined') {
-            // Minify data before syncing to URL
-            const minifiedData = {
-                u: unitSystem === 'metric' ? 1 : 0,
-                z: Math.round(state.zoom * 100) / 100,
-                p: persons.map(p => [
-                    p.name,
-                    Math.round(p.heightCm * 10) / 10,
-                    p.color ? p.color.replace('#', '') : '',
-                    p.gender === 'female' ? 1 : (p.gender === 'male' ? 2 : 0),
-                    p.imgUrl || ''
-                ])
-            };
-            const compact = LZString.compressToEncodedURIComponent(JSON.stringify(minifiedData));
-            window.history.replaceState(null, '', `#${compact}`);
-        }
+
+        // DEBOUNCE: Wait 500ms before syncing to avoid Safari's 100 calls/30s limit
+        const timer = setTimeout(() => {
+            if (typeof window !== 'undefined') {
+                // Minify data before syncing to URL
+                const minifiedData = {
+                    u: unitSystem === 'metric' ? 1 : 0,
+                    z: Math.round(state.zoom * 100) / 100,
+                    p: persons.map(p => [
+                        p.name,
+                        Math.round(p.heightCm * 10) / 10,
+                        p.color ? p.color.replace('#', '') : '',
+                        p.gender === 'female' ? 1 : (p.gender === 'male' ? 2 : 0),
+                        p.imgUrl || ''
+                    ])
+                };
+                const compact = LZString.compressToEncodedURIComponent(JSON.stringify(minifiedData));
+                window.history.replaceState(null, '', `#${compact}`);
+            }
+        }, 500); // 500ms delay
+
+        // Cleanup timer if zoom or persons change again before the 500ms is up
+        return () => clearTimeout(timer);
     }, [state.zoom, unitSystem, persons, readOnly, isHydrated]);
 
     // --- 3. URL Hash Hydration ---
