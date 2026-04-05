@@ -123,29 +123,49 @@ export const heightData = [
 
 export const AVERAGE_HEIGHT_TOC = [
     { id: 'average-height-by-country', label: 'Average Height by Country' },
-    { id: 'tallest-description', label: 'Tallest Populations' },
-    { id: 'shortest-description', label: 'Shortest Populations' },
-    { id: 'male-female-gap', label: 'The Male-Female Gap' },
-    { id: 'selected-countries-cards', label: 'Selected Countries' },
-    { id: 'extremes', label: 'Global Height Extremes' },
-    { id: 'why-average-height-differs-by-country', label: 'Why Height Differs' },
-    { id: 'frequently-asked-questions', label: 'Frequently Asked Questions' }
+    { id: 'tallest-countries-in-the-world', label: 'Tallest Countries in the World' },
+    { id: 'shortest-countries-in-the-world', label: 'Shortest Countries in the World' },
+    { id: 'tallest-and-shortest-countries-by-average-height', label: 'Tallest and Shortest Countries by Average Height' },
+    { id: 'average-male-height-by-country', label: 'Average Male Height by Country' },
+    { id: 'average-female-height-by-country', label: 'Average Female Height by Country' },
+    { id: 'average-height-in-selected-countries', label: 'Average Height in Selected Countries' },
+    { id: 'average-height-chart-for-men', label: 'Average Height Chart for Men' },
+    { id: 'global-average-height', label: 'Global Average Height' },
+    { id: 'tallest-man-in-the-world', label: 'Tallest Man in the World' },
+    { id: 'shortest-man-in-the-world', label: 'Shortest Man in the World' },
+    { id: 'tallest-female-in-the-world', label: 'Tallest Female in the World' },
+    { id: 'shortest-female-in-the-world', label: 'Shortest Female in the World' },
+    { id: 'human-height-distribution', label: 'Human Height Distribution' },
+    { id: 'why-average-height-differs-by-country', label: 'Why Average Height Differs by Country' },
+    {
+        id: 'frequently-asked-questions',
+        label: 'Frequently Asked Questions',
+    }
 ];
-
 export const AVERAGE_HEIGHT_FAQ = [
     {
-        id: "why-nederlands-tallest",
-        q: "Why are the Dutch the tallest people in the world?",
-        a: "It is a combination of natural selection, excellent healthcare, and high dairy consumption. Studies suggest that taller Dutch men historically had more children, and the universal healthcare system ensures that children reach their full genetic potential without being stunted by illness or poor nutrition."
+        id: "average-height-of-men-in-the-world",
+        q: "What is the average height of men in the world?",
+        a: "The global average height for adult men is approximately 171 cm (5'7\"). This weighted figure draws from NCD Risk Factor Collaboration and WHO data. It is pulled lower by the large populations of South and Southeast Asia, where averages fall between 160 and 168 cm. Men in high-income European countries average significantly more, often 178 to 184 cm."
     },
     {
-        id: "height-genetics-vs-nutrition",
-        q: "Is height determined more by genetics or nutrition?",
-        a: "Genetics accounts for about 60-80% of individual height variation. However, nutrition and environmental factors (like childhood health) determine whether a person actually reaches their genetic ceiling. This is why populations in developing nations often see rapid height increases as their economies grow."
+        id: "average-height-for-a-woman-worldwide",
+        q: "What is an average height for a woman worldwide?",
+        a: "The global average height for adult women is approximately 159 cm (5'3\"). Netherlands and Montenegrin women average around 170 cm. Women in Guatemala and the Philippines average closer to 149 to 150 cm. Most women in Western countries fall between 162 and 168 cm."
     },
     {
-        id: "when-do-we-stop-growing",
-        q: "At what age do people typically stop growing taller?",
-        a: "Most girls reach their full adult height by age 14 or 15. Most boys reach their adult height by age 16 or 17, though some may continue to grow slightly until their early twenties when the growth plates (epiphyses) in their long bones finally close."
+        id: "which-country-has-the-tallest-people",
+        q: "Which country has the tallest people?",
+        a: "The Netherlands holds the top spot for both men and women in most recent datasets. Netherlands men average 183.8 cm (approximately 6'0\") and Netherlands women average 170.4 cm (5'7\"). Montenegro and Estonia follow closely. The Netherlands has held this position for several decades, attributed to dairy-rich diets, strong public health infrastructure, and genetic factors in the population."
+    },
+    {
+        id: "has-average-human-height-been-increasing-over-time",
+        q: "Has average human height been increasing over time?",
+        a: "Yes, substantially. Average height has risen sharply over the past 150 years in almost every country, driven by improvements in nutrition, sanitation, vaccination, and healthcare. The most dramatic recent gains occurred in East Asia: South Korean men gained around 6 cm across two generations following rapid economic development. Gains in Western Europe have largely plateaued since the 1980s."
+    },
+    {
+        id: "shortest-country-in-the-world-by-average-height",
+        q: "What is the shortest country in the world by average height?",
+        a: "Timor-Leste records the lowest combined average globally, with men averaging 159.8 cm and women 152.3 cm. Guatemala and Laos follow closely. These low averages reflect historical nutritional constraints and limited healthcare access rather than genetic limits on growth potential."
     }
 ];

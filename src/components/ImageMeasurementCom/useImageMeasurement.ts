@@ -199,7 +199,7 @@ export const useImageMeasurement = () => {
 
     const commitLine = useCallback((p1: Point, p2: Point) => {
         const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
-        if (dist < 5) return;
+        if (dist < 15) return;
 
         if (modeRef.current === 'calibrating') {
             setCalibLine({ p1, p2 });
@@ -276,11 +276,13 @@ export const useImageMeasurement = () => {
         window.addEventListener('mouseup', onMouseUp);
         window.addEventListener('touchmove', onTouchMove, { passive: false });
         window.addEventListener('touchend', onTouchEnd);
+        window.addEventListener('touchcancel', onTouchEnd);
         return () => {
             window.removeEventListener('mousemove', onMouseMove);
             window.removeEventListener('mouseup', onMouseUp);
             window.removeEventListener('touchmove', onTouchMove);
             window.removeEventListener('touchend', onTouchEnd);
+            window.removeEventListener('touchcancel', onTouchEnd);
         };
     }, [clientToCanvas, commitLine]);
 
@@ -304,6 +306,11 @@ export const useImageMeasurement = () => {
 
     const onCanvasTouchStart = (e: React.TouchEvent) => {
         if (mode === 'idle') return;
+        // Bypass if multi-touch (allow zoom/scroll)
+        if (e.touches.length > 1) {
+            cancelDrawing();
+            return;
+        }
         // Don't prevent default unless we're starting to draw
         const pt = clientToCanvas(e.touches[0].clientX, e.touches[0].clientY);
         if (!pt) return;

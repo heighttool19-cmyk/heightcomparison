@@ -30,7 +30,6 @@ interface CDCData {
     [key: string]: number;
 }
 
-// CDC-approximate height-for-age data (males), p5/p25/p50/p75/p95
 const CDC_BOYS: CDCData[] = [
     { age: 2, p5: 82.5, p25: 85.5, p50: 87.7, p75: 90.0, p95: 93.6 },
     { age: 3, p5: 89.0, p25: 92.5, p50: 95.2, p75: 97.8, p95: 102.0 },
@@ -71,7 +70,6 @@ function PercentileBar({ percentile }: { percentile: number }) {
                 Percentile Scale — Where {percentile} sits
             </p>
 
-            {/* Zone labels above bar */}
             <div style={{ display: "flex", marginBottom: 6 }}>
                 {ZONES.map((z, i) => {
                     const width = z.hi - z.lo;
@@ -83,22 +81,17 @@ function PercentileBar({ percentile }: { percentile: number }) {
                             onMouseLeave={() => setHoveredZone(null)}
                         >
                             <span style={{
-                                /* 1. Fluid font size shrinks slightly on tiny screens */
                                 fontSize: "clamp(7.5px, 2.2vw, 9.5px)",
                                 fontWeight: isActive ? 800 : 500,
                                 color: isActive || isHov ? z.color : (isDark ? "#475569" : "#94a3b8"),
                                 transition: "color 0.2s",
                                 display: "block",
-                                /* 2. Tighter line height to make stacked wrapped text look neat */
                                 lineHeight: 1.1,
-                                /* 3. Allow normal wrapping instead of forcing a single line */
                                 whiteSpace: "normal",
                                 wordBreak: "break-word"
                             }}
-                                /* 4. REMOVED the 'truncate' class so content is never hidden! */
                                 className="px-0.5"
                             >
-                                {/* 5. The '\u200B' gives mobile browsers permission to drop the 2nd half to a new line cleanly! */}
                                 {z.label.replace('–', '–\u200B')}
                             </span>
                         </div>
@@ -106,7 +99,6 @@ function PercentileBar({ percentile }: { percentile: number }) {
                 })}
             </div>
 
-            {/* Bar track */}
             <div style={{ position: "relative", height: 36 }}>
                 <div style={{
                     display: "flex", height: 18, borderRadius: 99, overflow: "hidden",
@@ -129,14 +121,12 @@ function PercentileBar({ percentile }: { percentile: number }) {
                     })}
                 </div>
 
-                {/* Marker pin */}
                 <div style={{
                     position: "absolute",
                     left: `${percentile}%`,
                     top: 0,
                     transform: "translateX(-50%)"
                 }}>
-                    {/* Diamond marker */}
                     <div style={{
                         width: 18, height: 18,
                         background: zone.color,
@@ -148,7 +138,6 @@ function PercentileBar({ percentile }: { percentile: number }) {
                     }} />
                 </div>
 
-                {/* Tick marks at 10, 25, 50, 75, 90 */}
                 {[10, 25, 50, 75, 90].map(t => (
                     <div key={t} style={{
                         position: "absolute", left: `${t}%`, top: 0,
@@ -159,7 +148,6 @@ function PercentileBar({ percentile }: { percentile: number }) {
                 ))}
             </div>
 
-            {/* Tick labels below */}
             <div style={{ position: "relative", height: 20, marginTop: 4 }}>
                 {[0, 10, 25, 50, 75, 90, 100].map(t => (
                     <div key={t} style={{
@@ -172,7 +160,6 @@ function PercentileBar({ percentile }: { percentile: number }) {
                 ))}
             </div>
 
-            {/* Result callout */}
             <div style={{
                 marginTop: 14, padding: "12px 16px", borderRadius: 10,
                 background: isDark ? `${zone.color}15` : zone.bg, border: `1.5px solid ${zone.color}40`,
@@ -190,7 +177,6 @@ function PercentileBar({ percentile }: { percentile: number }) {
                         <span style={{ color: "white", fontSize: 17, fontWeight: 900, lineHeight: 1 }}>
                             {percentile}
                         </span>
-                        {/* Optional: Added marginLeft: 1 or 2 if you need a tiny gap between the number and "th" */}
                         <span style={{ color: "rgba(255,255,255,0.8)", fontSize: 9 }}>
                             th
                         </span>
@@ -210,7 +196,7 @@ function PercentileBar({ percentile }: { percentile: number }) {
     );
 }
 
-// ── CDC Growth Chart ──────────────────────────────────────────────────────
+// ── CDC Growth Chart (With Scrolling Wrapper) ─────────────────────────────
 function CDCChart({ sample }: { sample: { age: number, height: number, percentile: number } }) {
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
@@ -242,9 +228,7 @@ function CDCChart({ sample }: { sample: { age: number, height: number, percentil
     const sampleX = toX(sample.age);
     const sampleY = toY(sample.height);
 
-    // Age grid lines
     const ageGrids = [4, 6, 8, 10, 12, 14, 16, 18, 20];
-    // Height grid lines
     const hGrids = [80, 100, 120, 140, 160, 180, 200];
 
     return (
@@ -252,141 +236,61 @@ function CDCChart({ sample }: { sample: { age: number, height: number, percentil
             <p style={{ margin: "0 0 10px", fontSize: 11, color: isDark ? "#94a3b8" : "#64748b", textTransform: "uppercase", letterSpacing: "0.1em" }}>
                 CDC Growth Chart — Boys (ages 2–20)
             </p>
-            <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", display: "block" }}>
-                <defs>
-                    <filter id="dotglow">
-                        <feGaussianBlur stdDeviation="3.5" result="blur" />
-                        <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-                    </filter>
-                    <clipPath id="chartClip">
-                        <rect x={padL} y={padT} width={plotW} height={plotH} />
-                    </clipPath>
-                </defs>
 
-                {/* Grid */}
-                {ageGrids.map(age => (
-                    <line key={age}
-                        x1={toX(age)} y1={padT} x2={toX(age)} y2={padT + plotH}
-                        stroke={isDark ? "#334155" : "#f1f5f9"} strokeWidth="1"
-                    />
-                ))}
-                {hGrids.map(h => (
-                    <line key={h}
-                        x1={padL} y1={toY(h)} x2={padL + plotW} y2={toY(h)}
-                        stroke={isDark ? "#334155" : "#f1f5f9"} strokeWidth="1"
-                    />
-                ))}
+            <div className="w-full overflow-x-auto pb-2 scrollbar-thin">
+                <div style={{ minWidth: '500px' }}>
+                    <svg viewBox={`0 0 ${W} ${H}`} style={{ width: "100%", display: "block" }}>
+                        <defs>
+                            <filter id="dotglow">
+                                <feGaussianBlur stdDeviation="3.5" result="blur" />
+                                <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                            </filter>
+                            <clipPath id="chartClip">
+                                <rect x={padL} y={padT} width={plotW} height={plotH} />
+                            </clipPath>
+                        </defs>
 
-                {/* Percentile curves */}
-                <g clipPath="url(#chartClip)">
-                    {percentileLines.map(pl => (
-                        <path key={pl.key}
-                            d={makePath(pl.key)}
-                            fill="none"
-                            stroke={pl.color}
-                            strokeWidth={pl.key === "p50" ? 2.2 : 1.5}
-                            strokeDasharray={pl.dash === "none" ? undefined : pl.dash}
-                            opacity={0.85}
-                        />
-                    ))}
+                        {ageGrids.map(age => (
+                            <line key={age} x1={toX(age)} y1={padT} x2={toX(age)} y2={padT + plotH} stroke={isDark ? "#334155" : "#f1f5f9"} strokeWidth="1" />
+                        ))}
+                        {hGrids.map(h => (
+                            <line key={h} x1={padL} y1={toY(h)} x2={padL + plotW} y2={toY(h)} stroke={isDark ? "#334155" : "#f1f5f9"} strokeWidth="1" />
+                        ))}
 
-                    {/* Shaded band between p25 and p75 */}
-                    <path
-                        d={makePath("p75") + " " + CDC_BOYS.slice().reverse().map((d, i) =>
-                            `${i === 0 ? "L" : "L"}${toX(d.age).toFixed(1)},${toY(d.p25).toFixed(1)}`
-                        ).join(" ") + " Z"}
-                        fill="#86efac" opacity={isDark ? "0.08" : "0.12"}
-                    />
+                        <g clipPath="url(#chartClip)">
+                            {percentileLines.map(pl => (
+                                <path key={pl.key} d={makePath(pl.key)} fill="none" stroke={pl.color} strokeWidth={pl.key === "p50" ? 2.2 : 1.5} strokeDasharray={pl.dash === "none" ? undefined : pl.dash} opacity={0.85} />
+                            ))}
+                            <path d={makePath("p75") + " " + CDC_BOYS.slice().reverse().map((d, i) => `L${toX(d.age).toFixed(1)},${toY(d.p25).toFixed(1)}`).join(" ") + " Z"} fill="#86efac" opacity={isDark ? "0.08" : "0.12"} />
 
-                    {/* Vertical highlight at age 10 */}
-                    <line
-                        x1={sampleX} y1={padT} x2={sampleX} y2={padT + plotH}
-                        stroke="#7c3aed" strokeWidth="1.2" strokeDasharray="3,3" opacity="0.5"
-                    />
+                            <line x1={sampleX} y1={padT} x2={sampleX} y2={padT + plotH} stroke="#7c3aed" strokeWidth="1.2" strokeDasharray="3,3" opacity="0.5" />
+                            <line x1={padL} y1={sampleY} x2={padL + plotW} y2={sampleY} stroke="#7c3aed" strokeWidth="1.2" strokeDasharray="3,3" opacity="0.5" />
 
-                    {/* Horizontal line at 138 cm */}
-                    <line
-                        x1={padL} y1={sampleY} x2={padL + plotW} y2={sampleY}
-                        stroke="#7c3aed" strokeWidth="1.2" strokeDasharray="3,3" opacity="0.5"
-                    />
+                            <circle cx={sampleX} cy={sampleY} r="8" fill="#7c3aed" stroke={isDark ? "#1e293b" : "white"} strokeWidth="2.5" filter="url(#dotglow)" />
+                            <text x={sampleX} y={sampleY + 4} textAnchor="middle" fontSize="8" fontWeight="900" fill="white" fontFamily="Georgia, serif">55</text>
+                        </g>
 
-                    {/* Sample dot */}
-                    <circle
-                        cx={sampleX} cy={sampleY} r="8"
-                        fill="#7c3aed" stroke={isDark ? "#1e293b" : "white"} strokeWidth="2.5"
-                        filter="url(#dotglow)"
-                    />
-                    <text
-                        x={sampleX} y={sampleY + 4}
-                        textAnchor="middle" fontSize="8" fontWeight="900"
-                        fill="white" fontFamily="Georgia, serif"
-                    >
-                        55
-                    </text>
-                </g>
+                        <rect x={sampleX + 10} y={sampleY - 32} width={108} height={34} rx={5} fill="#7c3aed" opacity="0.95" />
+                        <polygon points={`${sampleX + 10},${sampleY - 15} ${sampleX + 3},${sampleY} ${sampleX + 10},${sampleY - 4}`} fill="#7c3aed" opacity="0.95" />
+                        <text x={sampleX + 64} y={sampleY - 19} textAnchor="middle" fontSize="9.5" fontWeight="800" fill="white" fontFamily="Georgia, serif">Age 10 · 138 cm</text>
+                        <text x={sampleX + 64} y={sampleY - 8} textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.85)" fontFamily="Georgia, serif">55th percentile</text>
 
-                {/* Sample callout */}
-                <rect x={sampleX + 10} y={sampleY - 32} width={108} height={34} rx={5}
-                    fill="#7c3aed" opacity="0.95"
-                />
-                <polygon
-                    points={`${sampleX + 10},${sampleY - 15} ${sampleX + 3},${sampleY} ${sampleX + 10},${sampleY - 4}`}
-                    fill="#7c3aed" opacity="0.95"
-                />
-                <text x={sampleX + 64} y={sampleY - 19} textAnchor="middle"
-                    fontSize="9.5" fontWeight="800" fill="white" fontFamily="Georgia, serif">
-                    Age 10 · 138 cm
-                </text>
-                <text x={sampleX + 64} y={sampleY - 8} textAnchor="middle"
-                    fontSize="9" fill="rgba(255,255,255,0.85)" fontFamily="Georgia, serif">
-                    55th percentile
-                </text>
+                        <line x1={padL} y1={padT} x2={padL} y2={padT + plotH} stroke={isDark ? "#475569" : "#cbd5e1"} strokeWidth="1.5" />
+                        <line x1={padL} y1={padT + plotH} x2={padL + plotW} y2={padT + plotH} stroke={isDark ? "#475569" : "#cbd5e1"} strokeWidth="1.5" />
 
-                {/* Axes */}
-                <line x1={padL} y1={padT} x2={padL} y2={padT + plotH} stroke={isDark ? "#475569" : "#cbd5e1"} strokeWidth="1.5" />
-                <line x1={padL} y1={padT + plotH} x2={padL + plotW} y2={padT + plotH} stroke={isDark ? "#475569" : "#cbd5e1"} strokeWidth="1.5" />
+                        {hGrids.map(h => (<text key={h} x={padL - 7} y={toY(h) + 4} textAnchor="end" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif">{h}</text>))}
+                        {ageGrids.map(age => (<text key={age} x={toX(age)} y={padT + plotH + 16} textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif">{age}</text>))}
 
-                {/* Y axis labels */}
-                {hGrids.map(h => (
-                    <text key={h} x={padL - 7} y={toY(h) + 4}
-                        textAnchor="end" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif">
-                        {h}
-                    </text>
-                ))}
+                        <text x={14} y={padT + plotH / 2} textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif" transform={`rotate(-90, 14, ${padT + plotH / 2})`}>Height (cm)</text>
+                        <text x={padL + plotW / 2} y={H - 4} textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif">Age (years)</text>
 
-                {/* X axis labels */}
-                {ageGrids.map(age => (
-                    <text key={age} x={toX(age)} y={padT + plotH + 16}
-                        textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif">
-                        {age}
-                    </text>
-                ))}
-
-                {/* Axis titles */}
-                <text x={14} y={padT + plotH / 2} textAnchor="middle"
-                    fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif"
-                    transform={`rotate(-90, 14, ${padT + plotH / 2})`}>
-                    Height (cm)
-                </text>
-                <text x={padL + plotW / 2} y={H - 4} textAnchor="middle"
-                    fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif">
-                    Age (years)
-                </text>
-
-                {/* Percentile line end labels */}
-                {percentileLines.map(pl => {
-                    const last = CDC_BOYS[CDC_BOYS.length - 1];
-                    return (
-                        <text key={pl.key}
-                            x={toX(last.age) + 4}
-                            y={toY(last[pl.key]) + 3.5}
-                            fontSize="8.5" fill={pl.color} fontFamily="Georgia, serif" fontWeight="700"
-                        >
-                            {pl.label}
-                        </text>
-                    );
-                })}
-            </svg>
+                        {percentileLines.map(pl => {
+                            const last = CDC_BOYS[CDC_BOYS.length - 1];
+                            return (<text key={pl.key} x={toX(last.age) + 4} y={toY(last[pl.key]) + 3.5} fontSize="8.5" fill={pl.color} fontFamily="Georgia, serif" fontWeight="700">{pl.label}</text>);
+                        })}
+                    </svg>
+                </div>
+            </div>
         </div>
     );
 }
@@ -399,45 +303,28 @@ export default function ExampleCalculationVisual() {
     return (
         <div className={`w-full max-w-[720px] mx-auto rounded-2xl overflow-hidden shadow-2xl transition-colors duration-500 ${isDark ? 'bg-bg border border-border' : 'bg-white border border-[#e2e8f0]'}`} style={{ fontFamily: "Georgia, serif" }}>
 
-            {/* Header */}
             <div className={`px-6 py-4 flex items-center gap-3.5 ${isDark ? 'bg-surface border-b border-border' : 'bg-[#0f172a]'}`}>
-                <div style={{
-                    background: "#7c3aed", borderRadius: 8,
-                    width: 36, height: 36, display: "flex",
-                    alignItems: "center", justifyContent: "center",
-                    fontSize: 18, flexShrink: 0
-                }}>📍</div>
+                <div style={{ background: "#7c3aed", borderRadius: 8, width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>📍</div>
                 <div>
-                    <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                        Visual Result · Example Calculation
-                    </p>
-                    <p style={{ margin: "2px 0 0", fontSize: 15, fontWeight: 800, color: isDark ? "var(--foreground)" : "white" }}>
-                        Age 10, Male, 138 cm → 55th Percentile
-                    </p>
+                    <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em" }}>Visual Result · Example Calculation</p>
+                    <p style={{ margin: "2px 0 0", fontSize: 15, fontWeight: 800, color: isDark ? "var(--foreground)" : "white" }}>Age 10, Male, 138 cm → 55th Percentile</p>
                 </div>
             </div>
 
-            {/* Two panels */}
             <div className="p-4 sm:p-6">
-                {/* Panel 1: Percentile bar */}
                 <div className={`rounded-xl p-4 sm:p-5 mb-5 transition-colors ${isDark ? 'bg-surface border border-border' : 'bg-[#f8fafc] border border-[#e2e8f0]'}`}>
                     <PercentileBar percentile={55} />
                 </div>
 
-                {/* Divider */}
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
                     <div style={{ flex: 1, height: 1, background: isDark ? "var(--border)" : "#e2e8f0" }} />
-                    <span style={{ fontSize: 11, color: isDark ? "#64748b" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", textAlign: "center" }}>
-                        Position on CDC growth chart
-                    </span>
+                    <span style={{ fontSize: 11, color: isDark ? "#64748b" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", textAlign: "center" }}>Position on CDC growth chart</span>
                     <div style={{ flex: 1, height: 1, background: isDark ? "var(--border)" : "#e2e8f0" }} />
                 </div>
 
-                {/* Panel 2: CDC Growth Chart */}
                 <div className={`rounded-xl p-4 sm:p-5 transition-colors ${isDark ? 'bg-surface border border-border' : 'bg-[#f8fafc] border border-[#e2e8f0]'}`}>
                     <CDCChart sample={SAMPLE} />
 
-                    {/* Legend */}
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 14 }}>
                         {[
                             { color: "#fca5a5", label: "5th" },
@@ -461,7 +348,6 @@ export default function ExampleCalculationVisual() {
                 </div>
             </div>
 
-            {/* Footer */}
             <div className={`px-6 py-4 transition-colors ${isDark ? 'border-t border-border bg-bg' : 'border-t border-[#f1f5f9] bg-white'}`}>
                 <p style={{ margin: 0, fontSize: 11, color: isDark ? "#64748b" : "#94a3b8", lineHeight: 1.6 }}>
                     Based on CDC clinical growth charts (2000). The shaded green band represents the average range

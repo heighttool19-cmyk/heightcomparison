@@ -66,7 +66,7 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
                     <p className="text-sm text-muted">{description}</p>
                 </div>
 
-                <div className="px-6 md:px-10 py-6 flex flex-col gap-3">
+                <div className="px-2 md:px-10 py-6 flex flex-col gap-3">
                     {items.map((item, idx) => {
                         const isOpen = openFaqIndex === idx;
                         return (

@@ -23,7 +23,7 @@ export default function HeightDifferenceChart() {
                 <thead>
                     <tr className="bg-surface border-b-2 border-border">
                         {["Person A", "Person B", "Difference", "% Difference"].map((h) => (
-                            <th key={h} className="p-3 text-left text-[10.5px] font-black text-muted uppercase tracking-[0.07em]">
+                            <th key={h} className="p-2 text-left text-[10px] font-black text-muted uppercase whitespace-nowrap">
                                 {h}
                             </th>
                         ))}

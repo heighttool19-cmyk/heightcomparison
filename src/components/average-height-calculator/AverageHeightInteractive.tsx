@@ -5,25 +5,9 @@ import { Search, ArrowUpDown } from 'lucide-react';
 import ReactCountryFlag from "react-country-flag";
 import { useUnitStore } from '@/store';
 import { BLUE, TEAL, AMBER, RED } from '@/constants/colors';
-import { TOP10, BOT10, MVF, BELL_CONFIG, heightData } from '@/constants/averageHeight';
+import { TOP10, BOT10, MVF, BELL_CONFIG, heightData, REGIONS } from '@/constants/averageHeight';
 
 // --- Sub-components (extracted from page.tsx) ---
-
-function Tabs({ options, active, onChange }: { options: string[], active: string, onChange: (val: string) => void }) {
-    return (
-        <div className="flex bg-bg/50 p-1 rounded-xl mb-6 w-fit border border-border/50">
-            {options.map(opt => (
-                <button
-                    key={opt}
-                    onClick={() => onChange(opt)}
-                    className={`px-4 py-1.5 rounded-lg text-xs font-black transition-all duration-300 ${active === opt ? 'bg-accent text-white shadow-md scale-[1.02]' : 'text-muted hover:text-foreground'}`}
-                >
-                    {opt}
-                </button>
-            ))}
-        </div>
-    );
-}
 
 function Bars({ items, color, label }: { items: { n: string, code: string | string[], v: number }[], color: string, label: string }) {
     const vals = items.map(d => d.v);
@@ -35,24 +19,26 @@ function Bars({ items, color, label }: { items: { n: string, code: string | stri
                 {items.map(d => {
                     const pct = range > 0 ? ((d.v - min) / range) * 65 + 22 : 55;
                     return (
-                        <div key={d.n} className="flex items-center gap-2.5">
-                            <div className="w-[140px] text-[11px] text-foreground text-left shrink-0 flex items-center justify-start gap-2">
+                        <div key={d.n} className="flex items-center gap-2">
+                            {/* CHANGED HERE: justify-start, text-left, and a fixed width for flags to perfectly align the text */}
+                            <div className="w-22 text-[11px] text-foreground text-left shrink-0 flex items-center justify-start gap-2">
                                 {Array.isArray(d.code) ? (
-                                    <div className="flex -space-x-1">
-                                        {d.code.map(c => <ReactCountryFlag key={c} countryCode={c} svg className="w-3.5 h-3.5 rounded-sm" />)}
+                                    <div className="flex gap-0.5 shrink-0 w-8">
+                                        {d.code.map(c => <ReactCountryFlag key={c} countryCode={c} svg style={{ width: '1.2em', height: '1.2em' }} title={c} />)}
                                     </div>
-                                ) : <ReactCountryFlag countryCode={d.code} svg className="w-3.5 h-3.5 rounded-sm" />}
-                                <span className="truncate">{d.n}</span>
+                                ) : d.code ? (
+                                    <div className="shrink-0 w-6 flex justify-start">
+                                        <ReactCountryFlag countryCode={d.code} svg style={{ width: '1.2em', height: '1.2em' }} title={d.n} />
+                                    </div>
+                                ) : null}
+                                <span >{d.n}</span>
                             </div>
-                            <div className="flex-1 h-5 bg-bg/50 rounded-full overflow-hidden border border-border/20 relative">
-                                <div
-                                    style={{ width: `${pct}%`, backgroundColor: color }}
-                                    className="h-full transition-all duration-1000 ease-out shadow-[0_0_12px_-2px_rgba(0,0,0,0.1)]"
-                                />
-                                <span className="absolute inset-y-0 right-2 flex items-center text-[10px] font-black text-foreground/80">{d.v} cm</span>
+                            <div className="flex-1 bg-border rounded-full h-2.5 overflow-hidden">
+                                <div style={{ height: "100%", width: `${pct}%`, background: color, borderRadius: 99 }} />
                             </div>
+                            <div className="w-[55px] text-[11px] text-foreground">{d.v} cm</div>
                         </div>
-                    )
+                    );
                 })}
             </div>
         </div>
@@ -60,109 +46,120 @@ function Bars({ items, color, label }: { items: { n: string, code: string | stri
 }
 
 function GroupedChart({ data, title }: { data: { n: string, code: string, m: number, w: number }[], title: string }) {
+    const W = 540, H = 240, pL = 26, pR = 14, pT = 14, pB = 48, plotW = W - pL - pR, plotH = H - pT - pB;
+    const minV = 145, maxV = 188, toY = (v: number) => pT + plotH - ((v - minV) / (maxV - minV)) * plotH;
+    const gW = plotW / data.length, bW = gW * 0.30, gap = gW * 0.04;
+    const yTicks = [150, 155, 160, 165, 170, 175, 180, 185];
     return (
-        <div className="w-full min-w-[400px]">
-            <p className="mb-4 text-[11px] text-muted uppercase tracking-[0.1em] font-bold">{title}</p>
-            <div className="flex flex-col gap-3">
-                {data.map(d => (
-                    <div key={d.n} className="space-y-1">
-                        <div className="flex items-center gap-2 text-[10px] font-bold text-muted uppercase tracking-wider">
-                            <ReactCountryFlag countryCode={d.code} svg className="w-3.5 h-3.5" /> {d.n}
-                        </div>
-                        <div className="flex flex-col gap-1">
-                            <div className="flex items-center gap-2">
-                                <div style={{ width: `${(d.m / 190) * 100}%`, backgroundColor: BLUE }} className="h-3 rounded-r-full shadow-sm" />
-                                <span className="text-[10px] font-black text-foreground">{d.m}</span>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <div style={{ width: `${(d.w / 190) * 100}%`, backgroundColor: TEAL }} className="h-3 rounded-r-full shadow-sm" />
-                                <span className="text-[10px] font-black text-foreground">{d.w}</span>
-                            </div>
-                        </div>
-                    </div>
+        <div className="w-full min-w-[500px] mb-2">
+            {title && <p className="mb-2 text-[11px] text-muted uppercase tracking-[0.1em] font-bold">{title}</p>}
+            <svg viewBox={`0 0 ${W} ${H}`} className="w-full block">
+                {yTicks.map(t => (
+                    <g key={t}>
+                        <line x1={pL} y1={toY(t)} x2={pL + plotW} y2={toY(t)} stroke="var(--border)" strokeWidth="1" />
+                        <text x={pL - 3} y={toY(t) + 4} textAnchor="end" fontSize="8" fill="var(--muted)">{t}</text>
+                    </g>
                 ))}
-            </div>
+                {data.map((c, i) => {
+                    const cx = pL + i * gW + gW / 2;
+                    return (
+                        <g key={c.n}>
+                            <rect x={cx - bW - gap / 2} y={toY(c.m)} width={bW} height={toY(minV) - toY(c.m)} fill={BLUE} rx="3" opacity="0.88" />
+                            <rect x={cx + gap / 2} y={toY(c.w)} width={bW} height={toY(minV) - toY(c.w)} fill={TEAL} rx="3" opacity="0.88" />
+                            <text x={cx - bW / 2 - gap / 2} y={toY(c.m) - 3} textAnchor="middle" fontSize="7" fill={BLUE}>{c.m}</text>
+                            <text x={cx + bW / 2 + gap / 2} y={toY(c.w) - 3} textAnchor="middle" fontSize="7" fill={TEAL}>{c.w}</text>
+                            <text x={cx} y={pT + plotH + 12} textAnchor="middle" fontSize="8.5" fill="var(--foreground)">{c.code}</text>
+                            <text x={cx} y={pT + plotH + 23} textAnchor="middle" fontSize="7.5" fill="var(--foreground)">{c.n}</text>
+                        </g>
+                    );
+                })}
+                <line x1={pL} y1={pT} x2={pL} y2={pT + plotH} stroke="var(--border)" strokeWidth="1.2" />
+                <line x1={pL} y1={pT + plotH} x2={pL + plotW} y2={pT + plotH} stroke="var(--border)" strokeWidth="1.2" />
+                <rect x={pL + plotW - 78} y={pT + 2} width={9} height={9} fill={BLUE} rx="2" />
+                <text x={pL + plotW - 66} y={pT + 10} fontSize="9" fill="var(--foreground)">Male</text>
+                <rect x={pL + plotW - 34} y={pT + 2} width={9} height={9} fill={TEAL} rx="2" />
+                <text x={pL + plotW - 22} y={pT + 10} fontSize="9" fill="var(--foreground)">Female</text>
+            </svg>
         </div>
+    );
+}
+
+function BellCurve({ mean, sd, color, bandColor, label, pctLabel }: any) {
+    const W = 520, H = 175, pL = 40, pR = 18, pT = 18, pB = 40;
+    const minX = mean - 3.5 * sd, maxX = mean + 3.5 * sd;
+    const gauss = (x: number) => Math.exp(-0.5 * ((x - mean) / sd) ** 2) / (sd * Math.sqrt(2 * Math.PI));
+    const peak = gauss(mean);
+    const plotW = W - pL - pR, plotH = H - pT - pB;
+    const toX = (v: number) => pL + ((v - minX) / (maxX - minX)) * plotW;
+    const toY = (p: number) => pT + plotH - (p / peak) * plotH * 0.84;
+    const pts = [];
+    for (let x = minX; x <= maxX; x += 0.5) pts.push({ x, y: gauss(x) });
+    const line = pts.map((p, i) => `${i === 0 ? "M" : "L"}${toX(p.x).toFixed(1)},${toY(p.y).toFixed(1)}`).join(" ");
+    const band = (lo: number, hi: number, col: string, op: number) => {
+        const b = []; for (let x = lo; x <= hi; x += 0.5) b.push([toX(x).toFixed(1), toY(gauss(x)).toFixed(1)]);
+        if (!b.length) return null;
+        const d = b.map(([x, y], i) => `${i === 0 ? "M" : "L"}${x},${y}`).join(" ") + ` L${toX(hi)},${toY(0)} L${toX(lo)},${toY(0)} Z`;
+        return <path d={d} fill={col} opacity={op} />;
+    };
+    const ticks = [mean - 3 * sd, mean - 2 * sd, mean - sd, mean, mean + sd, mean + 2 * sd, mean + 3 * sd];
+    return (
+        <svg viewBox={`0 0 ${W} ${H}`} className="w-full min-w-[500px] block">
+            {band(mean - sd, mean + sd, color, 0.13)}
+            {band(mean - 2 * sd, mean - sd, bandColor, 0.1)}
+            {band(mean + sd, mean + 2 * sd, bandColor, 0.1)}
+            <path d={line} fill="none" stroke={color} strokeWidth="2.2" />
+            <line x1={toX(mean)} y1={pT} x2={toX(mean)} y2={pT + plotH} stroke={color} strokeWidth="1.2" strokeDasharray="4,3" opacity="0.5" />
+            <text x={toX(mean)} y={pT - 4} textAnchor="middle" fontSize="9.5" fill={color} fontWeight="700">Global avg ≈ {mean} cm</text>
+            {ticks.map(t => <text key={t} x={toX(t)} y={pT + plotH + 13} textAnchor="middle" fontSize="8.5" fill="var(--muted)">{Math.round(t)}</text>)}
+            <line x1={pL} y1={pT + plotH} x2={pL + plotW} y2={pT + plotH} stroke="var(--border)" strokeWidth="1.2" />
+            <text x={pL + plotW / 2} y={H - 2} textAnchor="middle" fontSize="9" fill="var(--muted)">Height (cm) — {label}</text>
+            <text x={toX(mean)} y={toY(gauss(mean)) + 28} textAnchor="middle" fontSize="9.5" fill={color} fontWeight="700">{pctLabel}</text>
+            <text x={toX(mean - sd) - 2} y={pT + plotH + 26} textAnchor="middle" fontSize="8" fill="var(--muted)">−1σ</text>
+            <text x={toX(mean + sd) + 2} y={pT + plotH + 26} textAnchor="middle" fontSize="8" fill="var(--muted)">+1σ</text>
+        </svg>
     );
 }
 
 function RegionMap() {
     return (
-        <div className="relative w-full aspect-[2/1] bg-bg/30 rounded-3xl border border-border/50 overflow-hidden group">
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
-                <div className="w-full h-full border-[0.5px] border-foreground/20 [mask-image:radial-gradient(white,transparent)]" />
+        <div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-4">
+                {REGIONS.map(r => (
+                    <div key={r.name} style={{ background: `${r.color}18`, borderColor: `${r.color}40` }} className="rounded-xl p-3 border-[1.5px]">
+                        <div className="flex items-center gap-1.5 mb-1">
+                            <div style={{ background: r.color }} className="w-2.5 h-2.5 rounded-full shrink-0" />
+                            <span className="text-[10px] font-bold text-foreground uppercase tracking-wider">{r.name}</span>
+                        </div>
+                        <div style={{ color: r.color }} className="text-base font-black">{r.avg} cm</div>
+                        <div className="text-[10px] text-muted mt-0.5">{r.ex}</div>
+                    </div>
+                ))}
             </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-xs font-black text-muted tracking-widest uppercase opacity-20">Global Height Regional Map</span>
+            <p className="mb-1 text-[10px] text-muted uppercase tracking-[0.1em] font-bold">Colour scale — average male height by region</p>
+            <div className="flex h-3 rounded-md overflow-hidden">
+                {["#1A56DB", "#2563EB", "#3B82F6", "#60A5FA", "#7DD3FC", "#86EFAC", "#FCD34D", "#FB923C", "#EF4444"].map(c => <div key={c} className="flex-1" style={{ background: c }} />)}
             </div>
-            {/* Visual pointers for regions */}
-            <div className="absolute top-[20%] left-[45%] w-3 h-3 bg-accent rounded-full animate-pulse shadow-[0_0_10px_rgba(26,86,219,0.5)]" />
-            <div className="absolute top-[35%] left-[15%] w-2 h-2 bg-accent/60 rounded-full" />
-            <div className="absolute top-[60%] left-[25%] w-2 h-2 bg-accent/60 rounded-full" />
-            <div className="absolute top-[50%] left-[75%] w-3 h-3 bg-accent/80 rounded-full" />
-            <div className="absolute bottom-4 right-4 bg-surface/80 backdrop-blur-sm border border-border px-3 py-2 rounded-xl text-[10px] font-bold text-muted">
-                Denser teal/blue areas represent taller average populations.
+            <div className="flex justify-between mt-1">
+                <span className="text-[9.5px] text-muted">180+ cm (tallest)</span>
+                <span className="text-[9.5px] text-muted">≤162 cm (shortest)</span>
             </div>
         </div>
     );
 }
 
-function BellCurve({ mean, sd, color, bandColor, label, pctLabel }: { mean: number, sd: number, color: string, bandColor: string, label: string, pctLabel: string }) {
-    const points = useMemo(() => {
-        const p = [];
-        for (let x = mean - 4 * sd; x <= mean + 4 * sd; x += 0.5) {
-            const y = (1 / (sd * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((x - mean) / sd, 2));
-            p.push({ x, y });
-        }
-        return p;
-    }, [mean, sd]);
-
-    const max_y = 1 / (sd * Math.sqrt(2 * Math.PI));
-    const h = 180, w = 600;
-    const scaleX = (val: number) => ((val - (mean - 4 * sd)) / (8 * sd)) * w;
-    const scaleY = (val: number) => h - (val / max_y) * (h - 20);
-
-    const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${scaleX(p.x)} ${scaleY(p.y)}`).join(' ');
-
+function Tabs({ options, active, onChange }: { options: string[], active: string, onChange: (val: string) => void }) {
     return (
-        <div className="w-full">
-            <div className="flex justify-between items-end mb-4">
-                <div>
-                    <h4 className="text-sm font-black text-foreground uppercase tracking-tight">Height Distribution: {label}</h4>
-                    <p className="text-[10px] text-muted font-bold uppercase tracking-widest mt-1">{pctLabel}</p>
-                </div>
-                <div className="text-right">
-                    <span className="text-xs text-muted block uppercase font-bold tracking-tighter">Mean Height</span>
-                    <span className="text-2xl font-black text-accent">{mean} cm</span>
-                </div>
-            </div>
-            <div className="relative bg-bg/50 rounded-2xl border border-border/50 p-4 overflow-hidden">
-                <svg viewBox={`0 0 ${w} ${h}`} className="w-full h-auto overflow-visible">
-                    {/* SD Shading */}
-                    <path
-                        fill={bandColor} fillOpacity="0.15"
-                        d={`${points.filter(p => p.x >= mean - sd && p.x <= mean + sd).map((p, i) => `${i === 0 ? 'M' : 'L'} ${scaleX(p.x)} ${scaleY(p.y)}`).join(' ')} L ${scaleX(mean + sd)} ${h} L ${scaleX(mean - sd)} ${h} Z`}
-                    />
-                    <path
-                        fill={bandColor} fillOpacity="0.08"
-                        d={`${points.filter(p => p.x >= mean - 2 * sd && p.x <= mean + 2 * sd).map((p, i) => `${i === 0 ? 'M' : 'L'} ${scaleX(p.x)} ${scaleY(p.y)}`).join(' ')} L ${scaleX(mean + 2 * sd)} ${h} L ${scaleX(mean - 2 * sd)} ${h} Z`}
-                    />
-
-                    {/* Main Curve */}
-                    <path d={pathD} fill="none" stroke={color} strokeWidth="3" strokeLinecap="round" className="drop-shadow-sm" />
-
-                    {/* Mean line */}
-                    <line x1={scaleX(mean)} y1={scaleY(max_y)} x2={scaleX(mean)} y2={h} stroke={color} strokeWidth="1" strokeDasharray="4 4" opacity="0.5" />
-
-                    {/* Labels */}
-                    <text x={scaleX(mean)} y={h + 15} textAnchor="middle" fontSize="10" fontWeight="900" fill="currentColor" className="text-muted">{mean}</text>
-                    <text x={scaleX(mean - 2 * sd)} y={h + 15} textAnchor="middle" fontSize="10" fontWeight="900" fill="currentColor" className="text-muted/40">{mean - 2 * sd}</text>
-                    <text x={scaleX(mean + 2 * sd)} y={h + 15} textAnchor="middle" fontSize="10" fontWeight="900" fill="currentColor" className="text-muted/40">{mean + 2 * sd}</text>
-                </svg>
-            </div>
+        <div className="flex gap-2 mb-4 flex-wrap">
+            {options.map(o => (
+                <button key={o} onClick={() => onChange(o)}
+                    className={`px-4 py-1.5 rounded-full text-xs font-black transition-all border-2 ${active === o ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>
+                    {o}
+                </button>
+            ))}
         </div>
     );
 }
+
 
 // --- Main Interactive Component ---
 
@@ -324,6 +321,7 @@ export default function AverageHeightInteractive() {
                 <RegionMap />
             </section>
 
+            {/* Bell Curve distribution */}
             {/* Bell Curve distribution */}
             <section id="human-height-distribution" className="space-y-4 scroll-mt-24">
                 <h2 className="text-2xl md:text-3xl font-black tracking-tight">Human Height Distribution</h2>

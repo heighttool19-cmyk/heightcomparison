@@ -1,9 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useUnitStore } from '@/store';
-import { CheckCircle2 } from 'lucide-react';
-
-// interface Props { } // Removed empty interface
+import { CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function IdealWeightInteractive() {
     const { unitSystem, setUnitSystem } = useUnitStore();
@@ -15,8 +13,24 @@ export default function IdealWeightInteractive() {
     const [weightKg, setWeightKg] = useState<number | ''>('');
     const [sex, setSex] = useState<'male' | 'female'>('male');
 
+    // Validation Check
+    const isInvalidInput = () => {
+        if (unitSystem === 'metric') {
+            if (heightCm !== '' && (heightCm < 50 || heightCm > 300)) return true;
+        } else {
+            if (heightFt !== '' && (heightFt < 1 || heightFt > 9)) return true;
+            if (heightIn !== '' && (heightIn < 0 || heightIn > 11)) return true;
+        }
+        if (weightKg !== '' && (weightKg < 10 || weightKg > 500)) return true;
+        return false;
+    };
+
+    const hasInvalidInput = isInvalidInput();
+
     // Calculate IBW
     const getIBW = () => {
+        if (hasInvalidInput) return null;
+
         let totalInches = 0;
         if (unitSystem === 'metric') {
             if (!heightCm) return null;
@@ -129,8 +143,7 @@ export default function IdealWeightInteractive() {
                                     value={heightIn}
                                     onChange={(e) => setHeightIn(e.target.value === '' ? '' : Number(e.target.value))}
                                     placeholder="e.g. 5 "
-                                    className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors"
-                                />
+                                    className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors tracking-normal" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">in</span>
                             </div>
                         </div>
@@ -162,15 +175,24 @@ export default function IdealWeightInteractive() {
                             value={weightKg}
                             onChange={(e) => setWeightKg(e.target.value === '' ? '' : Number(e.target.value))}
                             placeholder="e.g. 80"
-                            className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors"
-                        />
+                            className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors tracking-normal" />
                         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">kg</span>
                     </div>
                 </div>
             </div>
 
-            {results && (
-                <div className="bg-accent/5 border border-accent/20 rounded-2xl p-6 mb-6">
+            {hasInvalidInput && (
+                <div className="bg-red-500/10 border border-red-500/30 rounded-2xl p-6 mb-6 flex items-start gap-4">
+                    <AlertCircle className="text-red-500 shrink-0 mt-0.5" size={20} />
+                    <div>
+                        <h3 className="font-bold text-red-500 mb-1">Invalid Input</h3>
+                        <p className="text-sm text-red-500/90">Please enter a valid height and weight to calculate your results.</p>
+                    </div>
+                </div>
+            )}
+
+            {!hasInvalidInput && results && (
+                <div className="bg-accent/5 border border-accent/20 rounded-2xl p-3 mb-6">
                     <div className="grid sm:grid-cols-3 gap-6 mb-6 pb-6 border-b border-border/50 text-center sm:text-left">
                         <div>
                             <span className="block text-xs font-bold text-muted uppercase tracking-wider mb-1">Ideal body weight</span>
@@ -185,18 +207,17 @@ export default function IdealWeightInteractive() {
                             <span className="text-2xl font-black text-foreground">{results.difference ? results.difference : '—'}</span>
                         </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-4 text-center">
-                        <div className="bg-bg border border-border p-3 rounded-xl">
-                            <span className="block text-xs font-bold text-muted mb-1">Devine (1974)</span>
-                            <span className="font-bold text-foreground text-sm">{results.devine.toFixed(1)} kg</span>
+                    <div className="grid grid-cols-3 gap-1 text-center">
+                        <div className="bg-bg border border-border p-3 rounded-xl flex flex-wrap items-center justify-center gap-1.5">
+                            <span className="text-xs font-bold text-muted">Devine (1974)</span>
+                            <span className="font-bold text-foreground text-sm whitespace-nowrap">{results.devine.toFixed(1)} kg</span>                        </div>
+                        <div className="bg-bg border border-border p-3 rounded-xl flex flex-wrap items-center justify-center gap-1.5">
+                            <span className="text-xs font-bold text-muted">Robinson (1983)</span>
+                            <span className="font-bold text-foreground text-sm whitespace-nowrap">{results.robinson.toFixed(1)} kg</span>
                         </div>
-                        <div className="bg-bg border border-border p-3 rounded-xl">
-                            <span className="block text-xs font-bold text-muted mb-1">Robinson (1983)</span>
-                            <span className="font-bold text-foreground text-sm">{results.robinson.toFixed(1)} kg</span>
-                        </div>
-                        <div className="bg-bg border border-border p-3 rounded-xl">
-                            <span className="block text-xs font-bold text-muted mb-1">Hamwi (1964)</span>
-                            <span className="font-bold text-foreground text-sm">{results.hamwi.toFixed(1)} kg</span>
+                        <div className="bg-bg border border-border p-3 rounded-xl flex flex-wrap items-center justify-center gap-1.5">
+                            <span className="text-xs font-bold text-muted">Hamwi (1964)</span>
+                            <span className="font-bold text-foreground text-sm whitespace-nowrap">{results.hamwi.toFixed(1)} kg</span>
                         </div>
                     </div>
                 </div>
@@ -205,7 +226,7 @@ export default function IdealWeightInteractive() {
             <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-muted uppercase tracking-wider">
                 <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> Free</span>
                 <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> No account needed</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> Results in kg and lb</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> Results in kg </span>
                 <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> Based on Devine, Robinson, and Hamwi formulas</span>
             </div>
         </section>

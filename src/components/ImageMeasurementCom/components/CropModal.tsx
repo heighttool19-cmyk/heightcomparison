@@ -63,7 +63,9 @@ export const CropModal: React.FC<CropModalProps> = ({
                         className="fixed inset-0 z-[201] flex items-center justify-center p-3 sm:p-6 pointer-events-none">
                         <div className="pointer-events-auto w-full max-w-2xl bg-surface border border-border rounded-3xl shadow-2xl flex flex-col overflow-hidden"
                             style={{ maxHeight: 'calc(100dvh - 32px)' }} onClick={e => e.stopPropagation()}>
-                            <div className="flex items-center justify-between px-5 py-4 border-b border-border shrink-0">
+
+                            {/* Header */}
+                            <div className="flex items-center justify-between px-4 sm:px-5 py-4 border-b border-border shrink-0">
                                 <div className="flex items-center gap-3">
                                     <div className="w-9 h-9 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0"><Crop size={17} /></div>
                                     <div>
@@ -75,11 +77,21 @@ export const CropModal: React.FC<CropModalProps> = ({
                                     <X size={16} />
                                 </button>
                             </div>
+
+                            {/* Crop Area */}
                             <div className="flex-1 overflow-auto p-4 bg-bg/60 flex items-center justify-center min-h-0">
-                                <div ref={cropContainerRef} className="relative overflow-hidden rounded-xl select-none"
-                                    style={{ width: cropDisplay.w || '100%', height: cropDisplay.h || 300, maxWidth: '100%', cursor: cropDrag ? 'grabbing' : 'default', backgroundImage: 'repeating-conic-gradient(#8881 0% 25%, transparent 0% 50%)', backgroundSize: '16px 16px' }}
+                                <div ref={cropContainerRef} className="relative overflow-hidden rounded-xl select-none touch-none"
+                                    style={{ 
+                                        width: cropDisplay.w || '100%', 
+                                        height: cropDisplay.h || 300, 
+                                        maxWidth: '100%', 
+                                        cursor: cropDrag ? 'grabbing' : 'default', 
+                                        backgroundImage: 'repeating-conic-gradient(#8881 0% 25%, transparent 0% 50%)', 
+                                        backgroundSize: '16px 16px',
+                                        touchAction: 'none' 
+                                    }}
                                     onMouseMove={onCropDragMove} onMouseUp={onCropDragEnd} onMouseLeave={onCropDragEnd}
-                                    onTouchMove={onCropDragMove} onTouchEnd={onCropDragEnd}>
+                                    onTouchMove={onCropDragMove} onTouchEnd={onCropDragEnd} onTouchCancel={onCropDragEnd}>
                                     <NextImage src={pendingUrl} alt="Crop preview" onLoad={onCropImgLoad} draggable={false}
                                         width={cropDisplay.w || 600} height={cropDisplay.h || 300} unoptimized
                                         className="block pointer-events-none select-none"
@@ -114,17 +126,22 @@ export const CropModal: React.FC<CropModalProps> = ({
                                     )}
                                 </div>
                             </div>
-                            <div className="px-5 py-4 border-t border-border flex items-center justify-between gap-3 shrink-0 bg-surface">
-                                <button onClick={resetCrop} className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/30 transition-all text-xs font-bold whitespace-nowrap">
+
+                            {/* Footer Actions (Fixed for Mobile Wrapping) */}
+                            <div className="p-4 sm:px-5 border-t border-border flex flex-wrap-reverse sm:flex-nowrap items-center justify-center sm:justify-between gap-3 shrink-0 bg-surface">
+                                <button onClick={resetCrop} className="flex flex-1 sm:flex-none items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/30 transition-all text-xs font-bold whitespace-nowrap">
                                     <RotateCcw size={14} /> Reset
                                 </button>
-                                <div className="flex gap-2 sm:gap-3">
-                                    <button onClick={closeCropModal} className="px-4 py-2.5 rounded-xl border border-border bg-bg text-muted hover:text-foreground transition-all text-xs font-bold">Cancel</button>
-                                    <button onClick={applyCrop} className="flex items-center gap-2 px-5 sm:px-7 py-2.5 rounded-xl bg-accent text-white font-black uppercase tracking-widest text-xs shadow-lg shadow-accent/20 active:scale-95 whitespace-nowrap">
+                                <div className="flex flex-1 sm:flex-none w-full sm:w-auto gap-2 sm:gap-3">
+                                    <button onClick={closeCropModal} className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-border bg-bg text-muted hover:text-foreground transition-all text-xs font-bold whitespace-nowrap">
+                                        Cancel
+                                    </button>
+                                    <button onClick={applyCrop} className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 rounded-xl bg-accent text-white font-black uppercase tracking-widest text-xs shadow-lg shadow-accent/20 active:scale-95 whitespace-nowrap">
                                         <Check size={14} /> Apply Crop
                                     </button>
                                 </div>
                             </div>
+
                         </div>
                     </motion.div>
                 </>

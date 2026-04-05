@@ -7,7 +7,7 @@ import { IMAGE_TO_HEIGHT_FAQ } from '@/constants/imageToHeight';
 
 export default function ImageToHeightPage() {
     return (
-        <div className="flex-1 flex flex-col justify-center align-center items-center md:flex-row relative p-4 gap-4 bg-canvas overflow-x-clip w-full">
+        <div className="flex-1 flex flex-col justify-center align-center items-center md:flex-row relative p-2 md:p-4 gap-4 bg-canvas overflow-x-clip w-full">
 
             {/* Right Panel (Tool & Content) - Shown first on mobile */}
             <div className="md:w-[72%] w-full flex flex-col gap-4 pb-10 order-1 md:order-2">

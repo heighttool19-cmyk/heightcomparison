@@ -58,9 +58,9 @@ export const Canvas: React.FC<CanvasProps> = ({
                         onTouchStart={onCanvasTouchStart}
                         className={cn(
                             "block select-none max-w-full",
-                            // touch-none only when drawing or about to draw
-                            (mode !== 'idle' && isDrawing) ? "touch-none cursor-crosshair" : "touch-pan-y cursor-default"
+                            mode !== 'idle' ? "touch-none cursor-crosshair" : "cursor-default"
                         )}
+                        style={mode !== 'idle' ? { touchAction: 'none' } : undefined}
                     />
                 </div>
             )}

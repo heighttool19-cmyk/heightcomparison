@@ -11,7 +11,7 @@ import { DynamicHeightCharts, DynamicGrowthPlateExplainer } from '@/components/c
 
 export default function HeightCalculatorPage() {
     return (
-        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-4 md:p-8 relative">
+        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative">
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={CHILD_HEIGHT_TOC} />
             </aside>

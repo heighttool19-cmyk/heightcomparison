@@ -28,7 +28,7 @@ const Footer = () => {
                             </span>
                         </Link>
                         <p className="text-sm leading-relaxed text-muted max-w-[280px]">
-                            The most intuitive way to visualize and compare heights side by side. Add real people, celebrities, fictional characters, or any custom height — and see them together instantly.
+                            The most intuitive way to visualize and compare heights side by side. Add real people, celebrities, fictional characters, or any custom height and see them together instantly.
                         </p>
                         <div className="flex gap-2 flex-wrap">
                             <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-surface border border-border text-muted">Free to use</span>

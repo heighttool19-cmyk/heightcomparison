@@ -8,7 +8,7 @@ import { DynamicIdealWeightIsland, DynamicHealthyWeightIsland } from '@/componen
 
 export default function IdealBodyWeightPage() {
     return (
-        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-4 md:p-8 relative pt-8">
+        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative pt-8">
             {/* --- Sidebar TOC --- */}
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={IBW_TOC} />
@@ -245,38 +245,38 @@ export default function IdealBodyWeightPage() {
                         <p className="text-muted leading-relaxed">
                             To calculate percent ideal body weight, divide your actual weight by your IBW and multiply by 100. This shows how your current weight compares to the estimate as a percentage.
                         </p>
-                        <div className="bg-surface border border-border p-6 rounded-2xl my-6">
+                        <div className="bg-surface border border-border p-2 rounded-2xl my-6">
                             <p className="font-mono bg-bg border border-border p-4 rounded-xl text-accent font-bold text-center sm:text-left mb-6">
                                 Percent IBW = (Actual Weight ÷ IBW) × 100
                             </p>
                             <div className="overflow-x-auto border border-border rounded-xl">
                                 <table className="w-full text-sm text-left">
-                                    <thead className="bg-bg border-b border-border font-bold text-foreground">
+                                    <thead className="bg-bg border-b border-border font-bold text-foreground text-center">
                                         <tr>
-                                            <th className="px-4 py-3">Percent IBW</th>
-                                            <th className="px-4 py-3">Weight status</th>
+                                            <th className=" py-3">Percent IBW</th>
+                                            <th className=" py-3">Weight status</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-border/50 text-muted font-medium">
+                                    <tbody className="divide-y divide-border/50 text-muted font-medium text-center">
                                         <tr>
-                                            <td className="px-4 bg-red-500/10 py-3 text-red-600 dark:text-red-400 font-bold">Below 70%</td>
-                                            <td className="px-4 py-3 text-foreground font-bold">Severely underweight</td>
+                                            <td className="  bg-red-500/10 py-3 text-red-600 dark:text-red-400 font-bold">Below 70%</td>
+                                            <td className=" py-3 text-foreground font-bold">Severely underweight</td>
                                         </tr>
                                         <tr>
-                                            <td className="px-4 bg-amber-500/10 py-3 text-amber-600 dark:text-amber-400 font-bold">70 to 89%</td>
-                                            <td className="px-4 py-3 text-foreground font-bold">Underweight</td>
+                                            <td className=" bg-amber-500/10 py-3 text-amber-600 dark:text-amber-400 font-bold">70 to 89%</td>
+                                            <td className=" py-3 text-foreground font-bold">Underweight</td>
                                         </tr>
                                         <tr>
-                                            <td className="px-4 bg-green-500/10 py-3 text-green-600 dark:text-green-400 font-bold">90 to 110%</td>
-                                            <td className="px-4 py-3 text-foreground font-bold">Normal weight</td>
+                                            <td className=" bg-green-500/10 py-3 text-green-600 dark:text-green-400 font-bold">90 to 110%</td>
+                                            <td className=" py-3 text-foreground font-bold">Normal weight</td>
                                         </tr>
                                         <tr>
-                                            <td className="px-4 bg-amber-500/10 py-3 text-amber-600 dark:text-amber-400 font-bold">110 to 120%</td>
-                                            <td className="px-4 py-3 text-foreground font-bold">Overweight</td>
+                                            <td className=" bg-amber-500/10 py-3 text-amber-600 dark:text-amber-400 font-bold">110 to 120%</td>
+                                            <td className=" py-3 text-foreground font-bold">Overweight</td>
                                         </tr>
                                         <tr>
-                                            <td className="px-4 bg-red-500/10 py-3 text-red-600 dark:text-red-400 font-bold">Above 120%</td>
-                                            <td className="px-4 py-3 text-foreground font-bold">Obesity risk range</td>
+                                            <td className=" bg-red-500/10 py-3 text-red-600 dark:text-red-400 font-bold">Above 120%</td>
+                                            <td className=" py-3 text-foreground font-bold">Obesity risk range</td>
                                         </tr>
                                     </tbody>
                                 </table>

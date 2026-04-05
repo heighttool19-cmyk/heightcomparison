@@ -55,16 +55,19 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-accent font-black outline-none focus:border-accent transition-all pr-14 focus:ring-1 focus:ring-accent/20" />
                             <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-foreground/40">CM</span>
                         </div>
+
+                        {/* Action Buttons */}
                         <div className="flex gap-3 mt-1">
                             <button onClick={cancelCalib}
-                                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-border bg-bg text-muted hover:text-red-400 hover:border-red-400/30 transition-all text-xs font-bold">
+                                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-border bg-bg text-muted hover:text-red-400 hover:border-red-400/30 transition-all text-xs font-bold whitespace-nowrap">
                                 <X className="w-3.5 h-3.5" /> Cancel
                             </button>
                             <button onClick={confirmCalib}
-                                className="flex-1 bg-accent text-white font-black py-3 rounded-xl hover:bg-accent/90 transition-all uppercase tracking-widest text-xs shadow-lg shadow-accent/20 active:scale-95 flex items-center justify-center gap-2">
+                                className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-accent text-white hover:bg-accent/90 transition-all text-xs font-bold shadow-lg shadow-accent/20 active:scale-95 whitespace-nowrap">
                                 <Check className="w-3.5 h-3.5" /> Confirm
                             </button>
                         </div>
+
                     </motion.div>
                 </motion.div>
             )}

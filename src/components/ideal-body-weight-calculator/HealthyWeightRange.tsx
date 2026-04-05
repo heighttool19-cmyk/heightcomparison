@@ -48,9 +48,9 @@ const FORMULAS = [
 
 function kg2lbs(kg: number) { return Math.round(kg * 2.205); }
 
-function WeightTable({ data, sex }: { 
-    data: ({ cm: number, ft: string, devine: number, hamwi: number, robinson: number, miller: number, bmiLo: number, bmiHi: number } & Record<string, string | number>)[], 
-    sex: string 
+function WeightTable({ data, sex }: {
+    data: ({ cm: number, ft: string, devine: number, hamwi: number, robinson: number, miller: number, bmiLo: number, bmiHi: number } & Record<string, string | number>)[],
+    sex: string
 }) {
     const [unit, setUnit] = useState("kg");
     const [hovered, setHovered] = useState<number | null>(null);
@@ -63,7 +63,7 @@ function WeightTable({ data, sex }: {
     return (
         <div>
             {/* Unit toggle */}
-            <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
+            <div style={{ display: "flex", gap: 8, marginBottom: 14, padding: "10px" }}>
                 {["kg", "lbs"].map(u2 => {
                     const isActive = unit === u2;
                     return (
@@ -193,10 +193,10 @@ export default function HealthyWeightRange() {
                 </p>
                 {/* Mini visual range */}
                 <div style={{ marginTop: 10 }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
-                        <span style={{ fontSize: 10.5, color: isDark ? "var(--muted)" : "#64748b" }}>Underweight</span>
-                        <span style={{ fontSize: 10.5, fontWeight: 700, color: isDark ? "#22c55e" : "#16a34a" }}>Healthy BMI range</span>
-                        <span style={{ fontSize: 10.5, color: isDark ? "var(--muted)" : "#64748b" }}>Overweight</span>
+                    <div style={{ display: "flex", marginBottom: 4, paddingRight: "10px" }}>
+                        <span style={{ flex: 18.5, fontSize: 10.5, whiteSpace: "nowrap", color: isDark ? "var(--muted)" : "#64748b" }}>Underweight</span>
+                        <span style={{ flex: 6.5, fontSize: 10.5, fontWeight: 700, textAlign: "center", whiteSpace: "nowrap", color: isDark ? "#22c55e" : "#16a34a" }}>Healthy BMI range</span>
+                        <span style={{ flex: 5, fontSize: 10.5, textAlign: "right", whiteSpace: "nowrap", color: isDark ? "var(--muted)" : "#64748b" }}>Overweight</span>
                     </div>
                     <div style={{ height: 14, borderRadius: 99, display: "flex", overflow: "hidden" }}>
                         <div style={{ flex: 18.5, background: isDark ? "rgba(234, 179, 8, 0.5)" : "#fde68a" }} />
