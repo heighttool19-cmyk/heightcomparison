@@ -79,7 +79,8 @@ export const CropModal: React.FC<CropModalProps> = ({
                             </div>
 
                             {/* Crop Area */}
-                            <div className="flex-1 overflow-auto p-4 bg-bg/60 flex items-center justify-center min-h-0">
+                            <div className="flex-1 overflow-auto p-4 bg-bg/60 flex items-center justify-center min-h-0 touch-none"
+                                style={{ touchAction: 'none' }}>
                                 <div ref={cropContainerRef} className="relative overflow-hidden rounded-xl select-none touch-none"
                                     style={{ 
                                         width: cropDisplay.w || '100%', 

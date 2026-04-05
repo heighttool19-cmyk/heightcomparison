@@ -33,6 +33,8 @@ export const useImageMeasurement = () => {
     const isDraggingRef = useRef(false);
     const modeRef = useRef<Mode>('idle');
     const isMouseDown = useRef(false);
+    const touchStartRef = useRef<{ x: number, y: number, time: number } | null>(null);
+
 
     const { uploadedImage, setUploadedImage, setCalibrationDetails, setMeasurementPx, calculatedHeight } = useHeightStore();
     const { unitSystem } = useUnitStore();
@@ -199,7 +201,8 @@ export const useImageMeasurement = () => {
 
     const commitLine = useCallback((p1: Point, p2: Point) => {
         const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
-        if (dist < 15) return;
+        // Increased threshold to 20px for mobile safety
+        if (dist < 20) return;
 
         if (modeRef.current === 'calibrating') {
             setCalibLine({ p1, p2 });
@@ -250,27 +253,33 @@ export const useImageMeasurement = () => {
         };
         const onTouchEnd = (e: TouchEvent) => {
             setMagnifierPoint(null);
-            // If we have a first point but haven't "dragged" much, consider it a second point placement (tap-to-place)
-            if (!firstPointRef.current) return;
-            
+            if (!touchStartRef.current) return;
+
             const t = e.changedTouches[0];
             const pt = clientToCanvas(t.clientX, t.clientY);
             if (!pt) {
-                if (!isDraggingRef.current) cancelDrawing();
+                touchStartRef.current = null;
                 return;
             }
 
-            const dist = Math.hypot(pt.x - firstPointRef.current.x, pt.y - firstPointRef.current.y);
-            
-            // If we were dragging, commit the line. 
-            // If it was just a tap (small dist), and we already have a first point, commit it.
-            if (isDraggingRef.current || dist > 3) {
-                commitLine(firstPointRef.current, pt);
-            } else {
-                // It was a tap. If we don't have a first point yet, start one (handled in TouchStart).
-                // If we HAVE a first point, commit the line at this tap location.
+            const duration = Date.now() - touchStartRef.current.time;
+            const dist = Math.hypot(pt.x - touchStartRef.current.x, pt.y - touchStartRef.current.y);
+
+            // A "Tap" is short duration and small movement
+            if (duration < 300 && dist < 12) {
+                if (!firstPointRef.current) {
+                    setFirstPoint(pt); 
+                    setLivePoint(pt);
+                    setIsDragging(false);
+                } else {
+                    commitLine(firstPointRef.current, pt);
+                }
+            } else if (firstPointRef.current && (isDraggingRef.current || dist > 20)) {
+                // If we were already in "drawing mode" (firstPoint exists), we can finish with a drag
                 commitLine(firstPointRef.current, pt);
             }
+
+            touchStartRef.current = null;
         };
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
@@ -306,25 +315,26 @@ export const useImageMeasurement = () => {
 
     const onCanvasTouchStart = (e: React.TouchEvent) => {
         if (mode === 'idle') return;
+        
+        const pt = clientToCanvas(e.touches[0].clientX, e.touches[0].clientY);
+        if (!pt) return;
+
+        // Record start info for distinguishing Tap vs Scroll in End
+        touchStartRef.current = { x: pt.x, y: pt.y, time: Date.now() };
+
         // Bypass if multi-touch (allow zoom/scroll)
         if (e.touches.length > 1) {
             cancelDrawing();
             return;
         }
-        // Don't prevent default unless we're starting to draw
-        const pt = clientToCanvas(e.touches[0].clientX, e.touches[0].clientY);
-        if (!pt) return;
 
-        // If we are about to start a line or finish a line, then we prevent default.
-        // This allows scrolling the canvas if the user just swipes over it without intention to draw.
-        // On mobile, "tap to place" is safer.
-        if (!firstPoint) {
+        // If we already have a first point, we block scrolling because the user is actively placing the second point
+        if (firstPoint) {
             e.preventDefault();
-            setFirstPoint(pt); setLivePoint(pt); setMagnifierPoint(pt); setIsDragging(true);
-        } else {
-            e.preventDefault();
-            commitLine(firstPoint, pt);
+            setLivePoint(pt);
+            setIsDragging(true);
         }
+        // If NO first point, we DON'T preventDefault yet (let it potentially be a scroll)
     };
 
     const confirmCalib = () => {
