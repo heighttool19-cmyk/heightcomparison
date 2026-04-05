@@ -132,37 +132,18 @@ export const useImageMeasurement = () => {
         if (cLine) paintLine(ctx, cLine.p1, cLine.p2, secondary, 'Ref');
         if (mLine) paintLine(ctx, mLine.p1, mLine.p2, accent, 'Target');
 
-        // Draw Crosshair if no point is set
-        if (md !== 'idle' && lp && !fp) paintCrosshair(ctx, lp, md === 'calibrating' ? secondary : accent);
-
         if (fp && lp) {
             const color = md === 'calibrating' ? secondary : accent;
-            paintLine(ctx, fp, lp, color, md === 'calibrating' ? 'CALIBRATING…' : 'MEASURING…');
+            paintLine(ctx, fp, lp, color, md === 'calibrating' ? 'Ref…' : 'Measuring…');
         }
-
-        if (fp) {
+        if (fp && !drag) {
             const color = md === 'calibrating' ? secondary : accent;
-            // Highlight Start Point
             ctx.beginPath(); ctx.arc(fp.x, fp.y, 6, 0, Math.PI * 2);
             ctx.fillStyle = color; ctx.fill();
             ctx.beginPath(); ctx.arc(fp.x, fp.y, 10, 0, Math.PI * 2);
             ctx.strokeStyle = color + '88'; ctx.lineWidth = 2; ctx.stroke();
-            
-            // Label Start Point
-            ctx.font = 'bold 10px Inter, sans-serif';
-            ctx.fillStyle = color;
-            ctx.fillText('START', fp.x + 12, fp.y + 4);
         }
     }, [calibLine, measLine, firstPoint, livePoint, isDragging, mode]);
-
-    const paintCrosshair = (ctx: CanvasRenderingContext2D, p: Point, color: string) => {
-        ctx.save();
-        ctx.strokeStyle = color; ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(p.x - 20, p.y); ctx.lineTo(p.x + 20, p.y); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(p.x, p.y - 20); ctx.lineTo(p.x, p.y + 20); ctx.stroke();
-        ctx.beginPath(); ctx.arc(p.x, p.y, 10, 0, Math.PI * 2); ctx.stroke();
-        ctx.restore();
-    };
 
     const paintLine = (
         ctx: CanvasRenderingContext2D,
@@ -260,14 +241,15 @@ export const useImageMeasurement = () => {
             else setIsDragging(false);
         };
         const onTouchMove = (e: TouchEvent) => {
+            if (!firstPointRef.current) return;
+            // Removed e.preventDefault() here to allow scrolling if not drawing
+            // Actually, if we ARE drawing (firstPoint is set), we SHOULD prevent default.
+            if (firstPointRef.current) e.preventDefault();
             const pt = clientToCanvas(e.touches[0].clientX, e.touches[0].clientY);
             if (pt) {
-                setLivePoint(pt); // Always update livePoint for crosshair
+                setLivePoint(pt);
                 setMagnifierPoint(pt);
             }
-            if (!firstPointRef.current) return;
-            // Prevent scroll ONLY if we have started a line
-            e.preventDefault();
         };
         const onTouchEnd = (e: TouchEvent) => {
             setMagnifierPoint(null);
@@ -336,11 +318,6 @@ export const useImageMeasurement = () => {
         
         const pt = clientToCanvas(e.touches[0].clientX, e.touches[0].clientY);
         if (!pt) return;
-
-        // Update live point immediately for crosshair
-        setLivePoint(pt); 
-        setMagnifierPoint(pt); 
-
 
         // Record start info for distinguishing Tap vs Scroll in End
         touchStartRef.current = { x: pt.x, y: pt.y, time: Date.now() };

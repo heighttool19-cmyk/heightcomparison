@@ -58,25 +58,10 @@ export const Canvas: React.FC<CanvasProps> = ({
                         onTouchStart={onCanvasTouchStart}
                         className={cn(
                             "block select-none max-w-full",
-                            (mode !== 'idle' && isDrawing) ? "touch-none cursor-crosshair" : "touch-pan-y cursor-default"
+                            mode !== 'idle' ? "touch-none cursor-crosshair" : "cursor-default"
                         )}
-                        style={(mode !== 'idle' && isDrawing) ? { touchAction: 'none' } : { touchAction: 'pan-y' }}
+                        style={mode !== 'idle' ? { touchAction: 'none' } : undefined}
                     />
-
-                    {/* Floating Instruction Hint for Mobile/Desktop */}
-                    {uploadedImage && mode !== 'idle' && (
-                        <motion.div 
-                            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                            className="absolute bottom-6 left-1/2 -translate-x-1/2 pointer-events-none z-[50]"
-                        >
-                            <div className="bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 flex items-center gap-2 shadow-2xl">
-                                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                                <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-white whitespace-nowrap">
-                                    {!isDrawing ? 'Scroll to Navigate • Tap to Start' : 'Tap to Finish Line'}
-                                </span>
-                            </div>
-                        </motion.div>
-                    )}
                 </div>
             )}
 
