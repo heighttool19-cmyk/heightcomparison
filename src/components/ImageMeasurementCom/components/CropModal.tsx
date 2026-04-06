@@ -70,7 +70,7 @@ export const CropModal: React.FC<CropModalProps> = ({
                                     <div className="w-9 h-9 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0"><Crop size={17} /></div>
                                     <div>
                                         <h3 className="text-sm font-black uppercase tracking-widest">{title}</h3>
-                                        <p className="text-[11px] text-muted mt-0.5 hidden sm:block">Drag the box or handles to select the crop region</p>
+                                        <p className="text-[11px] text-muted mt-0.5 hidden sm:block">Hold and then drag the box or handles to select the crop region</p>
                                     </div>
                                 </div>
                                 <button onClick={closeCropModal} className="w-8 h-8 rounded-xl bg-bg border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-accent/40 transition-all shrink-0">

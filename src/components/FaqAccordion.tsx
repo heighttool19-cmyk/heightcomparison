@@ -49,13 +49,13 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
 
     return (
         <section id="frequently-asked-questions" className="scroll-mt-24">
-            <div className="flex items-center gap-3 mb-6">
+            {/* <div className="flex items-center gap-3 mb-6">
                 <div className="flex-1 h-px bg-border" />
                 <div className="text-[10px] font-bold uppercase tracking-[0.08em] text-muted whitespace-nowrap">Got questions?</div>
                 <div className="flex-1 h-px bg-border" />
-            </div>
+            </div> */}
 
-            <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground mb-8">Frequently Asked Questions</h2>
+            {/* <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground mb-8">Frequently Asked Questions</h2> */}
 
             <div className="border border-border rounded-[2.5rem] overflow-hidden bg-surface transition-colors duration-500 shadow-sm mt-4">
                 <div className="px-8 md:px-12 pt-4 pb-8 text-center sm:text-left space-y-2 border-b border-border">
@@ -75,7 +75,7 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
                                 className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5' : 'border-border bg-bg hover:border-accent/30'}`}
                             >
                                 <button
-                                    className="w-full flex items-center justify-between px-6 py-4 text-left  group"
+                                    className="w-full flex items-center justify-between px-6 py-4 text-left  group rounded-t-2xl"
                                     onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
                                 >
                                     <span className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>

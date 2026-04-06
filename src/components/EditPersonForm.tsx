@@ -1,19 +1,21 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronRight, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Gender, UnitSystem, COLOR_PALETTE, Person } from '../types';
 import { useUnitStore } from '../store';
 import { handleInputChange } from '../utils/input';
+import AlignmentControl from './AlignmentControl';
 
 interface EditPersonFormProps {
     person: Person;
     onSave: (person: Person) => void;
+    onUpdate?: (person: Person) => void;
     onCancel: () => void;
 }
 
-const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCancel }) => {
+const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdate, onCancel }) => {
     const { unitSystem: globalUnit } = useUnitStore();
 
     const [gender, setGender] = useState<Gender>(person.gender || 'other');
@@ -31,7 +33,43 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
 
     const [color, setColor] = useState(person.color || COLOR_PALETTE[2]);
     const [icon, setIcon] = useState(person.icon || '');
+    const [offsetY, setOffsetY] = useState<number>(person.offsetY || 0);
     const [error, setError] = useState<string | null>(null);
+
+    // Instant Preview logic
+    useEffect(() => {
+        if (!onUpdate) return;
+        
+        let finalHeightCm = 0;
+        if (unit === 'metric') {
+            finalHeightCm = typeof heightCm === 'number' ? heightCm : (parseFloat(String(heightCm)) || 0);
+        } else {
+            const f = typeof heightFt === 'number' ? heightFt : 0;
+            const i = typeof heightIn === 'number' ? heightIn : 0;
+            finalHeightCm = (f * 30.48) + (i * 2.54);
+        }
+        
+        // Deep compare (simple version) to avoid unnecessary updates
+        const hasChanged = 
+            name !== person.name ||
+            finalHeightCm !== person.heightCm ||
+            gender !== person.gender ||
+            color !== person.color ||
+            offsetY !== person.offsetY ||
+            (person.isEntity && icon !== person.icon);
+
+        if (hasChanged && finalHeightCm > 10) {
+            onUpdate({
+                ...person,
+                name: name || (gender === 'male' ? 'Man' : gender === 'female' ? 'Woman' : 'Person'),
+                heightCm: finalHeightCm,
+                gender,
+                color,
+                icon: person.isEntity ? icon : undefined,
+                offsetY: Number(offsetY) || 0
+            });
+        }
+    }, [name, heightCm, heightFt, heightIn, unit, gender, color, icon, offsetY, onUpdate]); // Removed 'person' from deps
 
     const handleSave = () => {
         let finalHeightCm = 0;
@@ -54,7 +92,8 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
             heightCm: finalHeightCm,
             gender,
             color,
-            icon: person.isEntity ? (icon || person.icon) : undefined
+            icon: person.isEntity ? (icon || person.icon) : undefined,
+            offsetY
         });
     };
 
@@ -218,6 +257,13 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onCance
                         ))}
                     </div>
                 </div>
+            )}
+
+            {person.imgUrl && (
+                <AlignmentControl 
+                    offsetY={offsetY} 
+                    onOffsetChange={(val) => setOffsetY(val)} 
+                />
             )}
 
             {/* Save Button */}

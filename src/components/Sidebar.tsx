@@ -12,11 +12,12 @@ const LoadingPanel = () => (
     </div>
 );
 
-const AddPersonForm = dynamic(() => import('./AddPersonForm'));
-const PersonChart = dynamic(() => import('./PersonChart'));
-const QuickAddPresets = dynamic(() => import('./QuickAddPresets'));
+import AddPersonForm from './AddPersonForm';
+import PersonChart from './PersonChart';
+import QuickAddPresets from './QuickAddPresets';
+import EditPersonForm from './EditPersonForm';
+
 const AddImageForm = dynamic(() => import('./AddImageForm'), { loading: () => <LoadingPanel /> });
-const EditPersonForm = dynamic(() => import('./EditPersonForm'));
 const CelebritiesPanel = dynamic(() => import('./CelebritiesPanel'), { loading: () => <LoadingPanel /> });
 const FictionalPanel = dynamic(() => import('./FictionalPanel').then(mod => mod.FictionalPanel), { loading: () => <LoadingPanel /> });
 const EntitiesPanel = dynamic(() => import('./EntitiesPanel'), { loading: () => <LoadingPanel /> });
@@ -32,6 +33,7 @@ interface SidebarProps {
     personCount: number;
     editingPerson?: Person;
     onEditSave?: (person: Person) => void;
+    onEditUpdate?: (person: Person) => void;
     onEditCancel?: () => void;
     onAddEntityExport?: () => void;
     isCapturing?: boolean;
@@ -40,7 +42,7 @@ interface SidebarProps {
     highlight?: boolean;
 }
 
-const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAdd, onAddEntity, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditCancel, onAddEntityExport, isCapturing, onEditRequest, onReorder, highlight }) => {
+const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAdd, onAddEntity, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditUpdate, onEditCancel, onAddEntityExport, isCapturing, onEditRequest, onReorder, highlight }) => {
     return (
         <aside className="w-full h-full flex flex-col bg-transparent">
             {/* ... component content ... */}
@@ -138,6 +140,7 @@ const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAd
                             <EditPersonForm
                                 person={editingPerson}
                                 onSave={onEditSave}
+                                onUpdate={onEditUpdate}
                                 onCancel={onEditCancel}
                             />
                         </motion.div>

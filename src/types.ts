@@ -10,6 +10,7 @@ export interface Person {
   imgUrl?: string;
   icon?: string;
   isEntity?: boolean;
+  offsetY?: number;
 }
 
 export interface AppState {

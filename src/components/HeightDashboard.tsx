@@ -35,13 +35,12 @@ const applyAutoZoomGuard = (currentPersons: Person[], currentHeight: number, cur
 };
 
 const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, initialPersons, onClose }) => {
-    const {
-        persons: storePersons,
-        addPerson: storeAddPerson,
-        removePerson: storeRemovePerson,
-        updatePerson: storeUpdatePerson,
-        setPersons: storeSetPersons
-    } = usePersonStore();
+    const storePersons = usePersonStore(state => state.persons);
+    const storeAddPerson = usePersonStore(state => state.addPerson);
+    const storeRemovePerson = usePersonStore(state => state.removePerson);
+    const storeUpdatePerson = usePersonStore(state => state.updatePerson);
+    const storeSetPersons = usePersonStore(state => state.setPersons);
+    const storeReorderPerson = usePersonStore(state => state.reorderPerson);
 
     const persons = readOnly && initialPersons ? initialPersons : storePersons;
     const [state, setState] = useState({
@@ -428,6 +427,17 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         }
     }, [storeUpdatePerson, persons, canvasHeight, state.zoom, MAX_ZOOM]);
 
+    const handleEditUpdate = useCallback((updatedPerson: Person) => {
+        storeUpdatePerson(updatedPerson.id, updatedPerson);
+        
+        // Use non-reactive getState to avoid loop
+        const currentPersons = usePersonStore.getState().persons;
+        const guardedZoom = applyAutoZoomGuard(currentPersons, canvasHeight, state.zoom, MAX_ZOOM);
+        if (guardedZoom !== state.zoom) {
+            setState(s => ({ ...s, zoom: guardedZoom }));
+        }
+    }, [storeUpdatePerson, canvasHeight, state.zoom, MAX_ZOOM]);
+
     const handleEditCancel = useCallback(() => {
         setActivePanel('ADD_PERSON');
         setEditingPersonId(null);
@@ -445,7 +455,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     Math.round(p.heightCm * 10) / 10,
                     p.color ? p.color.replace('#', '') : '',
                     p.gender === 'female' ? 1 : (p.gender === 'male' ? 2 : 0),
-                    p.imgUrl || ''
+                    p.imgUrl || '',
+                    p.offsetY || 0,
                 ])
             };
             const compact = LZString.compressToEncodedURIComponent(JSON.stringify(minifiedData));
@@ -475,11 +486,17 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         Math.round(p.heightCm * 10) / 10,
                         p.color ? p.color.replace('#', '') : '',
                         p.gender === 'female' ? 1 : (p.gender === 'male' ? 2 : 0),
-                        p.imgUrl || ''
+                        p.imgUrl || '',
+                        p.offsetY || 0,
                     ])
                 };
                 const compact = LZString.compressToEncodedURIComponent(JSON.stringify(minifiedData));
-                window.history.replaceState(null, '', `#${compact}`);
+                const newHash = `#${compact}`;
+
+                // Only update history if the hash has actually changed
+                if (window.location.hash !== newHash) {
+                    window.history.replaceState(null, '', newHash);
+                }
             }
         }, 500); // 500ms delay
 
@@ -498,7 +515,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     return;
                 }
 
-                let decoded: { u?: number; z?: number; p?: [string, number, string, number, string][]; unitSystem?: string; persons?: Person[]; zoom?: number } | null = null;
+                let decoded: { u?: number; z?: number; p?: (string | number)[][]; unitSystem?: string; persons?: Person[]; zoom?: number } | null = null;
                 const lzDecoded = LZString.decompressFromEncodedURIComponent(hash);
                 if (lzDecoded) {
                     try {
@@ -539,7 +556,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             color: arr[2] ? `#${arr[2]}` : '#3b82f6',
                             gender: arr[3] === 1 ? 'female' : (arr[3] === 2 ? 'male' : undefined),
                             imgUrl: arr[4] ? String(arr[4]) : undefined,
-                            isEntity: !arr[3]
+                            isEntity: !arr[3],
+                            offsetY: arr[5] ? Number(arr[5]) : 0
                         }));
                         storeSetPersons(restoredPersons);
                     }
@@ -950,7 +968,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
                             <div
                                 ref={personsScrollRef}
-                                className="flex-1 relative overflow-x-auto overflow-y-auto custom-scrollbar chart-grid scroll-smooth"
+                                className="flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar chart-grid scroll-smooth"
                                 onScroll={() => syncScroll('persons')}
                             >
                                 <div
@@ -1046,6 +1064,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     activePanel={activePanel}
                                     editingPerson={persons.find(p => p.id === editingPersonId)}
                                     onEditSave={handleEditSave}
+                                    onEditUpdate={handleEditUpdate}
                                     onEditCancel={handleEditCancel}
                                     onAddEntityExport={handleDownloadPNG}
                                     isCapturing={isCapturing}

@@ -29,7 +29,7 @@ export default function HeightConverter() {
             <div className="space-y-4 mb-8">
                 <h2 className="text-3xl font-black tracking-tight text-foreground uppercase">Quick Height Converter</h2>
                 <p className="text-muted font-medium leading-relaxed">
-                    🔄 Convert cm to feet and inches, feet and inches to cm, or meters to feet instantly
+                    Convert cm to feet and inches, feet and inches to cm, or meters to feet instantly
                 </p>
                 <div className="h-1.5 w-16 bg-accent rounded-full" />
             </div>

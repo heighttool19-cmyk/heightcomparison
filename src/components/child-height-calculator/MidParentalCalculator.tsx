@@ -69,7 +69,7 @@ export default function MidParentalCalculator() {
                         <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20">Mid-Parental</span>
                     </div>
                     <p className="text-muted font-medium leading-relaxed">
-                        📐 Estimate predicted height using only parents&apos; heights. Works for babies, very young children, and unborn babies too. If you are pregnant, enter both parents&apos; heights to get your child&apos;s estimated adult height range.
+                        Estimate predicted height using only parents&apos; heights. Works for babies, very young children, and unborn babies too. If you are pregnant, enter both parents&apos; heights to get your child&apos;s estimated adult height range.
                     </p>
                     <div className="h-1.5 w-16 bg-accent rounded-full" />
                 </div>

@@ -17,10 +17,6 @@ export const CHILD_HEIGHT_QA = [
         a: "Yes. Parents' heights are the single strongest predictor of a child's adult height, accounting for 60–80% of height variation. The Mid-Parental Height Formula provides a rough estimate using only this data. However, combining parent heights with the child's current measurements (age, height, weight) through the Khamis-Roche model produces significantly more accurate results."
     },
     {
-        q: "How accurate is a child height predictor?",
-        a: "Our child height predictor uses the Khamis-Roche model and typically predicts within 5–10 cm of final adult height. The calculator works best for children older than 4 when accurate height, weight, and parent height data are available. Predictions are estimates. They represent a likely range rather than a certainty."
-    },
-    {
         q: "Can I predict my baby's height?",
         a: "For babies and infants, use the Mid-Parental Height Formula calculator above. It requires only the mother's and father's heights. This gives a rough estimated height range. Note that accuracy is lower for babies than for older children, since current growth data is not factored in."
     },
@@ -47,8 +43,8 @@ export const CHILD_HEIGHT_TOC = [
     { id: 'what-determines-child-height', label: 'What Determines Height?' },
     { id: 'boys-girls-growth-charts', label: 'Boys & Girls Growth Charts' },
     { id: 'height-prediction-comparison', label: 'Calculator vs. Growth Charts' },
-    { id: 'when-do-boys-stop-growing', label: 'When Do Boys Stop Growing?' },
-    { id: 'when-do-girls-stop-growing', label: 'When Do Girls Stop Growing?' },
+    { id: 'boys-growth', label: 'When Do Boys Stop Growing?' },
+    { id: 'girls-growth', label: 'When Do Girls Stop Growing?' },
     {
         id: 'predict-child-height',
         label: 'Height Prediction Methods',
@@ -68,7 +64,7 @@ export const CHILD_HEIGHT_TOC = [
     },
     { id: 'increase', label: 'Can You Increase Height?' },
     { id: 'how-to-get-taller-as-a-kid', label: 'Factors Affecting Height' },
-    { id: 'boys-height-predictor', label: 'Understanding Growth Timelines' },
+    // { id: 'boys-height-predictor', label: 'Understanding Growth Timelines' },
     { id: 'accuracy', label: 'Prediction Accuracy' },
     { id: 'child-height-calculator-faq', label: 'FAQ' },
     { id: 'related-tools', label: 'Related Tools' },

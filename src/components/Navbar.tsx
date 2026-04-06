@@ -54,184 +54,184 @@ const Navbar: React.FC = () => {
     return (
         <>
             <ThemeInitializer />
-            <header className={`h-[70px] shrink-0 border-b flex items-center justify-between px-4 sm:px-8 xl:px-12 z-300 sticky top-0 transition-all duration-300 ${scrolled
-            ? 'bg-bg/80 backdrop-blur-md border-border/80 shadow-lg'
-            : 'bg-bg border-border/50 shadow-none'
-            }`}>
+            <header className={`h-[70px] shrink-0 border-b flex items-center justify-between px-4 sm:px-8 xl:px-12 z-300  top-0 transition-all duration-300 ${scrolled
+                ? 'bg-bg/80 backdrop-blur-md border-border/80 shadow-lg'
+                : 'bg-bg border-border/50 shadow-none'
+                }`}>
 
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 cursor-pointer shrink-0">
-                <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
-                    <div className="flex items-end gap-[2px] h-4">
-                        <div className="w-1.5 h-full bg-white rounded-t-sm" />
-                        <div className="w-1.5 h-2/3 bg-white rounded-t-sm" />
-                        <div className="w-1.5 h-1/3 bg-white rounded-t-sm" />
+                {/* Logo */}
+                <Link href="/" className="flex items-center gap-3 cursor-pointer shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
+                        <div className="flex items-end gap-[2px] h-4">
+                            <div className="w-1.5 h-full bg-white rounded-t-sm" />
+                            <div className="w-1.5 h-2/3 bg-white rounded-t-sm" />
+                            <div className="w-1.5 h-1/3 bg-white rounded-t-sm" />
+                        </div>
                     </div>
-                </div>
-                <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors whitespace-nowrap">
-                    Height<span className="text-[#3B82F6]">Comparison</span>
-                </h1>
-            </Link>
+                    <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors whitespace-nowrap">
+                        Height<span className="text-[#3B82F6]">Comparison</span>
+                    </h1>
+                </Link>
 
-            <div className="flex items-center gap-2 sm:gap-4">
+                <div className="flex items-center gap-2 sm:gap-4">
 
-                {/* --- DESKTOP NAVIGATION --- */}
-                {/* Changed to lg:flex because grouping the links saves massive horizontal space */}
-                <nav className="hidden lg:flex items-center gap-6 xl:gap-8 mr-2">
-                    {NAVIGATION.map((item, idx) => {
-                        // Render Dropdown for Groups
-                        if (item.children) {
-                            const active = isGroupActive(item.children);
-                            return (
-                                <div key={idx} className="relative group py-4">
-                                    <button
-                                        className={`flex items-center gap-1.5 whitespace-nowrap text-[14px] 2xl:text-[15px] font-extrabold transition-colors ${active ? 'text-accent' : 'text-muted hover:text-foreground'}`}
-                                        aria-expanded={active}
-                                        aria-haspopup="true"
-                                        aria-label={item.label}
-                                    >
-                                        {item.label}
-                                        <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
-                                    </button>
+                    {/* --- DESKTOP NAVIGATION --- */}
+                    {/* Changed to lg:flex because grouping the links saves massive horizontal space */}
+                    <nav className="hidden lg:flex items-center gap-6 xl:gap-8 mr-2">
+                        {NAVIGATION.map((item, idx) => {
+                            // Render Dropdown for Groups
+                            if (item.children) {
+                                const active = isGroupActive(item.children);
+                                return (
+                                    <div key={idx} className="relative group py-4">
+                                        <button
+                                            className={`flex items-center gap-1.5 whitespace-nowrap text-[14px] 2xl:text-[15px] font-extrabold transition-colors ${active ? 'text-accent' : 'text-muted hover:text-foreground'}`}
+                                            aria-expanded={active}
+                                            aria-haspopup="true"
+                                            aria-label={item.label}
+                                        >
+                                            {item.label}
+                                            <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
+                                        </button>
 
-                                    {/* Dropdown Panel (CSS-based for zero-latency performance) */}
-                                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50">
-                                        <div className="bg-surface border border-border shadow-xl rounded-2xl p-2 min-w-[260px] flex flex-col gap-1">
-                                            {item.children.map(child => (
-                                                <Link
-                                                    key={child.id}
-                                                    href={child.href}
-                                                    className={`px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-between ${activePage === child.id
-                                                        ? (child.isSpecial ? 'text-[#22C55E] bg-[#22C55E]/10' : 'text-accent bg-accent/10')
-                                                        : (child.isSpecial ? 'text-[#22C55E] hover:bg-bg/80' : 'text-muted hover:text-foreground hover:bg-bg/80')}`}
-                                                >
-                                                    {child.label}
-                                                </Link>
-                                            ))}
+                                        {/* Dropdown Panel (CSS-based for zero-latency performance) */}
+                                        <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50">
+                                            <div className="bg-surface border border-border shadow-xl rounded-2xl p-2 min-w-[260px] flex flex-col gap-1">
+                                                {item.children.map(child => (
+                                                    <Link
+                                                        key={child.id}
+                                                        href={child.href}
+                                                        className={`px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center justify-between ${activePage === child.id
+                                                            ? (child.isSpecial ? 'text-[#22C55E] bg-[#22C55E]/10' : 'text-accent bg-accent/10')
+                                                            : (child.isSpecial ? 'text-[#22C55E] hover:bg-bg/80' : 'text-muted hover:text-foreground hover:bg-bg/80')}`}
+                                                    >
+                                                        {child.label}
+                                                    </Link>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                );
+                            }
+
+                            // Render Standard Links
+                            return (
+                                <Link
+                                    key={item.id}
+                                    href={item.href!}
+                                    className={`whitespace-nowrap text-[14px] 2xl:text-[15px] font-extrabold transition-colors ${activePage === item.id ? 'text-accent border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
+                                >
+                                    {item.label}
+                                </Link>
                             );
-                        }
+                        })}
+                    </nav>
 
-                        // Render Standard Links
-                        return (
-                            <Link
-                                key={item.id}
-                                href={item.href!}
-                                className={`whitespace-nowrap text-[14px] 2xl:text-[15px] font-extrabold transition-colors ${activePage === item.id ? 'text-accent border-b-2 border-accent pb-1' : 'text-muted hover:text-foreground'}`}
-                            >
-                                {item.label}
-                            </Link>
-                        );
-                    })}
-                </nav>
-
-                {/* Unit Toggle (Desktop) */}
-                <button
-                    onClick={toggleUnitSystem}
-                    className="hidden md:flex items-center justify-center gap-2 group hover:bg-item-hover px-3 py-2 rounded-xl transition-all border border-border bg-surface w-[130px] sm:w-[180px] shrink-0"
-                    title={`Switch to ${unitSystem === 'metric' ? 'Imperial' : 'Metric'}`}
-                    aria-label={`Current unit system: ${unitSystem === 'metric' ? 'Metric' : 'Imperial'}. Click to toggle.`}
-                >
-                    <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-muted group-hover:text-foreground whitespace-nowrap">
-                        {unitSystem === 'metric' ? 'metric (cm)' : 'imperial (ft/in)'}
-                    </span>
-                </button>
-
-                {/* Theme Toggle */}
-                <button
-                    onClick={toggleTheme}
-                    className="p-2 text-muted hover:text-foreground hover:bg-surface/50 rounded-full transition-colors flex items-center justify-center shrink-0 w-10 h-10 relative overflow-hidden"
-                    title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
-                    aria-label={`Current theme: ${theme}. Click to toggle theme.`}
-                >
-                    <div className="relative w-5 h-5 flex items-center justify-center">
-                        <Moon size={20} className={`absolute transition-all duration-300 ease-in-out ${theme === 'dark' ? 'scale-100 rotate-0 opacity-100' : 'scale-0 rotate-90 opacity-0'}`} />
-                        <Sun size={20} className={`absolute transition-all duration-300 ease-in-out ${theme === 'light' ? 'scale-100 rotate-0 opacity-100' : 'scale-0 -rotate-90 opacity-0'}`} />
-                    </div>
-                </button>
-
-                {/* --- MOBILE NAVIGATION DRAWER --- */}
-                <div className="relative lg:hidden shrink-0">
+                    {/* Unit Toggle (Desktop) */}
                     <button
-                        className="p-2 text-muted hover:text-foreground transition-colors focus:outline-none relative z-[60]"
-                        onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
-                        aria-label="Toggle navigation menu"
+                        onClick={toggleUnitSystem}
+                        className="hidden md:flex items-center justify-center gap-2 group hover:bg-item-hover px-3 py-2 rounded-xl transition-all border border-border bg-surface w-[130px] sm:w-[180px] shrink-0"
+                        title={`Switch to ${unitSystem === 'metric' ? 'Imperial' : 'Metric'}`}
+                        aria-label={`Current unit system: ${unitSystem === 'metric' ? 'Metric' : 'Imperial'}. Click to toggle.`}
                     >
-                        <Menu size={24} />
+                        <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent shrink-0" />
+                        <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-muted group-hover:text-foreground whitespace-nowrap">
+                            {unitSystem === 'metric' ? 'metric (cm)' : 'imperial (ft/in)'}
+                        </span>
                     </button>
 
-                    {/* Overlay */}
-                    <div 
-                        className={`fixed inset-0 z-50 bg-black/20 backdrop-blur-[2px] transition-opacity duration-300 ${isNavMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
-                        onClick={() => setIsNavMenuOpen(false)}
-                    />
-
-                    {/* Menu Panel */}
-                    <div 
-                        className={`absolute right-0 mt-3 w-80 max-w-[90vw] bg-[#111111] border border-white/10 rounded-3xl shadow-2xl p-4 z-[60] overflow-hidden origin-top-right transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.1)] ${isNavMenuOpen ? 'opacity-100 scale-100 translate-y-0 visible' : 'opacity-0 scale-95 translate-y-4 invisible pointer-events-none'}`}
+                    {/* Theme Toggle */}
+                    <button
+                        onClick={toggleTheme}
+                        className="p-2 text-muted hover:text-foreground hover:bg-surface/50 rounded-full transition-colors flex items-center justify-center shrink-0 w-10 h-10 relative overflow-hidden"
+                        title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+                        aria-label={`Current theme: ${theme}. Click to toggle theme.`}
                     >
-                        <div className="flex flex-col gap-2">
+                        <div className="relative w-5 h-5 flex items-center justify-center">
+                            <Moon size={20} className={`absolute transition-all duration-300 ease-in-out ${theme === 'dark' ? 'scale-100 rotate-0 opacity-100' : 'scale-0 rotate-90 opacity-0'}`} />
+                            <Sun size={20} className={`absolute transition-all duration-300 ease-in-out ${theme === 'light' ? 'scale-100 rotate-0 opacity-100' : 'scale-0 -rotate-90 opacity-0'}`} />
+                        </div>
+                    </button>
 
-                            {/* Dynamic Mobile Mapping */}
-                            {NAVIGATION.map((item, idx) => {
+                    {/* --- MOBILE NAVIGATION DRAWER --- */}
+                    <div className="relative lg:hidden shrink-0">
+                        <button
+                            className="p-2 text-muted hover:text-foreground transition-colors focus:outline-none relative z-[60]"
+                            onClick={() => setIsNavMenuOpen(!isNavMenuOpen)}
+                            aria-label="Toggle navigation menu"
+                        >
+                            <Menu size={24} />
+                        </button>
 
-                                // Render Mobile Accordion
-                                if (item.children) {
-                                    return (
-                                        <div key={idx} className="flex flex-col gap-1">
-                                            <button
-                                                onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
-                                                className="w-full flex items-center justify-between px-4 py-3 text-sm font-bold rounded-2xl transition-all text-gray-400 hover:text-white hover:bg-white/5"
-                                            >
-                                                {item.label}
-                                                <ChevronDown size={16} className={`transition-transform duration-300 ${mobileToolsOpen ? 'rotate-180' : ''}`} />
-                                            </button>
-                                            
-                                            <div className={`overflow-hidden transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileToolsOpen ? 'grid grid-rows-[1fr] opacity-100' : 'grid grid-rows-[0fr] opacity-0'}`}>
-                                                <div className="overflow-hidden">
-                                                    <div className="flex flex-col gap-1 pl-4 border-l border-white/10 ml-4 mb-2 mt-1">
-                                                        {item.children.map(child => (
-                                                            <Link key={child.id} href={child.href} onClick={() => setIsNavMenuOpen(false)}>
-                                                                <button className={`w-full text-left px-4 py-3 text-sm font-bold rounded-2xl transition-all flex items-center justify-between ${activePage === child.id ? (child.isSpecial ? 'text-[#22C55E] bg-[#22C55E]/10' : 'text-white bg-white/10') : (child.isSpecial ? 'text-[#22C55E] hover:bg-white/5' : 'text-gray-400 hover:text-white hover:bg-white/5')}`}>
-                                                                    {child.label}
-                                                                </button>
-                                                            </Link>
-                                                        ))}
+                        {/* Overlay */}
+                        <div
+                            className={`fixed inset-0 z-50 bg-black/20 backdrop-blur-[2px] transition-opacity duration-300 ${isNavMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
+                            onClick={() => setIsNavMenuOpen(false)}
+                        />
+
+                        {/* Menu Panel */}
+                        <div
+                            className={`absolute right-0 mt-3 w-80 max-w-[90vw] bg-[#111111] border border-white/10 rounded-3xl shadow-2xl p-4 z-[60] overflow-hidden origin-top-right transition-all duration-[400ms] ease-[cubic-bezier(0.175,0.885,0.32,1.1)] ${isNavMenuOpen ? 'opacity-100 scale-100 translate-y-0 visible' : 'opacity-0 scale-95 translate-y-4 invisible pointer-events-none'}`}
+                        >
+                            <div className="flex flex-col gap-2">
+
+                                {/* Dynamic Mobile Mapping */}
+                                {NAVIGATION.map((item, idx) => {
+
+                                    // Render Mobile Accordion
+                                    if (item.children) {
+                                        return (
+                                            <div key={idx} className="flex flex-col gap-1">
+                                                <button
+                                                    onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
+                                                    className="w-full flex items-center justify-between px-4 py-3 text-sm font-bold rounded-2xl transition-all text-gray-400 hover:text-white hover:bg-white/5"
+                                                >
+                                                    {item.label}
+                                                    <ChevronDown size={16} className={`transition-transform duration-300 ${mobileToolsOpen ? 'rotate-180' : ''}`} />
+                                                </button>
+
+                                                <div className={`overflow-hidden transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${mobileToolsOpen ? 'grid grid-rows-[1fr] opacity-100' : 'grid grid-rows-[0fr] opacity-0'}`}>
+                                                    <div className="overflow-hidden">
+                                                        <div className="flex flex-col gap-1 pl-4 border-l border-white/10 ml-4 mb-2 mt-1">
+                                                            {item.children.map(child => (
+                                                                <Link key={child.id} href={child.href} onClick={() => setIsNavMenuOpen(false)}>
+                                                                    <button className={`w-full text-left px-4 py-3 text-sm font-bold rounded-2xl transition-all flex items-center justify-between ${activePage === child.id ? (child.isSpecial ? 'text-[#22C55E] bg-[#22C55E]/10' : 'text-white bg-white/10') : (child.isSpecial ? 'text-[#22C55E] hover:bg-white/5' : 'text-gray-400 hover:text-white hover:bg-white/5')}`}>
+                                                                        {child.label}
+                                                                    </button>
+                                                                </Link>
+                                                            ))}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        );
+                                    }
+
+                                    // Render Mobile Standard Link
+                                    return (
+                                        <Link key={item.id} href={item.href!} onClick={() => setIsNavMenuOpen(false)}>
+                                            <button className={`w-full text-left px-4 py-3 text-sm font-bold rounded-2xl transition-all ${activePage === item.id ? 'text-white bg-white/10' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
+                                                {item.label}
+                                            </button>
+                                        </Link>
                                     );
-                                }
+                                })}
 
-                                // Render Mobile Standard Link
-                                return (
-                                    <Link key={item.id} href={item.href!} onClick={() => setIsNavMenuOpen(false)}>
-                                        <button className={`w-full text-left px-4 py-3 text-sm font-bold rounded-2xl transition-all ${activePage === item.id ? 'text-white bg-white/10' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>
-                                            {item.label}
-                                        </button>
-                                    </Link>
-                                );
-                            })}
+                                <div className="h-px w-full bg-white/10 my-2" />
 
-                            <div className="h-px w-full bg-white/10 my-2" />
-
-                            {/* Mobile Unit Toggle */}
-                            <button
-                                onClick={() => { toggleUnitSystem(); setIsNavMenuOpen(false); }}
-                                className="w-full text-left px-4 py-3 text-sm font-bold rounded-2xl transition-all text-gray-400 hover:text-white hover:bg-white/5 md:hidden flex items-center justify-between"
-                            >
-                                Switch to {unitSystem === 'metric' ? 'Imperial (ft/in)' : 'Metric (cm)'}
-                                <ArrowLeftRight size={14} />
-                            </button>
+                                {/* Mobile Unit Toggle */}
+                                <button
+                                    onClick={() => { toggleUnitSystem(); setIsNavMenuOpen(false); }}
+                                    className="w-full text-left px-4 py-3 text-sm font-bold rounded-2xl transition-all text-gray-400 hover:text-white hover:bg-white/5 md:hidden flex items-center justify-between"
+                                >
+                                    Switch to {unitSystem === 'metric' ? 'Imperial (ft/in)' : 'Metric (cm)'}
+                                    <ArrowLeftRight size={14} />
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
         </>
     );
 };

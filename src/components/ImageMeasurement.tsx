@@ -88,8 +88,8 @@ export const ImageMeasurement: React.FC = () => {
                                 </span>
                                 <span className="text-sm font-bold">
                                     {mode === 'calibrating'
-                                        ? firstPoint ? 'Click / tap the end point to finish' : 'Draw a line over a known object'
-                                        : firstPoint ? 'Click / tap the end point to finish' : 'Draw a line over the person or object'}
+                                        ? firstPoint ? 'Tap the other end to finish' : 'Tap one end of the known object'
+                                        : firstPoint ? 'Tap the other end to finish' : 'Tap the ground / top of head'}
                                 </span>
                             </div>
                             {firstPoint && (

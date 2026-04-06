@@ -131,7 +131,7 @@ export default function KhamisRocheCalculator() {
                         <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20">Khamis-Roche</span>
                     </div>
                     <p className="text-muted font-medium leading-relaxed">
-                        ⚡ Instant height prediction using scientific growth models. Estimate predicted height based on age and parents
+                        Instant height prediction using scientific growth models. Estimate predicted height based on age and parents
                     </p>
                     <div className="h-1.5 w-16 bg-accent rounded-full" />
                 </div>

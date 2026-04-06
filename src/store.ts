@@ -46,6 +46,7 @@ interface PersonState {
     removePerson: (id: string) => void;
     updatePerson: (id: string, updates: Partial<Person>) => void;
     setPersons: (persons: Person[]) => void;
+    reorderPerson: (id: string, direction: 'up' | 'down') => void;
 }
 
 import { Person, DEFAULT_PERSONS } from './types';
@@ -58,5 +59,14 @@ export const usePersonStore = create<PersonState>((set) => ({
         persons: state.persons.map(p => p.id === id ? { ...p, ...updates } : p)
     })),
     setPersons: (persons) => set({ persons }),
+    reorderPerson: (id, direction) => set((state) => {
+        const index = state.persons.findIndex(p => p.id === id);
+        if (index === -1) return state;
+        const newPersons = [...state.persons];
+        const targetIndex = direction === 'up' ? index - 1 : index + 1;
+        if (targetIndex < 0 || targetIndex >= newPersons.length) return state;
+        [newPersons[index], newPersons[targetIndex]] = [newPersons[targetIndex], newPersons[index]];
+        return { persons: newPersons };
+    }),
 }));
 

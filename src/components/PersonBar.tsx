@@ -121,6 +121,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0, width: effectiveWidth }}
             exit={{ opacity: 0, x: -60 }}
+            whileHover={{ zIndex: 110 }}
             transition={springConfig}
             className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end"
             style={{
@@ -265,13 +266,18 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 {/* Silhouette - Unclipped for images to allow full vertical extent */}
                 <div
                     className="flex flex-col items-center justify-end relative transition-opacity group-hover:opacity-100"
-                    style={{ height: barHeightPx, overflow: 'visible', zIndex: 10 }}
+                    style={{ 
+                        height: barHeightPx, 
+                        overflow: 'visible', 
+                        zIndex: 10
+                    }}
                 >
                     {person.imgUrl ? (
                         <motion.div
                             layout
                             className="relative flex flex-col items-center justify-end"
                             style={{ height: barHeightPx, width: '100%' }}
+                            animate={{ y: person.offsetY || 0 }}
                             transition={springConfig}
                         >
                             <div className="relative z-20 h-full w-auto">
@@ -287,7 +293,11 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                             </div>
                         </motion.div>
                     ) : (
-                        <div className="flex flex-col items-center justify-end h-full opacity-100 group-hover:opacity-100 transition-all duration-500">
+                        <motion.div 
+                            className="flex flex-col items-center justify-end h-full opacity-100 group-hover:opacity-100 transition-all duration-500"
+                            animate={{ y: person.offsetY || 0 }}
+                            transition={springConfig}
+                        >
                             {/* Head */}
                             <motion.div
                                 layout
@@ -314,7 +324,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                                 animate={{ height: bodyHeight, width: effectiveWidth }}
                                 transition={springConfig}
                             />
-                        </div>
+                        </motion.div>
                     )}
                 </div>
             </div>
