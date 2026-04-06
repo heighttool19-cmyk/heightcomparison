@@ -239,7 +239,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                             transformOrigin: 'bottom'
                         }}
                     >
-                        <span className="text-[0.55em] font-black text-foreground uppercase text-center drop-shadow-md "
+                        <span className="text-[0.55em] font-black text-foreground uppercase text-center leading-tight   whitespace-nowrap drop-shadow-md "
                             style={{
                                 transform: `scale(${nameScale * 0.6})`,
                             }}
@@ -266,9 +266,9 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 {/* Silhouette - Unclipped for images to allow full vertical extent */}
                 <div
                     className="flex flex-col items-center justify-end relative transition-opacity group-hover:opacity-100"
-                    style={{ 
-                        height: barHeightPx, 
-                        overflow: 'visible', 
+                    style={{
+                        height: barHeightPx,
+                        overflow: 'visible',
                         zIndex: 10
                     }}
                 >
@@ -293,7 +293,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                             </div>
                         </motion.div>
                     ) : (
-                        <motion.div 
+                        <motion.div
                             className="flex flex-col items-center justify-end h-full opacity-100 group-hover:opacity-100 transition-all duration-500"
                             animate={{ y: person.offsetY || 0 }}
                             transition={springConfig}

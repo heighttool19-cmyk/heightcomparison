@@ -643,11 +643,18 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
     const scale = useMemo(() => {
         if (canvasHeight === 0) return 0;
-        const heights = persons.length > 0 ? persons.map(p => p.heightCm) : [0];
+        const hasImages = persons.some(p => p.imgUrl);
+        const heights = persons.length > 0 ? persons.map(p => {
+            // Account for negative offsets (subject shifted UP)
+            const offCm = (p.offsetY && p.offsetY < 0) ? Math.abs(p.offsetY) / 1.5 : 0; // rough px to cm conversion for scaling logic
+            return p.heightCm + offCm;
+        }) : [0];
+        
         const maxHeightCm = Math.max(210, ...heights);
         
-        // Dynamic padding: more room for huge entities
-        const topPadding = maxHeightCm > 1000 ? 300 : 160;
+        // More generous padding for images to prevent clipping
+        const basePadding = hasImages ? 280 : 160;
+        const topPadding = maxHeightCm > 1000 ? Math.max(basePadding, 220) : basePadding;
         
         const fitScale = Math.max(0, (canvasHeight - topPadding) / maxHeightCm);
         const finalScale = fitScale * state.zoom;
@@ -658,19 +665,36 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
     useEffect(() => {
         if (persons.length > 0 && personsScrollRef.current) {
             const container = personsScrollRef.current;
-            // Use a slight timeout to ensure DOM is updated and height is recalculated
-            setTimeout(() => {
-                container.scrollTop = container.scrollHeight;
-            }, 100);
+            // Multiple attempts to capture the height after layout
+            const scroll = () => {
+                container.scrollTo({
+                    top: container.scrollHeight,
+                    behavior: 'smooth'
+                });
+            };
+            
+            const timer1 = setTimeout(scroll, 50);
+            const timer2 = setTimeout(scroll, 300);
+            const timer3 = setTimeout(scroll, 600); // Robust for mobile layout shifts
+            
+            return () => {
+                clearTimeout(timer1);
+                clearTimeout(timer2);
+                clearTimeout(timer3);
+            };
         }
     }, [persons.length]);
 
     const totalHeight = useMemo(() => {
         if (persons.length === 0) return canvasHeight;
-        const heights = persons.map(p => p.heightCm);
-        const maxHeightPx = Math.max(...heights) * scale;
-        // heightPx + 20px bottom offset + ~180px for top labels and clearance
-        const needed = maxHeightPx + 200;
+        const heightsWithOffsets = persons.map(p => {
+            const pxOffset = (p.offsetY && p.offsetY < 0) ? Math.abs(p.offsetY) : 0;
+            return (p.heightCm * scale) + pxOffset;
+        });
+        const maxHeightPx = Math.max(...heightsWithOffsets);
+        const hasImages = persons.some(p => p.imgUrl);
+        const topBuffer = hasImages ? 300 : 200;
+        const needed = maxHeightPx + topBuffer;
         return Math.max(canvasHeight, needed);
     }, [persons, scale, canvasHeight]);
 
