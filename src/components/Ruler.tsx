@@ -51,18 +51,25 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
         const maxTick = Math.max(maxHeightCm > 300 ? 0 : 300, baseMaxTick);
 
         const tickCount = Math.floor((maxTick - minTick) / tickInterval);
-        return Array.from({ length: tickCount + 1 }, (_, i) => minTick + (i * tickInterval))
-            .filter(tick => {
-                const heightPx = tick * scale;
-                // To prevent clipping, we use a larger safe top buffer.
-                // If the bottom offset of the line plus our buffer exceeds the container, hide it.
-                // Inside the ticks useMemo:
-                const safeTopBuffer = isFullscreen ? 120 : 35; // Reduced from 160/65
-                if (containerHeight && (heightPx + 20) > (containerHeight - safeTopBuffer)) {
-                    return false; // Cuts off this specific line
-                }
-                return true;
-            });
+        const allTicks = Array.from({ length: tickCount + 1 }, (_, i) => minTick + (i * tickInterval));
+        
+        return allTicks.filter((tick, idx) => {
+            const heightPx = tick * scale;
+            const safeTopBuffer = isFullscreen ? 120 : 60; // Increased buffer to avoid logo overlap
+            
+            // 1. CLIP CHECK
+            if (containerHeight && (heightPx + 30) > (containerHeight - safeTopBuffer)) {
+                return false; 
+            }
+            
+            // 2. COLLISION CHECK (Don't let the last tick crowd the top if it's too close to the one before it)
+            if (idx === allTicks.length - 1 && allTicks.length > 1) {
+                const prevTick = allTicks[idx - 1];
+                if ((tick - prevTick) * scale < 40) return false;
+            }
+
+            return true;
+        });
     }, [tickInterval, maxHeightCm, containerHeight, scale, isFullscreen]);
 
     const showLabels = mode === 'full' || mode === 'labels';

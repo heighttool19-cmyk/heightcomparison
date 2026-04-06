@@ -429,7 +429,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
     const handleEditUpdate = useCallback((updatedPerson: Person) => {
         storeUpdatePerson(updatedPerson.id, updatedPerson);
-        
+
         // Use non-reactive getState to avoid loop
         const currentPersons = usePersonStore.getState().persons;
         const guardedZoom = applyAutoZoomGuard(currentPersons, canvasHeight, state.zoom, MAX_ZOOM);
@@ -649,13 +649,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             const offCm = (p.offsetY && p.offsetY < 0) ? Math.abs(p.offsetY) / 1.5 : 0; // rough px to cm conversion for scaling logic
             return p.heightCm + offCm;
         }) : [0];
-        
+
         const maxHeightCm = Math.max(210, ...heights);
-        
+
         // More generous padding for images to prevent clipping
         const basePadding = hasImages ? 280 : 160;
         const topPadding = maxHeightCm > 1000 ? Math.max(basePadding, 220) : basePadding;
-        
+
         const fitScale = Math.max(0, (canvasHeight - topPadding) / maxHeightCm);
         const finalScale = fitScale * state.zoom;
         return Number.isFinite(finalScale) ? finalScale : 0;
@@ -672,18 +672,18 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     behavior: 'smooth'
                 });
             };
-            
+
             const timer1 = setTimeout(scroll, 50);
             const timer2 = setTimeout(scroll, 300);
             const timer3 = setTimeout(scroll, 600); // Robust for mobile layout shifts
-            
+
             return () => {
                 clearTimeout(timer1);
                 clearTimeout(timer2);
                 clearTimeout(timer3);
             };
         }
-    }, [persons.length]);
+    }, [persons.length, state.zoom]);
 
     const totalHeight = useMemo(() => {
         if (persons.length === 0) return canvasHeight;
@@ -947,56 +947,65 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 </>
                             )}
                         </button> */}
-                        <div className={`w-full relative flex flex-col items-center justify-center py-2 shrink-0 bg-canvas z-20 border-b border-border/5 transition-all duration-300 ${isFullscreen
+                        <div className={`w-full flex items-center justify-between px-[0.5rem] sm:px-1 py-2 shrink-0 bg-canvas z-20 border-b border-border/5 transition-all duration-300 ${isFullscreen
                             ? 'pt-1 pb-0'
                             : 'opacity-40'
-                            }`}
-                        >
+                            }`}>
+
+
+
                             {/* CENTERED CONTENT */}
-                            <span className={`font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-muted whitespace-nowrap transition-all duration-300 ${isFullscreen
-                                ? 'text-[9px] sm:text-md lg:text-xl'
-                                : 'text-[7px] sm:text-[10px]'
-                                }`}>
-                                heightcomparison.vercel.app
-                            </span>
-                            {isFullscreen && <div className="h-[2px] w-12 sm:w-24 bg-accent/40 mt-2 sm:mt-4" />}
-                            {!isFullscreen && <div className="h-[1px] w-8 sm:w-12 bg-accent/30 mt-1 sm:mt-1.5" />}
+                            <div className="flex flex-col items-center justify-center shrink-0 px-2">
+                                <span className={`font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-muted whitespace-nowrap transition-all duration-300 ${isFullscreen
+                                    ? 'text-[9px] sm:text-md lg:text-xl'
+                                    : 'text-[7px] sm:text-[10px]'
+                                    }`}>
+                                    heightcomparison.vercel.app
+                                </span>
+                                {isFullscreen ? (
+                                    <div className="h-[2px] w-12 sm:w-24 bg-accent/40 mt-2 sm:mt-4" />
+                                ) : (
+                                    <div className="h-[1px] w-8 sm:w-12 bg-accent/30 mt-1 sm:mt-1.5" />
+                                )}
+                            </div>
 
                             {/* RIGHT-ALIGNED BUTTON */}
-                            {/* Added 'absolute', 'top-1/2', '-translate-y-1/2' for perfect vertical centering on the right */}
-                            <button
-                                onClick={toggleFullscreen}
-                                className={`absolute top-1/2 -translate-y-1/2 z-[100] transition-all duration-300 flex items-center gap-1.5 sm:gap-2 justify-center active:scale-95
-        ${isFullscreen
-                                        ? 'right-4 sm:right-8 p-3 bg-white/10 backdrop-blur-md rounded-full text-foreground hover:bg-white/20 border border-white/20 shadow-2xl'
-                                        : 'right-3 sm:right-5 px-2.5 py-1.5 sm:px-3 sm:py-2 bg-surface/90 backdrop-blur-md text-foreground/80 hover:text-foreground hover:bg-accent hover:text-white rounded-xl border border-border/60 hover:border-accent shadow-lg hover:shadow-accent/20'
-                                    }`}
-                                title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
-                            >
-                                {isFullscreen ? (
-                                    <X size={isMobile ? 20 : 28} className="transition-transform duration-300 group-hover:rotate-90" />
-                                ) : (
-                                    <>
-                                        <Maximize size={isMobile ? 14 : 16} strokeWidth={2.5} />
-                                        <span className="text-[10px] sm:text-xs font-bold tracking-wide">Fullscreen</span>
-                                    </>
-                                )}
-                            </button>
+                            <div className="flex-1 flex justify-end min-w-0">
+                                <button
+                                    onClick={toggleFullscreen}
+                                    className={`shrink-0 z-[100] transition-all duration-300 flex items-center gap-1.5 sm:gap-2 justify-center active:scale-95 ${isFullscreen
+                                        ? 'p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full text-foreground hover:bg-white/20 border border-white/20 shadow-2xl'
+                                        : 'px-2 py-1.5 sm:px-3 sm:py-2 bg-surface/90 backdrop-blur-md text-foreground/80 hover:text-foreground hover:bg-accent hover:text-white rounded-xl border border-border/60 hover:border-accent shadow-lg hover:shadow-accent/20'
+                                        }`}
+                                    title={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
+                                >
+                                    {isFullscreen ? (
+                                        <X size={isMobile ? 20 : 28} className="transition-transform duration-300 group-hover:rotate-90 shrink-0" />
+                                    ) : (
+                                        <>
+                                            <Maximize size={isMobile ? 16 : 16} strokeWidth={2.5} className="shrink-0" />
+                                            {/* Text is hidden on mobile (sm breakpoint and below) */}
+                                            <span className="hidden sm:inline text-xs font-bold tracking-wide">
+                                                Fullscreen
+                                            </span>
+                                        </>
+                                    )}
+                                </button>
+                            </div>
                         </div>
-
-                        <div 
+                        <div
                             ref={personsScrollRef}
                             className="flex-1 relative overflow-auto custom-scrollbar chart-grid scroll-smooth"
                         >
-                            <div 
-                                className="relative flex items-end min-w-max" 
+                            <div
+                                className="relative flex items-end min-w-max"
                                 style={{ height: requiredCanvasHeight }}
                             >
                                 {/* Sticky Ruler Labels */}
                                 <div className="sticky left-0 z-50 h-full w-10 sm:w-12 lg:w-14 shrink-0 bg-canvas/80 backdrop-blur-sm border-r border-border/10">
-                                    <Ruler 
-                                        mode="labels" 
-                                        scale={scale} 
+                                    <Ruler
+                                        mode="labels"
+                                        scale={scale}
                                         maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300}
                                         containerHeight={totalHeight}
                                         personCount={persons.length}
@@ -1006,9 +1015,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
                                 {/* Main Chart Area (Lines + Persons) */}
                                 <div className="relative flex-1 h-full flex items-end pr-8 md:pr-48 min-w-0">
-                                    <Ruler 
-                                        mode="lines" 
-                                        scale={scale} 
+                                    <Ruler
+                                        mode="lines"
+                                        scale={scale}
                                         maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300}
                                         containerHeight={totalHeight}
                                         personCount={persons.length}
