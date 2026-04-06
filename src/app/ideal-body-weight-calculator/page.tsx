@@ -23,7 +23,6 @@ export default function IdealBodyWeightPage() {
                         <h1 id="ideal-body-weight-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
                             Ideal Body Weight Calculator
                         </h1>
-                        <div className="h-1.5 w-24 bg-accent rounded-full mx-auto sm:mx-0" />
                         <p className="text-muted leading-relaxed text-lg max-w-3xl mx-auto sm:mx-0">
                             <span className='text-accent font-semibold hover:underline'>Ideal Body Weight (IBW)</span> is an estimate of the weight range associated with good health for a given height and sex. This ideal body weight calculator applies three established clinical formulas: the <span className='text-accent font-semibold hover:underline'>Devine</span>, <span className='text-accent font-semibold hover:underline'>Robinson</span>, and <span className='text-accent font-semibold hover:underline'>Hamwi</span> methods to produce a range rather than a single number. The tool works for men, women, and pediatric patients. Enter your height and sex to calculate ideal body weight instantly.
                         </p>

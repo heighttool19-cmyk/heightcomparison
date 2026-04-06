@@ -251,7 +251,6 @@ export default function page() {
                             <h1 id="average-height-by-country" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
                                 Average Height by Country
                             </h1>
-                            <div className="h-1.5 w-24 bg-accent rounded-full mx-auto sm:mx-0" />
                             <p className="text-muted leading-relaxed text-lg max-w-3xl mx-auto sm:mx-0">
                                 Average height varies more than most people expect. The gap between the world's tallest and shortest populations spans nearly 24 cm for men and 21 cm for women. This page compares average human height around the world for both sexes, from the Netherlands at the top to Timor-Leste at the foot, drawing on data from the    <a href='https://elifesciences.org/articles/13410'
                                     target="_blank"

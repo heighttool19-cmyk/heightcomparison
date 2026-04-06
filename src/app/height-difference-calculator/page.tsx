@@ -38,7 +38,6 @@ export default function HeightDifferencePage() {
                         <h1 id="height-difference-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
                             Height Difference Calculator
                         </h1>
-                        <div className="h-1.5 w-24 bg-accent rounded-full mx-auto sm:mx-0" />
                         <p className="text-muted leading-relaxed text-lg max-w-3xl mx-auto sm:mx-0">
                             A height difference calculator compares two people&apos;s heights and returns the gap between them. Enter two heights in centimeters or feet and inches. The tool calculates the height difference and the percentage difference instantly. Compare yourself with a friend, a partner, or anyone else in seconds.
                         </p>

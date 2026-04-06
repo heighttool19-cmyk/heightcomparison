@@ -645,10 +645,25 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         if (canvasHeight === 0) return 0;
         const heights = persons.length > 0 ? persons.map(p => p.heightCm) : [0];
         const maxHeightCm = Math.max(210, ...heights);
-        const fitScale = Math.max(0, (canvasHeight - 160) / maxHeightCm);
+        
+        // Dynamic padding: more room for huge entities
+        const topPadding = maxHeightCm > 1000 ? 300 : 160;
+        
+        const fitScale = Math.max(0, (canvasHeight - topPadding) / maxHeightCm);
         const finalScale = fitScale * state.zoom;
         return Number.isFinite(finalScale) ? finalScale : 0;
-    }, [canvasHeight, persons, state.zoom]);
+    }, [persons, canvasHeight, state.zoom]);
+
+    // Always scroll to bottom (ground) when adding new person
+    useEffect(() => {
+        if (persons.length > 0 && personsScrollRef.current) {
+            const container = personsScrollRef.current;
+            // Use a slight timeout to ensure DOM is updated and height is recalculated
+            setTimeout(() => {
+                container.scrollTop = container.scrollHeight;
+            }, 100);
+        }
+    }, [persons.length]);
 
     const totalHeight = useMemo(() => {
         if (persons.length === 0) return canvasHeight;
@@ -945,39 +960,31 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             </button>
                         </div>
 
-                        <div className="flex-1 flex flex-row relative overflow-hidden w-full">
-                            <div
-                                ref={rulerScrollRef}
-                                className="shrink-0 relative bg-canvas z-10 overflow-hidden custom-scrollbar w-10 sm:w-12 lg:w-14"
-                                onScroll={() => syncScroll('ruler')}
+                        <div 
+                            ref={personsScrollRef}
+                            className="flex-1 relative overflow-auto custom-scrollbar chart-grid scroll-smooth"
+                        >
+                            <div 
+                                className="relative flex items-end min-w-max" 
+                                style={{ height: requiredCanvasHeight }}
                             >
-                                <div
-                                    className="relative"
-                                    style={{ height: requiredCanvasHeight }}
-                                >
-                                    <Ruler
-                                        mode="labels"
-                                        scale={scale}
+                                {/* Sticky Ruler Labels */}
+                                <div className="sticky left-0 z-50 h-full w-10 sm:w-12 lg:w-14 shrink-0 bg-canvas/80 backdrop-blur-sm border-r border-border/10">
+                                    <Ruler 
+                                        mode="labels" 
+                                        scale={scale} 
                                         maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300}
                                         containerHeight={totalHeight}
                                         personCount={persons.length}
                                         isFullscreen={isFullscreen}
                                     />
                                 </div>
-                            </div>
 
-                            <div
-                                ref={personsScrollRef}
-                                className="flex-1 relative overflow-x-auto overflow-y-hidden custom-scrollbar chart-grid scroll-smooth"
-                                onScroll={() => syncScroll('persons')}
-                            >
-                                <div
-                                    className="relative min-w-full min-w-max flex items-end pr-8 md:pr-48"
-                                    style={{ height: requiredCanvasHeight }}
-                                >
-                                    <Ruler
-                                        mode="lines"
-                                        scale={scale}
+                                {/* Main Chart Area (Lines + Persons) */}
+                                <div className="relative flex-1 h-full flex items-end pr-8 md:pr-48 min-w-0">
+                                    <Ruler 
+                                        mode="lines" 
+                                        scale={scale} 
                                         maxHeightCm={persons.length > 0 ? Math.max(...persons.map(p => p.heightCm)) : 300}
                                         containerHeight={totalHeight}
                                         personCount={persons.length}
@@ -1014,7 +1021,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 </div>
 
                                 {persons.length === 0 && (
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center mb-24 sm:mb-32 gap-4 sm:gap-6 px-4">
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center mb-24 sm:mb-32 gap-4 sm:gap-6 px-4 pointer-events-none">
                                         <motion.button
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
@@ -1026,9 +1033,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                     setIsMobileDrawerOpen(true);
                                                 }
                                             }}
-                                            className={`empty-door flex items-center justify-center group ${!readOnly ? 'cursor-pointer hover:border-accent' : ''}`}
-                                        >
-                                        </motion.button>
+                                            className={`empty-door flex items-center justify-center group pointer-events-auto ${!readOnly ? 'cursor-pointer hover:border-accent' : ''}`}
+                                        />
                                         <span className="text-sm sm:text-lg lg:text-xl text-center font-bold tracking-tight text-muted/50 bg-surface/50 px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl w-auto max-w-[90%]">
                                             Add a person to get started
                                         </span>

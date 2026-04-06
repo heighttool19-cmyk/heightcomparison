@@ -24,7 +24,6 @@ export default function HeightCalculatorPage() {
                         <h1 id="child-height-predictor-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 uppercase">
                             Height Calculator and Adult Height Predictor
                         </h1>
-                        <div className="h-1.5 w-24 bg-accent rounded-full mx-auto sm:mx-0" />
                         <p className="text-muted leading-relaxed text-lg max-w-3xl mx-auto sm:mx-0 font-medium">
                             Use this height calculator  to estimate the future height of children, teenagers, and adults based on age, genetics, and growth patterns.
                             This calculator uses the Khamis-Roche method, one of the most accurate height prediction models available. If your child is under four, or you are pregnant and curious about your baby's expected height, use the Mid-Parental Height Formula below instead, given below                        </p>

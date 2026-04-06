@@ -48,7 +48,6 @@ export default function PercentileCalculatorPage() {
                         <h1 id="calculate-your-height-and-weight-percentile" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
                             Height and Weight Percentile Calculator
                         </h1>
-                        <div className="h-1.5 w-24 bg-accent rounded-full mx-auto sm:mx-0" />
                         <p className="text-muted leading-relaxed text-lg max-w-3xl mx-auto sm:mx-0">
                             Compare your height and weight against population reference data from the <span className="text-accent font-bold">World Health Organization</span> and the <span className="text-accent font-bold">Centers for Disease Control and Prevention</span>. The tool covers babies, toddlers, children, and adults. Enter your age, sex, height, and weight to get your height percentile and weight percentile instantly.
                         </p>
