@@ -28,7 +28,7 @@ export default function HomeContent() {
                                 Height Comparison Tool — Compare Heights Online
                             </h1>
 
-                            <p className="text-muted leading-relaxed text-lg max-w-3xl mx-auto sm:mx-0 font-bold lowercase first-letter:uppercase tracking-[0.01em] opacity-90">
+                            <p className="text-muted leading-relaxed text-lg max-w-3xl text-left font-bold lowercase first-letter:uppercase tracking-[0.01em] opacity-90">
                                 Use this free tool to compare heights online instantly. Enter any heights and get a proportional side-by-side visual that updates in real time. No account, no setup, just jump straight in.
                             </p>
 
@@ -249,9 +249,9 @@ export default function HomeContent() {
                                         <div className="grid md:grid-cols-2 gap-4 mb-8">
                                             {[
                                                 { panel: 'ADD_PERSON', color: 'emerald', label: 'Add Person', desc: 'Enter name, sex, height in cm or ft/in, and pick a color. Instant rendering.' },
-                                                { panel: 'CELEBRITIES', color: 'amber', label: 'Celebrities', desc: 'Search global databases of athletes, actors, and icons. Verified heights.' },
-                                                { panel: 'FICTIONAL', color: 'purple', label: 'Fictional', desc: 'Anime, Cartoons, and Comics. Sourced from official production guides.' },
-                                                { panel: 'ENTITIES', color: 'blue', label: 'Entities', desc: 'Animals, landmarks, and objects. Real-world verified dimensions.' },
+                                                { panel: 'CELEBRITIES', color: 'emerald', label: 'Celebrities', desc: 'Search global databases of athletes, actors, and icons. Verified heights.' },
+                                                { panel: 'FICTIONAL', color: 'emerald', label: 'Fictional', desc: 'Anime, Cartoons, and Comics. Sourced from official production guides.' },
+                                                { panel: 'ENTITIES', color: 'emerald', label: 'Entities', desc: 'Animals, landmarks, and objects. Real-world verified dimensions.' },
                                             ].map(item => (
                                                 <DashboardLink key={item.panel} panel={item.panel as PanelType} className={`text-left p-6 rounded-2xl border-2 border-border/50 hover:border-${item.color}-500/50 bg-bg/30 hover:bg-bg transition-all cursor-pointer group/item`}>
                                                     <div className={`text-[13px] font-black text-${item.color}-500 uppercase tracking-widest mb-2 group-hover/item:translate-x-1 transition-transform`}>{item.label}</div>
@@ -261,7 +261,7 @@ export default function HomeContent() {
                                         </div>
 
                                         <div className="bg-bg border-2 border-border/80 rounded-2xl p-6 flex gap-4 items-start text-[14px] text-muted shadow-inner font-bold lowercase tracking-tight">
-                                            <span className="text-[11px] font-black text-white bg-foreground px-2 py-1 rounded uppercase tracking-[0.1em] shrink-0 mt-[2px]">Scale</span>
+                                            <span className="text-[11px] font-black text-white bg-accent px-2 py-1 rounded uppercase tracking-[0.1em] shrink-0 mt-[2px]">Scale</span>
                                             <span>The chart scales up to 10,000 meters. Mt Everest and a 175 cm person both fit on the same chart. The proportional difference is what makes it striking.</span>
                                         </div>
                                     </div>

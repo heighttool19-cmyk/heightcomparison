@@ -26,7 +26,7 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
 
         // Ensure we don't pack them too tightly if zoomed out
         let baseMinPx = isMobileRuler ? 25 : 40;
-        
+
         // --- FIX: High Altitude Density ---
         // If we are looking at something as big as a mountain (>1km), 
         // we allow slightly more density so the ruler still looks informative.
@@ -121,13 +121,13 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                         {showLabels && (
                             <div
                                 className="relative left-0 z-20 flex flex-col w-full items-start justify-center pr-1 sm:pr-2 bg-canvas/40 backdrop-blur-[2px] py-1"
-                                style={isZero ? { transform: 'translateY(-50%)' } : undefined}
+                                style={isZero ? { transform: 'translateY(-20%)' } : undefined}
                             >
                                 {unitSystem === 'metric' ? (
                                     <div className={`flex items-baseline justify-end w-full transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
                                         <span className="text-[8px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[28px] sm:min-w-[40px]">
-                                            {isKM 
-                                                ? (tick / 100000).toLocaleString(undefined, { maximumFractionDigits: 1 }) 
+                                            {isKM
+                                                ? (tick / 100000).toLocaleString(undefined, { maximumFractionDigits: 1 })
                                                 : (isM ? (tick / 100).toLocaleString() : tick.toLocaleString())}
                                         </span>
                                         <span className="text-[6px] sm:text-[7px] font-mono font-black leading-none text-left w-[12px] sm:w-[15px] opacity-70 ml-1">
