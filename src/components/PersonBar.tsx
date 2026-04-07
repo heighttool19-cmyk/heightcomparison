@@ -236,18 +236,18 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                             transformOrigin: 'bottom'
                         }}
                     >
-                        <span className="text-[0.45em] font-black text-foreground uppercase text-center leading-tight   whitespace-nowrap drop-shadow-md "
+                        <span className="text-[0.65em] font-black text-foreground uppercase text-center leading-tight   whitespace-nowrap drop-shadow-md "
                             style={{
-                                transform: `scale(${nameScale * 0.55})`,
+                                transform: `scale(${nameScale * 0.8})`,
                             }}
                         >
                             {person.name}
                         </span>
-                        <span className="text-[0.45em]  font-black text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/60 backdrop-blur-sm rounded-sm px-1 text-center shadow-sm"
+                        <span className="text-[0.65em]  font-black text-accent tracking-tighter whitespace-nowrap leading-tight mt-0.5 bg-bg/60 backdrop-blur-sm rounded-sm px-1 text-center shadow-sm"
 
 
                             style={{
-                                transform: `scale(${nameScale * 0.8})`,
+                                transform: `scale(${nameScale * 0.9})`,
                             }}>
                             {unitSystem === 'metric' ? metricDisplayShort : `${ftDisplayShort} ft`}
                         </span>
