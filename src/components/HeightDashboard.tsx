@@ -337,6 +337,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     if (currentW > netAvailableWidth * 0.98) {
                         horizontalZoom *= (netAvailableWidth * 0.90) / currentW;
                     }
+                    horizontalZoom *= 1.15
                 }
                 // Cap it again after the mobile loop just in case
                 horizontalZoom = Math.min(1.0, horizontalZoom);
