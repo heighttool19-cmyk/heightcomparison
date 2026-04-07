@@ -105,7 +105,7 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                         {/* CM & FT Labels */}
                         {showLabels && (
                             <div
-                                className="relative left-0 z-20 flex flex-col w-full items-start justify-center px-0 sm:px-2 bg-canvas/40 backdrop-blur-[2px] py-1"
+                                className="relative left-0 z-20 flex flex-col w-full  items-start justify-center px-0 sm:px-2 bg-canvas/40 backdrop-blur-[2px] py-1"
                                 style={isZero ? { transform: 'translateY(-50%)' } : undefined}
                             >
                                 {unitSystem === 'metric' ? (

@@ -136,10 +136,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
             {/* Hover Detail Card - Appears on hover/tap (Mobile Fixed) */}
             <div
                 className={`
-        flex flex-col items-center justify-center text-center 
-        absolute left-1/2 -translate-x-1/2
-        bg-surface/98 backdrop-blur-xl border-2 border-accent/20 rounded-2xl
-        px-2 py-2 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)]
+                    absolute left-1/2 -translate-x-1/2 flex flex-col items-center justify-end
                     transition-all duration-400 ease-[cubic-bezier(0.23,1,0.32,1)]
                     
                     /* z-index: only high when menu is open */
@@ -149,55 +146,58 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                     group-hover:opacity-100 group-hover:scale-110 group-hover:translate-y-0 group-hover:pointer-events-auto
                 `}
                 style={{
-                    bottom: `${tooltipBottom}px`,
+                    bottom: `${Math.min(barHeightPx, maxTooltipBottom)}px`,
                     width: 'max-content',
                     minWidth: '100px',
+                    paddingBottom: `${Math.max(0, tooltipBottom - barHeightPx)}px`, // An invisible bridge to maintain hover!
                     transformOrigin: 'bottom center'
                 }}
                 /* FIX 3: Stop rogue background clicks if the user taps the empty space of the card */
                 onPointerDown={(e) => e.stopPropagation()}
                 onClick={(e) => e.stopPropagation()}
             >
-                {/* Person Name - Detailed */}
-                <span className="text-[10px] font-black text-foreground uppercase tracking-tight whitespace-nowrap leading-tight mb-1 border-b border-border/50 pb-1 w-full text-center">
-                    {person.name}
-                </span>
-
-                {/* Height Stats */}
-                <div className="flex flex-col items-center text-center">
-                    <span className="text-sm font-black text-accent whitespace-nowrap leading-none">
-                        {unitSystem === 'metric' ? metricDisplay : ftDisplay}
+                <div className="flex flex-col items-center justify-center text-center bg-surface/98 backdrop-blur-xl border-2 border-accent/20 rounded-2xl px-2 py-2 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] w-full">
+                    {/* Person Name - Detailed */}
+                    <span className="text-[10px] font-black text-foreground uppercase tracking-tight whitespace-nowrap leading-tight mb-1 border-b border-border/50 pb-1 w-full text-center">
+                        {person.name}
                     </span>
-                    <span className="text-[11px] font-bold text-muted whitespace-nowrap leading-tight mt-1 opacity-80">
-                        {unitSystem === 'metric' ? ftDisplay : metricDisplay}
-                    </span>
-                </div>
 
-                {/* Action buttons inside the card */}
-                {!readOnly && (
-                    <div className="flex items-center gap-3 mt-3 w-full justify-center">
-                        {onEditRequest && (
-                            <button
-                                onClick={(e) => { e.stopPropagation(); e.preventDefault(); onEditRequest(person.id); }}
-                                className="w-8 h-8 rounded-full bg-accent/10 hover:bg-accent text-accent hover:text-white flex items-center justify-center transition-all active:scale-90 border border-accent/30 shadow-sm cursor-pointer"
-                                style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
-                                aria-label={`Edit ${person.name}`}
-                            >
-                                <Edit2 size={14} strokeWidth={2.5} />
-                            </button>
-                        )}
-                        {onRemove && (
-                            <button
-                                onClick={(e) => { e.stopPropagation(); e.preventDefault(); onRemove(person.id); }}
-                                className="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white flex items-center justify-center transition-all active:scale-90 border border-red-500/30 shadow-sm cursor-pointer"
-                                style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
-                                aria-label={`Remove ${person.name}`}
-                            >
-                                <Trash2 size={14} strokeWidth={2.5} />
-                            </button>
-                        )}
+                    {/* Height Stats */}
+                    <div className="flex flex-col items-center text-center">
+                        <span className="text-sm font-black text-accent whitespace-nowrap leading-none">
+                            {unitSystem === 'metric' ? metricDisplay : ftDisplay}
+                        </span>
+                        <span className="text-[11px] font-bold text-muted whitespace-nowrap leading-tight mt-1 opacity-80">
+                            {unitSystem === 'metric' ? ftDisplay : metricDisplay}
+                        </span>
                     </div>
-                )}
+
+                    {/* Action buttons inside the card */}
+                    {!readOnly && (
+                        <div className="flex items-center gap-3 mt-3 w-full justify-center">
+                            {onEditRequest && (
+                                <button
+                                    onClick={(e) => { e.stopPropagation(); e.preventDefault(); onEditRequest(person.id); }}
+                                    className="w-8 h-8 rounded-full bg-accent/10 hover:bg-accent text-accent hover:text-white flex items-center justify-center transition-all active:scale-90 border border-accent/30 shadow-sm cursor-pointer"
+                                    style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
+                                    aria-label={`Edit ${person.name}`}
+                                >
+                                    <Edit2 size={14} strokeWidth={2.5} />
+                                </button>
+                            )}
+                            {onRemove && (
+                                <button
+                                    onClick={(e) => { e.stopPropagation(); e.preventDefault(); onRemove(person.id); }}
+                                    className="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white flex items-center justify-center transition-all active:scale-90 border border-red-500/30 shadow-sm cursor-pointer"
+                                    style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
+                                    aria-label={`Remove ${person.name}`}
+                                >
+                                    <Trash2 size={14} strokeWidth={2.5} />
+                                </button>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
 
             {/* Silhouette Area - Restricted Click Area */}
@@ -238,7 +238,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                     >
                         <span className="text-[0.65em] font-black text-foreground uppercase text-center leading-tight   whitespace-nowrap drop-shadow-md "
                             style={{
-                                transform: `scale(${nameScale * 0.8})`,
+                                transform: `scale(${nameScale * 0.6})`,
                             }}
                         >
                             {person.name}
@@ -247,7 +247,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
 
                             style={{
-                                transform: `scale(${nameScale * 0.9})`,
+                                transform: `scale(${nameScale * 0.7})`,
                             }}>
                             {unitSystem === 'metric' ? metricDisplayShort : `${ftDisplayShort} ft`}
                         </span>
