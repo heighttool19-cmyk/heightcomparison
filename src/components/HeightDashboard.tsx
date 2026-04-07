@@ -1038,7 +1038,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             className="flex-1 relative overflow-auto custom-scrollbar chart-grid scroll-smooth"
                         >
                             <div
-                                className="relative flex items-end"
+                                className="relative flex items-end min-w-full w-max"
                                 style={{ height: requiredCanvasHeight }}
                             >
                                 {/* Sticky Ruler Labels */}
@@ -1054,7 +1054,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 </div>
 
                                 {/* Main Chart Area (Lines + Persons) */}
-                                <div className="relative flex-1 h-full flex items-end pr-8 md:pr-48 min-w-0">
+                                <div className="relative flex-1 h-full flex items-end pr-8 md:pr-48 min-w-max">
                                     <Ruler
                                         mode="lines"
                                         scale={scale}

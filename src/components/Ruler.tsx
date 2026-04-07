@@ -54,11 +54,8 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
 
         let maxVisibleCm = maxHeightCm;
         if (containerHeight && scale > 0) {
-            const containerMaxCm = (containerHeight - 20) / scale;
-            // FIX: Limit the ruler's extent. If we are zoomed way out, don't show 1000km ticks 
-            // if our tallest object is only 8km. Limit to max of (tallest * 2) or (1km).
-            const heightBufferCap = Math.max(100000, maxHeightCm * 2);
-            maxVisibleCm = Math.min(heightBufferCap, Math.max(maxHeightCm, containerMaxCm));
+            // Uncapped: Let it calculate lines all the way to the top of the scroll container
+            maxVisibleCm = containerHeight / scale;
         }
 
         const baseMaxTick = Math.ceil(maxVisibleCm / tickInterval) * tickInterval;
@@ -68,24 +65,14 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
         const allTicks = Array.from({ length: tickCount + 1 }, (_, i) => minTick + (i * tickInterval));
 
         return allTicks.filter((tick, idx) => {
-            const heightPx = tick * scale;
-            const safeTopBuffer = isFullscreen ? 80 : 20; // Reduced buffer to allow labels closer to the top
-
-            // 1. CLIP CHECK
-            if (containerHeight && (heightPx + 30) > (containerHeight - safeTopBuffer)) {
-                return false;
-            }
-
-            // 2. COLLISION CHECK (Don't let the last tick crowd the top if it's too close to the one before it)
+            // COLLISION CHECK: Only remove a tick if it perfectly overlaps the one before it
             if (idx === allTicks.length - 1 && allTicks.length > 1) {
                 const prevTick = allTicks[idx - 1];
                 if ((tick - prevTick) * scale < 40) return false;
             }
-
             return true;
         });
-    }, [tickInterval, maxHeightCm, containerHeight, scale, isFullscreen]);
-
+    }, [tickInterval, maxHeightCm, containerHeight, scale]);
     const showLabels = mode === 'full' || mode === 'labels';
     const showLines = mode === 'full' || mode === 'lines';
 
