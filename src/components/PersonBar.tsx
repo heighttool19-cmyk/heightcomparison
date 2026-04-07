@@ -178,11 +178,9 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                     <div className="flex items-center gap-3 mt-3 w-full justify-center">
                         {onEditRequest && (
                             <button
-                                /* FIX 4: Use onPointerDown for zero-delay mobile tap detection */
-                                onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); onEditRequest(person.id); }}
                                 onClick={(e) => { e.stopPropagation(); e.preventDefault(); onEditRequest(person.id); }}
                                 className="w-8 h-8 rounded-full bg-accent/10 hover:bg-accent text-accent hover:text-white flex items-center justify-center transition-all active:scale-90 border border-accent/30 shadow-sm cursor-pointer"
-                                style={{ touchAction: 'none', WebkitTapHighlightColor: 'transparent' }}
+                                style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
                                 aria-label={`Edit ${person.name}`}
                             >
                                 <Edit2 size={14} strokeWidth={2.5} />
@@ -190,10 +188,9 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                         )}
                         {onRemove && (
                             <button
-                                onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); onRemove(person.id); }}
                                 onClick={(e) => { e.stopPropagation(); e.preventDefault(); onRemove(person.id); }}
                                 className="w-8 h-8 rounded-full bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white flex items-center justify-center transition-all active:scale-90 border border-red-500/30 shadow-sm cursor-pointer"
-                                style={{ touchAction: 'none', WebkitTapHighlightColor: 'transparent' }}
+                                style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
                                 aria-label={`Remove ${person.name}`}
                             >
                                 <Trash2 size={14} strokeWidth={2.5} />

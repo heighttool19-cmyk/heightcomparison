@@ -278,26 +278,53 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 return Math.max(minW, silW);
             });
 
-            // Gap shrinks with person count on mobile
-            let gapAtZoom1: number;
-            if (isMobileNow) {
-                if (persons.length >= 10) gapAtZoom1 = 1;
-                else if (persons.length >= 6) gapAtZoom1 = 2;
-                else if (persons.length >= 3) gapAtZoom1 = 4;
-                else gapAtZoom1 = 8;
-            } else {
-                gapAtZoom1 = 20;
+            // Dynamic gap per person (same formula as the render code)
+            const baseGap = isMobileNow ? 2 : 10;
+            const heightMultiplier = isMobileNow ? 0.05 : 0.15;
+            const totalGaps = persons.reduce((sum, p) => {
+                return sum + Math.max(baseGap, p.heightCm * heightMultiplier);
+            }, 0);
+
+            // Total content width at zoom=1 (excluding side padding and ruler)
+            const personWidthAtZoom1 = personWidths.reduce((sum, w) => sum + w, 0);
+            const contentWidthAtZoom1 = personWidthAtZoom1 + totalGaps;
+            // Correct available width by subtracting sticky ruler and fixed container padding
+            const isSmall = typeof window !== 'undefined' && window.innerWidth < 640;
+            const isMedium = typeof window !== 'undefined' && window.innerWidth < 1024;
+            const rulerWidth = isSmall ? 40 : isMedium ? 48 : 56;
+
+            const paddingLeft = isMobileNow ? 16 : 56; // pl-4 vs sm:pl-14
+            const paddingRight = isMobileNow ? 32 : 192; // pr-8 vs md:pr-48
+
+            const netAvailableWidth = availableWidth - rulerWidth - paddingLeft - paddingRight;
+
+            // Zoom level that makes everything fit horizontally with a small safety margin
+            const getWidthAtZoom = (z: number) => {
+                const totalPersonWidth = personWidths.reduce((sum, w, i) => {
+                    const silW_z = w * z;
+                    const minW = isMobileNow ? (persons[i].isEntity ? 25 : 12) : 15;
+                    return sum + Math.max(minW, silW_z);
+                }, 0);
+                const totalGapWidth = persons.reduce((sum, p) => {
+                    return sum + Math.max(baseGap, p.heightCm * heightMultiplier * z);
+                }, 0);
+                return totalPersonWidth + totalGapWidth;
+            };
+
+            // Initial estimate based on linear scaling
+            let horizontalZoom = (contentWidthAtZoom1 > 0 && netAvailableWidth > 0)
+                ? (netAvailableWidth * 0.90) / contentWidthAtZoom1
+                : 1;
+
+            // Iterative correction for non-linear minWidth/minGap floor effects on mobile
+            if (isMobileNow && netAvailableWidth > 0) {
+                for (let i = 0; i < 3; i++) {
+                    const currentW = getWidthAtZoom(horizontalZoom);
+                    if (currentW > netAvailableWidth * 0.98) {
+                        horizontalZoom *= (netAvailableWidth * 0.90) / currentW;
+                    }
+                }
             }
-
-            // Total content width at zoom=1
-            const paddingLeft = isMobileNow ? 16 : 56; // pl-4 vs pl-14
-            const paddingRight = isMobileNow ? 16 : 192; // pr-4 vs pr-48
-            const totalContentWidth = personWidths.reduce((sum, w) => sum + w, 0)
-                + (persons.length - 1) * gapAtZoom1
-                + paddingLeft + paddingRight;
-
-            // Zoom level that makes everything fit horizontally
-            const horizontalZoom = totalContentWidth > 0 ? (availableWidth * 0.98) / totalContentWidth : 1;
 
             // --- VERTICAL CALCULATION ---
             let verticalZoom = 1.0;
@@ -305,7 +332,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             if (minVisiblePx < 25 && maxHeight > 400) {
                 verticalZoom = 30 / minVisiblePx;
             } else {
-                verticalZoom = (availableHeight * 0.72) / (maxHeight * fitScale);
             }
 
             // --- FINAL ZOOM ---
@@ -652,9 +678,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
         const maxHeightCm = Math.max(210, ...heights);
 
-        // More generous padding for images to prevent clipping
-        const basePadding = hasImages ? 280 : 160;
-        const topPadding = maxHeightCm > 1000 ? Math.max(basePadding, 220) : basePadding;
+        // Tighter padding to fill more canvas (reference: heightcomparison.com)
+        const basePadding = hasImages ? 200 : 120;
+        const topPadding = maxHeightCm > 1000 ? Math.max(basePadding, 180) : basePadding;
 
         const fitScale = Math.max(0, (canvasHeight - topPadding) / maxHeightCm);
         const finalScale = fitScale * state.zoom;
@@ -693,7 +719,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         });
         const maxHeightPx = Math.max(...heightsWithOffsets);
         const hasImages = persons.some(p => p.imgUrl);
-        const topBuffer = hasImages ? 300 : 200;
+        const topBuffer = hasImages ? 200 : 120;
         const needed = maxHeightPx + topBuffer;
         return Math.max(canvasHeight, needed);
     }, [persons, scale, canvasHeight]);
@@ -916,9 +942,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     </div>
                     <div
                         ref={containerRef}
-                        className={`order-1 canvas-export-area p-4 flex-1 relative flex flex-col overflow-hidden bg-canvas shadow-2xl ${isFullscreen
+                        className={`order-1 canvas-export-area p-2 flex-1 relative flex flex-col overflow-hidden bg-canvas shadow-2xl ${isFullscreen
                             ? 'fixed inset-0 z-[9999] m-0 rounded-none w-screen h-[100dvh]'
-                            : 'm-4 mb-0 rounded-[2rem] border border-border/50'
+                            : 'm-2 mb-0 rounded-[2rem] border border-border/50'
                             }`}
                         style={{
                             height: isFullscreen ? '100dvh' : 'auto',
@@ -998,7 +1024,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             className="flex-1 relative overflow-auto custom-scrollbar chart-grid scroll-smooth"
                         >
                             <div
-                                className="relative flex items-end min-w-max"
+                                className="relative flex items-end"
                                 style={{ height: requiredCanvasHeight }}
                             >
                                 {/* Sticky Ruler Labels */}
@@ -1026,29 +1052,46 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     <AnimatePresence mode="popLayout" initial={false}>
                                         <div
                                             className={`flex flex-nowrap items-end h-full mt-auto pl-4 sm:pl-14 ${isMobile ? 'w-full' : 'w-max'}`}
-                                            style={{
-                                                gap: isMobile
-                                                    ? `${Math.max(1, Math.round((persons.length >= 10 ? 1 : persons.length >= 6 ? 2 : persons.length >= 3 ? 4 : 8) * state.zoom))}px`
-                                                    : `${Math.max(2, Math.round(12 * state.zoom))}px`,
-                                                transition: 'gap 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
-                                            }}
+                                        // gap removed: we now handle spacing per-item below
                                         >
-                                            {persons.map((person, idx) => (
-                                                <PersonBar
-                                                    key={person.id}
-                                                    person={person}
-                                                    index={idx}
-                                                    scale={scale}
-                                                    zoom={state.zoom}
-                                                    readOnly={readOnly}
-                                                    canvasHeight={canvasHeight}
-                                                    isActiveMenu={activePersonMenuId === person.id}
-                                                    onSetActiveMenu={(active: boolean) => setActivePersonMenuId(active ? person.id : null)}
-                                                    onEditRequest={!readOnly ? handleEditRequest : undefined}
-                                                    onRemove={!readOnly ? handleRemovePerson : undefined}
-                                                    onHeightChange={!readOnly ? (val) => handleUpdatePersonHeight(person.id, val) : undefined}
-                                                />
-                                            ))}
+                                            {persons.map((person, idx) => {
+                                                const isLast = idx === persons.length - 1;
+
+                                                // Calculate dynamic gap: taller items get wider gaps.
+                                                // Base gap + a fraction of their height scaled by zoom.
+                                                const baseGap = isMobile ? 2 : 10;
+                                                const heightMultiplier = isMobile ? 0.05 : 0.15;
+                                                const dynamicGap = Math.max(
+                                                    baseGap,
+                                                    (person.heightCm * heightMultiplier) * state.zoom
+                                                );
+
+                                                return (
+                                                    <motion.div
+                                                        key={person.id}
+                                                        layout // Helps smooth the transition if array order changes
+                                                        style={{
+                                                            marginLeft: `${dynamicGap / 2}px`,
+                                                            marginRight: `${dynamicGap / 2}px`,
+                                                            transition: 'margin 0.4s cubic-bezier(0.22, 1, 0.36, 1)'
+                                                        }}
+                                                    >
+                                                        <PersonBar
+                                                            person={person}
+                                                            index={idx}
+                                                            scale={scale}
+                                                            zoom={state.zoom}
+                                                            readOnly={readOnly}
+                                                            canvasHeight={canvasHeight}
+                                                            isActiveMenu={activePersonMenuId === person.id}
+                                                            onSetActiveMenu={(active: boolean) => setActivePersonMenuId(active ? person.id : null)}
+                                                            onEditRequest={!readOnly ? handleEditRequest : undefined}
+                                                            onRemove={!readOnly ? handleRemovePerson : undefined}
+                                                            onHeightChange={!readOnly ? (val) => handleUpdatePersonHeight(person.id, val) : undefined}
+                                                        />
+                                                    </motion.div>
+                                                );
+                                            })}
                                         </div>
                                     </AnimatePresence>
                                 </div>
