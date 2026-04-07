@@ -988,16 +988,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 </>
                             )}
                         </button> */}
-                        <div className={`w-full flex items-center justify-between px-[0.5rem] sm:px-1 py-2 shrink-0 bg-canvas z-20 border-b border-border/5 transition-all duration-300 ${isFullscreen
+                        <div className={`relative w-full flex items-center justify-between px-[0.5rem] sm:px-1 py-2 shrink-0 bg-canvas z-20 border-b border-border/5 transition-all duration-300 ${isFullscreen
                             ? 'pt-1 pb-0'
                             : 'opacity-40'
                             }`}>
 
-
-
                             {/* CENTERED CONTENT */}
-                            <div className="flex flex-col items-center justify-center shrink-0 px-2">
-                                <span className={`font-black uppercase tracking-[0.3em] sm:tracking-[0.5em] text-muted whitespace-nowrap transition-all duration-300 ${isFullscreen
+                            <div className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center justify-center shrink-0 px-2 pointer-events-none">
+                                <span className={`font-black text-center uppercase tracking-[0.3em] sm:tracking-[0.5em] text-muted whitespace-nowrap transition-all duration-300 ${isFullscreen
                                     ? 'text-[9px] sm:text-md lg:text-xl'
                                     : 'text-[7px] sm:text-[10px]'
                                     }`}>
@@ -1014,7 +1012,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                             <div className="flex-1 flex justify-end min-w-0">
                                 <button
                                     onClick={toggleFullscreen}
-                                    className={`shrink-0 z-[100] transition-all duration-300 flex items-center gap-1.5 sm:gap-2 justify-center active:scale-95 ${isFullscreen
+                                    className={`shrink-0 z-[100] transition-all duration-300 flex items-center gap-1.5 sm:gap-2 justify-center active:scale-95 pointer-events-auto ${isFullscreen
                                         ? 'p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full text-foreground hover:bg-white/20 border border-white/20 shadow-2xl'
                                         : 'px-2 py-1.5 sm:px-3 sm:py-2 bg-surface/90 backdrop-blur-md text-foreground/80 hover:text-foreground hover:bg-accent hover:text-white rounded-xl border border-border/60 hover:border-accent shadow-lg hover:shadow-accent/20'
                                         }`}
