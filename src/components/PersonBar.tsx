@@ -90,9 +90,10 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
     // User preferred silhouette width: 2.2x head diameter
     const silhouetteWidth = headDiameter * 2.2;
     // Cap width for large entities/landmarks to prevent horizontal sprawl
-    // If it's a wide entity (aspect ratio > 1), we allow a much larger cap to prevent clipping
+    // FIX: Remove zoom dependency from the cap itself, as the barHeight/silhouetteWidth already scales with scale*zoom.
+    // We set a generous pixel-based cap to allow mountains to show their "bulk".
     const horizontalSwayFactor = (imageAspectRatio && imageAspectRatio > 1) ? imageAspectRatio : 1;
-    const maxEntityWidth = 400 * zoom * horizontalSwayFactor;
+    const maxEntityWidth = 800 * horizontalSwayFactor;
 
     const baseEffectiveWidth = person.imgUrl && imageAspectRatio
         ? Math.max(5, Math.round(barHeightPx * imageAspectRatio))

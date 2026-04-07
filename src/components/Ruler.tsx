@@ -26,9 +26,17 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
 
         // Ensure we don't pack them too tightly if zoomed out
         let baseMinPx = isMobileRuler ? 25 : 40;
+        
+        // --- FIX: High Altitude Density ---
+        // If we are looking at something as big as a mountain (>1km), 
+        // we allow slightly more density so the ruler still looks informative.
+        if (maxHeightCm > 100000) {
+            baseMinPx = isMobileRuler ? 12 : 18;
+        }
+
         if (personCount !== undefined) {
-            if (personCount <= 3) baseMinPx = isMobileRuler ? 20 : 30; // Slightly denser if fewer people
-            else if (personCount >= 15) baseMinPx = isMobileRuler ? 35 : 60; // More spread out if crowded
+            if (personCount <= 3) baseMinPx = Math.max(10, baseMinPx - 10);
+            else if (personCount >= 15) baseMinPx = baseMinPx + 20;
         }
         const rawMinByScale = baseMinPx / scale;
 
@@ -47,7 +55,10 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
         let maxVisibleCm = maxHeightCm;
         if (containerHeight && scale > 0) {
             const containerMaxCm = (containerHeight - 20) / scale;
-            maxVisibleCm = Math.max(maxHeightCm, containerMaxCm);
+            // FIX: Limit the ruler's extent. If we are zoomed way out, don't show 1000km ticks 
+            // if our tallest object is only 8km. Limit to max of (tallest * 2) or (1km).
+            const heightBufferCap = Math.max(100000, maxHeightCm * 2);
+            maxVisibleCm = Math.min(heightBufferCap, Math.max(maxHeightCm, containerMaxCm));
         }
 
         const baseMaxTick = Math.ceil(maxVisibleCm / tickInterval) * tickInterval;
@@ -96,6 +107,10 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                 // will almost never be true. We just set hasLabel to true so every dynamically generated tick is labeled.
                 const hasLabel = true;
 
+                // --- KM Support ---
+                const isKM = tick >= 100000;
+                const isM = tick >= 1000 && !isKM;
+
                 return (
                     <div
                         key={tick}
@@ -105,20 +120,26 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                         {/* CM & FT Labels */}
                         {showLabels && (
                             <div
-                                className="relative left-0 z-20 flex flex-col w-full  items-start justify-center px-0 sm:px-2 bg-canvas/40 backdrop-blur-[2px] py-1"
+                                className="relative left-0 z-20 flex flex-col w-full items-start justify-center pr-1 sm:pr-2 bg-canvas/40 backdrop-blur-[2px] py-1"
                                 style={isZero ? { transform: 'translateY(-50%)' } : undefined}
                             >
                                 {unitSystem === 'metric' ? (
-                                    <span className={`text-[8px] sm:text-[9px] font-mono font-black leading-none transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
-                                        {hasLabel
-                                            ? (tick >= 1000 ? `${(tick / 100).toLocaleString()} m` : `${tick.toLocaleString()} cm`)
-                                            : (tick >= 1000 ? (tick / 100).toLocaleString() : tick.toLocaleString())
-                                        }
-                                    </span>
+                                    <div className={`flex items-baseline justify-end w-full transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                        <span className="text-[8px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[28px] sm:min-w-[40px]">
+                                            {isKM 
+                                                ? (tick / 100000).toLocaleString(undefined, { maximumFractionDigits: 1 }) 
+                                                : (isM ? (tick / 100).toLocaleString() : tick.toLocaleString())}
+                                        </span>
+                                        <span className="text-[6px] sm:text-[7px] font-mono font-black leading-none text-left w-[12px] sm:w-[15px] opacity-70 ml-1">
+                                            {hasLabel ? (isKM ? 'km' : (isM ? 'm' : 'cm')) : ''}
+                                        </span>
+                                    </div>
                                 ) : (
-                                    <span className={`text-[8px] sm:text-[9px] font-mono font-black leading-none transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
-                                        {ftDisplay}
-                                    </span>
+                                    <div className={`flex items-baseline justify-end w-full transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                        <span className="text-[8px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[35px] sm:min-w-[50px]">
+                                            {ftDisplay}
+                                        </span>
+                                    </div>
                                 )}
                             </div>
                         )}

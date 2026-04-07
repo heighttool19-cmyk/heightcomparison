@@ -24,11 +24,19 @@ const applyAutoZoomGuard = (currentPersons: Person[], currentHeight: number, cur
     if (currentPersons.length === 0 || currentHeight === 0) return currentZoom;
     const heights = currentPersons.map(p => p.heightCm);
     const maxHeightCm = Math.max(210, ...heights);
-    const fitScale = Math.max(0, (currentHeight - 200) / maxHeightCm);
+    const minHeightCm = Math.min(...heights);
 
-    const shortestPx = Math.min(...heights) * fitScale * currentZoom;
+    // PROPER FIX: If there is a massive mountain (e.g., 10x taller than the shortest person),
+    // we abort the guard. We DO NOT want to force a zoom-in that cuts off the mountain.
+    if (maxHeightCm / minHeightCm > 10) {
+        return currentZoom;
+    }
+
+    const fitScale = Math.max(0, (currentHeight - 200) / maxHeightCm);
+    const shortestPx = minHeightCm * fitScale * currentZoom;
+
     if (shortestPx > 0 && shortestPx < 80) {
-        const requiredZoom = 80 / (Math.min(...heights) * fitScale);
+        const requiredZoom = 80 / (minHeightCm * fitScale);
         return Math.max(currentZoom, Math.min(MAX_ZOOM, requiredZoom));
     }
     return currentZoom;
@@ -177,8 +185,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         };
     }, []);
 
-    // Zoom Boundaries
-    const MIN_ZOOM = 0.0001;
+    // Zoom Boundaries - Increased MIN_ZOOM to 0.01 to prevent disappearing entities
+    const MIN_ZOOM = 0.01;
     const MAX_ZOOM = 8.00;
 
     const handleZoom = useCallback((delta: number) => {
@@ -261,7 +269,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             const minHeight = Math.min(...heights);
 
             // --- Standard fit scale (height → pixels) ---
-            const fitScale = (canvasHeight - 160) / maxHeight;
+            const dynamicTopPadding = maxHeight > 1000 ? 120 : 80;
+            const fitScale = (canvasHeight - dynamicTopPadding) / maxHeight;
             if (fitScale <= 0) return;
 
             // --- HORIZONTAL CALCULATION ---
@@ -270,6 +279,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             //   headDiameter = barHeightPx * 0.15
             //   silhouetteWidth = headDiameter * 2.2
             // At zoom=1: barHeightPx = heightCm * fitScale
+            // --- HORIZONTAL CALCULATION ---
             const personWidths = persons.map(p => {
                 const barH = p.heightCm * fitScale; // height in px at zoom=1
                 const headD = barH * 0.15;
@@ -278,27 +288,26 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                 return Math.max(minW, silW);
             });
 
-            // Dynamic gap per person (same formula as the render code)
             const baseGap = isMobileNow ? 2 : 10;
             const heightMultiplier = isMobileNow ? 0.05 : 0.15;
+
+            // PROPER FIX: Gap based on rendered pixels, not raw centimeters
             const totalGaps = persons.reduce((sum, p) => {
-                return sum + Math.max(baseGap, p.heightCm * heightMultiplier);
+                const pixelHeightAtZoom1 = p.heightCm * fitScale;
+                return sum + Math.max(baseGap, pixelHeightAtZoom1 * heightMultiplier);
             }, 0);
 
-            // Total content width at zoom=1 (excluding side padding and ruler)
             const personWidthAtZoom1 = personWidths.reduce((sum, w) => sum + w, 0);
             const contentWidthAtZoom1 = personWidthAtZoom1 + totalGaps;
-            // Correct available width by subtracting sticky ruler and fixed container padding
+
             const isSmall = typeof window !== 'undefined' && window.innerWidth < 640;
             const isMedium = typeof window !== 'undefined' && window.innerWidth < 1024;
             const rulerWidth = isSmall ? 40 : isMedium ? 48 : 56;
-
-            const paddingLeft = isMobileNow ? 16 : 56; // pl-4 vs sm:pl-14
-            const paddingRight = isMobileNow ? 32 : 192; // pr-8 vs md:pr-48
+            const paddingLeft = isMobileNow ? 16 : 56;
+            const paddingRight = isMobileNow ? 32 : 192;
 
             const netAvailableWidth = availableWidth - rulerWidth - paddingLeft - paddingRight;
 
-            // Zoom level that makes everything fit horizontally with a small safety margin
             const getWidthAtZoom = (z: number) => {
                 const totalPersonWidth = personWidths.reduce((sum, w, i) => {
                     const silW_z = w * z;
@@ -306,17 +315,22 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                     return sum + Math.max(minW, silW_z);
                 }, 0);
                 const totalGapWidth = persons.reduce((sum, p) => {
-                    return sum + Math.max(baseGap, p.heightCm * heightMultiplier * z);
+                    // PROPER FIX: Scale the gap estimation by fitScale and zoom
+                    const pixelHeightAtCurrentZoom = p.heightCm * fitScale * z;
+                    return sum + Math.max(baseGap, pixelHeightAtCurrentZoom * heightMultiplier);
                 }, 0);
                 return totalPersonWidth + totalGapWidth;
             };
 
-            // Initial estimate based on linear scaling
             let horizontalZoom = (contentWidthAtZoom1 > 0 && netAvailableWidth > 0)
                 ? (netAvailableWidth * 0.90) / contentWidthAtZoom1
                 : 1;
 
-            // Iterative correction for non-linear minWidth/minGap floor effects on mobile
+            // PROPER FIX: Never let horizontal space force a zoom-in.
+            // If the items fit perfectly at 1.0, leave it at 1.0! Only zoom out (shrink)
+            // if we have 50 items pushing off the right edge.
+            horizontalZoom = Math.min(1.0, horizontalZoom);
+
             if (isMobileNow && netAvailableWidth > 0) {
                 for (let i = 0; i < 3; i++) {
                     const currentW = getWidthAtZoom(horizontalZoom);
@@ -324,20 +338,20 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                         horizontalZoom *= (netAvailableWidth * 0.90) / currentW;
                     }
                 }
+                // Cap it again after the mobile loop just in case
+                horizontalZoom = Math.min(1.0, horizontalZoom);
             }
-
             // --- VERTICAL CALCULATION ---
             let verticalZoom = 1.0;
             const minVisiblePx = minHeight * fitScale;
             if (minVisiblePx < 25 && maxHeight > 400) {
-                verticalZoom = 30 / minVisiblePx;
+                verticalZoom = Math.min(5.0, 30 / minVisiblePx);
             } else {
             }
 
             // --- FINAL ZOOM ---
             let idealZoom: number;
             if (isMobileNow || isFSNow) {
-                // On mobile & fullscreen: ALWAYS prioritize horizontal fit so no scroll
                 idealZoom = Math.min(horizontalZoom, verticalZoom);
             } else {
                 idealZoom = Math.min(horizontalZoom, verticalZoom);
@@ -345,7 +359,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
             // Clamp
             idealZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom));
-
             setState(s => ({ ...s, zoom: idealZoom }));
         };
 
@@ -679,8 +692,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         const maxHeightCm = Math.max(210, ...heights);
 
         // Tighter padding to fill more canvas (reference: heightcomparison.com)
-        const basePadding = hasImages ? 200 : 120;
-        const topPadding = maxHeightCm > 1000 ? Math.max(basePadding, 180) : basePadding;
+        const basePadding = hasImages ? 120 : 80;
+        const topPadding = maxHeightCm > 1000 ? Math.max(basePadding, 120) : basePadding;
 
         const fitScale = Math.max(0, (canvasHeight - topPadding) / maxHeightCm);
         const finalScale = fitScale * state.zoom;
@@ -719,7 +732,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         });
         const maxHeightPx = Math.max(...heightsWithOffsets);
         const hasImages = persons.some(p => p.imgUrl);
-        const topBuffer = hasImages ? 200 : 120;
+
+        // Reduced buffer to pull the ceiling down, while leaving just enough room for tooltips
+        const topBuffer = maxHeightPx > 2000 ? 150 : (hasImages ? 120 : 80);
         const needed = maxHeightPx + topBuffer;
         return Math.max(canvasHeight, needed);
     }, [persons, scale, canvasHeight]);
@@ -1052,24 +1067,23 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     <AnimatePresence mode="popLayout" initial={false}>
                                         <div
                                             className={`flex flex-nowrap items-end h-full mt-auto pl-4 sm:pl-14 ${isMobile ? 'w-full' : 'w-max'}`}
-                                        // gap removed: we now handle spacing per-item below
                                         >
                                             {persons.map((person, idx) => {
                                                 const isLast = idx === persons.length - 1;
 
-                                                // Calculate dynamic gap: taller items get wider gaps.
-                                                // Base gap + a fraction of their height scaled by zoom.
                                                 const baseGap = isMobile ? 2 : 10;
                                                 const heightMultiplier = isMobile ? 0.05 : 0.15;
                                                 const dynamicGap = Math.max(
                                                     baseGap,
-                                                    (person.heightCm * heightMultiplier) * state.zoom
+                                                    (person.heightCm * scale) * heightMultiplier
                                                 );
 
                                                 return (
                                                     <motion.div
                                                         key={person.id}
-                                                        layout // Helps smooth the transition if array order changes
+                                                        layout
+                                                        // FIX: You must add this className so the container knows how to hold the mountain
+                                                        className="h-full flex items-end shrink-0"
                                                         style={{
                                                             marginLeft: `${dynamicGap / 2}px`,
                                                             marginRight: `${dynamicGap / 2}px`,
