@@ -94,7 +94,13 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
         const totalInches = Math.round(cm * 0.393701);
         const feet = Math.floor(totalInches / 12);
         const inches = totalInches % 12;
-        return `${cm} cm / ${feet}'${inches}"`;
+        const ftStr = `${feet}'${inches}"`;
+        
+        if (cm >= 1000) {
+            const m = (cm / 100).toFixed(cm % 100 === 0 ? 0 : 2);
+            return `${m} m / ${ftStr}`;
+        }
+        return `${cm} cm / ${ftStr}`;
     };
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -53,10 +53,10 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
 
     const isTall = person.heightCm >= 1000;
     const metricDisplay = isTall
-        ? `${(person.heightCm / 100).toFixed(person.heightCm % 100 === 0 ? 0 : 1)} m`
+        ? `${(person.heightCm / 100).toFixed(person.heightCm % 100 === 0 ? 0 : 2)} m`
         : `${Math.round(person.heightCm)} cm`;
     const metricDisplayShort = isTall
-        ? `${(person.heightCm / 100 % 1 === 0 ? (person.heightCm / 100).toFixed(0) : (person.heightCm / 100).toFixed(1))}m`
+        ? `${(person.heightCm / 100).toFixed(person.heightCm % 100 === 0 ? 0 : 2)}m`
         : `${Math.round(person.heightCm)}cm`;
 
     const springConfig = { type: 'spring' as const, stiffness: 220, damping: 28 };
@@ -187,25 +187,27 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                         className="absolute flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
                         style={{
                             bottom: `${barHeightPx + 4}px`,
-                            width: 'max-content',
+                            width: `${effectiveWidth}px`,
                             transformOrigin: 'bottom'
                         }}
                     >
-                        {/* Name - Refined height-based scaling with a legible floor */}
-                        <span className="font-black text-foreground uppercase text-center leading-none whitespace-nowrap drop-shadow-md"
+                        {/* Name - Refined height-based scaling with a legible floor, dynamically fitted to width */}
+                        <span className="font-black text-foreground uppercase text-center leading-none whitespace-nowrap drop-shadow-md w-full"
                             style={{
-                                fontSize: `${Math.max(11, Math.min(20, 7 * Math.pow(person.heightCm / 170, 0.32)))}px`,
-                                // Ensure text doesn't shrink below a visible threshold (0.45)
-                                transform: `scale(${Math.max(0.35, nameScale * 0.45)})`,
+                                fontSize: `${Math.max(10, Math.min(20, 7 * Math.pow(person.heightCm / 170, 0.32)))}px`,
+                                // Calculate fit scale: shrink more for long names or narrow bars
+                                transform: `scale(${Math.max(0.25, nameScale * 0.45 * Math.min(1, (effectiveWidth * 0.9) / (person.name.length * 8)))})`,
+                                maxWidth: '100%',
                             }}
                         >
                             {person.name}
                         </span>
 
-                        {/* Measurement - Standard scaling for readability */}
-                        <span className="text-[11px] font-black text-accent tracking-tighter whitespace-nowrap leading-none mt-1.5 bg-bg/85 backdrop-blur-md rounded px-2 py-0.5 text-center shadow-xl border border-accent/30"
+                        {/* Measurement - Standard scaling for readability, dynamically fitted to width */}
+                        <span className="text-[11px] font-black text-accent tracking-tighter whitespace-nowrap leading-none mt-1.5 bg-bg/85 backdrop-blur-md rounded px-2 py-0.5 text-center shadow-xl border border-accent/30 w-full"
                             style={{
-                                transform: `scale(${Math.max(0.45, nameScale)})`,
+                                transform: `scale(${Math.max(0.35, nameScale * Math.min(1, (effectiveWidth * 0.85) / (metricDisplayShort.length * 8)))})`,
+                                maxWidth: '100%',
                             }}>
                             {unitSystem === 'metric' ? metricDisplayShort : `${ftDisplayShort} ft`}
                         </span>

@@ -60,9 +60,8 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                 // Since we force exactly 20 lines, we label every one of them for maximum info.
                 const hasLabel = true;
 
-                // --- KM Support ---
-                const isKM = roundedTick >= 100000;
-                const isM = roundedTick >= 1000 && !isKM;
+                // --- Meter Support ---
+                const isM = roundedTick >= 1000;
 
                 return (
                     <div
@@ -70,7 +69,7 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                         className="absolute inset-x-0 flex items-center group/tick h-0"
                         style={{ bottom: `${heightPx}px` }}
                     >
-                        {/* CM & FT Labels */}
+                        {/* CM & M Labels */}
                         {showLabels && (
                             <div
                                 className="relative left-0 z-20 flex flex-col w-full items-start justify-center pr-1 sm:pr-2 bg-canvas/40 backdrop-blur-[2px] py-1"
@@ -79,12 +78,12 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                                 {unitSystem === 'metric' ? (
                                     <div className={`flex items-baseline justify-end w-full transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
                                         <span className="text-[8px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[28px] sm:min-w-[40px]">
-                                            {isKM
-                                                ? (roundedTick / 100000).toLocaleString(undefined, { maximumFractionDigits: 1 })
-                                                : (isM ? (roundedTick / 100).toLocaleString() : roundedTick.toLocaleString())}
+                                            {isM 
+                                                ? (roundedTick / 100).toLocaleString(undefined, { maximumFractionDigits: (roundedTick % 100 === 0 ? 0 : 2) }) 
+                                                : roundedTick.toLocaleString()}
                                         </span>
                                         <span className="text-[6px] sm:text-[7px] font-mono font-black leading-none text-left w-[12px] sm:w-[15px] opacity-70 ml-1">
-                                            {hasLabel ? (isKM ? 'km' : (isM ? 'm' : 'cm')) : ''}
+                                            {hasLabel ? (isM ? 'm' : 'cm') : ''}
                                         </span>
                                     </div>
                                 ) : (

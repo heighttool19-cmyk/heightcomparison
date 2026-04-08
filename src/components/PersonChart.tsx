@@ -94,7 +94,9 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                                         {person.name}
                                     </span>
                                     <span className="text-[10px] font-mono font-black text-foreground/40 uppercase mt-0.5">
-                                        {person.heightCm} cm
+                                        {person.heightCm >= 1000 
+                                            ? `${(person.heightCm / 100).toFixed(person.heightCm % 100 === 0 ? 0 : 2)} m` 
+                                            : `${person.heightCm} cm`}
                                     </span>
                                 </div>
                             </div>
