@@ -17,7 +17,6 @@ export const ImageMeasurement: React.FC = () => {
         canvasRef,
         wrapperRef,
         fileInputRef,
-        cropContainerRef,
         mode,
         calculatedHeight,
         unitSystem,
@@ -30,9 +29,6 @@ export const ImageMeasurement: React.FC = () => {
         isSavedToChart,
         pendingUrl,
         showCropModal,
-        cropBox,
-        cropDisplay,
-        cropDrag,
         magnifierPoint,
         isDrawing,
         calibLine,
@@ -46,10 +42,6 @@ export const ImageMeasurement: React.FC = () => {
         handleSaveToChart,
         confirmSaveToChart,
         handleFileUpload,
-        onCropImgLoad,
-        onCropDragStart,
-        onCropDragMove,
-        onCropDragEnd,
         resetCrop,
         applyCrop,
         closeCropModal,
@@ -152,14 +144,6 @@ export const ImageMeasurement: React.FC = () => {
             <CropModal
                 showCropModal={showCropModal}
                 pendingUrl={pendingUrl}
-                cropContainerRef={cropContainerRef}
-                cropDisplay={cropDisplay}
-                onCropDragMove={onCropDragMove}
-                onCropDragEnd={onCropDragEnd}
-                onCropImgLoad={onCropImgLoad}
-                onCropDragStart={onCropDragStart}
-                cropBox={cropBox}
-                cropDrag={cropDrag}
                 resetCrop={resetCrop}
                 closeCropModal={closeCropModal}
                 applyCrop={applyCrop}

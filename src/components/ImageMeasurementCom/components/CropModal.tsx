@@ -1,57 +1,85 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Crop, X, Move, RotateCcw, Check } from 'lucide-react';
-import NextImage from 'next/image';
-
-interface CropBox { x: number; y: number; w: number; h: number; }
-interface CropDrag { handle: string; startMX: number; startMY: number; startBox: CropBox; }
+import { Crop as CropIcon, X, RotateCcw, Check } from 'lucide-react';
+import ReactCrop, { type Crop, type PixelCrop, centerCrop, makeAspectCrop } from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
 
 interface CropModalProps {
     showCropModal: boolean;
     pendingUrl: string | null;
-    cropContainerRef: React.RefObject<HTMLDivElement | null>;
-    cropDisplay: { w: number; h: number };
-    onCropDragMove: (e: React.MouseEvent | React.TouchEvent) => void;
-    onCropDragEnd: () => void;
-    onCropImgLoad: (e: React.SyntheticEvent<HTMLImageElement>) => void;
-    onCropDragStart: (e: React.MouseEvent | React.TouchEvent, handle: string) => void;
-    cropBox: CropBox;
-    cropDrag: CropDrag | null;
     resetCrop: () => void;
     closeCropModal: () => void;
-    applyCrop: () => void;
+    applyCrop: (pixelCrop: PixelCrop) => void;
     title?: string;
 }
-
-const RESIZE_HANDLES = [
-    { id: 'n', cursor: 'ns-resize', style: { top: -5, left: '50%', transform: 'translateX(-50%)' } },
-    { id: 's', cursor: 'ns-resize', style: { bottom: -5, left: '50%', transform: 'translateX(-50%)' } },
-    { id: 'e', cursor: 'ew-resize', style: { right: -5, top: '50%', transform: 'translateY(-50%)' } },
-    { id: 'w', cursor: 'ew-resize', style: { left: -5, top: '50%', transform: 'translateY(-50%)' } },
-    { id: 'ne', cursor: 'nesw-resize', style: { top: -5, right: -5 } },
-    { id: 'nw', cursor: 'nwse-resize', style: { top: -5, left: -5 } },
-    { id: 'se', cursor: 'nwse-resize', style: { bottom: -5, right: -5 } },
-    { id: 'sw', cursor: 'nesw-resize', style: { bottom: -5, left: -5 } },
-] as const;
 
 export const CropModal: React.FC<CropModalProps> = ({
     showCropModal,
     pendingUrl,
-    cropContainerRef,
-    cropDisplay,
-    onCropDragMove,
-    onCropDragEnd,
-    onCropImgLoad,
-    onCropDragStart,
-    cropBox,
-    cropDrag,
     resetCrop,
     closeCropModal,
     applyCrop,
     title = "Finalize Upload"
 }) => {
+    const imgRef = useRef<HTMLImageElement | null>(null);
+    const [crop, setCrop] = useState<Crop>();
+    const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
+
+    const onImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+        const img = e.currentTarget;
+        imgRef.current = img;
+        // Default: select the entire image
+        const { naturalWidth: w, naturalHeight: h } = img;
+        const newCrop = centerCrop(
+            makeAspectCrop({ unit: '%', width: 100 }, w / h, w, h),
+            w, h
+        );
+        setCrop(newCrop);
+    }, []);
+
+    const handleReset = () => {
+        if (!imgRef.current) return;
+        const { naturalWidth: w, naturalHeight: h } = imgRef.current;
+        const newCrop = centerCrop(
+            makeAspectCrop({ unit: '%', width: 100 }, w / h, w, h),
+            w, h
+        );
+        setCrop(newCrop);
+        setCompletedCrop(undefined);
+        resetCrop();
+    };
+
+    const handleApply = () => {
+        if (completedCrop && imgRef.current) {
+            const img = imgRef.current;
+            
+            // React-image-crop provides coordinates relative to the RENDERED size of the image.
+            // We need to scale them up to the NATURAL size for the canvas crop to be accurate.
+            const scaleX = img.naturalWidth / img.width;
+            const scaleY = img.naturalHeight / img.height;
+
+            const naturalCrop: PixelCrop = {
+                unit: 'px',
+                x: completedCrop.x * scaleX,
+                y: completedCrop.y * scaleY,
+                width: completedCrop.width * scaleX,
+                height: completedCrop.height * scaleY
+            };
+
+            applyCrop(naturalCrop);
+        } else if (imgRef.current) {
+            // No manual crop made = use full image
+            applyCrop({
+                x: 0, y: 0,
+                width: imgRef.current.naturalWidth,
+                height: imgRef.current.naturalHeight,
+                unit: 'px'
+            });
+        }
+    };
+
     return (
         <AnimatePresence>
             {showCropModal && pendingUrl && (
@@ -65,80 +93,71 @@ export const CropModal: React.FC<CropModalProps> = ({
                             style={{ maxHeight: 'calc(100dvh - 32px)' }} onClick={e => e.stopPropagation()}>
 
                             {/* Header */}
-                            <div className="flex items-center justify-between px-4 sm:px-5 py-4 border-b border-border shrink-0">
-                                <div className="flex items-center gap-3">
-                                    <div className="w-9 h-9 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0"><Crop size={17} /></div>
+                            <div className="flex items-center justify-between px-5 py-5 border-b border-border shrink-0 bg-surface">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-10 h-10 rounded-2xl bg-accent/10 flex items-center justify-center text-accent shrink-0">
+                                        <CropIcon size={20} />
+                                    </div>
                                     <div>
-                                        <h3 className="text-sm font-black uppercase tracking-widest">{title}</h3>
-                                        <p className="text-[11px] text-muted mt-0.5 hidden sm:block">Hold and then drag the box or handles to select the crop region</p>
+                                        <h3 className="text-sm font-black uppercase tracking-[0.15em] text-foreground">
+                                            {title}
+                                        </h3>
+                                        <p className="text-[10px] uppercase tracking-wider text-muted mt-1 font-bold hidden sm:block">
+                                            Drag corners to select region
+                                        </p>
                                     </div>
                                 </div>
-                                <button onClick={closeCropModal} className="w-8 h-8 rounded-xl bg-bg border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-accent/40 transition-all shrink-0">
-                                    <X size={16} />
+                                <button
+                                    onClick={closeCropModal}
+                                    className="w-9 h-9 rounded-2xl bg-bg border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-accent/40 hover:bg-accent/5 transition-all shrink-0"
+                                >
+                                    <X size={18} />
                                 </button>
                             </div>
 
                             {/* Crop Area */}
-                            <div className="flex-1 overflow-auto p-4 bg-bg/60 flex items-center justify-center min-h-0 touch-none"
-                                style={{ touchAction: 'none' }}>
-                                <div ref={cropContainerRef} className="relative overflow-hidden rounded-xl select-none touch-none"
-                                    style={{ 
-                                        width: cropDisplay.w || '100%', 
-                                        height: cropDisplay.h || 300, 
-                                        maxWidth: '100%', 
-                                        cursor: cropDrag ? 'grabbing' : 'default', 
-                                        backgroundImage: 'repeating-conic-gradient(#8881 0% 25%, transparent 0% 50%)', 
-                                        backgroundSize: '16px 16px',
-                                        touchAction: 'none' 
-                                    }}
-                                    onMouseMove={onCropDragMove} onMouseUp={onCropDragEnd} onMouseLeave={onCropDragEnd}
-                                    onTouchMove={onCropDragMove} onTouchEnd={onCropDragEnd} onTouchCancel={onCropDragEnd}>
-                                    <NextImage src={pendingUrl} alt="Crop preview" onLoad={onCropImgLoad} draggable={false}
-                                        width={cropDisplay.w || 600} height={cropDisplay.h || 300} unoptimized
-                                        className="block pointer-events-none select-none"
-                                        style={{ width: cropDisplay.w || 'auto', height: cropDisplay.h || 'auto', maxWidth: '100%' }} />
-                                    {cropDisplay.w > 0 && (
-                                        <>
-                                            <div className="absolute pointer-events-none bg-black/55" style={{ top: 0, left: 0, right: 0, height: cropBox.y }} />
-                                            <div className="absolute pointer-events-none bg-black/55" style={{ top: cropBox.y + cropBox.h, left: 0, right: 0, bottom: 0 }} />
-                                            <div className="absolute pointer-events-none bg-black/55" style={{ top: cropBox.y, left: 0, width: cropBox.x, height: cropBox.h }} />
-                                            <div className="absolute pointer-events-none bg-black/55" style={{ top: cropBox.y, left: cropBox.x + cropBox.w, right: 0, height: cropBox.h }} />
-                                            <div className="absolute border-2 border-accent shadow-[0_0_0_1px_rgba(0,0,0,0.4)]"
-                                                style={{ left: cropBox.x, top: cropBox.y, width: cropBox.w, height: cropBox.h, cursor: 'grab' }}
-                                                onMouseDown={e => onCropDragStart(e, 'move')} onTouchStart={e => onCropDragStart(e, 'move')}>
-                                                <div className="absolute inset-0 pointer-events-none">
-                                                    {[33.33, 66.66].map(p => (
-                                                        <React.Fragment key={p}>
-                                                            <div className="absolute border-l border-white/20 h-full" style={{ left: `${p}%` }} />
-                                                            <div className="absolute border-t border-white/20 w-full" style={{ top: `${p}%` }} />
-                                                        </React.Fragment>
-                                                    ))}
-                                                </div>
-                                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30">
-                                                    <Move size={20} className="text-white" />
-                                                </div>
-                                                {RESIZE_HANDLES.map(h => (
-                                                    <div key={h.id} className="absolute w-3 h-3 bg-white border-2 border-accent rounded-sm shadow-md z-10"
-                                                        style={{ ...h.style, position: 'absolute', cursor: h.cursor } as React.CSSProperties}
-                                                        onMouseDown={e => onCropDragStart(e, h.id)} onTouchStart={e => onCropDragStart(e, h.id)} />
-                                                ))}
-                                            </div>
-                                        </>
-                                    )}
+                            <div className="flex-1 overflow-auto p-6 bg-bg/80 flex items-center justify-center min-h-0">
+                                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/30">
+                                    <ReactCrop
+                                        crop={crop}
+                                        onChange={(c) => setCrop(c)}
+                                        onComplete={(c) => setCompletedCrop(c)}
+                                        className="max-h-[65vh]"
+                                    >
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={pendingUrl}
+                                            alt="Crop preview"
+                                            onLoad={onImageLoad}
+                                            draggable={false}
+                                            className="block select-none max-w-full max-h-[65vh] object-contain"
+                                        />
+                                    </ReactCrop>
                                 </div>
                             </div>
 
-                            {/* Footer Actions (Fixed for Mobile Wrapping) */}
-                            <div className="p-4 sm:px-5 border-t border-border flex flex-wrap-reverse sm:flex-nowrap items-center justify-center sm:justify-between gap-3 shrink-0 bg-surface">
-                                <button onClick={resetCrop} className="flex flex-1 sm:flex-none items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/30 transition-all text-xs font-bold whitespace-nowrap">
-                                    <RotateCcw size={14} /> Reset
+                            {/* Footer */}
+                            <div className="p-4 sm:p-5 border-t border-border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0 bg-surface">
+                                <button
+                                    onClick={handleReset}
+                                    className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/40 transition-all text-xs font-black uppercase tracking-widest"
+                                >
+                                    <RotateCcw size={15} />
+                                    <span>Reset</span>
                                 </button>
-                                <div className="flex flex-1 sm:flex-none w-full sm:w-auto gap-2 sm:gap-3">
-                                    <button onClick={closeCropModal} className="flex-1 sm:flex-none px-4 py-2.5 rounded-xl border border-border bg-bg text-muted hover:text-foreground transition-all text-xs font-bold whitespace-nowrap">
+                                <div className="flex items-center gap-2 sm:gap-3">
+                                    <button
+                                        onClick={closeCropModal}
+                                        className="flex-1 sm:flex-none px-4 sm:px-6 py-3 rounded-2xl border border-border bg-bg text-muted hover:text-foreground hover:border-accent/40 transition-all text-xs font-black uppercase tracking-widest"
+                                    >
                                         Cancel
                                     </button>
-                                    <button onClick={applyCrop} className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 sm:px-7 py-2.5 rounded-xl bg-accent text-white font-black uppercase tracking-widest text-xs shadow-lg shadow-accent/20 active:scale-95 whitespace-nowrap">
-                                        <Check size={14} /> Apply Crop
+                                    <button
+                                        onClick={handleApply}
+                                        className="flex-[2] sm:flex-none flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-2xl bg-accent text-white font-black uppercase tracking-[0.1em] text-xs shadow-xl shadow-accent/25 hover:bg-accent-secondary active:scale-95 transition-all"
+                                    >
+                                        <Check size={16} strokeWidth={3} />
+                                        <span>Apply Crop</span>
                                     </button>
                                 </div>
                             </div>

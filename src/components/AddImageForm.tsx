@@ -3,40 +3,17 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Person, uid, HEIGHT_LIMITS, UnitSystem } from '../types';
-import { UploadCloud, Crop, Check, X, RotateCcw, Move } from 'lucide-react';
+import { UploadCloud, Check } from 'lucide-react';
 import { handleInputChange } from '../utils/input';
 import { getOptimizedDataUrl } from '../utils/image';
+import { CropModal } from './ImageMeasurementCom/components/CropModal';
+import { type PixelCrop } from 'react-image-crop';
 
 interface AddImageFormProps {
     onAdd: (person: Person) => void;
 }
 
-interface CropBox {
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-}
 
-interface DragState {
-    type: 'move' | 'resize';
-    handle: string;
-    startX: number;
-    startY: number;
-    startBox: CropBox;
-}
-
-// EXPANDED TOUCH TARGETS: The visible box is 12px (w-3), but the interactive area is 32px (w-8)
-const RESIZE_HANDLES = [
-    { id: 'n', cursor: 'ns-resize', style: { top: -16, left: '50%', transform: 'translateX(-50%)' } },
-    { id: 's', cursor: 'ns-resize', style: { bottom: -16, left: '50%', transform: 'translateX(-50%)' } },
-    { id: 'e', cursor: 'ew-resize', style: { right: -16, top: '50%', transform: 'translateY(-50%)' } },
-    { id: 'w', cursor: 'ew-resize', style: { left: -16, top: '50%', transform: 'translateY(-50%)' } },
-    { id: 'ne', cursor: 'nesw-resize', style: { top: -16, right: -16 } },
-    { id: 'nw', cursor: 'nwse-resize', style: { top: -16, left: -16 } },
-    { id: 'se', cursor: 'nwse-resize', style: { bottom: -16, right: -16 } },
-    { id: 'sw', cursor: 'nesw-resize', style: { bottom: -16, left: -16 } },
-];
 
 const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
     // Form state
@@ -51,13 +28,6 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
     // Crop modal state
     const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null);
     const [showCropModal, setShowCropModal] = useState(false);
-    const [cropBox, setCropBox] = useState<CropBox>({ x: 0, y: 0, w: 200, h: 300 });
-    const [imgDisplaySize, setImgDisplaySize] = useState({ w: 0, h: 0 });
-    const [naturalSize, setNaturalSize] = useState({ w: 0, h: 0 });
-    const [dragState, setDragState] = useState<DragState | null>(null);
-    const cropContainerRef = useRef<HTMLDivElement>(null);
-
-    const MIN_CROP = 40; // Increased min crop size so handles don't overlap entirely
 
     /* ─────────────────── File Handling ─────────────────── */
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -93,110 +63,19 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
         if (inputRef.current) inputRef.current.value = '';
     };
 
-    /* ─────────────────── Image Load → set display dimensions ─────────────────── */
-    const handleImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-        const img = e.currentTarget;
-        const container = cropContainerRef.current;
-        if (!container) return;
-
-        const maxW = Math.min(container.clientWidth, window.innerWidth - 48);
-        const maxH = Math.min(Math.round(window.innerHeight * 0.52), 480);
-
-        const scale = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight, 1);
-        const dw = Math.round(img.naturalWidth * scale);
-        const dh = Math.round(img.naturalHeight * scale);
-
-        setNaturalSize({ w: img.naturalWidth, h: img.naturalHeight });
-        setImgDisplaySize({ w: dw, h: dh });
-
-        // INITIAL STATE FIXED: Set crop box to the full image dimensions (matches Reset)
-        setCropBox({
-            x: 0,
-            y: 0,
-            w: dw,
-            h: dh,
-        });
-    }, []);
-
-    /* ─────────────────── Robust Pointer Helpers ─────────────────── */
-    const getClientCoords = (e: React.MouseEvent | React.TouchEvent) => {
-        if ('touches' in e) {
-            return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-        }
-        return { x: (e as React.MouseEvent).clientX, y: (e as React.MouseEvent).clientY };
-    };
-
-    const startDrag = (e: React.MouseEvent | React.TouchEvent, handle: string) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const { x, y } = getClientCoords(e);
-        setDragState({
-            type: handle === 'move' ? 'move' : 'resize',
-            handle,
-            startX: x,
-            startY: y,
-            startBox: { ...cropBox }
-        });
-    };
-
-    const onDragMove = (e: React.MouseEvent | React.TouchEvent) => {
-        if (!dragState) return;
-
-        // Prevent scrolling while dragging
-        if ('touches' in e && e.cancelable) {
-            e.preventDefault();
-        }
-
-        const { x, y } = getClientCoords(e);
-
-        // Calculate pure delta from initial touch. This prevents ALL jumping/shaking.
-        const dx = x - dragState.startX;
-        const dy = y - dragState.startY;
-
-        const sb = dragState.startBox;
-        const mw = imgDisplaySize.w;
-        const mh = imgDisplaySize.h;
-        const nb = { ...sb };
-
-        if (dragState.type === 'move') {
-            nb.x = Math.max(0, Math.min(mw - sb.w, sb.x + dx));
-            nb.y = Math.max(0, Math.min(mh - sb.h, sb.y + dy));
-        } else {
-            const h = dragState.handle;
-            if (h.includes('e')) nb.w = Math.max(MIN_CROP, Math.min(mw - sb.x, sb.w + dx));
-            if (h.includes('w')) {
-                const nx = Math.max(0, Math.min(sb.x + sb.w - MIN_CROP, sb.x + dx));
-                nb.w = sb.x + sb.w - nx; nb.x = nx;
-            }
-            if (h.includes('s')) nb.h = Math.max(MIN_CROP, Math.min(mh - sb.y, sb.h + dy));
-            if (h.includes('n')) {
-                const ny = Math.max(0, Math.min(sb.y + sb.h - MIN_CROP, sb.y + dy));
-                nb.h = sb.y + sb.h - ny; nb.y = ny;
-            }
-        }
-        setCropBox(nb);
-    };
-
-    const endDrag = () => setDragState(null);
-
-    const resetCrop = () => {
-        if (imgDisplaySize.w > 0)
-            setCropBox({ x: 0, y: 0, w: imgDisplaySize.w, h: imgDisplaySize.h });
-    };
+    const resetCrop = () => { /* Handled in Modal */ };
 
     /* ─────────────────── Apply Crop → add Person ─────────────────── */
-    const applyCrop = () => {
-        if (!pendingImageUrl || imgDisplaySize.w === 0) return;
+    const applyCrop = (pixelCrop: PixelCrop) => {
+        if (!pendingImageUrl) return;
         const img = new Image();
         img.onload = () => {
-            const sx = naturalSize.w / imgDisplaySize.w;
-            const sy = naturalSize.h / imgDisplaySize.h;
             const canvas = document.createElement('canvas');
-            canvas.width = Math.round(cropBox.w * sx);
-            canvas.height = Math.round(cropBox.h * sy);
+            canvas.width = pixelCrop.width;
+            canvas.height = pixelCrop.height;
             const ctx = canvas.getContext('2d');
             if (!ctx) return;
-            ctx.drawImage(img, cropBox.x * sx, cropBox.y * sy, cropBox.w * sx, cropBox.h * sy, 0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, pixelCrop.x, pixelCrop.y, pixelCrop.width, pixelCrop.height, 0, 0, canvas.width, canvas.height);
 
             let finalH = 0;
             if (unit === 'metric') finalH = Number(heightCm) || 170;
@@ -280,118 +159,14 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                 </div>
             </motion.div>
 
-            {/* ────── Crop Modal ────── */}
-            <AnimatePresence>
-                {showCropModal && pendingImageUrl && (
-                    <>
-                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/75 backdrop-blur-sm z-[200]" onClick={closeModal} />
-                        <motion.div initial={{ opacity: 0, scale: 0.95, y: 24 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 24 }} transition={{ type: 'spring', damping: 28, stiffness: 300 }} className="fixed inset-0 z-[201] flex items-center justify-center p-3 sm:p-6 pointer-events-none">
-                            <div className="pointer-events-auto w-full max-w-2xl bg-surface border border-border rounded-3xl shadow-2xl flex flex-col overflow-hidden" style={{ maxHeight: 'calc(100dvh - 32px)' }} onClick={e => e.stopPropagation()}>
-
-                                <div className="flex items-center justify-between px-5 py-4 border-b border-border shrink-0">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-9 h-9 rounded-xl bg-accent/10 flex items-center justify-center text-accent shrink-0">
-                                            <Crop size={17} />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-sm font-black text-foreground uppercase tracking-widest">Crop Image</h3>
-                                            <p className="text-[11px] text-muted mt-0.5 hidden sm:block">Drag the box or handles to select the crop region</p>
-                                        </div>
-                                    </div>
-                                    <button onClick={closeModal} className="w-8 h-8 rounded-xl bg-bg border border-border flex items-center justify-center text-muted hover:text-foreground hover:border-accent/40 transition-all shrink-0">
-                                        <X size={16} />
-                                    </button>
-                                </div>
-
-                                {/* Crop canvas area with touch-action-none */}
-                                <div className="flex-1 overflow-auto p-4 bg-bg/60 flex items-center justify-center">
-                                    <div
-                                        ref={cropContainerRef}
-                                        className="relative overflow-hidden rounded-xl select-none touch-none"
-                                        style={{ width: imgDisplaySize.w || '100%', height: imgDisplaySize.h || 240, maxWidth: '100%', cursor: dragState ? 'grabbing' : 'default', backgroundImage: 'repeating-conic-gradient(#8881 0% 25%, transparent 0% 50%)', backgroundSize: '16px 16px' }}
-                                        onMouseMove={onDragMove}
-                                        onMouseUp={endDrag}
-                                        onMouseLeave={endDrag}
-                                        onTouchMove={onDragMove}
-                                        onTouchEnd={endDrag}
-                                        onTouchCancel={endDrag}
-                                    >
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                                        <img src={pendingImageUrl} alt="Crop preview" onLoad={handleImgLoad} draggable={false} className="block pointer-events-none select-none" style={{ width: imgDisplaySize.w || 'auto', height: imgDisplaySize.h || 'auto', maxWidth: '100%' }} />
-
-                                        {imgDisplaySize.w > 0 && (
-                                            <>
-                                                <div className="absolute pointer-events-none bg-black/55" style={{ top: 0, left: 0, right: 0, height: cropBox.y }} />
-                                                <div className="absolute pointer-events-none bg-black/55" style={{ top: cropBox.y + cropBox.h, left: 0, right: 0, bottom: 0 }} />
-                                                <div className="absolute pointer-events-none bg-black/55" style={{ top: cropBox.y, left: 0, width: cropBox.x, height: cropBox.h }} />
-                                                <div className="absolute pointer-events-none bg-black/55" style={{ top: cropBox.y, left: cropBox.x + cropBox.w, right: 0, height: cropBox.h }} />
-
-                                                <div className="absolute border-2 border-accent shadow-[0_0_0_1px_rgba(0,0,0,0.4)] touch-none" style={{ left: cropBox.x, top: cropBox.y, width: cropBox.w, height: cropBox.h, cursor: 'grab' }} onMouseDown={e => startDrag(e, 'move')} onTouchStart={e => startDrag(e, 'move')}>
-                                                    <div className="absolute inset-0 pointer-events-none">
-                                                        {[33.33, 66.66].map(p => (
-                                                            <React.Fragment key={p}>
-                                                                <div className="absolute border-l border-white/30 h-full" style={{ left: `${p}%` }} />
-                                                                <div className="absolute border-t border-white/30 w-full" style={{ top: `${p}%` }} />
-                                                            </React.Fragment>
-                                                        ))}
-                                                    </div>
-
-                                                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-40">
-                                                        <Move size={24} className="text-white drop-shadow-md" />
-                                                    </div>
-
-                                                    {/* Enlarged invisible touch targets wrapping the visible nodes */}
-                                                    {RESIZE_HANDLES.map(h => (
-                                                        <div
-                                                            key={h.id}
-                                                            className="absolute w-8 h-8 flex items-center justify-center z-20 touch-none"
-                                                            style={{ ...h.style, cursor: h.cursor } as React.CSSProperties}
-                                                            onMouseDown={e => startDrag(e, h.id)}
-                                                            onTouchStart={e => startDrag(e, h.id)}
-                                                        >
-                                                            <div className="w-3 h-3 bg-white border-2 border-accent rounded-sm shadow-md pointer-events-none" />
-                                                        </div>
-                                                    ))}
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
-
-                                <div className="px-3 py-4 border-t border-border flex items-center justify-between gap-2 shrink-0 bg-surface">
-                                    {/* Reset Button - Narrowed padding */}
-                                    <button
-                                        onClick={resetCrop}
-                                        className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/30 transition-all text-[11px] font-bold whitespace-nowrap"
-                                    >
-                                        <RotateCcw size={14} />
-                                        <span className="hidden xs:inline">Reset</span>
-                                    </button>
-
-                                    <div className="flex items-center gap-2 min-w-0">
-                                        {/* Cancel Button */}
-                                        <button
-                                            onClick={closeModal}
-                                            className="px-3 py-2.5 rounded-xl border border-border bg-bg text-muted hover:text-foreground transition-all text-[11px] font-bold whitespace-nowrap"
-                                        >
-                                            Cancel
-                                        </button>
-
-                                        {/* Apply Crop Button - flex-1 and min-w-0 prevent cutting */}
-                                        <button
-                                            onClick={applyCrop}
-                                            className="flex-1 min-w-0 flex items-center justify-center gap-1.5 px-4 sm:px-6 py-2.5 rounded-xl bg-accent text-white font-black uppercase tracking-widest text-[9px] shadow-lg shadow-accent/20 hover:bg-accent-secondary transition-all active:scale-95 whitespace-nowrap"
-                                        >
-                                            <Check size={14} strokeWidth={3} />
-                                            <span>Apply Crop</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
+            <CropModal
+                showCropModal={showCropModal}
+                pendingUrl={pendingImageUrl}
+                resetCrop={resetCrop}
+                closeCropModal={closeModal}
+                applyCrop={applyCrop}
+                title="Crop Person Image"
+            />
         </>
     );
 };

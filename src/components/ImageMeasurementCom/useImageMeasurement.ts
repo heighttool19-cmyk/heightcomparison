@@ -5,21 +5,16 @@ import { useHeightStore } from '@/store/useHeightStore';
 import { usePersonStore, useUnitStore } from '@/store';
 import { Gender } from '@/types';
 import { getOptimizedDataUrl } from '@/utils/image';
+import type { PixelCrop } from 'react-image-crop';
 
 /* ─────────────────────────── Types ─────────────────────────── */
 export interface Point { x: number; y: number; }
 export interface Line { p1: Point; p2: Point; }
-export interface CropBox { x: number; y: number; w: number; h: number; }
-export interface CropDrag {
-    handle: string;
-    startMX: number; startMY: number;
-    startBox: CropBox;
-}
 
 export type Mode = 'idle' | 'calibrating' | 'measuring';
 
-const MIN_CROP = 20;
-const MAX_CANVAS_H = 700;
+/** Dynamic max canvas height: 75% of viewport so image always fits on screen */
+const getMaxCanvasH = () => typeof window !== 'undefined' ? Math.round(window.innerHeight * 0.75) : 700;
 
 export const useImageMeasurement = () => {
     /* ── refs ── */
@@ -27,7 +22,6 @@ export const useImageMeasurement = () => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const imageRef = useRef<HTMLImageElement | null>(null);
-    const cropContainerRef = useRef<HTMLDivElement>(null);
 
     const firstPointRef = useRef<Point | null>(null);
     const isDraggingRef = useRef(false);
@@ -60,10 +54,6 @@ export const useImageMeasurement = () => {
     const [showCropModal, setShowCropModal] = useState(false);
     const [isSavingCrop, setIsSavingCrop] = useState(false);
     const [savedSubjectUrl, setSavedSubjectUrl] = useState<string | null>(null);
-    const [cropBox, setCropBox] = useState<CropBox>({ x: 0, y: 0, w: 200, h: 300 });
-    const [cropDisplay, setCropDisplay] = useState({ w: 0, h: 0 });
-    const [cropNatural, setCropNatural] = useState({ w: 0, h: 0 });
-    const [cropDrag, setCropDrag] = useState<CropDrag | null>(null);
     const [magnifierPoint, setMagnifierPoint] = useState<Point | null>(null);
 
     const [displaySize, setDisplaySize] = useState<{ w: number; h: number } | null>(null);
@@ -93,13 +83,14 @@ export const useImageMeasurement = () => {
         const availW = wrapper.clientWidth;
         if (!availW) return;
 
+        const maxH = getMaxCanvasH();
         const scaleW = availW / img.naturalWidth;
         let dw = Math.round(img.naturalWidth * scaleW);
         let dh = Math.round(img.naturalHeight * scaleW);
-        if (dh > MAX_CANVAS_H) {
-            const scaleH = MAX_CANVAS_H / img.naturalHeight;
+        if (dh > maxH) {
+            const scaleH = maxH / img.naturalHeight;
             dw = Math.round(img.naturalWidth * scaleH);
-            dh = MAX_CANVAS_H;
+            dh = maxH;
         }
 
         const dpr = window.devicePixelRatio || 1;
@@ -398,59 +389,22 @@ export const useImageMeasurement = () => {
         reader.readAsDataURL(file);
     };
 
-    const onCropImgLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
-        const img = e.currentTarget, cont = cropContainerRef.current;
-        if (!cont) return;
-        const maxW = Math.min(cont.clientWidth || 600, window.innerWidth - 48);
-        const maxH = Math.min(Math.round(window.innerHeight * 0.52), 480);
-        const sc = Math.min(maxW / img.naturalWidth, maxH / img.naturalHeight, 1);
-        const dw = Math.round(img.naturalWidth * sc), dh = Math.round(img.naturalHeight * sc);
-        setCropNatural({ w: img.naturalWidth, h: img.naturalHeight });
-        setCropDisplay({ w: dw, h: dh });
-        // INITIAL STATE: Cover full image (matches Reset) - Fixed padding to 0
-        setCropBox({ x: 0, y: 0, w: dw, h: dh });
-    }, []);
+    const resetCrop = () => { /* handled inside CropModal now */ };
 
-    const getCropPt = (e: React.MouseEvent | React.TouchEvent) => {
-        const rect = cropContainerRef.current?.getBoundingClientRect();
-        if (!rect) return { x: 0, y: 0 };
-        if ('touches' in e) return { x: e.touches[0].clientX - rect.left, y: e.touches[0].clientY - rect.top };
-        return { x: (e as React.MouseEvent).clientX - rect.left, y: (e as React.MouseEvent).clientY - rect.top };
-    };
-
-    const onCropDragStart = (e: React.MouseEvent | React.TouchEvent, handle: string) => {
-        e.preventDefault(); e.stopPropagation();
-        const { x, y } = getCropPt(e);
-        setCropDrag({ handle, startMX: x, startMY: y, startBox: { ...cropBox } });
-    };
-    const onCropDragMove = (e: React.MouseEvent | React.TouchEvent) => {
-        if (!cropDrag) return; e.preventDefault();
-        const { x, y } = getCropPt(e);
-        const dx = x - cropDrag.startMX, dy = y - cropDrag.startMY;
-        const sb = cropDrag.startBox, mw = cropDisplay.w, mh = cropDisplay.h;
-        const nb = { ...sb };
-        if (cropDrag.handle === 'move') { nb.x = Math.max(0, Math.min(mw - sb.w, sb.x + dx)); nb.y = Math.max(0, Math.min(mh - sb.h, sb.y + dy)); }
-        else {
-            const h = cropDrag.handle;
-            if (h.includes('e')) nb.w = Math.max(MIN_CROP, Math.min(mw - sb.x, sb.w + dx));
-            if (h.includes('w')) { const nx = Math.max(0, Math.min(sb.x + sb.w - MIN_CROP, sb.x + dx)); nb.w = sb.x + sb.w - nx; nb.x = nx; }
-            if (h.includes('s')) nb.h = Math.max(MIN_CROP, Math.min(mh - sb.y, sb.h + dy));
-            if (h.includes('n')) { const ny = Math.max(0, Math.min(sb.y + sb.h - MIN_CROP, sb.y + dy)); nb.h = sb.y + sb.h - ny; nb.y = ny; }
-        }
-        setCropBox(nb);
-    };
-    const onCropDragEnd = () => setCropDrag(null);
-    const resetCrop = () => { if (cropDisplay.w > 0) setCropBox({ x: 0, y: 0, w: cropDisplay.w, h: cropDisplay.h }); };
-
-    const applyCrop = () => {
-        if (!pendingUrl || cropDisplay.w === 0) return;
+    const applyCrop = (pixelCrop: PixelCrop) => {
+        if (!pendingUrl) return;
         const img = new Image();
         img.onload = () => {
-            const sx = cropNatural.w / cropDisplay.w, sy = cropNatural.h / cropDisplay.h;
             const c = document.createElement('canvas');
-            c.width = Math.round(cropBox.w * sx); c.height = Math.round(cropBox.h * sy);
-            const ctx = c.getContext('2d'); if (!ctx) return;
-            ctx.drawImage(img, cropBox.x * sx, cropBox.y * sy, cropBox.w * sx, cropBox.h * sy, 0, 0, c.width, c.height);
+            c.width = pixelCrop.width;
+            c.height = pixelCrop.height;
+            const ctx = c.getContext('2d');
+            if (!ctx) return;
+            ctx.drawImage(
+                img,
+                pixelCrop.x, pixelCrop.y, pixelCrop.width, pixelCrop.height,
+                0, 0, pixelCrop.width, pixelCrop.height
+            );
             const croppedDataUrl = getOptimizedDataUrl(c, 1024);
 
             if (isSavingCrop) {
@@ -520,7 +474,6 @@ export const useImageMeasurement = () => {
         canvasRef,
         wrapperRef,
         fileInputRef,
-        cropContainerRef,
         // State
         mode,
         firstPoint,
@@ -533,9 +486,6 @@ export const useImageMeasurement = () => {
         toastMsg,
         pendingUrl,
         showCropModal,
-        cropBox,
-        cropDisplay,
-        cropDrag,
         magnifierPoint,
         displaySize,
         uploadedImage,
@@ -549,10 +499,6 @@ export const useImageMeasurement = () => {
         recalibrate,
         handleAutoScan,
         handleFileUpload,
-        onCropImgLoad,
-        onCropDragStart,
-        onCropDragMove,
-        onCropDragEnd,
         resetCrop,
         applyCrop,
         closeCropModal,
