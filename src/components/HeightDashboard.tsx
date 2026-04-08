@@ -1244,7 +1244,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         zoom={state.zoom}
                                         editingPerson={persons.find(p => p.id === editingPersonId)}
                                         onEditSave={(p) => { handleEditSave(p); setIsMobileDrawerOpen(false); }}
-                                        onEditCancel={() => setIsMobileDrawerOpen(false)}
+                                        onEditCancel={handleEditCancel}
                                         highlight={highlightYourList}
                                     />
                                 </div>
