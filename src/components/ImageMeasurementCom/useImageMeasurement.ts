@@ -212,6 +212,13 @@ export const useImageMeasurement = () => {
         setFirstPoint(null); setLivePoint(null); setIsDragging(false);
     }, []);
 
+    const finishDrawing = useCallback(() => {
+        setMode('idle');
+        setFirstPoint(null);
+        setLivePoint(null);
+        setIsDragging(false);
+    }, []);
+
     useEffect(() => {
         const onMouseMove = (e: MouseEvent) => {
             if (!isMouseDown.current || !firstPointRef.current) return;
@@ -502,6 +509,7 @@ export const useImageMeasurement = () => {
         resetCrop,
         applyCrop,
         closeCropModal,
+        finishDrawing,
         applyPreset,
         cancelDrawing,
         handleSaveToChart,

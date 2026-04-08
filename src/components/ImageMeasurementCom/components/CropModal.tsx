@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, useCallback } from 'react';
+import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Crop as CropIcon, X, RotateCcw, Check } from 'lucide-react';
 import ReactCrop, { type Crop, type PixelCrop, centerCrop, makeAspectCrop } from 'react-image-crop';
@@ -26,6 +26,18 @@ export const CropModal: React.FC<CropModalProps> = ({
     const imgRef = useRef<HTMLImageElement | null>(null);
     const [crop, setCrop] = useState<Crop>();
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
+
+    // Body scroll lock
+    useEffect(() => {
+        if (showCropModal) {
+            document.documentElement.classList.add('modal-open');
+            document.body.classList.add('modal-open');
+            return () => {
+                document.documentElement.classList.remove('modal-open');
+                document.body.classList.remove('modal-open');
+            };
+        }
+    }, [showCropModal]);
 
     const onImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
         const img = e.currentTarget;
@@ -85,10 +97,10 @@ export const CropModal: React.FC<CropModalProps> = ({
             {showCropModal && pendingUrl && (
                 <>
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/75 backdrop-blur-sm z-[200]" onClick={closeCropModal} />
+                        className="fixed inset-0 bg-black/85 backdrop-blur-md z-[9999998]" onClick={closeCropModal} />
                     <motion.div initial={{ opacity: 0, scale: 0.95, y: 24 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 24 }}
                         transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-                        className="fixed inset-0 z-[201] flex items-center justify-center p-3 sm:p-6 pointer-events-none">
+                        className="fixed inset-0 z-[9999999] flex items-center justify-center p-3 sm:p-6 pointer-events-none">
                         <div className="pointer-events-auto w-full max-w-2xl bg-surface border border-border rounded-3xl shadow-2xl flex flex-col overflow-hidden"
                             style={{ maxHeight: 'calc(100dvh - 32px)' }} onClick={e => e.stopPropagation()}>
 

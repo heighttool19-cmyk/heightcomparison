@@ -333,3 +333,18 @@ input[type=number] {
   background-size: 33.33% 33.33%;
   pointer-events: none;
 }
+
+/* Global scroll lock for modals */
+.modal-open {
+  overflow: hidden !important;
+  height: 100vh !important;
+  width: 100% !important;
+  position: fixed !important;
+  touch-action: none;
+}
+
+/* Hide navbar/header when modal is open to prevent clipping/overlapping */
+.modal-open header,
+.modal-open nav:not(.ReactCrop nav) {
+  display: none !important;
+}
