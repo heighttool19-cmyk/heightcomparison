@@ -16,63 +16,29 @@ interface RulerProps {
 const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerHeight, personCount, mode = 'full', isFullscreen = false }) => {
     const { unitSystem } = useUnitStore();
 
-    // 1. DYNAMIC EXACT INTERVAL (No forced clean numbers)
-    const tickInterval = useMemo(() => {
-        const isMobileRuler = typeof window !== 'undefined' && window.innerWidth < 768;
-
-        // Aim for roughly 10 major ticks on desktop, 18-20 on mobile
-        const targetTicks = isMobileRuler ? 20 : 10;
-        const idealIntervalByHeight = maxHeightCm / targetTicks;
-
-        // Ensure we don't pack them too tightly if zoomed out
-        let baseMinPx = isMobileRuler ? 25 : 40;
-
-        // --- FIX: High Altitude Density ---
-        // If we are looking at something as big as a mountain (>1km), 
-        // we allow slightly more density so the ruler still looks informative.
-        if (maxHeightCm > 100000) {
-            baseMinPx = isMobileRuler ? 12 : 18;
-        }
-
-        if (personCount !== undefined) {
-            if (personCount <= 3) baseMinPx = Math.max(10, baseMinPx - 10);
-            else if (personCount >= 15) baseMinPx = baseMinPx + 20;
-        }
-        const rawMinByScale = baseMinPx / scale;
-
-        // The required interval must satisfy BOTH the height requirement and the pixel density
-        const requiredInterval = Math.max(idealIntervalByHeight, rawMinByScale);
-
-        // Return the exact arbitrary interval, just rounded to the nearest whole number 
-        // to avoid messy decimal labels (e.g., returns exactly 13, 53, or 76)
-        return Math.max(1, Math.round(requiredInterval));
-    }, [scale, maxHeightCm, personCount]);
-
-    // 2. ANTI-CLIPPING LOGIC
+    // 1. FIXED 20-LINE GRID
     const ticks = useMemo(() => {
-        const minTick = 0;
+        const TOTAL_LINES = 20;
 
+        // Determine the maximum height we need to cover.
+        // If we know the screen height and scale, use that so the grid fills the screen.
+        // Otherwise, fallback to the tallest person (maxHeightCm).
         let maxVisibleCm = maxHeightCm;
         if (containerHeight && scale > 0) {
-            // Uncapped: Let it calculate lines all the way to the top of the scroll container
             maxVisibleCm = containerHeight / scale;
         }
 
-        const baseMaxTick = Math.ceil(maxVisibleCm / tickInterval) * tickInterval;
-        const maxTick = Math.max(maxHeightCm > 300 ? 0 : 300, baseMaxTick);
+        // Generate exactly 20 perfectly spaced ticks
+        const allTicks = [];
+        for (let i = 0; i <= TOTAL_LINES; i++) {
+            // Calculate the exact CM value for this specific line
+            const tickValue = (maxVisibleCm / TOTAL_LINES) * i;
+            allTicks.push(tickValue);
+        }
 
-        const tickCount = Math.floor((maxTick - minTick) / tickInterval);
-        const allTicks = Array.from({ length: tickCount + 1 }, (_, i) => minTick + (i * tickInterval));
+        return allTicks;
+    }, [maxHeightCm, containerHeight, scale]);
 
-        return allTicks.filter((tick, idx) => {
-            // COLLISION CHECK: Only remove a tick if it perfectly overlaps the one before it
-            if (idx === allTicks.length - 1 && allTicks.length > 1) {
-                const prevTick = allTicks[idx - 1];
-                if ((tick - prevTick) * scale < 40) return false;
-            }
-            return true;
-        });
-    }, [tickInterval, maxHeightCm, containerHeight, scale]);
     const showLabels = mode === 'full' || mode === 'labels';
     const showLines = mode === 'full' || mode === 'lines';
 
@@ -81,22 +47,22 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
             {/* Horizontal Ticks */}
             {ticks.map((tick) => {
                 const heightPx = tick * scale;
-                const isZero = tick === 0;
+                const roundedTick = Math.round(tick);
+                const isZero = roundedTick === 0;
 
-                const absFt = Math.abs(tick * 0.393701);
-                const isNegative = tick < 0;
+                const absFt = Math.abs(roundedTick * 0.393701);
+                const isNegative = roundedTick < 0;
                 const totalInches = Math.round(absFt);
                 const ftValue = Math.floor(totalInches / 12);
                 const inValue = totalInches % 12;
                 const ftDisplay = `${isNegative ? '-' : ''}${ftValue}' ${inValue}''`;
 
-                // Since our intervals are now entirely random (e.g., 13), modulo logic like "tick % 50 === 0" 
-                // will almost never be true. We just set hasLabel to true so every dynamically generated tick is labeled.
+                // Since we force exactly 20 lines, we label every one of them for maximum info.
                 const hasLabel = true;
 
                 // --- KM Support ---
-                const isKM = tick >= 100000;
-                const isM = tick >= 1000 && !isKM;
+                const isKM = roundedTick >= 100000;
+                const isM = roundedTick >= 1000 && !isKM;
 
                 return (
                     <div
@@ -114,8 +80,8 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                                     <div className={`flex items-baseline justify-end w-full transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
                                         <span className="text-[8px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[28px] sm:min-w-[40px]">
                                             {isKM
-                                                ? (tick / 100000).toLocaleString(undefined, { maximumFractionDigits: 1 })
-                                                : (isM ? (tick / 100).toLocaleString() : tick.toLocaleString())}
+                                                ? (roundedTick / 100000).toLocaleString(undefined, { maximumFractionDigits: 1 })
+                                                : (isM ? (roundedTick / 100).toLocaleString() : roundedTick.toLocaleString())}
                                         </span>
                                         <span className="text-[6px] sm:text-[7px] font-mono font-black leading-none text-left w-[12px] sm:w-[15px] opacity-70 ml-1">
                                             {hasLabel ? (isKM ? 'km' : (isM ? 'm' : 'cm')) : ''}

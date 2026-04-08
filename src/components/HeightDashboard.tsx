@@ -262,11 +262,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             const isMobileNow = typeof window !== 'undefined' && window.innerWidth < 768;
             const isFSNow = !!document.fullscreenElement || isFullscreen;
             const availableWidth = personsScrollRef.current?.getBoundingClientRect().width || (isMobileNow ? window.innerWidth - 40 : 800);
-            const availableHeight = canvasHeight;
 
             const heights = persons.map(p => p.heightCm);
             const maxHeight = Math.max(...heights);
             const minHeight = Math.min(...heights);
+
+            // --- THE MIXTURE FIX: Detect if this is an extreme comparison ---
+            // If the tallest is more than 5x the shortest, we treat it as an extreme comparison.
+            const isExtremeDifference = maxHeight / (minHeight || 1) > 5;
 
             // --- Standard fit scale (height → pixels) ---
             const dynamicTopPadding = maxHeight > 1000 ? 120 : 80;
@@ -274,14 +277,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             if (fitScale <= 0) return;
 
             // --- HORIZONTAL CALCULATION ---
-            // Compute actual per-person rendered width at zoom=1 using PersonBar's formula:
-            //   barHeightPx = heightCm * fitScale * zoom
-            //   headDiameter = barHeightPx * 0.15
-            //   silhouetteWidth = headDiameter * 2.2
-            // At zoom=1: barHeightPx = heightCm * fitScale
-            // --- HORIZONTAL CALCULATION ---
             const personWidths = persons.map(p => {
-                const barH = p.heightCm * fitScale; // height in px at zoom=1
+                const barH = p.heightCm * fitScale;
                 const headD = barH * 0.15;
                 const silW = headD * 2.2;
                 const minW = isMobileNow ? (p.isEntity ? 25 : 12) : 15;
@@ -291,7 +288,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
             const baseGap = isMobileNow ? 2 : 10;
             const heightMultiplier = isMobileNow ? 0.05 : 0.15;
 
-            // PROPER FIX: Gap based on rendered pixels, not raw centimeters
             const totalGaps = persons.reduce((sum, p) => {
                 const pixelHeightAtZoom1 = p.heightCm * fitScale;
                 return sum + Math.max(baseGap, pixelHeightAtZoom1 * heightMultiplier);
@@ -308,57 +304,35 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
             const netAvailableWidth = availableWidth - rulerWidth - paddingLeft - paddingRight;
 
-            const getWidthAtZoom = (z: number) => {
-                const totalPersonWidth = personWidths.reduce((sum, w, i) => {
-                    const silW_z = w * z;
-                    const minW = isMobileNow ? (persons[i].isEntity ? 25 : 12) : 15;
-                    return sum + Math.max(minW, silW_z);
-                }, 0);
-                const totalGapWidth = persons.reduce((sum, p) => {
-                    // PROPER FIX: Scale the gap estimation by fitScale and zoom
-                    const pixelHeightAtCurrentZoom = p.heightCm * fitScale * z;
-                    return sum + Math.max(baseGap, pixelHeightAtCurrentZoom * heightMultiplier);
-                }, 0);
-                return totalPersonWidth + totalGapWidth;
-            };
-
             let horizontalZoom = (contentWidthAtZoom1 > 0 && netAvailableWidth > 0)
                 ? (netAvailableWidth * 0.90) / contentWidthAtZoom1
                 : 1;
 
-            // PROPER FIX: Never let horizontal space force a zoom-in.
-            // If the items fit perfectly at 1.0, leave it at 1.0! Only zoom out (shrink)
-            // if we have 50 items pushing off the right edge.
+            // Never let horizontal space force a zoom-in, only shrink to fit.
             horizontalZoom = Math.min(1.0, horizontalZoom);
 
-            if (isMobileNow && netAvailableWidth > 0) {
-                for (let i = 0; i < 3; i++) {
-                    const currentW = getWidthAtZoom(horizontalZoom);
-                    if (currentW > netAvailableWidth * 0.98) {
-                        horizontalZoom *= (netAvailableWidth * 0.90) / currentW;
-                    }
-                    horizontalZoom *= 1.15
-                }
-                // Cap it again after the mobile loop just in case
-                horizontalZoom = Math.min(1.0, horizontalZoom);
-            }
-            // --- VERTICAL CALCULATION ---
+            // --- VERTICAL CALCULATION (Only active for extreme differences) ---
             let verticalZoom = 1.0;
             const minVisiblePx = minHeight * fitScale;
-            if (minVisiblePx < 25 && maxHeight > 400) {
-                verticalZoom = Math.min(5.0, 30 / minVisiblePx);
-            } else {
+
+            // Only force a zoom-in if we have an extreme difference OR the item is literally invisible
+            if ((isExtremeDifference || minVisiblePx < 15) && maxHeight > 400) {
+                // Ensure we don't divide by zero if minVisiblePx is tiny
+                verticalZoom = Math.min(5.0, 30 / Math.max(0.1, minVisiblePx));
             }
 
-            // --- FINAL ZOOM ---
-            let idealZoom: number;
-            if (isMobileNow || isFSNow) {
+            // --- FINAL ZOOM DECISION ---
+            let idealZoom = 1.0;
+
+            if (isExtremeDifference) {
+                // Extreme scenario: Balance the horizontal width with making the small object visible
                 idealZoom = Math.min(horizontalZoom, verticalZoom);
             } else {
-                idealZoom = Math.min(horizontalZoom, verticalZoom);
+                // Normal scenario (similar sizes): Rely purely on the stable horizontal fit
+                idealZoom = horizontalZoom;
             }
 
-            // Clamp
+            // Clamp to boundaries
             idealZoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, idealZoom));
             setState(s => ({ ...s, zoom: idealZoom }));
         };
@@ -367,7 +341,6 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         // Double-pass for layout stability
         requestAnimationFrame(() => setTimeout(doScale, 300));
     }, [persons, canvasHeight, isFullscreen, MIN_ZOOM, MAX_ZOOM, isSidebarCollapsed]);
-
     // Keep ref in sync so fullscreenchange handler can call it
     useEffect(() => {
         handleAutoScaleRef.current = handleAutoScale;
@@ -387,6 +360,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
 
     const handleAddPerson = useCallback((person: Person) => {
         storeAddPerson(person);
+        if (typeof window !== 'undefined' && window.innerWidth < 768) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }, [storeAddPerson]);
 
     const handleAddEntity = useCallback((entity: Entity) => {
@@ -402,6 +378,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
         };
         storeAddPerson(newPerson);
         triggerToast(`${entity.name} added`);
+        if (typeof window !== 'undefined' && window.innerWidth < 768) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     }, [storeAddPerson]);
 
     const handleRemovePerson = useCallback((id: string) => {
@@ -815,7 +794,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 {/* Zoom Controls */}
                                 <div className="flex shrink-0 items-center gap-0.5 lg:gap-1">
                                     <button
-                                        onClick={() => handleZoom(0.1)}
+                                        onClick={() => handleZoom(0.05)}
                                         className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
                                         title="Zoom In"
                                     >
@@ -863,7 +842,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                         <span className="text-[9px] font-bold text-muted/30">%</span>
                                     </div>
                                     <button
-                                        onClick={() => handleZoom(-0.1)}
+                                        onClick={() => handleZoom(-0.05)}
                                         className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg transition-colors"
                                         title="Zoom Out"
                                     >
@@ -1110,7 +1089,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 </div>
 
                                 {persons.length === 0 && (
-                                    <div className="absolute inset-0 flex flex-col items-center justify-center mb-24 sm:mb-32 gap-4 sm:gap-6 px-4 pointer-events-none">
+                                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 sm:gap-6 px-4 pointer-events-none">
                                         <motion.button
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
@@ -1123,7 +1102,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                                 }
                                             }}
                                             className={`empty-door flex items-center justify-center group pointer-events-auto ${!readOnly ? 'cursor-pointer hover:border-accent' : ''}`}
-                                        />
+                                        >
+                                            <Plus size={40} className="text-muted/20 group-hover:text-accent group-hover:scale-110 transition-all duration-500" />
+                                        </motion.button>
                                         <span className="text-sm sm:text-lg lg:text-xl text-center font-bold tracking-tight text-muted/50 bg-surface/50 px-6 sm:px-8 py-2.5 sm:py-3 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl w-auto max-w-[90%]">
                                             Add a person to get started
                                         </span>

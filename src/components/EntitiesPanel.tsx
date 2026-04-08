@@ -192,7 +192,7 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                     onClick={() => onExport?.()}
                     disabled={isCapturing}
                     aria-label="Export comparison as PNG"
-                    className="w-full bg-accent hover:bg-accent/90 text-white font-bold text-sm py-3 rounded-xl shadow-lg shadow-accent/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full bg-surface border border-border/50 hover:bg-bg text-muted hover:text-foreground font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                     {isCapturing ? (
                         <>
@@ -208,9 +208,9 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                 </button>
                 <button
                     onClick={() => onClose()}
-                    aria-label="Back to Add Custom Person"
-                    className="w-full bg-surface border border-border/50 hover:bg-bg text-muted hover:text-foreground font-bold text-xs py-2.5 rounded-xl transition-all flex items-center justify-center gap-2"
+                    className="w-full bg-accent hover:bg-accent/90 text-white font-bold text-sm py-3 rounded-xl shadow-lg shadow-accent/20 transition-all flex items-center justify-center gap-2"
                 >
+                    <Plus size={18} strokeWidth={3} />
                     Add Custom Person
                 </button>
             </div>

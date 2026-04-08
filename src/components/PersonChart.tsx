@@ -60,8 +60,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                             className="flex items-center justify-between p-3 rounded-xl bg-bg border border-border hover:border-accent/40 group transition-all shadow-sm relative overflow-hidden"
                         >
                             {/* Rigid Left Section */}
-                            <div className="flex items-center gap-3 relative z-10 flex-1 min-w-0">
-
+                            <div className="flex items-start gap-3 relative z-10 flex-1 min-w-0">
                                 {/* 1. ARROWS */}
                                 <div className="flex flex-col items-center justify-center gap-1 w-6 shrink-0">
                                     <button
@@ -79,9 +78,8 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                                         <ChevronDown size={14} strokeWidth={3} />
                                     </button>
                                 </div>
-
-                                {/* 2. DOT: Parallel to the 2-line text block */}
-                                <div className="flex items-center justify-center w-4 shrink-0">
+                                {/* 2. DOT: Match the height of the first line of text (h-4 is 16px) */}
+                                <div className="flex items-center justify-center w-4 shrink-0 h-4">
                                     <motion.div
                                         initial={{ scale: 0 }}
                                         animate={{ scale: 1 }}
@@ -89,17 +87,16 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                                         style={{ backgroundColor: person.color }}
                                     />
                                 </div>
-
                                 {/* 3. TEXT BLOCK: Name on top, Height below, no truncation */}
-                                <div className="flex flex-col justify-center min-w-0 flex-1">
-                                    <span className="text-[11px] font-mono text-foreground leading-normal uppercase tracking-tight break-words">
+                                <div className="flex flex-col min-w-0 flex-1">
+                                    {/* The name line is also roughly 16px high (h-4) */}
+                                    <span className="text-[11px] h-4 flex items-center font-mono text-foreground uppercase tracking-tight break-words">
                                         {person.name}
                                     </span>
                                     <span className="text-[10px] font-mono font-black text-foreground/40 uppercase mt-0.5">
                                         {person.heightCm} cm
                                     </span>
                                 </div>
-
                             </div>
 
                             {/* Right Section Actions */}
