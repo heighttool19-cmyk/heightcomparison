@@ -58,10 +58,10 @@ export const DEFAULT_PERSONS: Person[] = [
 ];
 
 export const HEIGHT_LIMITS = {
-  MIN_CM: 30,
-  MAX_CM: 400,
-  MIN_FT: 1,
-  MAX_FT: 13,
+  MIN_CM: 0.1,
+  MAX_CM: 10000000,
+  MIN_FT: 0.01,
+  MAX_FT: 328084,
 };
 
 export const CONVERSION = {

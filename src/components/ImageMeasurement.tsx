@@ -71,10 +71,10 @@ export const ImageMeasurement: React.FC = () => {
                 {/* Step banner */}
                 <AnimatePresence mode="wait">
                     {uploadedImage && mode !== 'idle' && (
-                        <motion.div 
-                            key={mode + String(!!firstPoint) + String(!!measLine)} 
-                            initial={{ opacity: 0, y: -10 }} 
-                            animate={{ opacity: 1, y: 0 }} 
+                        <motion.div
+                            key={mode + String(!!firstPoint) + String(!!measLine)}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 10 }}
                             className="p-3 sm:px-4 sm:py-3 bg-surface/90 backdrop-blur-md border border-accent/20 rounded-2xl shadow-xl flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 overflow-hidden"
                         >
@@ -97,20 +97,20 @@ export const ImageMeasurement: React.FC = () => {
                                     </span>
                                 </div>
                             </div>
-                            
+
                             <div className="flex items-center gap-2 sm:shrink-0">
                                 {firstPoint && (
-                                    <button 
+                                    <button
                                         onClick={cancelDrawing}
                                         className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-red-500/20 bg-red-500/5 text-red-500 hover:bg-red-500 hover:text-white transition-all text-xs font-black uppercase tracking-widest"
                                     >
-                                        <XCircle size={14} /> 
+                                        <XCircle size={14} />
                                         <span>Cancel</span>
                                     </button>
                                 )}
-                                
+
                                 {mode === 'measuring' && measLine && !firstPoint && (
-                                    <button 
+                                    <button
                                         onClick={finishDrawing}
                                         className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-accent text-white shadow-lg shadow-accent/20 hover:bg-accent-secondary active:scale-95 transition-all text-xs font-black uppercase tracking-widest"
                                     >

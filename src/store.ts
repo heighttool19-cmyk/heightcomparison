@@ -52,7 +52,7 @@ interface PersonState {
 import { Person, DEFAULT_PERSONS } from './types';
 
 export const usePersonStore = create<PersonState>((set) => ({
-    persons: DEFAULT_PERSONS,
+    persons: [],
     addPerson: (person) => set((state) => ({ persons: [...state.persons, person] })),
     removePerson: (id) => set((state) => ({ persons: state.persons.filter(p => p.id !== id) })),
     updatePerson: (id, updates) => set((state) => ({

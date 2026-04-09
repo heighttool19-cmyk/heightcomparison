@@ -19,6 +19,11 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
     const [heightFt, setHeightFt] = useState<number | ''>('');
     const [heightIn, setHeightIn] = useState<number | ''>('');
     const [color, setColor] = useState(COLOR_PALETTE[personCount % 8]);
+
+    // Update color selection when personCount changes (e.g. initial load or reset)
+    React.useEffect(() => {
+        setColor(COLOR_PALETTE[personCount % 8]);
+    }, [personCount]);
     const handleAdd = () => {
         let finalHeightCm = 0;
         if (unit === 'metric') {
@@ -42,6 +47,8 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
             setHeightCm('');
             setHeightFt('');
             setHeightIn('');
+            // Automatic color cycling for the next person
+            setColor(COLOR_PALETTE[(personCount + 1) % 8]);
         }
     };
 

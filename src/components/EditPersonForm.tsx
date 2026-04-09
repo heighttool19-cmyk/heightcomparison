@@ -58,7 +58,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             offsetY !== person.offsetY ||
             (person.isEntity && icon !== person.icon);
 
-        if (hasChanged && finalHeightCm > 10) {
+        if (hasChanged && finalHeightCm > 0) {
             onUpdate({
                 ...person,
                 name: name || (gender === 'male' ? 'Man' : gender === 'female' ? 'Woman' : 'Person'),
@@ -81,8 +81,8 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             finalHeightCm = (f * 30.48) + (i * 2.54);
         }
 
-        if (finalHeightCm < 30 || finalHeightCm > 1000) {
-            setError('Height must be between 30cm and 1000cm');
+        if (finalHeightCm <= 0) {
+            setError('Height must be greater than 0');
             return;
         }
 

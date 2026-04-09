@@ -66,7 +66,7 @@ export const CropModal: React.FC<CropModalProps> = ({
     const handleApply = () => {
         if (completedCrop && imgRef.current) {
             const img = imgRef.current;
-            
+
             // React-image-crop provides coordinates relative to the RENDERED size of the image.
             // We need to scale them up to the NATURAL size for the canvas crop to be accurate.
             const scaleX = img.naturalWidth / img.width;
@@ -129,7 +129,7 @@ export const CropModal: React.FC<CropModalProps> = ({
 
                             {/* Crop Area */}
                             <div className="flex-1 overflow-auto p-6 bg-bg/80 flex items-center justify-center min-h-0">
-                                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/30">
+                                <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border/30 p-1">
                                     <ReactCrop
                                         crop={crop}
                                         onChange={(c) => setCrop(c)}

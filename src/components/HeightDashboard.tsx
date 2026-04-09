@@ -901,13 +901,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     <span className="hidden xl:inline whitespace-nowrap">Clear All</span>
                                 </button>
 
-                                <button
-                                    onClick={() => setState(s => ({ ...s, zoom: 1.0 }))}
-                                    className="flex items-center gap-1.5 text-[10px] lg:text-xs font-medium text-muted hover:text-foreground px-1.5 lg:px-2 py-2 transition-all group shrink-0"
-                                    title="Reset Zoom"
-                                >
-                                    <RotateCcw size={16} className="text-muted/50 group-hover:text-accent transition-colors shrink-0" />
-                                    <span className="hidden xl:inline whitespace-nowrap">Reset</span>                                </button>
+
 
                                 <button
                                     onClick={handleShare}

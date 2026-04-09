@@ -19,9 +19,9 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
     // Form state
     const [name, setName] = useState('');
     const [unit, setUnit] = useState<UnitSystem>('metric');
-    const [heightCm, setHeightCm] = useState<number | ''>(170);
-    const [heightFt, setHeightFt] = useState<number | ''>(5);
-    const [heightIn, setHeightIn] = useState<number | ''>(7);
+    const [heightCm, setHeightCm] = useState<number | ''>();
+    const [heightFt, setHeightFt] = useState<number | ''>();
+    const [heightIn, setHeightIn] = useState<number | ''>();
     const [error, setError] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -38,15 +38,13 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
         let finalHeightCm = 0;
         if (unit === 'metric') {
             finalHeightCm = typeof heightCm === 'number' ? heightCm : 0;
-            if (finalHeightCm < HEIGHT_LIMITS.MIN_CM || finalHeightCm > HEIGHT_LIMITS.MAX_CM) {
-                setError(`Height must be between ${HEIGHT_LIMITS.MIN_CM} and ${HEIGHT_LIMITS.MAX_CM} cm.`);
-                return;
-            }
         } else {
             finalHeightCm = (Number(heightFt) || 0) * 30.48 + (Number(heightIn) || 0) * 2.54;
-            if (finalHeightCm < HEIGHT_LIMITS.MIN_CM || finalHeightCm > HEIGHT_LIMITS.MAX_CM) {
-                setError('Height outside allowed range.'); return;
-            }
+        }
+
+        if (finalHeightCm <= 0) {
+            setError('Please enter a valid height.');
+            return;
         }
 
         setError('');
@@ -128,7 +126,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                     </div>
                     {unit === 'metric' ? (
                         <div className="flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
-                            <input type="number" placeholder="Height" value={heightCm} onChange={e => handleInputChange(e, setHeightCm)} className="flex-1 bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none" />
+                            <input type="number" placeholder="eg. 158 cm" value={heightCm} onChange={e => handleInputChange(e, setHeightCm)} className="flex-1 bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none" />
                             <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center">CM</div>
                         </div>
                     ) : (

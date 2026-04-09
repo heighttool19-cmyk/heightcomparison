@@ -184,7 +184,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                 {/* Persistent Top Label */}
                 {showLabels && (
                     <div
-                        className="absolute flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 text-center"
+                        className=" flex flex-col items-center justify-center pointer-events-none transition-all duration-300 group-hover:opacity-0 group-hover:scale-95 z-30 "
                         style={{
                             bottom: `${barHeightPx + 4}px`,
                             width: `${effectiveWidth}px`,
@@ -192,19 +192,20 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                         }}
                     >
                         {/* Name - Refined height-based scaling with a legible floor, dynamically fitted to width */}
-                        <span className="font-black text-foreground uppercase text-center leading-none whitespace-nowrap drop-shadow-md w-full"
+                        <span className="font-black  uppercase  leading-none whitespace-nowrap drop-shadow-md w-full"
                             style={{
-                                fontSize: `${Math.max(10, Math.min(20, 7 * Math.pow(person.heightCm / 170, 0.32)))}px`,
+                                fontSize: `${Math.max(10, Math.min(20, 8 * Math.pow(person.heightCm / 170, 0.35)))}px`,
                                 // Calculate fit scale: shrink more for long names or narrow bars
-                                transform: `scale(${Math.max(0.25, nameScale * 0.45 * Math.min(1, (effectiveWidth * 0.9) / (person.name.length * 8)))})`,
-                                maxWidth: '100%',
+                                transform: `scale(${Math.max(0.25, nameScale * 0.48 * Math.min(1, (effectiveWidth * 0.9) / (person.name.length * 8)))})`,
+                                width: '100%',
+                                transformOrigin: 'center',
                             }}
                         >
                             {person.name}
                         </span>
 
                         {/* Measurement - Standard scaling for readability, dynamically fitted to width */}
-                        <span className="text-[11px] font-black text-accent tracking-tighter whitespace-nowrap leading-none mt-1.5 bg-bg/85 backdrop-blur-md rounded px-2 py-0.5 text-center shadow-xl border border-accent/30 w-full"
+                        <span className="text-[11px] font-black text-accent tracking-tighter whitespace-nowrap leading-none mt-1.5  rounded  py-0.5   w-full"
                             style={{
                                 transform: `scale(${Math.max(0.35, nameScale * Math.min(1, (effectiveWidth * 0.85) / (metricDisplayShort.length * 8)))})`,
                                 maxWidth: '100%',
