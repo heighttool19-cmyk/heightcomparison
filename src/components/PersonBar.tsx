@@ -192,7 +192,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                         }}
                     >
                         {/* Name - Refined height-based scaling with a legible floor, dynamically fitted to width */}
-                        <span className="font-black  uppercase  leading-none whitespace-nowrap drop-shadow-md w-full"
+                        <span className="font-black  uppercase  leading-none whitespace-nowrap drop-shadow-md  text-center w-full"
                             style={{
                                 fontSize: `${Math.max(10, Math.min(20, 8 * Math.pow(person.heightCm / 170, 0.35)))}px`,
                                 // Calculate fit scale: shrink more for long names or narrow bars
@@ -205,7 +205,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({ person, scale, zoom, o
                         </span>
 
                         {/* Measurement - Standard scaling for readability, dynamically fitted to width */}
-                        <span className="text-[11px] font-black text-accent tracking-tighter whitespace-nowrap leading-none mt-1.5  rounded  py-0.5   w-full"
+                        <span className="text-[11px] font-black text-accent tracking-tighter whitespace-nowrap leading-none mt-1.5  text-center rounded  py-0.5   w-full"
                             style={{
                                 transform: `scale(${Math.max(0.35, nameScale * Math.min(1, (effectiveWidth * 0.85) / (metricDisplayShort.length * 8)))})`,
                                 maxWidth: '100%',
