@@ -38,13 +38,15 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
         let finalHeightCm = 0;
         if (unit === 'metric') {
             finalHeightCm = typeof heightCm === 'number' ? heightCm : 0;
+            if (finalHeightCm < HEIGHT_LIMITS.MIN_CM || finalHeightCm > HEIGHT_LIMITS.MAX_CM) {
+                setError(`Height must be between ${HEIGHT_LIMITS.MIN_CM} and ${HEIGHT_LIMITS.MAX_CM} cm.`);
+                return;
+            }
         } else {
             finalHeightCm = (Number(heightFt) || 0) * 30.48 + (Number(heightIn) || 0) * 2.54;
-        }
-
-        if (finalHeightCm <= 0) {
-            setError('Please enter a valid height.');
-            return;
+            if (finalHeightCm < HEIGHT_LIMITS.MIN_CM || finalHeightCm > HEIGHT_LIMITS.MAX_CM) {
+                setError('Height outside allowed range.'); return;
+            }
         }
 
         setError('');

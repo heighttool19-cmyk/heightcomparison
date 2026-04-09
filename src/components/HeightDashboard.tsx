@@ -1027,7 +1027,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                 </div>
 
                                 {/* Main Chart Area (Lines + Persons) */}
-                                <div className="relative flex-1 h-full flex items-end pr-8 md:pr-48 min-w-max">
+                                <div className="relative flex-1 h-full flex items-end justify-center min-w-max">
                                     <Ruler
                                         mode="lines"
                                         scale={scale}
@@ -1038,7 +1038,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({ readOnly = false, ini
                                     />
                                     <AnimatePresence mode="popLayout" initial={false}>
                                         <div
-                                            className={`flex flex-nowrap items-end h-full mt-auto pl-4 sm:pl-14 ${isMobile ? 'w-full' : 'w-max'}`}
+                                            className={`flex flex-nowrap items-end justify-center h-full mt-auto ${isMobile ? 'w-full' : 'w-max'}`}
                                         >
                                             {persons.map((person, idx) => {
                                                 const isLast = idx === persons.length - 1;

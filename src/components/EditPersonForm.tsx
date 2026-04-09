@@ -39,7 +39,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
     // Instant Preview logic
     useEffect(() => {
         if (!onUpdate) return;
-        
+
         let finalHeightCm = 0;
         if (unit === 'metric') {
             finalHeightCm = typeof heightCm === 'number' ? heightCm : (parseFloat(String(heightCm)) || 0);
@@ -48,9 +48,9 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             const i = typeof heightIn === 'number' ? heightIn : 0;
             finalHeightCm = (f * 30.48) + (i * 2.54);
         }
-        
+
         // Deep compare (simple version) to avoid unnecessary updates
-        const hasChanged = 
+        const hasChanged =
             name !== person.name ||
             finalHeightCm !== person.heightCm ||
             gender !== person.gender ||
@@ -58,7 +58,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             offsetY !== person.offsetY ||
             (person.isEntity && icon !== person.icon);
 
-        if (hasChanged && finalHeightCm > 0) {
+        if (hasChanged && finalHeightCm > 10) {
             onUpdate({
                 ...person,
                 name: name || (gender === 'male' ? 'Man' : gender === 'female' ? 'Woman' : 'Person'),
@@ -81,8 +81,8 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             finalHeightCm = (f * 30.48) + (i * 2.54);
         }
 
-        if (finalHeightCm <= 0) {
-            setError('Height must be greater than 0');
+        if (finalHeightCm < 30 || finalHeightCm > 1000) {
+            setError('Height must be between 30cm and 1000cm');
             return;
         }
 
@@ -260,9 +260,9 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             )}
 
             {person.imgUrl && (
-                <AlignmentControl 
-                    offsetY={offsetY} 
-                    onOffsetChange={(val) => setOffsetY(val)} 
+                <AlignmentControl
+                    offsetY={offsetY}
+                    onOffsetChange={(val) => setOffsetY(val)}
                 />
             )}
 
