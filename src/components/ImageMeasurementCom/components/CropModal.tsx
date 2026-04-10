@@ -44,7 +44,6 @@ export const CropModal: React.FC<CropModalProps> = ({
     const onImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
         const img = e.currentTarget;
         imgRef.current = img;
-        // Default: select the entire image
         const { naturalWidth: w, naturalHeight: h } = img;
         const newCrop = centerCrop(
             makeAspectCrop({ unit: '%', width: 100 }, w / h, w, h),
@@ -68,9 +67,6 @@ export const CropModal: React.FC<CropModalProps> = ({
     const handleApply = () => {
         if (completedCrop && imgRef.current) {
             const img = imgRef.current;
-
-            // React-image-crop provides coordinates relative to the RENDERED size of the image.
-            // We need to scale them up to the NATURAL size for the canvas crop to be accurate.
             const scaleX = img.naturalWidth / img.width;
             const scaleY = img.naturalHeight / img.height;
 
@@ -84,7 +80,6 @@ export const CropModal: React.FC<CropModalProps> = ({
 
             applyCrop(naturalCrop);
         } else if (imgRef.current) {
-            // No manual crop made = use full image
             applyCrop({
                 x: 0, y: 0,
                 width: imgRef.current.naturalWidth,
@@ -138,7 +133,6 @@ export const CropModal: React.FC<CropModalProps> = ({
                                         onComplete={(c) => setCompletedCrop(c)}
                                         className="max-h-[65vh]"
                                     >
-                                        {/* eslint-disable-next-line @next/next/no-img-element */}
                                         <img
                                             src={pendingUrl}
                                             alt="Crop preview"
