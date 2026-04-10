@@ -13,6 +13,7 @@ interface CropModalProps {
     closeCropModal: () => void;
     applyCrop: (pixelCrop: PixelCrop) => void;
     title?: string;
+    isLoading?: boolean;
 }
 
 export const CropModal: React.FC<CropModalProps> = ({
@@ -21,7 +22,8 @@ export const CropModal: React.FC<CropModalProps> = ({
     resetCrop,
     closeCropModal,
     applyCrop,
-    title = "Finalize Upload"
+    title = "Finalize Upload",
+    isLoading = false
 }) => {
     const imgRef = useRef<HTMLImageElement | null>(null);
     const [crop, setCrop] = useState<Crop>();
@@ -152,7 +154,8 @@ export const CropModal: React.FC<CropModalProps> = ({
                             <div className="p-4 sm:p-5 border-t border-border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0 bg-surface">
                                 <button
                                     onClick={handleReset}
-                                    className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/40 transition-all text-xs font-black uppercase tracking-widest"
+                                    disabled={isLoading}
+                                    className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/40 transition-all text-xs font-black uppercase tracking-widest disabled:opacity-50"
                                 >
                                     <RotateCcw size={15} />
                                     <span>Reset</span>
@@ -160,16 +163,22 @@ export const CropModal: React.FC<CropModalProps> = ({
                                 <div className="flex items-center gap-2 sm:gap-3">
                                     <button
                                         onClick={closeCropModal}
-                                        className="flex-1 sm:flex-none px-4 sm:px-6 py-3 rounded-2xl border border-border bg-bg text-muted hover:text-foreground hover:border-accent/40 transition-all text-xs font-black uppercase tracking-widest"
+                                        disabled={isLoading}
+                                        className="flex-1 sm:flex-none px-4 sm:px-6 py-3 rounded-2xl border border-border bg-bg text-muted hover:text-foreground hover:border-accent/40 transition-all text-xs font-black uppercase tracking-widest disabled:opacity-50"
                                     >
                                         Cancel
                                     </button>
                                     <button
                                         onClick={handleApply}
-                                        className="flex-[2] sm:flex-none flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-2xl bg-accent text-white font-black uppercase tracking-[0.1em] text-xs shadow-xl shadow-accent/25 hover:bg-accent-secondary active:scale-95 transition-all"
+                                        disabled={isLoading}
+                                        className="flex-[2] sm:flex-none flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-2xl bg-accent text-white font-black uppercase tracking-[0.1em] text-xs shadow-xl shadow-accent/25 hover:bg-accent-secondary active:scale-95 transition-all disabled:opacity-70"
                                     >
-                                        <Check size={16} strokeWidth={3} />
-                                        <span>Apply Crop</span>
+                                        {isLoading ? (
+                                            <div className="w-4 h-4 border-2 border-white/50 border-t-white rounded-full animate-spin" />
+                                        ) : (
+                                            <Check size={16} strokeWidth={3} />
+                                        )}
+                                        <span>{isLoading ? 'Uploading...' : 'Apply Crop'}</span>
                                     </button>
                                 </div>
                             </div>

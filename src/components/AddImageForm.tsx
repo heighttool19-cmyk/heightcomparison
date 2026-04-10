@@ -28,6 +28,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
     // Crop modal state
     const [pendingImageUrl, setPendingImageUrl] = useState<string | null>(null);
     const [showCropModal, setShowCropModal] = useState(false);
+    const [isUploading, setIsUploading] = useState(false);
 
     /* ─────────────────── File Handling ─────────────────── */
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,18 +37,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
         if (!file.type.startsWith('image/')) { setError('Please upload an image file.'); return; }
 
         let finalHeightCm = 0;
-        if (unit === 'metric') {
-            finalHeightCm = typeof heightCm === 'number' ? heightCm : 0;
-            if (finalHeightCm < HEIGHT_LIMITS.MIN_CM || finalHeightCm > HEIGHT_LIMITS.MAX_CM) {
-                setError(`Height must be between ${HEIGHT_LIMITS.MIN_CM} and ${HEIGHT_LIMITS.MAX_CM} cm.`);
-                return;
-            }
-        } else {
-            finalHeightCm = (Number(heightFt) || 0) * 30.48 + (Number(heightIn) || 0) * 2.54;
-            if (finalHeightCm < HEIGHT_LIMITS.MIN_CM || finalHeightCm > HEIGHT_LIMITS.MAX_CM) {
-                setError('Height outside allowed range.'); return;
-            }
-        }
+
 
         setError('');
         const reader = new FileReader();
@@ -66,42 +56,82 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
     const resetCrop = () => { /* Handled in Modal */ };
 
     /* ─────────────────── Apply Crop → add Person ─────────────────── */
-    const applyCrop = (pixelCrop: PixelCrop) => {
+    const applyCrop = async (pixelCrop: PixelCrop) => {
         if (!pendingImageUrl) return;
+        setIsUploading(true);
+        setError('');
+
         const img = new Image();
-        img.onload = () => {
+        img.onload = async () => {
             const canvas = document.createElement('canvas');
             canvas.width = pixelCrop.width;
             canvas.height = pixelCrop.height;
             const ctx = canvas.getContext('2d');
-            if (!ctx) return;
+            if (!ctx) {
+                setIsUploading(false);
+                return;
+            }
             ctx.drawImage(img, pixelCrop.x, pixelCrop.y, pixelCrop.width, pixelCrop.height, 0, 0, canvas.width, canvas.height);
+            console.log(process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
+            console.log(process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET);
 
-            let finalH = 0;
-            if (unit === 'metric') finalH = Number(heightCm) || 170;
-            else finalH = (Number(heightFt) || 5) * 30.48 + (Number(heightIn) || 7) * 2.54;
+            try {
+                // 1. Convert canvas to blob
+                const blob = await new Promise<Blob | null>(resolve => canvas.toBlob(resolve, 'image/png'));
+                if (!blob) throw new Error('Failed to create blob');
 
-            onAdd({
-                id: uid(),
-                name: name.trim() || 'Custom Image',
-                heightCm: finalH,
-                gender: 'other',
-                color: '#3B82F6',
-                imgUrl: getOptimizedDataUrl(canvas, 1024),
-            });
+                // 2. Upload to Cloudinary
+                const formData = new FormData();
+                formData.append('file', blob);
+                formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!);
 
-            setShowCropModal(false);
-            setPendingImageUrl(null);
-            setName('');
-            setHeightCm(170);
+                const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+
+                const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || 'Upload failed');
+                }
+
+                const data = await response.json();
+                const secureUrl = data.secure_url;
+
+                let finalH = 0;
+                if (unit === 'metric') finalH = Number(heightCm) || 170;
+                else finalH = (Number(heightFt) || 5) * 30.48 + (Number(heightIn) || 7) * 2.54;
+
+                onAdd({
+                    id: uid(),
+                    name: name.trim() || 'Custom Image',
+                    heightCm: finalH,
+                    gender: 'other',
+                    color: '#3B82F6',
+                    imgUrl: secureUrl,
+                });
+
+                setShowCropModal(false);
+                setPendingImageUrl(null);
+                setName('');
+                setHeightCm(170);
+            } catch (err: any) {
+                console.error('Cloudinary Upload Error:', err);
+                setError(`Upload failed: ${err.message}`);
+            } finally {
+                setIsUploading(false);
+            }
         };
         img.src = pendingImageUrl;
     };
 
-    const closeModal = () => { setShowCropModal(false); setPendingImageUrl(null); };
+    const closeModal = () => { if (!isUploading) { setShowCropModal(false); setPendingImageUrl(null); } };
 
     return (
         <>
+            {/* ... component UI ... */}
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, ease: 'easeOut' }} className="p-6 space-y-6">
                 <div className="flex items-center gap-2">
                     <div className="w-1 h-4 bg-accent rounded-full" />
@@ -166,6 +196,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                 closeCropModal={closeModal}
                 applyCrop={applyCrop}
                 title="Crop Person Image"
+                isLoading={isUploading}
             />
         </>
     );
