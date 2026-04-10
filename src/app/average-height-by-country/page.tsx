@@ -661,8 +661,13 @@ export default function page() {
                                             <span className="text-[11.5px] text-muted">{b.label}</span>
                                         </div>
                                     ))}
+                                    <span className='text-[11.5px] text-muted'>The global average male height is approximately 171 cm with a standard deviation of 7 cm. A man at 185 cm sits roughly two standard deviations above the mean — taller than approximately 97.5% of the world's male population.</span>
                                 </div>
+
                             </div>
+                            <p className="text-xs text-left text-muted mt-2">
+                                <strong>Data sources:</strong> NCD Risk Factor Collaboration (NCD-RisC), "A century of trends in adult human height," eLife 2016. · World Population Review, Average Height by Country 2026. · World Health Organization (WHO), Global Health Observatory.
+                            </p>
 
 
                             <p className="text-muted leading-relaxed">
@@ -782,23 +787,6 @@ export default function page() {
                 </div>
             </main>
 
-            {/* Footer */}
-            <footer className="bg-surface border-t border-border mt-auto">
-                <div className="max-w-4xl mx-auto px-6 py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted">
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <Link href="/about" className="hover:text-foreground">About</Link>
-                        <span className="text-border hidden sm:inline">|</span>
-                        <Link href="/contact" className="hover:text-foreground">Contact</Link>
-                        <span className="text-border hidden sm:inline">|</span>
-                        <button className="hover:text-foreground">FAQ</button>
-                        <span className="text-border hidden sm:inline">|</span>
-                        <Link href="/terms" className="hover:text-foreground">Terms</Link>
-                        <span className="text-border hidden sm:inline">|</span>
-                        <Link href="/privacy" className="hover:text-foreground">Privacy</Link>
-                    </div>
-                    <div>© 2026 HeightComparison. All rights reserved.</div>
-                </div>
-            </footer>
         </div>
     );
 }
