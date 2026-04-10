@@ -346,6 +346,11 @@ export default function page() {
                                     color={tallTab === "Men" ? BLUE : TEAL}
                                     label={`Top 10 tallest nations — ${tallTab === "Men" ? "Average male" : "Average female"} height (cm)`}
                                 />
+                                <p className="mt-4 text-[11.5px] text-muted leading-relaxed">
+                                    {tallTab === "Men"
+                                        ? "Netherlands men average 183.8 cm, the highest recorded national average globally. Eight of the top ten tallest nations for men are European."
+                                        : "Netherlands and Montenegrin women average 170.4 cm and 170.0 cm respectively — the tallest female populations on record. Latvia and Estonia follow closely."}
+                                </p>
                             </div>
 
                             <p className="text-muted leading-relaxed">
@@ -423,11 +428,7 @@ export default function page() {
                             <p className="text-muted leading-relaxed">
                                 South Korean women at 163.2 cm stand notably taller than Japanese women at 158.0 cm, a gap that has grown over the past half-century. Filipino women average 149.6 cm and Guatemalan women 149.4 cm, the lowest verified female average in the Americas. The average height for women in Japan was around 148 cm in the 1950s and has since climbed by a full ten centimetres, one of the steepest documented rises for any female population.
                             </p>
-                            <div className="bg-accent/10 border-l-4 border-accent p-4 rounded-r-xl mt-4">
-                                <p className="text-sm font-medium text-foreground/80">
-                                    Across virtually every population, men are taller than women by 12 to 15 centimetres. This gap holds consistent across very different absolute height ranges, the difference in the Netherlands is roughly the same as in Bangladesh. It reflects hormonal differences during adolescence: testosterone drives a longer growth spurt in males, while earlier oestrogen onset in females closes growth plates sooner. The sex gap is not meaningfully affected by nutrition or economic development.
-                                </p>
-                            </div>
+
                         </section>
                         <section id="tallest-countries-in-the-world" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">
@@ -441,19 +442,14 @@ export default function page() {
                                     <Bars items={femTop10} color={TEAL} label="Average female height (cm)" />
                                 </div>
 
-                                <p className="mt-6 text-[11.5px] text-muted leading-relaxed">
-                                    Netherlands men average 183.8 cm, the highest recorded national average globally.
-                                    Netherlands and Montenegrin women average 170.4 cm and 170.0 cm respectively —
-                                    the tallest female populations on record.
-                                </p>
+
                             </div>
 
-                            <p className="text-muted leading-relaxed">
-                                The Netherlands has topped global male height rankings for decades, with men averaging 183.8 cm, just under 6'1". Denmark sits at 181.9 cm, Germany at 180.3 cm, and Norway at 180.5 cm.
-                            </p>
-                            <p className="text-muted leading-relaxed">
-                                Three factors reinforce each other across this cluster: generous dairy consumption from early childhood, strong public healthcare that reduces illness during growth years, and long-term genetic selection in well-nourished populations.
-                            </p>
+                            <div className="bg-accent/10 border-l-4 border-accent p-4 rounded-r-xl mt-4">
+                                <p className="text-sm font-medium text-foreground/80">
+                                    Across virtually every population, men are taller than women by 12 to 15 centimetres. This gap holds consistent across very different absolute height ranges, the difference in the Netherlands is roughly the same as in Bangladesh. It reflects hormonal differences during adolescence: testosterone drives a longer growth spurt in males, while earlier oestrogen onset in females closes growth plates sooner. The sex gap is not meaningfully affected by nutrition or economic development.
+                                </p>
+                            </div>
                         </section>
                         <section id="average-height-in-selected-countries" className="space-y-6 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Average Height in Selected Countries</h2>
