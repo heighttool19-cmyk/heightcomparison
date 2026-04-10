@@ -346,11 +346,6 @@ export default function page() {
                                     color={tallTab === "Men" ? BLUE : TEAL}
                                     label={`Top 10 tallest nations — ${tallTab === "Men" ? "Average male" : "Average female"} height (cm)`}
                                 />
-                                <p className="mt-4 text-[11.5px] text-muted leading-relaxed">
-                                    {tallTab === "Men"
-                                        ? "Netherlands men average 183.8 cm, the highest recorded national average globally. Eight of the top ten tallest nations for men are European."
-                                        : "Netherlands and Montenegrin women average 170.4 cm and 170.0 cm respectively — the tallest female populations on record. Latvia and Estonia follow closely."}
-                                </p>
                             </div>
 
                             <p className="text-muted leading-relaxed">
