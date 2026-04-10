@@ -22,8 +22,14 @@ export const HOME_FAQ = [
     },
     {
         q: "What is the average height by age?",
-        a: <>Key US benchmarks from CDC and NHANES data: <ul><li><strong className='text-accent'>4-year-old boy:</strong> approx. 103 cm (3 ft 4 in)</li><li><strong className='text-accent'>10-year-old boy:</strong> approx. 138 cm (4 ft 6 in)</li><li><strong className='text-accent'>10-year-old girl:</strong> approx. 140 cm (4 ft 7 in)</li><li><strong className='text-accent'>Adult men (US):</strong> 176.9 cm (5 ft 9.7 in)</li><li><strong className='text-accent'>Adult women (US):</strong> 163.3 cm (5 ft 4.3 in)</li></ul> For full <strong className='text-accent'>average height by age</strong> tables across all ages and genders, see our <a href="/height-weight-percentile/" className="text-accent underline">Height Weight Percentile Calculator</a>.</>
-    },
+        a: <>Key US benchmarks from CDC and NHANES data:<br /><br />
+            • <strong className='text-accent'>4-year-old boy:</strong> approx. 103 cm (3 ft 4 in)<br />
+            • <strong className='text-accent'>10-year-old boy:</strong> approx. 138 cm (4 ft 6 in)<br />
+            • <strong className='text-accent'>10-year-old girl:</strong> approx. 140 cm (4 ft 7 in)<br />
+            • <strong className='text-accent'>Adult men (US):</strong> 176.9 cm (5 ft 9.7 in)<br />
+            • <strong className='text-accent'>Adult women (US):</strong> 163.3 cm (5 ft 4.3 in)<br /><br />
+            For full <strong className='text-accent'>average height by age</strong> tables across all ages and genders, see our <a href="/height-weight-percentile/" className="text-accent underline">Height Weight Percentile Calculator</a>.</>
+    }
 ];
 
 export const HOME_TOC = [

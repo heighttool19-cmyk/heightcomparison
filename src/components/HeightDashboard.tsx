@@ -129,21 +129,45 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     useEffect(() => {
         const el = chartScrollRef.current;
         if (!el) return;
+
+        // Keep track of the last applied dimensions inside the observer
+        let lastW = 0;
+        let lastH = 0;
+
         const ro = new ResizeObserver(entries => {
             for (const e of entries) {
-                setVpWidth(e.contentRect.width);
-                setVpHeight(e.contentRect.height);
-                const mob = window.innerWidth < 768;
-                setIsMobile(mob);
-                if (!mob) setIsMobileDrawerOpen(false);
+                const newW = e.contentRect.width;
+                const newH = e.contentRect.height;
+
+                // FIX: 24px Deadband. Scrollbars are typically 15px to 17px.
+                // If the screen size only changes by the size of a scrollbar appearing 
+                // or disappearing, IGNORE IT. This breaks the infinite loop instantly.
+                if (Math.abs(newW - lastW) > 24 || Math.abs(newH - lastH) > 24) {
+                    lastW = newW;
+                    lastH = newH;
+
+                    setVpWidth(newW);
+                    setVpHeight(newH);
+
+                    const mob = window.innerWidth < 768;
+                    setIsMobile(mob);
+                    if (!mob) setIsMobileDrawerOpen(false);
+                }
             }
         });
+
         ro.observe(el);
+
         const rect = el.getBoundingClientRect();
-        if (rect.width > 0) { setVpWidth(rect.width); setVpHeight(rect.height); }
+        if (rect.width > 0) {
+            lastW = rect.width;
+            lastH = rect.height;
+            setVpWidth(rect.width);
+            setVpHeight(rect.height);
+        }
+
         return () => ro.disconnect();
     }, []);
-
     // ── Wheel / Pinch zoom ───────────────────────────────────────────────────
     useEffect(() => {
         const el = chartScrollRef.current;
@@ -249,14 +273,23 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         // How much zoom makes content fill 90% of available width?
         const hZoom = (availW * 1) / totalW;
 
-        // CRITICAL: Clamp to MAX_AUTO_ZOOM = 1.0
-        // This prevents a single tall/wide entity from auto-zooming to 800%+.
-        // Auto-scale can zoom OUT (< 1.0) for many persons, but NEVER zooms IN (> 1.0).
+        // Clamp to MAX_AUTO_ZOOM = 1.0
         const safeZoom = Math.max(MIN_ZOOM, Math.min(MAX_AUTO_ZOOM, hZoom * 0.95));
-        setZoom(safeZoom);
+
+        // FIX: Add a "deadband" to prevent infinite scrollbar toggle loops!
+        setZoom((prevZoom) => {
+            // If the zoom is only changing by a tiny fraction (2% or less),
+            // it is just the scrollbar appearing/disappearing. 
+            // Return the previous zoom to immediately break the infinite loop.
+            if (Math.abs(prevZoom - safeZoom) < 0.02) {
+                return prevZoom;
+            }
+
+            // Otherwise, apply the new zoom and round it cleanly to 2 decimals
+            return Number(safeZoom.toFixed(2));
+        });
 
     }, [persons, vpHeight, vpWidth, baseScale, isMobile, isSidebarCollapsed]);
-
     useEffect(() => { autoScaleRef.current = handleAutoScale; }, [handleAutoScale]);
 
     // Trigger auto-scale when persons or viewport changes

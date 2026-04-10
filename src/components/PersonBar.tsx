@@ -90,7 +90,14 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
 
     // ── Font size: proportional to bar width, clamped to readable range ───────
     const showLabel = barH > 30 && zoom >= 0.08;
-    const fontSize = Math.max(0, Math.min(18, effectiveW * 0.09));
+
+    // FIX: Dynamic font scaling based on string length.
+    // A bold, uppercase character takes up roughly 65-70% of its font size in width.
+    const charWidthFactor = 0.70;
+    const maxFontSizeForLength = effectiveW / (Math.max(1, person.name.length) * charWidthFactor);
+
+    // Take the smallest of: absolute max (18), original proportional max, or our new length-based max
+    const fontSize = Math.max(0, Math.min(18, effectiveW * 0.09, maxFontSizeForLength));
 
     const spring = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
@@ -224,7 +231,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
                         </span>
                         <span
                             className="font-black text-accent tracking-tighter whitespace-nowrap leading-none mt-1 text-center w-full"
-                            style={{ fontSize: `${fontSize * 0.9}px` }}
+                            style={{ fontSize: `${fontSize * 1.5}px` }}
                         >
                             {unitSystem === 'metric' ? metricShort : ftShort}
                         </span>
