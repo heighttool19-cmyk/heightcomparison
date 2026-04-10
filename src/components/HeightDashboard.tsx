@@ -247,12 +247,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         if (totalW <= 0) return;
 
         // How much zoom makes content fill 90% of available width?
-        const hZoom = (availW * 0.98) / totalW;
+        const hZoom = (availW * 1) / totalW;
 
         // CRITICAL: Clamp to MAX_AUTO_ZOOM = 1.0
         // This prevents a single tall/wide entity from auto-zooming to 800%+.
         // Auto-scale can zoom OUT (< 1.0) for many persons, but NEVER zooms IN (> 1.0).
-        const safeZoom = Math.max(MIN_ZOOM, Math.min(MAX_AUTO_ZOOM, hZoom));
+        const safeZoom = Math.max(MIN_ZOOM, Math.min(MAX_AUTO_ZOOM, hZoom * 0.95));
         setZoom(safeZoom);
 
     }, [persons, vpHeight, vpWidth, baseScale, isMobile, isSidebarCollapsed]);
@@ -260,19 +260,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     useEffect(() => { autoScaleRef.current = handleAutoScale; }, [handleAutoScale]);
 
     // Trigger auto-scale when persons or viewport changes
-    const prevLenRef = useRef(0);
-    const prevVpWidthRef = useRef(0);
+    // const prevLenRef = useRef(0);
+    // const prevVpWidthRef = useRef(0);
     useEffect(() => {
         if (vpWidth <= 0 || vpHeight <= 0) return;
-        const curr = persons.length;
-        const widthChanged = Math.abs(vpWidth - prevVpWidthRef.current) > 10;
-        prevVpWidthRef.current = vpWidth;
-        if (curr === 0) { setZoom(1.0); prevLenRef.current = 0; return; }
-        const delay = (curr !== prevLenRef.current || widthChanged) ? 200 : 0;
-        prevLenRef.current = curr;
-        const t = setTimeout(handleAutoScale, delay);
-        return () => clearTimeout(t);
-    }, [persons.length, vpWidth, vpHeight, handleAutoScale]);
+
+        // Run auto-scale exactly once
+        handleAutoScale();
+    }, [persons]);
 
     // Scroll to bottom when person added
     useEffect(() => {
@@ -485,7 +480,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     onClick={() => { if (activePersonMenuId) setActivePersonMenuId(null); }}
                 >
                     {/* Toolbar */}
-                    <div className="order-2 sm:order-first px-2 lg:px-4 pt-2 z-30 w-full mb-4 shrink-0">
+                    <div className="order-2 sm:order-first px-2 lg:px-4  z-30 w-full mb-2 shrink-0">
                         <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
                             <div className="flex items-center gap-1 lg:gap-3 shrink-0">
                                 <button onClick={toggleUnitSystem} className="shrink-0 flex items-center gap-1 group hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all">

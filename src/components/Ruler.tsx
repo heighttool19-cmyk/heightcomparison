@@ -76,7 +76,7 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                             >
                                 {unitSystem === 'metric' ? (
                                     <div className="flex items-baseline justify-end w-full transition-opacity duration-300 text-foreground/90">
-                                        <span className="text-[8px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[28px] sm:min-w-[40px]">
+                                        <span className="text-[6.5px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[30px] sm:min-w-[40px]">
                                             {isM
                                                 ? (tick / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })
                                                 : roundedTick.toLocaleString()}

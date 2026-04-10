@@ -680,12 +680,12 @@ export default function HomeContent() {
                                     },
                                     {
                                         href: '/image-to-height/',
-                                        label: 'Image to Height Guide',
+                                        label: 'Image to Height Calculator',
                                         desc: 'Measure your height from a photo. No tape measure needed. Morning height variation and accuracy guides.'
                                     },
                                     {
                                         href: '/child-height-calculator/',
-                                        label: 'Child Growth Predictor',
+                                        label: 'Height Calculator',
                                         desc: 'Khamis-Roche and Mid-Parental formulas for estimating adult height. The most accurate free child height calculator.'
                                     },
                                 ].map((item, i) => (
