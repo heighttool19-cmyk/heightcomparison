@@ -661,7 +661,7 @@ export default function page() {
                                             <span className="text-[11.5px] text-muted">{b.label}</span>
                                         </div>
                                     ))}
-                                    <span className='text-[11.5px] text-muted'>The global average male height is approximately 171 cm with a standard deviation of 7 cm. A man at 185 cm sits roughly two standard deviations above the mean — taller than approximately 97.5% of the world's male population.</span>
+                                    <span className='text-[11.5px] text-muted'>The global average male height is approximately 171 cm with a standard deviation of 7 cm. A man at 185 cm sits roughly two standard deviations above the mean, taller than approximately 97.5% of the world's male population.</span>
                                 </div>
 
                             </div>
