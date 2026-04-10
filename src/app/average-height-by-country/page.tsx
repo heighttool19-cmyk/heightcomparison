@@ -247,8 +247,8 @@ export default function page() {
                     <div className="flex flex-col gap-12 w-full min-w-0 max-w-4xl mx-auto">
 
                         {/* H1 Intro */}
-                        <div className="space-y-6 text-center sm:text-left">
-                            <h1 id="average-height-by-country" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
+                        <div className="space-y-6 text-left sm:text-left">
+                            <h1 id="average-height-by-country" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 text-left">
                                 Average Height by Country
                             </h1>
                             <p className="text-muted leading-relaxed text-lg max-w-3xl text-left">

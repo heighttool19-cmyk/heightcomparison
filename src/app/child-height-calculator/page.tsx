@@ -20,8 +20,8 @@ export default function HeightCalculatorPage() {
                 <div className="flex flex-col gap-12 w-full min-w-0 max-w-4xl mx-auto">
 
                     {/* INTRO CONTENT */}
-                    <div className="space-y-6 text-center sm:text-left mt-4 leading-relaxed p-2">
-                        <h1 id="child-height-predictor-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 uppercase">
+                    <div className="space-y-6 text-left sm:text-left mt-4 leading-relaxed p-2">
+                        <h1 id="child-height-predictor-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 text-left uppercase">
                             Height Calculator and Adult Height Predictor
                         </h1>
                         <p className="text-muted leading-relaxed text-lg max-w-3xl text-left font-medium">

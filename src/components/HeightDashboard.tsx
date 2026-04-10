@@ -247,12 +247,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         if (totalW <= 0) return;
 
         // How much zoom makes content fill 90% of available width?
-        const hZoom = (availW * 0.90) / totalW;
+        const hZoom = (availW * 0.98) / totalW;
 
         // CRITICAL: Clamp to MAX_AUTO_ZOOM = 1.0
         // This prevents a single tall/wide entity from auto-zooming to 800%+.
         // Auto-scale can zoom OUT (< 1.0) for many persons, but NEVER zooms IN (> 1.0).
-        const safeZoom = Math.max(MIN_ZOOM, Math.min(MAX_AUTO_ZOOM, hZoom * 0.9));
+        const safeZoom = Math.max(MIN_ZOOM, Math.min(MAX_AUTO_ZOOM, hZoom));
         setZoom(safeZoom);
 
     }, [persons, vpHeight, vpWidth, baseScale, isMobile, isSidebarCollapsed]);
@@ -326,10 +326,10 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     // ── Share / URL ───────────────────────────────────────────────────────────
     const handleShare = useCallback(async () => {
         if (shareStatus !== 'idle') return;
-        
+
         try {
             setShareStatus('generating');
-            
+
             const payload = {
                 unitSystem,
                 zoom: Math.round(zoom * 100) / 100,
@@ -343,27 +343,27 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
             });
 
             if (!response.ok) throw new Error('Network error');
-            
+
             const { shortId } = await response.json();
             const shareUrl = `${window.location.origin}/?s=${shortId}`;
-            
+
             await navigator.clipboard.writeText(shareUrl);
             setShareStatus('copied');
             triggerToast('Share link copied!');
-            
+
             setTimeout(() => setShareStatus('idle'), 3000);
-            
-        } catch (e) { 
+
+        } catch (e) {
             console.error(e);
             setShareStatus('error');
-            triggerToast('Failed to generate link'); 
+            triggerToast('Failed to generate link');
             setTimeout(() => setShareStatus('idle'), 3000);
         }
     }, [unitSystem, zoom, persons, triggerToast, shareStatus]);
 
     useEffect(() => {
         if (readOnly) return;
-        
+
         const loadSharedData = async () => {
             const searchParams = new URLSearchParams(window.location.search);
             const id = searchParams.get('s');
@@ -386,26 +386,26 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     const hash = window.location.hash.slice(1);
                     if (!hash) { setIsHydrated(true); return; }
                     let decoded: any = null;
-                    try { 
-                        const lz = LZString.decompressFromEncodedURIComponent(hash); 
-                        if (lz) decoded = JSON.parse(lz); 
+                    try {
+                        const lz = LZString.decompressFromEncodedURIComponent(hash);
+                        if (lz) decoded = JSON.parse(lz);
                     } catch { }
-                    if (!decoded) { 
-                        try { decoded = JSON.parse(decodeURIComponent(atob(hash))); } catch { } 
+                    if (!decoded) {
+                        try { decoded = JSON.parse(decodeURIComponent(atob(hash))); } catch { }
                     }
                     if (decoded?.u !== undefined) {
                         useUnitStore.setState({ unitSystem: decoded.u === 1 ? 'metric' : 'imperial' });
                         if (decoded.z !== undefined) setZoom(decoded.z);
                         if (Array.isArray(decoded.p)) {
-                            storeSetPersons(decoded.p.map((a: any[]) => ({ 
-                                id: `s-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`, 
-                                name: String(a[0]), 
-                                heightCm: Number(a[1]), 
-                                color: a[2] ? `#${a[2]}` : '#3b82f6', 
-                                gender: a[3] === 1 ? 'female' : a[3] === 2 ? 'male' : undefined, 
-                                imgUrl: a[4] ? String(a[4]) : undefined, 
-                                isEntity: !a[3], 
-                                offsetY: a[5] ? Number(a[5]) : 0 
+                            storeSetPersons(decoded.p.map((a: any[]) => ({
+                                id: `s-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+                                name: String(a[0]),
+                                heightCm: Number(a[1]),
+                                color: a[2] ? `#${a[2]}` : '#3b82f6',
+                                gender: a[3] === 1 ? 'female' : a[3] === 2 ? 'male' : undefined,
+                                imgUrl: a[4] ? String(a[4]) : undefined,
+                                isEntity: !a[3],
+                                offsetY: a[5] ? Number(a[5]) : 0
                             })));
                         }
                     } else if (decoded?.unitSystem) {
@@ -459,7 +459,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                         initial={{ x: -85, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                        className="shrink-0 w-full h-[80px] bg-bg border-b border-border/50 z-40 flex overflow-x-auto overflow-y-hidden custom-scrollbar sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col"
+                        className="shrink-0 w-full h-[65px] bg-bg border-b border-border/50 z-40 flex overflow-x-auto overflow-y-hidden custom-scrollbar sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col"
                     >
                         <div className="flex sm:flex-col h-full w-full overflow-hidden">
                             {([
@@ -530,14 +530,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                     <Trash2 size={16} className="text-muted/50 group-hover:text-red-500 shrink-0" />
                                     <span className="hidden xl:inline whitespace-nowrap text-xs">Clear All</span>
                                 </button>
-                                <button 
-                                    onClick={handleShare} 
+                                <button
+                                    onClick={handleShare}
                                     disabled={shareStatus !== 'idle'}
-                                    className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-lg ${
-                                        shareStatus === 'copied' ? 'text-emerald-500 bg-emerald-500/10' : 
-                                        shareStatus === 'error' ? 'text-red-500 bg-red-500/10' : 
-                                        'text-muted hover:text-foreground'
-                                    }`}
+                                    className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-lg ${shareStatus === 'copied' ? 'text-emerald-500 bg-emerald-500/10' :
+                                        shareStatus === 'error' ? 'text-red-500 bg-red-500/10' :
+                                            'text-muted hover:text-foreground'
+                                        }`}
                                 >
                                     {shareStatus === 'generating' ? (
                                         <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
@@ -547,9 +546,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         <LinkIcon size={16} className={`group-hover:text-accent shrink-0 ${shareStatus === 'error' ? 'text-red-500' : 'text-muted/50'}`} />
                                     )}
                                     <span className="hidden xl:inline whitespace-nowrap text-xs">
-                                        {shareStatus === 'generating' ? 'Generating...' : 
-                                         shareStatus === 'copied' ? 'Copied!' : 
-                                         shareStatus === 'error' ? 'Fixed Error' : 'Share'}
+                                        {shareStatus === 'generating' ? 'Generating...' :
+                                            shareStatus === 'copied' ? 'Copied!' :
+                                                shareStatus === 'error' ? 'Fixed Error' : 'Share'}
                                     </span>
                                 </button>
                                 <button onClick={handleDownloadPNG} disabled={isCapturing} className="flex items-center gap-1 bg-primary/10 text-primary border border-accent/20 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0">

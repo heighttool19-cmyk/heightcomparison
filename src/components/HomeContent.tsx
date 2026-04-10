@@ -20,7 +20,7 @@ export default function HomeContent() {
 
 
                         {/* INTRO CONTENT */}
-                        <div className="space-y-6 text-center sm:text-left mt-4 uppercase font-black tracking-tight">
+                        <div className="space-y-6 text-left sm:text-left mt-4 uppercase font-black tracking-tight">
 
 
 
@@ -100,7 +100,7 @@ export default function HomeContent() {
                                     {/* Header with matching solid background but slightly darker border */}
                                     <div className="p-6 border-b-2 border-emerald-400/20 flex items-center justify-between bg-white/10 backdrop-blur-sm">
                                         <span className="text-[14px] font-black uppercase tracking-widest text-emerald-950 opacity-70 group-hover:opacity-100 transition-opacity">
-                                            VISUAL RATIO ENGINE VERBATIM ACCURACY
+                                            Worked example
                                         </span>
                                         <div className="bg-emerald-500 px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-tight shadow-sm">
                                             Live
@@ -690,10 +690,10 @@ export default function HomeContent() {
                                     },
                                 ].map((item, i) => (
                                     <Link key={i} href={item.href} className="bg-surface rounded-3xl p-8 border-2 border-emerald-500/20 hover:border-emerald-500 hover:-translate-y-2 transition-all group shadow-2xl flex flex-col cursor-pointer">
-                                        <div className="inline-flex self-start text-[10px] font-black px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-500 border-2 border-emerald-500/20 mb-4 uppercase tracking-[0.2em]">Toolkit</div>
+                                        <div className="inline-flex self-start text-[10px] font-black px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-500 border-2 border-emerald-500/20 mb-4 uppercase tracking-[0.2em]">Guide</div>
                                         <div className="text-[20px] font-black text-foreground mb-3 leading-tight uppercase tracking-tighter group-hover:text-emerald-500 transition-colors">{item.label}</div>
                                         <div className="text-[14px] text-muted font-bold leading-relaxed flex-1 mb-6 opacity-60 group-hover:opacity-100 transition-opacity">{item.desc}</div>
-                                        <div className="text-[12px] font-black text-emerald-500 mt-auto flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-widest">LAUNCH TOOL <ArrowRight size={16} /></div>
+                                        <div className="text-[12px] font-black text-emerald-500 mt-auto flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-widest">Learn More <ArrowRight size={16} /></div>
                                     </Link>
                                 ))}
 

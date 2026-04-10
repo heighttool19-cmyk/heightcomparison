@@ -262,7 +262,8 @@ input[type=number] {
 }
 
 .ReactCrop__crop-selection {
-  border: 1.5px solid #2563EB !important; /* Force vibrant blue selection to match UI sample */
+  border: 2px solid var(--accent) !important;
+  /* Force vibrant blue selection to match UI sample */
   box-shadow: 0 0 0 9999em rgba(0, 0, 0, 0.65) !important;
   cursor: move;
   z-index: 10;
@@ -281,11 +282,12 @@ input[type=number] {
   background-size: contain;
   opacity: 0.9;
   pointer-events: none;
-  filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
 }
 
 .ReactCrop__child-wrapper {
-  background-color: #000 !important; /* Dark background for better contrast */
+  background-color: #000 !important;
+  /* Dark background for better contrast */
 }
 
 /* Branded Circular Handles - Matching Sample exactly */
@@ -293,7 +295,7 @@ input[type=number] {
   width: 10px !important;
   height: 10px !important;
   background-color: #fff !important;
-  border: 1.5px solid #2563EB !important;
+  border: 1.5px solid var(--accent) !important;
   border-radius: 50% !important;
   opacity: 1 !important;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
@@ -314,7 +316,10 @@ input[type=number] {
   }
 }
 
+
+
 .ReactCrop__drag-handle {
+  color: var(--accent);
   width: 100% !important;
   height: 100% !important;
 }

@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
     return (
         <>
             <ThemeInitializer />
-            <header className={`h-[70px] shrink-0 border-b flex items-center justify-between px-4 sm:px-8 xl:px-12 z-300  top-0 transition-all duration-300 ${scrolled
+            <header className={`h-[60px] shrink-0 border-b flex items-center justify-between px-4 sm:px-8 xl:px-12 z-300  top-0 transition-all duration-300 ${scrolled
                 ? 'bg-bg/80 backdrop-blur-md border-border/80 shadow-lg'
                 : 'bg-bg border-border/50 shadow-none'
                 }`}>

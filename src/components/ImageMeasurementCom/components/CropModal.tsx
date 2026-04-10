@@ -146,14 +146,14 @@ export const CropModal: React.FC<CropModalProps> = ({
 
                             {/* Footer */}
                             <div className="p-4 sm:p-5 border-t border-border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0 bg-surface">
-                                <button
+                                {/* <button
                                     onClick={handleReset}
                                     disabled={isLoading}
                                     className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/40 transition-all text-xs font-black uppercase tracking-widest disabled:opacity-50"
                                 >
                                     <RotateCcw size={15} />
                                     <span>Reset</span>
-                                </button>
+                                </button> */}
                                 <div className="flex items-center gap-2 sm:gap-3">
                                     <button
                                         onClick={closeCropModal}
