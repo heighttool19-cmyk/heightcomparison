@@ -8,32 +8,26 @@ interface RulerProps {
     maxHeightCm: number;
     containerHeight?: number;
     personCount?: number;
-    /** 'full' = labels+lines (legacy), 'labels' = only left label col, 'lines' = only horizontal lines */
     mode?: 'full' | 'labels' | 'lines';
     isFullscreen?: boolean;
 }
 
-const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerHeight, personCount, mode = 'full', isFullscreen = false }) => {
+const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerHeight, mode = 'full' }) => {
     const { unitSystem } = useUnitStore();
 
-    // 1. FIXED 20-LINE GRID
+    // 1 & 2. STRICT 20-LINE GRID (No nice numbers, pure math fractions)
     const ticks = useMemo(() => {
         const TOTAL_LINES = 20;
 
-        // Determine the maximum height we need to cover.
-        // If we know the screen height and scale, use that so the grid fills the screen.
-        // Otherwise, fallback to the tallest person (maxHeightCm).
         let maxVisibleCm = maxHeightCm;
         if (containerHeight && scale > 0) {
             maxVisibleCm = containerHeight / scale;
         }
 
-        // Generate exactly 20 perfectly spaced ticks
         const allTicks = [];
         for (let i = 0; i <= TOTAL_LINES; i++) {
-            // Calculate the exact CM value for this specific line
-            const tickValue = (maxVisibleCm / TOTAL_LINES) * i;
-            allTicks.push(tickValue);
+            // Exact fractional numbers based purely on division
+            allTicks.push((maxVisibleCm / TOTAL_LINES) * i);
         }
 
         return allTicks;
@@ -43,24 +37,22 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
     const showLines = mode === 'full' || mode === 'lines';
 
     return (
-        <div className="absolute inset-x-0 inset-y-0 pointer-events-none select-none z-0 overflow-hidden">
-            {/* Horizontal Ticks */}
-            {ticks.map((tick) => {
+        // FIX: Changed overflow-hidden to overflow-visible to prevent clipping edges
+        <div className="absolute inset-x-0 inset-y-0 pointer-events-none select-none z-0 overflow-visible">
+            {ticks.map((tick, index) => {
                 const heightPx = tick * scale;
-                const roundedTick = Math.round(tick);
-                const isZero = roundedTick === 0;
+                const roundedTick = Math.round(tick); // Used for clean text display
 
-                const absFt = Math.abs(roundedTick * 0.393701);
-                const isNegative = roundedTick < 0;
+                const isZero = roundedTick === 0;
+                // FIX: Identify the absolute highest tick so we can adjust its placement
+                const isTopTick = index === ticks.length - 1;
+
+                const absFt = Math.abs(tick * 0.393701);
                 const totalInches = Math.round(absFt);
                 const ftValue = Math.floor(totalInches / 12);
                 const inValue = totalInches % 12;
-                const ftDisplay = `${isNegative ? '-' : ''}${ftValue}' ${inValue}''`;
+                const ftDisplay = `${ftValue}' ${inValue}''`;
 
-                // Since we force exactly 20 lines, we label every one of them for maximum info.
-                const hasLabel = true;
-
-                // --- Meter Support ---
                 const isM = roundedTick >= 1000;
 
                 return (
@@ -69,25 +61,32 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                         className="absolute inset-x-0 flex items-center group/tick h-0"
                         style={{ bottom: `${heightPx}px` }}
                     >
-                        {/* CM & M Labels */}
+                        {/* 3. ALL LINES ARE MAJOR (Labels always visible, text-foreground/90) */}
                         {showLabels && (
                             <div
                                 className="relative left-0 z-20 flex flex-col w-full items-start justify-center pr-1 sm:pr-2 bg-canvas/40 backdrop-blur-[2px] py-1"
-                                style={isZero ? { transform: 'translateY(-20%)' } : undefined}
+                                style={{
+                                    transform: isZero
+                                        ? 'translateY(-20%)'
+                                        // FIX: Push the top label down so the text doesn't clip out of bounds
+                                        : isTopTick
+                                            ? 'translateY(60%)'
+                                            : undefined
+                                }}
                             >
                                 {unitSystem === 'metric' ? (
-                                    <div className={`flex items-baseline justify-end w-full transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                    <div className="flex items-baseline justify-end w-full transition-opacity duration-300 text-foreground/90">
                                         <span className="text-[8px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[28px] sm:min-w-[40px]">
-                                            {isM 
-                                                ? (roundedTick / 100).toLocaleString(undefined, { maximumFractionDigits: (roundedTick % 100 === 0 ? 0 : 2) }) 
+                                            {isM
+                                                ? (tick / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })
                                                 : roundedTick.toLocaleString()}
                                         </span>
                                         <span className="text-[6px] sm:text-[7px] font-mono font-black leading-none text-left w-[12px] sm:w-[15px] opacity-70 ml-1">
-                                            {hasLabel ? (isM ? 'm' : 'cm') : ''}
+                                            {isM ? 'm' : 'cm'}
                                         </span>
                                     </div>
                                 ) : (
-                                    <div className={`flex items-baseline justify-end w-full transition-opacity duration-300 ${hasLabel ? 'text-foreground/90' : 'text-foreground/30'}`}>
+                                    <div className="flex items-baseline justify-end w-full transition-opacity duration-300 text-foreground/90">
                                         <span className="text-[8px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[35px] sm:min-w-[50px]">
                                             {ftDisplay}
                                         </span>
@@ -96,14 +95,15 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                             </div>
                         )}
 
-                        {/* Grid Line */}
+                        {/* 3. ALL LINES ARE MAJOR (Heavy bg-foreground/20 opacity on all lines) */}
                         {showLines && (
                             <div
-                                className={`flex-1 transition-colors duration-500 ${isZero
-                                    ? 'bg-foreground/40 h-[1px] -translate-y-[1px] opacity-100'
-                                    : hasLabel
-                                        ? 'bg-foreground/20 group-hover/tick:bg-foreground/30 h-[1px]'
-                                        : 'bg-foreground/5 group-hover/tick:bg-foreground/10 h-[1px]'
+                                className={`flex-1 transition-colors duration-500 h-[1px] opacity-100 ${isZero
+                                    ? 'bg-foreground/40 -translate-y-[1px]'
+                                    // FIX: Nudge the top line down by 1px so it renders cleanly
+                                    : isTopTick
+                                        ? 'bg-foreground/20 group-hover/tick:bg-foreground/30 translate-y-[1px]'
+                                        : 'bg-foreground/20 group-hover/tick:bg-foreground/30'
                                     }`}
                             />
                         )}

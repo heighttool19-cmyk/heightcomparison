@@ -81,10 +81,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             finalHeightCm = (f * 30.48) + (i * 2.54);
         }
 
-        if (finalHeightCm < 30 || finalHeightCm > 1000) {
-            setError('Height must be between 30cm and 1000cm');
-            return;
-        }
+
 
         onSave({
             ...person,
