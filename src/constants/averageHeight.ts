@@ -42,8 +42,8 @@ export const MVF = [
 export const REGIONS = [
     { name: "Northern Europe", codes: ["NL", "DK"], avg: 181, color: "#1A56DB", ex: "Netherlands, Denmark, Norway" },
     { name: "Eastern Europe", codes: ["RS", "UA"], avg: 179, color: "#2563EB", ex: "Serbia, Ukraine, Poland" },
-    { name: "W. Europe", codes: ["DE", "FR"], avg: 178, color: "#3B82F6", ex: "Germany, France, UK" },
-    { name: "N. America / Oceania", codes: ["US", "AU"], avg: 178, color: "#60A5FA", ex: "Canada, USA, Australia" },
+    { name: "Western Europe", codes: ["DE", "FR"], avg: 178, color: "#3B82F6", ex: "Germany, France, UK" },
+    { name: "Northern America/Oceania", codes: ["US", "AU"], avg: 178, color: "#60A5FA", ex: "Canada, USA, Australia" },
     { name: "Middle East", codes: ["IR", "TR"], avg: 175, color: "#7DD3FC", ex: "Iran, Turkey" },
     { name: "East Asia", codes: ["KR", "JP"], avg: 173, color: "#86EFAC", ex: "China, South Korea, Japan" },
     { name: "Latin America", codes: ["BR", "MX"], avg: 169, color: "#FCD34D", ex: "Brazil, Mexico" },

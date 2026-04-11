@@ -170,7 +170,7 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                                                             background: `linear-gradient(135deg, ${char.color}dd, ${char.color}88)`
                                                         }}
                                                     >
-                                                        {char.icon || char.name.charAt(0)}
+                                                        {char.icon || char.name?.[0] || '?'}
                                                     </div>
                                                 }
                                             />

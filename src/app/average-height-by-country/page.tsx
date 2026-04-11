@@ -26,17 +26,17 @@ function Bars({ items, color, label }: { items: { n: string, code: string | stri
                     return (
                         <div key={d.n} className="flex items-center gap-2">
                             {/* CHANGED HERE: justify-start, text-left, and a fixed width for flags to perfectly align the text */}
-                            <div className="w-22 text-[11px] text-foreground text-left shrink-0 flex items-center justify-start gap-2">
+                            <div className="w-20 h-full text-[11px] text-foreground text-left shrink-0 flex items-center justify-start gap-1">
                                 {Array.isArray(d.code) ? (
                                     <div className="flex gap-0.5 shrink-0 w-8">
                                         {d.code.map(c => <ReactCountryFlag key={c} countryCode={c} svg style={{ width: '1.2em', height: '1.2em' }} title={c} />)}
                                     </div>
                                 ) : d.code ? (
-                                    <div className="shrink-0 w-6 flex justify-start">
+                                    <div className="shrink-0  flex justify-start">
                                         <ReactCountryFlag countryCode={d.code} svg style={{ width: '1.2em', height: '1.2em' }} title={d.n} />
                                     </div>
                                 ) : null}
-                                <span >{d.n}</span>
+                                <span className='h-full'>{d.n}</span>
                             </div>
                             <div className="flex-1 bg-border rounded-full h-2.5 overflow-hidden">
                                 <div style={{ height: "100%", width: `${pct}%`, background: color, borderRadius: 99 }} />
@@ -154,10 +154,10 @@ function RegionMap() {
 
 function Tabs({ options, active, onChange }: { options: string[], active: string, onChange: (val: string) => void }) {
     return (
-        <div className="flex gap-2 mb-4 flex-wrap">
+        <div className="flex gap-1 mb-4 flex-wrap">
             {options.map(o => (
                 <button key={o} onClick={() => onChange(o)}
-                    className={`px-4 py-1.5 rounded-full text-xs font-black transition-all border-2 ${active === o ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>
+                    className={`px-2 py-1.5 rounded-full text-[11px] font-black transition-all border-2 ${active === o ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>
                     {o}
                 </button>
             ))}
@@ -395,13 +395,13 @@ export default function page() {
                         <section id="tallest-and-shortest-countries-by-average-height" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">Tallest and Shortest Countries by Average Height</h2>
 
-                            <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm my-6 overflow-x-auto">
+                            <div className="bg-surface border border-border p-2 rounded-3xl shadow-sm my-6 overflow-x-auto">
                                 <Tabs options={["Tallest vs Shortest", "Top 10 tallest", "Bottom 10 shortest"]} active={mvfView} onChange={setMvfView} />
                                 {mvfView === "Tallest vs Shortest" && <GroupedChart data={MVF} title="10 countries spanning the full global height range — male (blue) and female (teal)" />}
                                 {mvfView === "Top 10 tallest" && <GroupedChart data={TOP10.map(c => ({ n: c.name, code: c.code, m: c.male, w: c.female }))} title="Top 10 tallest nations — male vs female" />}
                                 {mvfView === "Bottom 10 shortest" && <GroupedChart data={BOT10.map(c => ({ n: c.name, code: c.code, m: c.male, w: c.female }))} title="10 shortest nations — male vs female" />}
                                 <p className="mt-4 text-[11.5px] text-muted leading-relaxed">
-                                    Across all populations, men are taller than women by 12–15 cm. This gap holds consistent regardless of overall height level — it is nearly identical in the Netherlands and in Bangladesh.
+                                    Across all populations, men are taller than women by 12–15 cm. This gap holds consistent regardless of overall height level , it is nearly identical in the Netherlands and in Bangladesh.
                                 </p>
                             </div>
 
@@ -416,7 +416,7 @@ export default function page() {
                                 The average height of a man worldwide is approximately 171 cm (5'7"). This figure masks a wide spread, from Dutch  men at 183.8 cm down to Timor-Leste at 159.8 cm. Northern and Eastern European men are the tallest group globally, averaging 178 to 184 cm. North Americans and Australians sit in the 176 to 179 cm band.
                             </p>
                             <p className="text-muted leading-relaxed">
-                                Japan at 170.8 cm sits noticeably shorter than South Korea at 175.5 cm — a gap that has widened as South Korean diets and healthcare improved faster following the 1960s economic boom. Iran at 175.6 cm sits mid-table. India at 166.5 cm and Bangladesh at 163 cm sit at the lower end of the Asian cohort. Guatemala at 163.4 cm and Timor-Leste at 159.8 cm reflect the most severe documented nutritional constraints on record.
+                                Japan at 170.8 cm sits noticeably shorter than South Korea at 175.5 cm : a gap that has widened as South Korean diets and healthcare improved faster following the 1960s economic boom. Iran at 175.6 cm sits mid-table. India at 166.5 cm and Bangladesh at 163 cm sit at the lower end of the Asian cohort. Guatemala at 163.4 cm and Timor-Leste at 159.8 cm reflect the most severe documented nutritional constraints on record.
                             </p>
                         </section>
 

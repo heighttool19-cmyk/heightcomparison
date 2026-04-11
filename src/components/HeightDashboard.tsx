@@ -300,7 +300,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
 
         // Run auto-scale exactly once
         handleAutoScale();
-    }, [persons]);
+    }, [persons, isSidebarCollapsed]);
 
     // Scroll to bottom when person added
     useEffect(() => {

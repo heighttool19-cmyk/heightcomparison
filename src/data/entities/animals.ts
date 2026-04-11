@@ -4,197 +4,186 @@ export const animals_data = [
     "heightCm": 3000,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Blue_whale_svg_202603241832 (1).svg"
-
+    "imgUrl": "/Avtars/entities/animals/Blue Whale.svg"
   },
   {
     "name": "African Elephant",
     "heightCm": 300,
     "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Colored_svg_elephant_202603241833.svg"
+    "icon": "🏢"
   },
   {
     "name": "Asian Elephant",
     "heightCm": 270,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Asian_elephant_without_202603241832 (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Asian Elephant.svg"
   },
   {
     "name": "Giraffe",
     "heightCm": 550,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Giraffe (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Giraffe.svg"
   },
   {
     "name": "Gorilla",
     "heightCm": 170,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/gorilla (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Gorilla.svg"
   },
   {
     "name": "Lion",
     "heightCm": 120,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/lion (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Lion.svg"
   },
   {
     "name": "Tiger",
     "heightCm": 110,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Tiger (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Tiger.svg"
   },
   {
     "name": "Grizzly Bear",
     "heightCm": 150,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Colored_grizzly_bear_202603241832 (1).svg"
+    "imgUrl": "/Avtars/entities/animals/bear.svg"
   },
   {
     "name": "Polar Bear",
     "heightCm": 160,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Colored_polar_bear_202603241833 (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Polar Bear.svg"
   },
   {
     "name": "Horse",
     "heightCm": 170,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/horse (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Horse.svg"
   },
   {
     "name": "Cow",
     "heightCm": 150,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/cow (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Cow.svg"
   },
   {
     "name": "Moose",
     "heightCm": 210,
     "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/moose (1).svg"
-  },
-  {
-    "name": "Camel",
-    "heightCm": 210,
-    "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/camel (1).svg"
+    "icon": "🏢"
   },
   {
     "name": "Bison",
-    "heightCm": 200,
+    "heightCm": 190,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/bison (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Bison.svg"
   },
   {
     "name": "Rhinoceros",
     "heightCm": 180,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/rhino (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Rhinoceros.svg"
   },
   {
     "name": "Hippopotamus",
     "heightCm": 150,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/hippo (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Hippopotamus.svg"
   },
   {
     "name": "Zebra",
-    "heightCm": 140,
-    "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/zebra (1).svg"
-  },
-  {
-    "name": "Kangaroo",
-    "heightCm": 180,
-    "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/kangaroo (1).svg"
-  },
-  {
-    "name": "Chimpanzee",
     "heightCm": 130,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/chimpanzee (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Zebra.svg"
   },
   {
-    "name": "Orangutan",
+    "name": "Kangaroo",
     "heightCm": 150,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/orangutan (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Kangaroo.svg"
   },
   {
-    "name": "Wolf",
-    "heightCm": 80,
-    "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/wolf (1).svg"
-  },
-  {
-    "name": "Hyena",
-    "heightCm": 90,
-    "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/hyena (1).svg"
-  },
-  {
-    "name": "Cheetah",
-    "heightCm": 95,
-    "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/cheetah (1).svg"
-  },
-  {
-    "name": "Leopard",
-    "heightCm": 90,
-    "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/leopard (1).svg"
-  },
-  {
-    "name": "Jaguar",
-    "heightCm": 80,
-    "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/jaguar (1).svg"
-  },
-  {
-    "name": "Ostrich",
-    "heightCm": 280,
-    "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/ostrich (1).svg"
-  },
-  {
-    "name": "Emu",
-    "heightCm": 190,
-    "category": "Animals",
-    "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/emu (1).svg"
-  },
-  {
-    "name": "Emperor Penguin",
+    "name": "Chimpanzee",
     "heightCm": 120,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/emperor penguin (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Chimpanzee.svg"
+  },
+  {
+    "name": "Orangutan",
+    "heightCm": 140,
+    "category": "Animals",
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Orangutan.svg"
+  },
+  {
+    "name": "Wolf",
+    "heightCm": 85,
+    "category": "Animals",
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Wolf.svg"
+  },
+  {
+    "name": "Hyena",
+    "heightCm": 80,
+    "category": "Animals",
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Hyena.svg"
+  },
+  {
+    "name": "Cheetah",
+    "heightCm": 80,
+    "category": "Animals",
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Cheetah.svg"
+  },
+  {
+    "name": "Leopard",
+    "heightCm": 70,
+    "category": "Animals",
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Leopard.svg"
+  },
+  {
+    "name": "Jaguar",
+    "heightCm": 75,
+    "category": "Animals",
+    "icon": "🏢"
+  },
+  {
+    "name": "Ostrich",
+    "heightCm": 210,
+    "category": "Animals",
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Ostrich.svg"
+  },
+  {
+    "name": "Emu",
+    "heightCm": 150,
+    "category": "Animals",
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Emu.svg"
+  },
+  {
+    "name": "Emperor Penguin",
+    "heightCm": 110,
+    "category": "Animals",
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Emperor penguin.svg"
   },
   {
     "name": "King Penguin",
@@ -205,96 +194,90 @@ export const animals_data = [
   },
   {
     "name": "Komodo Dragon",
-    "heightCm": 300,
+    "heightCm": 50,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/komodo dragon (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Komodo Dragon.svg"
   },
   {
     "name": "Alligator",
-    "heightCm": 450,
+    "heightCm": 40,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/alligator (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Alligator.svg"
   },
   {
     "name": "Crocodile",
-    "heightCm": 500,
+    "heightCm": 50,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/crocodile (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Crocodile.svg"
   },
   {
     "name": "Anaconda",
-    "heightCm": 550,
+    "heightCm": 30,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/anaconda (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Anaconda.svg"
   },
   {
     "name": "Python",
-    "heightCm": 500,
+    "heightCm": 25,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/python (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Python.svg"
   },
   {
     "name": "Red Fox",
     "heightCm": 40,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/red fox (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Red Fox.svg"
   },
   {
     "name": "Arctic Fox",
     "heightCm": 30,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/arctic fox (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Artic Fox.svg"
   },
   {
     "name": "Otter",
     "heightCm": 30,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/otter (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Otter.svg"
   },
   {
     "name": "Beaver",
-    "heightCm": 35,
+    "heightCm": 30,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/beaver (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Beaver.svg"
   },
   {
-    "name": "Eagle",
-    "heightCm": 25,
+    "name": "Golden Eagle",
+    "heightCm": 60,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Colored_eagle_no_202603222019 (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Eagle.svg"
   },
   {
-    "name": "Falcon",
+    "name": "Peregrine Falcon",
     "heightCm": 40,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Colored_falcon_no_202603222019 (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Falcon.svg"
   },
   {
     "name": "Peacock",
-    "heightCm": 120,
-    "category": "Animals",
-    "icon": "🏢"
-  },
-  {
-    "name": "Turkey",
     "heightCm": 110,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Colored_turkey_no_202603222019 (1).svg"
+    "imgUrl": "/Avtars/entities/animals/Peacock.svg"
   },
   {
-    "name": "Goat",
+    "name": "Turkey",
     "heightCm": 100,
     "category": "Animals",
     "icon": "🏢",

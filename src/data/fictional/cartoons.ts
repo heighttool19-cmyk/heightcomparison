@@ -327,7 +327,8 @@ export const cartoons_data = [
   {
     "name": "Johnny Bravo",
     "heightCm": 185,
-    "category": "Cartoons"
+    "category": "Cartoons",
+    "imgUrl": "/Avtars/entities/FICTIONAL_AVERAGE/johnny-bravo.svg"
   },
   {
     "name": "Dexter",

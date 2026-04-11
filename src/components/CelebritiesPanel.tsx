@@ -195,7 +195,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                                                         />
                                                     ) : (
                                                         <div className="w-full h-full flex items-center justify-center text-white font-bold text-sm bg-gradient-to-br from-slate-600 to-slate-700">
-                                                            {celeb.name.charAt(0)}
+                                                            {celeb.name?.[0] || '?'}
                                                         </div>
                                                     )}
                                                 </div>

@@ -75,7 +75,7 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
                                 className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5' : 'border-border bg-bg hover:border-accent/30'}`}
                             >
                                 <button
-                                    className="w-full flex items-center justify-between px-6 py-4 text-left  group rounded-t-2xl"
+                                    className="w-full flex items-center justify-between pl-4 pr-3 py-4 text-left  group rounded-t-2xl gap-2"
                                     onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
                                 >
                                     <span className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>
@@ -85,7 +85,7 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
                                 </button>
                                 <div className={`overflow-hidden transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? 'grid grid-rows-[1fr] opacity-100' : 'grid grid-rows-[0fr] opacity-0'}`}>
                                     <div className="overflow-hidden">
-                                        <div className="px-5 pt-0 pb-5 border-t border-border/40">
+                                        <div className="px-4 pt-0 pb-5 border-t border-border/40">
                                             <p className="text-sm text-muted leading-relaxed pt-4">
                                                 {item.a}
                                             </p>

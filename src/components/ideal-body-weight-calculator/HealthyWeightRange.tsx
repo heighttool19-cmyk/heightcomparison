@@ -193,10 +193,10 @@ export default function HealthyWeightRange() {
                 </p>
                 {/* Mini visual range */}
                 <div style={{ marginTop: 10 }}>
-                    <div style={{ display: "flex", marginBottom: 4, paddingRight: "10px" }}>
-                        <span style={{ flex: 18.5, fontSize: 10.5, whiteSpace: "nowrap", color: isDark ? "var(--muted)" : "#64748b" }}>Underweight</span>
-                        <span style={{ flex: 6.5, fontSize: 10.5, fontWeight: 700, textAlign: "center", whiteSpace: "nowrap", color: isDark ? "#22c55e" : "#16a34a" }}>Healthy BMI range</span>
-                        <span style={{ flex: 5, fontSize: 10.5, textAlign: "right", whiteSpace: "nowrap", color: isDark ? "var(--muted)" : "#64748b" }}>Overweight</span>
+                    <div style={{ display: "flex", marginBottom: 4, paddingRight: "10px", alignItems: "flex-end" }}>
+                        <span style={{ flex: 18.5, fontSize: "clamp(8.5px, 2.5vw, 10.5px)", whiteSpace: "nowrap", color: isDark ? "var(--muted)" : "#64748b" }}>Underweight</span>
+                        <span style={{ flex: 6.5, fontSize: "clamp(8.5px, 2.5vw, 10.5px)", fontWeight: 700, textAlign: "center", whiteSpace: "nowrap", color: isDark ? "#22c55e" : "#16a34a" }}>Healthy BMI range</span>
+                        <span style={{ flex: 5, fontSize: "clamp(5px, 1.5vw, 10.5px)", textAlign: "right", whiteSpace: "nowrap", color: isDark ? "var(--muted)" : "#64748b" }}>Overweight</span>
                     </div>
                     <div style={{ height: 14, borderRadius: 99, display: "flex", overflow: "hidden" }}>
                         <div style={{ flex: 18.5, background: isDark ? "rgba(234, 179, 8, 0.5)" : "#fde68a" }} />

@@ -240,10 +240,10 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
 
                 {/* ── Height indicator line ────────────────────────────────── */}
                 <motion.div
-                    animate={{ width: effectiveW }}
+                    animate={{ width: effectiveW * 0.8 }}
                     className="absolute h-[1px] neon-indicator group-hover:brightness-150"
                     transition={spring}
-                    style={{ bottom: `${barH}px`, zIndex: 25, left: 0 }}
+                    style={{ bottom: `${barH}px`, zIndex: 25, }}
                 />
 
                 {/* ── Silhouette or image ──────────────────────────────────── */}

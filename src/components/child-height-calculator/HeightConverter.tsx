@@ -60,7 +60,7 @@ export default function HeightConverter() {
                                 }
                             }}
                             /* Added pr-12 here so typing a long number doesn't overlap the "cm" text */
-                            className="w-full bg-bg border border-border rounded-xl px-4 pr-12 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors"
+                            className="w-full bg-bg border border-border rounded-xl px-4 pr-12 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors "
                             placeholder="e.g. 170"
                             aria-label="Height in Centimeters"
                         />
@@ -92,7 +92,7 @@ export default function HeightConverter() {
                                         setConvCm(Math.round(ftInToCm(Number(e.target.value), Number(convIn))));
                                     }
                                 }}
-                                className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors"
+                                className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors placeholder:text-left"
                                 placeholder="e.g. 5"
                                 aria-label="Height in Feet"
                             />
@@ -110,7 +110,7 @@ export default function HeightConverter() {
                                         setConvCm(Math.round(ftInToCm(Number(convFt), Number(e.target.value))));
                                     }
                                 }}
-                                className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors"
+                                className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors placeholder:text-left"
                                 placeholder="e.g. 7"
                                 aria-label="Height in Inches"
                             />

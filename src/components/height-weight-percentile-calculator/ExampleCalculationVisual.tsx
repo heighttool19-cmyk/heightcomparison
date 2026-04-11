@@ -267,7 +267,7 @@ function CDCChart({ sample }: { sample: { age: number, height: number, percentil
                             <line x1={padL} y1={sampleY} x2={padL + plotW} y2={sampleY} stroke="#7c3aed" strokeWidth="1.2" strokeDasharray="3,3" opacity="0.5" />
 
                             <circle cx={sampleX} cy={sampleY} r="8" fill="#7c3aed" stroke={isDark ? "#1e293b" : "white"} strokeWidth="2.5" filter="url(#dotglow)" />
-                            <text x={sampleX} y={sampleY + 4} textAnchor="middle" fontSize="8" fontWeight="900" fill="white" fontFamily="Georgia, serif">55</text>
+                            <text x={sampleX} y={sampleY} textAnchor="middle" fontSize="8" fontWeight="900" fill="white" fontFamily="Georgia, serif">55</text>
                         </g>
 
                         <rect x={sampleX + 10} y={sampleY - 32} width={108} height={34} rx={5} fill="#7c3aed" opacity="0.95" />

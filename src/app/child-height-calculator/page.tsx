@@ -138,7 +138,7 @@ export default function HeightCalculatorPage() {
                                 <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] relative overflow-hidden group hover:border-blue-500/30 transition-all shadow-sm">
                                     <div className="absolute top-0 left-0 w-2 h-full bg-blue-500/20 group-hover:bg-blue-500 transition-all" />
                                     <h3 className="text-xl font-black text-foreground mb-4 uppercase tracking-tighter flex items-center gap-2">
-                                        <span className="text-2xl">🧑</span> Teens (Under 18)
+                                        Teens (Under 18)
                                     </h3>
                                     <p className="text-muted leading-relaxed font-medium text-sm mb-4">
                                         Growth plates are still open. The Khamis-Roche calculator gives the best estimate. Use current measurements for maximum accuracy.
@@ -163,7 +163,7 @@ export default function HeightCalculatorPage() {
                                 <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
                                     <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
                                     <h3 className="text-xl font-black text-foreground mb-4 uppercase tracking-tighter flex items-center gap-2">
-                                        <span className="text-2xl">🧑‍🦳</span> Adults (18+)
+                                        Adults (18+)
                                     </h3>
                                     <p className="text-muted leading-relaxed font-medium text-sm mb-4">
                                         Growth plates close after puberty. For adults, height prediction is no longer relevant, but the Mid-Parental Height Formula can still estimate what height their children may reach.
@@ -323,9 +323,12 @@ export default function HeightCalculatorPage() {
                                 </div>
                             </div>
                         </section>
-                        <div className="scroll-mt-24 bg-surface border border-border rounded-3xl overflow-hidden p-2 shadow-xl" style={{ minHeight: '600px' }}>
-                            <DynamicHeightCharts />
-                        </div>
+                        <section className="space-y-6 pt-8">
+
+                            <div className="scroll-mt-24 bg-surface border border-border rounded-3xl overflow-hidden shadow-xl" style={{ minHeight: '600px' }}>
+                                <DynamicHeightCharts />
+                            </div>
+                        </section>
                         <section className="space-y-6 pt-8">
                             <div className="space-y-4">
                                 <h2 id="height-prediction-comparison" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
@@ -475,9 +478,9 @@ export default function HeightCalculatorPage() {
                                         </p>
                                         <Link
                                             href="#top"
-                                            className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
+                                            className="bg-accent text-white px-4 py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
                                         >
-                                            <ArrowUpCircle size={18} /> Calculate with Khamis-Roche Now ↑
+                                            <ArrowUpCircle size={35} /> Calculate with Khamis-Roche Now ↑
                                         </Link>
                                     </div>
                                 </div>
@@ -503,15 +506,15 @@ export default function HeightCalculatorPage() {
                                     <div className="grid sm:grid-cols-2 gap-6 mb-6">
                                         <div className="bg-bg border border-border p-5 rounded-2xl border-l-4 border-l-blue-500">
                                             <span className="font-black text-foreground block mb-2 text-xs uppercase tracking-widest text-blue-500">For Boys (US Units)</span>
-                                            <code className="text-foreground text-base font-black tracking-tight bg-blue-500/10 px-1 py-1 rounded-lg">(Father + Mother + 5 in) ÷ 2</code>
+                                            <code className="text-foreground text-sm font-black tracking-tight bg-blue-500/10 px-1 py-1 rounded-lg">(Father + Mother + 5 in) ÷ 2</code>
                                         </div>
                                         <div className="bg-bg border border-border p-5 rounded-2xl border-l-4 border-l-pink-500">
                                             <span className="font-black text-foreground block mb-2 text-xs uppercase tracking-widest text-pink-500">For Girls (US Units)</span>
-                                            <code className="text-foreground text-base font-black tracking-tight bg-pink-500/10 px-1 py-1 rounded-lg">(Father + Mother - 5 in) ÷ 2</code>
+                                            <code className="text-foreground text-sm font-black tracking-tight bg-pink-500/10 px-1 py-1 rounded-lg">(Father + Mother - 5 in) ÷ 2</code>
                                         </div>
                                     </div>
 
-                                    <div className="p-6 bg-accent/5 rounded-2xl border border-accent/20 mb-6">
+                                    <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20 mb-6">
                                         <ul className="text-foreground text-base space-y-3 font-black uppercase tracking-tight">
                                             <li className="flex items-start gap-3">
                                                 <CheckCircle2 className="text-accent w-4 h-4 mt-1 shrink-0" />
@@ -538,9 +541,9 @@ export default function HeightCalculatorPage() {
                                         </p>
                                         <Link
                                             href="#top"
-                                            className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
+                                            className="bg-accent text-white px-4 py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
                                         >
-                                            <ArrowUpCircle size={18} /> Scroll to top and calculate now ↑
+                                            <ArrowUpCircle size={35} /> Scroll to top and calculate now ↑
                                         </Link>
                                     </div>
                                 </div>

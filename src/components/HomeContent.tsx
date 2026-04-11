@@ -276,7 +276,7 @@ export default function HomeContent() {
                                             ))}
                                         </div>
 
-                                        <div className=" border-2 border-border/80 rounded-2xl p-2 bg-[#1f2937] flex gap-4 items-start text-[14px] text-muted shadow-inner font-bold lowercase tracking-tight">
+                                        <div className=" border-2 border-border/80 rounded-2xl p-2 bg-[#1f2937] flex gap-4 items-start text-[14px] text-muted shadow-inner font-bold  tracking-tight">
                                             <span className="text-[10px] font-black text-emerald-500 px-2 py-1 rounded uppercase tracking-[0.1em] shrink-0 mt-[2px]">Scale</span>
                                             <span>The chart scales to 10,000 metres. Mt Everest and a 175 cm person fit on the same chart.</span>
                                         </div>

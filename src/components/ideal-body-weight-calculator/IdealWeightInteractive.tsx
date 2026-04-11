@@ -166,9 +166,9 @@ export default function IdealWeightInteractive() {
                         </button>
                     </div>
                 </div>
-                <div className="space-y-2 sm:col-span-2">
-                    <label htmlFor="current-weight" className="text-sm font-bold text-muted uppercase tracking-wider">Current weight (optional — unlocks difference readout)</label>
-                    <div className="relative w-full sm:w-1/2">
+                <div className="space-y-2 sm:col-span-2 text-center">
+                    <label htmlFor="current-weight" className="text-sm font-bold text-muted uppercase tracking-wider  ">Current weight (optional — unlocks difference readout)</label>
+                    <div className="relative mt-6  w-full sm:w-1/2">
                         <input
                             id="current-weight"
                             type="number"

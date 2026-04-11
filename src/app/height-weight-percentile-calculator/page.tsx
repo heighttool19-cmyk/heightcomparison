@@ -263,17 +263,17 @@ export default function PercentileCalculatorPage() {
                                         <td className="px-6 py-4">Well above average for age and sex</td>
                                     </tr>
                                     <tr className="hover:bg-bg/50 transition-colors text-center">
-                                        <td className="px-2 py-4 font-black text-foreground">75 to 90</td>
+                                        <td className="px-2 py-4 font-black text-lg">75 to 90</td>
                                         <td className="px-6 py-4">Above average</td>
                                         <td className="px-6 py-4">Taller than most peers</td>
                                     </tr>
                                     <tr className="hover:bg-bg/50 transition-colors text-center">
-                                        <td className="px-2 py-4 font-black text-foreground">25 to 75</td>
+                                        <td className="px-2 py-4 font-black text-lg">25 to 75</td>
                                         <td className="px-6 py-4 italic">Average height range</td>
                                         <td className="px-6 py-4">Normal and expected for most people</td>
                                     </tr>
                                     <tr className="hover:bg-bg/50 transition-colors text-center">
-                                        <td className="px-2 py-4 font-black text-foreground">10 to 25</td>
+                                        <td className="px-2 py-4 font-black text-lg">10 to 25</td>
                                         <td className="px-6 py-4">Below average</td>
                                         <td className="px-6 py-4">Shorter than most, within normal variation</td>
                                     </tr>
