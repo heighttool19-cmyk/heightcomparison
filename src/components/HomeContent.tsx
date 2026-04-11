@@ -410,22 +410,22 @@ export default function HomeContent() {
                                 ].map((item, i) => (
                                     <div key={i} className="bg-surface rounded-3xl p-8 border-2 border-border shadow-xl flex flex-col justify-between group hover:border-accent/40 transition-all">
 
-                                        {/* 1. TAG: Always 1 line, naturally parallel */}
+                                        {/* 1. TAG */}
                                         <div className="inline-flex self-start text-[10px] font-black tracking-[0.2em] uppercase px-3 py-1.5 mb-4 rounded-lg bg-accent/10 text-accent border border-accent/20 group-hover:bg-accent group-hover:text-white transition-all transform group-hover:scale-105">
                                             {item.tag}
                                         </div>
 
-                                        {/* 2. QUOTE: Added min-h-[5.5rem] to handle 2 vs 3 line titles so descriptions below it start parallel */}
-                                        <div className="text-[20px] font-black text-foreground mb-4 leading-tight uppercase min-h-[5.5rem]">
+                                        {/* 2. QUOTE: Added indent-[-0.55em] and pl-[0.55em] to create a hanging quotation mark */}
+                                        <div className="text-[20px] font-black text-foreground mb-4 leading-tight uppercase min-h-[5.5rem] indent-[-0.55em] pl-[0.55em]">
                                             {item.quote}
                                         </div>
 
-                                        {/* 3. DESC: flex-1 ensures this section absorbs remaining space, pushing the line to the bottom */}
+                                        {/* 3. DESC */}
                                         <div className="text-[14px] text-muted font-bold leading-relaxed mb-6 flex-1 opacity-70 group-hover:opacity-100 transition-opacity">
                                             {item.desc}
                                         </div>
 
-                                        {/* 4. TRY LINE: Keeps the bottom border and try text parallel */}
+                                        {/* 4. TRY LINE */}
                                         <div className="text-[11px] font-black text-muted/40 group-hover:text-accent/60 pt-6 border-t-2 border-border/50 uppercase tracking-widest transition-colors min-h-[5.5rem]">
                                             Try: {item.try}
                                         </div>

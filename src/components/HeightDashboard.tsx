@@ -22,38 +22,87 @@ interface HeightDashboardProps {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// SIZING CONSTANTS  (reverse-engineered from heightcomparison.com DOM)
+// SIZING CONSTANTS
 //
 //   finalScale  = baseScale * zoom          (px per cm)
 //   barHeightPx = person.heightCm * finalScale
-//   barWidthPx  = barHeightPx * WIDTH_RATIO  (≈ 0.34 for normal persons)
-//   gapPx       = max(MIN_GAP, barHeightPx * GAP_RATIO)
 //
-// AUTO-SCALE ALGORITHM:
-//   1. baseScale already makes the TALLEST person fill VERT_FILL of viewport height.
-//   2. handleAutoScale computes hZoom = (availableWidth * 0.90) / totalContentWidth
-//      where totalContentWidth is measured at zoom = 1.
-//   3. hZoom is clamped to [MIN_ZOOM, MAX_AUTO_ZOOM].
-//      MAX_AUTO_ZOOM = 1.0 — we NEVER auto-zoom IN beyond 100%.
-//      (If the content already fits at zoom=1, keep zoom=1.)
-//      This prevents the "1 huge person fills 800% of screen" bug.
-//   4. The user can still manually zoom > 1.0 using the slider / buttons.
+//   SILHOUETTE persons:
+//     barWidthPx = barHeightPx * WIDTH_RATIO  (0.34)
+//
+//   IMAGE persons:
+//     barWidthPx = barHeightPx * (imgW / imgH)  ← real aspect ratio
+//     We pre-load image dimensions into IMAGE_ASPECT_CACHE so auto-scale
+//     and PersonBar both use the correct width from the very first render.
+//
+//   gapPx = max(MIN_GAP, barHeightPx * GAP_RATIO)
+//
+// AUTO-SCALE:
+//   hZoom = (availWidth * 0.90) / totalContentWidth   [at zoom=1]
+//   Clamped to [MIN_ZOOM, MAX_AUTO_ZOOM=1.0]
+//   → Never zooms IN automatically (prevents 800%+ for single tall entity)
+//   → User can manually zoom in beyond 1.0 with slider/buttons
 //
 // CANVAS HEIGHT:
-//   max(vpHeight, tallestBarPx + HEAD_EXTRA + TOP_PAD)
-//   HEAD_EXTRA accounts for the head circle above the bar (15% of barH).
-//   This prevents the head from being clipped at the top.
+//   max(vpHeight, tallestBarPx * (1 + HEAD_RATIO) + TOP_PAD)
+//   Accounts for head circle + name label above bar top.
 // ─────────────────────────────────────────────────────────────────────────────
 
-const WIDTH_RATIO = 0.34;   // barWidth = barHeightPx * WIDTH_RATIO
-const GAP_RATIO = 0.022;  // gap      = barHeightPx * GAP_RATIO
+const WIDTH_RATIO = 0.34;   // silhouette barWidth = barH * WIDTH_RATIO
+const GAP_RATIO = 0.022;  // gap = barH * GAP_RATIO
 const MIN_GAP = 2;      // px
-const TOP_PAD = 60;     // px reserved above name label
-const HEAD_RATIO = 0.15;   // head circle = barH * HEAD_RATIO (must match PersonBar)
+const TOP_PAD = 60;     // px above name label
+const HEAD_RATIO = 0.15;   // head = barH * HEAD_RATIO
 const VERT_FILL = 0.82;   // tallest bar fills this fraction of vpHeight at zoom=1
-const MAX_AUTO_ZOOM = 1.0;    // auto-scale never zooms IN — prevents over-scaling
+const MAX_AUTO_ZOOM = 1.0;    // auto-scale never zooms IN
 const MIN_ZOOM = 0.02;
 const MAX_ZOOM = 10.0;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GLOBAL IMAGE ASPECT RATIO CACHE
+// Key: imgUrl string → Value: width/height ratio (e.g. 1.78 for 16:9)
+// Populated by preloading images when persons are added.
+// Both HeightDashboard (auto-scale) and PersonBar (rendering) read from here.
+// ─────────────────────────────────────────────────────────────────────────────
+export const IMAGE_ASPECT_CACHE = new Map<string, number>();
+
+function preloadImageAspect(url: string): Promise<number> {
+    if (IMAGE_ASPECT_CACHE.has(url)) {
+        return Promise.resolve(IMAGE_ASPECT_CACHE.get(url)!);
+    }
+    return new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => {
+            const ratio = img.naturalHeight > 0 ? img.naturalWidth / img.naturalHeight : 1;
+            IMAGE_ASPECT_CACHE.set(url, ratio);
+            resolve(ratio);
+        };
+        img.onerror = () => {
+            IMAGE_ASPECT_CACHE.set(url, 1);
+            resolve(1);
+        };
+        img.src = url;
+    });
+}
+
+// Helper: get effective bar width for a person at a given scale
+// This is the SINGLE SOURCE OF TRUTH used by both auto-scale and PersonBar.
+export function getPersonBarWidth(person: Person, barHeightPx: number, isMobile: boolean): number {
+    const minW = isMobile ? (person.isEntity ? 20 : 10) : 12;
+
+    if (person.imgUrl) {
+        const ratio = IMAGE_ASPECT_CACHE.get(person.imgUrl) ?? null;
+        if (ratio !== null) {
+            // Image: width = height * aspect_ratio, max 800px for giant landscapes
+            return Math.min(800, Math.max(minW, barHeightPx * ratio));
+        }
+        // Aspect ratio not loaded yet — use a reasonable placeholder (square-ish)
+        return Math.max(minW, barHeightPx * 0.75);
+    }
+
+    // Silhouette person
+    return Math.max(minW, barHeightPx * WIDTH_RATIO);
+}
 
 const HeightDashboard: React.FC<HeightDashboardProps> = ({
     readOnly = false, initialPersons, onClose,
@@ -68,11 +117,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
 
     const [zoom, setZoom] = useState(1.0);
     const [zoomInput, setZoomInput] = useState('100');
+    // Tracks how many images have been loaded — forces re-render of auto-scale
+    const [imageLoadCount, setImageLoadCount] = useState(0);
 
     const { unitSystem, toggleUnitSystem } = useUnitStore();
     const { theme } = useThemeStore();
 
-    // Viewport size of the scrollable chart area
     const [vpWidth, setVpWidth] = useState(0);
     const [vpHeight, setVpHeight] = useState(0);
 
@@ -103,6 +153,24 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     useEffect(() => { setZoomInput(Math.round(zoom * 100).toString()); }, [zoom]);
     useEffect(() => { document.documentElement.setAttribute('data-theme', theme); }, [theme]);
 
+    // ── Pre-load image aspect ratios whenever persons change ─────────────────
+    useEffect(() => {
+        const imagePersons = persons.filter(p => p.imgUrl);
+        if (imagePersons.length === 0) return;
+
+        let cancelled = false;
+        Promise.all(
+            imagePersons.map(p => preloadImageAspect(p.imgUrl!))
+        ).then(() => {
+            if (!cancelled) {
+                // Trigger a re-render so auto-scale and PersonBar pick up real ratios
+                setImageLoadCount(c => c + 1);
+            }
+        });
+
+        return () => { cancelled = true; };
+    }, [persons]);
+
     // ── Fullscreen ───────────────────────────────────────────────────────────
     const toggleFullscreen = useCallback(() => {
         if (/iPhone|iPod/.test(navigator.userAgent)) { setIsFullscreen(p => !p); return; }
@@ -125,49 +193,30 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         return () => window.removeEventListener('open-dashboard-panel', h as EventListener);
     }, []);
 
-    // ── ResizeObserver on chart scroll area ──────────────────────────────────
+    // ── ResizeObserver with deadband to prevent scrollbar toggle loops ───────
     useEffect(() => {
         const el = chartScrollRef.current;
         if (!el) return;
-
-        // Keep track of the last applied dimensions inside the observer
-        let lastW = 0;
-        let lastH = 0;
-
+        let lastW = 0, lastH = 0;
         const ro = new ResizeObserver(entries => {
             for (const e of entries) {
                 const newW = e.contentRect.width;
                 const newH = e.contentRect.height;
-
-                // FIX: 24px Deadband. Scrollbars are typically 15px to 17px.
-                // If the screen size only changes by the size of a scrollbar appearing 
-                // or disappearing, IGNORE IT. This breaks the infinite loop instantly.
                 if (Math.abs(newW - lastW) > 24 || Math.abs(newH - lastH) > 24) {
-                    lastW = newW;
-                    lastH = newH;
-
-                    setVpWidth(newW);
-                    setVpHeight(newH);
-
+                    lastW = newW; lastH = newH;
+                    setVpWidth(newW); setVpHeight(newH);
                     const mob = window.innerWidth < 768;
                     setIsMobile(mob);
                     if (!mob) setIsMobileDrawerOpen(false);
                 }
             }
         });
-
         ro.observe(el);
-
         const rect = el.getBoundingClientRect();
-        if (rect.width > 0) {
-            lastW = rect.width;
-            lastH = rect.height;
-            setVpWidth(rect.width);
-            setVpHeight(rect.height);
-        }
-
+        if (rect.width > 0) { lastW = rect.width; lastH = rect.height; setVpWidth(rect.width); setVpHeight(rect.height); }
         return () => ro.disconnect();
     }, []);
+
     // ── Wheel / Pinch zoom ───────────────────────────────────────────────────
     useEffect(() => {
         const el = chartScrollRef.current;
@@ -207,21 +256,18 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
 
     // ─────────────────────────────────────────────────────────────────────────
     // BASE SCALE: zoom-independent
-    // Maps tallest person → VERT_FILL fraction of viewport height.
+    // Maps tallest person → VERT_FILL of vpHeight.
     // ─────────────────────────────────────────────────────────────────────────
     const baseScale = useMemo(() => {
         if (vpHeight <= 0 || persons.length === 0) return 1;
         const maxCm = Math.max(...persons.map(p => p.heightCm));
         if (maxCm <= 0) return 1;
-        // Reserve space for: top padding + head circle above bar
-        // headExtra at zoom=1: baseScale * maxCm * HEAD_RATIO — but baseScale is what we're solving for.
-        // Simplified: allocate VERT_FILL of vpHeight to the bar, leaving room for head+label above.
         const avail = vpHeight * VERT_FILL - TOP_PAD;
         return avail > 0 ? avail / maxCm : 1;
     }, [persons, vpHeight]);
 
     // ─────────────────────────────────────────────────────────────────────────
-    // FINAL SCALE: what PersonBar and Ruler receive
+    // FINAL SCALE = baseScale * zoom
     // ─────────────────────────────────────────────────────────────────────────
     const finalScale = useMemo(() => {
         const s = baseScale * zoom;
@@ -229,30 +275,21 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     }, [baseScale, zoom]);
 
     // ─────────────────────────────────────────────────────────────────────────
-    // CANVAS HEIGHT: grows for tall entities, never less than vpHeight.
-    // Accounts for head circle protruding above bar top.
+    // CANVAS HEIGHT
     // ─────────────────────────────────────────────────────────────────────────
     const canvasHeight = useMemo(() => {
         if (persons.length === 0 || finalScale === 0) return vpHeight || 600;
         const maxBarPx = Math.max(...persons.map(p => p.heightCm * finalScale));
-        const headExtra = maxBarPx * HEAD_RATIO;  // head sticks above bar
-        const needed = maxBarPx + headExtra + TOP_PAD + 20;
-        return Math.max(vpHeight || 600, needed);
+        const headExtra = maxBarPx * HEAD_RATIO;
+        return Math.max(vpHeight || 600, maxBarPx + headExtra + TOP_PAD + 20);
     }, [persons, finalScale, vpHeight]);
 
     // ─────────────────────────────────────────────────────────────────────────
     // AUTO-SCALE
     //
-    // Goal: figures fill 90% of available WIDTH at the most natural zoom.
-    //
-    // Key insight: Auto-scale should ONLY zoom OUT (hZoom ≤ MAX_AUTO_ZOOM = 1.0).
-    // Reason: baseScale already makes the tallest bar fill 82% of height.
-    // If we also zoom IN horizontally, a single wide bar at 1240cm becomes
-    // absurdly large (800%+). The user can manually zoom in if they want.
-    //
-    // When there are very few persons (1–2), content is narrow.
-    // hZoom > 1.0 would over-zoom → clamp to 1.0, content stays centered.
-    // The tallest bar will correctly fill 82% of the screen height.
+    // Uses getPersonBarWidth() with real cached aspect ratios — same function
+    // that PersonBar uses for rendering. This guarantees the auto-scale
+    // width matches exactly what gets rendered.
     // ─────────────────────────────────────────────────────────────────────────
     const handleAutoScale = useCallback(() => {
         if (persons.length === 0 || vpHeight <= 0 || vpWidth <= 0) return;
@@ -260,47 +297,34 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         const rulerW = isMobile ? 40 : 56;
         const availW = vpWidth - rulerW;
 
-        // Total content width at zoom=1 (using baseScale only)
+        // Total content width at zoom=1 (baseScale, not finalScale)
         const totalW = persons.reduce((sum, p) => {
-            const barH = p.heightCm * baseScale;       // at zoom=1
-            const w = Math.max(isMobile ? 10 : 12, barH * (p.imgUrl ? 1.0 : WIDTH_RATIO));
+            const barH = p.heightCm * baseScale;
+            const w = getPersonBarWidth(p, barH, isMobile);
             const gap = Math.max(MIN_GAP, barH * GAP_RATIO);
             return sum + w + gap;
         }, 0);
 
         if (totalW <= 0) return;
 
-        // How much zoom makes content fill 90% of available width?
-        const hZoom = (availW * 1) / totalW;
+        const hZoom = (availW * 0.90) / (totalW);
+        // Clamp: auto never zooms IN beyond 1.0
+        const safeZoom = Math.max(MIN_ZOOM, Math.min(MAX_AUTO_ZOOM, hZoom));
 
-        // Clamp to MAX_AUTO_ZOOM = 1.0
-        const safeZoom = Math.max(MIN_ZOOM, Math.min(MAX_AUTO_ZOOM, hZoom * 0.95));
-
-        // FIX: Add a "deadband" to prevent infinite scrollbar toggle loops!
-        setZoom((prevZoom) => {
-            // If the zoom is only changing by a tiny fraction (2% or less),
-            // it is just the scrollbar appearing/disappearing. 
-            // Return the previous zoom to immediately break the infinite loop.
-            if (Math.abs(prevZoom - safeZoom) < 0.02) {
-                return prevZoom;
-            }
-
-            // Otherwise, apply the new zoom and round it cleanly to 2 decimals
+        setZoom(prev => {
+            // Deadband: ignore if change is < 2% to prevent scrollbar oscillation
+            if (Math.abs(prev - safeZoom) < 0.02) return prev;
             return Number(safeZoom.toFixed(2));
         });
+    }, [persons, vpHeight, vpWidth, baseScale, isMobile, imageLoadCount]);
 
-    }, [persons, vpHeight, vpWidth, baseScale, isMobile, isSidebarCollapsed]);
     useEffect(() => { autoScaleRef.current = handleAutoScale; }, [handleAutoScale]);
 
-    // Trigger auto-scale when persons or viewport changes
-    // const prevLenRef = useRef(0);
-    // const prevVpWidthRef = useRef(0);
+    // Re-run auto-scale when persons, viewport, or image loads change
     useEffect(() => {
         if (vpWidth <= 0 || vpHeight <= 0) return;
-
-        // Run auto-scale exactly once
         handleAutoScale();
-    }, [persons, isSidebarCollapsed]);
+    }, [persons, isSidebarCollapsed, imageLoadCount, vpWidth, vpHeight]);
 
     // Scroll to bottom when person added
     useEffect(() => {
@@ -351,102 +375,45 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     const handleEditCancel = useCallback(() => { setActivePanel('ADD_PERSON'); setEditingPersonId(null); }, []);
     const handleUpdatePersonHeight = useCallback((id: string, val: number) => storeUpdatePerson(id, { heightCm: Math.min(400, Math.max(50, val)) }), [storeUpdatePerson]);
 
-    // ── Share / URL ───────────────────────────────────────────────────────────
+    // ── Share ─────────────────────────────────────────────────────────────────
     const handleShare = useCallback(async () => {
         if (shareStatus !== 'idle') return;
-
         try {
             setShareStatus('generating');
-
-            const payload = {
-                unitSystem,
-                zoom: Math.round(zoom * 100) / 100,
-                persons: persons
-            };
-
-            const response = await fetch('/api/share', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ data: payload })
-            });
-
-            if (!response.ok) throw new Error('Network error');
-
-            const { shortId } = await response.json();
-            const shareUrl = `${window.location.origin}/?s=${shortId}`;
-
-            await navigator.clipboard.writeText(shareUrl);
+            const d = { u: unitSystem === 'metric' ? 1 : 0, z: Math.round(zoom * 100) / 100, p: persons.map(p => [p.name, Math.round(p.heightCm * 10) / 10, p.color?.replace('#', '') ?? '', p.gender === 'female' ? 1 : p.gender === 'male' ? 2 : 0, p.imgUrl ?? '', p.offsetY ?? 0]) };
+            const url = `${window.location.origin}/#${LZString.compressToEncodedURIComponent(JSON.stringify(d))}`;
+            await navigator.clipboard.writeText(url);
             setShareStatus('copied');
             triggerToast('Share link copied!');
-
             setTimeout(() => setShareStatus('idle'), 3000);
-
-        } catch (e) {
-            console.error(e);
+        } catch {
             setShareStatus('error');
-            triggerToast('Failed to generate link');
+            triggerToast('Failed to copy link');
             setTimeout(() => setShareStatus('idle'), 3000);
         }
     }, [unitSystem, zoom, persons, triggerToast, shareStatus]);
 
     useEffect(() => {
         if (readOnly) return;
-
-        const loadSharedData = async () => {
-            const searchParams = new URLSearchParams(window.location.search);
-            const id = searchParams.get('s');
-
-            if (id) {
-                try {
-                    const response = await fetch(`/api/share?id=${id}`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        if (data.unitSystem) useUnitStore.setState({ unitSystem: data.unitSystem });
-                        if (data.zoom) setZoom(data.zoom);
-                        if (data.persons) storeSetPersons(data.persons);
-                    }
-                } catch (e) {
-                    console.error('Failed to fetch shared chart:', e);
+        if (window.location.hash) {
+            try {
+                const hash = window.location.hash.slice(1);
+                if (!hash) { setIsHydrated(true); return; }
+                let decoded: any = null;
+                try { const lz = LZString.decompressFromEncodedURIComponent(hash); if (lz) decoded = JSON.parse(lz); } catch { }
+                if (!decoded) { try { decoded = JSON.parse(decodeURIComponent(atob(hash))); } catch { } }
+                if (decoded?.u !== undefined) {
+                    useUnitStore.setState({ unitSystem: decoded.u === 1 ? 'metric' : 'imperial' });
+                    if (decoded.z !== undefined) setZoom(decoded.z);
+                    if (Array.isArray(decoded.p)) storeSetPersons(decoded.p.map((a: any[]) => ({ id: `s-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`, name: String(a[0]), heightCm: Number(a[1]), color: a[2] ? `#${a[2]}` : '#3b82f6', gender: a[3] === 1 ? 'female' : a[3] === 2 ? 'male' : undefined, imgUrl: a[4] ? String(a[4]) : undefined, isEntity: !a[3], offsetY: a[5] ? Number(a[5]) : 0 })));
+                } else if (decoded?.unitSystem) {
+                    useUnitStore.setState({ unitSystem: decoded.unitSystem });
+                    if (decoded.persons) storeSetPersons(decoded.persons);
+                    if (decoded.zoom !== undefined) setZoom(decoded.zoom);
                 }
-            } else if (window.location.hash) {
-                // Fallback for old hash-based links
-                try {
-                    const hash = window.location.hash.slice(1);
-                    if (!hash) { setIsHydrated(true); return; }
-                    let decoded: any = null;
-                    try {
-                        const lz = LZString.decompressFromEncodedURIComponent(hash);
-                        if (lz) decoded = JSON.parse(lz);
-                    } catch { }
-                    if (!decoded) {
-                        try { decoded = JSON.parse(decodeURIComponent(atob(hash))); } catch { }
-                    }
-                    if (decoded?.u !== undefined) {
-                        useUnitStore.setState({ unitSystem: decoded.u === 1 ? 'metric' : 'imperial' });
-                        if (decoded.z !== undefined) setZoom(decoded.z);
-                        if (Array.isArray(decoded.p)) {
-                            storeSetPersons(decoded.p.map((a: any[]) => ({
-                                id: `s-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-                                name: String(a[0]),
-                                heightCm: Number(a[1]),
-                                color: a[2] ? `#${a[2]}` : '#3b82f6',
-                                gender: a[3] === 1 ? 'female' : a[3] === 2 ? 'male' : undefined,
-                                imgUrl: a[4] ? String(a[4]) : undefined,
-                                isEntity: !a[3],
-                                offsetY: a[5] ? Number(a[5]) : 0
-                            })));
-                        }
-                    } else if (decoded?.unitSystem) {
-                        useUnitStore.setState({ unitSystem: decoded.unitSystem });
-                        if (decoded.persons) storeSetPersons(decoded.persons);
-                        if (decoded.zoom !== undefined) setZoom(decoded.zoom);
-                    }
-                } catch (e) { console.error('Hash hydration failed:', e); }
-            }
-            setIsHydrated(true);
-        };
-
-        loadSharedData();
+            } catch (e) { console.error('Hash hydration failed:', e); }
+        }
+        setIsHydrated(true);
     }, [storeSetPersons, readOnly]);
 
     // ── PNG download ──────────────────────────────────────────────────────────
@@ -473,6 +440,18 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
 
     return (
         <div className="flex flex-col h-full bg-bg overflow-hidden font-sans text-foreground selection:bg-accent/20 transition-colors duration-500 relative">
+            <AnimatePresence>
+                {!isHydrated && (
+                    <motion.div
+                        initial={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-bg"
+                    >
+                        <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin mb-4" />
+                        <p className="text-muted font-bold animate-pulse uppercase tracking-widest text-xs">Loading Comparison...</p>
+                    </motion.div>
+                )}
+            </AnimatePresence>
             {readOnly && onClose && (
                 <button onClick={onClose} className="absolute top-4 right-4 z-[70] p-3 text-white bg-red-500/90 hover:bg-red-600 rounded-full shadow-2xl backdrop-blur-md sm:top-6 sm:right-6">
                     <X size={24} strokeWidth={3} />
@@ -513,7 +492,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     onClick={() => { if (activePersonMenuId) setActivePersonMenuId(null); }}
                 >
                     {/* Toolbar */}
-                    <div className="order-2 sm:order-first px-2 lg:px-4  z-30 w-full mb-2 shrink-0">
+                    <div className="order-2 sm:order-first px-2 lg:px-4 z-30 w-full mb-2 shrink-0">
                         <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
                             <div className="flex items-center gap-1 lg:gap-3 shrink-0">
                                 <button onClick={toggleUnitSystem} className="shrink-0 flex items-center gap-1 group hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all">
@@ -524,7 +503,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                 </button>
                                 <div className="hidden sm:block w-px h-5 bg-white/10 shrink-0" />
                                 <div className="flex shrink-0 items-center gap-0.5">
-                                    <button onClick={() => setZoom(z => Math.min(MAX_ZOOM, +(z + 0.1).toFixed(2)))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
+                                    <button onClick={() => setZoom(z => (z + 0.01))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
                                         <ZoomIn size={16} strokeWidth={2.5} />
                                     </button>
                                     <div className="bg-item-hover rounded-lg px-1.5 py-1 flex items-center gap-0.5 border border-toolbar-border">
@@ -535,7 +514,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                             className="w-7 lg:w-9 bg-transparent text-[10px] lg:text-[12px] font-mono font-bold text-center outline-none text-muted focus:text-foreground" />
                                         <span className="text-[9px] font-bold text-muted/30">%</span>
                                     </div>
-                                    <button onClick={() => setZoom(z => Math.max(MIN_ZOOM, +(z - 0.1).toFixed(2)))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
+                                    <button onClick={() => setZoom(z => (z - 0.01))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
                                         <ZoomOut size={16} strokeWidth={2.5} />
                                     </button>
                                 </div>
@@ -561,10 +540,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                 <button
                                     onClick={handleShare}
                                     disabled={shareStatus !== 'idle'}
-                                    className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-lg ${shareStatus === 'copied' ? 'text-emerald-500 bg-emerald-500/10' :
-                                        shareStatus === 'error' ? 'text-red-500 bg-red-500/10' :
-                                            'text-muted hover:text-foreground'
-                                        }`}
+                                    className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-lg ${shareStatus === 'copied' ? 'text-emerald-500 bg-emerald-500/10' : shareStatus === 'error' ? 'text-red-500 bg-red-500/10' : 'text-muted hover:text-foreground'}`}
                                 >
                                     {shareStatus === 'generating' ? (
                                         <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
@@ -574,9 +550,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         <LinkIcon size={16} className={`group-hover:text-accent shrink-0 ${shareStatus === 'error' ? 'text-red-500' : 'text-muted/50'}`} />
                                     )}
                                     <span className="hidden xl:inline whitespace-nowrap text-xs">
-                                        {shareStatus === 'generating' ? 'Generating...' :
-                                            shareStatus === 'copied' ? 'Copied!' :
-                                                shareStatus === 'error' ? 'Fixed Error' : 'Share'}
+                                        {shareStatus === 'generating' ? 'Generating...' : shareStatus === 'copied' ? 'Copied!' : shareStatus === 'error' ? 'Error' : 'Share'}
                                     </span>
                                 </button>
                                 <button onClick={handleDownloadPNG} disabled={isCapturing} className="flex items-center gap-1 bg-primary/10 text-primary border border-accent/20 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0">
@@ -652,8 +626,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                                         layout
                                                         className="h-full flex items-end shrink-0"
                                                         style={{
-                                                            marginLeft: `${gap / 2}px`,
-                                                            marginRight: `${gap / 2}px`,
+                                                            marginLeft: `${gap / 3}px`,
+                                                            marginRight: `${gap / 3}px`,
                                                             transition: 'margin 0.4s cubic-bezier(0.22,1,0.36,1)',
                                                         }}
                                                     >
@@ -697,92 +671,100 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                 </motion.main>
 
                 {/* Desktop Sidebar */}
-                {!readOnly && (
-                    <div className="hidden sm:flex shrink-0 relative z-30">
-                        <motion.div
-                            initial={false}
-                            animate={{ width: isSidebarCollapsed ? 0 : 400, opacity: isSidebarCollapsed ? 0 : 1 }}
-                            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                            className="flex flex-col border-l border-border bg-surface overflow-hidden"
-                        >
-                            <div className="flex-1 w-[400px] overflow-y-auto custom-scrollbar">
-                                <Sidebar
-                                    persons={persons} personCount={persons.length}
-                                    onAdd={handleAddPerson} onAddEntity={handleAddEntity}
-                                    onRemove={handleRemovePerson} onEditRequest={handleEditRequest}
-                                    onReorder={handleReorderPerson} scale={finalScale} zoom={zoom}
-                                    activePanel={activePanel}
-                                    editingPerson={persons.find(p => p.id === editingPersonId)}
-                                    onEditSave={handleEditSave} onEditUpdate={handleEditUpdate}
-                                    onEditCancel={handleEditCancel} onAddEntityExport={handleDownloadPNG}
-                                    isCapturing={isCapturing} highlight={highlightYourList}
-                                />
-                            </div>
-                        </motion.div>
-                        <button
-                            onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                            className="absolute top-1/2 -translate-y-1/2 w-8 h-12 bg-surface border border-border rounded-l-xl flex items-center justify-center text-muted hover:text-white hover:bg-accent hover:border-accent transition-all shadow-2xl z-50 right-full translate-x-[1px]"
-                            style={{ borderRight: 'none' }}
-                        >
-                            {isSidebarCollapsed ? <ChevronLeft size={18} className="translate-x-0.5" /> : <ChevronRight size={18} className="-translate-x-0.5" />}
-                        </button>
-                    </div>
-                )}
-            </div>
-
-            {/* Toast */}
-            <AnimatePresence>
-                {showToast && (
-                    <motion.div initial={{ opacity: 0, y: 50, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.9 }} className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-surface border border-border text-foreground px-4 py-2 rounded-full shadow-2xl flex items-center gap-3 z-50 pointer-events-none">
-                        <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                        <span className="text-sm font-bold">{toastMessage}</span>
-                        <Check size={16} className="text-accent" />
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            {/* Mobile FAB */}
-            {!readOnly && (
-                <div className="sm:hidden fixed bottom-6 right-6 z-40">
-                    <button onClick={() => setIsMobileDrawerOpen(true)} className="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all">
-                        <Plus size={18} strokeWidth={3} />
-                    </button>
-                </div>
-            )}
-
-            {/* Mobile Drawer */}
-            {!readOnly && (
-                <AnimatePresence>
-                    {isMobileDrawerOpen && (
-                        <>
-                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsMobileDrawerOpen(false)} className="sm:hidden fixed inset-0 bg-black/60 z-50 backdrop-blur-sm" />
-                            <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25, stiffness: 200 }} className="sm:hidden fixed bottom-0 left-0 right-0 h-[80vh] bg-surface rounded-t-[2rem] z-[200] overflow-hidden flex flex-col shadow-2xl border-t border-border">
-                                <div className="flex items-center justify-between px-6 py-5 border-b border-border/30 bg-surface/50 backdrop-blur-md sticky top-0 z-20">
-                                    <h3 className="text-sm font-black uppercase tracking-[0.2em]">
-                                        {activePanel === 'ADD_PERSON' ? 'Enter Details' : activePanel === 'CELEBRITIES' ? 'Celebrities' : activePanel === 'FICTIONAL' ? 'Fictional' : activePanel.replace('_', ' ')}
-                                    </h3>
-                                    <button onClick={() => setIsMobileDrawerOpen(false)} className="p-2 bg-bg border border-border/50 rounded-xl text-muted hover:text-foreground active:scale-95">
-                                        <X size={20} strokeWidth={3} />
-                                    </button>
-                                </div>
-                                <div className="flex-1 overflow-y-auto custom-scrollbar pb-6">
+                {
+                    !readOnly && (
+                        <div className="hidden sm:flex shrink-0 relative z-30">
+                            <motion.div
+                                initial={false}
+                                animate={{ width: isSidebarCollapsed ? 0 : 400, opacity: isSidebarCollapsed ? 0 : 1 }}
+                                transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                                className="flex flex-col border-l border-border bg-surface overflow-hidden"
+                            >
+                                <div className="flex-1 w-[400px] overflow-y-auto custom-scrollbar">
                                     <Sidebar
                                         persons={persons} personCount={persons.length}
-                                        onAdd={p => { handleAddPerson(p); setIsMobileDrawerOpen(false); }}
+                                        onAdd={handleAddPerson} onAddEntity={handleAddEntity}
+                                        onRemove={handleRemovePerson} onEditRequest={handleEditRequest}
+                                        onReorder={handleReorderPerson} scale={finalScale} zoom={zoom}
                                         activePanel={activePanel}
-                                        onAddEntity={e => { handleAddEntity(e); setIsMobileDrawerOpen(false); }}
-                                        onAddEntityExport={handleDownloadPNG} isCapturing={isCapturing}
-                                        onRemove={handleRemovePerson} scale={finalScale} zoom={zoom}
                                         editingPerson={persons.find(p => p.id === editingPersonId)}
-                                        onEditSave={p => { handleEditSave(p); setIsMobileDrawerOpen(false); }}
-                                        onEditCancel={handleEditCancel} highlight={highlightYourList}
+                                        onEditSave={handleEditSave} onEditUpdate={handleEditUpdate}
+                                        onEditCancel={handleEditCancel} onAddEntityExport={handleDownloadPNG}
+                                        isCapturing={isCapturing} highlight={highlightYourList}
                                     />
                                 </div>
                             </motion.div>
-                        </>
-                    )}
-                </AnimatePresence>
-            )}
+                            <button
+                                onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+                                className="absolute top-1/2 -translate-y-1/2 w-8 h-12 bg-surface border border-border rounded-l-xl flex items-center justify-center text-muted hover:text-white hover:bg-accent hover:border-accent transition-all shadow-2xl z-50 right-full translate-x-[1px]"
+                                style={{ borderRight: 'none' }}
+                            >
+                                {isSidebarCollapsed ? <ChevronLeft size={18} className="translate-x-0.5" /> : <ChevronRight size={18} className="-translate-x-0.5" />}
+                            </button>
+                        </div>
+                    )
+                }
+            </div >
+
+            {/* Toast */}
+            <AnimatePresence>
+                {
+                    showToast && (
+                        <motion.div initial={{ opacity: 0, y: 50, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.9 }} className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-surface border border-border text-foreground px-4 py-2 rounded-full shadow-2xl flex items-center gap-3 z-50 pointer-events-none">
+                            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                            <span className="text-sm font-bold">{toastMessage}</span>
+                            <Check size={16} className="text-accent" />
+                        </motion.div>
+                    )
+                }
+            </AnimatePresence >
+
+            {/* Mobile FAB */}
+            {
+                !readOnly && (
+                    <div className="sm:hidden fixed bottom-6 right-6 z-40">
+                        <button onClick={() => setIsMobileDrawerOpen(true)} className="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all">
+                            <Plus size={18} strokeWidth={3} />
+                        </button>
+                    </div>
+                )
+            }
+
+            {/* Mobile Drawer */}
+            {
+                !readOnly && (
+                    <AnimatePresence>
+                        {isMobileDrawerOpen && (
+                            <>
+                                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsMobileDrawerOpen(false)} className="sm:hidden fixed inset-0 bg-black/60 z-50 backdrop-blur-sm" />
+                                <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25, stiffness: 200 }} className="sm:hidden fixed bottom-0 left-0 right-0 h-[80vh] bg-surface rounded-t-[2rem] z-[200] overflow-hidden flex flex-col shadow-2xl border-t border-border">
+                                    <div className="flex items-center justify-between px-6 py-5 border-b border-border/30 bg-surface/50 backdrop-blur-md sticky top-0 z-20">
+                                        <h3 className="text-sm font-black uppercase tracking-[0.2em]">
+                                            {activePanel === 'ADD_PERSON' ? 'Enter Details' : activePanel === 'CELEBRITIES' ? 'Celebrities' : activePanel === 'FICTIONAL' ? 'Fictional' : activePanel.replace('_', ' ')}
+                                        </h3>
+                                        <button onClick={() => setIsMobileDrawerOpen(false)} className="p-2 bg-bg border border-border/50 rounded-xl text-muted hover:text-foreground active:scale-95">
+                                            <X size={20} strokeWidth={3} />
+                                        </button>
+                                    </div>
+                                    <div className="flex-1 overflow-y-auto custom-scrollbar pb-6">
+                                        <Sidebar
+                                            persons={persons} personCount={persons.length}
+                                            onAdd={p => { handleAddPerson(p); setIsMobileDrawerOpen(false); }}
+                                            activePanel={activePanel}
+                                            onAddEntity={e => { handleAddEntity(e); setIsMobileDrawerOpen(false); }}
+                                            onAddEntityExport={handleDownloadPNG} isCapturing={isCapturing}
+                                            onRemove={handleRemovePerson} scale={finalScale} zoom={zoom}
+                                            editingPerson={persons.find(p => p.id === editingPersonId)}
+                                            onEditSave={p => { handleEditSave(p); setIsMobileDrawerOpen(false); }}
+                                            onEditCancel={handleEditCancel} highlight={highlightYourList}
+                                        />
+                                    </div>
+                                </motion.div>
+                            </>
+                        )}
+                    </AnimatePresence>
+                )
+            }
 
             {/* Clear confirmation */}
             <AnimatePresence>
@@ -799,7 +781,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </div >
     );
 };
 

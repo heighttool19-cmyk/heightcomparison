@@ -25,7 +25,7 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
         }
 
         const allTicks = [];
-        for (let i = 0; i <= TOTAL_LINES; i++) {
+        for (let i = 0; i <= TOTAL_LINES - 1; i++) {
             // Exact fractional numbers based purely on division
             allTicks.push((maxVisibleCm / TOTAL_LINES) * i);
         }
@@ -69,9 +69,7 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                                     transform: isZero
                                         ? 'translateY(-20%)'
                                         // FIX: Push the top label down so the text doesn't clip out of bounds
-                                        : isTopTick
-                                            ? 'translateY(60%)'
-                                            : undefined
+                                        : undefined
                                 }}
                             >
                                 {unitSystem === 'metric' ? (

@@ -8,13 +8,21 @@ interface UnitState {
     toggleUnitSystem: () => void;
 }
 
-export const useUnitStore = create<UnitState>((set) => ({
-    unitSystem: 'metric', // Default
-    setUnitSystem: (unit) => set({ unitSystem: unit }),
-    toggleUnitSystem: () => set((state) => ({
-        unitSystem: state.unitSystem === 'metric' ? 'imperial' : 'metric'
-    })),
-}));
+export const useUnitStore = create<UnitState>()(
+    persist(
+        (set) => ({
+            unitSystem: 'metric', // Default
+            setUnitSystem: (unit) => set({ unitSystem: unit }),
+            toggleUnitSystem: () => set((state) => ({
+                unitSystem: state.unitSystem === 'metric' ? 'imperial' : 'metric'
+            })),
+        }),
+        {
+            name: 'height-tool-units',
+            storage: createJSONStorage(() => localStorage),
+        }
+    )
+);
 
 export type Theme = 'dark' | 'light';
 
@@ -51,22 +59,30 @@ interface PersonState {
 
 import { Person, DEFAULT_PERSONS } from './types';
 
-export const usePersonStore = create<PersonState>((set) => ({
-    persons: [],
-    addPerson: (person) => set((state) => ({ persons: [...state.persons, person] })),
-    removePerson: (id) => set((state) => ({ persons: state.persons.filter(p => p.id !== id) })),
-    updatePerson: (id, updates) => set((state) => ({
-        persons: state.persons.map(p => p.id === id ? { ...p, ...updates } : p)
-    })),
-    setPersons: (persons) => set({ persons }),
-    reorderPerson: (id, direction) => set((state) => {
-        const index = state.persons.findIndex(p => p.id === id);
-        if (index === -1) return state;
-        const newPersons = [...state.persons];
-        const targetIndex = direction === 'up' ? index - 1 : index + 1;
-        if (targetIndex < 0 || targetIndex >= newPersons.length) return state;
-        [newPersons[index], newPersons[targetIndex]] = [newPersons[targetIndex], newPersons[index]];
-        return { persons: newPersons };
-    }),
-}));
+export const usePersonStore = create<PersonState>()(
+    persist(
+        (set) => ({
+            persons: [],
+            addPerson: (person) => set((state) => ({ persons: [...state.persons, person] })),
+            removePerson: (id) => set((state) => ({ persons: state.persons.filter(p => p.id !== id) })),
+            updatePerson: (id, updates) => set((state) => ({
+                persons: state.persons.map(p => p.id === id ? { ...p, ...updates } : p)
+            })),
+            setPersons: (persons) => set({ persons }),
+            reorderPerson: (id, direction) => set((state) => {
+                const index = state.persons.findIndex(p => p.id === id);
+                if (index === -1) return state;
+                const newPersons = [...state.persons];
+                const targetIndex = direction === 'up' ? index - 1 : index + 1;
+                if (targetIndex < 0 || targetIndex >= newPersons.length) return state;
+                [newPersons[index], newPersons[targetIndex]] = [newPersons[targetIndex], newPersons[index]];
+                return { persons: newPersons };
+            }),
+        }),
+        {
+            name: 'height-tool-persons',
+            storage: createJSONStorage(() => localStorage),
+        }
+    )
+);
 

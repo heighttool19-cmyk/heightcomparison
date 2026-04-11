@@ -17,7 +17,6 @@ export const animals_data = [
     "heightCm": 270,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Asian Elephant.svg"
   },
   {
     "name": "Giraffe",
@@ -38,14 +37,12 @@ export const animals_data = [
     "heightCm": 120,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Lion.svg"
   },
   {
     "name": "Tiger",
     "heightCm": 110,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/Tiger.svg"
   },
   {
     "name": "Grizzly Bear",
