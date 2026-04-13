@@ -7,14 +7,14 @@ import { IMAGE_TO_HEIGHT_FAQ } from '@/constants/imageToHeight';
 
 export default function ImageToHeightPage() {
     return (
-        <div className="flex-1 flex flex-col justify-center align-center items-center md:flex-row relative p-2 md:p-4 gap-4 bg-canvas overflow-x-clip w-full">
+        <div className="flex-1 flex flex-col justify-center items-center md:flex-row relative p-2 md:p-4 gap-4 bg-canvas overflow-hidden w-full transform-gpu">
 
             {/* Right Panel (Tool & Content) - Shown first on mobile */}
             <div className="lg:w-[75%] md:w-[80%] w-full flex flex-col gap-4 pb-10 order-1 md:order-2">
                 <div className="flex-1 min-h-[500px] sm:min-h-[610px] bg-surface border border-border rounded-3xl shadow-xl overflow-hidden relative">
                     <div className="p-4 md:p-8 flex flex-col relative w-full h-full">
                         {/* Ghost Watermark */}
-                        <div className="absolute top-1/2 right-4 md:right-10 -translate-y-1/2 text-[20vw] md:text-[15vw] font-black text-foreground opacity-5 pointer-events-none select-none tracking-tighter leading-none">
+                        <div className="absolute top-1/2 right-4 md:right-10 -translate-y-1/2 text-[20vw] md:text-[15vw] font-black text-foreground opacity-5 pointer-events-none select-none tracking-tighter leading-none transform-gpu">
                             HEIGHT
                         </div>
                         <div className="relative z-10 w-full max-w-4xl mx-auto">
@@ -98,7 +98,7 @@ export default function ImageToHeightPage() {
 
                     {/* 2. Photo Method Explained */}
                     <div className="bg-surface border-2 border-border/80 rounded-[2rem] p-6 md:p-12 relative overflow-hidden group shadow-xl mx-2 md:mx-0">
-                        <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000" />
+                        <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000 transform-gpu" />
                         <div className="relative z-10 max-w-3xl">
                             <h2 className="text-xl md:text-3xl font-black text-foreground mb-4 uppercase tracking-tighter">How to Determine Your Height Without Measuring: Using a Photo</h2>
                             <p className="text-muted leading-relaxed text-base md:text-lg mb-4 font-bold opacity-70">
