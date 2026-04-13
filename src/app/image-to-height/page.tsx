@@ -24,7 +24,7 @@ export default function ImageToHeightPage() {
                 </div>
 
                 {/* Comprehensive Content Section */}
-                <div className="flex p-4 md:p-6 flex-col gap-12 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+                <div className="flex  flex-col gap-12 mt-8 animate-in fade-in slide-in-from-bottom-4 duration-1000">
 
                     <div className="space-y-6">
                         <h1 className="text-2xl md:text-[40px] font-black text-foreground leading-[1.1] tracking-tighter uppercase px-3 py-4 bg-accent/5 rounded-2xl border-l-8 border-l-accent">

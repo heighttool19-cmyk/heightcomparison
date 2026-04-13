@@ -294,20 +294,20 @@ export default function IdealBodyWeightPage() {
 
                         <div className="bg-surface border border-border p-6 rounded-2xl my-6">
                             <h4 className="font-bold text-foreground mb-4 text-sm uppercase tracking-widest border-b border-border pb-3">Illustrative range — male, 5 ft 9 in (175 cm):</h4>
-                            <div className="grid grid-cols-3 gap-2 text-center text-sm font-medium">
-                                <div className="bg-bg border border-border p-3 rounded-xl">
+                            <div className="grid grid-cols-3 gap-2 text-center text-xs/4 font-medium">
+                                <div className="bg-bg border border-border p-2 rounded-xl">
                                     <span className="block text-muted mb-1 font-bold">Below IBW</span>
                                     <span className="font-bold text-foreground">Below 69 kg</span>
                                 </div>
-                                <div className="bg-green-500/10 border border-green-500/30 p-3 rounded-xl">
+                                <div className="bg-green-500/10 border border-green-500/30 p-2 rounded-xl">
                                     <span className="block text-green-500 mb-1 font-bold">Healthy (69–73 kg)</span>
                                     <span className="font-bold text-green-600">69–73 kg (healthy)</span>
                                 </div>
-                                <div className="bg-bg border border-border p-3 rounded-xl">
+                                <div className="bg-bg border border-border p-2 rounded-xl">
                                     <span className="block text-muted mb-1 font-bold">Above IBW</span>
                                     <span className="font-bold text-foreground">73–88 kg</span>
                                 </div>
-                                <div className="col-span-3 bg-red-500/10 border border-red-500/30 p-3 rounded-xl mt-2">
+                                <div className="col-span-3 bg-red-500/10 border border-red-500/30 p-2 rounded-xl mt-2">
                                     <span className="block text-red-500 mb-1 font-bold">Obesity risk</span>
                                     <span className="font-bold text-red-600">Above 88 kg</span>
                                 </div>

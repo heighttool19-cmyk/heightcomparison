@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Person, Entity, PanelType } from '../types';
 import { useUnitStore, useThemeStore } from '../store';
+import { NumericInput } from './ui/NumericInput';
 import PersonBar from './PersonBar';
 import Ruler from './Ruler';
 import Sidebar from './Sidebar';
@@ -116,7 +117,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     const persons = (readOnly && initialPersons) ? initialPersons : storePersons;
 
     const [zoom, setZoom] = useState(1.0);
-    const [zoomInput, setZoomInput] = useState('100');
+    const [zoomInput, setZoomInput] = useState<number | ''>(100);
     // Tracks how many images have been loaded — forces re-render of auto-scale
     const [imageLoadCount, setImageLoadCount] = useState(0);
 
@@ -150,7 +151,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         setTimeout(() => setShowToast(false), 2500);
     }, []);
 
-    useEffect(() => { setZoomInput(Math.round(zoom * 100).toString()); }, [zoom]);
+    useEffect(() => { setZoomInput(Math.round(zoom * 100)); }, [zoom]);
     useEffect(() => { document.documentElement.setAttribute('data-theme', theme); }, [theme]);
 
     // ── Pre-load image aspect ratios whenever persons change ─────────────────
@@ -338,8 +339,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     }, [persons.length]);
 
     // ── Gap helper ───────────────────────────────────────────────────────────
-    const getGap = useCallback((person: Person) =>
-        Math.max(MIN_GAP, person.heightCm * finalScale * GAP_RATIO), [finalScale]);
+    const getGap = useCallback((person: Person) => {
+        const count = persons.length;
+        const threshold = isMobile ? 5 : 7;
+        // Use a much smaller gap ratio if we have few people, so they stay closer together
+        const effectiveGapRatio = count <= threshold ? GAP_RATIO * 0.5 : GAP_RATIO;
+        return Math.max(MIN_GAP, person.heightCm * finalScale * effectiveGapRatio);
+    }, [finalScale, persons.length, isMobile]);
 
     // ── Person actions ────────────────────────────────────────────────────────
     const handleAddPerson = useCallback((person: Person) => {
@@ -492,8 +498,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     onClick={() => { if (activePersonMenuId) setActivePersonMenuId(null); }}
                 >
                     {/* Toolbar */}
-                    <div className="order-2 sm:order-first px-2 lg:px-4 z-30 w-full mb-2 shrink-0">
-                        <div className="w-full flex items-center justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
+                    <div className="order-2 sm:order-first px-2 lg:px-4 z-30 w-[100%]] mb-2 shrink-0">
+                        <div className="w-[100%] flex items-center justify-center md:justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
                             <div className="flex items-center gap-1 lg:gap-3 shrink-0">
                                 <button onClick={toggleUnitSystem} className="shrink-0 flex items-center gap-1 group hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all">
                                     <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent" />
@@ -506,12 +512,24 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                     <button onClick={() => setZoom(z => (z + 0.01))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
                                         <ZoomIn size={16} strokeWidth={2.5} />
                                     </button>
-                                    <div className="bg-item-hover rounded-lg px-1.5 py-1 flex items-center gap-0.5 border border-toolbar-border">
-                                        <input type="number" value={zoomInput}
-                                            onChange={e => { setZoomInput(e.target.value); const v = parseInt(e.target.value); if (!isNaN(v) && v >= MIN_ZOOM * 100) setZoom(Math.min(MAX_ZOOM, v / 100)); }}
-                                            onBlur={e => { let v = parseInt(e.target.value); if (isNaN(v)) v = 100; const c = Math.max(MIN_ZOOM * 100, Math.min(MAX_ZOOM * 100, v)); setZoomInput(c.toString()); setZoom(c / 100); }}
+                                    <div className="bg-item-hover rounded-lg px-1 py-1 flex items-center gap-0.5 border border-toolbar-border">
+                                        <NumericInput
+                                            value={zoomInput}
+                                            onValueChange={(val) => {
+                                                setZoomInput(val);
+                                                const v = typeof val === 'number' ? val : 0;
+                                                if (v >= MIN_ZOOM * 100) setZoom(Math.min(MAX_ZOOM, v / 100));
+                                            }}
+                                            onBlur={e => {
+                                                let v = parseInt(e.target.value);
+                                                if (isNaN(v)) v = 100;
+                                                const c = Math.max(MIN_ZOOM * 100, Math.min(MAX_ZOOM * 100, v));
+                                                setZoomInput(c);
+                                                setZoom(c / 100);
+                                            }}
                                             onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); }}
-                                            className="w-7 lg:w-9 bg-transparent text-[10px] lg:text-[12px] font-mono font-bold text-center outline-none text-muted focus:text-foreground" />
+                                            className="w-5 lg:w-9 bg-transparent text-[10px] lg:text-[12px] font-mono font-bold text-center outline-none text-muted focus:text-foreground"
+                                        />
                                         <span className="text-[9px] font-bold text-muted/30">%</span>
                                     </div>
                                     <button onClick={() => setZoom(z => (z - 0.01))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
@@ -637,6 +655,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                                             zoom={zoom}
                                                             readOnly={readOnly}
                                                             canvasHeight={vpHeight}
+                                                            personCount={persons.length}
                                                             isActiveMenu={activePersonMenuId === person.id}
                                                             onSetActiveMenu={(active: boolean) => setActivePersonMenuId(active ? person.id : null)}
                                                             onEditRequest={!readOnly ? handleEditRequest : undefined}

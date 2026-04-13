@@ -17,3 +17,16 @@ export const handleInputChange = <T,>(
         setter(value as unknown as T);
     }
 };
+
+// NEW: Universal blocker for invalid characters in number fields
+export const handleNumberKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    onInvalid?: (key: string) => void
+) => {
+    // Physically block spacebar, minus, plus, and 'e' (exponential) 
+    // Add or remove characters here depending on what your app allows
+    if ([' ', '-', '+', 'e', 'E'].includes(e.key)) {
+        e.preventDefault();
+        onInvalid?.(e.key);
+    }
+};

@@ -31,7 +31,6 @@ export default function HeightConverter() {
                 <p className="text-muted font-medium leading-relaxed">
                     Convert cm to feet and inches, feet and inches to cm, or meters to feet instantly
                 </p>
-                <div className="h-1.5 w-16 bg-accent rounded-full" />
             </div>
 
             <div className="flex flex-col md:flex-row items-center gap-6">

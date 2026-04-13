@@ -10,7 +10,9 @@ export const objects_data = [
     "name": "Basketball Hoop",
     "heightCm": 305,
     "category": "Objects",
-    "icon": "🏢"
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/Objects/Basketball.svg"
+
   },
   {
     "name": "Traffic Light",
@@ -128,7 +130,9 @@ export const objects_data = [
     "name": "Telephone Booth",
     "heightCm": 240,
     "category": "Objects",
-    "icon": "🏢"
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/Objects/Telephone_booth.svg"
+
   },
   {
     "name": "ATM Machine",

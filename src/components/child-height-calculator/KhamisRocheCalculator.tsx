@@ -133,7 +133,6 @@ export default function KhamisRocheCalculator() {
                     <p className="text-muted font-medium leading-relaxed">
                         Instant height prediction using scientific growth models. Estimate predicted height based on age and parents
                     </p>
-                    <div className="h-1.5 w-16 bg-accent rounded-full" />
                 </div>
                 {/* Synced Unit Toggle */}
                 <div className="w-full sm:w-auto bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">

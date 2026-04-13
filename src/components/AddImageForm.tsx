@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Person, uid, UnitSystem } from '../types';
 import { UploadCloud, X, Crop as CropIcon, Check } from 'lucide-react';
 import { handleInputChange } from '../utils/input';
+import { NumericInput } from './ui/NumericInput';
 import { CropModal } from './ImageMeasurementCom/components/CropModal';
 import { type PixelCrop } from 'react-image-crop';
 
@@ -89,7 +90,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
             canvas.height = pixelCrop.height;
             const ctx = canvas.getContext('2d');
             if (!ctx) { setIsUploading(false); return; }
-            
+
             ctx.drawImage(img, pixelCrop.x, pixelCrop.y, pixelCrop.width, pixelCrop.height, 0, 0, canvas.width, canvas.height);
 
             try {
@@ -174,17 +175,17 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                     </div>
                     {unit === 'metric' ? (
                         <div className="flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
-                            <input type="number" placeholder="eg. 158 cm" value={heightCm} onChange={e => { setError(''); handleInputChange(e, setHeightCm); }} className="flex-1 bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none" />
+                            <NumericInput placeholder="eg. 158 cm" value={heightCm} onValueChange={(val) => { setError(''); setHeightCm(val); }} className="flex-1 bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none" />
                             <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center">CM</div>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                <input type="number" placeholder="Ft" value={heightFt} onChange={e => { setError(''); handleInputChange(e, setHeightFt); }} className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none" />
+                                <NumericInput placeholder="Ft" value={heightFt} onValueChange={(val) => { setError(''); setHeightFt(val); }} className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none" />
                                 <div className="px-2 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center shrink-0">FT</div>
                             </div>
                             <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                <input type="number" placeholder="In" value={heightIn} onChange={e => { setError(''); handleInputChange(e, setHeightIn); }} className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none" />
+                                <NumericInput placeholder="In" value={heightIn} onValueChange={(val) => { setError(''); setHeightIn(val); }} className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none" />
                                 <div className="px-2 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center shrink-0">IN</div>
                             </div>
                         </div>
@@ -224,9 +225,9 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                     )}
 
                     <input type="file" accept="image/*" className="hidden" ref={inputRef} onChange={handleFileChange} />
-                    
+
                     {pendingImageUrl ? (
-                        <button 
+                        <button
                             onClick={handleProceedToCrop}
                             className="w-full bg-accent text-white font-black py-4 px-4 rounded-2xl transition-all active:scale-95 flex items-center justify-center gap-2 shadow-lg shadow-accent/20 uppercase tracking-widest text-xs hover:bg-accent-secondary"
                         >
@@ -243,7 +244,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
             <CropModal
                 showCropModal={showCropModal}
                 pendingUrl={pendingImageUrl}
-                resetCrop={() => {}}
+                resetCrop={() => { }}
                 closeCropModal={closeModal}
                 applyCrop={applyCrop}
                 title="Crop Person Image"

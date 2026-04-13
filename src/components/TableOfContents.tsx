@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import SmoothScrollLink from './SmoothScrollLink';
 
 interface TOCItem {
     id: string;
@@ -152,16 +153,23 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
 
         return (
             <li className={`transition-all duration-300 ${isSub ? 'mt-2' : 'mt-3'}`}>
-                <a
-                    href={`#${item.id}`}
-                    onClick={handleLinkClick}
+                <SmoothScrollLink
+                    targetId={item.id}
+                    onClick={() => {
+                        isClickScrolling.current = true;
+                        setActiveSection(item.id);
+                        if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+                        scrollTimeout.current = setTimeout(() => {
+                            isClickScrolling.current = false;
+                        }, 1000);
+                    }}
                     className={`block transition-all duration-300 border-l-2 pl-2 whitespace-nowrap leading-tight ${isActive
                         ? 'text-accent border-accent font-bold'
                         : 'text-muted hover:text-foreground border-transparent'
                         }`}
                 >
                     {item.label}
-                </a>
+                </SmoothScrollLink>
                 {item.subItems && (
                     <ul className="pl-2 ml-1 border-l border-border/50 mt-2 space-y-2">
                         {item.subItems.map(sub => <TOCLink key={sub.id} item={sub} isSub={true} />)}

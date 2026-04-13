@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { Gender, UnitSystem, COLOR_PALETTE, uid, Person } from '../types';
 import { handleInputChange } from '../utils/input';
+import { NumericInput } from './ui/NumericInput';
 
 interface AddPersonFormProps {
     onAdd: (person: Person) => void;
@@ -116,11 +117,10 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                     <div className="flex gap-2">
                         {unit === 'metric' ? (
                             <div className="w-full flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                <input
-                                    type="number"
+                                <NumericInput
                                     placeholder="Height"
                                     value={heightCm}
-                                    onChange={(e) => handleInputChange(e, setHeightCm)}
+                                    onValueChange={setHeightCm}
                                     className="w-full bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
                                 />
                                 <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center justify-center">
@@ -130,11 +130,10 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                         ) : (
                             <div className="flex gap-2 w-full">
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                    <input
-                                        type="number"
+                                    <NumericInput
                                         placeholder="Ft"
                                         value={heightFt}
-                                        onChange={(e) => handleInputChange(e, setHeightFt)}
+                                        onValueChange={setHeightFt}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
@@ -142,11 +141,10 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                     </div>
                                 </div>
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                    <input
-                                        type="number"
+                                    <NumericInput
                                         placeholder="In"
                                         value={heightIn}
-                                        onChange={(e) => handleInputChange(e, setHeightIn)}
+                                        onValueChange={setHeightIn}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">

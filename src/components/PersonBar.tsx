@@ -40,11 +40,13 @@ interface PersonBarProps {
     isActiveMenu?: boolean;
     onSetActiveMenu?: (active: boolean) => void;
     index?: number;
+    personCount?: number;
 }
 
 const PersonBar: React.FC<PersonBarProps> = React.memo(({
     person, scale, zoom, onEditRequest, onRemove,
     readOnly, canvasHeight, isActiveMenu, onSetActiveMenu,
+    personCount = 0,
 }) => {
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -96,8 +98,17 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
     const charWidthFactor = 0.70;
     const maxFontSizeForLength = effectiveW / (Math.max(1, person.name.length) * charWidthFactor);
 
-    // Take the smallest of: absolute max (18), original proportional max, or our new length-based max
-    const fontSize = Math.max(0, Math.min(18, effectiveW * 0.09, maxFontSizeForLength));
+    // Dynamic threshold for "low count"
+    const threshold = isMobile ? 5 : 7;
+    const isLowCount = personCount > 0 && personCount <= threshold;
+
+    // Scaling factors: be more generous if personCount is low
+    const propScale = isLowCount ? 0.16 : 0.09;
+    const maxBaseSize = isLowCount ? 25 : 18;
+    const minBaseSize = isLowCount ? 4 : 0;
+
+    // Take the smallest of: absolute max, proportional max, or our length-based max
+    const fontSize = Math.max(minBaseSize, Math.min(maxBaseSize, effectiveW * propScale, maxFontSizeForLength));
 
     const spring = { type: 'spring' as const, stiffness: 220, damping: 28 };
 

@@ -71,7 +71,6 @@ export default function MidParentalCalculator() {
                     <p className="text-muted font-medium leading-relaxed">
                         Estimate predicted height using only parents&apos; heights. Works for babies, very young children, and unborn babies too. If you are pregnant, enter both parents&apos; heights to get your child&apos;s estimated adult height range.
                     </p>
-                    <div className="h-1.5 w-16 bg-accent rounded-full" />
                 </div>
 
                 {/* Synced Unit Toggle */}

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { Gender, UnitSystem, COLOR_PALETTE, Person } from '../types';
 import { useUnitStore } from '../store';
 import { handleInputChange } from '../utils/input';
+import { NumericInput } from './ui/NumericInput';
 import AlignmentControl from './AlignmentControl';
 
 interface EditPersonFormProps {
@@ -193,11 +194,10 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                     <div className="flex gap-2">
                         {unit === 'metric' ? (
                             <div className="flex-1 flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                <input
-                                    type="number"
+                                <NumericInput
                                     placeholder="Height"
                                     value={heightCm}
-                                    onChange={(e) => { handleInputChange(e, setHeightCm); setError(null); }}
+                                    onValueChange={(val) => { setHeightCm(val); setError(null); }}
                                     className="w-full bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
                                 />
                                 <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center justify-center">
@@ -207,11 +207,10 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                         ) : (
                             <div className="flex gap-2 w-full">
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                    <input
-                                        type="number"
+                                    <NumericInput
                                         placeholder="Ft"
                                         value={heightFt}
-                                        onChange={(e) => { handleInputChange(e, setHeightFt); setError(null); }}
+                                        onValueChange={(val) => { setHeightFt(val); setError(null); }}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
@@ -219,11 +218,10 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                                     </div>
                                 </div>
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                    <input
-                                        type="number"
+                                    <NumericInput
                                         placeholder="In"
                                         value={heightIn}
-                                        onChange={(e) => { handleInputChange(e, setHeightIn); setError(null); }}
+                                        onValueChange={(val) => { setHeightIn(val); setError(null); }}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">

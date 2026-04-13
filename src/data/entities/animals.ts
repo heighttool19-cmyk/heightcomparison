@@ -76,7 +76,8 @@ export const animals_data = [
     "name": "Moose",
     "heightCm": 210,
     "category": "Animals",
-    "icon": "🏢"
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/moose.svg"
   },
   {
     "name": "Bison",
@@ -187,7 +188,7 @@ export const animals_data = [
     "heightCm": 95,
     "category": "Animals",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/animals/king penguin (1).svg"
+    "imgUrl": "/Avtars/entities/animals/King penguin.svg"
   },
   {
     "name": "Komodo Dragon",

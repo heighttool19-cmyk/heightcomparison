@@ -17,31 +17,46 @@ import FaqAccordion from '@/components/FaqAccordion';
 function Bars({ items, color, label }: { items: { n: string, code: string | string[], v: number }[], color: string, label: string }) {
     const vals = items.map(d => d.v);
     const max = Math.max(...vals), min = Math.min(...vals), range = max - min;
+
     return (
-        <div className="w-full min-w-[300px]">
-            {label && <p className="mb-2 text-[11px] text-muted uppercase tracking-[0.1em] font-bold">{label}</p>}
-            <div className="flex flex-col gap-2">
+        // 1. Changed to w-[98%] on mobile, removed the strict min-w-[300px] that caused horizontal scrolling
+        <div className="w-[98%] sm:w-[90%] min-w-0 mx-auto">
+            {label && <p className="mb-2 text-[10px] sm:text-[11px] text-muted uppercase tracking-[0.1em] font-bold">{label}</p>}
+
+            <div className="flex flex-col gap-1.5 sm:gap-2 w-full min-w-0">
                 {items.map(d => {
                     const pct = range > 0 ? ((d.v - min) / range) * 65 + 22 : 55;
                     return (
-                        <div key={d.n} className="flex items-center gap-2">
-                            {/* CHANGED HERE: justify-start, text-left, and a fixed width for flags to perfectly align the text */}
-                            <div className="w-20 h-full text-[11px] text-foreground text-left shrink-0 flex items-center justify-start gap-1">
+                        <div key={d.n} className="flex items-center gap-1.5 sm:gap-1 w-full min-w-0">
+
+                            {/* 2. Responsive width (w-[85px] on mobile), text size, and min-w-0 to prevent flex blowout */}
+                            <div className="w-[70px] sm:w-24 h-full text-[9px] sm:text-[11px] text-foreground text-left shrink-0 flex items-center justify-start gap-1 min-w-0">
                                 {Array.isArray(d.code) ? (
-                                    <div className="flex gap-0.5 shrink-0 w-8">
+                                    <div className="flex gap-0.5 shrink-0 w-7 sm:w-8">
                                         {d.code.map(c => <ReactCountryFlag key={c} countryCode={c} svg style={{ width: '1.2em', height: '1.2em' }} title={c} />)}
                                     </div>
                                 ) : d.code ? (
-                                    <div className="shrink-0  flex justify-start">
+                                    <div className="shrink-0 flex justify-start w-4">
                                         <ReactCountryFlag countryCode={d.code} svg style={{ width: '1.2em', height: '1.2em' }} title={d.n} />
                                     </div>
                                 ) : null}
-                                <span className='h-full'>{d.n}</span>
+
+                                {/* 3. Swapped span for div, added break-words and leading-tight so long names wrap nicely */}
+                                <div className="flex-1 leading-[1.1] min-w-0">
+                                    {d.n.replace('/', '/ ')}
+                                </div>
                             </div>
-                            <div className="flex-1 bg-border rounded-full h-2.5 overflow-hidden">
+
+                            {/* 4. Middle Bar - flex-1 takes up the remaining safe space */}
+                            <div className="flex-1 bg-border rounded-full h-2 sm:h-2.5 overflow-hidden min-w-[40px]">
                                 <div style={{ height: "100%", width: `${pct}%`, background: color, borderRadius: 99 }} />
                             </div>
-                            <div className="w-[55px] text-[11px] text-foreground">{d.v} cm</div>
+
+                            {/* 5. Right Value - scaled down text and width for mobile, aligned right for neatness */}
+                            <div className="w-[45px] sm:w-[55px] text-[9px] sm:text-[11px] text-foreground shrink-0 text-right">
+                                {d.v} cm
+                            </div>
+
                         </div>
                     );
                 })}
@@ -435,15 +450,18 @@ export default function page() {
                                 Average Male and Female Height
                             </h2>
 
-                            <div className="bg-surface border border-border p-6 rounded-3xl shadow-sm my-6 overflow-x-auto">
+                            {/* Removed overflow-x-auto and reduced mobile padding to p-3 to save space on 320px screens */}
+                            <div className="bg-surface border border-border p-3 sm:p-6 rounded-2xl sm:rounded-3xl shadow-sm my-6 w-full min-w-0">
+
                                 {/* Side-by-side grid (stacks on mobile, side-by-side on large screens) */}
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-w-[650px]">
+                                {/* REMOVED min-w-[650px] and ADDED w-full min-w-0 so it fluidly fits mobile screens */}
+                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 w-full min-w-0">
                                     <Bars items={maleTop10} color={BLUE} label="Average male height (cm)" />
                                     <Bars items={femTop10} color={TEAL} label="Average female height (cm)" />
                                 </div>
 
-
                             </div>
+
 
                             <div className="bg-accent/10 border-l-4 border-accent p-4 rounded-r-xl mt-4">
                                 <p className="text-sm font-medium text-foreground/80">

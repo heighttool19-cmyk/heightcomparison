@@ -7,6 +7,7 @@ import DashboardLink from './DashboardLink';
 import HomeCTAs from './HomeCTAs';
 import { HOME_FAQ } from '@/constants/home';
 import ErrorBoundary from './common/ErrorBoundary';
+import SmoothScrollLink from './SmoothScrollLink';
 
 export default function HomeContent() {
     return (
@@ -67,10 +68,12 @@ export default function HomeContent() {
                                     </div>
                                 </div>
                             </ErrorBoundary>
-
-
-
-
+                            <SmoothScrollLink
+                                targetId="height-comparison-tool"
+                                className="bg-accent text-white px-10 py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:scale-[1.05] transition-all shadow-2xl shadow-accent/40 active:scale-95 inline-flex items-center gap-3 w-fit"
+                            >
+                                Compare Now ↑
+                            </SmoothScrollLink>
                         </div>
 
                         {/* SECTION: How Does a Height Comparison Chart Work? */}
@@ -666,7 +669,10 @@ export default function HomeContent() {
                                     {
                                         href: '/average-height-by-country/',
                                         label: 'Average Height by Country',
-                                        desc: 'Global height data for 46 countries. Sortable table, regional charts, world heatmap, and height extremes.'
+                                        desc: 'Global height data for 46 countries. Sortable table, regional charts, world heatmap, and height extremes.',
+                                        // Added custom overrides for this specific item
+                                        badge: 'Guide',
+                                        action: 'Learn More'
                                     },
                                     {
                                         href: '/height-weight-percentile-calculator/',
@@ -689,11 +695,26 @@ export default function HomeContent() {
                                         desc: 'Khamis-Roche and Mid-Parental formulas for estimating adult height. The most accurate free child height calculator.'
                                     },
                                 ].map((item, i) => (
-                                    <Link key={i} href={item.href} className="bg-surface rounded-3xl p-8 border-2 border-emerald-500/20 hover:border-emerald-500 hover:-translate-y-2 transition-all group shadow-2xl flex flex-col cursor-pointer">
-                                        <div className="inline-flex self-start text-[10px] font-black px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-500 border-2 border-emerald-500/20 mb-4 uppercase tracking-[0.2em]">Guide</div>
-                                        <div className="text-[20px] font-black text-foreground mb-3 leading-tight uppercase tracking-tighter group-hover:text-emerald-500 transition-colors">{item.label}</div>
-                                        <div className="text-[14px] text-muted font-bold leading-relaxed flex-1 mb-6 opacity-60 group-hover:opacity-100 transition-opacity">{item.desc}</div>
-                                        <div className="text-[12px] font-black text-emerald-500 mt-auto flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-widest">Learn More <ArrowRight size={16} /></div>
+                                    <Link key={i} href={item.href} className="bg-surface rounded-3xl p-4 md:p-8 border-2 border-emerald-500/20 hover:border-emerald-500 hover:-translate-y-2 transition-all group shadow-2xl flex flex-col cursor-pointer">
+
+                                        {/* FIX: Uses item.badge if it exists, otherwise defaults to 'Toolkit' */}
+                                        <div className="inline-flex self-start text-[10px] font-black px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-500 border-2 border-emerald-500/20 mb-4 uppercase tracking-[0.2em]">
+                                            {item.badge || 'Toolkit'}
+                                        </div>
+
+                                        <div className="text-[20px] font-black text-foreground mb-3 leading-tight uppercase tracking-tighter group-hover:text-emerald-500 transition-colors">
+                                            {item.label}
+                                        </div>
+
+                                        <div className="text-[14px] text-muted font-bold leading-relaxed flex-1 mb-6 opacity-60 group-hover:opacity-100 transition-opacity">
+                                            {item.desc}
+                                        </div>
+
+                                        {/* FIX: Uses item.action if it exists, otherwise defaults to 'Launch Tool' */}
+                                        <div className="text-[12px] font-black text-emerald-500 mt-auto flex items-center gap-2 group-hover:gap-4 transition-all uppercase tracking-widest">
+                                            {item.action || 'Launch Tool'} <ArrowRight size={16} />
+                                        </div>
+
                                     </Link>
                                 ))}
 
