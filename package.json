@@ -9,6 +9,8 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@portabletext/react": "^6.0.3",
+    "@tailwindcss/typography": "^0.5.19",
     "clsx": "^2.1.1",
     "country-flag-icons": "^1.6.15",
     "framer-motion": "^12.34.5",
@@ -18,11 +20,13 @@
     "mongoose": "^9.4.1",
     "nanoid": "^5.1.7",
     "next": "16.1.6",
+    "next-sanity": "^12.2.2",
     "react": "19.2.3",
     "react-country-flag": "^3.1.0",
     "react-dom": "19.2.3",
     "react-image-crop": "^11.0.10",
     "recharts": "^3.8.0",
+    "sanity": "^5.20.0",
     "tailwind-merge": "^3.5.0",
     "zustand": "^5.0.11"
   },
