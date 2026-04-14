@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { AlertCircle, ArrowUpCircle, CheckCircle2, Dna, Salad, Timer, ArrowUp, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import TableOfContents from '@/components/TableOfContents';
@@ -478,9 +478,9 @@ export default function HeightCalculatorPage() {
                                         </p>
                                         <Link
                                             href="#top"
-                                            className="bg-accent text-white px-4 py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
+                                            className="bg-accent text-white px-4 py-4  rounded-2xl  font-black uppercase tracking-widest text-sm hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
                                         >
-                                            <ArrowUpCircle size={35} /> Calculate with Khamis-Roche Now <ArrowUp className="w-4 h-4" />
+                                            <ArrowUpCircle size={35} /> Calculate with Khamis-Roche Now
                                         </Link>
                                     </div>
                                 </div>
@@ -541,9 +541,9 @@ export default function HeightCalculatorPage() {
                                         </p>
                                         <Link
                                             href="#top"
-                                            className="bg-accent text-white px-4 py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
+                                            className="bg-accent text-white px-4 py-4   text-md  rounded-2xl font-black uppercase tracking-widest  hover:scale-[1.05] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
                                         >
-                                            <ArrowUpCircle size={35} /> Scroll to top and calculate now <ArrowUp className="w-4 h-4" />
+                                            <ArrowUpCircle size={35} /> Scroll to top and calculate now
                                         </Link>
                                     </div>
                                 </div>
@@ -656,7 +656,7 @@ export default function HeightCalculatorPage() {
                         </section>
                         <section id="increase" className="space-y-6">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight mt-8 scroll-mt-24 uppercase">
-                                Can You <span className="text-[#3B6CF4]">Increase Height</span>?
+                                Can You <span className="text-accent">Increase Height</span>?
                             </h2>
                             <p className="text-muted leading-relaxed font-medium text-[14px]">
                                 Your genes largely decide how tall you'll be. But how well you eat, sleep, and stay active during childhood can make a real difference in whether you reach that potential.

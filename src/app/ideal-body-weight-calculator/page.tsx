@@ -90,7 +90,7 @@ export default function IdealBodyWeightPage() {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className="bg-bg border border-border p-5 rounded-xl font-mono text-sm">
+                            <div className="bg-bg border border-border p-2 rounded-xl font-mono text-xs">
                                 <div className="flex justify-between border-b border-border/50 pb-2 mb-2"><span className="text-muted font-sans font-bold">Height</span><span className="font-bold text-foreground">175 cm = 5 ft 9 in</span></div>
                                 <div className="flex justify-between border-b border-border/50 pb-2 mb-2"><span className="text-muted font-sans font-bold">Inches above 5 ft</span><span className="font-bold text-foreground">9</span></div>
                                 <div className="flex justify-between border-b border-border/50 pb-2 mb-2"><span className="text-muted font-sans font-bold">Calculation (male)</span><span className="font-bold text-foreground">50 + (2.3 × 9)</span></div>
@@ -124,7 +124,7 @@ export default function IdealBodyWeightPage() {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className="bg-bg border border-border p-5 rounded-xl font-mono text-sm">
+                            <div className="bg-bg border border-border p-2 rounded-xl font-mono text-xs">
                                 <div className="flex justify-between border-b border-border/50 pb-2 mb-2"><span className="text-muted font-sans font-bold">Height</span><span className="font-bold text-foreground">175 cm = 5 ft 9 in</span></div>
                                 <div className="flex justify-between border-b border-border/50 pb-2 mb-2"><span className="text-muted font-sans font-bold">Calculation (male)</span><span className="font-bold text-foreground">52 + (1.9 × 9)</span></div>
                                 <div className="flex justify-between mt-2"><span className="text-accent font-bold font-sans">Robinson IBW</span><span className="font-bold text-foreground">69.1 kg</span></div>
@@ -157,7 +157,7 @@ export default function IdealBodyWeightPage() {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className="bg-bg border border-border p-5 rounded-xl font-mono text-sm">
+                            <div className="bg-bg border border-border p-2 rounded-xl font-mono text-xs">
                                 <div className="flex justify-between border-b border-border/50 pb-2 mb-2"><span className="text-muted font-sans font-bold">Height</span><span className="font-bold text-foreground">175 cm = 5 ft 9 in</span></div>
                                 <div className="flex justify-between border-b border-border/50 pb-2 mb-2"><span className="text-muted font-sans font-bold">Calculation (male)</span><span className="font-bold text-foreground">48 + (2.7 × 9)</span></div>
                                 <div className="flex justify-between mt-2"><span className="text-accent font-bold font-sans">Hamwi IBW</span><span className="font-bold text-foreground">72.3 kg</span></div>

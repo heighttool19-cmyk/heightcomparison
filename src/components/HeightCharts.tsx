@@ -166,7 +166,7 @@ export default function HeightCharts() {
                 <div className="relative z-10 mx-auto space-y-8 w-full min-w-0">
 
                     {/* Toggles */}
-                    <div className="flex flex-row items-center justify-between sm:justify-center gap-1 sm:gap-6 pt-2 sm:pt-4 w-full">
+                    <div className="flex flex-row items-center justify-between sm:justify-center gap-1 sm:gap-2 pt-2 sm:pt-4 w-full">
 
                         {/* Boys / Girls Toggle */}
                         <div className="bg-bg border border-border p-0.5 sm:p-1 rounded-full flex shrink">
@@ -201,13 +201,11 @@ export default function HeightCharts() {
                                     {/* Dynamically stack the text on mobile, put on one row on desktop */}
                                     {v === "chart" ? (
                                         <div className="flex flex-col sm:flex-row items-center sm:gap-1.5 leading-[1.2] sm:leading-none">
-                                            <span>📈 Growth</span>
-                                            <span>Chart</span>
+                                            <span>📈 Growth Chart</span>
                                         </div>
                                     ) : (
                                         <div className="flex flex-col sm:flex-row items-center sm:gap-1.5 leading-[1.2] sm:leading-none">
-                                            <span>📊 Data</span>
-                                            <span>Table</span>
+                                            <span>📊 Data Table</span>
                                         </div>
                                     )}
                                 </button>

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Moon, Sun, Menu, ArrowLeftRight, ChevronDown } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useThemeStore, useUnitStore } from '@/store';
+import { useThemeStore, useUnitStore, useUIStore } from '@/store';
 import ThemeInitializer from './ThemeInitializer';
 
 // 1. DATA-DRIVEN CONFIGURATION: Add future tools here once, and they populate everywhere automatically.
@@ -38,6 +38,7 @@ const Navbar: React.FC = () => {
     const activePage = pathname === '/' ? 'home' : pathname.split('/').pop() || 'home';
     const { theme, toggleTheme } = useThemeStore();
     const { unitSystem, toggleUnitSystem } = useUnitStore();
+    const { isCustomFullscreen } = useUIStore();
     const [isNavMenuOpen, setIsNavMenuOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [mobileToolsOpen, setMobileToolsOpen] = useState(true); // Keeps mobile accordion open by default
@@ -50,6 +51,8 @@ const Navbar: React.FC = () => {
 
     // Helper to check if a dropdown group contains the currently active page
     const isGroupActive = (children: { id: string }[]) => children.some(child => child.id === activePage);
+
+    if (isCustomFullscreen) return null;
 
     return (
         <>

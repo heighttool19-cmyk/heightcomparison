@@ -86,3 +86,12 @@ export const usePersonStore = create<PersonState>()(
     )
 );
 
+export interface UIState {
+    isCustomFullscreen: boolean;
+    setIsCustomFullscreen: (val: boolean) => void;
+}
+
+export const useUIStore = create<UIState>()((set) => ({
+    isCustomFullscreen: false,
+    setIsCustomFullscreen: (val) => set({ isCustomFullscreen: val }),
+}));

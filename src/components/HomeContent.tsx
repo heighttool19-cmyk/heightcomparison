@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useUIStore } from '@/store';
 import { ArrowRight } from 'lucide-react';
 import { PanelType } from '../types';
 import Link from 'next/link';
@@ -10,6 +13,10 @@ import ErrorBoundary from './common/ErrorBoundary';
 import SmoothScrollLink from './SmoothScrollLink';
 
 export default function HomeContent() {
+    const { isCustomFullscreen } = useUIStore();
+
+    if (isCustomFullscreen) return null;
+
     return (
         <div className="w-full bg-bg text-foreground selection:bg-accent/20 transition-colors duration-500 pt-12 pb-24 border-t border-border">
             <div className="max-w-7xl mx-auto w-full px-2 md:px-4 flex flex-col md:flex-row gap-8 relative">

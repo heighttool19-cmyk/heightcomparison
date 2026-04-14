@@ -8,7 +8,7 @@ import {
     Focus, ChevronLeft, ChevronRight, Trash2, Edit2, Maximize,
 } from 'lucide-react';
 import { Person, Entity, PanelType } from '../types';
-import { useUnitStore, useThemeStore } from '../store';
+import { useUnitStore, useThemeStore, useUIStore } from '../store';
 import { NumericInput } from './ui/NumericInput';
 import PersonBar from './PersonBar';
 import Ruler from './Ruler';
@@ -173,17 +173,35 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     }, [persons]);
 
     // ── Fullscreen ───────────────────────────────────────────────────────────
+    // Feature-detect native fullscreen support; fall back to custom mode
+    const supportsNativeFS = typeof document !== 'undefined' && typeof document.documentElement?.requestFullscreen === 'function';
+
     const toggleFullscreen = useCallback(() => {
-        if (/iPhone|iPod/.test(navigator.userAgent)) { setIsFullscreen(p => !p); return; }
+        if (!supportsNativeFS) { setIsFullscreen(p => !p); return; }
         if (!document.fullscreenElement) containerRef.current?.requestFullscreen().catch(console.error);
         else document.exitFullscreen();
-    }, []);
+    }, [supportsNativeFS]);
 
     useEffect(() => {
         const h = () => { setIsFullscreen(!!document.fullscreenElement); setTimeout(() => autoScaleRef.current(), 400); };
         document.addEventListener('fullscreenchange', h);
         return () => document.removeEventListener('fullscreenchange', h);
     }, []);
+
+    // Custom fullscreen: lock body scroll & trigger auto-scale
+    const isCustomFullscreen = isFullscreen && !supportsNativeFS;
+    const { setIsCustomFullscreen: setGlobalCustomFS } = useUIStore();
+    useEffect(() => {
+        setGlobalCustomFS(isCustomFullscreen);
+        if (isCustomFullscreen) {
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => autoScaleRef.current(), 300);
+            return () => {
+                document.body.style.overflow = '';
+                setGlobalCustomFS(false);
+            };
+        }
+    }, [isCustomFullscreen, setGlobalCustomFS]);
 
     useEffect(() => {
         const h = (e: Event) => {
@@ -343,7 +361,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         const count = persons.length;
         const threshold = isMobile ? 5 : 7;
         // Use a much smaller gap ratio if we have few people, so they stay closer together
-        const effectiveGapRatio = count <= threshold ? GAP_RATIO * 0.5 : GAP_RATIO;
+        const effectiveGapRatio = count <= threshold ? GAP_RATIO * 0.75 : GAP_RATIO;
         return Math.max(MIN_GAP, person.heightCm * finalScale * effectiveGapRatio);
     }, [finalScale, persons.length, isMobile]);
 
@@ -386,19 +404,19 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         if (shareStatus !== 'idle') return;
         try {
             setShareStatus('generating');
-            const d = { 
-                u: unitSystem === 'metric' ? 1 : 0, 
-                z: Math.round(zoom * 100) / 100, 
+            const d = {
+                u: unitSystem === 'metric' ? 1 : 0,
+                z: Math.round(zoom * 100) / 100,
                 p: persons.map(p => [
-                    p.name, 
-                    Math.round(p.heightCm * 10) / 10, 
-                    p.color?.replace('#', '') ?? '', 
-                    p.gender === 'female' ? 1 : p.gender === 'male' ? 2 : 0, 
-                    p.imgUrl ?? '', 
+                    p.name,
+                    Math.round(p.heightCm * 10) / 10,
+                    p.color?.replace('#', '') ?? '',
+                    p.gender === 'female' ? 1 : p.gender === 'male' ? 2 : 0,
+                    p.imgUrl ?? '',
                     p.offsetY ?? 0
-                ]) 
+                ])
             };
-            
+
             const response = await fetch('/api/share', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -424,7 +442,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
 
     useEffect(() => {
         if (readOnly) return;
-        
+
         const hydrate = async () => {
             // 1. Check for ?id= query param
             const params = new URLSearchParams(window.location.search);
@@ -523,8 +541,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
 
             <div className="flex flex-1 overflow-hidden relative flex-col md:flex-row bg-bg transition-colors duration-500">
 
-                {/* Left Nav */}
-                {!readOnly && (
+                {/* Left Nav — hidden in custom fullscreen */}
+                {!readOnly && !isCustomFullscreen && (
                     <motion.aside
                         initial={{ x: -85, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
@@ -551,90 +569,92 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
-                    className="flex-1 flex flex-col relative min-w-0 bg-canvas transition-colors duration-500 overflow-hidden"
+                    className="flex-1 flex flex-col relative min-w-0 bg-canvas transition-colors duration-500 overflow-hidden p-2"
                     onClick={() => { if (activePersonMenuId) setActivePersonMenuId(null); }}
                 >
-                    {/* Toolbar */}
-                    <div className="order-2 sm:order-first px-2 lg:px-4 z-30 w-[100%]] mb-2 shrink-0">
-                        <div className="w-[100%] flex items-center justify-center md:justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
-                            <div className="flex items-center gap-1 lg:gap-3 shrink-0">
-                                <button onClick={toggleUnitSystem} className="shrink-0 flex items-center gap-1 group hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all">
-                                    <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent" />
-                                    <span className="hidden sm:inline text-[10px] lg:text-xs font-semibold text-muted group-hover:text-foreground whitespace-nowrap">
-                                        {unitSystem === 'metric' ? 'cm → ft' : 'ft → cm'}
-                                    </span>
-                                </button>
-                                <div className="hidden sm:block w-px h-5 bg-white/10 shrink-0" />
-                                <div className="flex shrink-0 items-center gap-0.5">
-                                    <button onClick={() => setZoom(z => (z + 0.01))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
-                                        <ZoomIn size={16} strokeWidth={2.5} />
+                    {/* Toolbar — hidden in custom fullscreen */}
+                    {!isCustomFullscreen && (
+                        <div className="order-2 sm:order-first px-2 lg:px-4 z-30 w-[100%]] mb-2 shrink-0">
+                            <div className="w-[100%] flex items-center justify-center md:justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
+                                <div className="flex items-center gap-1 lg:gap-3 shrink-0">
+                                    <button onClick={toggleUnitSystem} className="shrink-0 flex items-center gap-1 group hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all">
+                                        <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent" />
+                                        <span className="hidden sm:inline text-[10px] lg:text-xs font-semibold text-muted group-hover:text-foreground whitespace-nowrap">
+                                            {unitSystem === 'metric' ? 'cm → ft' : 'ft → cm'}
+                                        </span>
                                     </button>
-                                    <div className="bg-item-hover rounded-lg px-1 py-1 flex items-center gap-0.5 border border-toolbar-border">
-                                        <NumericInput
-                                            value={zoomInput}
-                                            onValueChange={(val) => {
-                                                setZoomInput(val);
-                                                const v = typeof val === 'number' ? val : 0;
-                                                if (v >= MIN_ZOOM * 100) setZoom(Math.min(MAX_ZOOM, v / 100));
-                                            }}
-                                            onBlur={e => {
-                                                let v = parseInt(e.target.value);
-                                                if (isNaN(v)) v = 100;
-                                                const c = Math.max(MIN_ZOOM * 100, Math.min(MAX_ZOOM * 100, v));
-                                                setZoomInput(c);
-                                                setZoom(c / 100);
-                                            }}
-                                            onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); }}
-                                            className="w-5 lg:w-9 bg-transparent text-[10px] lg:text-[12px] font-mono font-bold text-center outline-none text-muted focus:text-foreground"
-                                        />
-                                        <span className="text-[9px] font-bold text-muted/30">%</span>
+                                    <div className="hidden sm:block w-px h-5 bg-white/10 shrink-0" />
+                                    <div className="flex shrink-0 items-center gap-0.5">
+                                        <button onClick={() => setZoom(z => (z + 0.01))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
+                                            <ZoomIn size={16} strokeWidth={2.5} />
+                                        </button>
+                                        <div className="bg-item-hover rounded-lg px-1 py-1 flex items-center gap-0.5 border border-toolbar-border">
+                                            <NumericInput
+                                                value={zoomInput}
+                                                onValueChange={(val) => {
+                                                    setZoomInput(val);
+                                                    const v = typeof val === 'number' ? val : 0;
+                                                    if (v >= MIN_ZOOM * 100) setZoom(Math.min(MAX_ZOOM, v / 100));
+                                                }}
+                                                onBlur={e => {
+                                                    let v = parseInt(e.target.value);
+                                                    if (isNaN(v)) v = 100;
+                                                    const c = Math.max(MIN_ZOOM * 100, Math.min(MAX_ZOOM * 100, v));
+                                                    setZoomInput(c);
+                                                    setZoom(c / 100);
+                                                }}
+                                                onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); }}
+                                                className="w-5 lg:w-9 bg-transparent text-[10px] lg:text-[12px] font-mono font-bold text-center outline-none text-muted focus:text-foreground"
+                                            />
+                                            <span className="text-[9px] font-bold text-muted/30">%</span>
+                                        </div>
+                                        <button onClick={() => setZoom(z => (z - 0.01))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
+                                            <ZoomOut size={16} strokeWidth={2.5} />
+                                        </button>
                                     </div>
-                                    <button onClick={() => setZoom(z => (z - 0.01))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
-                                        <ZoomOut size={16} strokeWidth={2.5} />
+                                    <div className="flex items-center gap-0.5 border-l border-white/10 pl-1 shrink-0">
+                                        <button onClick={handleAutoScale} className="p-1.5 lg:p-2 text-primary hover:bg-accent/10 rounded-lg" title="Auto Fit">
+                                            <Focus size={16} strokeWidth={2.5} />
+                                        </button>
+                                        <button onClick={() => { setActivePanel('ADD_PERSON'); setIsSidebarCollapsed(false); if (isMobile) setIsMobileDrawerOpen(true); setHighlightYourList(true); setTimeout(() => setHighlightYourList(false), 2000); }} className="p-1.5 lg:p-2 hover:bg-emerald-500/10 rounded-lg" title="Edit List">
+                                            <Edit2 size={16} strokeWidth={2.5} />
+                                        </button>
+                                    </div>
+                                    <div className="hidden md:flex items-center gap-1.5 px-1 lg:px-2 shrink-0 border-l border-white/10">
+                                        <ZoomOut size={12} className="text-muted/80" />
+                                        <input type="range" min={MIN_ZOOM} max={MAX_ZOOM} step={0.01} value={zoom} onChange={e => setZoom(parseFloat(e.target.value))} className="w-16 lg:w-24 h-1.5 bg-border rounded-lg appearance-none cursor-pointer accent-accent" />
+                                        <ZoomIn size={12} className="text-muted/80" />
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-0.5 lg:gap-2 shrink-0">
+                                    <button onClick={handleClearAll} className="flex items-center gap-1.5 text-muted hover:text-red-500 px-1.5 py-2 transition-all group shrink-0">
+                                        <Trash2 size={16} className="text-muted/50 group-hover:text-red-500 shrink-0" />
+                                        <span className="hidden xl:inline whitespace-nowrap text-xs">Clear All</span>
+                                    </button>
+                                    <button
+                                        onClick={handleShare}
+                                        disabled={shareStatus !== 'idle'}
+                                        className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-lg ${shareStatus === 'copied' ? 'text-emerald-500 bg-emerald-500/10' : shareStatus === 'error' ? 'text-red-500 bg-red-500/10' : 'text-muted hover:text-foreground'}`}
+                                    >
+                                        {shareStatus === 'generating' ? (
+                                            <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+                                        ) : shareStatus === 'copied' ? (
+                                            <Check size={16} />
+                                        ) : (
+                                            <LinkIcon size={16} className={`group-hover:text-accent shrink-0 ${shareStatus === 'error' ? 'text-red-500' : 'text-muted/50'}`} />
+                                        )}
+                                        <span className="hidden xl:inline whitespace-nowrap text-xs">
+                                            {shareStatus === 'generating' ? 'Generating...' : shareStatus === 'copied' ? 'Copied!' : shareStatus === 'error' ? 'Error' : 'Share'}
+                                        </span>
+                                    </button>
+                                    <button onClick={handleDownloadPNG} disabled={isCapturing} className="flex items-center gap-1 bg-primary/10 text-primary border border-accent/20 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0">
+                                        {isCapturing ? <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" /> : <Download size={14} strokeWidth={2.5} />}
+                                        <span className="hidden lg:inline ml-1">PNG</span>
                                     </button>
                                 </div>
-                                <div className="flex items-center gap-0.5 border-l border-white/10 pl-1 shrink-0">
-                                    <button onClick={handleAutoScale} className="p-1.5 lg:p-2 text-primary hover:bg-accent/10 rounded-lg" title="Auto Fit">
-                                        <Focus size={16} strokeWidth={2.5} />
-                                    </button>
-                                    <button onClick={() => { setActivePanel('ADD_PERSON'); setIsSidebarCollapsed(false); if (isMobile) setIsMobileDrawerOpen(true); setHighlightYourList(true); setTimeout(() => setHighlightYourList(false), 2000); }} className="p-1.5 lg:p-2 hover:bg-emerald-500/10 rounded-lg" title="Edit List">
-                                        <Edit2 size={16} strokeWidth={2.5} />
-                                    </button>
-                                </div>
-                                <div className="hidden md:flex items-center gap-1.5 px-1 lg:px-2 shrink-0 border-l border-white/10">
-                                    <ZoomOut size={12} className="text-muted/80" />
-                                    <input type="range" min={MIN_ZOOM} max={MAX_ZOOM} step={0.01} value={zoom} onChange={e => setZoom(parseFloat(e.target.value))} className="w-16 lg:w-24 h-1.5 bg-border rounded-lg appearance-none cursor-pointer accent-accent" />
-                                    <ZoomIn size={12} className="text-muted/80" />
-                                </div>
-                            </div>
-                            <div className="flex items-center gap-0.5 lg:gap-2 shrink-0">
-                                <button onClick={handleClearAll} className="flex items-center gap-1.5 text-muted hover:text-red-500 px-1.5 py-2 transition-all group shrink-0">
-                                    <Trash2 size={16} className="text-muted/50 group-hover:text-red-500 shrink-0" />
-                                    <span className="hidden xl:inline whitespace-nowrap text-xs">Clear All</span>
-                                </button>
-                                <button
-                                    onClick={handleShare}
-                                    disabled={shareStatus !== 'idle'}
-                                    className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-lg ${shareStatus === 'copied' ? 'text-emerald-500 bg-emerald-500/10' : shareStatus === 'error' ? 'text-red-500 bg-red-500/10' : 'text-muted hover:text-foreground'}`}
-                                >
-                                    {shareStatus === 'generating' ? (
-                                        <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
-                                    ) : shareStatus === 'copied' ? (
-                                        <Check size={16} />
-                                    ) : (
-                                        <LinkIcon size={16} className={`group-hover:text-accent shrink-0 ${shareStatus === 'error' ? 'text-red-500' : 'text-muted/50'}`} />
-                                    )}
-                                    <span className="hidden xl:inline whitespace-nowrap text-xs">
-                                        {shareStatus === 'generating' ? 'Generating...' : shareStatus === 'copied' ? 'Copied!' : shareStatus === 'error' ? 'Error' : 'Share'}
-                                    </span>
-                                </button>
-                                <button onClick={handleDownloadPNG} disabled={isCapturing} className="flex items-center gap-1 bg-primary/10 text-primary border border-accent/20 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0">
-                                    {isCapturing ? <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" /> : <Download size={14} strokeWidth={2.5} />}
-                                    <span className="hidden lg:inline ml-1">PNG</span>
-                                </button>
                             </div>
                         </div>
-                    </div>
+                    )}
 
                     {/* Canvas container */}
                     <div
@@ -746,9 +766,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     </div>
                 </motion.main>
 
-                {/* Desktop Sidebar */}
+                {/* Desktop Sidebar — hidden in custom fullscreen */}
                 {
-                    !readOnly && (
+                    !readOnly && !isCustomFullscreen && (
                         <div className="hidden sm:flex shrink-0 relative z-30">
                             <motion.div
                                 initial={false}
@@ -795,9 +815,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                 }
             </AnimatePresence >
 
-            {/* Mobile FAB */}
+            {/* Mobile FAB — hidden in custom fullscreen */}
             {
-                !readOnly && (
+                !readOnly && !isCustomFullscreen && (
                     <div className="sm:hidden fixed bottom-6 right-6 z-40">
                         <button onClick={() => setIsMobileDrawerOpen(true)} className="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all">
                             <Plus size={18} strokeWidth={3} />
@@ -806,9 +826,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                 )
             }
 
-            {/* Mobile Drawer */}
+            {/* Mobile Drawer — hidden in custom fullscreen */}
             {
-                !readOnly && (
+                !readOnly && !isCustomFullscreen && (
                     <AnimatePresence>
                         {isMobileDrawerOpen && (
                             <>

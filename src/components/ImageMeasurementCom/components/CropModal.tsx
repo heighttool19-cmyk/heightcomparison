@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Crop as CropIcon, X, RotateCcw, Check } from 'lucide-react';
 import ReactCrop, { type Crop, type PixelCrop, centerCrop, makeAspectCrop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
+import { createPortal } from 'react-dom';
 
 interface CropModalProps {
     showCropModal: boolean;
@@ -28,10 +29,15 @@ export const CropModal: React.FC<CropModalProps> = ({
     const imgRef = useRef<HTMLImageElement | null>(null);
     const [crop, setCrop] = useState<Crop>();
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Body scroll lock
     useEffect(() => {
-        if (showCropModal) {
+        if (showCropModal && mounted) {
             document.documentElement.classList.add('modal-open');
             document.body.classList.add('modal-open');
             return () => {
@@ -39,7 +45,7 @@ export const CropModal: React.FC<CropModalProps> = ({
                 document.body.classList.remove('modal-open');
             };
         }
-    }, [showCropModal]);
+    }, [showCropModal, mounted]);
 
     const onImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
         const img = e.currentTarget;
@@ -89,15 +95,19 @@ export const CropModal: React.FC<CropModalProps> = ({
         }
     };
 
-    return (
+    if (!mounted) return null;
+
+    return createPortal(
         <AnimatePresence>
             {showCropModal && pendingUrl && (
-                <>
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/85 backdrop-blur-md z-[9999998]" onClick={closeCropModal} />
-                    <motion.div initial={{ opacity: 0, scale: 0.95, y: 24 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 24 }}
+                <div className="fixed inset-0 z-[9999999] pointer-events-none">
+                    <motion.div key="crop-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        className="absolute inset-0 bg-black/85 backdrop-blur-md pointer-events-auto" onClick={closeCropModal} />
+
+                    <motion.div key="crop-modal-content" initial={{ opacity: 0, scale: 0.95, y: 24 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 24 }}
                         transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-                        className="fixed inset-0 z-[9999999] flex items-center justify-center p-3 sm:p-6 pointer-events-none">
+                        className="absolute inset-0 flex items-center justify-center p-3 sm:p-6">
+
                         <div className="pointer-events-auto w-full max-w-2xl bg-surface border border-border rounded-3xl shadow-2xl flex flex-col overflow-hidden"
                             style={{ maxHeight: 'calc(100dvh - 32px)' }} onClick={e => e.stopPropagation()}>
 
@@ -146,15 +156,7 @@ export const CropModal: React.FC<CropModalProps> = ({
 
                             {/* Footer */}
                             <div className="p-4 sm:p-5 border-t border-border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0 bg-surface">
-                                {/* <button
-                                    onClick={handleReset}
-                                    disabled={isLoading}
-                                    className="flex items-center justify-center gap-2 px-5 py-3 rounded-2xl bg-bg border border-border text-muted hover:text-foreground hover:border-accent/40 transition-all text-xs font-black uppercase tracking-widest disabled:opacity-50"
-                                >
-                                    <RotateCcw size={15} />
-                                    <span>Reset</span>
-                                </button> */}
-                                <div className="flex items-center gap-2 sm:gap-3">
+                                <div className="flex items-center gap-2 sm:gap-3 ml-auto">
                                     <button
                                         onClick={closeCropModal}
                                         disabled={isLoading}
@@ -179,8 +181,9 @@ export const CropModal: React.FC<CropModalProps> = ({
 
                         </div>
                     </motion.div>
-                </>
+                </div>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 };
