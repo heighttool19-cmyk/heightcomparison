@@ -187,7 +187,7 @@ export const animals_data = [
   },
   {
     "name": "King Penguin",
-    "heightCm": 95,
+    "heightCm": 945,
     "category": "Animals",
     "icon": "🏢",
     "imgUrl": "/Avtars/entities/animals/King penguin.svg"

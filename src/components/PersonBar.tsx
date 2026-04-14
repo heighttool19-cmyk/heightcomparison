@@ -91,8 +91,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
     const ftShort = ft >= 1000 ? `${neg}${ft.toLocaleString()}ft` : `${neg}${ft}'${inch}"`;
 
     // ── Font size: proportional to bar width, clamped to readable range ───────
-    const showLabel = barH > 30 && zoom >= 0.08;
-
+    const showLabel = barH > 10 && zoom >= 0.01;
+    // const showLabel = true;
     // FIX: Dynamic font scaling based on string length.
     // A bold, uppercase character takes up roughly 65-70% of its font size in width.
     const charWidthFactor = 0.70;
