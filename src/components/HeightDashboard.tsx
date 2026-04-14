@@ -386,13 +386,36 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         if (shareStatus !== 'idle') return;
         try {
             setShareStatus('generating');
-            const d = { u: unitSystem === 'metric' ? 1 : 0, z: Math.round(zoom * 100) / 100, p: persons.map(p => [p.name, Math.round(p.heightCm * 10) / 10, p.color?.replace('#', '') ?? '', p.gender === 'female' ? 1 : p.gender === 'male' ? 2 : 0, p.imgUrl ?? '', p.offsetY ?? 0]) };
-            const url = `${window.location.origin}/#${LZString.compressToEncodedURIComponent(JSON.stringify(d))}`;
+            const d = { 
+                u: unitSystem === 'metric' ? 1 : 0, 
+                z: Math.round(zoom * 100) / 100, 
+                p: persons.map(p => [
+                    p.name, 
+                    Math.round(p.heightCm * 10) / 10, 
+                    p.color?.replace('#', '') ?? '', 
+                    p.gender === 'female' ? 1 : p.gender === 'male' ? 2 : 0, 
+                    p.imgUrl ?? '', 
+                    p.offsetY ?? 0
+                ]) 
+            };
+            
+            const response = await fetch('/api/share', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ data: d })
+            });
+
+            if (!response.ok) throw new Error('Failed to save share');
+
+            const { shortId } = await response.json();
+            const url = `${window.location.origin}/?id=${shortId}`;
+
             await navigator.clipboard.writeText(url);
             setShareStatus('copied');
             triggerToast('Share link copied!');
             setTimeout(() => setShareStatus('idle'), 3000);
-        } catch {
+        } catch (error) {
+            console.error('Share failed:', error);
             setShareStatus('error');
             triggerToast('Failed to copy link');
             setTimeout(() => setShareStatus('idle'), 3000);
@@ -401,25 +424,59 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
 
     useEffect(() => {
         if (readOnly) return;
-        if (window.location.hash) {
-            try {
-                const hash = window.location.hash.slice(1);
-                if (!hash) { setIsHydrated(true); return; }
-                let decoded: any = null;
-                try { const lz = LZString.decompressFromEncodedURIComponent(hash); if (lz) decoded = JSON.parse(lz); } catch { }
-                if (!decoded) { try { decoded = JSON.parse(decodeURIComponent(atob(hash))); } catch { } }
-                if (decoded?.u !== undefined) {
-                    useUnitStore.setState({ unitSystem: decoded.u === 1 ? 'metric' : 'imperial' });
-                    if (decoded.z !== undefined) setZoom(decoded.z);
-                    if (Array.isArray(decoded.p)) storeSetPersons(decoded.p.map((a: any[]) => ({ id: `s-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`, name: String(a[0]), heightCm: Number(a[1]), color: a[2] ? `#${a[2]}` : '#3b82f6', gender: a[3] === 1 ? 'female' : a[3] === 2 ? 'male' : undefined, imgUrl: a[4] ? String(a[4]) : undefined, isEntity: !a[3], offsetY: a[5] ? Number(a[5]) : 0 })));
-                } else if (decoded?.unitSystem) {
-                    useUnitStore.setState({ unitSystem: decoded.unitSystem });
-                    if (decoded.persons) storeSetPersons(decoded.persons);
-                    if (decoded.zoom !== undefined) setZoom(decoded.zoom);
+        
+        const hydrate = async () => {
+            // 1. Check for ?id= query param
+            const params = new URLSearchParams(window.location.search);
+            const shareId = params.get('id');
+
+            if (shareId) {
+                try {
+                    const response = await fetch(`/api/share?id=${shareId}`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.u !== undefined) {
+                            useUnitStore.setState({ unitSystem: data.u === 1 ? 'metric' : 'imperial' });
+                            if (data.z !== undefined) setZoom(data.z);
+                            if (Array.isArray(data.p)) storeSetPersons(data.p.map((a: any[]) => ({ id: `s-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`, name: String(a[0]), heightCm: Number(a[1]), color: a[2] ? `#${a[2]}` : '#3b82f6', gender: a[3] === 1 ? 'female' : a[3] === 2 ? 'male' : undefined, imgUrl: a[4] ? String(a[4]) : undefined, isEntity: !a[3], offsetY: a[5] ? Number(a[5]) : 0 })));
+                        } else if (data.unitSystem) {
+                            useUnitStore.setState({ unitSystem: data.unitSystem });
+                            if (data.persons) storeSetPersons(data.persons);
+                            if (data.zoom !== undefined) setZoom(data.zoom);
+                        }
+                        // Clean up URL
+                        window.history.replaceState({}, '', window.location.pathname);
+                        setIsHydrated(true);
+                        return;
+                    }
+                } catch (e) {
+                    console.error('DB hydration failed:', e);
                 }
-            } catch (e) { console.error('Hash hydration failed:', e); }
-        }
-        setIsHydrated(true);
+            }
+
+            // 2. Fallback to existing hash logic
+            if (window.location.hash) {
+                try {
+                    const hash = window.location.hash.slice(1);
+                    if (!hash) { setIsHydrated(true); return; }
+                    let decoded: any = null;
+                    try { const lz = LZString.decompressFromEncodedURIComponent(hash); if (lz) decoded = JSON.parse(lz); } catch { }
+                    if (!decoded) { try { decoded = JSON.parse(decodeURIComponent(atob(hash))); } catch { } }
+                    if (decoded?.u !== undefined) {
+                        useUnitStore.setState({ unitSystem: decoded.u === 1 ? 'metric' : 'imperial' });
+                        if (decoded.z !== undefined) setZoom(decoded.z);
+                        if (Array.isArray(decoded.p)) storeSetPersons(decoded.p.map((a: any[]) => ({ id: `s-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`, name: String(a[0]), heightCm: Number(a[1]), color: a[2] ? `#${a[2]}` : '#3b82f6', gender: a[3] === 1 ? 'female' : a[3] === 2 ? 'male' : undefined, imgUrl: a[4] ? String(a[4]) : undefined, isEntity: !a[3], offsetY: a[5] ? Number(a[5]) : 0 })));
+                    } else if (decoded?.unitSystem) {
+                        useUnitStore.setState({ unitSystem: decoded.unitSystem });
+                        if (decoded.persons) storeSetPersons(decoded.persons);
+                        if (decoded.zoom !== undefined) setZoom(decoded.zoom);
+                    }
+                } catch (e) { console.error('Hash hydration failed:', e); }
+            }
+            setIsHydrated(true);
+        };
+
+        hydrate();
     }, [storeSetPersons, readOnly]);
 
     // ── PNG download ──────────────────────────────────────────────────────────

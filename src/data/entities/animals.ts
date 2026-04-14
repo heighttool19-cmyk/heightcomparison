@@ -17,6 +17,7 @@ export const animals_data = [
     "heightCm": 270,
     "category": "Animals",
     "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Asian Elephant1.svg"
   },
   {
     "name": "Giraffe",
