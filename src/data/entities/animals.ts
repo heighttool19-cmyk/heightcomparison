@@ -161,7 +161,8 @@ export const animals_data = [
     "name": "Jaguar",
     "heightCm": 75,
     "category": "Animals",
-    "icon": "🏢"
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Leopard(1).svg"
   },
   {
     "name": "Ostrich",
