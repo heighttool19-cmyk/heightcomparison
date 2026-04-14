@@ -10,7 +10,8 @@ export const animals_data = [
     "name": "African Elephant",
     "heightCm": 300,
     "category": "Animals",
-    "icon": "🏢"
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/African Elephant.svg"
   },
   {
     "name": "Asian Elephant",
@@ -38,12 +39,16 @@ export const animals_data = [
     "heightCm": 120,
     "category": "Animals",
     "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Lion.svg"
+
   },
   {
     "name": "Tiger",
     "heightCm": 110,
     "category": "Animals",
     "icon": "🏢",
+    "imgUrl": "/Avtars/entities/animals/Tiger.svg"
+
   },
   {
     "name": "Grizzly Bear",

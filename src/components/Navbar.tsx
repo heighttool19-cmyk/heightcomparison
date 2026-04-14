@@ -31,6 +31,7 @@ const NAVIGATION: NavItem[] = [
         ]
     },
     { label: 'About', href: '/about', id: 'about' },
+    { label: 'Blogs', href: '/blogs', id: 'blogs' },
 ];
 
 const Navbar: React.FC = () => {
@@ -52,7 +53,7 @@ const Navbar: React.FC = () => {
     // Helper to check if a dropdown group contains the currently active page
     const isGroupActive = (children: { id: string }[]) => children.some(child => child.id === activePage);
 
-    if (isCustomFullscreen) return null;
+    if (isCustomFullscreen || pathname?.startsWith('/studio')) return null;
 
     return (
         <>

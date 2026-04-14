@@ -41,6 +41,31 @@ export const postBySlugQuery = groq`
 `;
 
 /**
+ * Fetch all posts with their essential metadata.
+ */
+export const allPostsQuery = groq`
+  *[_type == "post"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    publishedAt,
+    excerpt,
+    mainImage {
+      ...,
+      asset-> { _ref, url }
+    },
+    author-> {
+      name,
+      role,
+      image {
+        ...,
+        asset-> { _ref, url }
+      }
+    }
+  }
+`;
+
+/**
  * Fetch all post slugs — used for generateStaticParams().
  */
 export const allPostSlugsQuery = groq`

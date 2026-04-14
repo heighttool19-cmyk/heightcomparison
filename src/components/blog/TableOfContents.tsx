@@ -79,10 +79,9 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
                 className={`
                   block rounded-lg px-3 py-2 text-sm leading-snug transition-all duration-200
                   ${heading.level === 3 ? "pl-6" : ""}
-                  ${
-                    isActive
-                      ? "bg-accent/10 text-accent font-semibold"
-                      : "text-muted hover:text-foreground hover:bg-surface"
+                  ${isActive
+                    ? "bg-accent/10 text-accent font-semibold"
+                    : "text-muted hover:text-foreground hover:bg-surface"
                   }
                 `}
               >
@@ -109,35 +108,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
         </div>
       </aside>
 
-      {/* ── Mobile: Collapsible panel ─────────────────────────────────── */}
-      <div className="lg:hidden mb-10">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex w-full items-center justify-between rounded-2xl border border-border bg-surface px-5 py-4 text-sm font-bold uppercase tracking-widest text-muted transition-colors hover:border-accent/30"
-          aria-expanded={isOpen}
-          aria-controls="mobile-toc"
-        >
-          <span>Jump to section</span>
-          <svg
-            className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
 
-        {isOpen && (
-          <div
-            id="mobile-toc"
-            className="mt-3 rounded-2xl border border-border bg-surface p-4 animate-in fade-in slide-in-from-top-2 duration-200"
-          >
-            {renderList()}
-          </div>
-        )}
-      </div>
     </>
   );
 }

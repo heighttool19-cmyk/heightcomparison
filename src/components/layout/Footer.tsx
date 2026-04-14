@@ -2,14 +2,16 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useThemeStore, useUIStore } from '@/store';
 
 const Footer = () => {
     const { theme } = useThemeStore();
     const { isCustomFullscreen } = useUIStore();
+    const pathname = usePathname();
     const isDark = theme === 'dark';
 
-    if (isCustomFullscreen) return null;
+    if (isCustomFullscreen || pathname?.startsWith('/studio')) return null;
 
     return (
         <footer className="bg-bg text-muted pt-14 pb-7 px-6 md:px-12 mt-auto font-sans border-t border-border">
