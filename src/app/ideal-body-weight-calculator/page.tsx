@@ -8,7 +8,7 @@ import { DynamicIdealWeightIsland, DynamicHealthyWeightIsland } from '@/componen
 
 export default function IdealBodyWeightPage() {
     return (
-        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative pt-8">
+        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative pt-8 overflow-hidden transform-gpu">
             {/* --- Sidebar TOC --- */}
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={IBW_TOC} />

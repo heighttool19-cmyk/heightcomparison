@@ -161,7 +161,7 @@ export default function HeightCharts() {
             </p>
 
             <div className="bg-bg border border-border rounded-[2.5rem] p-4 sm:p-6 md:p-10 relative overflow-hidden group shadow-sm transition-colors duration-500 w-full max-w-7xl mx-auto min-w-0">
-                <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000" />
+                <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000 transform-gpu" />
 
                 <div className="relative z-10 mx-auto space-y-8 w-full min-w-0">
 

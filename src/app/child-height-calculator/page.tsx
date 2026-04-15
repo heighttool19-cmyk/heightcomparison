@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { AlertCircle, ArrowUpCircle, CheckCircle2, Dna, Salad, Timer, ArrowUp, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import TableOfContents from '@/components/TableOfContents';
@@ -11,7 +11,7 @@ import { DynamicHeightCharts, DynamicGrowthPlateExplainer } from '@/components/c
 
 export default function HeightCalculatorPage() {
     return (
-        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative">
+        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative overflow-hidden transform-gpu">
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={CHILD_HEIGHT_TOC} />
             </aside>
@@ -714,9 +714,6 @@ export default function HeightCalculatorPage() {
 
 
                         <section className="space-y-4" id="accuracy">
-                            <div className="text-[11px] font-semibold uppercase tracking-[0.1em] text-accent mb-1.5 flex items-center gap-1.5">
-                                Height calculator accuracy
-                            </div>
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
                                 How <span className="text-accent underline decoration-4 underline-offset-4">Accurate</span> Is a Height Calculator?
                             </h2>
@@ -724,15 +721,14 @@ export default function HeightCalculatorPage() {
                             <p className="text-muted leading-relaxed font-medium">This height predictor uses the Khamis-Roche growth model, trained on long-term studies of child growth data.</p>
 
                             <ul className="space-y-3 text-muted font-medium">
-                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5" /> Most predictions fall within 5-10 cm (2-4 inches) of final adult height</li>
-                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5" /> Accuracy is highest when the child is older than 4 years</li>
-                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5" /> Accurate height and weight measurements improve results significantly</li>
-                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5" /> Correct parent height data is required for reliable output</li>
-                                <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5" /> Results are a likely range, not an exact value</li>
-                                <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5" /> Not suitable for children with known growth disorders</li>
-                                <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5" /> Early or late puberty can reduce prediction accuracy</li>
+                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5 mt-1" /> Most predictions fall within 5-10 cm (2-4 inches) of final adult height</li>
+                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5 mt-1" /> Accuracy is highest when the child is older than 4 years</li>
+                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5 mt-1" /> Accurate height and weight measurements improve results significantly</li>
+                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5 mt-1" /> Correct parent height data is required for reliable output</li>
+                                <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5 mt-1" /> Results are a likely range, not an exact value</li>
+                                <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5 mt-1" /> Not suitable for children with known growth disorders</li>
+                                <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5 mt-1" /> Early or late puberty can reduce prediction accuracy</li>
                             </ul>
-
                             <div style={{ margin: '16px 0', padding: '12px 16px', background: 'color-mix(in srgb, var(--accent) 5%, transparent)', border: '1px solid color-mix(in srgb, var(--accent) 20%, transparent)', borderRadius: 'var(--radius-sm)', fontSize: '14px', fontWeight: '600', color: 'var(--accent)', textAlign: 'center' }}>
                                 The result represents a likely range rather than an exact value.
                             </div>

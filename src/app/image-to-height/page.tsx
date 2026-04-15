@@ -11,8 +11,10 @@ export default function ImageToHeightPage() {
 
             {/* Right Panel (Tool & Content) - Shown first on mobile */}
             <div className="lg:w-[75%] md:w-[80%] w-full flex flex-col gap-4 pb-10 order-1 md:order-2">
-                <div className="flex-1 min-h-[500px] sm:min-h-[610px] bg-surface border border-border rounded-3xl shadow-xl overflow-hidden relative">
-                    <div className="p-4 md:p-8 flex flex-col relative w-full h-full">
+                {/* FIX: Removed min-h-[500px] sm:min-h-[610px] to allow dynamic height adaptation */}
+                <div className="flex-1 bg-surface border border-border rounded-3xl shadow-xl overflow-hidden relative">
+                    {/* FIX: Removed h-full so it shrink-wraps the content */}
+                    <div className="p-4 md:p-8 flex flex-col relative w-full">
                         {/* Ghost Watermark */}
                         <div className="absolute top-1/2 right-4 md:right-10 -translate-y-1/2 text-[20vw] md:text-[15vw] font-black text-foreground opacity-5 pointer-events-none select-none tracking-tighter leading-none transform-gpu">
                             HEIGHT
@@ -102,7 +104,7 @@ export default function ImageToHeightPage() {
                         <div className="relative z-10 max-w-3xl">
                             <h2 className="text-xl md:text-3xl font-black text-foreground mb-4 uppercase tracking-tighter">How to Determine Your Height Without Measuring: Using a Photo</h2>
                             <p className="text-muted leading-relaxed text-base md:text-lg mb-4 font-bold opacity-70">
-                                Every photo contains fixed scale data as long as one object of known size appears in the frame. A standard door is 203 cm. A credit card is 85.6 mm wide. When either appears alongside a person, that person&apos;s height is calculable from the image alone.
+                                Every photo contains fixed scale data as long as one object of known size appears in the frame. A standard door is 203 cm. A credit card is 85.6 mm wide. When either appears alongside a person, that person's height is calculable from the image alone.
                             </p>
                             <p className="text-muted leading-relaxed text-base md:text-lg mb-8 font-bold opacity-70">
                                 That is exactly how this tool works. Upload a photo, identify one object you know the size of, and the tool calculates the height of anyone in the frame. No tape measure. No wall marks. No second person.

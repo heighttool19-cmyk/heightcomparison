@@ -50,7 +50,8 @@ export const CropModal: React.FC<CropModalProps> = ({
     const onImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
         const img = e.currentTarget;
         imgRef.current = img;
-        const { naturalWidth: w, naturalHeight: h } = img;
+        // FIX: Use rendered width/height, not natural width/height for correct crop aspect and sizing logic
+        const { width: w, height: h } = img;
         const newCrop = centerCrop(
             makeAspectCrop({ unit: '%', width: 100 }, w / h, w, h),
             w, h
@@ -60,7 +61,8 @@ export const CropModal: React.FC<CropModalProps> = ({
 
     const handleReset = () => {
         if (!imgRef.current) return;
-        const { naturalWidth: w, naturalHeight: h } = imgRef.current;
+        // FIX: Use rendered width/height, not natural width/height
+        const { width: w, height: h } = imgRef.current;
         const newCrop = centerCrop(
             makeAspectCrop({ unit: '%', width: 100 }, w / h, w, h),
             w, h
@@ -136,7 +138,8 @@ export const CropModal: React.FC<CropModalProps> = ({
 
                             {/* Crop Area */}
                             <div className="flex-1 overflow-auto p-4 sm:p-6 bg-bg flex items-center justify-center min-h-0">
-                                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                                {/* FIX: Removed overflow-hidden so the crop handles aren't clipped */}
+                                <div className="relative rounded-2xl shadow-2xl">
                                     <ReactCrop
                                         crop={crop}
                                         onChange={(c) => setCrop(c)}
@@ -148,15 +151,16 @@ export const CropModal: React.FC<CropModalProps> = ({
                                             alt="Crop preview"
                                             onLoad={onImageLoad}
                                             draggable={false}
-                                            className="block select-none max-w-full max-h-[65vh] object-contain"
+                                            className="block select-none max-w-full max-h-[65vh] object-contain rounded-2xl"
                                         />
                                     </ReactCrop>
                                 </div>
                             </div>
 
                             {/* Footer */}
-                            <div className="p-4 sm:p-5 border-t border-border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 shrink-0 bg-surface">
-                                <div className="flex items-center gap-2 sm:gap-3 ml-auto">
+                            {/* FIX: Centered buttons by changing justify-between to justify-center and removing ml-auto */}
+                            <div className="p-4 sm:p-5 border-t border-border flex flex-col sm:flex-row items-center justify-center gap-3 shrink-0 bg-surface">
+                                <div className="flex items-center justify-center gap-2 sm:gap-3 w-full sm:w-auto">
                                     <button
                                         onClick={closeCropModal}
                                         disabled={isLoading}

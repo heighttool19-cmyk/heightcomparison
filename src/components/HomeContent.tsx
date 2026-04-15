@@ -77,9 +77,9 @@ export default function HomeContent() {
                             </ErrorBoundary>
                             <SmoothScrollLink
                                 targetId="height-comparison-tool"
-                                className="bg-accent text-white px-10 py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-sm hover:scale-[1.05] transition-all shadow-2xl shadow-accent/40 active:scale-95 inline-flex items-center gap-3 w-fit"
+                                className="bg-accent w-full text-center text-white px-10 py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-lg hover:scale-[1.05] transition-all shadow-2xl shadow-accent/40 active:scale-95 inline-flex items-center gap-3 "
                             >
-                                Compare Now ↑
+                                <p className="w-full text-center">Compare Now ↑</p>
                             </SmoothScrollLink>
                         </div>
 
@@ -194,8 +194,8 @@ export default function HomeContent() {
                                 <div className="flex-1">
                                     <div className="text-[18px] font-black text-foreground mb-2 uppercase tracking-tighter">Need just the gap between two specific heights?</div>
                                     <div className="text-[15px] text-muted leading-[1.8] mb-4 font-bold opacity-70">The Height Difference Calculator shows the exact difference in cm and inches, the percentage gap, and a visual bar. Use it when you need the precise height gap without building a full chart.</div>
-                                    <Link href="/height-difference-calculator" className="text-[14px] font-black text-emerald-500 inline-flex items-center gap-2 hover:gap-3 transition-all uppercase tracking-widest py-2 px-4 bg-emerald-500/10 rounded-full group-hover:bg-emerald-500 group-hover:text-white">
-                                        Open Height Difference Calculator <ArrowRight size={16} />
+                                    <Link href="/height-difference-calculator" className="text-xs font-black text-emerald-500 inline-flex items-center gap-2 hover:gap-3 transition-all uppercase tracking-widest py-2 px-4 bg-emerald-500/10 rounded-full group-hover:bg-emerald-500 group-hover:text-white">
+                                        Open Height Difference Calculator  <p><ArrowRight size={22} /></p>
                                     </Link>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@ export default function HomeContent() {
                                 <div className="flex-1 h-1 bg-accent/10 rounded-full" />
                             </div>
 
-                            <h2 className="text-2xl md:text-4xl font-black tracking-tighter uppercase">Compare Height in 3 Simple Steps</h2>
+                            <h2 className="text-2xl md:text-4xl font-black tracking-tighter uppercase">How to Compare Heights Online: Step-by-Step for Beginners</h2>
                             <div className="border-2 border-border/80 rounded-[3rem] overflow-hidden bg-surface shadow-2xl">
 
                                 {/* Step 1 */}

@@ -168,7 +168,7 @@ export default function GrowthPlateExplainer() {
             </div>
 
             <div className="bg-bg border border-border rounded-[2.5rem] p-6 md:p-10 relative overflow-hidden group shadow-sm transition-colors duration-500">
-                <div className="absolute -left-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000" />
+                <div className="absolute -left-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000 transform-gpu" />
                 <div className="relative z-10 mx-auto">
 
                     {/* Age selector tabs */}
@@ -197,7 +197,7 @@ export default function GrowthPlateExplainer() {
 
                         {/* Bone illustration */}
                         <div
-                            className="md:col-span-1 bg-bg border-2 rounded-3xl p-6 text-center transition-colors duration-500 shadow-inner flex flex-col justify-between align-center items-center"
+                            className="md:col-span-1 bg-bg border-2 rounded-3xl p-6 text-center transition-colors duration-500 shadow-inner flex flex-col justify-between items-center"
                             style={{ borderColor: `${current.plateColor}40` }}
                         >
                             <HandBone stage={current} isActive={true} />
@@ -297,7 +297,7 @@ export default function GrowthPlateExplainer() {
                                         }`}
                                     style={{ borderColor: active === i ? `${s.plateColor}50` : undefined }}
                                 >
-                                    <div className="w-16 h-24 mb-4 flex items-center  justify-center align-center pointer-events-none">
+                                    <div className="w-16 h-24 mb-4 flex items-center justify-center pointer-events-none">
                                         <HandBone stage={s} isActive={active === i} />
                                     </div>
                                     <div className="font-mono font-bold text-sm tracking-wider" style={{ color: s.plateColor }}>{s.age}</div>

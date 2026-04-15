@@ -47,7 +47,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${jakarta.variable} ${jetbrainsMono.variable} font-sans antialiased bg-bg text-foreground selection:bg-accent/20 transition-colors duration-500`}>
         <ThemeInitializer />
-        <div className="flex flex-col min-h-[100dvh] overflow-x-clip">
+        <div className="flex flex-col min-h-[100dvh] overflow-hidden">
           <Navbar />
           <main className="flex-1">
             {children}
