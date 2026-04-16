@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: "Calculate Ideal Body Weight & Adjusted body weight calculator",
     description: "Use our Ideal Weight Calculator in kg to calculate ideal body weight. Includes adjusted ideal body weight calculator for male and female weight calculations.",
     alternates: {
-        canonical: '/ideal-body-weight-calculator',
+        canonical: 'https://heightcomparisoncalculator.com/ideal-body-weight-calculator',
     },
 };
 export const viewport: Viewport = {

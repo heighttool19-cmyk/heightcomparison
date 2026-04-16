@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Height Comparison Chart - Person Height, Character Height & More",
   description: "Use Height Comparison Tool to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
   alternates: {
-    canonical: './',
+    canonical: 'https://heightcomparisoncalculator.com/',
   },
   icons: {
     icon: "/logo.png",

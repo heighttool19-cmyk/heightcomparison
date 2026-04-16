@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     title: "Height Calculator: Predict Your Adult Height",
     description: "Predict your height with our Height Predictor Calculator. This Projected height calculator uses proven methods to predict adult height.",
     alternates: {
-        canonical: '/height-predictor',
+        canonical: 'https://heightcomparisoncalculator.com/height-predictor',
     },
 };
 export const viewport: Viewport = {
