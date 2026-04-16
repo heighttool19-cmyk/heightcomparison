@@ -8,10 +8,13 @@ import HeightConverter from '@/components/height-predictor/HeightConverter';
 import FaqAccordion from '@/components/FaqAccordion';
 import { CHILD_HEIGHT_QA, CHILD_HEIGHT_TOC } from '@/constants/childHeight';
 import { DynamicHeightCharts, DynamicGrowthPlateExplainer } from '@/components/height-predictor/DynamicChildHeightIslands';
+import JsonLd from '@/components/common/JsonLd';
+import { HEIGHT_PREDICTOR_SCHEMA } from '@/constants/schemas/heightPredictor';
 
 export default function HeightCalculatorPage() {
     return (
         <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative overflow-x-clip transform-gpu">
+            <JsonLd data={HEIGHT_PREDICTOR_SCHEMA} />
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={CHILD_HEIGHT_TOC} />
             </aside>

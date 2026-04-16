@@ -66,14 +66,14 @@ const Navbar: React.FC = () => {
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-3 cursor-pointer shrink-0">
                     <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
-                        <div className="flex items-end gap-[2px] h-4">
-                            <div className="w-1.5 h-full bg-white rounded-t-sm" />
-                            <div className="w-1.5 h-2/3 bg-white rounded-t-sm" />
-                            <div className="w-1.5 h-1/3 bg-white rounded-t-sm" />
-                        </div>
+                        <img
+                            src="/logo.png"
+                            alt="Logo"
+                            className="w-full h-full object-cover"
+                        />
                     </div>
                     <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors whitespace-nowrap">
-                        Height<span className="text-[#3B82F6]">Comparison</span>
+                        Height<span className="text-[#3B82F6]"> Comparison</span>
                     </h1>
                 </Link>
 
@@ -139,8 +139,10 @@ const Navbar: React.FC = () => {
                         aria-label={`Current unit system: ${unitSystem === 'metric' ? 'Metric' : 'Imperial'}. Click to toggle.`}
                     >
                         <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent shrink-0" />
-                        <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-muted group-hover:text-foreground whitespace-nowrap">
-                            {unitSystem === 'metric' ? 'metric (cm)' : 'imperial (ft/in)'}
+                        <span className="inline-block px-2 py-1 rounded-md bg-muted/20 border border-muted/30 group-hover:bg-accent group-hover:border-accent transition-colors">
+                            <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-muted group-hover:text-foreground whitespace-nowrap">
+                                {unitSystem === 'metric' ? 'metric (cm)' : 'imperial (ft/in)'}
+                            </span>
                         </span>
                     </button>
 
@@ -222,14 +224,18 @@ const Navbar: React.FC = () => {
                                 })}
 
                                 <div className="h-px w-full bg-white/10 my-2" />
-
                                 {/* Mobile Unit Toggle */}
                                 <button
                                     onClick={() => { toggleUnitSystem(); setIsNavMenuOpen(false); }}
-                                    className="w-full text-left px-4 py-3 text-sm font-bold rounded-2xl transition-all text-gray-400 hover:text-white hover:bg-white/5 md:hidden flex items-center justify-between"
+                                    className="w-full text-left px-4 py-3 text-sm font-bold rounded-2xl transition-all text-gray-400 hover:text-white hover:bg-white/10 md:hidden flex items-center justify-between group"
                                 >
-                                    Switch to {unitSystem === 'metric' ? 'Imperial (ft/in)' : 'Metric (cm)'}
-                                    <ArrowLeftRight size={14} />
+                                    <div className="flex items-center gap-3">
+                                        <span>Switch to</span>
+                                        <span className="px-2.5 py-0.5 rounded-full bg-white/10 border border-white/10 text-[10px] uppercase tracking-wider text-white group-hover:bg-white/20 transition-colors">
+                                            {unitSystem === 'metric' ? 'Imperial (ft/in)' : 'Metric (cm)'}
+                                        </span>
+                                    </div>
+                                    <ArrowLeftRight size={16} className="opacity-70 group-hover:opacity-100 transition-opacity" />
                                 </button>
                             </div>
                         </div>

@@ -3,6 +3,9 @@ import { type Metadata, type Viewport } from "next";
 export const metadata: Metadata = {
     title: "Average Height by Country - Global Human Height Chart",
     description: "Learn the average height of a woman & man worldwide and compare average heights by country. See the average human height around the world in one chart.",
+    alternates: {
+        canonical: '/average-height-by-country',
+    },
 };
 export const viewport: Viewport = {
     width: "device-width",

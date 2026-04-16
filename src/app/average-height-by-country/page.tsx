@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,6 +11,8 @@ import { BLUE, TEAL, AMBER, RED } from '@/constants/colors';
 import { TOP10, BOT10, MVF, BELL_CONFIG, heightData, REGIONS } from '@/constants/averageHeight';
 import { AVERAGE_HEIGHT_TOC, AVERAGE_HEIGHT_FAQ } from '@/constants/averageHeight';
 import FaqAccordion from '@/components/FaqAccordion';
+import JsonLd from '@/components/common/JsonLd';
+import { AVERAGE_HEIGHT_BY_COUNTRY_SCHEMA } from '@/constants/schemas/averageHeightByCountry';
 
 
 // --- Helper Visual Components ---
@@ -249,6 +251,7 @@ export default function page() {
 
     return (
         <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative pt-8 overflow-x-clip transform-gpu">
+            <JsonLd data={AVERAGE_HEIGHT_BY_COUNTRY_SCHEMA} />
 
             <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-4 md:p-8 relative pt-8">
 

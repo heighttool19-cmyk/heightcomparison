@@ -128,6 +128,9 @@ export default defineType({
             }),
           ],
         },
+        {
+          type: "table",
+        },
       ],
     }),
   ],

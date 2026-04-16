@@ -8,6 +8,8 @@ import VisualHeightComparison from '@/components/height-difference-calculator/Vi
 import TableOfContents from '@/components/TableOfContents';
 import FaqAccordion from '@/components/FaqAccordion';
 import { HEIGHT_DIFFERENCE_FAQ } from '@/constants/heightDifference';
+import JsonLd from '@/components/common/JsonLd';
+import { HEIGHT_DIFFERENCE_SCHEMA } from '@/constants/schemas/heightDifference';
 
 const tocItems = [
     { id: 'calculate-height-difference', label: 'Calculate Height Difference' },
@@ -24,6 +26,7 @@ const tocItems = [
 export default function HeightDifferencePage() {
     return (
         <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative pt-8 overflow-x-clip transform-gpu">
+            <JsonLd data={HEIGHT_DIFFERENCE_SCHEMA} />
             {/* --- Sidebar TOC --- */}
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={tocItems} />

@@ -10,8 +10,8 @@ const ShareSchema = new mongoose.Schema({
   // Hashed version of the data for quick duplicate detection
   dataHash: { type: String, required: true, index: true },
 
-  // MAGIC TRICK: MongoDB will automatically delete this document after 21 days (1814400 seconds)
-  createdAt: { type: Date, default: Date.now, expires: '21d' }
+  // MAGIC TRICK: MongoDB will automatically delete this document after 7 days (604800 seconds)
+  createdAt: { type: Date, default: Date.now, expires: '7d' }
 });
 
 export default mongoose.models.Share || mongoose.model('Share', ShareSchema);

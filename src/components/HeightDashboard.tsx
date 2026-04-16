@@ -667,7 +667,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                             <div className="flex-1" />
                             <div className="flex flex-col items-center pointer-events-none">
                                 <span className="font-black uppercase tracking-[0.4em] text-muted whitespace-nowrap text-[7px] sm:text-[10px]">
-                                    heightcomparison.vercel.app
+                                    heightcomparisoncalculator.com
                                 </span>
                                 <div className="h-[1px] w-8 bg-accent/30 mt-1" />
                             </div>

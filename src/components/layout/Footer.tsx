@@ -73,7 +73,7 @@ const Footer = () => {
 
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 flex-wrap">
                     <p className="text-[13px] text-muted/80">
-                        © {new Date().getFullYear()} HeightComparison. All rights reserved. Built with care by <Link href="#" className="text-accent hover:underline">the team</Link>.
+                        © {new Date().getFullYear()} Height Comparison. All rights reserved. Built with care by <Link href="#" className="text-accent hover:underline">the team</Link>.
                     </p>
                     <div className="flex gap-5">
                         <Link href="/privacy" className="text-[13px] text-muted/80 hover:text-foreground transition-colors">Privacy</Link>

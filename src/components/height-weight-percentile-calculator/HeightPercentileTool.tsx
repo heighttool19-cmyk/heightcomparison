@@ -181,7 +181,7 @@ function ShareCard({ inputs, percentile, onClose }: {
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
-    const text = `My height percentile result:\n${inputs.height} cm | Age ${inputs.age} | ${inputs.gender} | ${inputs.country}\nResult: ${percentile}th percentile — ${label}\ncalculated at heightcomparison.vercel.app`;
+    const text = `My height percentile result:\n${inputs.height} cm | Age ${inputs.age} | ${inputs.gender} | ${inputs.country}\nResult: ${percentile}th percentile — ${label}\ncalculated at heightcomparisoncalculator.com`;
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(text).then(() => {
@@ -265,7 +265,7 @@ function ShareCard({ inputs, percentile, onClose }: {
 
                 <div style={{ padding: "10px 28px 16px", borderTop: `1px solid ${isDark ? "#1e293b" : "#f1f5f9"}` }}>
                     <p style={{ margin: 0, fontSize: 10, color: isDark ? "#475569" : "#cbd5e1", textAlign: "center", fontFamily: "Georgia, serif" }}>
-                        heightcomparison.vercel.app · For informational purposes only
+                        heightcomparisoncalculator.com · For informational purposes only
                     </p>
                 </div>
             </div>

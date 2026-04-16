@@ -100,6 +100,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                 const formData = new FormData();
                 formData.append('file', blob);
                 formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET!);
+                formData.append('tags', 'temp_upload');
 
                 const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
                 const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {

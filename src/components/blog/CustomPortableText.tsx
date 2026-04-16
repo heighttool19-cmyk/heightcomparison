@@ -67,6 +67,49 @@ const components: PortableTextComponents = {
         </figure>
       );
     },
+    /** Responsive table renderer for @sanity/table */
+    table: ({ value }: { value: { rows: { cells: string[] }[] } }) => {
+      if (!value?.rows?.length) return null;
+
+      const [header, ...rows] = value.rows;
+
+      return (
+        <div className="my-10 overflow-hidden rounded-2xl border border-border bg-surface ring-1 ring-border/50">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse text-sm md:text-base">
+              {header?.cells && (
+                <thead className="bg-accent/5 border-b border-border">
+                  <tr>
+                    {header.cells.map((cell, i) => (
+                      <th
+                        key={i}
+                        className="px-4 py-4 font-black uppercase tracking-wider text-foreground text-xs"
+                      >
+                        {cell}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+              )}
+              <tbody className="divide-y divide-border/50">
+                {rows.map((row, i) => (
+                  <tr key={i} className="hover:bg-accent/[0.02] transition-colors">
+                    {row.cells.map((cell, j) => (
+                      <td
+                        key={j}
+                        className="px-4 py-4 text-muted font-medium whitespace-nowrap"
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      );
+    },
   },
 
   // ── Marks (inline decorations & annotations) ───────────────────────────

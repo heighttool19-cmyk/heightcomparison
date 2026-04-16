@@ -8,6 +8,8 @@ import WHOvsCDCVisual from '@/components/height-weight-percentile-calculator/WHO
 import TableOfContents from '@/components/TableOfContents';
 import FaqAccordion from '@/components/FaqAccordion';
 import { PERCENTILE_FAQ } from '@/constants/percentile';
+import JsonLd from '@/components/common/JsonLd';
+import { PERCENTILE_SCHEMA } from '@/constants/schemas/percentile';
 
 const tocItems = [
     { id: 'calculate-your-height-and-weight-percentile', label: 'Calculate Your Height and Weight Percentile' },
@@ -33,7 +35,8 @@ const tocItems = [
 
 export default function PercentileCalculatorPage() {
     return (
-        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative overflow-x-clip transform-gpu">
+        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 mt-8 overflow-x-clip transform-gpu">
+            <JsonLd data={PERCENTILE_SCHEMA} />
             {/* --- Sidebar TOC --- */}
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={tocItems} />
