@@ -46,7 +46,7 @@ const Footer = () => {
                     <div>
                         <p className="text-xs font-semibold uppercase tracking-widest text-foreground mb-4">Calculators</p>
                         <ul className="flex flex-col gap-2.5">
-                            <FooterLink href="/child-height-calculator">Child Height Calculator</FooterLink>
+                            <FooterLink href="/height-predictor">Height Predictor</FooterLink>
                             <FooterLink href="/height-weight-percentile-calculator">Height Weight Percentile</FooterLink>
                             <FooterLink href="/ideal-body-weight-calculator">Ideal Body Weight</FooterLink>
                             <FooterLink href="/height-difference-calculator">Height Difference</FooterLink>

@@ -22,20 +22,17 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
 
     useEffect(() => {
         // MOBILE GUARD: Don't run the observer on mobile screens where the TOC is hidden.
-        // This prevents unnecessary re-renders (and blank screens) during fast scrolling.
         const MOBILE_BREAKPOINT = 768;
 
         let observer: IntersectionObserver | null = null;
         let cleanup: (() => void) | null = null;
 
         const setupObserver = () => {
-            // Tear down any existing observer before setting up a new one
             if (cleanup) {
                 cleanup();
                 cleanup = null;
             }
 
-            // Skip observer on mobile — the TOC is hidden there via CSS
             if (typeof window !== 'undefined' && window.innerWidth < MOBILE_BREAKPOINT) {
                 return;
             }
@@ -108,10 +105,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
             };
         };
 
-        // Run initial setup
         setupObserver();
 
-        // Re-run when window resizes across the mobile breakpoint
         let lastWasMobile = typeof window !== 'undefined' && window.innerWidth < MOBILE_BREAKPOINT;
         const handleResize = () => {
             const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
@@ -126,7 +121,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
             cleanup?.();
             window.removeEventListener('resize', handleResize);
         };
-    }, [items]); // Removed activeSection from dependencies
+    }, [items]);
 
     const TOCLink = ({ item, isSub = false }: { item: TOCItem, isSub?: boolean }) => {
         const checkActiveRecursive = (node: TOCItem): boolean => {
@@ -136,20 +131,6 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
         };
 
         const isActive = checkActiveRecursive(item);
-
-        const handleLinkClick = () => {
-            isClickScrolling.current = true;
-            setActiveSection(item.id);
-
-            if (window.history.pushState) {
-                window.history.pushState(null, '', `#${item.id}`);
-            }
-
-            if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
-            scrollTimeout.current = setTimeout(() => {
-                isClickScrolling.current = false;
-            }, 1000);
-        };
 
         return (
             <li className={`transition-all duration-300 ${isSub ? 'mt-2' : 'mt-3'}`}>
@@ -163,7 +144,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
                             isClickScrolling.current = false;
                         }, 1000);
                     }}
-                    className={`block transition-all duration-300 border-l-2 pl-2 whitespace-nowrap leading-tight ${isActive
+                    // Removed whitespace-nowrap, added whitespace-normal and break-words for folding
+                    className={`block transition-all duration-300 border-l-2 pl-2 whitespace-normal break-words leading-snug ${isActive
                         ? 'text-accent border-accent font-bold'
                         : 'text-muted hover:text-foreground border-transparent'
                         }`}
@@ -180,29 +162,19 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
     };
 
     return (
-        // <div className="sticky top-24 bg-surface border border-border rounded-3xl pt-5 pb-5 pr-4 pl-2 shadow-xl max-h-[calc(100vh-120px)] overflow-auto custom-toc-scrollbar text-left scrollbar-thin scrollbar-thumb-accent/20 hover:scrollbar-thumb-accent/40 scrollbar-track-transparent">
-        //     <h3 className="text-sm font-black uppercase tracking-[0.2em] sticky top-0 bg-surface z-10 pb-2 border-b border-border/50 mb-4">
-        //         Table of Contents
-        //     </h3>
-        //     <ul className="text-sm font-medium">
-        //         {items.map(item => (
-        //             <TOCLink key={item.id} item={item} />
-        //         ))}
-        //     </ul>
-        // </div>
         <>
-            {/* OUTER WRAPPER: Handles the border, shadow, and clips any bleeding scrollbars with overflow-hidden */}
-            <div className="sticky top-24 bg-surface border border-border rounded-3xl shadow-xl max-h-[calc(100vh-120px)] flex flex-col overflow-hidden">
+            {/* OUTER WRAPPER: Added w-64 (or e.g., w-[280px]) for a fixed width */}
+            <div className="w-72 sticky top-24 bg-surface border border-border rounded-3xl shadow-xl max-h-[calc(100vh-120px)] flex flex-col overflow-hidden">
 
-                {/* FIXED HEADER: Stays perfectly still. Doesn't scroll left/right or up/down */}
+                {/* FIXED HEADER */}
                 <div className="pt-5 px-4 pb-3 border-b border-border/50 bg-surface shrink-0">
                     <h3 className="text-sm font-black uppercase tracking-[0.2em] m-0">
                         Table of Contents
                     </h3>
                 </div>
 
-                {/* SCROLLING AREA: Handled safely inside the outer wrapper */}
-                <div className="flex-1 overflow-auto px-2 py-4 custom-toc-scrollbar text-left scrollbar-thin scrollbar-thumb-accent/20 hover:scrollbar-thumb-accent/40 scrollbar-track-transparent">
+                {/* SCROLLING AREA: Changed overflow-auto to overflow-y-auto overflow-x-hidden */}
+                <div className="flex-1 overflow-y-auto overflow-x-hidden px-2 py-4 custom-toc-scrollbar text-left scrollbar-thin scrollbar-thumb-accent/20 hover:scrollbar-thumb-accent/40 scrollbar-track-transparent">
                     <ul className="text-sm font-medium pr-4">
                         {items.map(item => (
                             <TOCLink key={item.id} item={item} />
@@ -213,7 +185,6 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
             </div>
         </>
     );
-
 };
 
 export default TableOfContents;

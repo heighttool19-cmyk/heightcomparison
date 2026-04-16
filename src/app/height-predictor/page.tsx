@@ -2,16 +2,16 @@ import React from 'react';
 import { AlertCircle, ArrowUpCircle, CheckCircle2, Dna, Salad, Timer, ArrowUp, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import TableOfContents from '@/components/TableOfContents';
-import KhamisRocheCalculator from '@/components/child-height-calculator/KhamisRocheCalculator';
-import MidParentalCalculator from '@/components/child-height-calculator/MidParentalCalculator';
-import HeightConverter from '@/components/child-height-calculator/HeightConverter';
+import KhamisRocheCalculator from '@/components/height-predictor/KhamisRocheCalculator';
+import MidParentalCalculator from '@/components/height-predictor/MidParentalCalculator';
+import HeightConverter from '@/components/height-predictor/HeightConverter';
 import FaqAccordion from '@/components/FaqAccordion';
 import { CHILD_HEIGHT_QA, CHILD_HEIGHT_TOC } from '@/constants/childHeight';
-import { DynamicHeightCharts, DynamicGrowthPlateExplainer } from '@/components/child-height-calculator/DynamicChildHeightIslands';
+import { DynamicHeightCharts, DynamicGrowthPlateExplainer } from '@/components/height-predictor/DynamicChildHeightIslands';
 
 export default function HeightCalculatorPage() {
     return (
-        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative overflow-hidden transform-gpu">
+        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative overflow-x-clip transform-gpu">
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={CHILD_HEIGHT_TOC} />
             </aside>
@@ -21,8 +21,8 @@ export default function HeightCalculatorPage() {
 
                     {/* INTRO CONTENT */}
                     <div className="space-y-6 text-left sm:text-left mt-4 leading-relaxed p-2">
-                        <h1 id="child-height-predictor-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 text-left uppercase">
-                            Height Calculator and Adult Height Predictor
+                        <h1 id="height-predictor-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 text-left uppercase">
+                            Height Predictor and Adult Height Calculator
                         </h1>
                         <p className="text-muted leading-relaxed text-lg max-w-3xl text-left font-medium">
                             Use this height calculator  to estimate the future height of children, teenagers, and adults based on age, genetics, and growth patterns.
@@ -214,7 +214,7 @@ export default function HeightCalculatorPage() {
                                 >
                                     <path d="m18 15-6-6-6 6" />
                                 </svg>
-                                Use the Height Calculator
+                                Use the Height Predictor
                             </Link>
                         </div>
                         <section className="space-y-4">
@@ -800,7 +800,7 @@ export default function HeightCalculatorPage() {
                     </div>
 
                     {/* FAQ Accordion Section */}
-                    <section id="child-height-calculator-faq" className="scroll-mt-24 space-y-6">
+                    <section id="height-predictor-faq" className="scroll-mt-24 space-y-6">
                         {/* <div className="space-y-4">
                         <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase text-foreground">
                                 Height Calculator FAQs

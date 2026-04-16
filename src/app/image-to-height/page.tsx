@@ -7,10 +7,10 @@ import { IMAGE_TO_HEIGHT_FAQ } from '@/constants/imageToHeight';
 
 export default function ImageToHeightPage() {
     return (
-        <div className="flex-1 flex flex-col justify-center items-center md:flex-row relative p-2 md:p-4 gap-4 bg-canvas overflow-hidden w-full transform-gpu">
+        <div className="flex-1 flex flex-col justify-center items-center md:flex-row relative p-2 md:p-4 gap-4 bg-canvas overflow-x-clip w-full transform-gpu">
 
             {/* Right Panel (Tool & Content) - Shown first on mobile */}
-            <div className="lg:w-[75%] md:w-[80%] w-full flex flex-col gap-4 pb-10 order-1 md:order-2">
+            <div className="responsive-tool-container flex flex-col gap-6 pb-10">
                 {/* FIX: Removed min-h-[500px] sm:min-h-[610px] to allow dynamic height adaptation */}
                 <div className="flex-1 bg-surface border border-border rounded-3xl shadow-xl overflow-hidden relative">
                     {/* FIX: Removed h-full so it shrink-wraps the content */}
@@ -19,7 +19,7 @@ export default function ImageToHeightPage() {
                         <div className="absolute top-1/2 right-4 md:right-10 -translate-y-1/2 text-[20vw] md:text-[15vw] font-black text-foreground opacity-5 pointer-events-none select-none tracking-tighter leading-none transform-gpu">
                             HEIGHT
                         </div>
-                        <div className="relative z-10 w-full max-w-4xl mx-auto">
+                        <div className="relative z-10 w-full h-fit max-w-4xl mx-auto">
                             <ImageMeasurement />
                         </div>
                     </div>

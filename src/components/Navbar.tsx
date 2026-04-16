@@ -22,7 +22,7 @@ const NAVIGATION: NavItem[] = [
         label: 'Tools & Calculators',
         // Grouping these saves horizontal space on desktop and cleans up mobile
         children: [
-            { label: 'Child Height Calculator', href: '/child-height-calculator', id: 'child-height-calculator' },
+            { label: 'Height Predictor', href: '/height-predictor', id: 'height-predictor' },
             { label: 'Height Weight Percentile Calculator', href: '/height-weight-percentile-calculator', id: 'height-weight-percentile-calculator' },
             { label: 'Ideal Body Weight Calculator', href: '/ideal-body-weight-calculator', id: 'ideal-body-weight-calculator' },
             { label: 'Average Height by Country', href: '/average-height-by-country', id: 'average-height-by-country' },

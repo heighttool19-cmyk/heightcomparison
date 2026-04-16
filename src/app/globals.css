@@ -333,3 +333,17 @@ input[type=number] {
 .modal-open nav:not(.ReactCrop nav) {
   display: none !important;
 }
+
+/* Custom container for the Image to Height Tool */
+.responsive-tool-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Kicks in on tablets, laptops, and larger desktops (Tailwind's 'md' breakpoint) */
+@media (min-width: 768px) {
+  .responsive-tool-container {
+    max-width: 55%;
+  }
+}

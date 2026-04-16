@@ -66,7 +66,7 @@ export const CHILD_HEIGHT_TOC = [
     { id: 'how-to-get-taller-as-a-kid', label: 'Factors Affecting Height' },
     // { id: 'boys-height-predictor', label: 'Understanding Growth Timelines' },
     { id: 'accuracy', label: 'Prediction Accuracy' },
-    { id: 'child-height-calculator-faq', label: 'FAQ' },
+    { id: 'height-predictor-faq', label: 'FAQ' },
     { id: 'related-tools', label: 'Related Tools' },
     { id: 'references', label: 'References' }
 ];

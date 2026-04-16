@@ -87,13 +87,13 @@ export const ImageMeasurement: React.FC = () => {
                                     )}
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <span className="text-[10px] font-black uppercase tracking-[0.15em] text-accent/80 block mb-0.5">
-                                        {mode === 'calibrating' ? 'Step 1: Calibration' : 'Step 2: Measurement'}
+                                    <span className="text-[9px] font-black uppercase tracking-[0.15em] text-accent/80 block mb-0.5">
+                                        {mode === 'calibrating' ? 'Step 1: Calibration' : 'Step 2: Measure Person'}
                                     </span>
-                                    <span className="text-xs sm:text-sm font-bold text-foreground line-clamp-1">
+                                    <span className="text-xs font-bold text-foreground s">
                                         {mode === 'calibrating'
                                             ? firstPoint ? 'Tap the other end to finish' : 'Tap one end of the known object'
-                                            : firstPoint ? 'Tap the other end to finish' : 'Tap the ground / top of head'}
+                                            : firstPoint ? 'Tap the other end to finish' : ' Click "Auto Scan" below or manually draw a line from head to toe'}
                                     </span>
                                 </div>
                             </div>

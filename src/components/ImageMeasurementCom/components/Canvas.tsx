@@ -36,12 +36,10 @@ export const Canvas: React.FC<CanvasProps> = ({
         <div
             ref={wrapperRef}
             className={cn(
-                "relative w-full rounded-2xl border border-border overflow-hidden bg-black/40 shadow-inner",
-                !uploadedImage && "border-dashed min-h-[260px] flex items-center justify-center"
+                !uploadedImage ? "w-full border-dashed min-h-[260px] flex items-center justify-center font-bold" : "w-fit p-1"
             )}
-            style={displaySize ? { height: displaySize.h } : undefined}
         >
-            {!uploadedImage ? (
+            {!uploadedImage && (
                 <div className="flex flex-col items-center cursor-pointer group p-10 w-full"
                     onClick={() => fileInputRef.current?.click()}>
                     <div className="w-14 h-14 rounded-full bg-border/20 flex items-center justify-center group-hover:bg-accent/10 transition-colors mb-3">
@@ -50,8 +48,9 @@ export const Canvas: React.FC<CanvasProps> = ({
                     <p className="font-semibold text-foreground/70">Click to upload an image</p>
                     <p className="text-xs text-foreground/40 mt-1 uppercase tracking-widest font-black">PNG, JPG up to 10 MB</p>
                 </div>
-            ) : (
-                <div className="absolute inset-0 flex items-center justify-center">
+            )}
+            {uploadedImage && (
+                <div className="flex items-center justify-center w-full h-full">
                     <canvas
                         ref={canvasRef}
                         onMouseDown={onCanvasMouseDown}
@@ -84,8 +83,8 @@ export const Canvas: React.FC<CanvasProps> = ({
                             className="bg-accent/20 w-full h-full"
                             style={{
                                 backgroundImage: `url(${uploadedImage})`,
-                                backgroundSize: `${displaySize.w * 2}px ${displaySize.h * 2}px`,
-                                backgroundPosition: `-${magnifierPoint.x * 2 - (magnifierPoint.x > displaySize.w / 2 ? 48 : 64)}px -${magnifierPoint.y * 2 - (magnifierPoint.y > displaySize.h / 2 ? 48 : 64)}px`,
+                                backgroundSize: `contain`,
+                                // backgroundPosition: `-${magnifierPoint.x * 2 - (magnifierPoint.x > displaySize.w / 2 ? 48 : 64)}px -${magnifierPoint.y * 2 - (magnifierPoint.y > displaySize.h / 2 ? 48 : 64)}px`,
                                 // Simpler version: just center the point
                                 backgroundPositionX: -magnifierPoint.x * 2 + (window.innerWidth < 640 ? 48 : 64),
                                 backgroundPositionY: -magnifierPoint.y * 2 + (window.innerWidth < 640 ? 48 : 64),

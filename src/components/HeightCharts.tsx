@@ -164,12 +164,11 @@ export default function HeightCharts() {
                 <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-colors duration-1000 transform-gpu" />
 
                 <div className="relative z-10 mx-auto space-y-8 w-full min-w-0">
-
                     {/* Toggles */}
                     <div className="flex flex-row items-center justify-between sm:justify-center gap-1 sm:gap-2 pt-2 sm:pt-4 w-full">
 
                         {/* Boys / Girls Toggle */}
-                        <div className="bg-bg border border-border p-0.5 sm:p-1 rounded-full flex shrink">
+                        <div className="bg-bg border border-border p-0.5 sm:p-1 rounded-full flex shrink-0">
                             {["boys", "girls"].map(g => (
                                 <button
                                     key={g}
@@ -177,7 +176,7 @@ export default function HeightCharts() {
                                     className={`px-2 sm:px-8 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-sm font-bold transition-all whitespace-nowrap ${activeChart === g
                                         ? (g === "boys" ? "bg-blue-500 text-white shadow-md shadow-blue-500/25" : "bg-pink-500 text-white shadow-md shadow-pink-500/25")
                                         : "text-muted hover:text-foreground"
-                                        } capitalize flex items-center justify-center gap-1 sm:gap-2 leading-none`}
+                                        } capitalize flex items-center justify-center gap-1 sm:gap-2 leading-none shrink-0`}
                                     style={{ fontFamily: GEORGIA }}
                                 >
                                     {g === "boys" ? "👦 Boys" : "👧 Girls"}
@@ -186,13 +185,12 @@ export default function HeightCharts() {
                         </div>
 
                         {/* Chart / Table Toggle */}
-                        <div className="bg-bg border border-border p-0.5 sm:p-1 rounded-xl flex shrink">
+                        <div className="bg-bg border border-border p-0.5 sm:p-1 rounded-xl flex shrink-0">
                             {["chart", "table"].map(v => (
                                 <button
                                     key={v}
                                     onClick={() => setActiveView(v as "chart" | "table")}
-                                    // Removed whitespace-nowrap here so the text is allowed to wrap/stack
-                                    className={`px-2 sm:px-4 py-1 sm:py-2 rounded-lg text-[10px] sm:text-sm font-semibold transition-all ${activeView === v
+                                    className={`px-2 sm:px-4 py-1 sm:py-2 rounded-lg text-[10px] sm:text-sm font-semibold transition-all shrink-0 ${activeView === v
                                         ? "bg-accent/10 border border-accent/20 text-accent"
                                         : "text-muted hover:text-foreground"
                                         } capitalize flex items-center justify-center`}
@@ -200,12 +198,26 @@ export default function HeightCharts() {
                                 >
                                     {/* Dynamically stack the text on mobile, put on one row on desktop */}
                                     {v === "chart" ? (
-                                        <div className="flex flex-col sm:flex-row items-center sm:gap-1.5 leading-[1.2] sm:leading-none">
-                                            <span>📈 Growth Chart</span>
+                                        <div className="flex flex-row items-center gap-1 sm:gap-1.5 min-w-max">
+                                            {/* Enlarged Emoji on mobile, normal on desktop */}
+                                            <span className="text-lg sm:text-sm leading-none shrink-0">📈</span>
+
+                                            {/* Text block: stacked + left-aligned on mobile, inline on desktop */}
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center text-left leading-[1.1] sm:leading-none sm:gap-1">
+                                                <span className="whitespace-nowrap">Growth</span>
+                                                <span className="whitespace-nowrap">Chart</span>
+                                            </div>
                                         </div>
                                     ) : (
-                                        <div className="flex flex-col sm:flex-row items-center sm:gap-1.5 leading-[1.2] sm:leading-none">
-                                            <span>📊 Data Table</span>
+                                        <div className="flex flex-row items-center gap-1 sm:gap-1.5 min-w-max">
+                                            {/* Enlarged Emoji on mobile, normal on desktop */}
+                                            <span className="text-lg sm:text-sm leading-none shrink-0">📊</span>
+
+                                            {/* Text block: stacked + left-aligned on mobile, inline on desktop */}
+                                            <div className="flex flex-col sm:flex-row items-start sm:items-center text-left leading-[1.1] sm:leading-none sm:gap-1">
+                                                <span className="whitespace-nowrap">Data</span>
+                                                <span className="whitespace-nowrap">Table</span>
+                                            </div>
                                         </div>
                                     )}
                                 </button>

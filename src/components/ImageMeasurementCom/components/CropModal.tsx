@@ -50,23 +50,28 @@ export const CropModal: React.FC<CropModalProps> = ({
     const onImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
         const img = e.currentTarget;
         imgRef.current = img;
-        // FIX: Use rendered width/height, not natural width/height for correct crop aspect and sizing logic
         const { width: w, height: h } = img;
-        const newCrop = centerCrop(
-            makeAspectCrop({ unit: '%', width: 100 }, w / h, w, h),
-            w, h
-        );
+
+        // Initial crop: full image
+        const newCrop: Crop = {
+            unit: '%',
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 100
+        };
         setCrop(newCrop);
     }, []);
 
     const handleReset = () => {
         if (!imgRef.current) return;
-        // FIX: Use rendered width/height, not natural width/height
-        const { width: w, height: h } = imgRef.current;
-        const newCrop = centerCrop(
-            makeAspectCrop({ unit: '%', width: 100 }, w / h, w, h),
-            w, h
-        );
+        const newCrop: Crop = {
+            unit: '%',
+            x: 0,
+            y: 0,
+            width: 100,
+            height: 100
+        };
         setCrop(newCrop);
         setCompletedCrop(undefined);
         resetCrop();
@@ -78,12 +83,14 @@ export const CropModal: React.FC<CropModalProps> = ({
             const scaleX = img.naturalWidth / img.width;
             const scaleY = img.naturalHeight / img.height;
 
+            const isFullCrop = completedCrop.width > 99.8 && completedCrop.height > 99.8;
+
             const naturalCrop: PixelCrop = {
                 unit: 'px',
-                x: completedCrop.x * scaleX,
-                y: completedCrop.y * scaleY,
-                width: completedCrop.width * scaleX,
-                height: completedCrop.height * scaleY
+                x: isFullCrop ? 0 : completedCrop.x * scaleX,
+                y: isFullCrop ? 0 : completedCrop.y * scaleY,
+                width: isFullCrop ? img.naturalWidth : completedCrop.width * scaleX,
+                height: isFullCrop ? img.naturalHeight : completedCrop.height * scaleY
             };
 
             applyCrop(naturalCrop);
@@ -137,21 +144,20 @@ export const CropModal: React.FC<CropModalProps> = ({
                             </div>
 
                             {/* Crop Area */}
-                            <div className="flex-1 overflow-auto p-4 sm:p-6 bg-bg flex items-center justify-center min-h-0">
-                                {/* FIX: Removed overflow-hidden so the crop handles aren't clipped */}
-                                <div className="relative rounded-2xl shadow-2xl">
+                            <div className="flex-1 overflow-auto p-4 sm:p-6 bg-bg flex items-center justify-center min-h-0 touch-none">
+                                <div className="relative rounded-2xl shadow-2xl max-h-full w-fit h-fit overflow-hidden p-8">
                                     <ReactCrop
                                         crop={crop}
                                         onChange={(c) => setCrop(c)}
                                         onComplete={(c) => setCompletedCrop(c)}
-                                        className="max-h-[65vh]"
+                                        className="max-h-full w-fit h-fit"
                                     >
                                         <img
                                             src={pendingUrl}
                                             alt="Crop preview"
                                             onLoad={onImageLoad}
                                             draggable={false}
-                                            className="block select-none max-w-full max-h-[65vh] object-contain rounded-2xl"
+                                            className="block select-none max-w-full max-h-full rounded-2xl "
                                         />
                                     </ReactCrop>
                                 </div>

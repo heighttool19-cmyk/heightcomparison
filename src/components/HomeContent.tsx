@@ -697,7 +697,7 @@ export default function HomeContent() {
                                         desc: 'Measure your height from a photo. No tape measure needed. Morning height variation and accuracy guides.'
                                     },
                                     {
-                                        href: '/child-height-calculator/',
+                                        href: '/height-predictor/',
                                         label: 'Height Calculator',
                                         desc: 'Khamis-Roche and Mid-Parental formulas for estimating adult height. The most accurate free child height calculator.'
                                     },

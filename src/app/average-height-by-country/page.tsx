@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -207,7 +207,7 @@ export default function page() {
     // Bottom 10 sorted ascending (Shortest to Tallest)
     const maleBot10 = BOT10.map(c => ({ n: c.name, code: c.code, v: c.male })).sort((a, b) => a.v - b.v);
     const femBot10 = BOT10.map(c => ({ n: c.name, code: c.code, v: c.female })).sort((a, b) => a.v - b.v);
-    const regionBars = REGIONS.map(r => ({ n: r.name, code: r.codes, v: r.avg }));
+    const regionBars = REGIONS.map(r => ({ n: r.name, code: [], v: r.avg }));
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
@@ -248,7 +248,7 @@ export default function page() {
     }, [searchQuery, sortConfig]);
 
     return (
-        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative pt-8 overflow-hidden transform-gpu">
+        <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative pt-8 overflow-x-clip transform-gpu">
 
             <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-4 md:p-8 relative pt-8">
 
