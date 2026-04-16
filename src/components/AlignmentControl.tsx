@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronUp, ChevronDown, HelpCircle } from "lucide-react";
-import { handleInputChange } from '../utils/input';
+import { NumericInput } from './ui/NumericInput';
 
 interface AlignmentControlProps {
     offsetY: number;
@@ -45,10 +45,10 @@ export default function AlignmentControl({ offsetY = 0, onOffsetChange }: Alignm
                 </button>
                 
                 <div className="flex-1 flex items-center justify-center border-x border-border/50 bg-surface h-full">
-                    <input
-                        type="number"
+                    <NumericInput
+                        id="alignment-offset"
                         value={offsetY}
-                        onChange={(e) => handleInputChange(e, onOffsetChange as (val: string | number) => void)}
+                        onValueChange={(val) => onOffsetChange(val === "" ? 0 : val)}
                         className="w-full h-full bg-transparent text-center font-bold text-foreground focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         aria-label="Vertical Offset in Pixels"
                     />

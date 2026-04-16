@@ -66,6 +66,8 @@ export const ImageMeasurement: React.FC = () => {
                     unitSystem={unitSystem}
                     isSavedToChart={isSavedToChart}
                     handleSaveToChart={handleSaveToChart}
+                    mode={mode}
+                    hasFirstPoint={!!firstPoint}
                 />
 
                 {/* Step banner */}
@@ -92,7 +94,7 @@ export const ImageMeasurement: React.FC = () => {
                                     </span>
                                     <span className="text-xs font-bold text-foreground s">
                                         {mode === 'calibrating'
-                                            ? firstPoint ? 'Tap the other end to finish' : 'Tap one end of the known object'
+                                            ? firstPoint ? 'Tap the other end to finish' : 'Draw calibration line of reference object by tapping on screen'
                                             : firstPoint ? 'Tap the other end to finish' : ' Click "Auto Scan" below or manually draw a line from head to toe'}
                                     </span>
                                 </div>
@@ -124,7 +126,7 @@ export const ImageMeasurement: React.FC = () => {
                 </AnimatePresence>
             </div>
 
-            <div className="relative">
+            <div className="relative  flex justify-center  align-center items-center">
                 <Canvas
                     canvasRef={canvasRef}
                     wrapperRef={wrapperRef}

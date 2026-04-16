@@ -4,7 +4,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Ruler, Target, Check, X } from 'lucide-react';
 import { cn } from '../../../../lib/utils';
-import { handleInputChange } from '@/utils/input';
+import { NumericInput } from '@/components/ui/NumericInput';
 
 interface CalibrationModalProps {
     showCalibModal: boolean;
@@ -51,7 +51,7 @@ export const CalibrationModal: React.FC<CalibrationModalProps> = ({
                         </div>
                         <div className="relative">
                             <label htmlFor="calib-cm-input" className="sr-only">Reference Size (CM)</label>
-                            <input id="calib-cm-input" type="number" value={calibCm} onChange={e => handleInputChange(e, setCalibCm)}
+                            <NumericInput id="calib-cm-input" value={calibCm} onValueChange={setCalibCm}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-accent font-black outline-none focus:border-accent transition-all pr-14 focus:ring-1 focus:ring-accent/20" />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-black text-foreground/40">CM</span>
                         </div>

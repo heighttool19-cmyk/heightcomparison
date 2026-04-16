@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useUnitStore } from '@/store';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
+import { NumericInput } from '@/components/ui/NumericInput';
 
 export default function IdealWeightInteractive() {
     const { unitSystem, setUnitSystem } = useUnitStore();
@@ -111,11 +112,10 @@ export default function IdealWeightInteractive() {
                     <label htmlFor="height-cm" className="text-sm font-bold text-muted uppercase tracking-wider">Height</label>
                     {unitSystem === 'metric' ? (
                         <div className="relative">
-                            <input
+                            <NumericInput
                                 id="height-cm"
-                                type="number"
                                 value={heightCm}
-                                onChange={(e) => setHeightCm(e.target.value === '' ? '' : Number(e.target.value))}
+                                onValueChange={setHeightCm}
                                 placeholder="e.g. 175 "
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors"
                             />
@@ -125,11 +125,10 @@ export default function IdealWeightInteractive() {
                         <div className="flex gap-2">
                             <div className="relative flex-1">
                                 <label htmlFor="height-ft" className="sr-only">Height in feet</label>
-                                <input
+                                <NumericInput
                                     id="height-ft"
-                                    type="number"
                                     value={heightFt}
-                                    onChange={(e) => setHeightFt(e.target.value === '' ? '' : Number(e.target.value))}
+                                    onValueChange={setHeightFt}
                                     placeholder="e.g. 5 "
                                     className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors"
                                 />
@@ -137,11 +136,10 @@ export default function IdealWeightInteractive() {
                             </div>
                             <div className="relative flex-1">
                                 <label htmlFor="height-in" className="sr-only">Height in inches</label>
-                                <input
+                                <NumericInput
                                     id="height-in"
-                                    type="number"
                                     value={heightIn}
-                                    onChange={(e) => setHeightIn(e.target.value === '' ? '' : Number(e.target.value))}
+                                    onValueChange={setHeightIn}
                                     placeholder="e.g. 5 "
                                     className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors tracking-normal" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">in</span>
@@ -169,11 +167,10 @@ export default function IdealWeightInteractive() {
                 <div className="space-y-2 sm:col-span-2 text-center">
                     <label htmlFor="current-weight" className="text-sm font-bold text-muted uppercase tracking-wider  ">Current weight (optional — unlocks difference readout)</label>
                     <div className="relative mt-6  w-full sm:w-1/2">
-                        <input
+                        <NumericInput
                             id="current-weight"
-                            type="number"
                             value={weightKg}
-                            onChange={(e) => setWeightKg(e.target.value === '' ? '' : Number(e.target.value))}
+                            onValueChange={setWeightKg}
                             placeholder="e.g. 80"
                             className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors tracking-normal" />
                         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">kg</span>

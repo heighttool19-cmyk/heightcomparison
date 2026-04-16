@@ -145,7 +145,7 @@ export const CropModal: React.FC<CropModalProps> = ({
 
                             {/* Crop Area */}
                             <div className="flex-1 overflow-auto p-4 sm:p-6 bg-bg flex items-center justify-center min-h-0 touch-none">
-                                <div className="relative rounded-2xl shadow-2xl max-h-full w-fit h-fit overflow-hidden p-8">
+                                <div className="relative rounded-2xl shadow-2xl max-h-full w-fit h-fit overflow-hidden p-8 md:p-32">
                                     <ReactCrop
                                         crop={crop}
                                         onChange={(c) => setCrop(c)}

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useUnitStore, usePersonStore } from '@/store';
-import { handleInputChange } from '@/utils/input';
+import { NumericInput } from '@/components/ui/NumericInput';
 import { Person } from '@/types';
 import { ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -96,11 +96,10 @@ export default function MidParentalCalculator() {
                     {unit === 'metric' ? (
                         <div className="relative">
                             <label htmlFor="p-mother-height-cm" className="sr-only">Mother&apos;s Height (cm)</label>
-                            <input
+                            <NumericInput
                                 id="p-mother-height-cm"
-                                type="number"
                                 value={parentMotherHtCm}
-                                onChange={e => handleInputChange(e, setParentMotherHtCm as (val: string | number) => void)}
+                                onValueChange={setParentMotherHtCm}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors"
                                 placeholder="e.g. 165"
                                 aria-label="Mother's Height in Centimeters"
@@ -111,12 +110,12 @@ export default function MidParentalCalculator() {
                         <div className="flex gap-2">
                             <div className="relative flex-1">
                                 <label htmlFor="p-mother-height-ft" className="sr-only">Mother&apos;s Height (ft)</label>
-                                <input id="p-mother-height-ft" type="number" value={parentMotherHtFt} onChange={e => handleInputChange(e, setParentMotherHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Feet" />
+                                <NumericInput id="p-mother-height-ft" value={parentMotherHtFt} onValueChange={setParentMotherHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Feet" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                             </div>
                             <div className="relative flex-1">
                                 <label htmlFor="p-mother-height-in" className="sr-only">Mother&apos;s Height (in)</label>
-                                <input id="p-mother-height-in" type="number" value={parentMotherHtIn} onChange={e => handleInputChange(e, setParentMotherHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Inches" />
+                                <NumericInput id="p-mother-height-in" value={parentMotherHtIn} onValueChange={setParentMotherHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Inches" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                             </div>
                         </div>
@@ -127,19 +126,19 @@ export default function MidParentalCalculator() {
                     {unit === 'metric' ? (
                         <div className="relative">
                             <label htmlFor="p-father-height-cm" className="sr-only">Father&apos;s Height (cm)</label>
-                            <input id="p-father-height-cm" type="number" value={parentFatherHtCm} onChange={e => handleInputChange(e, setParentFatherHtCm as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" aria-label="Father's Height in Centimeters" />
+                            <NumericInput id="p-father-height-cm" value={parentFatherHtCm} onValueChange={setParentFatherHtCm} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" aria-label="Father's Height in Centimeters" />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
                                 <label htmlFor="p-father-height-ft" className="sr-only">Father&apos;s Height (ft)</label>
-                                <input id="p-father-height-ft" type="number" value={parentFatherHtFt} onChange={e => handleInputChange(e, setParentFatherHtFt as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Father's Height in Feet" />
+                                <NumericInput id="p-father-height-ft" value={parentFatherHtFt} onValueChange={setParentFatherHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Father's Height in Feet" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
                             </div>
                             <div className="relative flex-1">
                                 <label htmlFor="p-father-height-in" className="sr-only">Father&apos;s Height (in)</label>
-                                <input id="p-father-height-in" type="number" value={parentFatherHtIn} onChange={e => handleInputChange(e, setParentFatherHtIn as (val: string | number) => void)} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" aria-label="Father's Height in Inches" />
+                                <NumericInput id="p-father-height-in" value={parentFatherHtIn} onValueChange={setParentFatherHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" aria-label="Father's Height in Inches" />
                                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
                             </div>
                         </div>

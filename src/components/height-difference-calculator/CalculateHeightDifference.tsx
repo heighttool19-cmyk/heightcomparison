@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useUnitStore, useThemeStore } from "@/store";
+import { NumericInput } from "@/components/ui/NumericInput";
 
 // ── Palette (Light Mode Base) ────────────────────────────────────────────────
 const BLUE = "#1A56DB", TEAL = "#0694A2", PINK = "#DB2777", GREEN = "#057A55";
@@ -54,12 +55,12 @@ function HeightInput({
     isDark 
 }: { 
     label: string, 
-    cmValue: string, 
-    ftValue: string, 
-    inValue: string, 
-    onCmChange: (v: string) => void, 
-    onFtChange: (v: string) => void, 
-    onInChange: (v: string) => void, 
+    cmValue: number | '', 
+    ftValue: number | '', 
+    inValue: number | '', 
+    onCmChange: (v: number | '') => void, 
+    onFtChange: (v: number | '') => void, 
+    onInChange: (v: number | '') => void, 
     isMetric: boolean, 
     isDark: boolean 
 }) {
@@ -71,10 +72,10 @@ function HeightInput({
             <div className="flex gap-3">
                 {isMetric ? (
                     <div className="flex-1 relative">
-                        <input
-                            type="number"
+                        <NumericInput
+                            id={`${label}-cm`}
                             value={cmValue}
-                            onChange={e => onCmChange(e.target.value)}
+                            onValueChange={onCmChange}
                             placeholder="Centimetres"
                             className={inputBaseClass}
                         />
@@ -83,21 +84,20 @@ function HeightInput({
                 ) : (
                     <>
                         <div className="flex-1 relative">
-                            <input
-                                type="number"
+                            <NumericInput
+                                id={`${label}-ft`}
                                 value={ftValue}
-                                onChange={e => onFtChange(e.target.value)}
+                                onValueChange={onFtChange}
                                 placeholder="Feet"
                                 className={inputBaseClass}
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-muted uppercase">ft</span>
                         </div>
                         <div className="flex-1 relative">
-                            <input
-                                type="number"
-                                step="any"
+                            <NumericInput
+                                id={`${label}-in`}
                                 value={inValue}
-                                onChange={e => onInChange(e.target.value)}
+                                onValueChange={onInChange}
                                 placeholder="Inches"
                                 className={inputBaseClass}
                             />
@@ -122,14 +122,12 @@ export default function CalculateHeightDifference() {
     const currentTeal = isDark ? "#2DD4BF" : TEAL;
 
     // Separate states for Person 1
-    const [h1Cm, setH1Cm] = useState("180");
-    const [h1Ft, setH1Ft] = useState("5");
-    const [h1In, setH1In] = useState("11");
-
-    // Separate states for Person 2
-    const [h2Cm, setH2Cm] = useState("165");
-    const [h2Ft, setH2Ft] = useState("5");
-    const [h2In, setH2In] = useState("5");
+    const [h1Cm, setH1Cm] = useState<number | ''>(180);
+    const [h1Ft, setH1Ft] = useState<number | ''>(5);
+    const [h1In, setH1In] = useState<number | ''>(11);
+    const [h2Cm, setH2Cm] = useState<number | ''>(165);
+    const [h2Ft, setH2Ft] = useState<number | ''>(5);
+    const [h2In, setH2In] = useState<number | ''>(5);
 
     const getCmValue = (isP1: boolean) => {
         if (isMetric) {

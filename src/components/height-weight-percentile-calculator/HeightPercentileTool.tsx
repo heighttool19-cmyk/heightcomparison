@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { useThemeStore, useUnitStore } from "@/store"; // Integrated Unit Store
+import { NumericInput } from "@/components/ui/NumericInput";
 
 // ── Population reference data (mean cm, SD cm) by gender/age ──────────────
 const POPULATION_DATA: Record<string, Record<number, { mean: number, sd: number }>> = {
@@ -274,8 +275,10 @@ function ShareCard({ inputs, percentile, onClose }: {
 
 // ── Main Tool ─────────────────────────────────────────────────────────────
 export default function HeightPercentileTool() {
-    const [height, setHeight] = useState("");
-    const [age, setAge] = useState("");
+    const [height, setHeight] = useState<number | "">("");
+    const [age, setAge] = useState<number | "">("");
+    const [ftHeight, setFtHeight] = useState<number | "">("");
+    const [inHeight, setInHeight] = useState<number | "">("");
     const [gender, setGender] = useState("Male");
     const [country, setCountry] = useState("United States");
     const [result, setResult] = useState<{ percentile: number, heightCm: number } | null>(null);
@@ -294,16 +297,16 @@ export default function HeightPercentileTool() {
     };
 
     const toCm = () => {
-        if (unit === "metric") return parseFloat(height);
-        const ft = parseFloat((document.getElementById("ft-input") as HTMLInputElement)?.value || "0");
-        const inch = parseFloat((document.getElementById("in-input") as HTMLInputElement)?.value || "0");
+        if (unit === "metric") return height === "" ? 0 : Number(height);
+        const ft = ftHeight === "" ? 0 : Number(ftHeight);
+        const inch = inHeight === "" ? 0 : Number(inHeight);
         return (ft * 12 + inch) * 2.54;
     };
 
     const calculate = () => {
         setError("");
         const heightCm = toCm();
-        const ageNum = parseFloat(age);
+        const ageNum = age === "" ? 0 : Number(age);
 
         if (!heightCm || heightCm < 30 || heightCm > 280) {
             setError("Please enter a valid height (30–280 cm).");
@@ -395,10 +398,11 @@ export default function HeightPercentileTool() {
                             <label htmlFor={unit === "metric" ? "height-input" : "ft-input"} style={labelStyle}>Height</label>
                             {unit === "metric" ? (
                                 <div style={{ position: "relative" }}>
-                                    <input
+                                    <NumericInput
                                         id="height-input"
-                                        type="number" placeholder="e.g. 175"
-                                        value={height} onChange={e => setHeight(e.target.value)}
+                                        placeholder="e.g. 175"
+                                        value={height}
+                                        onValueChange={setHeight}
                                         style={{ ...inputStyle, paddingRight: 48 }}
                                     />
                                     <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>cm</span>
@@ -406,13 +410,17 @@ export default function HeightPercentileTool() {
                             ) : (
                                 <div style={{ display: "flex", gap: 10 }}>
                                     <div style={{ flex: 1, position: "relative" }}>
-                                        <input id="ft-input" type="number" placeholder="5"
+                                        <NumericInput id="ft-input" placeholder="5"
+                                            value={ftHeight}
+                                            onValueChange={setFtHeight}
                                             aria-label="Height in feet"
                                             style={{ ...inputStyle, paddingRight: 36 }} />
                                         <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>ft</span>
                                     </div>
                                     <div style={{ flex: 1, position: "relative" }}>
-                                        <input id="in-input" type="number" placeholder="9"
+                                        <NumericInput id="in-input" placeholder="9"
+                                            value={inHeight}
+                                            onValueChange={setInHeight}
                                             aria-label="Height in inches"
                                             style={{ ...inputStyle, paddingRight: 36 }} />
                                         <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>in</span>
@@ -424,10 +432,10 @@ export default function HeightPercentileTool() {
                         {/* Age */}
                         <div style={{ marginBottom: 16 }}>
                             <label htmlFor="age-input" style={labelStyle}>Age (years)</label>
-                            <input
+                            <NumericInput
                                 id="age-input"
-                                type="number" placeholder="e.g. 25" min="0" max="100"
-                                value={age} onChange={e => setAge(e.target.value)}
+                                placeholder="e.g. 25" min="0" max="100"
+                                value={age} onValueChange={setAge}
                                 style={inputStyle}
                             />
                         </div>
@@ -587,7 +595,7 @@ export default function HeightPercentileTool() {
 
             {showCard && result && (
                 <ShareCard
-                    inputs={{ height: result.heightCm, age, gender, country }}
+                    inputs={{ height: result.heightCm, age: String(age), gender, country }}
                     percentile={result.percentile}
                     onClose={() => setShowCard(false)}
                 />

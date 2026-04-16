@@ -10,21 +10,33 @@ interface HeaderProps {
     unitSystem: 'metric' | 'imperial';
     isSavedToChart: boolean;
     handleSaveToChart: () => void;
+    mode: 'idle' | 'calibrating' | 'measuring';
+    hasFirstPoint: boolean;
 }
 
 export const Header: React.FC<HeaderProps> = ({
     calculatedHeight,
     unitSystem,
     isSavedToChart,
-    handleSaveToChart
+    handleSaveToChart,
+    mode,
+    hasFirstPoint
 }) => {
+    const getInstruction = () => {
+        if (mode === 'idle') return 'Upload a photo to start measuring.';
+        if (mode === 'calibrating') {
+            return hasFirstPoint ? 'Tap the other end to finish calibration.' : 'Draw calibration line on reference object.';
+        }
+        return hasFirstPoint ? 'Tap the other end to finish measurement.' : 'Measure person or use AI auto-scan.';
+    };
+
     return (
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex flex-col gap-1">
                 <h2 className="text-lg sm:text-xl font-black text-foreground flex items-center gap-2 uppercase tracking-tight">
                     <Camera className="w-5 h-5 text-accent" /> Image Measurement
                 </h2>
-                <p className="text-xs sm:text-sm text-foreground/60 font-medium">Calibrate with a known object, then measure.</p>
+                <p className="text-xs sm:text-sm text-foreground/60 font-medium">{getInstruction()}</p>
             </div>
             {calculatedHeight > 0 && (
                 <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="flex sm:flex-col items-center sm:items-end justify-between w-full sm:w-auto gap-3 sm:gap-2 bg-accent/5 sm:bg-transparent p-3 sm:p-0 rounded-2xl border border-accent/10 sm:border-0">

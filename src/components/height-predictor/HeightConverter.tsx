@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useUnitStore } from '@/store';
-import { handleInputChange } from '@/utils/input';
+import { NumericInput } from '@/components/ui/NumericInput';
 import { ArrowLeftRight } from 'lucide-react';
 
 const cmToFtIn = (cm: number) => {
@@ -41,14 +41,12 @@ export default function HeightConverter() {
 
                     {/* NEW RELATIVE WRAPPER */}
                     <div className="relative w-full">
-                        <input
+                        <NumericInput
                             id="conv-cm"
-                            type="number"
                             value={convCm}
-                            onChange={e => {
-                                handleInputChange(e, setConvCm as (val: string | number) => void);
-                                const val = e.target.value;
-                                if (val) {
+                            onValueChange={(val) => {
+                                setConvCm(val);
+                                if (val !== "") {
                                     const cm = Number(val);
                                     const { ft, in: inc } = cmToFtIn(cm);
                                     setConvFt(ft);
@@ -58,7 +56,6 @@ export default function HeightConverter() {
                                     setConvIn('');
                                 }
                             }}
-                            /* Added pr-12 here so typing a long number doesn't overlap the "cm" text */
                             className="w-full bg-bg border border-border rounded-xl px-4 pr-12 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors "
                             placeholder="e.g. 170"
                             aria-label="Height in Centimeters"
@@ -81,14 +78,13 @@ export default function HeightConverter() {
                     <div className="flex gap-2">
                         <div className="relative flex-1">
                             <label htmlFor="conv-ft" className="sr-only">Feet</label>
-                            <input
+                            <NumericInput
                                 id="conv-ft"
-                                type="number"
                                 value={convFt}
-                                onChange={e => {
-                                    handleInputChange(e, setConvFt as (val: string | number) => void);
-                                    if (e.target.value !== '' && convIn !== '') {
-                                        setConvCm(Math.round(ftInToCm(Number(e.target.value), Number(convIn))));
+                                onValueChange={(val) => {
+                                    setConvFt(val);
+                                    if (val !== '' && convIn !== '') {
+                                        setConvCm(Math.round(ftInToCm(Number(val), Number(convIn))));
                                     }
                                 }}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors placeholder:text-left"
@@ -99,14 +95,13 @@ export default function HeightConverter() {
                         </div>
                         <div className="relative flex-1">
                             <label htmlFor="conv-in" className="sr-only">Inches</label>
-                            <input
+                            <NumericInput
                                 id="conv-in"
-                                type="number"
                                 value={convIn}
-                                onChange={e => {
-                                    handleInputChange(e, setConvIn as (val: string | number) => void);
-                                    if (e.target.value !== '' && convFt !== '') {
-                                        setConvCm(Math.round(ftInToCm(Number(convFt), Number(e.target.value))));
+                                onValueChange={(val) => {
+                                    setConvIn(val);
+                                    if (val !== '' && convFt !== '') {
+                                        setConvCm(Math.round(ftInToCm(Number(convFt), Number(val))));
                                     }
                                 }}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors placeholder:text-left"
