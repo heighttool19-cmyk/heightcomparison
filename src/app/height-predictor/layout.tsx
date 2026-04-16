@@ -1,8 +1,8 @@
 import { type Metadata, type Viewport } from "next";
 
 export const metadata: Metadata = {
-    title: "Children's Height Calculator - Height Prediction Calculator",
-    description: " Predict your child’s future height with our Height Predictor Calculator. This Projected height calculator uses proven methods to predict adult height.",
+    title: "Height Calculator: Predict Your Adult Height",
+    description: "Predict your height with our Height Predictor Calculator. This Projected height calculator uses proven methods to predict adult height.",
     alternates: {
         canonical: '/height-predictor',
     },
