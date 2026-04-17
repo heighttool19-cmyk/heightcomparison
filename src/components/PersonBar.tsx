@@ -115,8 +115,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
     const avatarOption = [...FEMALE_AVATARS, ...MALE_AVATARS].find(a => a.path === person.imgUrl);
     const paddingFactor = avatarOption?.topPaddingFactor || 0;
     const paddingScale = 1 / (1 - paddingFactor);
-    const isSvgAvatar = person.imgUrl?.toLowerCase().endsWith('.svg');
-
+    // Only apply the mask to standard avatars. Entities load as standard images to preserve color and aspect ratio.
+    const isSvgAvatar = person.imgUrl?.toLowerCase().endsWith('.svg') && !person.isEntity;
     const spring = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
     // ── Tooltip bottom anchor ─────────────────────────────────────────────────
