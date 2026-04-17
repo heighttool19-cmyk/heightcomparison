@@ -8,6 +8,7 @@ import { FictionalCategory, Person, FictionalCharacter } from '../types';
 import { FilterTabs } from './ui/FilterTabs';
 import { PanelHeader } from './ui/PanelHeader';
 import { PanelListItem } from './ui/PanelListItem';
+import { DEFAULT_FEMALE_AVATAR, DEFAULT_MALE_AVATAR, ENABLE_SVG_AVATARS } from '../constants/avatars';
 
 interface FictionalPanelProps {
     onAddPerson: (person: Person) => void;
@@ -151,17 +152,21 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                                                 name={char.name}
                                                 heightString={getHeightString(char.heightCm)}
                                                 onAdd={() => {
-                                                    const timestamp = Date.now();
-                                                    const rand = Math.random().toString(36).substr(2, 9);
-                                                    const newId = `person-${timestamp}-${rand}`;
+                                                     const timestamp = Date.now();
+                                                     const rand = Math.random().toString(36).substr(2, 9);
+                                                     const newId = `person-${timestamp}-${rand}`;
 
-                                                    onAddPerson({
-                                                        id: newId,
-                                                        name: char.name,
-                                                        heightCm: char.heightCm,
-                                                        color: char.color,
-                                                        gender: 'other',
-                                                    });
+                                                     // Choose default SVG avatar based on gender (if available) or default to male
+                                                     const defaultAvatar = char.gender === 'female' ? DEFAULT_FEMALE_AVATAR : DEFAULT_MALE_AVATAR;
+ 
+                                                     onAddPerson({
+                                                         id: newId,
+                                                         name: char.name,
+                                                         heightCm: char.heightCm,
+                                                         color: char.color,
+                                                         gender: char.gender || 'male',
+                                                         imgUrl: ENABLE_SVG_AVATARS ? defaultAvatar : undefined
+                                                     });
                                                 }}
                                                 avatarNode={
                                                     <div

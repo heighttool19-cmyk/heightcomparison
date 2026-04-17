@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { Gender, UnitSystem, COLOR_PALETTE, uid, Person } from '../types';
+import { FEMALE_AVATARS, MALE_AVATARS, DEFAULT_FEMALE_AVATAR, DEFAULT_MALE_AVATAR, ENABLE_SVG_AVATARS } from '../constants/avatars';
 import { handleInputChange } from '../utils/input';
 import { NumericInput } from './ui/NumericInput';
 
@@ -20,11 +21,18 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
     const [heightFt, setHeightFt] = useState<number | ''>('');
     const [heightIn, setHeightIn] = useState<number | ''>('');
     const [color, setColor] = useState(COLOR_PALETTE[personCount % 8]);
+    const [avatarUrl, setAvatarUrl] = useState(DEFAULT_MALE_AVATAR);
 
     // Update color selection when personCount changes (e.g. initial load or reset)
     React.useEffect(() => {
         setColor(COLOR_PALETTE[personCount % 8]);
     }, [personCount]);
+
+    const handleGenderChange = (newGender: Gender) => {
+        setGender(newGender);
+        if (newGender === 'male') setAvatarUrl(DEFAULT_MALE_AVATAR);
+        else if (newGender === 'female') setAvatarUrl(DEFAULT_FEMALE_AVATAR);
+    };
     const handleAdd = () => {
         let finalHeightCm = 0;
         if (unit === 'metric') {
@@ -42,6 +50,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                 heightCm: finalHeightCm,
                 gender,
                 color,
+                imgUrl: ENABLE_SVG_AVATARS ? avatarUrl : undefined,
             });
             // Reset form
             setName('');
@@ -68,14 +77,14 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
             {/* Gender Toggle */}
             <div className="flex p-0.5 bg-surface rounded-2xl border border-border">
                 <button
-                    onClick={() => setGender('male')}
+                    onClick={() => handleGenderChange('male')}
                     className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Male
                 </button>
                 <button
-                    onClick={() => setGender('female')}
+                    onClick={() => handleGenderChange('female')}
                     className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
@@ -156,6 +165,26 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                     </div>
                 </div>
             </div>
+
+            {/* Avatar Selection */}
+            {ENABLE_SVG_AVATARS && (gender === 'male' || gender === 'female') && (
+                <div className="space-y-3">
+                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Avatar Style</label>
+                    <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                        {(gender === 'male' ? MALE_AVATARS : FEMALE_AVATARS).map((av) => (
+                            <button
+                                key={av.id}
+                                onClick={() => setAvatarUrl(av.path)}
+                                title={av.label}
+                                className={`aspect-square rounded-xl border-2 p-1.5 transition-all flex items-center justify-center overflow-hidden ${avatarUrl === av.path ? 'border-accent bg-accent/5' : 'border-border hover:border-accent/40 bg-surface'
+                                    }`}
+                            >
+                                <img src={av.path} alt={av.label} className="w-full h-full object-contain object-bottom" />
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
 
             {/* Color Swatches */}
             <div className="space-y-2">

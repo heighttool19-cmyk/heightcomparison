@@ -9,6 +9,7 @@ import { getCelebrities } from '../data/celebrities';
 import { FilterTabs } from './ui/FilterTabs';
 import { PanelHeader } from './ui/PanelHeader';
 import { PanelListItem } from './ui/PanelListItem';
+import { DEFAULT_FEMALE_AVATAR, DEFAULT_MALE_AVATAR, ENABLE_SVG_AVATARS } from '../constants/avatars';
 
 interface CelebritiesPanelProps {
     onAddPerson: (person: Person) => void;
@@ -104,13 +105,16 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
         const rand = Math.random().toString(36).substr(2, 9);
         const newId = `person-${timestamp}-${rand}`;
 
+        // Choose default SVG avatar if no image is provided
+        const defaultAvatar = celeb.gender === 'female' ? DEFAULT_FEMALE_AVATAR : DEFAULT_MALE_AVATAR;
+
         onAddPerson({
             id: newId,
             name: celeb.name,
             heightCm: celeb.heightCm,
-            gender: 'other', 
+            gender: celeb.gender || 'male',
             color: celeb.color || '#3B82F6',
-            imgUrl: celeb.imgUrl
+            imgUrl: celeb.imgUrl || (ENABLE_SVG_AVATARS ? defaultAvatar : undefined)
         });
     };
 

@@ -19,7 +19,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title}`,
+    title: `${post.title} - Blog Height Comparison Tool`,
     description: post.excerpt || `Read "${post.title}" on our blog.`,
     openGraph: {
       title: post.title,

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Edit2, Trash2 } from 'lucide-react';
 import { Person } from '../types';
 import { useUnitStore } from '../store';
+import { FEMALE_AVATARS, MALE_AVATARS } from '../constants/avatars';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SIZING  (must stay in sync with HeightDashboard constants)
@@ -109,6 +110,12 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
 
     // Take the smallest of: absolute max, proportional max, or our length-based max
     const fontSize = Math.max(minBaseSize, Math.min(maxBaseSize, effectiveW * propScale, maxFontSizeForLength));
+
+    // ── Padding Compensation ──────────────────────────────────────────────────
+    const avatarOption = [...FEMALE_AVATARS, ...MALE_AVATARS].find(a => a.path === person.imgUrl);
+    const paddingFactor = avatarOption?.topPaddingFactor || 0;
+    const paddingScale = 1 / (1 - paddingFactor);
+    const isSvgAvatar = person.imgUrl?.toLowerCase().endsWith('.svg');
 
     const spring = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
@@ -267,21 +274,40 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
                         animate={{ y: person.offsetY || 0 }}
                         transition={spring}
                     >
-                        <motion.img
-                            src={person.imgUrl}
-                            alt={person.name}
-                            onLoad={handleImageLoad}
-                            animate={{ height: barH }}
-                            transition={spring}
-                            style={{
-                                width: '100%',
-                                height: barH,
-                                objectFit: 'contain',
-                                display: 'block',
-                                objectPosition: 'bottom',
-                            }}
-                            className="drop-shadow-md"
-                        />
+                        {isSvgAvatar ? (
+                            <motion.div
+                                animate={{ height: barH, scale: paddingScale }}
+                                transition={paddingFactor > 0 ? { duration: 0 } : spring}
+                                style={{
+                                    width: '100%',
+                                    height: barH,
+                                    backgroundColor: person.color || '#6366F1',
+                                    maskImage: `url("${person.imgUrl}")`,
+                                    WebkitMaskImage: `url("${person.imgUrl}")`,
+                                    maskSize: 'contain',
+                                    maskRepeat: 'no-repeat',
+                                    maskPosition: 'bottom center',
+                                    transformOrigin: 'bottom center',
+                                }}
+                                className="drop-shadow-md"
+                            />
+                        ) : (
+                            <motion.img
+                                src={person.imgUrl}
+                                alt={person.name}
+                                onLoad={handleImageLoad}
+                                animate={{ height: barH }}
+                                transition={spring}
+                                style={{
+                                    width: '100%',
+                                    height: barH,
+                                    objectFit: 'contain',
+                                    display: 'block',
+                                    objectPosition: 'bottom',
+                                }}
+                                className="drop-shadow-md"
+                            />
+                        )}
                     </motion.div>
                 ) : (
                     // SILHOUETTE PERSON

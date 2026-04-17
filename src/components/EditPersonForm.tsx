@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronRight, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Gender, UnitSystem, COLOR_PALETTE, Person } from '../types';
+import { FEMALE_AVATARS, MALE_AVATARS, DEFAULT_FEMALE_AVATAR, DEFAULT_MALE_AVATAR } from '../constants/avatars';
 import { useUnitStore } from '../store';
 import { handleInputChange } from '../utils/input';
 import { NumericInput } from './ui/NumericInput';
@@ -35,6 +36,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
     const [color, setColor] = useState(person.color || COLOR_PALETTE[2]);
     const [icon, setIcon] = useState(person.icon || '');
     const [offsetY, setOffsetY] = useState<number>(person.offsetY || 0);
+    const [avatarUrl, setAvatarUrl] = useState(person.imgUrl || (gender === 'male' ? DEFAULT_MALE_AVATAR : DEFAULT_FEMALE_AVATAR));
     const [error, setError] = useState<string | null>(null);
 
     // Instant Preview logic
@@ -57,6 +59,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             gender !== person.gender ||
             color !== person.color ||
             offsetY !== person.offsetY ||
+            avatarUrl !== person.imgUrl ||
             (person.isEntity && icon !== person.icon);
 
         if (hasChanged && finalHeightCm > 10) {
@@ -66,6 +69,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                 heightCm: finalHeightCm,
                 gender,
                 color,
+                imgUrl: avatarUrl,
                 icon: person.isEntity ? icon : undefined,
                 offsetY: Number(offsetY) || 0
             });
@@ -90,6 +94,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             heightCm: finalHeightCm,
             gender,
             color,
+            imgUrl: avatarUrl,
             icon: person.isEntity ? (icon || person.icon) : undefined,
             offsetY
         });
@@ -132,14 +137,22 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             {/* Gender Toggle */}
             <div className="flex p-0.5 bg-surface rounded-2xl border border-border">
                 <button
-                    onClick={() => { setGender('male'); setIcon(''); }}
+                    onClick={() => { 
+                        setGender('male'); 
+                        setIcon(''); 
+                        setAvatarUrl(DEFAULT_MALE_AVATAR);
+                    }}
                     className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Male
                 </button>
                 <button
-                    onClick={() => { setGender('female'); setIcon(''); }}
+                    onClick={() => { 
+                        setGender('female'); 
+                        setIcon(''); 
+                        setAvatarUrl(DEFAULT_FEMALE_AVATAR);
+                    }}
                     className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
@@ -232,27 +245,45 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                         )}
                     </div>
                 </div>
+
+                {/* Avatar Selection */}
+                {(gender === 'male' || gender === 'female') && !person.isEntity && (
+                    <div className="space-y-3">
+                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Avatar Style</label>
+                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
+                            {(gender === 'male' ? MALE_AVATARS : FEMALE_AVATARS).map((av) => (
+                                <button
+                                    key={av.id}
+                                    onClick={() => setAvatarUrl(av.path)}
+                                    title={av.label}
+                                    className={`aspect-square rounded-xl border-2 p-1.5 transition-all flex items-center justify-center overflow-hidden ${avatarUrl === av.path ? 'border-accent bg-accent/5' : 'border-border hover:border-accent/40 bg-surface'
+                                        }`}
+                                >
+                                    <img src={av.path} alt={av.label} className="w-full h-full object-contain object-bottom" />
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* Color Swatches */}
-            {!person.imgUrl && (
-                <div className="space-y-2">
-                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Accent</label>
-                    <div className="flex gap-2.5">
-                        {COLOR_PALETTE.slice(0, 6).map((c) => (
-                            <motion.button
-                                key={c}
-                                whileHover={{ scale: 1.2, rotate: 5 }}
-                                whileTap={{ scale: 0.9 }}
-                                onClick={() => setColor(c)}
-                                className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'
-                                    }`}
-                                style={{ backgroundColor: c, boxShadow: color === c ? `0 0 12px ${c}44` : 'none' }}
-                            />
-                        ))}
-                    </div>
+            <div className="space-y-2">
+                <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Color</label>
+                <div className="flex gap-2.5">
+                    {COLOR_PALETTE.slice(0, 6).map((c) => (
+                        <motion.button
+                            key={c}
+                            whileHover={{ scale: 1.2, rotate: 5 }}
+                            whileTap={{ scale: 0.9 }}
+                            onClick={() => setColor(c)}
+                            className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'
+                                }`}
+                            style={{ backgroundColor: c, boxShadow: color === c ? `0 0 12px ${c}44` : 'none' }}
+                        />
+                    ))}
                 </div>
-            )}
+            </div>
 
             {person.imgUrl && (
                 <AlignmentControl

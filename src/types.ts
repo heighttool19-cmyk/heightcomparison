@@ -47,6 +47,7 @@ export const DEFAULT_PERSONS: Person[] = [
     heightCm: 170,
     gender: 'male',
     color: '#6366F1',
+    imgUrl: '/Avtars/HUMANS/MALE – ADULT/Standing Neutral.svg',
   },
   {
     id: 'person-default-compare',
@@ -54,6 +55,7 @@ export const DEFAULT_PERSONS: Person[] = [
     heightCm: 160,
     gender: 'female',
     color: '#EC4899',
+    imgUrl: '/Avtars/HUMANS/FEMALE – ADULT/Standing Neutral.svg',
   },
 ];
 
@@ -76,6 +78,7 @@ export interface Celebrity {
   id: string;
   name: string;
   heightCm: number;
+  gender?: Gender;
   category: CelebrityCategory;
   imgUrl?: string;
   color?: string;
@@ -87,6 +90,7 @@ export interface FictionalCharacter {
   id: string;
   name: string;
   heightCm: number;
+  gender?: Gender;
   category: FictionalCategory;
   color: string;
   icon?: string;

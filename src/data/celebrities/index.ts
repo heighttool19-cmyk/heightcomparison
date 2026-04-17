@@ -1,4 +1,4 @@
-import { Celebrity } from '../../types';
+import { Celebrity, Gender } from '../../types';
 // Static imports removed for code-splitting
 
 const COLOR_PALETTE = [
@@ -8,12 +8,16 @@ const COLOR_PALETTE = [
 
 type RawCelebrity = Omit<Celebrity, 'id' | 'color'>;
 
-function processData(data: RawCelebrity[], prefix: string): Celebrity[] {
-  return data.map((item, index) => ({
-    ...item,
-    id: `${prefix}-${index + 1}`,
-    color: COLOR_PALETTE[index % COLOR_PALETTE.length]
-  }));
+function processData(data: (RawCelebrity & { gender?: string })[], prefix: string): Celebrity[] {
+  return data.map((item, index) => {
+    const { gender, ...rest } = item;
+    return {
+      ...rest,
+      id: `${prefix}-${index + 1}`,
+      color: COLOR_PALETTE[index % COLOR_PALETTE.length],
+      gender: (gender?.toLowerCase() as Gender) || 'male'
+    };
+  });
 }
 
 export const getCelebrities = async (): Promise<Celebrity[]> => {

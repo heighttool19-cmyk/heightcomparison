@@ -144,11 +144,8 @@ export const CropModal: React.FC<CropModalProps> = ({
                             </div>
 
                             {/* Crop Area */}
-                            {/* Removed 'flex items-center justify-center' to prevent the top/left clipping bug */}
-                            <div className="flex-1 overflow-auto p-8 sm:p-10 bg-bg min-h-0 touch-none">
-                                {/* Added an inner wrapper to allow safe centering that respects scroll boundaries */}
+                            <div className="flex-1 overflow-auto p-8 sm:p-10 bg-bg min-h-0">
                                 <div className="min-h-full flex flex-col">
-                                    {/* m-auto safely centers. Removed percentage heights which break in flex containers */}
                                     <div className="relative m-auto rounded-2xl shadow-2xl w-fit h-fit overflow-hidden p-2 sm:p-4 bg-surface">
                                         <ReactCrop
                                             crop={crop}
@@ -160,8 +157,6 @@ export const CropModal: React.FC<CropModalProps> = ({
                                                 alt="Crop preview"
                                                 onLoad={onImageLoad}
                                                 draggable={false}
-                                                // Added specific max-heights (vh) so the image scales down, 
-                                                // keeping it visible without massive overflow.
                                                 className="block select-none max-w-full max-h-[55vh] lg:max-h-[65vh] w-auto h-auto rounded-xl"
                                             />
                                         </ReactCrop>
