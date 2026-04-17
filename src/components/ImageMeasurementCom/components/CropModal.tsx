@@ -145,7 +145,7 @@ export const CropModal: React.FC<CropModalProps> = ({
 
                             {/* Crop Area */}
                             {/* Removed 'flex items-center justify-center' to prevent the top/left clipping bug */}
-                            <div className="flex-1 overflow-auto p-4 sm:p-6 bg-bg min-h-0 touch-none">
+                            <div className="flex-1 overflow-auto p-8 sm:p-10 bg-bg min-h-0 touch-none">
                                 {/* Added an inner wrapper to allow safe centering that respects scroll boundaries */}
                                 <div className="min-h-full flex flex-col">
                                     {/* m-auto safely centers. Removed percentage heights which break in flex containers */}
