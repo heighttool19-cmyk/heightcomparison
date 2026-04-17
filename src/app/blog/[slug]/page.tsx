@@ -48,16 +48,18 @@ function extractHeadings(body: PortableTextBlock[]): TocHeading[] {
     .map((block) => {
       const text = (block.children as Array<{ text?: string }>)
         ?.map((child) => child.text || "")
-        .join("") || "";
+        .join("")
+        .trim() || ""; // Added .trim() to catch spaces-only headings
 
       return {
         id: slugify(text),
         text,
         level: block.style === "h2" ? 2 : 3,
       } as TocHeading;
-    });
+    })
+    // Filter out headings that are empty, just whitespace, or just '#'
+    .filter((heading) => heading.text.length > 0 && heading.text !== "#");
 }
-
 /** Format a date string into a human-readable form */
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString("en-US", {
@@ -184,16 +186,19 @@ export default async function BlogPostPage({ params }: PageProps) {
 
             {/* ── Main image ─────────────────────────────────────────── */}
             {post.mainImage?.asset?.url && (
-              <div className="mb-12 overflow-hidden rounded-3xl border border-border">
+              // Added max-w-3xl and mx-auto to constrain the width and center it.
+              // Added a subtle background (bg-accent/5) in case the image doesn't fill the borders.
+              <div className="mb-12 mx-auto max-w-4xl overflow-hidden rounded-3xl border border-border bg-accent/5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={post.mainImage.asset.url}
                   alt={post.mainImage.alt || post.title}
-                  className="w-full h-auto object-cover"
+                  // Removed w-full stretching. 
+                  // Added max-h-[500px] and object-contain to keep it crisp.
+                  className="mx-auto h-auto w-auto max-h-[500px] max-w-full object-contain"
                 />
               </div>
             )}
-
             {/* ── Mobile ToC (below header) ──────────────────────────── */}
             <div className="lg:hidden">
               <TableOfContents headings={headings} />

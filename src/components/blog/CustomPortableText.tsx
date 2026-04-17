@@ -44,19 +44,23 @@ const components: PortableTextComponents = {
   // ── Block-level types ───────────────────────────────────────────────────
   types: {
     /** Beautifully styled image block with optional caption */
+    /** Beautifully styled image block with optional caption */
     image: ({ value }: { value: SanityImage }) => {
       const url = value?.asset?.url;
       if (!url) return null;
 
       return (
         <figure className="my-10">
-          <div className="overflow-hidden rounded-2xl border border-border">
+          {/* Added flex justify-center and bg-accent/5 to nicely frame smaller images */}
+          <div className="flex justify-center overflow-hidden rounded-2xl border border-border bg-accent/5">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={url}
               alt={value.alt || "Blog post image"}
               loading="lazy"
-              className="w-full h-auto object-cover"
+              // Removed w-full and object-cover. 
+              // Added w-auto, max-h-[600px], and object-contain to keep it crisp.
+              className="h-auto w-auto max-w-full max-h-[600px] object-contain"
             />
           </div>
           {value.caption && (

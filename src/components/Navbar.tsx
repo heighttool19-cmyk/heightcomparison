@@ -73,7 +73,7 @@ const Navbar: React.FC = () => {
                         />
                     </div>
                     <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors whitespace-nowrap">
-                        Height<span className="text-[#3B82F6]"> Comparison</span>
+                        Height<span className="text-accent"> Comparison</span>
                     </h1>
                 </Link>
 
@@ -134,13 +134,24 @@ const Navbar: React.FC = () => {
                     {/* Unit Toggle (Desktop) */}
                     <button
                         onClick={toggleUnitSystem}
-                        className="hidden md:flex items-center justify-center gap-2 group hover:bg-item-hover px-3 py-2 rounded-xl transition-all border border-border bg-surface w-[130px] sm:w-[180px] shrink-0"
+                        className="
+        hidden md:flex items-center justify-center gap-2 group 
+        px-3 py-2 rounded-xl transition-all shrink-0
+        bg-surface border-2 w-[130px] sm:w-[180px]
+        
+        /* Fluorescent Effect */
+        border-accent 
+        shadow-[0_0_15px_rgba(34,211,238,0.4)] 
+        hover:shadow-[0_0_25px_rgba(34,211,238,0.8)] 
+        hover:border-white
+        animate-pulse-subtle
+    "
                         title={`Switch to ${unitSystem === 'metric' ? 'Imperial' : 'Metric'}`}
                         aria-label={`Current unit system: ${unitSystem === 'metric' ? 'Metric' : 'Imperial'}. Click to toggle.`}
                     >
-                        <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent shrink-0" />
-                        <span className="inline-block px-2 py-1 rounded-md bg-muted/20 border border-muted/30 group-hover:bg-accent group-hover:border-accent transition-colors">
-                            <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-muted group-hover:text-foreground whitespace-nowrap">
+                        <ArrowLeftRight size={14} className="text-cyan-400 group-hover:text-white shrink-0" />
+                        <span className="inline-block px-2 py-1 rounded-md bg-cyan-400/10 border border-cyan-400/30 group-hover:bg-cyan-500 transition-colors">
+                            <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-cyan-300 group-hover:text-white whitespace-nowrap">
                                 {unitSystem === 'metric' ? 'metric (cm)' : 'imperial (ft/in)'}
                             </span>
                         </span>
