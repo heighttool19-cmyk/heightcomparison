@@ -31,7 +31,7 @@ export const IBW_FAQ = [
 
 export const IBW_TOC = [
     { id: 'ideal-body-weight-calculator', label: 'Ideal Body Weight Calculator' },
-    { id: 'calculate-your-ideal-body-weight-in-kg-or-pounds', label: 'Calculate Your Ideal Body Weight in Kg or pounds' },
+    { id: 'calculate-your-ideal-body-weight-in-kg-or-pounds', label: 'Ideal Body Weight Calculator' },
     { id: 'how-to-calculate-ideal-body-weight', label: 'How to Calculate Ideal Body Weight' },
     {
         id: 'ideal-body-weight-calculation-formulas',

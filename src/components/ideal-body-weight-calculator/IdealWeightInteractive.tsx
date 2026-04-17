@@ -86,7 +86,7 @@ export default function IdealWeightInteractive() {
 
     return (
         <section id="calculate-your-ideal-body-weight-in-kg-or-pounds" className="scroll-mt-24 bg-surface border border-border p-6 md:p-10 rounded-3xl shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
-            <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4 text-foreground">Calculate Your Ideal Body Weight in Kg or pounds</h2>
+            <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4 text-foreground">Ideal Body Weight Calculator</h2>
             <p className="text-muted leading-relaxed mb-8">
                 Use the calculator to find your ideal body weight in kilograms or pounds. Enter your age, height, sex, and current weight to see how much you differ from the ideal weight estimate based on three formulas.
             </p>
