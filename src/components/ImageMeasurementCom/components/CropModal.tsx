@@ -144,22 +144,28 @@ export const CropModal: React.FC<CropModalProps> = ({
                             </div>
 
                             {/* Crop Area */}
-                            <div className="flex-1 overflow-auto p-4 sm:p-6 bg-bg flex items-center justify-center min-h-0 touch-none">
-                                <div className="relative rounded-2xl shadow-2xl max-h-full w-fit h-fit overflow-hidden p-8 md:p-32 md:pt-24">
-                                    <ReactCrop
-                                        crop={crop}
-                                        onChange={(c) => setCrop(c)}
-                                        onComplete={(c) => setCompletedCrop(c)}
-                                        className="max-h-full w-fit h-fit"
-                                    >
-                                        <img
-                                            src={pendingUrl}
-                                            alt="Crop preview"
-                                            onLoad={onImageLoad}
-                                            draggable={false}
-                                            className="block select-none max-w-full max-h-full rounded-2xl "
-                                        />
-                                    </ReactCrop>
+                            {/* Removed 'flex items-center justify-center' to prevent the top/left clipping bug */}
+                            <div className="flex-1 overflow-auto p-4 sm:p-6 bg-bg min-h-0 touch-none">
+                                {/* Added an inner wrapper to allow safe centering that respects scroll boundaries */}
+                                <div className="min-h-full flex flex-col">
+                                    {/* m-auto safely centers. Removed percentage heights which break in flex containers */}
+                                    <div className="relative m-auto rounded-2xl shadow-2xl w-fit h-fit overflow-hidden p-2 sm:p-4 bg-surface">
+                                        <ReactCrop
+                                            crop={crop}
+                                            onChange={(c) => setCrop(c)}
+                                            onComplete={(c) => setCompletedCrop(c)}
+                                        >
+                                            <img
+                                                src={pendingUrl}
+                                                alt="Crop preview"
+                                                onLoad={onImageLoad}
+                                                draggable={false}
+                                                // Added specific max-heights (vh) so the image scales down, 
+                                                // keeping it visible without massive overflow.
+                                                className="block select-none max-w-full max-h-[55vh] lg:max-h-[65vh] w-auto h-auto rounded-xl"
+                                            />
+                                        </ReactCrop>
+                                    </div>
                                 </div>
                             </div>
 

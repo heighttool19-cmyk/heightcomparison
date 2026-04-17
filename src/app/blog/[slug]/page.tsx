@@ -11,7 +11,6 @@
  *   - Responsive: two-column on desktop, single-column on mobile
  */
 import { notFound } from "next/navigation";
-import type { Metadata } from "next";
 import type { PortableTextBlock } from "@portabletext/types";
 
 import { client } from "@/sanity/lib/client";
@@ -70,41 +69,9 @@ function formatDate(dateStr: string): string {
 }
 
 // ---------------------------------------------------------------------------
-// Dynamic SEO Metadata
-// ---------------------------------------------------------------------------
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await client.fetch<Post | null>(postBySlugQuery, { slug });
-
-  if (!post) {
-    return { title: "Post Not Found" };
-  }
-
-  return {
-    title: `${post.title} — Blog`,
-    description: post.excerpt || `Read "${post.title}" on our blog.`,
-    openGraph: {
-      title: post.title,
-      description: post.excerpt || undefined,
-      type: "article",
-      publishedTime: post.publishedAt,
-      ...(post.mainImage?.asset?.url && {
-        images: [{ url: post.mainImage.asset.url }],
-      }),
-    },
-  };
-}
-
-// ---------------------------------------------------------------------------
 // Page Component
 // ---------------------------------------------------------------------------
-export default async function BlogPostPage({ params }: PageProps) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = await client.fetch<Post | null>(postBySlugQuery, { slug });
 

@@ -18,7 +18,7 @@ export default function ImageToHeightPage() {
                     <div className="flex-1 bg-surface border border-border rounded-3xl shadow-xl overflow-hidden relative">
                         <div className="p-4 md:p-8 flex flex-col relative w-full">
                             {/* Ghost Watermark */}
-                            <div className="absolute top-1/2 right-4 md:right-10 -translate-y-1/2 text-[20vw] md:text-[15vw] font-black text-foreground opacity-5 pointer-events-none select-none tracking-tighter leading-none transform-gpu">
+                            <div className="absolute top-1/2 right-4 md:right-10 -translate-y-1/2 text-[16vw] md:text-[12vw] font-black text-foreground opacity-5 pointer-events-none select-none tracking-tighter leading-none transform-gpu">
                                 HEIGHT
                             </div>
                             <div className="relative z-10 w-full h-fit max-w-4xl mx-auto">

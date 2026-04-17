@@ -24,7 +24,7 @@ export default function IdealBodyWeightPage() {
                     {/* Intro */}
                     <div className="space-y-6 text-left sm:text-left p-2">
                         <h1 id="ideal-body-weight-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 text-left">
-                            Ideal Body Weight Calculator
+                            Enter your height (feet/inches) and weight (pounds) to calculate your Ideal Body Weight.
                         </h1>
                         <p className="text-muted leading-relaxed text-lg max-w-3xl text-left">
                             <span className='text-accent font-semibold hover:underline'>Ideal Body Weight (IBW)</span> is an estimate of the weight range associated with good health for a given height and sex. This ideal body weight calculator applies three established clinical formulas: the <span className='text-accent font-semibold hover:underline'>Devine</span>, <span className='text-accent font-semibold hover:underline'>Robinson</span>, and <span className='text-accent font-semibold hover:underline'>Hamwi</span> methods to produce a range rather than a single number. The tool works for men, women, and pediatric patients. Enter your height and sex to calculate ideal body weight instantly.
@@ -38,7 +38,7 @@ export default function IdealBodyWeightPage() {
                     <DynamicIdealWeightIsland />
 
                     <section id="how-to-calculate-ideal-body-weight" className="space-y-4 scroll-mt-24">
-                        <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">How to Calculate Ideal Body Weight</h2>
+                        <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">Ideal Body Weight Calculator</h2>
                         <p className="text-muted leading-relaxed">
                             All three IBW formulas share the same logic. Start from a base weight at exactly 5 feet (152.4 cm) and add a fixed amount per inch of height above that. The formulas differ in their base weight and per-inch increment, which is why they produce slightly different outputs for the same person.
                         </p>

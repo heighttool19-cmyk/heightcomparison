@@ -139,24 +139,29 @@ const Navbar: React.FC = () => {
         px-3 py-2 rounded-xl transition-all shrink-0
         bg-surface border-2 w-[130px] sm:w-[180px]
         
-        /* Fluorescent Effect */
-        border-accent 
-        shadow-[0_0_15px_rgba(34,211,238,0.4)] 
-        hover:shadow-[0_0_25px_rgba(34,211,238,0.8)] 
-        hover:border-white
+        /* Uses your theme's accent color (Green in Dark / Blue in Light) */
+        border-accent/40 hover:border-accent
+        
+        /* Fluorescent Effect using your CSS accent variable */
+        shadow-[0_0_15px_color-mix(in_srgb,var(--color-accent)_30%,transparent)] 
+        hover:shadow-[0_0_25px_color-mix(in_srgb,var(--color-accent)_60%,transparent)] 
+        
         animate-pulse-subtle
     "
                         title={`Switch to ${unitSystem === 'metric' ? 'Imperial' : 'Metric'}`}
                         aria-label={`Current unit system: ${unitSystem === 'metric' ? 'Metric' : 'Imperial'}. Click to toggle.`}
                     >
-                        <ArrowLeftRight size={14} className="text-cyan-400 group-hover:text-white shrink-0" />
-                        <span className="inline-block px-2 py-1 rounded-md bg-cyan-400/10 border border-cyan-400/30 group-hover:bg-cyan-500 transition-colors">
-                            <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-cyan-300 group-hover:text-white whitespace-nowrap">
+                        <ArrowLeftRight
+                            size={14}
+                            className="text-accent group-hover:scale-110 transition-transform shrink-0"
+                        />
+
+                        <span className="inline-block px-2 py-1 rounded-md bg-accent/10 border border-accent/20 group-hover:bg-accent transition-colors">
+                            <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-widest text-accent group-hover:text-bg whitespace-nowrap">
                                 {unitSystem === 'metric' ? 'metric (cm)' : 'imperial (ft/in)'}
                             </span>
                         </span>
                     </button>
-
                     {/* Theme Toggle */}
                     <button
                         onClick={toggleTheme}

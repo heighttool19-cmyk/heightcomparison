@@ -1,14 +1,8 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { client } from '@/sanity/lib/client';
 import { allPostsQuery } from '@/sanity/lib/queries';
 import type { Post } from '@/sanity/lib/types';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
-
-export const metadata: Metadata = {
-    title: 'Blog — Height Comparison Tool',
-    description: 'Read the latest articles about height, body proportions, and interesting comparisons.',
-};
 
 function formatDate(dateStr: string): string {
     return new Date(dateStr).toLocaleDateString('en-US', {

@@ -4,11 +4,14 @@ import { ABOUT_SCHEMA } from '@/constants/schemas/about';
 
 export default function AboutPage() {
     return (
-        <div className="flex-1 bg-canvas py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-bg">
+            {/* Decorative top gradient */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-accent/5 to-transparent" />
+
             <JsonLd data={ABOUT_SCHEMA} />
-            <div className="max-w-4xl mx-auto">
+            <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-12 pb-24 lg:pt-20">
                 {/* Header Section */}
-                <div className="text-center mb-16">
+                <header className="text-center mb-16">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-3xl bg-accent/10 text-accent mb-6">
                         <Info size={32} />
                     </div>
@@ -16,10 +19,10 @@ export default function AboutPage() {
                         About <span className="text-accent">Height Comparison</span>
                     </h1>
                     <div className="w-24 h-1.5 bg-accent mx-auto rounded-full" />
-                </div>
+                </header>
 
                 {/* Main Content Card */}
-                <div className="bg-surface border border-border rounded-[2.5rem] shadow-2xl overflow-hidden mb-12">
+                <div className="bg-surface border-2 border-border rounded-[2.5rem] shadow-2xl overflow-hidden mb-12">
                     <div className="p-8 md:p-12 space-y-8">
                         {/* Section 1: Intro */}
                         <div className="prose prose-lg max-w-none">

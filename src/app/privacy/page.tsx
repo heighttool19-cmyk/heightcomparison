@@ -3,10 +3,13 @@ import { Shield, Lock, FileText, Eye, Database, HelpCircle, Clock, Mail } from '
 
 export default function PrivacyPage() {
     return (
-        <div className="flex-1 bg-canvas py-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
+        <div className="min-h-screen bg-bg">
+            {/* Decorative top gradient */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-accent/5 to-transparent" />
+
+            <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-12 pb-24 lg:pt-20">
                 {/* Header Section */}
-                <div className="text-center mb-16">
+                <header className="mb-12 lg:mb-16 text-center">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-3xl bg-accent/10 text-accent mb-6">
                         <Shield size={32} />
                     </div>
@@ -15,18 +18,18 @@ export default function PrivacyPage() {
                     </h1>
                     <div className="flex flex-col items-center gap-2">
                         <div className="w-24 h-1.5 bg-accent rounded-full" />
-                        <p className="text-muted text-sm font-medium mt-2">
+                        <p className="text-muted text-lg font-bold mt-4 opacity-80">
                             Helping you understand how we protect your information.
                         </p>
                     </div>
-                </div>
+                </header>
 
                 {/* Main Content Card */}
-                <div className="bg-surface border border-border rounded-[2.5rem] shadow-2xl overflow-hidden mb-12">
+                <div className="bg-surface border-2 border-border rounded-[2.5rem] shadow-2xl overflow-hidden mb-12">
                     <div className="p-8 md:p-12 space-y-12">
                         {/* Intro */}
                         <div className="prose prose-lg max-w-none">
-                            <p className="text-lg text-foreground font-semibold leading-relaxed">
+                            <p className="text-lg text-foreground font-bold leading-relaxed opacity-90">
                                 This Privacy Policy explains what information Height Comparison Calculator collects, how it is used, and what choices you have. HeightComparison is a free height comparison tool available at heightcomparisoncalculator.com. No personal data is sold or shared with third parties for commercial purposes.
                             </p>
                         </div>
