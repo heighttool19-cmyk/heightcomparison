@@ -1,7 +1,7 @@
 import { type Metadata, type Viewport } from "next";
 
 export const metadata: Metadata = {
-    title: 'Blog — Height Comparison Tool',
+    title: 'Blog Height Comparison Tool',
     description: 'Read the latest articles about height, body proportions, and interesting comparisons.',
     alternates: {
         canonical: 'https://heightcomparisoncalculator.com/blogs',

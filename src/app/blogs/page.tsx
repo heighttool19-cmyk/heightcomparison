@@ -42,9 +42,9 @@ export default async function BlogsPage() {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {posts.map((post) => (
-                                <Link 
-                                    href={`/blog/${post.slug.current}`} 
-                                    key={post._id} 
+                                <Link
+                                    href={`/blog/${post.slug.current}`}
+                                    key={post._id}
                                     className="group flex flex-col bg-surface border-2 border-border rounded-3xl overflow-hidden hover:border-accent/40 transition-colors shadow-sm cursor-pointer"
                                     prefetch={false}
                                 >
@@ -52,22 +52,22 @@ export default async function BlogsPage() {
                                     <div className="aspect-[16/10] bg-muted/10 overflow-hidden relative">
                                         {post.mainImage?.asset?.url ? (
                                             // eslint-disable-next-line @next/next/no-img-element
-                                            <img 
-                                                src={post.mainImage.asset.url} 
-                                                alt={post.title} 
-                                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            <img
+                                                src={post.mainImage.asset.url}
+                                                alt={post.title}
+                                                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                                             />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center text-muted/30">
                                                 <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                                                    <circle cx="9" cy="9" r="2"/>
-                                                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                                                    <circle cx="9" cy="9" r="2" />
+                                                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
                                                 </svg>
                                             </div>
                                         )}
                                     </div>
-                                    
+
                                     {/* Content */}
                                     <div className="p-6 md:p-8 flex flex-col flex-1">
                                         <div className="flex items-center gap-2 mb-4">
@@ -78,24 +78,24 @@ export default async function BlogsPage() {
                                                 {formatDate(post.publishedAt)}
                                             </time>
                                         </div>
-                                        
+
                                         <h2 className="text-xl md:text-2xl font-black text-foreground mb-3 leading-tight group-hover:text-accent transition-colors line-clamp-2">
                                             {post.title}
                                         </h2>
-                                        
+
                                         {post.excerpt && (
                                             <p className="text-sm text-muted font-bold opacity-70 mb-6 line-clamp-3 leading-relaxed flex-1">
                                                 {post.excerpt}
                                             </p>
                                         )}
-                                        
+
                                         {/* Author Footer */}
                                         <div className="mt-auto pt-6 border-t border-border flex items-center gap-3">
                                             {post.author?.image?.asset?.url ? (
                                                 // eslint-disable-next-line @next/next/no-img-element
-                                                <img 
-                                                    src={post.author.image.asset.url} 
-                                                    alt={post.author.name} 
+                                                <img
+                                                    src={post.author.image.asset.url}
+                                                    alt={post.author.name}
                                                     className="w-8 h-8 rounded-full object-cover border border-border"
                                                 />
                                             ) : (
