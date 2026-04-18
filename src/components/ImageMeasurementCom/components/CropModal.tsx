@@ -144,7 +144,7 @@ export const CropModal: React.FC<CropModalProps> = ({
                             </div>
 
                             {/* Crop Area */}
-                            <div className="flex-1 overflow-auto p-8 sm:p-10 bg-bg min-h-0">
+                            <div className="flex-1 overflow-auto p-8 sm:p-10 bg-bg min-h-0" style={{ colorScheme: 'dark' }}>
                                 <div className="min-h-full flex flex-col">
                                     <div className="relative m-auto rounded-2xl shadow-2xl w-fit h-fit overflow-hidden p-2 sm:p-4 bg-surface">
                                         <ReactCrop

@@ -350,16 +350,14 @@ input[type=number] {
 
 /* Target the specific modal container or apply globally to custom utility class */
 .flex-1.overflow-auto::-webkit-scrollbar {
-  -webkit-appearance: none;
   width: 6px;
   height: 6px;
 }
 
 .flex-1.overflow-auto::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: rgba(156, 163, 175, 0.5);
-  /* Tailwind text-muted equivalent */
-  /* Adds a slight border to give padding effect inside the track */
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Use translucent white for dark mode */
   border: 1px solid transparent;
   background-clip: padding-box;
 }
