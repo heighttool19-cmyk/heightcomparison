@@ -55,7 +55,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
             }
         }
     }, [heightCm, heightFt, heightIn, unit, gender, selectedCategory]);
-    
+
     // Auto-scroll to selected category
     React.useEffect(() => {
         if (categoryContainerRef.current) {
@@ -72,7 +72,6 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
         else if (newGender === 'female') setAvatarUrl(DEFAULT_FEMALE_AVATAR);
         isManuallySelected.current = false; // Reset on gender change to allow new auto-suggestion
     };
-
     const handleAdd = () => {
         let finalHeightCm = 0;
         if (unit === 'metric') {
@@ -136,9 +135,8 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
             <div className="space-y-4">
                 {/* Name Input */}
                 <div className="space-y-1.5">
-                    <label htmlFor="person-name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Name</label>
+                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Name</label>
                     <input
-                        id="person-name"
                         type="text"
                         placeholder="Optional"
                         value={name}
@@ -168,9 +166,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                     <div className="flex gap-2">
                         {unit === 'metric' ? (
                             <div className="w-full flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                <label htmlFor="height-cm" className="sr-only">Height in centimeters</label>
                                 <NumericInput
-                                    id="height-cm"
                                     placeholder="Height"
                                     value={heightCm}
                                     onValueChange={setHeightCm}
@@ -183,9 +179,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                         ) : (
                             <div className="flex gap-2 w-full">
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                    <label htmlFor="height-ft" className="sr-only">Height in feet</label>
                                     <NumericInput
-                                        id="height-ft"
                                         placeholder="Ft"
                                         value={heightFt}
                                         onValueChange={setHeightFt}
@@ -196,9 +190,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                     </div>
                                 </div>
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                    <label htmlFor="height-in" className="sr-only">Height in inches</label>
                                     <NumericInput
-                                        id="height-in"
                                         placeholder="In"
                                         value={heightIn}
                                         onValueChange={setHeightIn}
@@ -275,7 +267,6 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                             whileHover={{ scale: 1.2, rotate: 5 }}
                             whileTap={{ scale: 0.9 }}
                             onClick={() => setColor(c)}
-                            aria-label={`Select color ${c}`}
                             className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'
                                 }`}
                             style={{ backgroundColor: c, boxShadow: color === c ? `0 0 12px ${c}44` : 'none' }}
@@ -300,4 +291,3 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
 };
 
 export default AddPersonForm;
-

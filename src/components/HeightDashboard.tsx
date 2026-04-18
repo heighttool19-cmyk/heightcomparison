@@ -139,6 +139,18 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     const [isConfirmingClear, setIsConfirmingClear] = useState(false);
     const [isFullscreen, setIsFullscreen] = useState(false);
     const [isHydrated, setIsHydrated] = useState(readOnly);
+
+    // Explicitly close sidebar and force layout recalculation on mount
+    useEffect(() => {
+        if (isHydrated && !readOnly) {
+            setIsSidebarCollapsed(true);
+            const t = setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+            }, 100);
+            return () => clearTimeout(t);
+        }
+    }, [isHydrated, readOnly]);
+
     const [activePersonMenuId, setActivePersonMenuId] = useState<string | null>(null);
     const [shareStatus, setShareStatus] = useState<'idle' | 'generating' | 'copied' | 'error'>('idle');
 
@@ -544,9 +556,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                 {/* Left Nav — hidden in custom fullscreen */}
                 {!readOnly && !isCustomFullscreen && (
                     <motion.aside
-                        initial={{ x: -85, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                         className="shrink-0 w-full h-[65px] bg-bg border-b border-border/50 z-40 flex overflow-x-auto overflow-y-hidden custom-scrollbar sm:static sm:w-[85px] sm:overflow-y-auto sm:overflow-x-hidden sm:h-full sm:border-b-0 sm:border-r sm:flex-col"
                     >
                         <div className="flex sm:flex-col h-full w-full overflow-hidden">
@@ -808,12 +820,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                 {/* Desktop Sidebar — hidden in custom fullscreen */}
                 {
                     !readOnly && !isCustomFullscreen && (
-                        <div className="hidden sm:flex shrink-0 relative z-30">
+                        <div className={`hidden sm:flex shrink-0 relative z-30 ${isSidebarCollapsed ? 'w-0 overflow-visible' : ''}`}>
                             <motion.div
                                 initial={false}
                                 animate={{ width: isSidebarCollapsed ? 0 : 400, opacity: isSidebarCollapsed ? 0 : 1 }}
                                 transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                                className="flex flex-col border-l border-border bg-surface overflow-hidden"
+                                className={`flex flex-col bg-surface overflow-hidden ${isSidebarCollapsed ? '' : 'border-l border-border'}`}
                             >
                                 <div className="flex-1 w-[400px] overflow-y-auto custom-scrollbar">
                                     <Sidebar

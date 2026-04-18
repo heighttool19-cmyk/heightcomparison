@@ -280,6 +280,15 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
                         animate={{ y: person.offsetY || 0 }}
                         transition={spring}
                     >
+                        {isSvgAvatar && (
+                            <img
+                                src={person.imgUrl}
+                                onLoad={handleImageLoad}
+                                className="hidden"
+                                aria-hidden="true"
+                                alt=""
+                            />
+                        )}
                         {isSvgAvatar ? (
                             <motion.div
                                 animate={{ height: barH, scale: paddingScale }}

@@ -46,7 +46,7 @@ const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAd
     return (
         <aside className="w-full h-full flex flex-col bg-transparent">
             {/* ... component content ... */}
-            <div className={`flex flex-col h-full overflow-y-auto custom-scrollbar ${activePanel === 'CELEBRITIES' || activePanel === 'FICTIONAL' || activePanel === 'ENTITIES' ? '' : 'p-5 gap-6'}`}>
+            <div className={`flex flex-col h-full overflow-y-auto overflow-x-hidden custom-scrollbar ${activePanel === 'CELEBRITIES' || activePanel === 'FICTIONAL' || activePanel === 'ENTITIES' ? '' : 'p-5 gap-6'}`}>
                 <AnimatePresence mode="popLayout" initial={false}>
                     {activePanel === 'ADD_PERSON' && (
                         <motion.div
@@ -55,7 +55,7 @@ const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAd
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
                             transition={{ duration: 0.2 }}
-                            className="flex flex-col gap-6"
+                            className="flex flex-col gap-6 w-full min-w-0"
                         >
                             <AddPersonForm onAdd={onAdd} personCount={personCount} />
                             <PersonChart
