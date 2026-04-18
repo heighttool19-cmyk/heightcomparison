@@ -18,6 +18,5 @@ export default function robots(): MetadataRoute.Robots {
         '/*?*',        // Don't crawl search parameters or query strings
       ],
     },
-    sitemap: 'https://heightcomparisoncalculator.com/sitemap.xml',
   };
 }
