@@ -120,7 +120,9 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                 {/* Search Input */}
                 <div className="relative mt-2 sm:mt-4 group">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" size={16} />
+                    <label htmlFor="search-entities" className="sr-only">Search entities</label>
                     <input
+                        id="search-entities"
                         type="text"
                         placeholder="Search by name or category..."
                         value={searchQuery}

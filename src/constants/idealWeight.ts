@@ -31,7 +31,6 @@ export const IBW_FAQ = [
 
 export const IBW_TOC = [
     { id: 'ideal-body-weight-calculator', label: 'Ideal Body Weight Calculator' },
-    { id: 'calculate-your-ideal-body-weight-in-kg-or-pounds', label: 'Ideal Body Weight Calculator' },
     { id: 'how-to-calculate-ideal-body-weight', label: 'How to Calculate Ideal Body Weight' },
     {
         id: 'ideal-body-weight-calculation-formulas',
@@ -49,7 +48,8 @@ export const IBW_TOC = [
     { id: 'percent-ideal-body-weight-calculation', label: 'Percent Ideal Body Weight Calculation' },
     { id: 'healthy-weight-range', label: 'Healthy Weight Range' },
     { id: 'ideal-body-weight-vs-bmi', label: 'Ideal Body Weight vs BMI' },
-    { id: 'frequently-asked-questions', label: 'Frequently Asked Questions' }
+    { id: 'frequently-asked-questions', label: 'Frequently Asked Questions' },
+    { id: 'references', label: 'References' }
 ];
 
 export const IBW_FAQ_SCA = [

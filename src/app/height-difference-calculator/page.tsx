@@ -7,21 +7,11 @@ import HeightDifferenceChart from '@/components/height-difference-calculator/Hei
 import VisualHeightComparison from '@/components/height-difference-calculator/VisualHeightComparison';
 import TableOfContents from '@/components/TableOfContents';
 import FaqAccordion from '@/components/FaqAccordion';
-import { HEIGHT_DIFFERENCE_FAQ } from '@/constants/heightDifference';
+import { HEIGHT_DIFFERENCE_FAQ, HEIGHT_DIFFERENCE_TOC } from '@/constants/heightDifference';
 import JsonLd from '@/components/common/JsonLd';
 import { HEIGHT_DIFFERENCE_SCHEMA } from '@/constants/schemas/heightDifference';
 
-const tocItems = [
-    { id: 'calculate-height-difference', label: 'Calculate Height Difference' },
-    { id: 'how-to-calculate-height-difference', label: 'How to Calculate Height Difference' },
-    { id: 'height-difference-percentage', label: 'Height Difference Percentage' },
-    { id: 'couple-height-difference-calculator', label: 'Couple Height Difference Calculator' },
-    { id: 'height-difference-chart', label: 'Height Difference Chart' },
-    { id: 'visual-height-comparison', label: 'Visual Height Comparison' },
-    { id: 'height-difference-in-different-units', label: 'Height Difference in Different Units' },
-    { id: 'try-the-height-difference-calculator', label: 'Try the Height Difference Calculator' },
-    { id: 'frequently-asked-questions', label: 'Frequently Asked Questions' }
-];
+const tocItems = HEIGHT_DIFFERENCE_TOC;
 
 export default function HeightDifferencePage() {
     return (
@@ -249,7 +239,7 @@ export default function HeightDifferencePage() {
                     </div>
 
                     {/* References Section */}
-                    <div className="bg-surface border border-border rounded-3xl p-6 md:p-10 text-sm text-muted mt-8 font-medium">
+                    <div id="references" className="bg-surface border border-border rounded-3xl p-6 md:p-10 text-sm text-muted mt-8 font-medium scroll-mt-36">
                         <h3 className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">Sources</h3>
                         <ul className="space-y-3 break-words overflow-hidden list-disc pl-5 marker:text-muted/40">
                             <li>

@@ -365,7 +365,7 @@ export default function IdealBodyWeightPage() {
                     </div>
 
                     {/* References Section */}
-                    <div className="bg-surface border border-border rounded-3xl p-6 md:p-10 text-sm text-muted mt-8">
+                    <div id="references" className="bg-surface border border-border rounded-3xl p-6 md:p-10 text-sm text-muted mt-8 scroll-mt-24">
                         <h3 className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">Sources</h3>
                         <ul className="space-y-3 break-words overflow-hidden list-disc pl-5 marker:text-muted/40 font-medium">
                             <li>Devine BJ (1974). Gentamicin therapy. Drug Intelligence and Clinical Pharmacy.</li>

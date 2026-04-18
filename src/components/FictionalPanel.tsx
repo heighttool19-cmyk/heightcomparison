@@ -101,7 +101,9 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                 {/* Search */}
                 <div className="relative mt-2 sm:mt-4 group">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" size={16} />
+                    <label htmlFor="search-fictional" className="sr-only">Search fictional characters</label>
                     <input
+                        id="search-fictional"
                         type="text"
                         placeholder="Search by name or series..."
                         value={searchQuery}
@@ -156,8 +158,10 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                                                      const rand = Math.random().toString(36).substr(2, 9);
                                                      const newId = `person-${timestamp}-${rand}`;
 
-                                                     // Choose default SVG avatar based on gender (if available) or default to male
-                                                     const defaultAvatar = char.gender === 'female' ? DEFAULT_FEMALE_AVATAR : DEFAULT_MALE_AVATAR;
+                                                     // Choose default SVG avatar based on height and gender
+                                                     const { getAutoCategoryByHeight, getDefaultAvatarForCategory } = require('../utils/avatarUtils');
+                                                     const category = getAutoCategoryByHeight(char.heightCm);
+                                                     const defaultAvatar = getDefaultAvatarForCategory(category, char.gender || 'male');
  
                                                      onAddPerson({
                                                          id: newId,

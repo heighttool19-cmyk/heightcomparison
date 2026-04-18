@@ -31,26 +31,26 @@ export const CHILD_HEIGHT_QA = [
 ];
 
 export const CHILD_HEIGHT_TOC = [
-    { id: 'child-height-predictor-calculator', label: 'Height Predictor Calculator' },
-    { id: 'how-does-a-height-calculator-work', label: 'How Does it Work?' },
+    { id: 'height-predictor-calculator', label: 'Height Predictor Calculator' },
+    { id: 'how-it-works', label: 'How Does it Work?' },
     {
         id: 'how-tall-will-my-child-be',
         label: 'How Tall Will My Child Be?',
         subItems: [
-            { id: 'how-tall-will-i-be', label: 'How Tall Will I Be (Teens & Adults)' }
+            { id: 'how-tall-will-i-be-teens-adults', label: 'How Tall Will I Be (Teens & Adults)' }
         ]
     },
-    { id: 'what-determines-child-height', label: 'What Determines Height?' },
+    { id: 'what-determines-height', label: 'What Determines Height?' },
     { id: 'boys-girls-growth-charts', label: 'Boys & Girls Growth Charts' },
-    { id: 'height-prediction-comparison', label: 'Calculator vs. Growth Charts' },
-    { id: 'boys-growth', label: 'When Do Boys Stop Growing?' },
-    { id: 'girls-growth', label: 'When Do Girls Stop Growing?' },
+    { id: 'calculator-vs-growth-charts', label: 'Calculator vs. Growth Charts' },
+    { id: 'when-do-boys-stop-growing', label: 'When Do Boys Stop Growing?' },
+    { id: 'when-do-girls-stop-growing', label: 'When Do Girls Stop Growing?' },
     {
-        id: 'predict-child-height',
+        id: 'height-prediction-methods',
         label: 'Height Prediction Methods',
         subItems: [
             { id: 'khamis-roche-method', label: 'Khamis-Roche Method' },
-            { id: 'height-calculator-based-on-parents', label: 'Based on Parents' },
+            { id: 'based-on-parents', label: 'Based on Parents' },
         ]
     },
     {
@@ -62,11 +62,11 @@ export const CHILD_HEIGHT_TOC = [
             { id: 'roche-wainer-thissen-method', label: 'Roche-Wainer-Thissen Method' }
         ]
     },
-    { id: 'increase', label: 'Can You Increase Height?' },
-    { id: 'how-to-get-taller-as-a-kid', label: 'Factors Affecting Height' },
+    { id: 'can-you-increase-height', label: 'Can You Increase Height?' },
+    // { id: 'how-to-get-taller-as-a-kid', label: 'Factors Affecting Height' },
     // { id: 'boys-height-predictor', label: 'Understanding Growth Timelines' },
     { id: 'accuracy', label: 'Prediction Accuracy' },
-    { id: 'height-predictor-faq', label: 'FAQ' },
+    { id: 'faq', label: 'FAQ' },
     { id: 'related-tools', label: 'Related Tools' },
     { id: 'references', label: 'References' }
 ];

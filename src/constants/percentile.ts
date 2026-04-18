@@ -25,3 +25,25 @@ export const PERCENTILE_FAQ = [
         a: "WHO Child Growth Standards cover ages 0 to 2 and are based on data from six countries, designed as an international reference for optimal growth. CDC growth charts cover ages 2 to 20 and are built from US population data, making them the standard reference for clinical use in the United States. This calculator uses WHO data for infants and CDC data from age 2 onward."
     }
 ];
+export const PERCENTILE_TOC = [
+    { id: 'calculate-your-height-and-weight-percentile', label: 'Calculate Your Height and Weight Percentile' },
+    { id: 'what-does-height-and-weight-percentile-mean', label: 'What Does Height and Weight Percentile Mean?' },
+    { id: 'how-the-height-and-weight-percentile-calculator-works', label: 'How the Height and Weight Percentile Calculator Works' },
+    {
+        id: 'height-percentile-calculator-by-age-group',
+        label: 'Height Percentile Calculator by Age Group',
+        subItems: [
+            { id: 'height-percentile-calculator-for-babies-and-infants', label: 'Height Percentile Calculator for Babies and Infants' },
+            { id: 'height-percentile-calculator-for-toddlers-and-kids', label: 'Height Percentile Calculator for Toddlers and Kids' },
+            { id: 'height-percentile-calculator-for-boys-and-girls', label: 'Height Percentile Calculator for Boys and Girls' },
+            { id: 'height-percentile-calculator-for-adults', label: 'Height Percentile Calculator for Adults' }
+        ]
+    },
+    { id: 'us-height-percentile-calculator', label: 'US Height Percentile Calculator' },
+    { id: 'how-to-interpret-height-percentile-result', label: 'How to Interpret Your Height Percentile Result' },
+    { id: 'example-height-percentile-calculation', label: 'Example Height Percentile Calculation' },
+    { id: 'why-height-percentiles-are-used-in-pediatric-growth-monitoring', label: 'Why Height Percentiles Are Used in Pediatric Growth Monitoring' },
+    { id: 'try-the-height-and-weight-percentile-calculator', label: 'Try the Height and Weight Percentile Calculator' },
+    { id: 'frequently-asked-questions', label: 'Frequently Asked Questions' },
+    { id: 'references', label: 'References' }
+];

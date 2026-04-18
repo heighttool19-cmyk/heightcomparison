@@ -577,7 +577,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                         <div className="order-2 sm:order-first px-2 lg:px-4 z-30 w-[100%]] mb-2 shrink-0">
                             <div className="w-[100%] flex items-center justify-center md:justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
                                 <div className="flex items-center gap-1 lg:gap-3 shrink-0">
-                                    <button onClick={toggleUnitSystem} className="shrink-0 flex items-center gap-1 group hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all">
+                                    <button
+                                        onClick={toggleUnitSystem}
+                                        aria-label={`Switch to ${unitSystem === 'metric' ? 'Imperial' : 'Metric'} units`}
+                                        className="shrink-0 flex items-center gap-1 group hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all"
+                                    >
                                         <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent" />
                                         <span className="hidden sm:inline text-[10px] lg:text-xs font-semibold text-muted group-hover:text-foreground whitespace-nowrap">
                                             {unitSystem === 'metric' ? 'cm → ft' : 'ft → cm'}
@@ -585,11 +589,17 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                     </button>
                                     <div className="hidden sm:block w-px h-5 bg-white/10 shrink-0" />
                                     <div className="flex shrink-0 items-center gap-0.5">
-                                        <button onClick={() => setZoom(z => (z + 0.01))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
+                                        <button
+                                            onClick={() => setZoom(z => (z + 0.01))}
+                                            aria-label="Zoom in"
+                                            className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg"
+                                        >
                                             <ZoomIn size={16} strokeWidth={2.5} />
                                         </button>
                                         <div className="bg-item-hover rounded-lg px-1 py-1 flex items-center gap-0.5 border border-toolbar-border">
+                                            <label htmlFor="dashboard-zoom-input" className="sr-only">Zoom percentage</label>
                                             <NumericInput
+                                                id="dashboard-zoom-input"
                                                 value={zoomInput}
                                                 onValueChange={(val) => {
                                                     setZoomInput(val);
@@ -608,15 +618,29 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                             />
                                             <span className="text-[9px] font-bold text-muted/30">%</span>
                                         </div>
-                                        <button onClick={() => setZoom(z => (z - 0.01))} className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg">
+                                        <button
+                                            onClick={() => setZoom(z => (z - 0.01))}
+                                            aria-label="Zoom out"
+                                            className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg"
+                                        >
                                             <ZoomOut size={16} strokeWidth={2.5} />
                                         </button>
                                     </div>
                                     <div className="flex items-center gap-0.5 border-l border-white/10 pl-1 shrink-0">
-                                        <button onClick={handleAutoScale} className="p-1.5 lg:p-2 text-primary hover:bg-accent/10 rounded-lg" title="Auto Fit">
+                                        <button
+                                            onClick={handleAutoScale}
+                                            className="p-1.5 lg:p-2 text-primary hover:bg-accent/10 rounded-lg"
+                                            title="Auto Fit"
+                                            aria-label="Auto fit chart"
+                                        >
                                             <Focus size={16} strokeWidth={2.5} />
                                         </button>
-                                        <button onClick={() => { setActivePanel('ADD_PERSON'); setIsSidebarCollapsed(false); if (isMobile) setIsMobileDrawerOpen(true); setHighlightYourList(true); setTimeout(() => setHighlightYourList(false), 2000); }} className="p-1.5 lg:p-2 hover:bg-emerald-500/10 rounded-lg" title="Edit List">
+                                        <button
+                                            onClick={() => { setActivePanel('ADD_PERSON'); setIsSidebarCollapsed(false); if (isMobile) setIsMobileDrawerOpen(true); setHighlightYourList(true); setTimeout(() => setHighlightYourList(false), 2000); }}
+                                            className="p-1.5 lg:p-2 hover:bg-emerald-500/10 rounded-lg"
+                                            title="Edit List"
+                                            aria-label="Edit persons list"
+                                        >
                                             <Edit2 size={16} strokeWidth={2.5} />
                                         </button>
                                     </div>
@@ -627,13 +651,18 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-0.5 lg:gap-2 shrink-0">
-                                    <button onClick={handleClearAll} className="flex items-center gap-1.5 text-muted hover:text-red-500 px-1.5 py-2 transition-all group shrink-0">
+                                    <button
+                                        onClick={handleClearAll}
+                                        className="flex items-center gap-1.5 text-muted hover:text-red-500 px-1.5 py-2 transition-all group shrink-0"
+                                        aria-label="Clear all persons"
+                                    >
                                         <Trash2 size={16} className="text-muted/50 group-hover:text-red-500 shrink-0" />
                                         <span className="hidden xl:inline whitespace-nowrap text-xs">Clear All</span>
                                     </button>
                                     <button
                                         onClick={handleShare}
                                         disabled={shareStatus !== 'idle'}
+                                        aria-label="Share height comparison"
                                         className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-lg ${shareStatus === 'copied' ? 'text-emerald-500 bg-emerald-500/10' : shareStatus === 'error' ? 'text-red-500 bg-red-500/10' : 'text-muted hover:text-foreground'}`}
                                     >
                                         {shareStatus === 'generating' ? (
@@ -647,7 +676,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                             {shareStatus === 'generating' ? 'Generating...' : shareStatus === 'copied' ? 'Copied!' : shareStatus === 'error' ? 'Error' : 'Share'}
                                         </span>
                                     </button>
-                                    <button onClick={handleDownloadPNG} disabled={isCapturing} className="flex items-center gap-1 bg-primary/10 text-primary border border-accent/20 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0">
+                                    <button
+                                        onClick={handleDownloadPNG}
+                                        disabled={isCapturing}
+                                        aria-label="Download chart as PNG image"
+                                        className="flex items-center gap-1 bg-primary/10 text-primary border border-accent/20 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0"
+                                    >
                                         {isCapturing ? <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" /> : <Download size={14} strokeWidth={2.5} />}
                                         <span className="hidden lg:inline ml-1">PNG</span>
                                     </button>
@@ -672,7 +706,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                 <div className="h-[1px] w-8 bg-accent/30 mt-1" />
                             </div>
                             <div className="flex-1 flex justify-end">
-                                <button onClick={toggleFullscreen} className={`shrink-0 z-[100] flex items-center gap-1.5 active:scale-95 ${isFullscreen ? 'p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-2xl' : 'px-2 py-1 bg-surface/90 backdrop-blur-md text-foreground/80 hover:bg-accent hover:text-white rounded-xl border border-border/60 shadow-lg'}`}>
+                                <button
+                                    onClick={toggleFullscreen}
+                                    aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+                                    className={`shrink-0 z-[100] flex items-center gap-1.5 active:scale-95 ${isFullscreen ? 'p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-2xl' : 'px-2 py-1 bg-surface/90 backdrop-blur-md text-foreground/80 hover:bg-accent hover:text-white rounded-xl border border-border/60 shadow-lg'}`}
+                                >
                                     {isFullscreen ? <X size={isMobile ? 20 : 28} /> : <><Maximize size={16} strokeWidth={2.5} /><span className="hidden sm:inline text-xs font-bold ml-1">Fullscreen</span></>}
                                 </button>
                             </div>
@@ -752,6 +790,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             onClick={() => { if (readOnly) return; setActivePanel('ADD_PERSON'); setIsSidebarCollapsed(false); if (window.innerWidth < 768) setIsMobileDrawerOpen(true); }}
+                                            aria-label="Add a person to the chart"
                                             className={`empty-door flex items-center justify-center group pointer-events-auto ${!readOnly ? 'cursor-pointer hover:border-accent' : ''}`}
                                         >
                                             <Plus size={40} className="text-muted/20 group-hover:text-accent group-hover:scale-110 transition-all duration-500" />
@@ -819,7 +858,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
             {
                 !readOnly && !isCustomFullscreen && (
                     <div className="sm:hidden fixed bottom-6 right-6 z-40">
-                        <button onClick={() => setIsMobileDrawerOpen(true)} className="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all">
+                        <button
+                            onClick={() => setIsMobileDrawerOpen(true)}
+                            aria-label="Open mobile menu"
+                            className="w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white shadow-2xl active:scale-95 transition-all"
+                        >
                             <Plus size={18} strokeWidth={3} />
                         </button>
                     </div>
@@ -838,7 +881,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         <h3 className="text-sm font-black uppercase tracking-[0.2em]">
                                             {activePanel === 'ADD_PERSON' ? 'Enter Details' : activePanel === 'CELEBRITIES' ? 'Celebrities' : activePanel === 'FICTIONAL' ? 'Fictional' : activePanel.replace('_', ' ')}
                                         </h3>
-                                        <button onClick={() => setIsMobileDrawerOpen(false)} className="p-2 bg-bg border border-border/50 rounded-xl text-muted hover:text-foreground active:scale-95">
+                                        <button
+                                            onClick={() => setIsMobileDrawerOpen(false)}
+                                            aria-label="Close mobile menu"
+                                            className="p-2 bg-bg border border-border/50 rounded-xl text-muted hover:text-foreground active:scale-95"
+                                        >
                                             <X size={20} strokeWidth={3} />
                                         </button>
                                     </div>
@@ -888,6 +935,7 @@ const LeftNavItem = ({ icon, label, active = false, onClick }: {
         whileHover={{ scale: 1.02, backgroundColor: 'rgba(59,130,246,0.05)' }}
         whileTap={{ scale: 0.98 }}
         onClick={onClick}
+        aria-label={label}
         className={`flex flex-col items-center justify-center gap-1.5 py-2 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4 min-w-0 cursor-pointer ${active ? 'bg-accent/10 text-accent border-accent' : 'text-muted hover:text-foreground border-transparent'}`}
         style={{ touchAction: 'manipulation' }}
     >

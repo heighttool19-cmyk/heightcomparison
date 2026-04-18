@@ -15,3 +15,18 @@ export const DynamicGrowthPlateExplainer = dynamic(() => import('../GrowthPlateE
     ssr: false,
     loading: () => <div className="h-[200px] w-full bg-surface animate-pulse rounded-3xl border border-border/50" />
 });
+
+export const DynamicKhamisRocheCalculator = dynamic(() => import('./KhamisRocheCalculator'), { 
+    ssr: false, 
+    loading: () => <div className="h-[400px] w-full bg-surface animate-pulse rounded-3xl border border-border/50" /> 
+});
+
+export const DynamicMidParentalCalculator = dynamic(() => import('./MidParentalCalculator'), { 
+    ssr: false, 
+    loading: () => <div className="h-[300px] w-full bg-surface animate-pulse rounded-3xl border border-border/50" /> 
+});
+
+export const DynamicHeightConverter = dynamic(() => import('./HeightConverter'), { 
+    ssr: false, 
+    loading: () => <div className="h-[200px] w-full bg-surface animate-pulse rounded-3xl border border-border/50" /> 
+});

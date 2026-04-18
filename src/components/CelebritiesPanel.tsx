@@ -106,7 +106,9 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
         const newId = `person-${timestamp}-${rand}`;
 
         // Choose default SVG avatar if no image is provided
-        const defaultAvatar = celeb.gender === 'female' ? DEFAULT_FEMALE_AVATAR : DEFAULT_MALE_AVATAR;
+        const { getAutoCategoryByHeight, getDefaultAvatarForCategory } = require('../utils/avatarUtils');
+        const category = getAutoCategoryByHeight(celeb.heightCm);
+        const defaultAvatar = getDefaultAvatarForCategory(category, celeb.gender || 'male');
 
         onAddPerson({
             id: newId,
@@ -135,7 +137,9 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                 {/* Search Input */}
                 <div className="relative mt-2 sm:mt-4 group">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted" size={16} />
+                    <label htmlFor="search-celebrities" className="sr-only">Search celebrities</label>
                     <input
+                        id="search-celebrities"
                         type="text"
                         placeholder="Search by name or category"
                         value={searchQuery}

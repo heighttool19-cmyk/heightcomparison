@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronRight, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Gender, UnitSystem, COLOR_PALETTE, Person } from '../types';
-import { FEMALE_AVATARS, MALE_AVATARS, DEFAULT_FEMALE_AVATAR, DEFAULT_MALE_AVATAR } from '../constants/avatars';
+import { ALL_AVATARS, AVATAR_CATEGORIES, AvatarCategory, DEFAULT_FEMALE_AVATAR, DEFAULT_MALE_AVATAR } from '../constants/avatars';
 import { useUnitStore } from '../store';
 import { handleInputChange } from '../utils/input';
 import { NumericInput } from './ui/NumericInput';
@@ -37,7 +37,47 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
     const [icon, setIcon] = useState(person.icon || '');
     const [offsetY, setOffsetY] = useState<number>(person.offsetY || 0);
     const [avatarUrl, setAvatarUrl] = useState(person.imgUrl || (gender === 'male' ? DEFAULT_MALE_AVATAR : DEFAULT_FEMALE_AVATAR));
+    const [selectedCategory, setSelectedCategory] = useState<AvatarCategory>(
+        (ALL_AVATARS.find(a => a.path === person.imgUrl)?.category as AvatarCategory) || 'Adult (Standard)'
+    );
+    const categoryContainerRef = React.useRef<HTMLDivElement>(null);
     const [error, setError] = useState<string | null>(null);
+
+    // Track manual selection
+    const isManuallySelected = React.useRef(false);
+
+    // Auto-select avatar category based on height
+    useEffect(() => {
+        if (isManuallySelected.current) return;
+
+        let finalHeightCm = 0;
+        if (unit === 'metric') {
+            finalHeightCm = typeof heightCm === 'number' ? heightCm : (parseFloat(String(heightCm)) || 0);
+        } else {
+            const f = typeof heightFt === 'number' ? heightFt : 0;
+            const i = typeof heightIn === 'number' ? heightIn : 0;
+            finalHeightCm = (f * 30.48) + (i * 2.54);
+        }
+
+        if (finalHeightCm > 10) {
+            const { getAutoCategoryByHeight, getDefaultAvatarForCategory } = require('../utils/avatarUtils');
+            const category = getAutoCategoryByHeight(finalHeightCm);
+            if (category !== selectedCategory) {
+                setSelectedCategory(category);
+                setAvatarUrl(getDefaultAvatarForCategory(category, gender));
+            }
+        }
+    }, [heightCm, heightFt, heightIn, unit, gender, selectedCategory]);
+
+    // Auto-scroll to selected category
+    useEffect(() => {
+        if (categoryContainerRef.current) {
+            const activeBtn = categoryContainerRef.current.querySelector('[data-active="true"]');
+            if (activeBtn) {
+                activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        }
+    }, [selectedCategory]);
 
     // Instant Preview logic
     useEffect(() => {
@@ -163,8 +203,9 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             <div className="space-y-4">
                 {/* Name Input */}
                 <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Identity</label>
+                    <label htmlFor="edit-name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Identity</label>
                     <input
+                        id="edit-name"
                         type="text"
                         placeholder="Name (Optional)"
                         value={name}
@@ -175,8 +216,9 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
 
                 {person.isEntity && (
                     <div className="space-y-1.5">
-                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Icon / Emoji</label>
+                        <label htmlFor="edit-icon" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Icon / Emoji</label>
                         <input
+                            id="edit-icon"
                             type="text"
                             placeholder="Enter single emoji or icon"
                             value={icon}
@@ -207,7 +249,9 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                     <div className="flex gap-2">
                         {unit === 'metric' ? (
                             <div className="flex-1 flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                <label htmlFor="edit-height-cm" className="sr-only">Height in centimeters</label>
                                 <NumericInput
+                                    id="edit-height-cm"
                                     placeholder="Height"
                                     value={heightCm}
                                     onValueChange={(val) => { setHeightCm(val); setError(null); }}
@@ -220,7 +264,9 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                         ) : (
                             <div className="flex gap-2 w-full">
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                    <label htmlFor="edit-height-ft" className="sr-only">Height in feet</label>
                                     <NumericInput
+                                        id="edit-height-ft"
                                         placeholder="Ft"
                                         value={heightFt}
                                         onValueChange={(val) => { setHeightFt(val); setError(null); }}
@@ -231,7 +277,9 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                                     </div>
                                 </div>
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
+                                    <label htmlFor="edit-height-in" className="sr-only">Height in inches</label>
                                     <NumericInput
+                                        id="edit-height-in"
                                         placeholder="In"
                                         value={heightIn}
                                         onValueChange={(val) => { setHeightIn(val); setError(null); }}
@@ -248,18 +296,49 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
 
                 {/* Avatar Selection */}
                 {(gender === 'male' || gender === 'female') && !person.isEntity && (
-                    <div className="space-y-3">
+                    <div className="space-y-4">
                         <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Avatar Style</label>
-                        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
-                            {(gender === 'male' ? MALE_AVATARS : FEMALE_AVATARS).map((av) => (
+
+                        {/* Category Selector */}
+                        <div ref={categoryContainerRef} className="flex gap-2 overflow-x-auto pb-2 no-scrollbar scroll-smooth">
+                            {AVATAR_CATEGORIES.map((cat) => (
                                 <button
-                                    key={av.id}
-                                    onClick={() => setAvatarUrl(av.path)}
-                                    title={av.label}
-                                    className={`aspect-square rounded-xl border-2 p-1.5 transition-all flex items-center justify-center overflow-hidden ${avatarUrl === av.path ? 'border-accent bg-accent/5' : 'border-border hover:border-accent/40 bg-surface'
+                                    key={cat}
+                                    data-active={selectedCategory === cat}
+                                    onClick={() => { setSelectedCategory(cat); isManuallySelected.current = true; }}
+                                    className={`whitespace-nowrap px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all border ${selectedCategory === cat
+                                        ? 'bg-accent text-white border-accent shadow-md'
+                                        : 'bg-surface text-muted border-border hover:border-accent/30'
                                         }`}
                                 >
-                                    <img src={av.path} alt={av.label} className="w-full h-full object-contain object-bottom" />
+                                    {cat}
+                                </button>
+                            ))}
+                        </div>
+
+                        <div className="grid grid-cols-4 sm:grid-cols-6 gap-2 bg-surface/50 p-3 rounded-[2rem] border border-border/50">
+                            {ALL_AVATARS.filter(a => a.gender === gender && a.category === selectedCategory).map((av) => (
+                                <button
+                                    key={av.id}
+                                    onClick={() => { setAvatarUrl(av.path); isManuallySelected.current = true; }}
+                                    title={av.label}
+                                    aria-label={`Select ${av.label} avatar`}
+                                    className={`aspect-square rounded-2xl border-2 p-1.5 transition-all flex items-center justify-center overflow-hidden ${avatarUrl === av.path ? 'border-accent bg-accent/10' : 'border-border hover:border-accent/40 bg-bg'
+                                        }`}
+                                >
+                                    <div
+                                        className="w-full h-full bg-foreground transition-colors"
+                                        style={{
+                                            maskImage: `url('${encodeURI(av.path)}')`,
+                                            maskRepeat: 'no-repeat',
+                                            maskPosition: 'bottom center',
+                                            maskSize: 'contain',
+                                            WebkitMaskImage: `url('${encodeURI(av.path)}')`,
+                                            WebkitMaskRepeat: 'no-repeat',
+                                            WebkitMaskPosition: 'bottom center',
+                                            WebkitMaskSize: 'contain'
+                                        }}
+                                    />
                                 </button>
                             ))}
                         </div>
@@ -277,6 +356,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                             whileHover={{ scale: 1.2, rotate: 5 }}
                             whileTap={{ scale: 0.9 }}
                             onClick={() => setColor(c)}
+                            aria-label={`Select color ${c}`}
                             className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'
                                 }`}
                             style={{ backgroundColor: c, boxShadow: color === c ? `0 0 12px ${c}44` : 'none' }}

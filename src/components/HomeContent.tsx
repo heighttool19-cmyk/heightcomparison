@@ -93,15 +93,15 @@ export default function HomeContent() {
 
                             <h2 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">How Does a Height Comparison Chart Work?</h2>
 
-                            <p className="text-[16px] leading-[1.8] text-muted font-bold opacity-80">
+                            <p className="text-[16px] leading-[1.8] text-muted font-bold opacity-100">
                                 A  height comparison chart converts raw height measurements into a visual chart where each bar represents the exact ratio between heights at true proportional scale.</p>
-                            <p className="text-[16px] leading-[1.8] text-muted font-bold opacity-80">
+                            <p className="text-[16px] leading-[1.8] text-muted font-bold opacity-100">
                                 If Person A is 170&nbsp;cm and Person B is 185&nbsp;cm, the second bar
                                 renders at exactly 1.09x the height of the first. A 10&nbsp;cm gap at
                                 160&nbsp;cm reads proportionally different from the same gap at 190&nbsp;cm.
                                 The height chart makes that
                                 distinction visible without any calculation on your part.
-                            </p>  <p className="text-[16px] leading-[1.8] text-muted font-bold opacity-80">
+                            </p>  <p className="text-[16px] leading-[1.8] text-muted font-bold opacity-100">
                                 Use it as a height chart maker for families, teams, or creative projects. A ready-made comparison chart template loads in under thirty seconds.
                             </p>
                             <ErrorBoundary name="VisualRatioEngine">
@@ -193,7 +193,7 @@ export default function HomeContent() {
                                 </div>
                                 <div className="flex-1">
                                     <div className="text-[18px] font-black text-foreground mb-2 uppercase tracking-tighter">Need just the gap between two specific heights?</div>
-                                    <div className="text-[15px] text-muted leading-[1.8] mb-4 font-bold opacity-70">The Height Difference Calculator shows the exact difference in cm and inches, the percentage gap, and a visual bar. Use it when you need the precise height gap without building a full chart.</div>
+                                    <div className="text-[15px] text-muted leading-[1.8] mb-4 font-bold opacity-90">The Height Difference Calculator shows the exact difference in cm and inches, the percentage gap, and a visual bar. Use it when you need the precise height gap without building a full chart.</div>
                                     <Link href="/height-difference-calculator" className="text-xs font-black text-emerald-500 inline-flex items-center gap-2 hover:gap-3 transition-all uppercase tracking-widest py-2 px-4 bg-emerald-500/10 rounded-full group-hover:bg-emerald-500 group-hover:text-white">
                                         Open Height Difference Calculator  <p><ArrowRight size={22} /></p>
                                     </Link>
@@ -222,7 +222,7 @@ export default function HomeContent() {
                                     </div>
                                     <div className="flex-1 p-8 md:p-12">
                                         <h3 className="hidden sm:block text-[22px] font-black text-foreground mb-4 uppercase tracking-tighter">Step 1: Begin with Your Comparison Setup</h3>
-                                        <p className="text-[15px] text-muted leading-[1.8] mb-6 font-bold opacity-70">
+                                        <p className="text-[15px] text-muted leading-[1.8] mb-6 font-bold opacity-90">
                                             Decide what to compare. Two friends, a celebrity and yourself, a group of anime characters, a person next to a landmark. Heights work in cm or ft/in. Switch units at any time using the toggle at the top of the chart.                                        </p>
                                         <div className="bg-bg border-l-4 border-l-accent rounded-2xl p-6 mb-8 flex gap-4 items-start text-[14px] text-muted shadow-inner font-bold italic">
                                             <span className="text-[11px] font-black text-accent uppercase tracking-widest shrink-0 mt-[2px] px-2 py-1 bg-accent/10 rounded-md">PRO TIP</span>
@@ -271,7 +271,7 @@ export default function HomeContent() {
                                     </div>
                                     <div className="flex-1 p-8 md:p-12">
                                         <h3 className="hidden sm:block text-[22px] font-black text-foreground mb-4 uppercase tracking-tighter">Step 2: Build your height chart</h3>
-                                        <p className="text-[15px] text-muted leading-[1.8] mb-8 font-bold opacity-70">The left sidebar has five icons. Each opens a different input panel. Mix and match any types on the same proportional height comparison chart.</p>
+                                        <p className="text-[15px] text-muted leading-[1.8] mb-8 font-bold opacity-90">The left sidebar has five icons. Each opens a different input panel. Mix and match any types on the same proportional height comparison chart.</p>
                                         <div className="grid md:grid-cols-2 gap-4 mb-8">
                                             {[
                                                 { panel: 'ADD_PERSON', color: 'emerald', label: 'Add Person', desc: 'Name, sex, height in cm or ft/in, colour. Instant rendering.' },
@@ -301,7 +301,7 @@ export default function HomeContent() {
                                     </div>
                                     <div className="flex-1 p-8 md:p-12">
                                         <h3 className="hidden sm:block text-[22px] font-black text-foreground mb-4 uppercase tracking-tighter">Step 3: See the Difference, Then Share It</h3>
-                                        <p className="text-[15px] text-muted leading-[1.8] mb-6 font-bold opacity-70">Every bar is labelled with name and height. The gap between any two subjects is visible straight away. The height chart maker updates instantly with every change. Hit Download PNG for a clean, watermark-free image or Share to get a direct link.</p>
+                                        <p className="text-[15px] text-muted leading-[1.8] mb-6 font-bold opacity-90">Every bar is labelled with name and height. The gap between any two subjects is visible straight away. The height chart maker updates instantly with every change. Hit Download PNG for a clean, watermark-free image or Share to get a direct link.</p>
                                         <div className="bg-accent/5 border-2 border-accent/20 rounded-2xl p-8 flex gap-6 items-center text-[15px] text-accent shadow-lg shadow-accent/5">
                                             <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center shrink-0 shadow-lg shadow-accent/30">
                                                 <svg width="24" height="24" viewBox="0 0 14 14" fill="none"><path d="M7 1v8M4 6l3 3 3-3M2 11v1a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
@@ -325,7 +325,7 @@ export default function HomeContent() {
 
                             <h2 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">Why a Visual Height Comparison Chart Shows More Than Numbers</h2>
 
-                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold opacity-70">
+                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold opacity-90">
                                 A visual height comparison chart renders the mathematical relationship between heights as a scaled image, making the size difference between subjects immediately readable without any calculation on your part.                            </p>
 
                             <div className="grid sm:grid-cols-2 gap-6">
@@ -357,7 +357,7 @@ export default function HomeContent() {
                                 ].map((item, i) => (
                                     <div key={i} className="bg-surface rounded-3xl p-8 border-2 border-border/80 shadow-sm hover:border-accent/30 transition-all group">
                                         <div className="text-[17px] font-black text-foreground mb-3 uppercase tracking-tighter group-hover:text-accent transition-colors">{item.title}</div>
-                                        <div className="text-[14px] text-muted font-bold leading-relaxed opacity-70 group-hover:opacity-100">{item.desc}</div>
+                                        <div className="text-[14px] text-muted font-bold leading-relaxed opacity-80 group-hover:opacity-100">{item.desc}</div>
                                     </div>
                                 ))}
                             </div>
@@ -375,7 +375,7 @@ export default function HomeContent() {
 
                             <h2 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">Comparing Heights: Examples and Use Cases</h2>
 
-                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold opacity-70">
+                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold opacity-90">
                                 Common use cases producing proportional visuals showing exact height differences.
                             </p>
 

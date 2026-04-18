@@ -281,7 +281,7 @@ export default function page() {
                         </div>
 
                         {/* Table Section */}
-                        <section className="scroll-mt-24">
+                        <section id="average-height-by-country-global-table" className="scroll-mt-24">
                             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
                                 <h2 className="text-2xl md:text-3xl font-black tracking-tight">Average Height by Country (Global Table)</h2>
                                 {/* Synced Unit Toggle */}
@@ -448,7 +448,7 @@ export default function page() {
                             </p>
 
                         </section>
-                        <section id="tallest-countries-in-the-world" className="space-y-4 scroll-mt-24">
+                        <section id="average-male-and-female-height" className="space-y-4 scroll-mt-24">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight">
                                 Average Male and Female Height
                             </h2>
@@ -768,7 +768,7 @@ export default function page() {
 
 
                         {/* References Section */}
-                        <div className="bg-surface border border-border rounded-3xl p-6 md:p-10 text-sm text-muted mt-8">
+                        <div id="references" className="bg-surface border border-border rounded-3xl p-6 md:p-10 text-sm text-muted mt-8 scroll-mt-24">
                             <h3 className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">Primary Data Sources</h3>
                             <ul className="space-y-3 break-words overflow-hidden mb-6">
                                 <li>NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016. Vol. 5, e13410. doi: 10.7554/eLife.13410. <br /><a href="https://elifesciences.org/articles/13410" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://elifesciences.org/articles/13410</a></li>

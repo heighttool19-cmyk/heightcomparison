@@ -330,8 +330,9 @@ export default function HeightPercentileTool() {
     const inputStyle = {
         width: "100%", padding: "12px 14px", borderRadius: 10,
         border: `1px solid ${isDark ? 'var(--border)' : '#e2e8f0'}`, fontSize: 15, fontFamily: "Georgia, serif",
-        color: isDark ? 'white' : '#1e293b', background: isDark ? 'transparent' : 'white', outline: "none", boxSizing: "border-box" as const,
-        transition: "border-color 0.2s"
+        color: isDark ? 'white' : '#1e293b', background: isDark ? 'var(--surface)' : 'white', outline: "none", boxSizing: "border-box" as const,
+        transition: "border-color 0.2s",
+        colorScheme: isDark ? 'dark' : 'light'
     };
 
     const labelStyle = {
@@ -462,13 +463,43 @@ export default function HeightPercentileTool() {
                         {/* Country */}
                         <div style={{ marginBottom: 24 }}>
                             <label htmlFor="country-select" style={labelStyle}>Country</label>
-                            <select
-                                id="country-select"
-                                value={country} onChange={e => setCountry(e.target.value)}
-                                style={{ ...inputStyle, appearance: "none", cursor: "pointer" }}
-                            >
-                                {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
-                            </select>
+                            <div style={{ position: 'relative' }}>
+                                <select
+                                    id="country-select"
+                                    value={country} onChange={e => setCountry(e.target.value)}
+                                    style={{ 
+                                        ...inputStyle, 
+                                        appearance: "none", 
+                                        cursor: "pointer",
+                                        paddingRight: '40px' 
+                                    }}
+                                >
+                                    {COUNTRIES.map(c => (
+                                        <option 
+                                            key={c} 
+                                            value={c} 
+                                            style={{ 
+                                                background: isDark ? '#1e293b' : 'white', 
+                                                color: isDark ? 'white' : '#1e293b' 
+                                            }}
+                                        >
+                                            {c}
+                                        </option>
+                                    ))}
+                                </select>
+                                <div style={{
+                                    position: 'absolute',
+                                    right: '14px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    pointerEvents: 'none',
+                                    color: isDark ? '#94a3b8' : '#64748b'
+                                }}>
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M2 4L6 8L10 4" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
 
                         {error && (

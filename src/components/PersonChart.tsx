@@ -66,6 +66,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                                     <button
                                         disabled={index === 0}
                                         onClick={() => onReorder?.(person.id, 'up')}
+                                        aria-label="Move up"
                                         className="p-0.5 text-muted hover:text-accent disabled:opacity-30 transition-colors flex items-center justify-center"
                                     >
                                         <ChevronUp size={14} strokeWidth={3} />
@@ -73,6 +74,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                                     <button
                                         disabled={index === persons.length - 1}
                                         onClick={() => onReorder?.(person.id, 'down')}
+                                        aria-label="Move down"
                                         className="p-0.5 text-muted hover:text-accent disabled:opacity-30 transition-colors flex items-center justify-center"
                                     >
                                         <ChevronDown size={14} strokeWidth={3} />

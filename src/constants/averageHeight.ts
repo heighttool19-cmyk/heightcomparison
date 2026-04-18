@@ -140,7 +140,8 @@ export const AVERAGE_HEIGHT_TOC = [
     {
         id: 'frequently-asked-questions',
         label: 'Frequently Asked Questions',
-    }
+    },
+    { id: 'references', label: 'References' }
 ];
 export const AVERAGE_HEIGHT_FAQ = [
     {

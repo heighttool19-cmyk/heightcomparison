@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Moon, Sun, Menu, ArrowLeftRight, ChevronDown } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useThemeStore, useUnitStore, useUIStore } from '@/store';
@@ -69,7 +70,10 @@ const Navbar: React.FC = () => {
                         <img
                             src="/logo.png"
                             alt="Logo"
+                            width={40}
+                            height={40}
                             className="w-full h-full object-cover"
+
                         />
                     </div>
                     <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors whitespace-nowrap">

@@ -158,8 +158,15 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
 
                 {/* Name */}
                 <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Name</label>
-                    <input type="text" placeholder="Optional" value={name} onChange={e => setName(e.target.value)} className="w-full bg-bg border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all" />
+                    <label htmlFor="image-person-name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Name</label>
+                    <input
+                        id="image-person-name"
+                        type="text"
+                        placeholder="Optional"
+                        value={name}
+                        onChange={e => setName(e.target.value)}
+                        className="w-full bg-bg border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all"
+                    />
                 </div>
 
                 {/* Height */}
@@ -168,7 +175,13 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                         <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60">Height</label>
                         <div className="flex gap-1.5">
                             {(['metric', 'imperial'] as UnitSystem[]).map(u => (
-                                <button key={u} type="button" onClick={() => setUnit(u)} className={`text-[10px] font-bold uppercase tracking-tight px-2.5 py-1 rounded border transition-all ${unit === u ? 'border-accent/40 text-accent bg-accent/5' : 'border-border text-muted/70 hover:text-muted'}`}>
+                                <button
+                                    key={u}
+                                    type="button"
+                                    onClick={() => setUnit(u)}
+                                    aria-label={`Switch to ${u} units`}
+                                    className={`text-[10px] font-bold uppercase tracking-tight px-2.5 py-1 rounded border transition-all ${unit === u ? 'border-accent/40 text-accent bg-accent/5' : 'border-border text-muted/70 hover:text-muted'}`}
+                                >
                                     {u === 'metric' ? 'Metric' : 'Imp'}
                                 </button>
                             ))}
@@ -176,17 +189,38 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                     </div>
                     {unit === 'metric' ? (
                         <div className="flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
-                            <NumericInput placeholder="eg. 158 cm" value={heightCm} onValueChange={(val) => { setError(''); setHeightCm(val); }} className="flex-1 bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none" />
+                            <label htmlFor="image-height-cm" className="sr-only">Height in centimeters</label>
+                            <NumericInput
+                                id="image-height-cm"
+                                placeholder="eg. 158 cm"
+                                value={heightCm}
+                                onValueChange={(val) => { setError(''); setHeightCm(val); }}
+                                className="flex-1 bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
+                            />
                             <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center">CM</div>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                <NumericInput placeholder="Ft" value={heightFt} onValueChange={(val) => { setError(''); setHeightFt(val); }} className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none" />
+                                <label htmlFor="image-height-ft" className="sr-only">Height in feet</label>
+                                <NumericInput
+                                    id="image-height-ft"
+                                    placeholder="Ft"
+                                    value={heightFt}
+                                    onValueChange={(val) => { setError(''); setHeightFt(val); }}
+                                    className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
+                                />
                                 <div className="px-2 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center shrink-0">FT</div>
                             </div>
                             <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
-                                <NumericInput placeholder="In" value={heightIn} onValueChange={(val) => { setError(''); setHeightIn(val); }} className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none" />
+                                <label htmlFor="image-height-in" className="sr-only">Height in inches</label>
+                                <NumericInput
+                                    id="image-height-in"
+                                    placeholder="In"
+                                    value={heightIn}
+                                    onValueChange={(val) => { setError(''); setHeightIn(val); }}
+                                    className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
+                                />
                                 <div className="px-2 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center shrink-0">IN</div>
                             </div>
                         </div>
@@ -201,10 +235,20 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                         <div className="relative group rounded-3xl overflow-hidden border-2 border-accent/20 bg-bg aspect-square flex items-center justify-center">
                             <img src={pendingImageUrl} alt="Preview" className="max-w-full max-h-full object-contain" />
                             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-                                <button onClick={() => inputRef.current?.click()} className="p-3 bg-white text-black rounded-full hover:scale-110 transition-transform shadow-xl" title="Change Image">
+                                <button
+                                    onClick={() => inputRef.current?.click()}
+                                    className="p-3 bg-white text-black rounded-full hover:scale-110 transition-transform shadow-xl"
+                                    title="Change Image"
+                                    aria-label="Change image"
+                                >
                                     <UploadCloud size={20} />
                                 </button>
-                                <button onClick={resetSelection} className="p-3 bg-red-500 text-white rounded-full hover:scale-110 transition-transform shadow-xl" title="Remove">
+                                <button
+                                    onClick={resetSelection}
+                                    className="p-3 bg-red-500 text-white rounded-full hover:scale-110 transition-transform shadow-xl"
+                                    title="Remove"
+                                    aria-label="Remove image"
+                                >
                                     <X size={20} />
                                 </button>
                             </div>
@@ -214,7 +258,11 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                             </div>
                         </div>
                     ) : (
-                        <button onClick={() => inputRef.current?.click()} className="w-full aspect-square rounded-3xl border-2 border-dashed border-border hover:border-accent/40 hover:bg-accent/5 transition-all flex flex-col items-center justify-center gap-4 group">
+                        <button
+                            onClick={() => inputRef.current?.click()}
+                            aria-label="Select image to upload"
+                            className="w-full aspect-square rounded-3xl border-2 border-dashed border-border hover:border-accent/40 hover:bg-accent/5 transition-all flex flex-col items-center justify-center gap-4 group"
+                        >
                             <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center text-accent group-hover:scale-110 transition-transform">
                                 <UploadCloud size={28} />
                             </div>

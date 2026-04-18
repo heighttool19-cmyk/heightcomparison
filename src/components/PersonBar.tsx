@@ -58,6 +58,11 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
         if (img.naturalHeight > 0) setImageAspectRatio(img.naturalWidth / img.naturalHeight);
     }, []);
 
+    // ── Padding & Avatar Detection ──────────────────────────────────────────
+    const avatarOption = [...FEMALE_AVATARS, ...MALE_AVATARS].find(a => a.path === person.imgUrl);
+    // Only apply the mask to standard avatars. Entities load as standard images to preserve color and aspect ratio.
+    const isSvgAvatar = person.imgUrl?.toLowerCase().endsWith('.svg') && !person.isEntity;
+
     // ── Pixel geometry ────────────────────────────────────────────────────────
     const barH = Math.max(0, Number.isFinite(person.heightCm * scale) ? person.heightCm * scale : 0);
     const headD = barH * HEAD_RATIO;
@@ -70,6 +75,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
     let effectiveW: number;
     if (person.imgUrl && imageAspectRatio !== null) {
         effectiveW = Math.min(800, Math.max(minW, barH * imageAspectRatio));
+    } else if (isSvgAvatar && avatarOption?.aspectRatio) {
+        effectiveW = Math.max(minW, barH * avatarOption.aspectRatio);
     } else {
         effectiveW = Math.max(minW, barH * WIDTH_RATIO);
     }
@@ -112,11 +119,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
     const fontSize = Math.max(minBaseSize, Math.min(maxBaseSize, effectiveW * propScale, maxFontSizeForLength));
 
     // ── Padding Compensation ──────────────────────────────────────────────────
-    const avatarOption = [...FEMALE_AVATARS, ...MALE_AVATARS].find(a => a.path === person.imgUrl);
     const paddingFactor = avatarOption?.topPaddingFactor || 0;
     const paddingScale = 1 / (1 - paddingFactor);
-    // Only apply the mask to standard avatars. Entities load as standard images to preserve color and aspect ratio.
-    const isSvgAvatar = person.imgUrl?.toLowerCase().endsWith('.svg') && !person.isEntity;
     const spring = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
     // ── Tooltip bottom anchor ─────────────────────────────────────────────────
@@ -136,6 +140,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
             exit={{ opacity: 0, x: -60 }}
             whileHover={{ zIndex: 110 }}
             transition={spring}
+            role="img"
+            aria-label={`${person.name}, height ${unitSystem === 'metric' ? metricFull : ftFull}`}
             className="relative group pointer-events-auto shrink-0 h-full flex flex-col items-center justify-end"
             style={{
                 width: `${effectiveW}px`,
@@ -284,7 +290,7 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
                                     backgroundColor: person.color || '#6366F1',
                                     maskImage: `url("${person.imgUrl}")`,
                                     WebkitMaskImage: `url("${person.imgUrl}")`,
-                                    maskSize: 'contain',
+                                    maskSize: '100% 100%',
                                     maskRepeat: 'no-repeat',
                                     maskPosition: 'bottom center',
                                     transformOrigin: 'bottom center',

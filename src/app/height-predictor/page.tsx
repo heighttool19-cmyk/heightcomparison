@@ -1,13 +1,18 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { AlertCircle, ArrowUpCircle, CheckCircle2, Dna, Salad, Timer, ArrowUp, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import TableOfContents from '@/components/TableOfContents';
-import KhamisRocheCalculator from '@/components/height-predictor/KhamisRocheCalculator';
-import MidParentalCalculator from '@/components/height-predictor/MidParentalCalculator';
-import HeightConverter from '@/components/height-predictor/HeightConverter';
+
 import FaqAccordion from '@/components/FaqAccordion';
 import { CHILD_HEIGHT_QA, CHILD_HEIGHT_TOC } from '@/constants/childHeight';
-import { DynamicHeightCharts, DynamicGrowthPlateExplainer } from '@/components/height-predictor/DynamicChildHeightIslands';
+import {
+    DynamicHeightCharts,
+    DynamicGrowthPlateExplainer,
+    DynamicKhamisRocheCalculator as KhamisRocheCalculator,
+    DynamicMidParentalCalculator as MidParentalCalculator,
+    DynamicHeightConverter as HeightConverter
+} from '@/components/height-predictor/DynamicChildHeightIslands';
 import JsonLd from '@/components/common/JsonLd';
 import { HEIGHT_PREDICTOR_SCHEMA } from '@/constants/schemas/heightPredictor';
 
@@ -59,8 +64,8 @@ export default function HeightCalculatorPage() {
                     {/* SEO CONTENT SECTION */}
                     <div className="space-y-12 text-foreground mt-8">
                         <section className="space-y-4">
-                            <h2 id="how-does-a-height-calculator-work" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
-                                How Does a Height Calculator Work?
+                            <h2 id="how-it-works" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
+                                How Does it Work?
                             </h2>
                             <p className="text-muted leading-relaxed font-medium">
                                 A height calculator is a tool that combines current measurements (age, height, weight, and parental heights) and applies them to population growth data to produce a likely height range.
@@ -129,7 +134,7 @@ export default function HeightCalculatorPage() {
                             </p>
                         </section><section className="space-y-8 pt-8">
                             <div className="space-y-4">
-                                <h2 id="how-tall-will-i-be" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
+                                <h2 id="how-tall-will-i-be-teens-adults" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
                                     How Tall Will I Be? Calculator for Teens & Adults
                                 </h2>
                                 <p className="text-muted leading-relaxed font-medium">
@@ -221,7 +226,7 @@ export default function HeightCalculatorPage() {
                             </Link>
                         </div>
                         <section className="space-y-4">
-                            <h2 id="what-determines-child-height" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
+                            <h2 id="what-determines-height" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
                                 What Determines Height?
                             </h2>
                             <p className="text-muted leading-relaxed font-medium">
@@ -231,9 +236,9 @@ export default function HeightCalculatorPage() {
                             <div className="grid md:grid-cols-3 gap-6 mt-8">
                                 {/* GENETICS CARD */}
                                 <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm hover:border-accent/30 transition-all border-l-4 border-l-accent">
-                                    <h4 className="font-black text-foreground text-lg mb-3 uppercase tracking-tight flex items-center gap-2">
+                                    <h3 className="font-black text-foreground text-lg mb-3 uppercase tracking-tight flex items-center gap-2">
                                         <Dna className="text-accent w-5 h-5" /> Genetics
-                                    </h4>
+                                    </h3>
                                     <p className="text-sm text-muted leading-relaxed font-medium">
                                         Accounts for <strong>60-80%</strong> of final height. Children of taller parents tend to be taller, but children of very tall or very short parents often grow closer to the average population height, a phenomenon called <strong>regression toward the mean.</strong>
                                     </p>
@@ -241,9 +246,9 @@ export default function HeightCalculatorPage() {
 
                                 {/* NUTRITION & SLEEP CARD */}
                                 <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm hover:border-accent/30 transition-all border-l-4 border-l-green-500">
-                                    <h4 className="font-black text-foreground text-lg mb-3 uppercase tracking-tight flex items-center gap-2">
+                                    <h3 className="font-black text-foreground text-lg mb-3 uppercase tracking-tight flex items-center gap-2">
                                         <Salad className="text-green-500 w-5 h-5" /> Nutrition & Sleep
-                                    </h4>
+                                    </h3>
                                     <p className="text-sm text-muted leading-relaxed font-medium mb-3">
                                         Remaining <strong>20-40%</strong> comes from environment.
                                     </p>
@@ -256,9 +261,9 @@ export default function HeightCalculatorPage() {
 
                                 {/* GROWTH TIMING CARD */}
                                 <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm hover:border-accent/30 transition-all border-l-4 border-l-amber-500">
-                                    <h4 className="font-black text-foreground text-lg mb-3 uppercase tracking-tight flex items-center gap-2">
+                                    <h3 className="font-black text-foreground text-lg mb-3 uppercase tracking-tight flex items-center gap-2">
                                         <Timer className="text-amber-500 w-5 h-5" /> Growth Timing
-                                    </h4>
+                                    </h3>
                                     <p className="text-sm text-muted leading-relaxed font-medium">
                                         Early puberty may produce a taller child temporarily but a shorter adult. Late puberty often results in a longer growth window and greater final height.
                                     </p>
@@ -334,7 +339,7 @@ export default function HeightCalculatorPage() {
                         </section>
                         <section className="space-y-6 pt-8">
                             <div className="space-y-4">
-                                <h2 id="height-prediction-comparison" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
+                                <h2 id="calculator-vs-growth-charts" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
                                     Height Calculator vs. Growth Charts
                                 </h2>
                                 <p className="text-muted leading-relaxed font-medium">
@@ -390,7 +395,7 @@ export default function HeightCalculatorPage() {
 
                         <div className="grid md:grid-cols-1 gap-8">
                             {/* BOYS GROWTH SECTION */}
-                            <section className="space-y-4 bg-blue-500/5 p-6 md:p-8 rounded-[2.5rem] border border-blue-500/10 shadow-sm" id="boys-growth">
+                            <section className="space-y-4 bg-blue-500/5 p-6 md:p-8 rounded-[2.5rem] border border-blue-500/10 shadow-sm" id="when-do-boys-stop-growing">
                                 <h2 className="text-2xl font-black tracking-tight text-blue-500 uppercase scroll-mt-24">When Do Boys Stop Growing?</h2>
 
                                 <p className="text-muted leading-relaxed font-medium">Boys usually experience their main growth spurt during <strong>puberty</strong>.</p>
@@ -408,7 +413,7 @@ export default function HeightCalculatorPage() {
 
 
                             {/* GIRLS GROWTH SECTION */}
-                            <section className="space-y-4 bg-pink-500/5 p-6 md:p-8 rounded-[2.5rem] border border-pink-500/10 shadow-sm" id="girls-growth">
+                            <section className="space-y-4 bg-pink-500/5 p-6 md:p-8 rounded-[2.5rem] border border-pink-500/10 shadow-sm" id="when-do-girls-stop-growing">
                                 <h2 className="text-2xl font-black tracking-tight text-pink-500 uppercase scroll-mt-24">When Do Girls Stop Growing?</h2>
 
                                 <p className="text-muted leading-relaxed font-medium">Girls generally begin puberty earlier than boys.</p>
@@ -428,10 +433,10 @@ export default function HeightCalculatorPage() {
 
 
                         <section className="space-y-6 pt-8">
-                            <h2 id="predict-child-height" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">Height prediction methods Explained</h2>
-                            <h4 className="text-xl font-black text-foreground mt-2 uppercase tracking-tighter">
-                                How to Predict Your Child's Height
-                            </h4>
+                            <h2 id="height-prediction-methods" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">Height prediction methods Explained</h2>
+                            <h3 className="text-xl font-black text-foreground mt-2 uppercase tracking-tighter">
+                                How to Predict Your Child&apos;s Height
+                            </h3>
                             <p className="text-muted leading-relaxed mb-6 font-medium">
                                 Researchers use several formulas to estimate adult height. Each method balances accuracy against the data it requires.
 
@@ -446,9 +451,9 @@ export default function HeightCalculatorPage() {
                                         <span className="bg-green-100 text-green-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
                                             Most Accurate
                                         </span>
-                                        <h3 id="khamis-roche-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                        <h4 id="khamis-roche-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
                                             Khamis-Roche Method
-                                        </h3>
+                                        </h4>
                                     </div>
 
                                     <p className="text-muted leading-relaxed  font-medium">
@@ -497,9 +502,9 @@ export default function HeightCalculatorPage() {
                                         <span className="bg-green-100 text-green-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
                                             SIMPLE
                                         </span>
-                                        <h3 id="height-calculator-based-on-parents" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                        <h4 id="based-on-parents" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
                                             Height Predictor Based on Parents (Mid-Parental Height Formula)
-                                        </h3>
+                                        </h4>
                                     </div>
 
                                     <p className="text-muted leading-relaxed mb-6 font-medium">
@@ -580,9 +585,9 @@ export default function HeightCalculatorPage() {
                                     <span className="bg-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
                                         CLINICAL
                                     </span>
-                                    <h3 id="bone-age-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                    <h4 id="bone-age-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
                                         Bone Age Method (Wrist X-Ray)
-                                    </h3>
+                                    </h4>
                                 </div>
 
                                 <p className="text-muted leading-relaxed mb-6 font-medium">
@@ -626,9 +631,9 @@ export default function HeightCalculatorPage() {
                                     <span className="bg-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
                                         CLINICAL
                                     </span>
-                                    <h3 id="bayley-pinneau-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                    <h4 id="bayley-pinneau-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
                                         Bayley-Pinneau Method
-                                    </h3>
+                                    </h4>
                                 </div>
 
                                 <p className="text-muted leading-relaxed font-medium">
@@ -647,9 +652,9 @@ export default function HeightCalculatorPage() {
                                     <span className="bg-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
                                         CLINICAL
                                     </span>
-                                    <h3 id="roche-wainer-thissen-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                    <h4 id="roche-wainer-thissen-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
                                         Roche-Wainer-Thissen Method
-                                    </h3>
+                                    </h4>
                                 </div>
 
                                 <p className="text-muted leading-relaxed font-medium">
@@ -657,7 +662,7 @@ export default function HeightCalculatorPage() {
                                 </p>
                             </div>
                         </section>
-                        <section id="increase" className="space-y-6">
+                        <section id="can-you-increase-height" className="space-y-6">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight mt-8 scroll-mt-24 uppercase">
                                 Can You <span className="text-accent">Increase Height</span>?
                             </h2>
@@ -668,9 +673,9 @@ export default function HeightCalculatorPage() {
                             <div className="grid md:grid-cols-3 gap-6 mt-4">
                                 {/* Nutrition */}
                                 <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
-                                    <h4 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent flex items-center gap-2">
+                                    <h3 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent flex items-center gap-2">
                                         <span className="text-lg"></span> Nutrition
-                                    </h4>
+                                    </h3>
                                     <p className="text-sm text-muted font-medium leading-relaxed mb-2">
                                         Adequate nutrition supports bone development. Key nutrients:
                                     </p>
@@ -684,9 +689,9 @@ export default function HeightCalculatorPage() {
 
                                 {/* Sleep */}
                                 <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
-                                    <h4 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent flex items-center gap-2">
+                                    <h3 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent flex items-center gap-2">
                                         <span className="text-lg"></span> Adequate Sleep
-                                    </h4>
+                                    </h3>
                                     <p className="text-sm text-muted font-medium leading-relaxed mb-2">
                                         Growth hormone peaks during deep sleep.
                                     </p>
@@ -698,9 +703,9 @@ export default function HeightCalculatorPage() {
 
                                 {/* Exercise */}
                                 <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
-                                    <h4 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent flex items-center gap-2">
+                                    <h3 className="font-black text-foreground mb-3 uppercase tracking-widest text-xs text-accent flex items-center gap-2">
                                         <span className="text-lg"></span> Regular Exercise
-                                    </h4>
+                                    </h3>
                                     <p className="text-sm text-muted font-medium leading-relaxed">
                                         Supports bone strength and overall development. Running, jumping, and sports encourage healthy bone growth.
                                     </p>
@@ -803,7 +808,7 @@ export default function HeightCalculatorPage() {
                     </div>
 
                     {/* FAQ Accordion Section */}
-                    <section id="height-predictor-faq" className="scroll-mt-24 space-y-6">
+                    <section id="faq" className="scroll-mt-24 space-y-6">
                         {/* <div className="space-y-4">
                         <h2 className="text-2xl md:text-3xl font-black tracking-tight uppercase text-foreground">
                                 Height Calculator FAQs
