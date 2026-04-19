@@ -157,7 +157,7 @@ export const CropModal: React.FC<CropModalProps> = ({
                                                 alt="Crop preview"
                                                 onLoad={onImageLoad}
                                                 draggable={false}
-                                                className="block select-none max-w-full max-h-[55vh] lg:max-h-[65vh] w-auto h-auto rounded-xl"
+                                                className="block select-none max-w-full w-auto h-auto "
                                             />
                                         </ReactCrop>
                                     </div>

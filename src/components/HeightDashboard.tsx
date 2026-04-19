@@ -587,7 +587,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     {/* Toolbar — hidden in custom fullscreen */}
                     {!isCustomFullscreen && (
                         <div className="order-2 sm:order-first px-2 lg:px-4 z-30 w-[100%]] mb-2 shrink-0">
-                            <div className="w-[100%] flex items-center justify-center md:justify-between bg-accent border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
+                            <div className="w-[100%] flex items-center justify-center md:justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
                                 <div className="flex items-center gap-1 lg:gap-3 shrink-0">
                                     <button
                                         onClick={toggleUnitSystem}
@@ -626,9 +626,9 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                                     setZoom(c / 100);
                                                 }}
                                                 onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); }}
-                                                className="w-6 lg:w-10 bg-transparent text-[12px] lg:text-[14px] font-mono font-black text-center outline-none text-zinc-950"
+                                                className="w-6 lg:w-10 bg-transparent text-[12px] lg:text-[14px] font-mono font-black text-center outline-none text-[var(--toolbar-foreground)]"
                                             />
-                                            <span className="text-[12px] font-black text-zinc-950">%</span>
+                                            <span className="text-[12px] font-black text-[var(--toolbar-foreground)]">%</span>
                                         </div>
                                         <button
                                             onClick={() => setZoom(z => (z - 0.01))}
@@ -701,9 +701,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         onClick={handleDownloadPNG}
                                         disabled={isCapturing}
                                         aria-label="Download chart as PNG image"
-                                        className="flex items-center gap-1 bg-black/10 text-zinc-950 border border-black/10 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-black hover:bg-zinc-950 hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0"
+                                        className="flex items-center gap-1 bg-accent/10 text-[var(--toolbar-foreground)] border border-accent/10 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-black hover:bg-[var(--toolbar-foreground)] hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0"
                                     >
-                                        {isCapturing ? <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" /> : <Download size={14} strokeWidth={2.5} />}
+                                        {isCapturing ? (
+                                            <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                                        ) : (
+                                            <Download size={14} strokeWidth={2.5} />
+                                        )}
                                         <span className="hidden lg:inline ml-1">PNG</span>
                                     </button>
                                 </div>
