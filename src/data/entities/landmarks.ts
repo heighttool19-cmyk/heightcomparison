@@ -264,7 +264,7 @@ export const landmarks_data = [
     "heightCm": 13500,
     "category": "Landmarks",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/Landmarks/London Eye (1).svg"
+    "imgUrl": "/Avtars/entities/Landmarks/London Eye.svg"
   },
   {
     "name": "Mount Rushmore",

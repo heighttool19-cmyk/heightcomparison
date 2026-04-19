@@ -20,16 +20,18 @@ const Footer = () => {
                     {/* Brand Column */}
                     <div className="flex flex-col gap-5">
                         <Link href="/" className="flex items-center gap-2.5 group">
-                            <div className="w-9 h-9 bg-accent rounded-xl flex items-center justify-center shrink-0">
-                                <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5">
-                                    <rect x="2" y="14" width="3" height="4" rx="1" fill="white" />
-                                    <rect x="7" y="10" width="3" height="8" rx="1" fill="white" opacity="0.7" />
-                                    <rect x="12" y="6" width="3" height="12" rx="1" fill="white" opacity="0.5" />
-                                    <rect x="17" y="2" width="1" height="16" rx="0.5" fill="white" opacity="0.3" />
-                                </svg>
+                            {/* Logo Container */}
+                            <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
+                                <img
+                                    src="/logo.png"
+                                    alt="Height Comparison Logo"
+                                    className="object-contain"
+                                    width={40}
+                                    height={40}
+                                />
                             </div>
                             <span className="text-lg font-semibold text-foreground tracking-tight">
-                                Height<span className="text-accent">Comparison</span>
+                                Height<span className="text-accent"> Comparison</span>
                             </span>
                         </Link>
                         <p className="text-sm leading-relaxed text-muted max-w-[280px]">
@@ -60,11 +62,8 @@ const Footer = () => {
                         <p className="text-xs font-semibold uppercase tracking-widest text-foreground mb-4">Company</p>
                         <ul className="flex flex-col gap-2.5">
                             <FooterLink href="/about">About</FooterLink>
-                            <FooterLink href="/blog">Blog</FooterLink>
-                            <FooterLink href="/contact">Contact Us</FooterLink>
+                            <FooterLink href="/blogs">Blogs</FooterLink>
                             <FooterLink href="/privacy">Privacy Policy</FooterLink>
-                            <FooterLink href="/terms">Terms of Service</FooterLink>
-                            <FooterLink href="/sitemap">Sitemap</FooterLink>
                         </ul>
                     </div>
                 </div>
@@ -72,14 +71,9 @@ const Footer = () => {
                 <hr className="border-none border-t border-border mb-6 opacity-50" />
 
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 flex-wrap">
-                    <p className="text-[13px] text-muted/80">
+                    <p className="text-[13px] text-muted">
                         © {new Date().getFullYear()} Height Comparison. All rights reserved. Built with care by <Link href="#" className="text-accent hover:underline">the team</Link>.
                     </p>
-                    <div className="flex gap-5">
-                        <Link href="/privacy" className="text-[13px] text-muted/80 hover:text-foreground transition-colors">Privacy</Link>
-                        <Link href="/terms" className="text-[13px] text-muted/80 hover:text-foreground transition-colors">Terms</Link>
-                        <Link href="/cookies" className="text-[13px] text-muted/80 hover:text-foreground transition-colors">Cookies</Link>
-                    </div>
                     <div className="flex gap-3">
                         <SocialButton title="Twitter / X">
                             <path d="M16.99 3H14.54L10 8.81 6.11 3H1l6.83 9.54L1.5 19h2.46l4.87-5.64L12.85 19H18l-7.17-9.95L16.99 3zm-2.64 14.13-10.1-14h1.94l10.1 14h-1.94z" />

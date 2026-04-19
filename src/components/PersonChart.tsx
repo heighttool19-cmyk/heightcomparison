@@ -95,7 +95,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                                     <span className="text-[11px] h-4 flex items-center font-mono text-foreground uppercase tracking-tight break-words">
                                         {person.name}
                                     </span>
-                                    <span className="text-[10px] font-mono font-black text-foreground/40 uppercase mt-0.5">
+                                    <span className="text-[10px] font-mono font-black text-foreground mt-0.5">
                                         {person.heightCm >= 1000 
                                             ? `${(person.heightCm / 100).toFixed(person.heightCm % 100 === 0 ? 0 : 2)} m` 
                                             : `${person.heightCm} cm`}
@@ -133,7 +133,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                         animate={{ opacity: 0.3 }}
                         className="flex flex-col items-center justify-center py-10"
                     >
-                        <p className="text-xs uppercase tracking-[0.3em] font-black text-foreground/40 text-center">
+                        <p className="text-xs uppercase tracking-[0.3em] font-black text-foreground text-center">
                             List is Empty
                         </p>
                     </motion.div>

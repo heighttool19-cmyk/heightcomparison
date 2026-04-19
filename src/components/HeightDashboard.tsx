@@ -587,15 +587,15 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     {/* Toolbar — hidden in custom fullscreen */}
                     {!isCustomFullscreen && (
                         <div className="order-2 sm:order-first px-2 lg:px-4 z-30 w-[100%]] mb-2 shrink-0">
-                            <div className="w-[100%] flex items-center justify-center md:justify-between bg-toolbar-bg border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
+                            <div className="w-[100%] flex items-center justify-center md:justify-between bg-accent border border-toolbar-border rounded-2xl py-2 px-2 lg:px-4 backdrop-blur-md shadow-2xl overflow-x-auto flex-nowrap gap-1">
                                 <div className="flex items-center gap-1 lg:gap-3 shrink-0">
                                     <button
                                         onClick={toggleUnitSystem}
                                         aria-label={`Switch to ${unitSystem === 'metric' ? 'Imperial' : 'Metric'} units`}
                                         className="shrink-0 flex items-center gap-1 group hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all"
                                     >
-                                        <ArrowLeftRight size={14} className="text-muted/50 group-hover:text-accent" />
-                                        <span className="hidden sm:inline text-[10px] lg:text-xs font-semibold text-muted group-hover:text-foreground whitespace-nowrap">
+                                        <ArrowLeftRight size={14} className="text-[var(--toolbar-foreground)] group-hover:text-zinc-950" />
+                                        <span className="hidden sm:inline text-[10px] lg:text-xs font-semibold text-[var(--toolbar-foreground)] group-hover:text-zinc-950 whitespace-nowrap">
                                             {unitSystem === 'metric' ? 'cm → ft' : 'ft → cm'}
                                         </span>
                                     </button>
@@ -604,7 +604,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         <button
                                             onClick={() => setZoom(z => (z + 0.01))}
                                             aria-label="Zoom in"
-                                            className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg"
+                                            className="p-1.5 lg:p-2 text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover rounded-xl transition-all"
                                         >
                                             <ZoomIn size={16} strokeWidth={2.5} />
                                         </button>
@@ -626,14 +626,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                                     setZoom(c / 100);
                                                 }}
                                                 onKeyDown={e => { if (e.key === 'Enter') e.currentTarget.blur(); }}
-                                                className="w-5 lg:w-9 bg-transparent text-[10px] lg:text-[12px] font-mono font-bold text-center outline-none text-muted focus:text-foreground"
+                                                className="w-6 lg:w-10 bg-transparent text-[12px] lg:text-[14px] font-mono font-black text-center outline-none text-zinc-950"
                                             />
-                                            <span className="text-[9px] font-bold text-muted/30">%</span>
+                                            <span className="text-[12px] font-black text-zinc-950">%</span>
                                         </div>
                                         <button
                                             onClick={() => setZoom(z => (z - 0.01))}
                                             aria-label="Zoom out"
-                                            className="p-1.5 lg:p-2 text-muted hover:text-foreground hover:bg-item-hover rounded-lg"
+                                            className="p-1.5 lg:p-2 text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover rounded-xl transition-all"
                                         >
                                             <ZoomOut size={16} strokeWidth={2.5} />
                                         </button>
@@ -641,7 +641,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                     <div className="flex items-center gap-0.5 border-l border-white/10 pl-1 shrink-0">
                                         <button
                                             onClick={handleAutoScale}
-                                            className="p-1.5 lg:p-2 text-primary hover:bg-accent/10 rounded-lg"
+                                            className="p-1.5 lg:p-2 text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover rounded-xl transition-all"
                                             title="Auto Fit"
                                             aria-label="Auto fit chart"
                                         >
@@ -649,7 +649,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         </button>
                                         <button
                                             onClick={() => { setActivePanel('ADD_PERSON'); setIsSidebarCollapsed(false); if (isMobile) setIsMobileDrawerOpen(true); setHighlightYourList(true); setTimeout(() => setHighlightYourList(false), 2000); }}
-                                            className="p-1.5 lg:p-2 hover:bg-emerald-500/10 rounded-lg"
+                                            className="p-1.5 lg:p-2 text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover rounded-xl transition-all"
                                             title="Edit List"
                                             aria-label="Edit persons list"
                                         >
@@ -657,32 +657,41 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         </button>
                                     </div>
                                     <div className="hidden md:flex items-center gap-1.5 px-1 lg:px-2 shrink-0 border-l border-white/10">
-                                        <ZoomOut size={12} className="text-muted/80" />
-                                        <input type="range" min={MIN_ZOOM} max={MAX_ZOOM} step={0.01} value={zoom} onChange={e => setZoom(parseFloat(e.target.value))} className="w-16 lg:w-24 h-1.5 bg-border rounded-lg appearance-none cursor-pointer accent-accent" />
-                                        <ZoomIn size={12} className="text-muted/80" />
+                                        <ZoomOut size={12} className="text-[var(--toolbar-foreground)]" />
+                                        <input
+                                            type="range"
+                                            min={MIN_ZOOM}
+                                            max={MAX_ZOOM}
+                                            step={0.01}
+                                            value={zoom}
+                                            onChange={e => setZoom(parseFloat(e.target.value))}
+                                            aria-label="Zoom scale"
+                                            className="w-16 lg:w-24 h-1.5 bg-black/10 rounded-lg appearance-none cursor-pointer accent-zinc-900"
+                                        />
+                                        <ZoomIn size={12} className="text-[var(--toolbar-foreground)]" />
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-0.5 lg:gap-2 shrink-0">
                                     <button
                                         onClick={handleClearAll}
-                                        className="flex items-center gap-1.5 text-muted hover:text-red-500 px-1.5 py-2 transition-all group shrink-0"
+                                        className="flex items-center gap-1.5 text-[var(--toolbar-foreground)] hover:text-red-200 hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all group shrink-0"
                                         aria-label="Clear all persons"
                                     >
-                                        <Trash2 size={16} className="text-muted/50 group-hover:text-red-500 shrink-0" />
+                                        <Trash2 size={16} className="text-[var(--toolbar-foreground)] group-hover:text-red-300 shrink-0" />
                                         <span className="hidden xl:inline whitespace-nowrap text-xs">Clear All</span>
                                     </button>
                                     <button
                                         onClick={handleShare}
                                         disabled={shareStatus !== 'idle'}
                                         aria-label="Share height comparison"
-                                        className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-lg ${shareStatus === 'copied' ? 'text-emerald-500 bg-emerald-500/10' : shareStatus === 'error' ? 'text-red-500 bg-red-500/10' : 'text-muted hover:text-foreground'}`}
+                                        className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-xl ${shareStatus === 'copied' ? 'text-black bg-white/40' : shareStatus === 'error' ? 'text-red-950 bg-red-500/20' : 'text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover'}`}
                                     >
                                         {shareStatus === 'generating' ? (
-                                            <div className="w-4 h-4 border-2 border-accent border-t-transparent rounded-full animate-spin" />
+                                            <div className="w-4 h-4 border-2 border-zinc-950 border-t-transparent rounded-full animate-spin" />
                                         ) : shareStatus === 'copied' ? (
                                             <Check size={16} />
                                         ) : (
-                                            <LinkIcon size={16} className={`group-hover:text-accent shrink-0 ${shareStatus === 'error' ? 'text-red-500' : 'text-muted/50'}`} />
+                                            <LinkIcon size={16} className={`group-hover:text-zinc-950 shrink-0 ${shareStatus === 'error' ? 'text-red-950' : 'text-[var(--toolbar-foreground)]'}`} />
                                         )}
                                         <span className="hidden xl:inline whitespace-nowrap text-xs">
                                             {shareStatus === 'generating' ? 'Generating...' : shareStatus === 'copied' ? 'Copied!' : shareStatus === 'error' ? 'Error' : 'Share'}
@@ -692,7 +701,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         onClick={handleDownloadPNG}
                                         disabled={isCapturing}
                                         aria-label="Download chart as PNG image"
-                                        className="flex items-center gap-1 bg-primary/10 text-primary border border-accent/20 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-bold hover:bg-accent hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0"
+                                        className="flex items-center gap-1 bg-black/10 text-zinc-950 border border-black/10 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-black hover:bg-zinc-950 hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0"
                                     >
                                         {isCapturing ? <div className="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin" /> : <Download size={14} strokeWidth={2.5} />}
                                         <span className="hidden lg:inline ml-1">PNG</span>
@@ -709,19 +718,19 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                         style={{ WebkitOverflowScrolling: 'touch', transform: 'translateZ(0)' }}
                     >
                         {/* Brand bar */}
-                        <div className={`flex items-center justify-between px-2 py-1 shrink-0 z-20 border-b border-border/5 ${isFullscreen ? '' : 'opacity-40'}`}>
+                        <div className={`flex items-center justify-between px-2 py-1 shrink-0 z-20 border-b border-border/5 ${isFullscreen ? '' : 'opacity-100'}`}>
                             <div className="flex-1" />
                             <div className="flex flex-col items-center pointer-events-none">
-                                <span className="font-black uppercase tracking-[0.4em] text-muted whitespace-nowrap text-[7px] sm:text-[10px]">
+                                <span className="font-black uppercase tracking-[0.4em] text-muted whitespace-nowrap text-[10px] sm:text-[11px] opacity-100">
                                     heightcomparisoncalculator.com
                                 </span>
-                                <div className="h-[1px] w-8 bg-accent/30 mt-1" />
+                                <div className="h-[1px] w-8 bg-accent/40 mt-1" />
                             </div>
                             <div className="flex-1 flex justify-end">
                                 <button
                                     onClick={toggleFullscreen}
                                     aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
-                                    className={`shrink-0 z-[100] flex items-center gap-1.5 active:scale-95 ${isFullscreen ? 'p-2 sm:p-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-2xl' : 'px-2 py-1 bg-surface/90 backdrop-blur-md text-foreground/80 hover:bg-accent hover:text-white rounded-xl border border-border/60 shadow-lg'}`}
+                                    className={`shrink-0 z-[100] flex items-center gap-1.5 active:scale-95 ${isFullscreen ? 'p-2 sm:p-3 bg-accent text-white rounded-full shadow-2xl' : 'px-2 py-1 bg-surface text-foreground hover:bg-accent hover:text-white rounded-xl border border-border/60 shadow-lg'}`}
                                 >
                                     {isFullscreen ? <X size={isMobile ? 20 : 28} /> : <><Maximize size={16} strokeWidth={2.5} /><span className="hidden sm:inline text-xs font-bold ml-1">Fullscreen</span></>}
                                 </button>
@@ -807,7 +816,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         >
                                             <Plus size={40} className="text-muted/20 group-hover:text-accent group-hover:scale-110 transition-all duration-500" />
                                         </motion.button>
-                                        <span className="text-sm sm:text-lg lg:text-xl text-center font-bold text-muted/50 bg-surface/50 px-6 py-2.5 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl">
+                                        <span className="text-sm sm:text-lg lg:text-xl text-center font-bold text-muted bg-surface/50 px-6 py-2.5 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl">
                                             Add a person to get started
                                         </span>
                                     </div>
@@ -843,6 +852,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                             </motion.div>
                             <button
                                 onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+                                aria-label={isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"}
                                 className="absolute top-1/2 -translate-y-1/2 w-8 h-12 bg-surface border border-border rounded-l-xl flex items-center justify-center text-muted hover:text-white hover:bg-accent hover:border-accent transition-all shadow-2xl z-50 right-full translate-x-[1px]"
                                 style={{ borderRight: 'none' }}
                             >
@@ -927,7 +937,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
                         <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-surface border border-border/50 rounded-2xl shadow-2xl p-6 sm:p-8 max-w-sm w-full">
                             <h3 className="text-xl font-bold mb-3 text-red-500 flex items-center gap-2"><Trash2 size={24} />Clear Chart</h3>
-                            <p className="text-muted/80 mb-8 text-sm">Remove all subjects? This cannot be undone.</p>
+                            <p className="text-muted mb-8 text-sm">Remove all subjects? This cannot be undone.</p>
                             <div className="flex justify-end gap-3">
                                 <button onClick={() => setIsConfirmingClear(false)} className="px-5 py-2.5 rounded-xl font-bold text-muted hover:text-foreground hover:bg-bg">Cancel</button>
                                 <button onClick={confirmClearAll} className="px-5 py-2.5 rounded-xl font-bold bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all">Clear All</button>
@@ -944,15 +954,15 @@ const LeftNavItem = ({ icon, label, active = false, onClick }: {
     icon: React.ReactNode; label: string; active?: boolean; onClick?: () => void;
 }) => (
     <motion.button
-        whileHover={{ scale: 1.02, backgroundColor: 'rgba(59,130,246,0.05)' }}
+        whileHover={{ scale: 1.02, filter: 'brightness(1.1)' }}
         whileTap={{ scale: 0.98 }}
         onClick={onClick}
         aria-label={label}
-        className={`flex flex-col items-center justify-center gap-1.5 py-2 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4 min-w-0 cursor-pointer ${active ? 'bg-accent/10 text-accent border-accent' : 'text-muted hover:text-foreground border-transparent'}`}
+        className={`flex flex-col items-center justify-center gap-1.5 py-2 sm:py-6 w-full transition-all border-b-4 sm:border-b-0 sm:border-r-4 min-w-0 cursor-pointer ${active ? 'bg-accent text-zinc-950 border-black/10' : 'text-muted hover:text-foreground border-transparent'}`}
         style={{ touchAction: 'manipulation' }}
     >
-        <div className={`${active ? 'scale-110' : ''} transition-transform`}>{icon}</div>
-        <span className="text-[7px] sm:text-[8px] font-black tracking-[0.05em] uppercase text-center w-full px-0.5 whitespace-nowrap overflow-hidden text-ellipsis">{label}</span>
+        <div className={`${active ? 'scale-110 opacity-100' : 'opacity-80'} transition-all`}>{icon}</div>
+        <span className="text-[9px] sm:text-[10px] font-black tracking-[0.05em] uppercase text-center w-full px-0.5 whitespace-nowrap overflow-hidden text-ellipsis">{label}</span>
     </motion.button>
 );
 

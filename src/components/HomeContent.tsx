@@ -36,7 +36,7 @@ export default function HomeContent() {
                                 Height Comparison Tool Compare Heights Online
                             </h1>
 
-                            <p className="text-muted leading-relaxed text-lg max-w-3xl text-left font-bold lowercase first-letter:uppercase tracking-[0.01em] opacity-90">
+                            <p className="text-muted leading-relaxed text-lg max-w-3xl text-left font-bold lowercase first-letter:uppercase tracking-[0.01em]">
                                 Use this free height chart to compare heights online instantly. Enter any height and get a proportional height comparison chart that updates in real time at exact scale. No rounding, no approximation. Compare any person, celebrity, fictional character, or real-world object. No account needed.                            </p>
 
                             <ErrorBoundary name="ProGuarantee">
@@ -51,7 +51,7 @@ export default function HomeContent() {
                                     <div className="flex flex-col group">
                                         {/* Header with theme-synced gradient line */}
                                         <div className="flex items-center gap-3 mb-2">
-                                            <strong className="text-accent uppercase tracking-[0.2em] text-[10px] font-black transition-colors">
+                                            <strong className="text-emerald-900 dark:text-emerald-400 uppercase tracking-[0.2em] text-[10px] font-black transition-colors">
                                                 Pro Guarantee 100% FREE.
                                             </strong>
                                             <div className="h-[1px] flex-1 bg-gradient-to-r from-accent/30 to-transparent"></div>
@@ -65,8 +65,8 @@ export default function HomeContent() {
                                             {/* Footnote with theme-synced interactive dots */}
                                             <div className="flex flex-wrap gap-x-4 gap-y-1 pt-1">
                                                 {['No accounts', 'No payments', 'No limits. Ever.'].map((text) => (
-                                                    <span key={text} className="text-[12px] font-bold italic text-muted group-hover:text-accent transition-colors flex items-center gap-1.5">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-sm"></span>
+                                                    <span key={text} className="text-[12px] font-black italic text-zinc-900 dark:text-zinc-600 group-hover:text-accent transition-colors flex items-center gap-1.5">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 shadow-sm"></span>
                                                         {text}
                                                     </span>
                                                 ))}
@@ -77,7 +77,7 @@ export default function HomeContent() {
                             </ErrorBoundary>
                             <SmoothScrollLink
                                 targetId="height-comparison-tool"
-                                className="bg-accent w-full text-center text-white px-10 py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-lg hover:scale-[1.05] transition-all shadow-2xl shadow-accent/40 active:scale-95 inline-flex items-center gap-3 "
+                                className="bg-accent w-full text-center text-zinc-950 px-10 py-5 rounded-2xl font-black uppercase tracking-[0.2em] text-lg hover:scale-[1.05] transition-all shadow-2xl shadow-accent/40 active:scale-95 inline-flex items-center gap-3 "
                             >
                                 <p className="w-full text-center">Compare Now ↑</p>
                             </SmoothScrollLink>
@@ -109,10 +109,10 @@ export default function HomeContent() {
 
                                     {/* Header with matching solid background but slightly darker border */}
                                     <div className="p-6 border-b-2 border-emerald-400/20 flex items-center justify-between bg-white/10 backdrop-blur-sm">
-                                        <span className="text-[14px] font-black uppercase tracking-widest text-emerald-950 opacity-70 group-hover:opacity-100 transition-opacity">
+                                        <span className="text-[14px] font-black uppercase tracking-widest text-emerald-950 group-hover:text-emerald-900 transition-colors">
                                             Worked example
                                         </span>
-                                        <div className="bg-emerald-500 px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-tight shadow-sm">
+                                        <div className="bg-emerald-700 px-3 py-1 rounded-full text-[10px] font-black text-white uppercase tracking-tight shadow-sm">
                                             Live
                                         </div>
                                     </div>
@@ -121,13 +121,13 @@ export default function HomeContent() {
                                         {/* Person A Section */}
                                         <div className="mb-8">
                                             <div className="flex justify-between items-end text-[13px] font-black uppercase tracking-widest mb-3">
-                                                <span className="text-emerald-900/60 group-hover:text-blue-700 transition-colors">Person A</span>
+                                                <span className="text-emerald-900 group-hover:text-blue-700 transition-colors">Person A</span>
                                                 <span className="text-blue-700 font-black bg-blue-500/10 px-2 py-0.5 rounded-md border border-blue-500/20">170 cm (5&apos;7&quot;)</span>
                                             </div>
                                             {/* White Trough for maximum contrast against the green background */}
                                             <div className="h-[40px] bg-white rounded-xl overflow-hidden border-2 border-emerald-300 shadow-inner p-1">
                                                 <div
-                                                    className="h-full bg-blue-600 border-r-4 border-r-blue-800 flex items-center pl-4 rounded-lg transition-all duration-700"
+                                                    className="h-full bg-blue-700 border-r-4 border-r-blue-900 flex items-center pl-4 rounded-lg transition-all duration-700"
                                                     style={{ width: '92%' }}
                                                 >
                                                     <span className="text-[12px] font-black text-white">170.00</span>
@@ -138,12 +138,12 @@ export default function HomeContent() {
                                         {/* Person B Section */}
                                         <div className="mb-0">
                                             <div className="flex justify-between items-end text-[13px] font-black uppercase tracking-widest mb-3">
-                                                <span className="text-emerald-900/60 group-hover:text-emerald-800 transition-colors">Person B</span>
+                                                <span className="text-emerald-950 group-hover:text-emerald-800 transition-colors">Person B</span>
                                                 <span className="text-emerald-800 font-black bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">185 cm (6&apos;1&quot;)</span>
                                             </div>
                                             <div className="h-[40px] bg-white rounded-xl overflow-hidden border-2 border-emerald-300 shadow-inner p-1">
                                                 <div
-                                                    className="h-full bg-emerald-600 border-r-4 border-r-emerald-800 flex items-center pl-4 rounded-lg transition-all duration-700"
+                                                    className="h-full bg-emerald-700 border-r-4 border-r-emerald-900 flex items-center pl-4 rounded-lg transition-all duration-700"
                                                     style={{ width: '100%' }}
                                                 >
                                                     <span className="text-[12px] font-black text-white">185.00</span>
@@ -162,7 +162,7 @@ export default function HomeContent() {
                                                     <div className={`text-[24px] font-black tracking-tighter ${stat.special ? 'text-blue-700' : 'text-emerald-950'}`}>
                                                         {stat.val}
                                                     </div>
-                                                    <div className="text-[10px] text-emerald-900/50 mt-2 font-black uppercase tracking-widest">
+                                                    <div className="text-[10px] text-emerald-950 mt-2 font-black uppercase tracking-widest">
                                                         {stat.label}
                                                     </div>
                                                 </div>
@@ -171,16 +171,16 @@ export default function HomeContent() {
 
                                         {/* Footer Text using image-style labels */}
                                         <div className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2">
-                                            <span className="text-[12px] font-bold italic text-emerald-900/70 flex items-center gap-2">
-                                                <span className="w-2 h-2 rounded-full bg-blue-600"></span>
+                                            <span className="text-[12px] font-bold italic text-emerald-950 flex items-center gap-2">
+                                                <span className="w-2 h-2 rounded-full bg-blue-700"></span>
                                                 Bar ratio = 1.09
                                             </span>
-                                            <span className="text-[12px] font-bold italic text-emerald-900/70 flex items-center gap-2">
-                                                <span className="w-2 h-2 rounded-full bg-emerald-700"></span>
+                                            <span className="text-[12px] font-bold italic text-emerald-950 flex items-center gap-2">
+                                                <span className="w-2 h-2 rounded-full bg-emerald-800"></span>
                                                 8.82% height gap
                                             </span>
-                                            <span className="text-[12px] font-bold italic text-emerald-900/70 flex items-center gap-2">
-                                                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                            <span className="text-[12px] font-bold italic text-emerald-950 flex items-center gap-2">
+                                                <span className="w-2 h-2 rounded-full bg-emerald-700"></span>
                                                 Zero visual rounding
                                             </span>
                                         </div>
@@ -193,8 +193,8 @@ export default function HomeContent() {
                                 </div>
                                 <div className="flex-1">
                                     <div className="text-[18px] font-black text-foreground mb-2 uppercase tracking-tighter">Need just the gap between two specific heights?</div>
-                                    <div className="text-[15px] text-muted leading-[1.8] mb-4 font-bold opacity-90">The Height Difference Calculator shows the exact difference in cm and inches, the percentage gap, and a visual bar. Use it when you need the precise height gap without building a full chart.</div>
-                                    <Link href="/height-difference-calculator" className="text-xs font-black text-emerald-500 inline-flex items-center gap-2 hover:gap-3 transition-all uppercase tracking-widest py-2 px-4 bg-emerald-500/10 rounded-full group-hover:bg-emerald-500 group-hover:text-white">
+                                    <div className="text-[15px] text-muted leading-[1.8] mb-4 font-bold">The Height Difference Calculator shows the exact difference in cm and inches, the percentage gap, and a visual bar. Use it when you need the precise height gap without building a full chart.</div>
+                                    <Link href="/height-difference-calculator" className="text-xs font-black text-emerald-800 inline-flex items-center gap-2 hover:gap-3 transition-all uppercase tracking-widest py-2 px-4 bg-emerald-500/10 rounded-full hover:bg-emerald-700 hover:text-white">
                                         Open Height Difference Calculator  <p><ArrowRight size={22} /></p>
                                     </Link>
                                 </div>
@@ -217,12 +217,12 @@ export default function HomeContent() {
                                 {/* Step 1 */}
                                 <div className="flex flex-col sm:flex-row border-b-2 border-border/80 group">
                                     <div className="sm:w-[100px] flex sm:flex-col items-center sm:pt-10 p-6 sm:p-0 bg-bg/50 border-b-2 sm:border-b-0 sm:border-r-2 border-border/80 gap-4 sm:gap-6">
-                                        <div className="w-[48px] h-[48px] rounded-[1.2rem] bg-accent text-white text-[20px] font-black flex items-center justify-center shadow-xl shadow-accent/20 group-hover:rotate-12 transition-transform">01</div>
+                                        <div className="w-[48px] h-[48px] rounded-[1.2rem] bg-accent text-zinc-950 text-[20px] font-black flex items-center justify-center shadow-xl shadow-accent/20 group-hover:rotate-12 transition-transform">01</div>
                                         <h3 className="text-[18px] font-black text-foreground sm:hidden uppercase tracking-tighter">Preparation</h3>
                                     </div>
                                     <div className="flex-1 p-8 md:p-12">
                                         <h3 className="hidden sm:block text-[22px] font-black text-foreground mb-4 uppercase tracking-tighter">Step 1: Begin with Your Comparison Setup</h3>
-                                        <p className="text-[15px] text-muted leading-[1.8] mb-6 font-bold opacity-90">
+                                        <p className="text-[15px] text-muted leading-[1.8] mb-6 font-bold">
                                             Decide what to compare. Two friends, a celebrity and yourself, a group of anime characters, a person next to a landmark. Heights work in cm or ft/in. Switch units at any time using the toggle at the top of the chart.                                        </p>
                                         <div className="bg-bg border-l-4 border-l-accent rounded-2xl p-6 mb-8 flex gap-4 items-start text-[14px] text-muted shadow-inner font-bold italic">
                                             <span className="text-[11px] font-black text-accent uppercase tracking-widest shrink-0 mt-[2px] px-2 py-1 bg-accent/10 rounded-md">PRO TIP</span>
@@ -271,7 +271,7 @@ export default function HomeContent() {
                                     </div>
                                     <div className="flex-1 p-8 md:p-12">
                                         <h3 className="hidden sm:block text-[22px] font-black text-foreground mb-4 uppercase tracking-tighter">Step 2: Build your height chart</h3>
-                                        <p className="text-[15px] text-muted leading-[1.8] mb-8 font-bold opacity-90">The left sidebar has five icons. Each opens a different input panel. Mix and match any types on the same proportional height comparison chart.</p>
+                                        <p className="text-[15px] text-muted leading-[1.8] mb-8 font-bold">The left sidebar has five icons. Each opens a different input panel. Mix and match any types on the same proportional height comparison chart.</p>
                                         <div className="grid md:grid-cols-2 gap-4 mb-8">
                                             {[
                                                 { panel: 'ADD_PERSON', color: 'emerald', label: 'Add Person', desc: 'Name, sex, height in cm or ft/in, colour. Instant rendering.' },
@@ -281,7 +281,7 @@ export default function HomeContent() {
                                             ].map(item => (
                                                 <DashboardLink key={item.panel} panel={item.panel as PanelType} className={`text-left p-6 rounded-2xl border-2 border-border/50 hover:border-${item.color}-500/50 bg-bg/30 hover:bg-bg transition-all cursor-pointer group/item`}>
                                                     <div className={`text-[13px] font-black text-${item.color}-500 uppercase tracking-widest mb-2 group-hover/item:translate-x-1 transition-transform`}>{item.label}</div>
-                                                    <div className="text-[13px] text-muted font-bold opacity-60 group-hover/item:opacity-100">{item.desc}</div>
+                                                    <div className="text-[13px] text-muted font-bold group-hover/item:opacity-100">{item.desc}</div>
                                                 </DashboardLink>
                                             ))}
                                         </div>
@@ -325,7 +325,7 @@ export default function HomeContent() {
 
                             <h2 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">Why a Visual Height Comparison Chart Shows More Than Numbers</h2>
 
-                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold opacity-90">
+                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold">
                                 A visual height comparison chart renders the mathematical relationship between heights as a scaled image, making the size difference between subjects immediately readable without any calculation on your part.                            </p>
 
                             <div className="grid sm:grid-cols-2 gap-6">
@@ -355,9 +355,9 @@ export default function HomeContent() {
                                         desc: 'Download labelled PNGs or generate shareable URLs. Sized for social media and presentations.'
                                     },
                                 ].map((item, i) => (
-                                    <div key={i} className="bg-surface rounded-3xl p-8 border-2 border-border/80 shadow-sm hover:border-accent/30 transition-all group">
+                                    <div key={i} className="bg-surface rounded-3xl p-8 border-2 border-border/80 shadow-sm hover:border-accent/40 transition-all group">
                                         <div className="text-[17px] font-black text-foreground mb-3 uppercase tracking-tighter group-hover:text-accent transition-colors">{item.title}</div>
-                                        <div className="text-[14px] text-muted font-bold leading-relaxed opacity-80 group-hover:opacity-100">{item.desc}</div>
+                                        <div className="text-[14px] text-muted font-bold leading-relaxed">{item.desc}</div>
                                     </div>
                                 ))}
                             </div>
@@ -375,7 +375,7 @@ export default function HomeContent() {
 
                             <h2 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">Comparing Heights: Examples and Use Cases</h2>
 
-                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold opacity-90">
+                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold">
                                 Common use cases producing proportional visuals showing exact height differences.
                             </p>
 
@@ -431,12 +431,12 @@ export default function HomeContent() {
                                         </div>
 
                                         {/* 3. DESC */}
-                                        <div className="text-[14px] text-muted font-bold leading-relaxed mb-6 flex-1 opacity-70 group-hover:opacity-100 transition-opacity">
+                                        <div className="text-[14px] text-muted font-bold leading-relaxed mb-6 flex-1 group-hover:opacity-100 transition-opacity">
                                             {item.desc}
                                         </div>
 
                                         {/* 4. TRY LINE */}
-                                        <div className="text-[11px] font-black text-muted/40 group-hover:text-accent/60 pt-6 border-t-2 border-border/50 uppercase tracking-widest transition-colors min-h-[5.5rem]">
+                                        <div className="text-[11px] font-black text-muted pt-6 border-t-2 border-border/50 uppercase tracking-widest transition-colors min-h-[5.5rem]">
                                             Try: {item.try}
                                         </div>
 
@@ -458,7 +458,7 @@ export default function HomeContent() {
 
                             <h2 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">Why Choose Our Height Comparison Tool?</h2>
 
-                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold opacity-70">
+                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold">
                                 Professional toolset. Zero friction. No accounts.
                             </p>
 
@@ -505,11 +505,11 @@ export default function HomeContent() {
                                         desc: <>A direct shareable height comparison link for your exact chart. No account needed for anyone.</>
                                     },
                                 ].map((item, i) => (
-                                    <div key={i} className="bg-surface rounded-3xl p-8 border-2 border-border shadow-md flex flex-col group hover:border-foreground/20 transition-all">
+                                    <div key={i} className="bg-surface rounded-3xl p-8 border-2 border-border shadow-md flex flex-col group hover:border-accent/30 transition-all">
                                         <div className={`text-[16px] font-black mb-4 flex items-center gap-4 text-foreground uppercase tracking-widest`}>
                                             {item.title}
                                         </div>
-                                        <div className="text-[14px] text-muted font-bold leading-relaxed opacity-60 group-hover:opacity-90 transition-opacity">
+                                        <div className="text-[14px] text-muted font-bold leading-relaxed transition-opacity">
                                             {item.desc}
                                         </div>
                                     </div>
@@ -547,8 +547,8 @@ export default function HomeContent() {
                                     }
                                 ].map((item, i) => (
                                     <div key={i} className="bg-surface rounded-3xl p-8 border-2 border-border shadow-sm group hover:border-accent/40 transition-all">
-                                        <div className="text-[14px] font-black text-foreground mb-3 uppercase tracking-widest opacity-80 group-hover:opacity-100">{item.title}</div>
-                                        <div className="text-[13px] text-muted font-bold leading-relaxed opacity-60 group-hover:opacity-100">{item.desc}</div>
+                                        <div className="text-[14px] font-black text-foreground mb-3 uppercase tracking-widest group-hover:opacity-100">{item.title}</div>
+                                        <div className="text-[14px] text-zinc-700 dark:text-zinc-300 font-bold leading-relaxed">{item.desc}</div>
                                     </div>
                                 ))}
                             </div>
@@ -566,7 +566,7 @@ export default function HomeContent() {
 
                             <h2 className="text-2xl md:text-4xl font-black tracking-tighter text-foreground uppercase">A Height Comparison Website Built for Simplicity</h2>
 
-                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold opacity-70">
+                            <p className="text-[16px] leading-[1.8] text-muted mb-10 font-bold">
                                 Comparing our standard feature set against the market.
                             </p>
 
@@ -574,9 +574,9 @@ export default function HomeContent() {
                                 <table className="w-full text-left border-collapse">
                                     <thead>
                                         <tr className="bg-bg/50 border-b-2 border-border/80">
-                                            <th className="p-8 text-[11px] font-black text-foreground uppercase tracking-widest opacity-40">Matrix</th>
-                                            <th className="p-8 text-[11px] font-black bg-emerald-500/5 text-emerald-500 uppercase tracking-[0.3em] ">THIS TOOL</th>
-                                            <th className="p-8 text-[11px] font-black text-foreground uppercase tracking-widest opacity-40 ">THE OTHERS</th>
+                                            <th className="p-8 text-[11px] font-black text-foreground uppercase tracking-widest">Matrix</th>
+                                            <th className="p-8 text-[11px] font-black bg-emerald-500/10 text-accent/80 uppercase tracking-[0.3em]">THIS TOOL</th>
+                                            <th className="p-8 text-[11px] font-black text-foreground uppercase tracking-widest ">THE OTHERS</th>
                                         </tr>
                                     </thead>
                                     <tbody className="text-[14px] divide-y-2 divide-border/50">
@@ -593,8 +593,8 @@ export default function HomeContent() {
                                         ].map((row, i) => (
                                             <tr key={i} className="hover:bg-bg/50 transition-colors">
                                                 <td className="p-6 font-black text-foreground uppercase  bg-surface text-base">{row[0]}</td>
-                                                <td className="p-6 text-emerald-500 font-extrabold bg-emerald-500/5  text-base">{row[1]}</td>
-                                                <td className="p-6 text-muted font-bold opacity-40 text-center">{row[2]}</td>
+                                                <td className="p-6 text-accent/80 font-extrabold bg-emerald-500/10 text-base">{row[1]}</td>
+                                                <td className="p-6 text-muted font-bold text-center">{row[2]}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -635,8 +635,8 @@ export default function HomeContent() {
                                             <svg width="14" height="14" viewBox="0 0 10 10" fill="none" className="group-hover:text-white transition-colors text-emerald-500"><path d="M2 5l2 2 4-4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
                                         </div>
                                         <div>
-                                            <strong className="block text-foreground text-[16px] mb-1 font-black uppercase tracking-tighter group-hover:text-accent transition-colors">{item.title}
-                                            <span className="text-[14px] text-muted font-bold leading-relaxed opacity-60 group-hover:opacity-100">{item.desc}</span>
+                                            <strong className="block text-foreground text-[16px] mb-1 font-black uppercase tracking-tighter group-hover:text-accent transition-colors">{item.title}</strong>
+                                            <span className="text-[14px] text-muted font-bold leading-relaxed">{item.desc}</span>
                                         </div>
                                     </div>
                                 ))}
@@ -713,7 +713,7 @@ export default function HomeContent() {
                                             {item.label}
                                         </div>
 
-                                        <div className="text-[14px] text-muted font-bold leading-relaxed flex-1 mb-6 opacity-60 group-hover:opacity-100 transition-opacity">
+                                        <div className="text-[14px] text-muted font-bold leading-relaxed flex-1 mb-6">
                                             {item.desc}
                                         </div>
 
@@ -729,9 +729,9 @@ export default function HomeContent() {
 
                             {/* Legal / Do not sell */}
                             <div className="bg-surface rounded-[2.5rem] p-10 border-2 border-border mt-12 shadow-inner group">
-                                <p className="text-foreground block text-[15px] font-black uppercase tracking-widest mb-3 opacity-60 group-hover:opacity-100 transition-opacity">Data Privacy And Rights</p>
-                                <p className="text-[14px] text-muted font-bold leading-[1.8] opacity-60 group-hover:opacity-100 transition-opacity">
-                                    We do not sell your personal information to third parties. Under the California Consumer Privacy Act (CCPA) and similar state laws, you have the right to opt out of data sharing for cross-context behavioural advertising. Visit our<Link href="/privacy" className="text-accent font-black hover:underline px-1">Privacy Policy</Link> or contact us directly. Standard use of the height comparison tool collects zero personal information and requires no authentication.
+                                <p className="text-foreground block text-[15px] font-black uppercase tracking-widest mb-3">Data Privacy And Rights</p>
+                                <p className="text-[14px] text-muted font-bold leading-[1.8]">
+                                    We do not sell your personal information to third parties. Under the California Consumer Privacy Act (CCPA) and similar state laws, you have the right to opt out of data sharing for cross-context behavioural advertising. Visit our<Link href="/privacy" className="text-emerald-900 dark:text-emerald-400 font-black hover:underline px-1">Privacy Policy</Link> or contact us directly. Standard use of the height comparison tool collects zero personal information and requires no authentication.
                                 </p>
                             </div>
                         </section>

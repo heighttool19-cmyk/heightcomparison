@@ -64,28 +64,27 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
                         {/* 3. ALL LINES ARE MAJOR (Labels always visible, text-foreground/90) */}
                         {showLabels && (
                             <div
-                                className="relative left-0 z-20 flex flex-col w-full items-start justify-center pr-1 sm:pr-2 bg-canvas/40 backdrop-blur-[2px] py-1"
+                                className="relative left-0 z-20 flex flex-col w-full items-start justify-center pr-1 sm:pr-2 py-1"
                                 style={{
                                     transform: isZero
                                         ? 'translateY(-20%)'
-                                        // FIX: Push the top label down so the text doesn't clip out of bounds
                                         : undefined
                                 }}
                             >
                                 {unitSystem === 'metric' ? (
-                                    <div className="flex items-baseline justify-end w-full transition-opacity duration-300 text-foreground/90">
-                                        <span className="text-[6.5px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[30px] sm:min-w-[40px]">
+                                    <div className="flex items-baseline justify-end w-full transition-opacity duration-300 text-foreground">
+                                        <span className="text-[9px] sm:text-[10px] font-mono font-black leading-none text-right min-w-[30px] sm:min-w-[40px]">
                                             {isM
                                                 ? (tick / 100).toLocaleString(undefined, { maximumFractionDigits: 0 })
                                                 : roundedTick.toLocaleString()}
                                         </span>
-                                        <span className="text-[6px] sm:text-[7px] font-mono font-black leading-none text-left w-[12px] sm:w-[15px] opacity-70 ml-1">
+                                        <span className="text-[8px] sm:text-[9px] font-mono font-black leading-none text-left w-[12px] sm:w-[15px] ml-1">
                                             {isM ? 'm' : 'cm'}
                                         </span>
                                     </div>
                                 ) : (
-                                    <div className="flex items-baseline justify-end w-full transition-opacity duration-300 text-foreground/90">
-                                        <span className="text-[8px] sm:text-[9px] font-mono font-black leading-none text-right min-w-[35px] sm:min-w-[50px]">
+                                    <div className="flex items-baseline justify-end w-full transition-opacity duration-300 text-foreground">
+                                        <span className="text-[9px] sm:text-[10px] font-mono font-black leading-none text-right min-w-[35px] sm:min-w-[50px]">
                                             {ftDisplay}
                                         </span>
                                     </div>

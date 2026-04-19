@@ -31,17 +31,18 @@
   --surface: #121214;
   --canvas: #121214;
   --border: #2f2f33ff;
-  --accent: #1e974bff;
+  --accent: #0DBA58;
   --accent-secondary: #2563EB;
-  --accent-alpha: rgba(30, 151, 75, 0.2);
+  --accent-alpha: rgba(13, 186, 88, 0.4);
   --foreground: #FAFAFA;
-  --muted: #8f8f95ff;
+  --muted: #A1A1AA;
   --ruler-text: #52525B;
   --baseline: #EF4444;
 
-  --toolbar-bg: rgba(22, 22, 24, 0.8);
-  --toolbar-border: rgba(255, 255, 255, 0.05);
-  --item-hover: rgba(255, 255, 255, 0.05);
+  --toolbar-bg: #0DBA58;
+  --toolbar-border: rgba(0, 0, 0, 0.1);
+  --toolbar-foreground: #09090b;
+  --item-hover: rgba(0, 0, 0, 0.1);
   --shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 
   --radius-sm: 0.5rem;
@@ -57,16 +58,17 @@
   --surface: #FFFFFF;
   --canvas: #F4F4F5;
   --border: #E4E4E7;
-  --accent: #2563EB;
+  --accent: #1D4ED8;
   --accent-secondary: #1D4ED8;
   --foreground: #09090B;
-  --muted: #71717A;
+  --muted: #52525B;
   --ruler-text: #A1A1AA;
   --baseline: #EF4444;
   --badge-text: var(--accent-secondary);
   --toolbar-bg: rgba(255, 255, 255, 0.8);
   --toolbar-border: rgba(0, 0, 0, 0.05);
-  --item-hover: rgba(0, 0, 0, 0.05);
+  --toolbar-foreground: #09090b;
+  --item-hover: rgba(0, 0, 0, 0.15);
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
@@ -107,6 +109,7 @@ body {
   /* Prevent horizontal shake on iOS Safari when edge-swiping */
   overflow-x: clip;
   /* Suppress elastic/momentum scroll on the body itself on iOS */
+  overscroll-behavior-y: none;
   overscroll-behavior-x: none;
   /* Enable momentum (inertia) scrolling on iOS — prevents blank screens during fast flings */
   -webkit-overflow-scrolling: touch;
@@ -114,49 +117,47 @@ body {
   touch-action: pan-y;
 }
 
-/* Smooth custom scrollbars */
-::-webkit-scrollbar {
-  width: 10px;
-  /* Slightly wider for better usability */
-  height: 10px;
-}
+/* Only apply custom scrollbars to devices with an accurate pointer (like a mouse) */
+@media (pointer: fine) {
+  /* Smooth custom scrollbars */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-/* Distinct, visible thumb color using foreground with opacity */
-::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--foreground) 32%, transparent);
-  border-radius: 10px;
-  /* Add a border to give it a "floating" pill look */
-  border: 2px solid var(--bg);
-}
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--foreground) 32%, transparent);
+    border-radius: 10px;
+    border: 2px solid var(--bg);
+  }
 
-/* Darker on hover for interactive feedback */
-::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in srgb, var(--foreground) 40%, transparent);
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--foreground) 40%, transparent);
+  }
 
-/* Active state matches accent color */
-::-webkit-scrollbar-thumb:active {
-  background: var(--accent);
-}
+  ::-webkit-scrollbar-thumb:active {
+    background: var(--accent);
+  }
 
-/* Specific TOC Scrollbar (Thinner and more subtle) */
-.custom-toc-scrollbar::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
+  /* Specific TOC Scrollbar */
+  .custom-toc-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
 
-.custom-toc-scrollbar::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--foreground) 15%, transparent);
-  border: none;
-}
+  .custom-toc-scrollbar::-webkit-scrollbar-thumb {
+    background: color-mix(in srgb, var(--foreground) 15%, transparent);
+    border: none;
+  }
 
-.custom-toc-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: color-mix(in srgb, var(--foreground) 25%, transparent);
-}
+  .custom-toc-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in srgb, var(--foreground) 25%, transparent);
+  }
+
 
 .glass-surface {
   background: color-mix(in srgb, var(--surface) 80%, transparent);
@@ -348,21 +349,35 @@ input[type=number] {
   }
 }
 
-/* Target the specific modal container or apply globally to custom utility class */
-.flex-1.overflow-auto::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  /* Target the specific modal container or apply globally to custom utility class */
+  .flex-1.overflow-auto::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .flex-1.overflow-auto::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Use translucent white for dark mode */
+    border: 1px solid transparent;
+    background-clip: padding-box;
+  }
 }
 
-.flex-1.overflow-auto::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.2);
-  /* Use translucent white for dark mode */
-  border: 1px solid transparent;
-  background-clip: padding-box;
+/* Dashboard Zoom Slider - Ensure thumb is visible on green toolbar */
+input[type="range"].accent-zinc-900::-webkit-slider-thumb {
+  background: #18181b !important;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+input[type="range"].accent-zinc-900::-moz-range-thumb {
+  background: #18181b !important;
+  border: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Ensure smooth momentum scrolling on iOS */
 .flex-1.overflow-auto {
   -webkit-overflow-scrolling: touch;
+  /* Prevents the scroll bounce from passing through to the body */
+  overscroll-behavior: contain;
 }

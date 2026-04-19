@@ -169,9 +169,9 @@ export default function MidParentalCalculator() {
                         <button
                             onClick={() => {
                                 const persons: Person[] = [
-                                    { id: 'father', name: 'Father', heightCm: predictedParentOnlyBoys.fCm, color: '#3b82f6', isEntity: false },
-                                    { id: 'mother', name: 'Mother', heightCm: predictedParentOnlyBoys.mCm, color: '#ec4899', isEntity: false },
-                                    { id: 'child', name: 'Son', heightCm: predictedParentOnlyBoys.raw, color: '#10b981', isEntity: false }
+                                    { id: 'father', name: 'Father', heightCm: predictedParentOnlyBoys.fCm, color: '#1d4ed8', isEntity: false },
+                                    { id: 'mother', name: 'Mother', heightCm: predictedParentOnlyBoys.mCm, color: '#be185d', isEntity: false },
+                                    { id: 'child', name: 'Son', heightCm: predictedParentOnlyBoys.raw, color: '#047857', isEntity: false }
                                 ];
                                 storeSetPersons(persons);
                                 const dataToSync = {
@@ -208,9 +208,9 @@ export default function MidParentalCalculator() {
                         <button
                             onClick={() => {
                                 const persons: Person[] = [
-                                    { id: 'father', name: 'Father', heightCm: predictedParentOnlyGirls.fCm, color: '#3b82f6', isEntity: false },
-                                    { id: 'mother', name: 'Mother', heightCm: predictedParentOnlyGirls.mCm, color: '#ec4899', isEntity: false },
-                                    { id: 'child', name: 'Daughter', heightCm: predictedParentOnlyGirls.raw, color: '#10b981', isEntity: false }
+                                    { id: 'father', name: 'Father', heightCm: predictedParentOnlyGirls.fCm, color: '#1d4ed8', isEntity: false },
+                                    { id: 'mother', name: 'Mother', heightCm: predictedParentOnlyGirls.mCm, color: '#be185d', isEntity: false },
+                                    { id: 'child', name: 'Daughter', heightCm: predictedParentOnlyGirls.raw, color: '#047857', isEntity: false }
                                 ];
                                 storeSetPersons(persons);
                                 const dataToSync = {

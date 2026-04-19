@@ -118,14 +118,14 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
             <div className="flex p-0.5 bg-surface rounded-2xl border border-border">
                 <button
                     onClick={() => handleGenderChange('male')}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
+                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Male
                 </button>
                 <button
                     onClick={() => handleGenderChange('female')}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
+                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Female
@@ -135,8 +135,9 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
             <div className="space-y-4">
                 {/* Name Input */}
                 <div className="space-y-1.5">
-                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Name</label>
+                    <label htmlFor="name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Name</label>
                     <input
+                        id="name"
                         type="text"
                         placeholder="Optional"
                         value={name}
@@ -167,9 +168,11 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                         {unit === 'metric' ? (
                             <div className="w-full flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
                                 <NumericInput
+                                    id="height-cm"
                                     placeholder="Height"
                                     value={heightCm}
                                     onValueChange={setHeightCm}
+                                    aria-label="Height in centimeters"
                                     className="w-full bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
                                 />
                                 <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center justify-center">
@@ -180,9 +183,11 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                             <div className="flex gap-2 w-full">
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                     <NumericInput
+                                        id="height-ft"
                                         placeholder="Ft"
                                         value={heightFt}
                                         onValueChange={setHeightFt}
+                                        aria-label="Height in feet"
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
@@ -191,9 +196,11 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                 </div>
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                     <NumericInput
+                                        id="height-in"
                                         placeholder="In"
                                         value={heightIn}
                                         onValueChange={setHeightIn}
+                                        aria-label="Height in inches"
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
                                     <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
@@ -219,7 +226,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                 data-active={selectedCategory === cat}
                                 onClick={() => { setSelectedCategory(cat); isManuallySelected.current = true; }}
                                 className={`whitespace-nowrap px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all border ${selectedCategory === cat
-                                    ? 'bg-accent text-white border-accent shadow-md'
+                                    ? 'bg-accent text-zinc-950 border-accent shadow-md'
                                     : 'bg-surface text-muted border-border hover:border-accent/30'
                                     }`}
                             >
@@ -259,7 +266,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
 
             {/* Color Swatches */}
             <div className="space-y-2">
-                <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Color</label>
+                <label className="text-[11px] uppercase tracking-widest font-black text-foreground ml-0.5">Color</label>
                 <div className="flex gap-2.5">
                     {COLOR_PALETTE.slice(0, 6).map((c) => (
                         <motion.button
@@ -267,7 +274,8 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                             whileHover={{ scale: 1.2, rotate: 5 }}
                             whileTap={{ scale: 0.9 }}
                             onClick={() => setColor(c)}
-                            className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'
+                            aria-label={`Select color ${c}`}
+                            className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-white/20 hover:border-white/40'
                                 }`}
                             style={{ backgroundColor: c, boxShadow: color === c ? `0 0 12px ${c}44` : 'none' }}
                         />
@@ -277,10 +285,10 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
 
             {/* Submit Button */}
             <motion.button
-                whileHover={{ scale: 1.02, backgroundColor: '#3B82F6' }}
+                whileHover={{ scale: 1.02, filter: 'brightness(1.1)' }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleAdd}
-                className="w-full bg-accent text-white py-4 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-accent/10"
+                className="w-full bg-accent text-zinc-950 py-4 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-accent/10"
             >
                 <Plus size={16} className="group-hover:rotate-90 transition-transform duration-300" />
                 Add Person

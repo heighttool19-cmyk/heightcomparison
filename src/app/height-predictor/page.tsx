@@ -143,8 +143,8 @@ export default function HeightCalculatorPage() {
                             </div>
                             <div className="grid md:grid-cols-2 gap-6">
                                 {/* TEENS CARD */}
-                                <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] relative overflow-hidden group hover:border-blue-500/30 transition-all shadow-sm">
-                                    <div className="absolute top-0 left-0 w-2 h-full bg-blue-500/20 group-hover:bg-blue-500 transition-all" />
+                                <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
+                                    <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
                                     <h3 className="text-xl font-black text-foreground mb-4 uppercase tracking-tighter flex items-center gap-2">
                                         Teens (Under 18)
                                     </h3>
@@ -153,15 +153,15 @@ export default function HeightCalculatorPage() {
                                     </p>
                                     <ul className="space-y-3 text-muted font-medium text-sm">
                                         <li className="flex items-start gap-2">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                            <div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
                                             Most reliable between ages 4-17
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                            <div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
                                             Accuracy improves as you get closer to adult height
                                         </li>
                                         <li className="flex items-start gap-2">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />
+                                            <div className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
                                             Boys often grow until 18; girls until 15-16
                                         </li>
                                     </ul>

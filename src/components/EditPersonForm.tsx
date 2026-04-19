@@ -156,6 +156,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                     whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.1)' }}
                     whileTap={{ scale: 0.9 }}
                     onClick={onCancel}
+                    aria-label="Close edit form"
                     className="text-muted hover:text-white transition-colors bg-white/5 rounded-full p-1"
                 >
                     <X size={14} />
@@ -182,7 +183,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                         setIcon(''); 
                         setAvatarUrl(DEFAULT_MALE_AVATAR);
                     }}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
+                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Male
@@ -193,7 +194,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                         setIcon(''); 
                         setAvatarUrl(DEFAULT_FEMALE_AVATAR);
                     }}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'
+                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
                     Female
@@ -257,7 +258,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                                     onValueChange={(val) => { setHeightCm(val); setError(null); }}
                                     className="w-full bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
                                 />
-                                <div className="px-4 py-3 bg-surface text-foreground/60 font-mono text-sm font-black border-l border-border flex items-center justify-center">
+                                <div className="px-4 py-3 bg-surface text-foreground font-mono text-sm font-black border-l border-border flex items-center justify-center">
                                     CM
                                 </div>
                             </div>
@@ -272,7 +273,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                                         onValueChange={(val) => { setHeightFt(val); setError(null); }}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
-                                    <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
+                                    <div className="px-2.5 py-3 bg-surface text-foreground font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
                                         FT
                                     </div>
                                 </div>
@@ -285,7 +286,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                                         onValueChange={(val) => { setHeightIn(val); setError(null); }}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
                                     />
-                                    <div className="px-2.5 py-3 bg-surface text-foreground/60 font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
+                                    <div className="px-2.5 py-3 bg-surface text-foreground font-mono text-[11px] font-black border-l border-border flex items-center justify-center shrink-0">
                                         IN
                                     </div>
                                 </div>
@@ -307,7 +308,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                                     data-active={selectedCategory === cat}
                                     onClick={() => { setSelectedCategory(cat); isManuallySelected.current = true; }}
                                     className={`whitespace-nowrap px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all border ${selectedCategory === cat
-                                        ? 'bg-accent text-white border-accent shadow-md'
+                                        ? 'bg-accent text-zinc-950 border-accent shadow-md'
                                         : 'bg-surface text-muted border-border hover:border-accent/30'
                                         }`}
                                 >
@@ -348,7 +349,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
 
             {/* Color Swatches */}
             <div className="space-y-2">
-                <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Color</label>
+                <label className="text-[11px] uppercase tracking-widest font-black text-foreground ml-0.5">Color</label>
                 <div className="flex gap-2.5">
                     {COLOR_PALETTE.slice(0, 6).map((c) => (
                         <motion.button
@@ -357,7 +358,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                             whileTap={{ scale: 0.9 }}
                             onClick={() => setColor(c)}
                             aria-label={`Select color ${c}`}
-                            className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'
+                            className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-white/20 hover:border-white/40'
                                 }`}
                             style={{ backgroundColor: c, boxShadow: color === c ? `0 0 12px ${c}44` : 'none' }}
                         />
@@ -374,10 +375,10 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
 
             {/* Save Button */}
             <motion.button
-                whileHover={{ scale: 1.02, backgroundColor: '#3B82F6' }}
+                whileHover={{ scale: 1.02, filter: 'brightness(1.1)' }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleSave}
-                className="w-full bg-accent text-white py-4 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-accent/10"
+                className="w-full bg-accent text-zinc-950 py-4 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-accent/10"
             >
                 Save Changes
                 <ChevronRight size={16} className="group-hover:translate-x-0.5 transition-transform" strokeWidth={4} />

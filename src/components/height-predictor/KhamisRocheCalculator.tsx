@@ -107,9 +107,9 @@ export default function KhamisRocheCalculator() {
         setPredictedKhamis(prediction);
 
         const persons: Person[] = [
-            { id: 'father', name: 'Father', heightCm: pFatherCm, color: '#3b82f6', isEntity: false },
-            { id: 'mother', name: 'Mother', heightCm: pMotherCm, color: '#ec4899', isEntity: false },
-            { id: 'child', name: childGender === 'male' ? 'Son' : 'Daughter', heightCm: predCm, color: '#10b981', isEntity: false }
+            { id: 'father', name: 'Father', heightCm: pFatherCm, color: '#1d4ed8', isEntity: false },
+            { id: 'mother', name: 'Mother', heightCm: pMotherCm, color: '#be185d', isEntity: false },
+            { id: 'child', name: childGender === 'male' ? 'Son' : 'Daughter', heightCm: predCm, color: '#047857', isEntity: false }
         ];
         setChartPersons(persons);
     };
@@ -161,8 +161,8 @@ export default function KhamisRocheCalculator() {
                 <div className="space-y-2">
                     <label className="text-base font-semibold text-muted">Gender</label>
                     <div className="flex gap-2">
-                        <button onClick={() => setChildGender('male')} className={`flex-1 py-3 rounded-xl border border-border font-black transition-all ${childGender === 'male' ? 'bg-blue-500/10 text-blue-500 border-blue-500' : 'bg-bg text-muted hover:bg-surface'}`}>Boy</button>
-                        <button onClick={() => setChildGender('female')} className={`flex-1 py-3 rounded-xl border border-border font-black transition-all ${childGender === 'female' ? 'bg-pink-500/10 text-pink-500 border-pink-500' : 'bg-bg text-muted hover:bg-surface'}`}>Girl</button>
+                        <button onClick={() => setChildGender('male')} className={`flex-1 py-3 rounded-xl border border-border font-black transition-all ${childGender === 'male' ? 'bg-blue-600/10 text-blue-700 border-blue-600' : 'bg-bg text-muted hover:bg-surface'}`}>Boy</button>
+                        <button onClick={() => setChildGender('female')} className={`flex-1 py-3 rounded-xl border border-border font-black transition-all ${childGender === 'female' ? 'bg-pink-600/10 text-pink-700 border-pink-600' : 'bg-bg text-muted hover:bg-surface'}`}>Girl</button>
                     </div>
                 </div>
 
