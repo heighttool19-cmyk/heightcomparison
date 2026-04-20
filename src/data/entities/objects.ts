@@ -19,7 +19,7 @@ export const objects_data = [
     "heightCm": 300,
     "category": "Objects",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/Objects/traffic-light-svgrepo-com (3).svg"
+    "imgUrl": "/Avtars/entities/Objects/Average Traffic Lights.svg"
   },
   {
     "name": "School Locker",
@@ -131,7 +131,7 @@ export const objects_data = [
     "heightCm": 240,
     "category": "Objects",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/Objects/Telephone_booth.svg"
+    "imgUrl": "/Avtars/entities/Objects/Telephone Booth.svg"
 
   },
   {
@@ -152,7 +152,9 @@ export const objects_data = [
     "name": "Average Ceiling Height",
     "heightCm": 240,
     "category": "Objects",
-    "icon": "🏢"
+    "icon": "🏢",
+    "imgUrl": "/Avtars/entities/Objects/Average Ceiling.svg"
+
   },
   {
     "name": "Average Floor Height (Building)",
@@ -180,6 +182,6 @@ export const objects_data = [
     "heightCm": 300,
     "category": "Objects",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/Objects/traffic-light-svgrepo-com (3).svg"
+    "imgUrl": "/Avtars/entities/Objects/Average Traffic Lights.svg"
   }
 ];

@@ -250,7 +250,7 @@ export const landmarks_data = [
     "heightCm": 14660,
     "category": "Landmarks",
     "icon": "🏢",
-    "imgUrl": "/Avtars/entities/Landmarks/great pyramid (1).svg"
+    "imgUrl": "/Avtars/entities/Landmarks/Great Pyramid of Giza, 1.svg"
   },
   {
     "name": "Arc de Triomphe",
