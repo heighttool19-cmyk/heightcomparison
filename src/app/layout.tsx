@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/layout/Footer";
 import ThemeInitializer from "@/components/ThemeInitializer";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -60,6 +61,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <GoogleAnalytics />
       </body>
     </html>
   );
