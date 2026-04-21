@@ -25,9 +25,11 @@ const Ruler: React.FC<RulerProps> = React.memo(({ scale, maxHeightCm, containerH
         }
 
         const allTicks = [];
+        const tickStep = Math.max(1, Math.round(maxVisibleCm / TOTAL_LINES));
+        
         for (let i = 0; i <= TOTAL_LINES - 1; i++) {
-            // Exact fractional numbers based purely on division
-            allTicks.push((maxVisibleCm / TOTAL_LINES) * i);
+            // Use integer steps to ensure labels (e.g. "15") align with actual height units (15.0cm)
+            allTicks.push(i * tickStep);
         }
 
         return allTicks;
