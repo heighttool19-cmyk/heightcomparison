@@ -4,6 +4,7 @@ frontend:
     preBuild:
       commands:
         - npm ci
+        - export NEXT_TURBOPACK=0
     build:
       commands:
         - env | grep -e NEXT_PUBLIC_ >> .env.production
