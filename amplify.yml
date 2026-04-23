@@ -6,7 +6,7 @@ frontend:
         - npm install
     build:
       commands:
-        - env | grep -e NEXT_PUBLIC_ >> .env.production
+        - env | grep -e NEXT_PUBLIC_ -e MONGODB_ -e CLOUDINARY_ -e SANITY_ >> .env.production
         - npm run build
   artifacts:
     baseDirectory: .next
