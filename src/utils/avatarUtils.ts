@@ -5,8 +5,8 @@ import { Gender } from '../types';
  * Determines the best avatar category based on height in cm.
  */
 export function getAutoCategoryByHeight(heightCm: number): AvatarCategory {
-    if (heightCm < 130) return 'Child';
-    if (heightCm < 158) return 'Teen';
+    if (heightCm < 130) return 'Child (Standard)';
+    if (heightCm < 158) return 'Teen (Standard)';
     if (heightCm > 210) return 'Adult (Mesomorph)';
     return 'Adult (Standard)';
 }
