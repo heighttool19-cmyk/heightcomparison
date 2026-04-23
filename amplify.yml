@@ -21,22 +21,9 @@ frontend:
         # --- DEBUG (Ensures these run even if build is shaky) ---
         - ls -R .next/standalone || true
   artifacts:
-    # We point to the standalone folder because that's where the 
-    # server-ready version of your app lives.
-    baseDirectory: .next/standalone
+    baseDirectory: .next
     files:
       - '**/*'
-    # We must also include the static and public files inside the artifacts
-    # Next.js standalone doesn't copy these by default, but Amplify needs them.
-    secondaryArtifacts:
-      - baseDirectory: .next/static
-        files:
-          - '**/*'
-        name: static
-      - baseDirectory: public
-        files:
-          - '**/*'
-        name: public
   cache:
     paths:
       - .next/cache/**/*
