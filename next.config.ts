@@ -2,7 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'standalone',
-  serverExternalPackages: ['mongoose', 'mongodb', 'bson', 'kdf'], images: {
+  serverExternalPackages: ['mongoose', 'mongodb', 'bson', 'kdf'],
+  images: {
     remotePatterns: [
       {
         protocol: "https",
