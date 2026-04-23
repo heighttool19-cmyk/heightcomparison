@@ -9,6 +9,9 @@ interface HeightStoreState {
     calculatedHeight: number;
     unit: 'metric' | 'imperial';
 
+
+
+
     // Core Actions
     setUploadedImage: (url: string | null) => void;
     setCalibrationDetails: (px: number, cm: number) => void;

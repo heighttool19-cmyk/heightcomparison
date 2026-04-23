@@ -3,12 +3,20 @@ frontend:
   phases:
     preBuild:
       commands:
-        # Use 'npm ci' for a clean, fast, reliable install
         - npm ci
     build:
       commands:
-        - env | grep -e NEXT_PUBLIC_ >> .env.production
         - npm run build
+        # --- DEBUG DIRECTORY STRUCTURE ---
+        # 1. Show all top-level folders
+        - ls -d */
+        
+        # 2. Show the .next folder specifically (where the magic happens)
+        - ls -R .next | head -n 50
+        
+        # 3. Use find to list all directories but EXCLUDE node_modules
+        # This gives you a clear map of your project without the 100k npm files.
+        - find . -maxdepth 4 -not -path '*/.*' -not -path './node_modules*' -type d
   artifacts:
     baseDirectory: .
     files:
