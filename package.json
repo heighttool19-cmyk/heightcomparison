@@ -12,7 +12,7 @@
     "next": "^15.5.15",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sanity": "^3.99.0",
+    "sanity": "^4.22.0",
     "next-sanity": "^11.6.13",
     "@portabletext/react": "^6.0.3",
     "@sanity/table": "^2.0.1",
