@@ -21,7 +21,7 @@
     "kdf": "^0.1.20",
     "lucide-react": "^0.577.0",
     "lz-string": "^1.5.0",
-    "mongodb": "6.13.0",
+    "mongodb": "^6.13.0",
     "mongoose": "^8.10.2",
     "nanoid": "^5.1.7",
     "next": "16.1.6",
