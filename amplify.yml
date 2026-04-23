@@ -6,8 +6,9 @@ frontend:
         - npm ci
     build:
       commands:
+        - env | grep -e NEXT_PUBLIC_ >> .env.production
         - npm run build
-        # --- DEBUG DIRECTORY STRUCTURE ---
+              # --- DEBUG DIRECTORY STRUCTURE ---
         # 1. Show all top-level folders
         - ls -d */
         
@@ -17,12 +18,25 @@ frontend:
         # 3. Use find to list all directories but EXCLUDE node_modules
         # This gives you a clear map of your project without the 100k npm files.
         - find . -maxdepth 4 -not -path '*/.*' -not -path './node_modules*' -type d
+        # --- DEBUG (Ensures these run even if build is shaky) ---
+        - ls -R .next/standalone || true
   artifacts:
-    baseDirectory: .
+    # We point to the standalone folder because that's where the 
+    # server-ready version of your app lives.
+    baseDirectory: .next/standalone
     files:
-      - '.next/standalone/**/*'
-      - '.next/static/**/*'
-      - 'public/**/*'
+      - '**/*'
+    # We must also include the static and public files inside the artifacts
+    # Next.js standalone doesn't copy these by default, but Amplify needs them.
+    secondaryArtifacts:
+      - baseDirectory: .next/static
+        files:
+          - '**/*'
+        name: static
+      - baseDirectory: public
+        files:
+          - '**/*'
+        name: public
   cache:
     paths:
       - .next/cache/**/*
