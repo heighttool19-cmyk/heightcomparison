@@ -41,6 +41,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
         (ALL_AVATARS.find(a => a.path === person.imgUrl)?.category as AvatarCategory) || 'Adult (Standard)'
     );
     const categoryContainerRef = React.useRef<HTMLDivElement>(null);
+    const isHumanAvatar = !person.isEntity && ALL_AVATARS.some(av => av.path === person.imgUrl);
     const [error, setError] = useState<string | null>(null);
 
     // Track manual selection
@@ -176,30 +177,32 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             )}
 
             {/* Gender Toggle */}
-            <div className="flex p-0.5 bg-surface rounded-2xl border border-border">
-                <button
-                    onClick={() => { 
-                        setGender('male'); 
-                        setIcon(''); 
-                        setAvatarUrl(DEFAULT_MALE_AVATAR);
-                    }}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
-                        }`}
-                >
-                    Male
-                </button>
-                <button
-                    onClick={() => { 
-                        setGender('female'); 
-                        setIcon(''); 
-                        setAvatarUrl(DEFAULT_FEMALE_AVATAR);
-                    }}
-                    className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
-                        }`}
-                >
-                    Female
-                </button>
-            </div>
+            {isHumanAvatar && (
+                <div className="flex p-0.5 bg-surface rounded-2xl border border-border">
+                    <button
+                        onClick={() => {
+                            setGender('male');
+                            setIcon('');
+                            setAvatarUrl(DEFAULT_MALE_AVATAR);
+                        }}
+                        className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
+                            }`}
+                    >
+                        Male
+                    </button>
+                    <button
+                        onClick={() => {
+                            setGender('female');
+                            setIcon('');
+                            setAvatarUrl(DEFAULT_FEMALE_AVATAR);
+                        }}
+                        className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
+                            }`}
+                    >
+                        Female
+                    </button>
+                </div>
+            )}
 
             <div className="space-y-4">
                 {/* Name Input */}
@@ -296,7 +299,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                 </div>
 
                 {/* Avatar Selection */}
-                {(gender === 'male' || gender === 'female') && !person.isEntity && (
+                {isHumanAvatar && (gender === 'male' || gender === 'female') && !person.isEntity && (
                     <div className="space-y-4">
                         <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Avatar Style</label>
 
@@ -348,23 +351,25 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             </div>
 
             {/* Color Swatches */}
-            <div className="space-y-2">
-                <label className="text-[11px] uppercase tracking-widest font-black text-foreground ml-0.5">Color</label>
-                <div className="flex gap-2.5">
-                    {COLOR_PALETTE.slice(0, 6).map((c) => (
-                        <motion.button
-                            key={c}
-                            whileHover={{ scale: 1.2, rotate: 5 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={() => setColor(c)}
-                            aria-label={`Select color ${c}`}
-                            className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-white/20 hover:border-white/40'
-                                }`}
-                            style={{ backgroundColor: c, boxShadow: color === c ? `0 0 12px ${c}44` : 'none' }}
-                        />
-                    ))}
+            {isHumanAvatar && (
+                <div className="space-y-2">
+                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground ml-0.5">Color</label>
+                    <div className="flex gap-2.5">
+                        {COLOR_PALETTE.slice(0, 6).map((c) => (
+                            <motion.button
+                                key={c}
+                                whileHover={{ scale: 1.2, rotate: 5 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={() => setColor(c)}
+                                aria-label={`Select color ${c}`}
+                                className={`w-5 h-5 rounded-full border-2 transition-all duration-300 ${color === c ? 'border-foreground scale-110 shadow-lg' : 'border-white/20 hover:border-white/40'
+                                    }`}
+                                style={{ backgroundColor: c, boxShadow: color === c ? `0 0 12px ${c}44` : 'none' }}
+                            />
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
 
             {person.imgUrl && (
                 <AlignmentControl
