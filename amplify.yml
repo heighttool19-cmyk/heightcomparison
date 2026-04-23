@@ -3,10 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        # 1. This force-cleans the environment regardless of the cache
-        - rm -rf node_modules .next/cache
-        # 2. This tells AWS to use NPM (no corepack/pnpm)
-        - npm install
+        # Use 'npm ci' for a clean, fast, reliable install
+        - npm ci
     build:
       commands:
         - env | grep -e NEXT_PUBLIC_ >> .env.production
