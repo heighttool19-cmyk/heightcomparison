@@ -119,8 +119,9 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
     const fontSize = Math.max(minBaseSize, Math.min(maxBaseSize, effectiveW * propScale, maxFontSizeForLength));
 
     // ── Padding Compensation ──────────────────────────────────────────────────
+    const paddingFactor = avatarOption?.topPaddingFactor || 0;
     // Added a small default padding (0.02) for assets to eliminate the visual gap at the top.
-    const paddingFactor = avatarOption?.topPaddingFactor || (person.imgUrl ? 0.02 : 0);
+    // const paddingFactor = avatarOption?.topPaddingFactor || (person.imgUrl ? 0.02 : 0);
     const paddingScale = 1 / (1 - paddingFactor);
     const spring = { type: 'spring' as const, stiffness: 220, damping: 28 };
 
@@ -320,8 +321,8 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
                                     objectFit: 'contain',
                                     display: 'block',
                                     objectPosition: 'bottom',
-                                    transformOrigin: 'bottom center',
-                                    transform: `scale(${paddingScale})`,
+                                    // transformOrigin: 'bottom center',
+                                    // transform: `scale(${paddingScale})`,
                                 }}
                                 className="drop-shadow-md"
                             />
