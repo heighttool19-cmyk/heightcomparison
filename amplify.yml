@@ -4,15 +4,12 @@ frontend:
     preBuild:
       commands:
         - npm ci
-        - export NEXT_TURBOPACK=0
     build:
       commands:
         - env | grep -e NEXT_PUBLIC_ >> .env.production
         - npm run build
-        - cp -r public .next/standalone/public
-        - cp -r .next/static .next/standalone/.next/static
   artifacts:
-    baseDirectory: .next/standalone
+    baseDirectory: .next
     files:
       - '**/*'
   cache:
