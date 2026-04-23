@@ -3,16 +3,20 @@ frontend:
   phases:
     preBuild:
       commands:
-        # This tells the build environment to enable pnpm
-        - corepack enable
-        - pnpm install --frozen-lockfile
+        # 1. This force-cleans the environment regardless of the cache
+        - rm -rf node_modules .next/cache
+        # 2. This tells AWS to use NPM (no corepack/pnpm)
+        - npm install
     build:
       commands:
-        - pnpm run build
+        - env | grep -e NEXT_PUBLIC_ >> .env.production
+        - npm run build
   artifacts:
-    baseDirectory: .next
+    baseDirectory: .
     files:
-      - '**/*'
+      - '.next/standalone/**/*'
+      - '.next/static/**/*'
+      - 'public/**/*'
   cache:
     paths:
       - .next/cache/**/*
