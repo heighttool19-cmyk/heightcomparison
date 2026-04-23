@@ -8,13 +8,9 @@ frontend:
       commands:
         - env | grep -e NEXT_PUBLIC_ >> .env.production
         - npm run build
-        # We manually package everything into the standalone folder
-        - cp .next/required-server-files.json .next/standalone/
-        - mkdir -p .next/standalone/.next/static
-        - cp -r .next/static/. .next/standalone/.next/static/
-        - cp -r public/. .next/standalone/public/
+        - cp -r public .next/standalone/public
+        - cp -r .next/static .next/standalone/.next/static
   artifacts:
-    # Now this folder has EVERYTHING it needs inside it
     baseDirectory: .next/standalone
     files:
       - '**/*'
