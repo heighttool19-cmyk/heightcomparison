@@ -4,26 +4,20 @@ frontend:
     preBuild:
       commands:
         - npm ci
-  build:
-    commands:
-      - env | grep -e NEXT_PUBLIC_ >> .env.production
-      - npm run build
-      - cp .next/required-server-files.json .next/standalone/
-      - cp -r .next/static .next/standalone/.next/static
-      - cp -r public .next/standalone/public
+    build:
+      commands:
+        - env | grep -e NEXT_PUBLIC_ >> .env.production
+        - npm run build
+        # We manually package everything into the standalone folder
+        - cp .next/required-server-files.json .next/standalone/
+        - mkdir -p .next/standalone/.next/static
+        - cp -r .next/static/. .next/standalone/.next/static/
+        - cp -r public/. .next/standalone/public/
   artifacts:
+    # Now this folder has EVERYTHING it needs inside it
     baseDirectory: .next/standalone
     files:
       - '**/*'
-    secondaryArtifacts:
-      - baseDirectory: .next/static
-        files:
-          - '**/*'
-        name: static
-      - baseDirectory: public
-        files:
-          - '**/*'
-        name: public
   cache:
     paths:
       - .next/cache/**/*
