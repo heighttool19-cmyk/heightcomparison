@@ -33,6 +33,7 @@
     "recharts": "^3.8.0",
     "sanity": "^5.20.0",
     "styled-components": "^6.4.0",
+    "stylus": "^0.64.0",
     "tailwind-merge": "^3.5.0",
     "zustand": "^5.0.11"
   },
