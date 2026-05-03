@@ -27,7 +27,7 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
             <div className="p-6 space-y-4">
                 <div className="flex items-center gap-2">
                     <Sparkles size={14} className="text-muted" />
-                    <h2 className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70">Quick Insertion</h2>
+                    <p className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70">Quick Insertion</p>
                 </div>
 
                 <motion.div

@@ -33,11 +33,17 @@ export default function HomeContent() {
 
 
                             <h1 className="text-3xl md:text-[40px] font-black text-foreground leading-[1.2] tracking-tighter uppercase px-2 py-4 bg-accent/5 rounded-2xl border-l-8 border-l-accent">
-                                Height Comparison Tool Compare Heights Online
+                                Height Comparison Calculator to Compare Heights Online with Visual Chart
                             </h1>
 
                             <p className="text-muted leading-relaxed text-lg max-w-3xl text-left font-bold lowercase first-letter:uppercase tracking-[0.01em]">
-                                Use this free height chart to compare heights online instantly. Enter any height and get a proportional height comparison chart that updates in real time at exact scale. No rounding, no approximation. Compare any person, celebrity, fictional character, or real-world object. No account needed.                            </p>
+                                Use this height comparison tool to see heights side by side with a real-scale chart.
+                                Enter any height in centimetres, feet, or inches to view the height difference instantly.
+                                The tool shows a visual comparison using proportional scaling. This way, you can clearly see how tall or short one subject is compared to another.
+                                The chart updates in real-time and provides accurate results without rounding.
+                                You can compare two or more heights at once and create a visual height difference chart in seconds. The tool also converts units automatically, so you can use cm, feet, or inches easily.
+                                It works for comparing people, celebrities, fictional characters, and real-world objects. This helps you understand size differences and proportions better.
+                            </p>
 
                             <ErrorBoundary name="ProGuarantee">
                                 <div className="flex items-start gap-4 p-6 bg-emerald-50 border-2 border-emerald-500/20 rounded-[2rem] mb-6 shadow-lg transition-all hover:border-emerald-500/40 group">

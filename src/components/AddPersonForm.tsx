@@ -111,7 +111,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
         >
             <div className="flex items-center gap-2">
                 <div className="w-1 h-4 bg-accent rounded-full" />
-                <h2 className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">Enter Your Details</h2>
+                <p className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">Enter Your Details</p>
             </div>
 
             {/* Gender Toggle */}

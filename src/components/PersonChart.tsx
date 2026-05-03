@@ -28,7 +28,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                 ref={listHeaderRef}
                 className={`px-6 py-4 flex items-center justify-between sticky top-0 bg-surface z-10 border-y border-border transition-colors duration-500 ${highlight ? 'bg-accent/10 border-accent/50 group' : ''}`}
             >
-                <h2 className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70 flex items-center gap-2">
+                <p className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70 flex items-center gap-2">
                     Your List
                     {highlight && (
                         <motion.div
@@ -38,7 +38,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                             className="w-2 h-2 rounded-full bg-accent"
                         />
                     )}
-                </h2>
+                </p>
             </div>
 
             <div className="flex-1 overflow-y-auto custom-scrollbar px-4 py-4 space-y-2.5">
@@ -96,8 +96,8 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({ persons, onRemove,
                                         {person.name}
                                     </span>
                                     <span className="text-[10px] font-mono font-black text-foreground mt-0.5">
-                                        {person.heightCm >= 1000 
-                                            ? `${(person.heightCm / 100).toFixed(person.heightCm % 100 === 0 ? 0 : 2)} m` 
+                                        {person.heightCm >= 1000
+                                            ? `${(person.heightCm / 100).toFixed(person.heightCm % 100 === 0 ? 0 : 2)} m`
                                             : `${person.heightCm} cm`}
                                     </span>
                                 </div>
