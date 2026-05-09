@@ -1,6 +1,4 @@
 import { MetadataRoute } from 'next';
-import { client } from '@/sanity/lib/client';
-import { allPostSlugsQuery } from '@/sanity/lib/queries';
 
 /**
  * Sitemap Generator
@@ -9,7 +7,6 @@ import { allPostSlugsQuery } from '@/sanity/lib/queries';
  * 1. Base static routes (Home, Predictor)
  * 2. Calculator pages (Country, Difference, Percentile, IBW, Image-to-Height)
  * 3. Listing and Legal pages (Blogs list, About, Privacy)
- * 4. Dynamic blog post slugs fetched from Sanity CMS
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://heightcomparisoncalculator.com';
@@ -75,20 +72,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
   ];
-
-  // Dynamic blog post pages from Sanity
-  let blogRoutes: MetadataRoute.Sitemap = [];
-  try {
-    const slugs = await client.fetch<{ slug: string }[]>(allPostSlugsQuery);
-    blogRoutes = slugs.map((item) => ({
-      url: `${baseUrl}/blog/${item.slug}`, // Fixed path based on src/app/blog/[slug]
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    }));
-  } catch (error) {
-    console.error('Error fetching blog slugs for sitemap:', error);
-  }
-
-  return [...staticRoutes, ...calculatorRoutes, ...blogRoutes];
+  return [...staticRoutes, ...calculatorRoutes];
 }
