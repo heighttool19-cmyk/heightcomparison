@@ -60,8 +60,38 @@ export default function RootLayout({
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "GTM-K8V4XPD3";
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Polyfill defensive DOM patch against browser extension mutations */}
+        <Script
+          id="dom-defender"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                if (typeof window !== 'undefined') {
+                  var origRemoveChild = Node.prototype.removeChild;
+                  Node.prototype.removeChild = function(child) {
+                    if (child.parentNode !== this) {
+                      if (child.parentNode) {
+                        return child.parentNode.removeChild(child);
+                      }
+                      return child;
+                    }
+                    return origRemoveChild.call(this, child);
+                  };
+                  var origInsertBefore = Node.prototype.insertBefore;
+                  Node.prototype.insertBefore = function(newNode, refNode) {
+                    if (refNode && refNode.parentNode !== this) {
+                      return this.appendChild(newNode);
+                    }
+                    return origInsertBefore.call(this, newNode, refNode);
+                  };
+                }
+              })();
+            `,
+          }}
+        />
         {/* Google Tag Manager */}
         <Script
           id="gtm-script"
@@ -78,16 +108,16 @@ export default function RootLayout({
         />
         {/* End Google Tag Manager */}
       </head>
-      <body className={`${jakarta.variable} ${jetbrainsMono.variable} font-sans antialiased bg-bg text-foreground selection:bg-accent/20 transition-colors duration-500`}>
+      <body
+        suppressHydrationWarning
+        className={`${jakarta.variable} ${jetbrainsMono.variable} font-sans antialiased bg-bg text-foreground selection:bg-accent/20 transition-colors duration-500`}
+      >
         {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+          }}
+        />
         {/* End Google Tag Manager (noscript) */}
         <ThemeInitializer />
         <div className="flex flex-col min-h-[100dvh] overflow-x-clip">
