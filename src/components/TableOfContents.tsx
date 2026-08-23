@@ -162,15 +162,15 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
     };
 
     return (
-        <>
+        <nav aria-label="Table of Contents">
             {/* OUTER WRAPPER: Added w-64 (or e.g., w-[280px]) for a fixed width */}
             <div className="w-72 sticky top-24 bg-surface border border-border rounded-3xl shadow-xl max-h-[calc(100vh-120px)] flex flex-col overflow-hidden">
 
                 {/* FIXED HEADER */}
                 <div className="pt-5 px-4 pb-3 border-b border-border/50 bg-surface shrink-0">
-                    <h3 className="text-sm font-black uppercase tracking-[0.2em] m-0">
+                    <div className="text-sm font-black uppercase tracking-[0.2em] m-0">
                         Table of Contents
-                    </h3>
+                    </div>
                 </div>
 
                 {/* SCROLLING AREA: Changed overflow-auto to overflow-y-auto overflow-x-hidden */}
@@ -183,7 +183,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ items }) => {
                 </div>
 
             </div>
-        </>
+        </nav>
     );
 };
 

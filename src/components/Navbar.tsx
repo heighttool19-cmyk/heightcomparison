@@ -76,9 +76,9 @@ const Navbar: React.FC = () => {
 
                         />
                     </div>
-                    <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors whitespace-nowrap">
+                    <span className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors whitespace-nowrap">
                         Height<span className="text-accent"> Comparison</span>
-                    </h1>
+                    </span>
                 </Link>
 
                 <div className="flex items-center gap-2 sm:gap-4">

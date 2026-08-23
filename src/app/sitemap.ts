@@ -1,12 +1,15 @@
 import { MetadataRoute } from 'next';
+import { client } from '@/sanity/lib/client';
+
+export const revalidate = 3600; // Revalidate sitemap every hour
 
 /**
  * Sitemap Generator
  * 
  * Generates an XML sitemap for the application, covering:
- * 1. Base static routes (Home, Predictor)
+ * 1. Base static routes (Home, Predictor, About, Privacy)
  * 2. Calculator pages (Country, Difference, Percentile, IBW, Image-to-Height)
- * 3. Listing and Legal pages (Blogs list, About, Privacy)
+ * 3. Dynamic Blog Post URLs fetched live from Sanity CMS
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://heightcomparisoncalculator.com';
@@ -30,6 +33,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.3,
     },
   ];
 
@@ -72,5 +81,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
   ];
-  return [...staticRoutes, ...calculatorRoutes];
+
+  // Dynamic Blog Posts fetched from Sanity CMS
+  let blogRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const posts = await client.fetch<{ slug: string; _updatedAt?: string; publishedAt?: string }[]>(
+      `*[_type == "post" && defined(slug.current)] { "slug": slug.current, _updatedAt, publishedAt }`
+    );
+
+    blogRoutes = posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post._updatedAt ? new Date(post._updatedAt) : post.publishedAt ? new Date(post.publishedAt) : new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    }));
+  } catch (error) {
+    console.error('Error fetching blog posts for sitemap:', error);
+  }
+
+  return [...staticRoutes, ...calculatorRoutes, ...blogRoutes];
 }
+
