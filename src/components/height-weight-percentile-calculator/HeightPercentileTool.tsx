@@ -352,9 +352,9 @@ export default function HeightPercentileTool() {
                 <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.12em" }}>
                     Height & Weight
                 </p>
-                <h1 style={{ margin: "4px 0 0", fontSize: 22, fontWeight: 900, color: isDark ? "white" : "#0f172a", letterSpacing: "-0.5px" }}>
+                <div style={{ margin: "4px 0 0", fontSize: 22, fontWeight: 900, color: isDark ? "white" : "#0f172a", letterSpacing: "-0.5px" }}>
                     Percentile Calculator
-                </h1>
+                </div>
                 <p style={{ margin: "4px 0 0", fontSize: 12, color: isDark ? "#64748b" : "#94a3b8" }}>
                     WHO &amp; CDC reference data · Instant results
                 </p>
