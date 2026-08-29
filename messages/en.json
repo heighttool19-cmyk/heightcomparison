@@ -5,8 +5,20 @@
     "german": "Deutsch"
   },
   "nav": {
+    "home": "Home",
+    "toolsAndCalculators": "Tools & Calculators",
+    "heightPredictor": "Height Predictor",
+    "heightWeightPercentileCalculator": "Height Weight Percentile Calculator",
+    "idealBodyWeightCalculator": "Ideal Body Weight Calculator",
+    "averageHeightByCountry": "Average Height by Country",
+    "heightDifferenceCalculator": "Height Difference Calculator",
+    "imageToHeight": "Image to Height",
     "about": "About",
-    "blog": "Blog"
+    "blogs": "Blogs",
+    "brandName": "Height Comparison",
+    "metricCm": "metric (cm)",
+    "imperialFtIn": "imperial (ft/in)",
+    "switchTo": "Switch to"
   },
   "about": {
     "badge": "About",

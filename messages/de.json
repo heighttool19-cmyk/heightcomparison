@@ -5,8 +5,20 @@
     "german": "Deutsch"
   },
   "nav": {
+    "home": "Startseite",
+    "toolsAndCalculators": "Tools & Rechner",
+    "heightPredictor": "Größenwachstums-Rechner",
+    "heightWeightPercentileCalculator": "Größen- & Gewichtsperzentilen-Rechner",
+    "idealBodyWeightCalculator": "Idealgewichts-Rechner",
+    "averageHeightByCountry": "Durchschnittsgröße nach Land",
+    "heightDifferenceCalculator": "Höhendifferenz-Rechner",
+    "imageToHeight": "Bild zu Körpergröße",
     "about": "Über uns",
-    "blog": "Blog"
+    "blogs": "Blogs",
+    "brandName": "Höhenvergleich",
+    "metricCm": "Metrisch (cm)",
+    "imperialFtIn": "Imperial (ft/in)",
+    "switchTo": "Wechseln zu"
   },
   "about": {
     "badge": "Über uns",
