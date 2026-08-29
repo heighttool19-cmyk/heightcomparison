@@ -7,6 +7,7 @@ import { Moon, Sun, Menu, ArrowLeftRight, ChevronDown } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useThemeStore, useUnitStore, useUIStore } from '@/store';
 import ThemeInitializer from './ThemeInitializer';
+import LanguageSwitcher from './LanguageSwitcher';
 
 // 1. DATA-DRIVEN CONFIGURATION: Add future tools here once, and they populate everywhere automatically.
 type NavItem = {
@@ -166,6 +167,9 @@ const Navbar: React.FC = () => {
                             </span>
                         </span>
                     </button>
+                    {/* Language Switcher */}
+                    <LanguageSwitcher />
+
                     {/* Theme Toggle */}
                     <button
                         onClick={toggleTheme}
