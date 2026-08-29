@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { Globe } from 'lucide-react';
 
 function getCleanPath(rawPathname: string): string {
@@ -27,7 +27,6 @@ function getTargetUrl(rawPathname: string, targetLocale: 'en' | 'de'): string {
 
 export default function LanguageSwitcher() {
   const rawPathname = usePathname() || '/';
-  const router = useRouter();
   const [currentLocale, setCurrentLocale] = useState<'en' | 'de'>('en');
 
   useEffect(() => {
@@ -42,10 +41,16 @@ export default function LanguageSwitcher() {
   }, [rawPathname]);
 
   const handleLanguageChange = (nextLocale: 'en' | 'de') => {
-    const windowPath = typeof window !== 'undefined' ? window.location.pathname : rawPathname;
+    if (typeof window === 'undefined') return;
+    const windowPath = window.location.pathname;
     const targetUrl = getTargetUrl(windowPath, nextLocale);
+    
+    if (nextLocale === currentLocale && window.location.pathname === targetUrl) {
+      return;
+    }
+
     setCurrentLocale(nextLocale);
-    router.push(targetUrl);
+    window.location.href = targetUrl;
   };
 
   return (
