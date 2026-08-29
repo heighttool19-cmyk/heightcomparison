@@ -37,10 +37,12 @@ This document records every mistake, root cause, architectural audit, and soluti
 
 ---
 
-### 3. Non-Responsive `EN` Button & Stale Client Cache
-- **Mistake**: Clicking `EN` when on German `/de/about` updated the switcher UI highlight but failed to update the page content or URL.
-- **Root Cause**: Next.js App Router client router (`router.push`) performed a soft client transition without re-evaluating server-side translations (`getMessages()`), serving cached German server components.
-- **Solution Implemented**: Updated `LanguageSwitcher.tsx` to execute `window.location.href = targetUrl`. This triggers a clean navigation, forcing Next.js App Router to fetch the exact localized server components and translation dictionaries for the chosen locale.
+### 3. Non-Responsive `EN` Button & Stale Cookie Redirection
+- **Mistake**: Clicking `EN` when on German `/de/about` reloaded the page but immediately redirected back to `/de/about`.
+- **Root Cause**: `next-intl` middleware checks the `NEXT_LOCALE` cookie. When visiting `/de/about`, the middleware sets `NEXT_LOCALE=de`. When the user clicked `EN` to go to unprefixed `/about`, the middleware saw `Cookie: NEXT_LOCALE=de` on an unprefixed URL and automatically issued a 307 Redirect back to `/de/about`.
+- **Solution Implemented**:
+  1. Updated `LanguageSwitcher.tsx` to explicitly write `document.cookie = "NEXT_LOCALE=" + nextLocale + "; path=/; max-age=31536000; SameSite=Lax"` before navigating.
+  2. Set `localeDetection: false` in `src/i18n/routing.ts` so middleware honors exact URL paths without cookie-forced overrides.
 
 ---
 
@@ -63,4 +65,4 @@ Our implementation follows 100% of Next.js 15 App Router and Vercel industrial s
 1. **Rule 1 (Zero Structural Loss)**: Never alter HTML tags, layout containers, Lucide icon parameters, or Tailwind CSS class strings (`className="..."`) during translation migration.
 2. **Rule 2 (Verbatim Text Extraction)**: Extract visible text strings into `messages/en.json` character-for-character, and mirror keys in `messages/de.json`.
 3. **Rule 3 (Metadata Standard)**: Always export localized `generateMetadata` with `canonical` and `hreflang` languages on every page.
-4. **Rule 4 (Navigation Integrity)**: Use `LanguageSwitcher.tsx` with deterministic `getTargetUrl` path normalization and `window.location.href` for full-page locale reloading.
+4. **Rule 4 (Navigation Integrity)**: Use `LanguageSwitcher.tsx` with deterministic `getTargetUrl` path normalization, `NEXT_LOCALE` cookie updates, and `window.location.href` for full-page locale reloading.
