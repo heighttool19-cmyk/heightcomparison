@@ -3,13 +3,21 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { useThemeStore, useUIStore } from '@/store';
 
 const Footer = () => {
+    const t = useTranslations('footer');
     const { theme } = useThemeStore();
     const { isCustomFullscreen } = useUIStore();
-    const pathname = usePathname();
-    const isDark = theme === 'dark';
+    const pathname = usePathname() || '/';
+
+    const currentLocale = (pathname.startsWith('/de/') || pathname === '/de') ? 'de' : 'en';
+
+    const getLocalizedHref = (path: string) => {
+        if (currentLocale === 'en') return path;
+        return path === '/' ? '/de' : `/de${path}`;
+    };
 
     if (isCustomFullscreen || pathname?.startsWith('/studio')) return null;
 
@@ -19,7 +27,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr] gap-12 mb-12">
                     {/* Brand Column */}
                     <div className="flex flex-col gap-5">
-                        <Link href="/" className="flex items-center gap-2.5 group">
+                        <Link href={getLocalizedHref('/')} className="flex items-center gap-2.5 group">
                             {/* Logo Container */}
                             <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
                                 <img
@@ -35,35 +43,35 @@ const Footer = () => {
                             </span>
                         </Link>
                         <p className="text-sm leading-relaxed text-muted max-w-[280px]">
-                            The most intuitive way to visualize and compare heights side by side. Add real people, celebrities, fictional characters, or any custom height and see them together instantly.
+                            {t('brandDescription')}
                         </p>
                         <div className="flex gap-2 flex-wrap">
-                            <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-surface border border-border text-muted">Free to use</span>
-                            <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-surface border border-border text-muted">No account needed</span>
-                            <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-surface border border-border text-muted">Metric & Imperial</span>
+                            <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-surface border border-border text-muted">{t('badgeFreeToUse')}</span>
+                            <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-surface border border-border text-muted">{t('badgeNoAccountNeeded')}</span>
+                            <span className="text-[11px] font-medium px-2.5 py-1 rounded-full bg-surface border border-border text-muted">{t('badgeMetricImperial')}</span>
                         </div>
                     </div>
 
                     {/* Calculators Column */}
                     <div>
-                        <p className="text-xs font-semibold uppercase tracking-widest text-foreground mb-4">Calculators</p>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-foreground mb-4">{t('calculatorsHeading')}</p>
                         <ul className="flex flex-col gap-2.5">
-                            <FooterLink href="/height-predictor">Height Predictor</FooterLink>
-                            <FooterLink href="/height-weight-percentile-calculator">Height Weight Percentile</FooterLink>
-                            <FooterLink href="/ideal-body-weight-calculator">Ideal Body Weight</FooterLink>
-                            <FooterLink href="/height-difference-calculator">Height Difference</FooterLink>
-                            <FooterLink href="/average-height-by-country">Average Height by Country</FooterLink>
-                            <FooterLink href="/image-to-height">Image to Height</FooterLink>
+                            <FooterLink href={getLocalizedHref('/height-predictor')}>{t('heightPredictor')}</FooterLink>
+                            <FooterLink href={getLocalizedHref('/height-weight-percentile-calculator')}>{t('heightWeightPercentile')}</FooterLink>
+                            <FooterLink href={getLocalizedHref('/ideal-body-weight-calculator')}>{t('idealBodyWeight')}</FooterLink>
+                            <FooterLink href={getLocalizedHref('/height-difference-calculator')}>{t('heightDifference')}</FooterLink>
+                            <FooterLink href={getLocalizedHref('/average-height-by-country')}>{t('averageHeightByCountry')}</FooterLink>
+                            <FooterLink href={getLocalizedHref('/image-to-height')}>{t('imageToHeight')}</FooterLink>
                         </ul>
                     </div>
 
                     {/* Company Column */}
                     <div>
-                        <p className="text-xs font-semibold uppercase tracking-widest text-foreground mb-4">Company</p>
+                        <p className="text-xs font-semibold uppercase tracking-widest text-foreground mb-4">{t('companyHeading')}</p>
                         <ul className="flex flex-col gap-2.5">
-                            <FooterLink href="/about">About</FooterLink>
-                            <FooterLink href="/blogs">Blogs</FooterLink>
-                            <FooterLink href="/privacy">Privacy Policy</FooterLink>
+                            <FooterLink href={getLocalizedHref('/about')}>{t('about')}</FooterLink>
+                            <FooterLink href={getLocalizedHref('/blogs')}>{t('blogs')}</FooterLink>
+                            <FooterLink href={getLocalizedHref('/privacy')}>{t('privacyPolicy')}</FooterLink>
                         </ul>
                     </div>
                 </div>
@@ -72,7 +80,8 @@ const Footer = () => {
 
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 flex-wrap">
                     <p className="text-[13px] text-muted">
-                        © {new Date().getFullYear()} Height Comparison. All rights reserved. Built with care by <Link href="#" className="text-accent hover:underline">the team</Link>.
+                        {t('copyright', { year: new Date().getFullYear().toString() })}
+                        <Link href={getLocalizedHref('/')} className="text-accent hover:underline">{t('theTeam')}</Link>.
                     </p>
                     <div className="flex gap-3">
                         <SocialButton title="Twitter / X">

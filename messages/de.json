@@ -20,6 +20,25 @@
     "imperialFtIn": "Imperial (ft/in)",
     "switchTo": "Wechseln zu"
   },
+  "footer": {
+    "brandDescription": "Die intuitivste Möglichkeit, Körpergrößen nebeneinander zu visualisieren und zu vergleichen. Fügen Sie echte Personen, Prominente, fiktive Charaktere oder eine beliebige Größe hinzu und vergleichen Sie diese sofort.",
+    "badgeFreeToUse": "Kostenlos nutzbar",
+    "badgeNoAccountNeeded": "Kein Konto erforderlich",
+    "badgeMetricImperial": "Metrisch & Imperial",
+    "calculatorsHeading": "Rechner",
+    "companyHeading": "Unternehmen",
+    "heightPredictor": "Größenwachstums-Rechner",
+    "heightWeightPercentile": "Größen- & Gewichtsperzentilen",
+    "idealBodyWeight": "Idealgewicht",
+    "heightDifference": "Höhendifferenz",
+    "averageHeightByCountry": "Durchschnittsgröße nach Land",
+    "imageToHeight": "Bild zu Körpergröße",
+    "about": "Über uns",
+    "blogs": "Blogs",
+    "privacyPolicy": "Datenschutzerklärung",
+    "copyright": "© {year} Höhenvergleich. Alle Rechte vorbehalten. Entwickelt mit Sorgfalt von ",
+    "theTeam": "dem Team"
+  },
   "about": {
     "badge": "Über uns",
     "brandName": "Höhenvergleich",

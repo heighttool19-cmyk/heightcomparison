@@ -20,6 +20,25 @@
     "imperialFtIn": "imperial (ft/in)",
     "switchTo": "Switch to"
   },
+  "footer": {
+    "brandDescription": "The most intuitive way to visualize and compare heights side by side. Add real people, celebrities, fictional characters, or any custom height and see them together instantly.",
+    "badgeFreeToUse": "Free to use",
+    "badgeNoAccountNeeded": "No account needed",
+    "badgeMetricImperial": "Metric & Imperial",
+    "calculatorsHeading": "Calculators",
+    "companyHeading": "Company",
+    "heightPredictor": "Height Predictor",
+    "heightWeightPercentile": "Height Weight Percentile",
+    "idealBodyWeight": "Ideal Body Weight",
+    "heightDifference": "Height Difference",
+    "averageHeightByCountry": "Average Height by Country",
+    "imageToHeight": "Image to Height",
+    "about": "About",
+    "blogs": "Blogs",
+    "privacyPolicy": "Privacy Policy",
+    "copyright": "© {year} Height Comparison. All rights reserved. Built with care by ",
+    "theTeam": "the team"
+  },
   "about": {
     "badge": "About",
     "brandName": "Height Comparison",
