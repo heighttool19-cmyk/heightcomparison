@@ -1,21 +1,51 @@
 'use client';
 
-import React, { useTransition } from 'react';
-import { useLocale } from 'next-intl';
-import { usePathname, useRouter } from '@/i18n/routing';
+import React, { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { Globe } from 'lucide-react';
 
+function getCleanPath(rawPathname: string): string {
+  let path = rawPathname || '/';
+  if (path.startsWith('/de/') || path === '/de') {
+    path = path.slice(3) || '/';
+  } else if (path.startsWith('/en/') || path === '/en') {
+    path = path.slice(3) || '/';
+  }
+  if (!path.startsWith('/')) {
+    path = '/' + path;
+  }
+  return path;
+}
+
+function getTargetUrl(rawPathname: string, targetLocale: 'en' | 'de'): string {
+  const cleanPath = getCleanPath(rawPathname);
+  if (targetLocale === 'en') {
+    return cleanPath;
+  }
+  return cleanPath === '/' ? '/de' : `/de${cleanPath}`;
+}
+
 export default function LanguageSwitcher() {
-  const locale = useLocale();
+  const rawPathname = usePathname() || '/';
   const router = useRouter();
-  const pathname = usePathname();
-  const [isPending, startTransition] = useTransition();
+  const [currentLocale, setCurrentLocale] = useState<'en' | 'de'>('en');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const windowPath = window.location.pathname;
+      if (windowPath.startsWith('/de/') || windowPath === '/de') {
+        setCurrentLocale('de');
+      } else {
+        setCurrentLocale('en');
+      }
+    }
+  }, [rawPathname]);
 
   const handleLanguageChange = (nextLocale: 'en' | 'de') => {
-    if (nextLocale === locale) return;
-    startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
-    });
+    const windowPath = typeof window !== 'undefined' ? window.location.pathname : rawPathname;
+    const targetUrl = getTargetUrl(windowPath, nextLocale);
+    setCurrentLocale(nextLocale);
+    router.push(targetUrl);
   };
 
   return (
@@ -23,10 +53,11 @@ export default function LanguageSwitcher() {
       <Globe size={14} className="text-accent" />
       <button
         type="button"
-        disabled={isPending}
         onClick={() => handleLanguageChange('en')}
         className={`px-2 py-0.5 rounded-md transition-colors cursor-pointer ${
-          locale === 'en' ? 'bg-accent text-accent-foreground font-black' : 'text-muted hover:text-foreground'
+          currentLocale === 'en'
+            ? 'bg-accent text-accent-foreground font-black'
+            : 'text-muted hover:text-foreground'
         }`}
         aria-label="Switch to English"
       >
@@ -35,10 +66,11 @@ export default function LanguageSwitcher() {
       <span className="text-border">|</span>
       <button
         type="button"
-        disabled={isPending}
         onClick={() => handleLanguageChange('de')}
         className={`px-2 py-0.5 rounded-md transition-colors cursor-pointer ${
-          locale === 'de' ? 'bg-accent text-accent-foreground font-black' : 'text-muted hover:text-foreground'
+          currentLocale === 'de'
+            ? 'bg-accent text-accent-foreground font-black'
+            : 'text-muted hover:text-foreground'
         }`}
         aria-label="Switch to Deutsch"
       >

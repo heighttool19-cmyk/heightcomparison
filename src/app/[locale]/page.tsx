@@ -5,7 +5,7 @@ import ErrorBoundary from '@/components/common/ErrorBoundary';
 import JsonLd from '@/components/common/JsonLd';
 import { HOME_SCHEMA } from '@/constants/schemas/home';
 
-export default function Home() {
+export default function LocalizedHome() {
   return (
     <>
       {/* 1. SEO Schema Markup */}
