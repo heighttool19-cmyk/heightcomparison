@@ -42,6 +42,7 @@ export default function LanguageSwitcher() {
 
   const handleLanguageChange = (nextLocale: 'en' | 'de') => {
     if (typeof window === 'undefined') return;
+    document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000; SameSite=Lax`;
     const windowPath = window.location.pathname;
     const targetUrl = getTargetUrl(windowPath, nextLocale);
     
