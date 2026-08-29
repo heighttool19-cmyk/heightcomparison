@@ -6,6 +6,8 @@ import Footer from "@/components/layout/Footer";
 import ThemeInitializer from "@/components/ThemeInitializer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Script from "next/script";
+import { NextIntlClientProvider } from "next-intl";
+import enMessages from "../../messages/en.json";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -120,13 +122,15 @@ export default function RootLayout({
         />
         {/* End Google Tag Manager (noscript) */}
         <ThemeInitializer />
-        <div className="flex flex-col min-h-[100dvh] overflow-x-clip">
-          <Navbar />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </div>
+        <NextIntlClientProvider locale="en" messages={enMessages}>
+          <div className="flex flex-col min-h-[100dvh] overflow-x-clip">
+            <Navbar />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </NextIntlClientProvider>
         <GoogleAnalytics />
       </body>
     </html>

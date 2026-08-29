@@ -5,8 +5,16 @@ import { useLocale } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
 import { Globe } from 'lucide-react';
 
+function useSafeLocale() {
+  try {
+    return useLocale();
+  } catch {
+    return 'en';
+  }
+}
+
 export default function LanguageSwitcher() {
-  const locale = useLocale();
+  const locale = useSafeLocale();
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -14,7 +22,7 @@ export default function LanguageSwitcher() {
   const handleLanguageChange = (nextLocale: 'en' | 'de') => {
     if (nextLocale === locale) return;
     startTransition(() => {
-      router.replace(pathname, { locale: nextLocale });
+      router.replace(pathname || '/', { locale: nextLocale });
     });
   };
 
