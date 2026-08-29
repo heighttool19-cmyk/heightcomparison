@@ -15,7 +15,17 @@ This document records every mistake, root cause, architectural audit, and soluti
 
 ---
 
-### 2. Path Stacking Bug (`/de/de/about`)
+### 2. Static Navbar/Footer Language (Provider Scope Issue)
+- **Mistake**: Navbar and Footer failed to update their language when switching between English and German, remaining stuck in English.
+- **Symptom**: The main page body updated to German on `/de/about`, but Navbar and Footer remained in English.
+- **Root Cause**: `src/app/layout.tsx` (the root layout) was wrapping `<Navbar />` and `<Footer />` inside `<NextIntlClientProvider locale="en" messages={enMessages}>`. Because `locale="en"` and `enMessages` were hardcoded at the root layout level, `Navbar` and `Footer` ALWAYS evaluated `useTranslations()` against English messages regardless of the dynamic route locale.
+- **Solution Implemented**: 
+  1. Removed `Navbar`, `Footer`, and `NextIntlClientProvider` from `src/app/layout.tsx`.
+  2. Moved `Navbar` and `Footer` into `src/app/[locale]/layout.tsx` inside `<NextIntlClientProvider locale={locale} messages={messages}>`, allowing `getMessages()` to supply the correct dictionary per locale (`messages/de.json` for German, `messages/en.json` for English).
+
+---
+
+### 3. Path Stacking Bug (`/de/de/about`)
 - **Mistake**: Toggling language caused recursive path prefixes: `GET /de/about 200` → `GET /de/de/about 404` → `GET /de/de/de/about 404`.
 - **Root Cause**: `usePathname()` from `@/i18n/routing` returned paths that already contained `/de` (e.g., `/de/about`). When `router.replace('/de/about', { locale: 'de' })` was invoked, `next-intl`'s router prepended `de` onto the already-prefixed path, producing `/de/de/about`.
 - **Solution Implemented**: Created pure path normalization utilities `getCleanPath` and `getTargetUrl` in `LanguageSwitcher.tsx`:
@@ -37,7 +47,7 @@ This document records every mistake, root cause, architectural audit, and soluti
 
 ---
 
-### 3. Non-Responsive `EN` Button & Stale Cookie Redirection
+### 4. Non-Responsive `EN` Button & Stale Cookie Redirection
 - **Mistake**: Clicking `EN` when on German `/de/about` reloaded the page but immediately redirected back to `/de/about`.
 - **Root Cause**: `next-intl` middleware checks the `NEXT_LOCALE` cookie. When visiting `/de/about`, the middleware sets `NEXT_LOCALE=de`. When the user clicked `EN` to go to unprefixed `/about`, the middleware saw `Cookie: NEXT_LOCALE=de` on an unprefixed URL and automatically issued a 307 Redirect back to `/de/about`.
 - **Solution Implemented**:
@@ -53,6 +63,7 @@ Our implementation follows 100% of Next.js 15 App Router and Vercel industrial s
 | Criteria | Industrial Standard Specification | Project Status |
 |---|---|---|
 | **Directory Architecture** | Native dynamic route group `src/app/[locale]/...` | ✅ **100% Compliant** |
+| **Provider Hierarchy** | Dynamic `NextIntlClientProvider` inside `src/app/[locale]/layout.tsx` wrapping `Navbar`, `main`, and `Footer` | ✅ **100% Compliant** |
 | **SEO & Crawling** | Dynamic `generateMetadata` with `hreflang` (`en`, `de`, `x-default`) & canonical links | ✅ **100% Compliant** |
 | **Indexing & Performance** | Distinct static HTML pre-rendering per locale via Next.js SSG | ✅ **100% Compliant** |
 | **Legal Compliance** | First-class regional URLs (`/de/...`) for GDPR / Impressum audits | ✅ **100% Compliant** |
@@ -64,5 +75,6 @@ Our implementation follows 100% of Next.js 15 App Router and Vercel industrial s
 
 1. **Rule 1 (Zero Structural Loss)**: Never alter HTML tags, layout containers, Lucide icon parameters, or Tailwind CSS class strings (`className="..."`) during translation migration.
 2. **Rule 2 (Verbatim Text Extraction)**: Extract visible text strings into `messages/en.json` character-for-character, and mirror keys in `messages/de.json`.
-3. **Rule 3 (Metadata Standard)**: Always export localized `generateMetadata` with `canonical` and `hreflang` languages on every page.
-4. **Rule 4 (Navigation Integrity)**: Use `LanguageSwitcher.tsx` with deterministic `getTargetUrl` path normalization, `NEXT_LOCALE` cookie updates, and `window.location.href` for full-page locale reloading.
+3. **Rule 3 (Provider Placement)**: Always place `<Navbar />` and `<Footer />` inside `src/app/[locale]/layout.tsx` wrapped by `<NextIntlClientProvider locale={locale} messages={messages}>`. NEVER hardcode `NextIntlClientProvider` in root `src/app/layout.tsx`.
+4. **Rule 4 (Metadata Standard)**: Always export localized `generateMetadata` with `canonical` and `hreflang` languages on every page.
+5. **Rule 5 (Navigation Integrity)**: Use `LanguageSwitcher.tsx` with deterministic `getTargetUrl` path normalization, `NEXT_LOCALE` cookie updates, and `window.location.href` for full-page locale reloading.

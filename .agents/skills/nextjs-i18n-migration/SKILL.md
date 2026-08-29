@@ -29,15 +29,39 @@ Before touching any code, ensure you do NOT repeat these common architectural mi
 | Mistake | Root Cause | Prevention & Fix |
 |---|---|---|
 | **Root route `404`** | Moving sub-pages into `src/app/[locale]/...` without moving root `src/app/page.tsx`. | **Rule**: Both `src/app/[locale]/page.tsx` and sub-pages MUST exist under `src/app/[locale]/`. Delete unlocalized root `src/app/page.tsx`. |
+| **Static Navbar/Footer Language** | Wrapping Navbar & Footer in a hardcoded `<NextIntlClientProvider locale="en">` in root `src/app/layout.tsx`. | **Rule**: NEVER wrap Navbar/Footer in root `src/app/layout.tsx`. Place Navbar & Footer inside `src/app/[locale]/layout.tsx` wrapped in dynamic `<NextIntlClientProvider locale={locale} messages={messages}>`. |
 | **Path Stacking (`/de/de/about`)** | Passing raw path with `/de` prefix back to `router.replace` or `next-intl` link helper. | **Rule**: Use deterministic path normalization (`getCleanPath` and `getTargetUrl`) in `LanguageSwitcher.tsx` to strip existing prefixes before prepending target locale. |
+| **EN Redirect Loop back to DE** | Browsers holding `NEXT_LOCALE=de` cookie while `next-intl` middleware has `localeDetection: true`. | **Rule**: Set `localeDetection: false` in `src/i18n/routing.ts` and explicitly set `document.cookie = NEXT_LOCALE=${nextLocale}` in `LanguageSwitcher.tsx`. |
 | **Stale Client Cache on Switch** | Soft client transition (`router.push`) skipping server-side translation reload. | **Rule**: Execute `window.location.href = targetUrl` in `LanguageSwitcher.tsx` for clean full-page reloading of server component translations. |
 | **Duplicate Content Warnings in SEO** | Omitting `hreflang` metadata alternates. | **Rule**: Always export dynamic `generateMetadata` containing `canonical` and `alternates` (`en`, `de`, `x-default`). |
 
 ---
 
+## Architecture Blueprint: Layout Hierarchy
+
+```
+src/app/layout.tsx (RootLayout)
+ └── <html>
+      └── <body>
+           └── {children}  --> (Renders src/app/[locale]/layout.tsx)
+
+src/app/[locale]/layout.tsx (LocaleLayout)
+ └── <NextIntlClientProvider locale={locale} messages={messages}>
+      ├── <Navbar />         (Dynamically translated!)
+      ├── <main>{children}</main>
+      └── <Footer />         (Dynamically translated!)
+     </NextIntlClientProvider>
+```
+
+---
+
 ## Step-by-Step AI Execution Workflow
 
-### Step 1: Content Extraction & Source of Truth (`messages/en.json`)
+### Step 1: Layout Verification (Root vs Localized)
+1. Verify `src/app/layout.tsx` DOES NOT contain `<Navbar />`, `<Footer />`, or `<NextIntlClientProvider>`.
+2. Ensure `src/app/[locale]/layout.tsx` fetches `getMessages()`, accepts dynamic `locale` from `params`, wraps content in `<NextIntlClientProvider locale={locale} messages={messages}>`, and renders `<Navbar />` and `<Footer />`.
+
+### Step 2: Content Extraction & Source of Truth (`messages/en.json`)
 1. Read the target `.tsx` component/page.
 2. Identify all visible English text strings, including headings, paragraphs, badge texts, array lists, and meta titles/descriptions.
 3. Copy the text **verbatim** into `messages/en.json` under an explicit namespace:
@@ -51,11 +75,11 @@ Before touching any code, ensure you do NOT repeat these common architectural mi
 }
 ```
 
-### Step 2: Create Target Locale Dictionary (`messages/de.json`)
+### Step 3: Create Target Locale Dictionary (`messages/de.json`)
 1. Mirror the JSON key structure from `messages/en.json` key-for-key.
 2. Translate only the string values into the target language. Keep variable placeholders (e.g. `{count}`) unchanged.
 
-### Step 3: Relocate & Update TSX Page Component
+### Step 4: Relocate & Update TSX Page Component
 1. Create target localized file path: `src/app/[locale]/<page-name>/page.tsx`.
 2. Import `getTranslations` from `next-intl/server`.
 3. Fetch translation strings dynamically in the Server Component:
@@ -76,7 +100,7 @@ export default async function LocalizedPage({ params }: { params: Promise<{ loca
 ```
 4. Verify that **ALL** Tailwind CSS classes, Lucide icons, and DOM container structures remain 100% untouched.
 
-### Step 4: Add Localized SEO Metadata
+### Step 5: Add Localized SEO Metadata
 Export dynamic `generateMetadata` in every localized `page.tsx`:
 ```tsx
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -101,8 +125,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 ```
 
-### Step 5: Verify Language Switcher Navigation
-Ensure `src/components/LanguageSwitcher.tsx` handles clean URL calculation:
+### Step 6: Verify Language Switcher Navigation
+Ensure `src/components/LanguageSwitcher.tsx` handles clean URL calculation and cookie setting:
 ```tsx
 function getCleanPath(rawPathname: string): string {
   let path = rawPathname || '/';
@@ -118,7 +142,7 @@ function getTargetUrl(rawPathname: string, targetLocale: 'en' | 'de'): string {
 }
 ```
 
-### Step 6: Verification & Clean Build
+### Step 7: Verification & Clean Build
 1. Delete the unlocalized source file (e.g. `src/app/about/page.tsx`).
 2. Run `npm run build` to verify 0 TypeScript errors and 0 missing route warnings.
 3. Test paths in browser:
