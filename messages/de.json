@@ -1,0 +1,66 @@
+{
+  "common": {
+    "language": "Sprache",
+    "english": "English",
+    "german": "Deutsch"
+  },
+  "nav": {
+    "about": "Über uns",
+    "blog": "Blog"
+  },
+  "about": {
+    "badge": "Über uns",
+    "brandName": "Höhenvergleich",
+    "heroQuote": "HeightComparison entstand als Nebenprojekt basierend auf einer einfachen Beobachtung: Höhenangaben sind ohne Kontext nahezu nutzlos. Man muss sie sehen. Ein Unterschied von 12 cm zwischen zwei Personen bei 165 cm ist eine völlig andere Erfahrung als derselbe Unterschied von 12 cm bei 185 cm. Die Proportionalität ändert sich. Das visuelle Verhältnis ändert sich. Dennoch zieht jedes andere Vergleichstool im Internet nur eine Zahl von einer anderen ab.",
+    "builtDifferent": "Wir haben etwas anderes gebaut.",
+    "whatItDoesTitle": "Was das Tool tatsächlich tut",
+    "whatItDoesParagraphs": [
+      "Das Höhenvergleichsdiagramm nimmt Ihre Messwerte und stellt sie im echten proportionalen Maßstab dar. Jeder Balken ist mathematisch relativ zu jedem anderen Balken auf dem Bildschirm skaliert. Keine Rundungen, keine visuellen Abkürzungen.",
+      "Sie können unbegrenzt viele Personen oder Objekte gleichzeitig vergleichen. Eine fünfköpfige Familie, ein Kader eines Sportteams, Anime-Charaktere oder eine Person neben einem Wasserfall – alles auf einem Diagramm im richtigen Maßstab.",
+      "Die Prominenten-Datenbank umfasst Sportler, Schauspieler, Musiker und öffentliche Personen. Die Bibliothek fiktiver Charaktere stammt aus offiziellen Produktionsdatenbüchern. Es handelt sich nicht um Schätzungen der Masse, sondern um Daten aus offiziellen Veröffentlichungen der Ersteller.",
+      "Es gibt auch eine Bild-Upload-Funktion, die ein Foto im echten Größenverhältnis auf 1 bis 2 cm genau in das Diagramm einfügt."
+    ],
+    "otherCalculatorsTitle": "Die weiteren Rechner",
+    "calculators": [
+      {
+        "title": "Höhendifferenz-Rechner",
+        "text": "Für den genauen Unterschied zwischen zwei Höhen in Zentimetern, Zoll und Prozent ohne Erstellung eines vollständigen Diagramms."
+      },
+      {
+        "title": "Größenwachstums-Rechner",
+        "text": "Verwendet die Khamis-Roche- und Mid-Parental-Formeln zur Schätzung der Erwachsenengröße eines Kindes basierend auf den aktuellen Maßen und der Elternhöhe."
+      },
+      {
+        "title": "Größen- & Gewichtsperzentilen-Rechner",
+        "text": "Vergleicht Körpergröße und Gewicht mit WHO- und CDC-Bevölkerungsdaten, aufgeschlüsselt nach Alter und Geschlecht."
+      },
+      {
+        "title": "Idealgewichts-Rechner",
+        "text": "Führt die Formeln von Devine, Robinson und Hamwi nebeneinander aus, um eine fundierte Spanne zu zeigen."
+      },
+      {
+        "title": "Durchschnittsgröße nach Land",
+        "text": "Deckt 46 Länder mit einer sortierbaren Tabelle, regionalen Aufschlüsselungen und einer Welt-Heatmap ab."
+      },
+      {
+        "title": "Bild zu Körpergröße",
+        "text": "Schätzt die Körpergröße anhand eines Fotos mit integriertem Leitfaden zu morgendlichen Größenschwankungen."
+      }
+    ],
+    "noAccountTitle": "Kein Konto, Keine Zahlung, Keine Wasserzeichen",
+    "noAccountParagraphs": [
+      "Diese Entscheidung wurde früh getroffen und hat sich nicht geändert. Der PNG-Export hat kein Wasserzeichen. Die Datenbank ist kostenlos. Alle Funktionen sind frei zugänglich.",
+      "Das ist kein Marketing-Gag. So wurde das Tool entwickelt. Die Erstellung von Konten oder Bezahlschranken würde das Tool verschlechtern."
+    ],
+    "accuracyTitle": "Hinweis zur Datengenauigkeit",
+    "accuracyParagraphs": [
+      "Widersprüchliche Höhenangaben kommen vor. Bei Konflikten normalisieren wir auf die am kürzesten verifizierte Angabe aus glaubwürdigen öffentlichen Quellen. Abmessungen von Wahrzeichen stammen aus architektonischen Referenzen."
+    ],
+    "nothingUserSubmitted": "Nichts hier ist von Benutzern eingereicht.",
+    "footerQuote": "Höhenkontext visualisieren, Pixel für Pixel."
+  },
+  "metadata": {
+    "aboutTitle": "Über uns - Höhenvergleichs-Rechner",
+    "aboutDescription": "Erfahren Sie mehr über unser Höhendifferenz- und Vergleichstool mit maßstabsgetreuer visueller Darstellung."
+  }
+}
