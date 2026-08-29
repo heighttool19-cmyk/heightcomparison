@@ -90,8 +90,67 @@
     "nothingUserSubmitted": "Nichts hier ist von Benutzern eingereicht.",
     "footerQuote": "Höhenkontext visualisieren, Pixel für Pixel."
   },
+  "privacy": {
+    "titlePrefix": "Datenschutz-",
+    "titleSuffix": "Erklärung",
+    "subheading": "Wir helfen Ihnen zu verstehen, wie wir Ihre Informationen schützen.",
+    "intro": "Diese Datenschutzerklärung erläutert, welche Informationen der Höhenvergleichs-Rechner sammelt, wie sie verwendet werden und welche Wahlmöglichkeiten Sie haben. HeightComparison ist ein kostenloses Tool auf heightcomparisoncalculator.com. Es werden keine personenbezogenen Daten für kommerzielle Zwecke verkauft oder an Dritte weitergegeben.",
+    "whatWeCollectTitle": "Was wir erfassen",
+    "infoYouProvideTitle": "Informationen, die Sie bereitstellen",
+    "infoYouProvideIntro": "Wenn Sie bestimmte Funktionen des Tools nutzen, werden einige Daten vorübergehend auf unseren Servern gespeichert:",
+    "uploadedImagesLabel": "Hochgeladene Bilder.",
+    "uploadedImagesText": " Wenn Sie die Funktion 'Bild zu Körpergröße' nutzen, wird das hochgeladene Foto zur Größenschätzung an unsere Server gesendet. Das Bild wird nicht dauerhaft gespeichert. Es wird bis zu 7 Tage aufbewahrt und dann automatisch gelöscht.",
+    "shareableLinksLabel": "Teilbare Diagramm-Links und Diagrammstatus.",
+    "shareableLinksText": " Wenn Sie einen teilbaren Link für Ihr Höhenvergleichsdiagramm erstellen, wird die Konfiguration (Höhen, Namen, Objekte) auf unseren Servern gespeichert. Diese Daten werden bis zu 7 Tage aufbewahrt und dann automatisch gelöscht. Es ist kein Konto erforderlich.",
+    "infoCollectedAutoTitle": "Automatisch erfasste Informationen",
+    "googleAnalyticsLabel": "Google Analytics.",
+    "googleAnalyticsText": " Wir verwenden Google Analytics, um zu verstehen, wie Besucher die Website nutzen. Dieser Dienst erfasst Standardnutzungsdaten wie besuchte Seiten, Verweildauer, allgemeine Region, Browser- und Gerätetyp. HeightComparison selbst setzt keine Erstanbieter-Cookies.",
+    "googleAnalyticsNote": "Weitere Informationen zum Umgang von Google mit diesen Daten finden Sie in der Datenschutzerklärung und den Nutzungsbedingungen von Google Analytics.",
+    "serverLogsLabel": "Server-Logdateien.",
+    "serverLogsText": " Wie die meisten Webserver zeichnet auch unserer automatisch Standard-Logdaten wie IP-Adressen, Referrer-URLs und Zeitstempel auf. Diese Informationen werden ausschließlich für Sicherheits- und Betriebszwecke verwendet.",
+    "whatWeDoNotCollectTitle": "Was wir NICHT erfassen",
+    "whatWeDoNotCollectIntro": "Zur Klarstellung darüber, was diese Website nicht tut:",
+    "whatWeDoNotCollectList": [
+      "Wir erfassen keinen Namen, keine E-Mail-Adresse oder Kontoinformationen. Es gibt keine Konten.",
+      "Wir erfassen keine Zahlungsinformationen. Das Tool ist kostenlos.",
+      "Wir verfolgen keine eingegebenen Höhen. Eingabedaten werden in Ihrem Browser verarbeitet und nicht an Server gesendet (außer in den oben genannten Ausnahmen).",
+      "Wir sind mit keinem Werbenetzwerk verbunden. Es werden keine Daten an Werbenetzwerke weitergegeben."
+    ],
+    "howWeUseTitle": "Wie wir die Daten verwenden",
+    "howWeUseIntro": "Die oben beschriebenen Daten werden ausschließlich für folgende Zwecke verwendet:",
+    "howWeUseList": [
+      "Verarbeitung und Rückgabe bildbasierter Größenschätzungen an Sie",
+      "Generierung und Auflösung teilbarer Diagrammlinks",
+      "Verständnis allgemeiner Nutzungsmuster über Google Analytics zur Verbesserung des Tools",
+      "Aufrechterhaltung der Serversicherheit und Diagnose technischer Probleme"
+    ],
+    "howWeUseFooter": "Wir verwenden keine erfassten Daten zur Erstellung von Benutzerprofilen oder für zielgerichtete Werbung.",
+    "dataRetentionTitle": "Datenspeicherung",
+    "dataRetentionText": "Hochgeladene Bilder und Linkdaten werden innerhalb von 7 Tagen nach Erstellung gelöscht. Server-Logs werden für standardmäßige Betriebszeiträume aufbewahrt.",
+    "yourRightsTitle": "Ihre Rechte und Wahlmöglichkeiten",
+    "requestDeletionLabel": "Löschung von Daten anfordern.",
+    "requestDeletionText": " Wenn Sie einen teilbaren Link oder ein Bild hochgeladen haben und eine vorzeitige Löschung wünschen, kontaktieren Sie uns unter ",
+    "requestDeletionTextEnd": " und wir werden die Daten umgehend löschen.",
+    "optOutGaLabel": "Google Analytics deaktivieren.",
+    "optOutGaText": " Sie können die Datenerfassung durch Google Analytics verhindern, indem Sie das Browser-Add-on zur Deaktivierung von Google Analytics installieren.",
+    "browserControlsLabel": "Browser-Steuerung.",
+    "browserControlsText": " Da HeightComparison keine Erstanbieter-Cookies setzt, gibt es unsererseits keine Cookie-Einstellungen zu verwalten.",
+    "childrensPrivacyTitle": "Schutz der Privatsphäre von Kindern",
+    "childrensPrivacyText": "HeightComparison richtet sich nicht an Kinder unter 13 Jahren. Wir erfassen wissentlich keine personenbezogenen Daten von Kindern. Wenden Sie sich bei Fragen an ",
+    "childrensPrivacyTextEnd": " und wir werden diese entfernen.",
+    "thirdPartyLinksTitle": "Links zu Drittanbietern",
+    "thirdPartyLinksText": "Die Website kann Links zu externen Websites enthalten. Diese Datenschutzerklärung gilt nur für HeightComparison. Wir sind nicht für die Datenschutzpraktiken Dritter verantwortlich.",
+    "changesToPolicyTitle": "Änderungen dieser Erklärung",
+    "changesToPolicyText": "Wenn wir wesentliche Änderungen vornehmen, aktualisieren wir das Datum am Anfang dieser Seite.",
+    "contactTitle": "Kontakt",
+    "contactIntro": "Wenn Sie Fragen zu dieser Datenschutzerklärung haben oder eine Datenlöschung anfordern möchten, erreichen Sie uns unter:",
+    "emailLabel": "E-Mail: ",
+    "trustFooter": "Ihr Vertrauen ist uns wichtig."
+  },
   "metadata": {
     "aboutTitle": "Über uns - Höhenvergleichs-Rechner",
-    "aboutDescription": "Erfahren Sie mehr über unser Höhendifferenz- und Vergleichstool mit maßstabsgetreuer visueller Darstellung."
+    "aboutDescription": "Erfahren Sie mehr über unser Höhendifferenz- und Vergleichstool mit maßstabsgetreuer visueller Darstellung.",
+    "privacyTitle": "Datenschutzerklärung - Höhenvergleichs-Rechner",
+    "privacyDescription": "Lesen Sie die Datenschutzerklärung des Höhenvergleichs-Rechners."
   }
 }

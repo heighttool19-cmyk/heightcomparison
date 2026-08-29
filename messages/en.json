@@ -90,8 +90,67 @@
     "nothingUserSubmitted": "Nothing here is user-submitted.",
     "footerQuote": "Visualizing height context, one pixel at a time."
   },
+  "privacy": {
+    "titlePrefix": "Privacy ",
+    "titleSuffix": "Policy",
+    "subheading": "Helping you understand how we protect your information.",
+    "intro": "This Privacy Policy explains what information Height Comparison Calculator collects, how it is used, and what choices you have. HeightComparison is a free height comparison tool available at heightcomparisoncalculator.com. No personal data is sold or shared with third parties for commercial purposes.",
+    "whatWeCollectTitle": "What We Collect",
+    "infoYouProvideTitle": "Information You Provide",
+    "infoYouProvideIntro": "When you use certain features of the tool, some data is temporarily stored on our servers:",
+    "uploadedImagesLabel": "Uploaded images.",
+    "uploadedImagesText": " If you use the Image to Height feature, the photo you upload is sent to our servers to process height estimation. The image is not permanently stored. It is retained for up to 7 days and then deleted automatically.",
+    "shareableLinksLabel": "Shareable chart links and chart state.",
+    "shareableLinksText": " When you generate a shareable link for your height comparison chart, the chart configuration (the heights, names, and subjects you added) is stored on our servers so that the link can be resolved when someone opens it. This data is retained for up to 7 days and then deleted automatically. No account is required to generate a link, and the data stored is not tied to any personally identifiable information.",
+    "infoCollectedAutoTitle": "Information Collected Automatically",
+    "googleAnalyticsLabel": "Google Analytics.",
+    "googleAnalyticsText": " We use Google Analytics to understand how visitors use the site. This service collects standard usage data including pages visited, time on site, general geographic region (country or city level), browser type, and device type. Google Analytics uses cookies on its end to function. HeightComparison itself does not set any first-party cookies.",
+    "googleAnalyticsNote": "For more information on how Google handles this data, see the Google Privacy Policy and Google Analytics Terms of Service.",
+    "serverLogsLabel": "Server logs.",
+    "serverLogsText": " Like most web servers, ours may automatically record standard log data including IP addresses, referring URLs, and timestamps when you make requests to the site. This information is used for security and operational purposes only.",
+    "whatWeDoNotCollectTitle": "What We Do Not Collect",
+    "whatWeDoNotCollectIntro": "To be clear about what this site does not do:",
+    "whatWeDoNotCollectList": [
+      "We do not collect your name, email address, or any account information. There are no accounts.",
+      "We do not collect payment information. The tool is free.",
+      "We do not track heights you enter into the comparison tool. Input data is processed in your browser and is not sent to or stored on our servers (except in the specific cases described above).",
+      "We are not affiliated with any advertising network. No data is shared with ad networks, and no behavioral advertising takes place on this site."
+    ],
+    "howWeUseTitle": "How We Use the Data",
+    "howWeUseIntro": "The data described above is used for the following purposes only:",
+    "howWeUseList": [
+      "Processing and returning image-based height estimates to you",
+      "Generating and resolving shareable chart links",
+      "Understanding general usage patterns through Google Analytics so we can improve the tool",
+      "Maintaining server security and diagnosing technical issues"
+    ],
+    "howWeUseFooter": "We do not use any collected data to build user profiles, serve targeted ads, or share with third parties beyond Google Analytics as described.",
+    "dataRetentionTitle": "Data Retention",
+    "dataRetentionText": "Uploaded images and shareable chart link data are deleted from our servers within 7 days of creation. Server log data is retained for standard operational periods consistent with security and debugging needs.",
+    "yourRightsTitle": "Your Rights and Choices",
+    "requestDeletionLabel": "Requesting data deletion.",
+    "requestDeletionText": " If you have used a shareable link or uploaded an image and would like the associated data removed before the automatic 7-day deletion, you can contact us at ",
+    "requestDeletionTextEnd": " and we will delete it promptly.",
+    "optOutGaLabel": "Opting out of Google Analytics.",
+    "optOutGaText": " You can prevent Google Analytics from collecting data about your visit by installing the Google Analytics Opt-out Browser Add-on.",
+    "browserControlsLabel": "Browser controls.",
+    "browserControlsText": " Since HeightComparison does not set first-party cookies, there is nothing to manage from a cookie preferences standpoint on our end. Any cookies present in your browser from this site originate from Google Analytics.",
+    "childrensPrivacyTitle": "Children's Privacy",
+    "childrensPrivacyText": "HeightComparison is not directed at children under the age of 13. We do not knowingly collect any personal information from children. If you believe a child has submitted personal information through this site, please contact us at ",
+    "childrensPrivacyTextEnd": " and we will remove it.",
+    "thirdPartyLinksTitle": "Third-Party Links",
+    "thirdPartyLinksText": "The site may contain links to external websites. This Privacy Policy applies only to HeightComparison. We are not responsible for the privacy practices of any third-party sites.",
+    "changesToPolicyTitle": "Changes to This Policy",
+    "changesToPolicyText": "If we make material changes to this policy, we will update the \"Last updated\" date at the top of this page. Continued use of the site after any changes constitutes acceptance of the updated policy.",
+    "contactTitle": "Contact",
+    "contactIntro": "If you have questions about this Privacy Policy or want to request data deletion, reach out at:",
+    "emailLabel": "Email: ",
+    "trustFooter": "Your trust is important to us."
+  },
   "metadata": {
     "aboutTitle": "About Us - Height Comparison Tool",
-    "aboutDescription": "Learn about our true proportional scale height comparison tool, calculators, data sources, and accuracy standards."
+    "aboutDescription": "Learn about our true proportional scale height comparison tool, calculators, data sources, and accuracy standards.",
+    "privacyTitle": "Privacy Policy - Height Comparison Tool",
+    "privacyDescription": "Read the Height Comparison Tool privacy policy to learn how we protect your information and handle data."
   }
 }
