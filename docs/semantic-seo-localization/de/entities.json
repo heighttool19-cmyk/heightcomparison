@@ -46,12 +46,66 @@
       "added_at": "2026-09-02"
     },
     {
+      "canonical_name": "Google",
+      "entity_type": "Organization",
+      "description": "The company providing Google Analytics, referenced in the privacy policy as the operator of that analytics service and its related policy documents.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Google Analytics",
+      "entity_type": "Software",
+      "description": "Google's web analytics service, used by the site to collect standard usage data such as pages visited and general geographic region.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Google Analytics Opt-out Browser Add-on",
+      "entity_type": "Product",
+      "description": "Google's official browser extension that lets visitors prevent Google Analytics from collecting data about their visit.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Google Analytics Terms of Service",
+      "entity_type": "Other",
+      "description": "Google's named legal document governing use of Google Analytics, referenced as a link target in the privacy policy.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Google Privacy Policy",
+      "entity_type": "Other",
+      "description": "Google's own named privacy policy document, referenced as a link target for how Google handles analytics data.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-02"
+    },
+    {
       "canonical_name": "Hamwi formula",
       "entity_type": "Concept",
       "description": "One of three ideal-body-weight estimation formulas (named after G. J. Hamwi) run side by side in the Ideal Body Weight Calculator.",
       "translate": false,
       "localized_form": null,
       "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Height Comparison Calculator",
+      "entity_type": "Brand",
+      "description": "The formal/full product name of the tool, used interchangeably with the short brand name HeightComparison (e.g. in the privacy policy's introduction).",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
       "added_at": "2026-09-02"
     },
     {
@@ -88,6 +142,15 @@
       "translate": false,
       "localized_form": null,
       "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "heightcomparisoncalculator.com",
+      "entity_type": "Brand",
+      "description": "The site's domain name, referenced in the privacy policy as the URL where the tool is available. Never translated or altered.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
       "added_at": "2026-09-02"
     },
     {
