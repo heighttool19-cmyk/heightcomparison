@@ -10,10 +10,13 @@ Adapt SEO metadata (title, description, slug, keyword targets) for what users in
 4. Propose:
    - Localized page title (SEO-oriented, not a plain translation)
    - Localized meta description
-   - Localized slug (URL-safe, using target-language conventions)
+   - Localized slug (URL-safe, using target-language conventions) — see note below on whether the consuming project actually uses this
    - 3–8 target keywords/phrases for this page in the target locale
 5. For each proposed keyword that differs from a literal translation, note briefly why it's the target-market equivalent.
 6. Save to `docs/semantic-seo-localization/<locale>/<page-id>/seo-adaptation.md`.
+7. **If the consuming project keeps a shared metadata namespace** (a top-level `metadata` object in `messages/en.json` with page-prefixed keys, e.g. `metadata.aboutTitle` / `metadata.aboutDescription`, separate from the page's own namespace) — check for one. If it exists and has a `<page-id>Title` / `<page-id>Description` pair for this page, this stage's Title/Description output ARE the final translated values for those two keys, not just guidance for the translation stage. Report them explicitly as `metadata.<page-id>Title` and `metadata.<page-id>Description` in your output so the orchestrator includes them in the Stage 5 completeness gate's key set (per `batching-and-completeness.md`) and in the merged translation handed to the human review gate — they do not go through the per-batch translation loop (Stage 4), since this stage already produced them.
+
+**Note on the slug:** not every consuming project uses localized URL slugs — some keep a fixed page path across all locales (e.g. `/de/about`, not `/de/ueber-uns`). Check the project's routing skill/config before assuming the slug output is consumed anywhere; if it isn't, it's still worth proposing (useful if the project adds localized routing later) but say so explicitly rather than implying it's wired up.
 
 ## Output Format
 ```markdown
@@ -31,3 +34,5 @@ Adapt SEO metadata (title, description, slug, keyword targets) for what users in
 - Translating the English keyword list word-for-word instead of reasoning about how the target market actually searches.
 - Treating MCP/GSC data as required — it's a sanity check, never a blocker.
 - Proposing a slug that isn't URL-safe for the target language (unencoded spaces, unnormalized diacritics).
+- Treating this stage's Title/Description as throwaway audit content — if the project has a `metadata.<page-id>Title`/`Description` pair, these values are the actual final translation for those keys and must flow into the completeness gate and merged output, not just sit in `seo-adaptation.md`.
+- Assuming the localized slug is automatically used by the project's routing — check first; many projects keep a fixed page path across all locales.
