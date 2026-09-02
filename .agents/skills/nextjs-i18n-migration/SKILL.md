@@ -76,8 +76,9 @@ src/app/[locale]/layout.tsx (LocaleLayout)
 ```
 
 ### Step 3: Create Target Locale Dictionary (`messages/de.json`)
-1. Mirror the JSON key structure from `messages/en.json` key-for-key.
-2. Translate only the string values into the target language. Keep variable placeholders (e.g. `{count}`) unchanged.
+1. Invoke the `semantic-seo-localization` skill with the namespace extracted in Step 2 as the source content, and the target locale (e.g. `de`). Do not hand-translate this file yourself.
+2. Do not proceed to Step 4 until `semantic-seo-localization` reports its Stage 5 completeness gate passed and its Human Review Gate has been explicitly approved — its output is the finished `messages/<locale>.json` content, mirroring `messages/en.json`'s key structure key-for-key with only string values translated (variable placeholders like `{count}` are preserved unchanged by that skill's `contextual-translation.md` rules).
+3. `semantic-seo-localization` never touches this `.tsx` file or any other application file — only `messages/<locale>.json` — so Steps 1 and 4-7 of this migration are unaffected by this step.
 
 ### Step 4: Relocate & Update TSX Page Component
 1. Create target localized file path: `src/app/[locale]/<page-name>/page.tsx`.
