@@ -45,7 +45,7 @@ stage's full instructions live in its own reference file — read the file
 when you reach that stage, don't try to work from this summary alone.
 
 1. **Entity extraction & registry sync** — `references/entity-extraction.md` (whole page, once)
-2. **Target-market SEO adaptation** — `references/target-market-seo.md` (whole page, once — also produces the final `metadata.<page-id>Title`/`Description` values directly, if the project has a shared metadata namespace)
+2. **Target-market SEO adaptation** — `references/target-market-seo.md` (whole page, once — reads Stage 1's entity registry so titles/descriptions respect entity protection too; also produces the final `metadata.<page-id>Title`/`Description` values directly, if the project has a shared metadata namespace)
 3. **Batch planning** — `references/batching-and-completeness.md` (whole page, once — always runs, regardless of page size)
 4. **Per-batch loop** — repeats sequentially for each batch from Stage 3:
    - **4a. Triple extraction (source pass)** — `references/triple-extraction.md`
