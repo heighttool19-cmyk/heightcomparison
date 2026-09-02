@@ -1,0 +1,148 @@
+{
+  "entities": [
+    {
+      "canonical_name": "Average Height by Country",
+      "entity_type": "Product",
+      "description": "In-app page comparing average male and female heights across countries with a sortable table, regional breakdowns, and a world heatmap.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Bollywood",
+      "entity_type": "Organization",
+      "description": "The Hindi-language film industry based in Mumbai, referenced here as one of the celebrity database's regional entertainment categories.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "CDC",
+      "entity_type": "Organization",
+      "description": "The U.S. Centers for Disease Control and Prevention, whose population data is used as a reference dataset for the percentile calculator.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "DC",
+      "entity_type": "Brand",
+      "description": "DC Comics/DC Entertainment, referenced as one of the fictional character library's franchise categories.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Hamwi formula",
+      "entity_type": "Concept",
+      "description": "One of three ideal-body-weight estimation formulas (named after G. J. Hamwi) run side by side in the Ideal Body Weight Calculator.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Height Difference Calculator",
+      "entity_type": "Product",
+      "description": "In-app calculator showing the exact gap between two heights in centimetres, inches, and percentage.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Height Predictor",
+      "entity_type": "Product",
+      "description": "In-app calculator estimating a child's adult height using the Khamis-Roche formula and the Mid-Parental method.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Height Weight Percentile Calculator",
+      "entity_type": "Product",
+      "description": "In-app calculator comparing a person's height and weight against WHO and CDC population data.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "HeightComparison",
+      "entity_type": "Brand",
+      "description": "The product/brand name of this height comparison tool.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Ideal Body Weight Calculator",
+      "entity_type": "Product",
+      "description": "In-app calculator that runs the Devine, Robinson, and Hamwi formulas side by side.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Image to Height",
+      "entity_type": "Product",
+      "description": "In-app feature estimating height from an uploaded photo, including a morning height variation guide.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Khamis-Roche formula",
+      "entity_type": "Concept",
+      "description": "A clinical formula (named after researchers Khamis and Roche) for estimating adult height from a child's current measurements and parent heights.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Mid-Parental method",
+      "entity_type": "Concept",
+      "description": "A clinical method for estimating adult height from the average of both parents' heights, used alongside the Khamis-Roche formula.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "PNG",
+      "entity_type": "Technology",
+      "description": "The image file format used for the tool's chart export, referenced when noting the export carries no watermark.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "Robinson formula",
+      "entity_type": "Concept",
+      "description": "One of three ideal-body-weight estimation formulas (named after researcher J. D. Robinson) run side by side in the Ideal Body Weight Calculator.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
+      "canonical_name": "WHO",
+      "entity_type": "Organization",
+      "description": "The World Health Organization, whose population data is used as a reference dataset for the percentile calculator.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    }
+  ]
+}
