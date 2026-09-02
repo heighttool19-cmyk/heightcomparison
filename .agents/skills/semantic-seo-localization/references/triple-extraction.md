@@ -1,7 +1,7 @@
 # SPO Triple Extraction
 
 ## Purpose
-Extract subject → predicate → object triples from a piece of content and score each by how central it is to the content's meaning. Used twice per pipeline run: once on the source English content, once on the translated draft — so the two triple sets can be diffed for meaning loss in the semantic-validation stage.
+Extract subject → predicate → object triples from a piece of content and score each by how central it is to the content's meaning. Runs twice per batch (source pass and target pass) as part of the per-batch loop (Stage 4a and 4c in `SKILL.md`, per `batching-and-completeness.md`) — so the two triple sets can be diffed for meaning loss in the semantic-validation stage. "Content" in this file means the current batch's key paths only, not the whole page.
 
 ## Steps
 1. Parse the content semantically, not sentence-by-sentence mechanically.
@@ -26,6 +26,7 @@ If you applied predicate normalization (per Step 6), note it above the table, e.
 |---|---------|-----------|--------|------------------:|--------------|
 ```
 Save to `docs/semantic-seo-localization/<locale>/<page-id>/triples-source.md` for the source pass, or `triples-target.md` for the target pass (same format, run on the translated draft).
+When run as part of a multi-batch page, append this batch's rows to the existing file rather than overwriting it, and continue the `#` numbering from where the previous batch left off (batch 2 does not restart at `#1`).
 
 ## Example
 Input: "Apple is an American technology company headquartered in Cupertino. It develops consumer electronics, software, and online services."
@@ -40,3 +41,4 @@ Input: "Apple is an American technology company headquartered in Cupertino. It d
 - Extracting a triple for every grammatical dependency instead of only meaningful relationships.
 - Inferring relationships not reasonably supported by the text.
 - Using different predicate normalization on the source vs. target pass — reuse the same normalization notes both times so the diff works.
+- Restarting `#` numbering at 1 for each batch instead of continuing from the previous batch — this breaks the completeness gate's ability to trace a key back to its batch.
