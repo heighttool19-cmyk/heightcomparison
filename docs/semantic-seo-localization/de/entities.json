@@ -37,6 +37,15 @@
       "added_at": "2026-09-02"
     },
     {
+      "canonical_name": "Devine formula",
+      "entity_type": "Concept",
+      "description": "One of three ideal-body-weight estimation formulas (named after B. J. Devine) run side by side in the Ideal Body Weight Calculator.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-02"
+    },
+    {
       "canonical_name": "Hamwi formula",
       "entity_type": "Concept",
       "description": "One of three ideal-body-weight estimation formulas (named after G. J. Hamwi) run side by side in the Ideal Body Weight Calculator.",
