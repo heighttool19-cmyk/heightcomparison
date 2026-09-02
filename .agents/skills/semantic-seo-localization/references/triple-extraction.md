@@ -19,6 +19,8 @@ Extract subject → predicate → object triples from a piece of content and sco
 8. Deduplicate equivalent triples. Order the table by prominence, highest first.
 
 ## Output Format
+If you applied predicate normalization (per Step 6), note it above the table, e.g. `**Predicate normalization notes:** "is located in" and "is based in" both normalized to "located in".` The target-pass extraction must read and reuse this note.
+
 ```markdown
 | # | Subject | Predicate | Object | Prominence Score | Explanation |
 |---|---------|-----------|--------|------------------:|--------------|
@@ -28,7 +30,7 @@ Save to `docs/semantic-seo-localization/<locale>/<page-id>/triples-source.md` fo
 ## Example
 Input: "Apple is an American technology company headquartered in Cupertino. It develops consumer electronics, software, and online services."
 
-| # | Subject | Predicate | Object | Score | Explanation |
+| # | Subject | Predicate | Object | Prominence Score | Explanation |
 |---|---------|-----------|--------|------:|--------------|
 | 1 | Apple | is a | American technology company | 96 | Core entity classification; establishes the primary topic. |
 | 2 | Apple | develops | consumer electronics, software, and online services | 92 | Describes Apple's principal business activities. |

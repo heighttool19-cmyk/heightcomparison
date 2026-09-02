@@ -8,12 +8,12 @@ description: Use when translating or localizing website/app content into another
 ## Overview
 
 Raw translation preserves words, not necessarily meaning, entity identity, or
-search intent. This skill runs source content through five stages — entity
+search intent. This skill runs source content through six stages — entity
 extraction, source triple extraction, target-market SEO adaptation,
-contextual translation, and semantic validation — before any translated text
-is treated as final. It borrows its methodology from a semantic-SEO
-localization pipeline, adapted here into LLM-reasoning steps with file-based
-artifacts (no database, no backend).
+contextual translation, target triple extraction, and semantic validation —
+before any translated text is treated as final. It borrows its methodology
+from a semantic-SEO localization pipeline, adapted here into LLM-reasoning
+steps with file-based artifacts (no database, no backend).
 
 ## When to Use
 
@@ -26,7 +26,7 @@ artifacts (no database, no backend).
 
 ## Pipeline
 
-Run these five stages in order for one content unit ("page") at a time.
+Run these six stages in order for one content unit ("page") at a time.
 Each stage's full instructions live in its own reference file — read the
 file when you reach that stage, don't try to work from this summary alone.
 
@@ -58,9 +58,11 @@ slug identifying the content unit (e.g. `about`, `height-predictor`).
 After stage 6, if `validation-report.md` verdict is PASS: present the
 entities added/reused, both triple tables, the validation report, and the
 translated draft to the user. Do **not** write to `messages/<locale>.json`
-or any other repo file until the user explicitly approves. If verdict is
-FAIL, stop and report the specific Missing/Contradicted/Introduced triples
-instead of presenting a translation as ready.
+or modify any application/source file until the user explicitly approves.
+Audit artifacts under `docs/semantic-seo-localization/` are written as each
+stage completes and are not gated. If verdict is FAIL, stop and report the
+specific Missing/Contradicted/Introduced triples instead of presenting a
+translation as ready.
 
 ## Common Mistakes
 
