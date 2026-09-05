@@ -1,0 +1,209 @@
+{
+  "metadata": {
+    "averageHeightByCountryTitle": "Durchschnittsgröße nach Land – Weltweiter Körpergrößen-Vergleich",
+    "averageHeightByCountryDescription": "Erfahren Sie die durchschnittliche Körpergröße von Mann und Frau weltweit und vergleichen Sie die Durchschnittsgröße nach Land. Die durchschnittliche menschliche Körpergröße weltweit auf einen Blick."
+  },
+  "averageHeightByCountry": {
+    "h1": "Durchschnittsgröße nach Land",
+    "intro": {
+      "description": "Die durchschnittliche Körpergröße variiert stärker, als die meisten Menschen erwarten. Die Lücke zwischen den größten und kleinsten Bevölkerungen der Welt beträgt bei Männern fast 24 cm und bei Frauen 21 cm. Diese Seite vergleicht die durchschnittliche menschliche Körpergröße weltweit für beide Geschlechter, von den Niederlanden an der Spitze bis Timor-Leste am unteren Ende, basierend auf Daten der <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> und der <wpr>World Population Review</wpr>. Männer und Frauen folgen demselben groben geografischen Muster, wobei Nordeuropa an der Spitze steht und Teile Süd- und Zentralasiens am unteren Ende liegen."
+    },
+    "globalTable": {
+      "title": "Durchschnittsgröße nach Land (Globale Tabelle)",
+      "unitToggle": { "metric": "Metrisch (cm)", "imperial": "US (ft/in)" },
+      "description": "Die folgende Tabelle zeigt die durchschnittliche Körpergröße von Männern nach Land, die durchschnittliche Körpergröße von Frauen sowie den kombinierten Durchschnitt über 46 Länder. Klicken Sie auf eine Spaltenüberschrift, um zu sortieren. Nutzen Sie das Suchfeld, um ein bestimmtes Land zu finden.",
+      "searchPlaceholder": "Länder suchen...",
+      "tableHeaders": { "rank": "Rang", "country": "Land", "avgMale": "Ø Männer", "avgFemale": "Ø Frauen" },
+      "noResults": "Keine Länder gefunden, die zu \"{query}\" passen",
+      "sourceNote": "Quelle: NCD Risk Factor Collaboration (NCD-RisC) / World Population Review. Erwachsene im Alter von ca. 19 Jahren."
+    },
+    "common": { "tabMen": "Männer", "tabWomen": "Frauen", "tabMale": "Männlich", "tabFemale": "Weiblich" },
+    "tallestCountries": {
+      "title": "Die größten Länder der Welt",
+      "barsLabelMen": "Top 10 größte Nationen — Durchschnittliche Körpergröße Männer (cm)",
+      "barsLabelWomen": "Top 10 größte Nationen — Durchschnittliche Körpergröße Frauen (cm)",
+      "captionMen": "Niederländische Männer sind mit durchschnittlich 183,8 cm die größten weltweit erfassten Landesdurchschnitte. Acht der zehn größten Nationen für Männer liegen in Europa.",
+      "captionWomen": "Niederländische und montenegrinische Frauen sind mit durchschnittlich 170,4 cm bzw. 170,0 cm die größten erfassten weiblichen Bevölkerungen. Lettland und Estland folgen dicht dahinter.",
+      "paragraph1": "Die Niederlande führen seit Jahrzehnten die globale Rangliste der Männergröße an: Männer sind im Durchschnitt 183,8 cm groß, knapp unter 6'1\". Dänemark liegt bei 181,9 cm, Deutschland bei 180,3 cm und Norwegen bei 180,5 cm.",
+      "paragraph2": "Drei Faktoren verstärken sich in dieser Ländergruppe gegenseitig: reichlicher Milchkonsum von früher Kindheit an, ein starkes öffentliches Gesundheitssystem, das Krankheiten während der Wachstumsjahre reduziert, sowie eine langfristige genetische Selektion in gut ernährten Bevölkerungen.",
+      "paragraph3": "Montenegro und Estland haben in jüngster Zeit viele traditionell große westeuropäische Nationen überholt, was die raschen Verbesserungen des Lebensstandards nach der postsowjetischen Zeit widerspiegelt."
+    },
+    "shortestCountries": {
+      "title": "Die kleinsten Länder der Welt",
+      "barsLabelMen": "10 kleinste Nationen — Durchschnittliche Körpergröße Männer (cm)",
+      "barsLabelWomen": "10 kleinste Nationen — Durchschnittliche Körpergröße Frauen (cm)",
+      "captionMen": "Männer aus Timor-Leste sind mit durchschnittlich 159,8 cm der kleinste männliche Durchschnitt aller erfassten Nationen. Sechs der zehn kleinsten Länder für Männer liegen in Süd- oder Südostasien.",
+      "captionWomen": "Guatemaltekische und philippinische Frauen sind mit rund 149 cm die niedrigsten weiblichen Durchschnittswerte in Amerika bzw. Südostasien.",
+      "paragraph1": "Die kleinsten Bevölkerungen befinden sich überwiegend in Süd- und Südostasien sowie Mittelamerika. Timor-Leste verzeichnet weltweit den niedrigsten kombinierten Durchschnitt, dicht gefolgt von Guatemala und Laos.",
+      "paragraph2": "In Guatemala ist fast ein Drittel der Kinder unter fünf Jahren von chronischer Mangelernährung betroffen, was die Skelettentwicklung direkt beeinträchtigt. Bangladesch und Nepal stehen vor ähnlichen Einschränkungen: proteinarme Ernährung, eingeschränkter Zugang zur Gesundheitsversorgung und strukturelle Armut, die das Wachstumspotenzial von Geburt an begrenzt.",
+      "paragraph3": "Diese Werte sind keine genetischen Obergrenzen. Sie sind größtenteils Zeichen historischer Unterentwicklung und umkehrbar, wie Südkorea und China im Laufe des 20. Jahrhunderts gezeigt haben."
+    },
+    "tallestShortest": {
+      "title": "Größte und kleinste Länder nach Durchschnittsgröße",
+      "tabs": { "tallestVsShortest": "Größte vs. Kleinste", "top10Tallest": "Top 10 Größte", "bottom10Shortest": "Bottom 10 Kleinste" },
+      "chartTitleTallestVsShortest": "10 Länder über die gesamte globale Größenspanne — Männer (blau) und Frauen (türkis)",
+      "chartTitleTop10": "Top 10 größte Nationen — Männer vs. Frauen",
+      "chartTitleBottom10": "10 kleinste Nationen — Männer vs. Frauen",
+      "caption": "In allen Bevölkerungen sind Männer 12–15 cm größer als Frauen. Diese Differenz bleibt unabhängig vom allgemeinen Größenniveau konstant — sie ist in den Niederlanden nahezu identisch mit der in Bangladesch.",
+      "paragraph": "Die Durchschnittsgröße variiert stark aufgrund von Genetik, Ernährungsqualität, Gesundheit im Kindesalter und wirtschaftlicher Entwicklung. Nordeuropäische Bevölkerungen zählen durchgehend zu den größten, während einige südasiatische und mittelamerikanische Länder aufgrund historischer Ernährungseinschränkungen niedrigere Durchschnittswerte aufweisen."
+    },
+    "averageMale": {
+      "title": "Durchschnittliche Körpergröße von Männern nach Land",
+      "paragraph1": "Die durchschnittliche Körpergröße eines Mannes weltweit beträgt etwa 171 cm (5'7\"). Diese Zahl verdeckt eine große Bandbreite, von niederländischen Männern mit 183,8 cm bis hinunter zu Timor-Leste mit 159,8 cm. Nord- und osteuropäische Männer sind weltweit die größte Gruppe, mit einem Durchschnitt von 178 bis 184 cm. Nordamerikaner und Australier liegen im Bereich von 176 bis 179 cm.",
+      "paragraph2": "Japan liegt mit 170,8 cm merklich kleiner als Südkorea mit 175,5 cm — eine Lücke, die sich vergrößert hat, da sich Ernährung und Gesundheitsversorgung in Südkorea nach dem Wirtschaftsboom der 1960er-Jahre schneller verbesserten. Der Iran liegt mit 175,6 cm im Mittelfeld. Indien mit 166,5 cm und Bangladesch mit 163 cm liegen am unteren Ende der asiatischen Gruppe. Guatemala mit 163,4 cm und Timor-Leste mit 159,8 cm spiegeln die am stärksten dokumentierten Ernährungseinschränkungen wider."
+    },
+    "averageFemale": {
+      "title": "Durchschnittliche Körpergröße von Frauen nach Land",
+      "paragraph1": "Die durchschnittliche Körpergröße einer Frau weltweit beträgt etwa 159 cm (5'3\"). Niederländische und montenegrinische Frauen mit durchschnittlich 170,4 cm bzw. 170,0 cm sind die größten erfassten weiblichen Bevölkerungen. Russland liegt mit 164,5 cm durchgehend in globalen Ranglisten neben osteuropäischen Ländern, die den Großteil der Top Ten ausmachen.",
+      "paragraph2": "Südkoreanische Frauen sind mit 163,2 cm merklich größer als japanische Frauen mit 158,0 cm — eine Lücke, die sich im letzten halben Jahrhundert vergrößert hat. Philippinische Frauen sind im Durchschnitt 149,6 cm groß und guatemaltekische Frauen 149,4 cm, der niedrigste verifizierte weibliche Durchschnitt in Amerika. Die durchschnittliche Körpergröße von Frauen in Japan lag in den 1950er-Jahren bei etwa 148 cm und ist seitdem um ganze zehn Zentimeter gestiegen — einer der stärksten dokumentierten Anstiege bei einer weiblichen Bevölkerung."
+    },
+    "maleAndFemale": {
+      "title": "Durchschnittliche Körpergröße von Männern und Frauen",
+      "barsLabelMale": "Durchschnittliche Körpergröße Männer (cm)",
+      "barsLabelFemale": "Durchschnittliche Körpergröße Frauen (cm)",
+      "callout": "In praktisch allen Bevölkerungen sind Männer 12 bis 15 Zentimeter größer als Frauen. Diese Differenz bleibt über sehr unterschiedliche absolute Größenbereiche hinweg konstant — der Unterschied in den Niederlanden ist ungefähr derselbe wie in Bangladesch. Er spiegelt hormonelle Unterschiede während der Pubertät wider: Testosteron treibt bei Männern einen längeren Wachstumsschub an, während der frühere Östrogeneinsatz bei Frauen die Wachstumsfugen früher schließt. Das geschlechtsspezifische Gefälle wird durch Ernährung oder wirtschaftliche Entwicklung nicht wesentlich beeinflusst."
+    },
+    "selectedCountries": {
+      "title": "Durchschnittsgröße in ausgewählten Ländern",
+      "countries": {
+        "netherlands": { "name": "Niederlande", "paragraph": "Niederländische Männer führen seit Jahrzehnten die globale Rangliste an. Milchreiche Ernährung und eine allgemeine Gesundheitsversorgung treiben dieses Ergebnis an." },
+        "unitedKingdom": { "name": "Vereinigtes Königreich", "paragraph": "Das Vereinigte Königreich liegt im europäischen Mittelfeld. Die Körpergröße variiert regional — Nordengland und Schottland tendieren zu etwas größeren Durchschnittswerten." },
+        "japan": { "name": "Japan", "paragraph": "Die Körpergröße in Japan ist seit den 1950er-Jahren stark gestiegen. Südkoreanische Männer mit 175,5 cm haben ihre japanischen Nachbarn inzwischen überholt." },
+        "bangladesh": { "name": "Bangladesch", "paragraph": "Hohe Raten kindlicher Mangelernährung haben das Wachstum historisch eingeschränkt. Städtische Bevölkerungen zeigen in den letzten Jahrzehnten moderate Zuwächse." },
+        "iran": { "name": "Iran", "paragraph": "Einer der am stärksten dokumentierten Anstiege im Nahen Osten — die durchschnittliche Körpergröße von Männern ist über 40 Jahre um schätzungsweise 5 bis 6 cm gestiegen." },
+        "canada": { "name": "Kanada", "paragraph": "Kanadas Werte spiegeln die Australiens eng wider und zeigen eine gut ernährte Bevölkerung mit hohem Einkommen. Das Wachstum stagniert seit den 1990er-Jahren." },
+        "ireland": { "name": "Irland", "paragraph": "Irland liegt im oberen Viertel der europäischen Rangliste. Die Körpergröße ist seit Mitte des 20. Jahrhunderts stetig gestiegen." },
+        "sriLanka": { "name": "Sri Lanka", "paragraph": "Städtische Bevölkerungen in Colombo zeigen über zwei Generationen hinweg messbare Größenzuwächse. Ländliche Gebiete hinken aufgrund von Ernährungsunsicherheit hinterher." },
+        "southKorea": { "name": "Südkorea", "paragraph": "Einer der größten dokumentierten generationenübergreifenden Größenanstiege überhaupt — Männer gewannen über zwei Generationen nach dem Krieg rund 6 cm hinzu." },
+        "india": { "name": "Indien", "paragraph": "Indiens landesweiter Durchschnitt verdeckt große regionale Unterschiede. Männer im Punjab sind im Durchschnitt etwa 172 bis 174 cm groß. Städtische Gebiete zeigen durchgehende Zuwächse." },
+        "usa": { "name": "USA", "paragraph": "Die USA lagen einst weltweit auf Platz drei. Heute liegen sie bei Männern etwa auf Platz 47, was eine Ernährungsqualität widerspiegelt, die sich nach den 1970er-Jahren von der europäischer Vergleichsländer entfernt hat." },
+        "denmark": { "name": "Dänemark", "paragraph": "Dänemark rangiert durchgehend in den globalen Top Fünf. Ein starkes öffentliches Gesundheitssystem und hoher Milchkonsum von früher Kindheit an tragen dazu bei." }
+      }
+    },
+    "chartForMen": {
+      "title": "Größendiagramm für Männer",
+      "paragraph": "Das folgende Diagramm zeigt, wie sich die Größenrichtwerte für Männer über die wichtigsten Weltregionen verteilen, von Nordeuropa an der Spitze bis Mittelamerika am unteren Ende. Die Daten auf Länderebene variieren innerhalb jeder Region.",
+      "barsLabel": "Ungefähre regionale durchschnittliche Körpergröße Männer (cm)",
+      "caption": "Die regionalen Werte sind gewichtete Durchschnitte. Einzelne Länder innerhalb jeder Region können über oder unter dem angezeigten Bereich liegen. Quelle: NCD-RisC und World Population Review."
+    },
+    "globalAverage": {
+      "title": "Globale Durchschnittsgröße",
+      "maleStatLabel": "Globale durchschnittliche Körpergröße Männer",
+      "femaleStatLabel": "Globale durchschnittliche Körpergröße Frauen",
+      "paragraph1": "<who>Die World Health Organization</who> und die NCD Risk Factor Collaboration beziffern die globale durchschnittliche Körpergröße von Männern auf etwa 171 cm und die von Frauen auf etwa 159 cm. Diese gewichteten Werte liegen niedriger als die meisten westlichen Landesdurchschnitte, da sie die großen Bevölkerungen Süd- und Südostasiens berücksichtigen.",
+      "paragraph2": "Der globale Wert steigt seit Anfang des 20. Jahrhunderts, mit den dramatischsten Zuwächsen in Ostasien. Südkorea und China gewannen seit den 1950er-Jahren pro Generation etwa 5 bis 8 cm hinzu. Die Zuwächse in Westeuropa, die früher einsetzten, stagnieren seit den 1980er-Jahren weitgehend.",
+      "regionMap": {
+        "colourScaleLabel": "Farbskala — durchschnittliche Körpergröße Männer nach Region",
+        "tallestLabel": "180+ cm (größte)",
+        "shortestLabel": "≤162 cm (kleinste)",
+        "regions": {
+          "northernEurope": { "name": "Nordeuropa", "ex": "Niederlande, Dänemark, Norwegen" },
+          "easternEurope": { "name": "Osteuropa", "ex": "Serbien, Ukraine, Polen" },
+          "westernEurope": { "name": "Westeuropa", "ex": "Deutschland, Frankreich, Vereinigtes Königreich" },
+          "northAmericaOceania": { "name": "Nordamerika/Ozeanien", "ex": "Kanada, USA, Australien" },
+          "middleEast": { "name": "Naher Osten", "ex": "Iran, Türkei" },
+          "eastAsia": { "name": "Ostasien", "ex": "China, Südkorea, Japan" },
+          "latinAmerica": { "name": "Lateinamerika", "ex": "Brasilien, Mexiko" },
+          "southSeAsia": { "name": "Süd-/Südostasien", "ex": "Indien, Indonesien, Nepal" },
+          "centralAmerica": { "name": "Mittelamerika", "ex": "Guatemala, Honduras" }
+        }
+      }
+    },
+    "extremes": {
+      "tallestMan": { "title": "Größter Mann der Welt", "paragraph": "Robert Wadlow aus Alton, Illinois, bleibt mit 272 cm (8'11\") die größte Person der dokumentierten Menschheitsgeschichte. Seine Hypophyse produzierte von Geburt an unkontrolliert Wachstumshormon, und seine Körpergröße hatte ihren Höhepunkt noch nicht erreicht, als er 1940 im Alter von 22 Jahren starb. Der Guinness-Rekord für den größten lebenden Mann gehört dem Türken Sultan Kösen mit 251 cm (8'3\"), dessen Hypophysentumor operativ behandelt wurde, wodurch das weitere Wachstum gestoppt wurde." },
+      "shortestMan": { "title": "Kleinster Mann der Welt", "paragraph": "Chandra Bahadur Dangi aus Nepal, 2012 von Guinness World Records verifiziert, war mit 54,6 cm (1'9\") der kleinste je dokumentierte erwachsene Mann. Er wurde 75 Jahre alt und arbeitete als Bauer und Handwerker. Er wurde von Guinness erstmals gemessen, als er bereits in seinen Siebzigern war — bemerkenswert angesichts der gesundheitlichen Komplikationen, die häufig mit schweren Wachstumsstörungen einhergehen." },
+      "tallestFemale": { "title": "Größte Frau der Welt", "paragraph": "Zeng Jinlian aus der chinesischen Provinz Hunan hält mit 246,3 cm (8'1\") den Rekord für die größte Frau in der verifizierten medizinischen Geschichte. Sie wurde 1964 geboren, wuchs aufgrund von Hypophysengigantismus rasch und starb 1982 im Alter von 17 Jahren. Der aktuelle Rekord unter den Lebenden gehört der Türkin Rumeysa Gelgi mit 215,2 cm (7'1\"), einer Webentwicklerin und Behindertenaktivistin, die mehrere Guinness-Titel hält." },
+      "shortestFemale": { "title": "Kleinste Frau der Welt", "paragraph": "Jyoti Amge aus Nagpur, Indien, hält seit 2011 mit 62,8 cm (2'1\") den Guinness-Weltrekord für die kleinste lebende Frau. Ihre Erkrankung ist Achondroplasie, die häufigste Form von Kleinwuchs. Sie ist außerdem eine aktive Bollywood-Schauspielerin, die in der US-amerikanischen Fernsehserie American Horror Story mitwirkte." },
+      "dataCards": {
+        "tallestManEver": { "label": "Größter Mann aller Zeiten", "name": "Robert Wadlow", "value": "272 cm", "meta": "8'11\" · USA · gest. 1940" },
+        "shortestManEver": { "label": "Kleinster Mann aller Zeiten", "name": "Chandra Bahadur Dangi", "value": "54,6 cm", "meta": "1'9\" · Nepal · gest. 2015" },
+        "tallestWomanEver": { "label": "Größte Frau aller Zeiten", "name": "Zeng Jinlian", "value": "246,3 cm", "meta": "8'1\" · China · gest. 1982" },
+        "shortestLivingWoman": { "label": "Kleinste lebende Frau", "name": "Jyoti Amge", "value": "62,8 cm", "meta": "2'1\" · Indien" }
+      }
+    },
+    "distribution": {
+      "title": "Verteilung der menschlichen Körpergröße",
+      "bellCurve": {
+        "globalAvgLabel": "Globaler Durchschnitt ≈ {mean} cm",
+        "axisLabel": "Körpergröße (cm) — {label}",
+        "male": { "label": "globale männliche Bevölkerung", "pctLabel": "68 % der Männer liegen innerhalb ±1 Standardabweichung", "band1": "68 % der Männer — innerhalb ±1σ (≈164–178 cm)", "band2": "95 % der Männer — innerhalb ±2σ (≈157–185 cm)" },
+        "female": { "label": "globale weibliche Bevölkerung", "pctLabel": "68 % der Frauen liegen innerhalb ±1 Standardabweichung", "band1": "68 % der Frauen — innerhalb ±1σ (≈153–165 cm)", "band2": "95 % der Frauen — innerhalb ±2σ (≈147–171 cm)" }
+      },
+      "legendNote": "Die globale durchschnittliche Körpergröße von Männern beträgt etwa 171 cm bei einer Standardabweichung von 7 cm. Ein Mann mit 185 cm liegt rund zwei Standardabweichungen über dem Mittelwert und ist damit größer als etwa 97,5 % der männlichen Weltbevölkerung.",
+      "dataSourcesLabel": "Datenquellen:",
+      "dataSourcesText": "NCD Risk Factor Collaboration (NCD-RisC), \"A century of trends in adult human height,\" eLife 2016. · World Population Review, Average Height by Country 2026. · World Health Organization (WHO), Global Health Observatory.",
+      "paragraph1": "Die menschliche Körpergröße folgt einer Normalverteilung. Wird sie über eine große Bevölkerung aufgetragen, ergeben die Daten eine nahezu perfekte Glockenkurve — die meisten Personen liegen nahe am Mittelwert, während an den Extremen weniger Menschen zu finden sind. Etwa 68 % der Männer liegen innerhalb einer Standardabweichung vom globalen Mittelwert, also etwa 164 bis 178 cm. Die Standardabweichung der männlichen Körpergröße beträgt weltweit etwa 7 cm. Ein Mann mit 185 cm liegt rund zwei Standardabweichungen über dem globalen Mittelwert und ist damit größer als etwa 97,5 % der männlichen Weltbevölkerung.",
+      "paragraph2": "Bei Frauen ist sie mit rund 6 cm etwas geringer.",
+      "tableHeaders": { "minus2sd": "−2 SD", "minus1sd": "−1 SD", "globalAvg": "Globaler Ø", "plus1sd": "+1 SD", "plus2sd": "+2 SD" },
+      "captionMale": "Globale Größenverteilung Männer · SD ≈ 7 cm",
+      "captionFemale": "Globale Größenverteilung Frauen · SD ≈ 6 cm",
+      "captionSources": "Quellen: NCD-RisC"
+    },
+    "whyDiffers": {
+      "title": "Warum die Durchschnittsgröße nach Land variiert",
+      "paragraph1": "Die Körpergröße wird sowohl von der Genetik als auch von der Umwelt geprägt. Die Genetik setzt die theoretische Obergrenze — große Eltern bekommen tendenziell größere Kinder —, aber ob ein Kind diese Obergrenze erreicht, hängt fast vollständig davon ab, was in den ersten zwei Lebensjahrzehnten geschieht.",
+      "nutritionParagraph": "<bold>Ernährung</bold> ist der stärkste einzelne Umweltfaktor für die Körpergröße im Erwachsenenalter. Ausreichend Protein und Mikronährstoffe in den ersten 1.000 Tagen des Lebens sind entscheidend für die Skelettentwicklung. Die Verfügbarkeit von Milchprodukten und Fleisch im Kindesalter sagt die nationale Größenrangliste durchgehend voraus.",
+      "healthcareParagraph": "<bold>Der Zugang zur Gesundheitsversorgung</bold> bestimmt, ob Kinderkrankheiten Energie vom Wachstum ablenken. Länder mit hohen Impfquoten und geringer Krankheitslast rangieren durchgehend größer.",
+      "economicParagraph": "<bold>Die wirtschaftliche Entwicklung</bold> untermauert sowohl Ernährung als auch Gesundheitsversorgung. Das BIP pro Kopf korreliert stark mit der Durchschnittsgröße, da Wohlstand bessere Nahrung, saubereres Wasser und medizinische Versorgung ermöglicht.",
+      "calloutUS": "Die Vereinigten Staaten sind das aufschlussreichste Fallbeispiel: 1914 belegten amerikanische Männer weltweit den dritten Platz in Sachen Körpergröße. Heute liegen sie global bei etwa Platz 47 — nicht weil sich ihre Genetik verändert hat, sondern weil sich die Ernährungsqualität im Vergleich zu europäischen Ländern nach den 1970er-Jahren verschlechterte."
+    },
+    "toc": [
+      { "id": "average-height-by-country", "label": "Durchschnittsgröße nach Land" },
+      { "id": "tallest-countries-in-the-world", "label": "Die größten Länder der Welt" },
+      { "id": "shortest-countries-in-the-world", "label": "Die kleinsten Länder der Welt" },
+      { "id": "tallest-and-shortest-countries-by-average-height", "label": "Größte und kleinste Länder nach Durchschnittsgröße" },
+      { "id": "average-male-height-by-country", "label": "Durchschnittliche Körpergröße von Männern nach Land" },
+      { "id": "average-female-height-by-country", "label": "Durchschnittliche Körpergröße von Frauen nach Land" },
+      { "id": "average-height-in-selected-countries", "label": "Durchschnittsgröße in ausgewählten Ländern" },
+      { "id": "average-height-chart-for-men", "label": "Größendiagramm für Männer" },
+      { "id": "global-average-height", "label": "Globale Durchschnittsgröße" },
+      { "id": "tallest-man-in-the-world", "label": "Größter Mann der Welt" },
+      { "id": "shortest-man-in-the-world", "label": "Kleinster Mann der Welt" },
+      { "id": "tallest-female-in-the-world", "label": "Größte Frau der Welt" },
+      { "id": "shortest-female-in-the-world", "label": "Kleinste Frau der Welt" },
+      { "id": "human-height-distribution", "label": "Verteilung der menschlichen Körpergröße" },
+      { "id": "why-average-height-differs-by-country", "label": "Warum die Durchschnittsgröße nach Land variiert" },
+      { "id": "frequently-asked-questions", "label": "Häufig gestellte Fragen" },
+      { "id": "references", "label": "Quellenangaben" }
+    ],
+    "faq": [
+      { "q": "Wie groß sind Männer im weltweiten Durchschnitt?", "a": "Die globale Durchschnittsgröße für erwachsene Männer beträgt etwa 171 cm (5'7\"). Dieser gewichtete Wert stammt aus Daten der NCD Risk Factor Collaboration und der WHO. Er wird durch die großen Bevölkerungen Süd- und Südostasiens nach unten gezogen, wo die Durchschnittswerte zwischen 160 und 168 cm liegen. Männer in einkommensstarken europäischen Ländern sind im Durchschnitt deutlich größer, oft 178 bis 184 cm." },
+      { "q": "Wie groß ist eine Frau im weltweiten Durchschnitt?", "a": "Die globale Durchschnittsgröße für erwachsene Frauen beträgt etwa 159 cm (5'3\"). Niederländische und montenegrinische Frauen sind im Durchschnitt etwa 170 cm groß. Frauen in Guatemala und auf den Philippinen sind im Durchschnitt eher 149 bis 150 cm groß. Die meisten Frauen in westlichen Ländern liegen zwischen 162 und 168 cm." },
+      { "q": "Welches Land hat die größten Menschen?", "a": "Die Niederlande belegen in den meisten aktuellen Datensätzen sowohl bei Männern als auch bei Frauen den Spitzenplatz. Niederländische Männer sind im Durchschnitt 183,8 cm groß (etwa 6'0\") und niederländische Frauen 170,4 cm (5'7\"). Montenegro und Estland folgen dicht dahinter. Die Niederlande halten diese Position seit mehreren Jahrzehnten, was auf milchreiche Ernährung, ein starkes öffentliches Gesundheitssystem und genetische Faktoren in der Bevölkerung zurückgeführt wird." },
+      { "q": "Ist die durchschnittliche menschliche Körpergröße im Laufe der Zeit gestiegen?", "a": "Ja, deutlich. Die Durchschnittsgröße ist in fast allen Ländern in den letzten 150 Jahren stark gestiegen, angetrieben durch Verbesserungen bei Ernährung, sanitären Einrichtungen, Impfungen und Gesundheitsversorgung. Die dramatischsten jüngsten Zuwächse fanden in Ostasien statt: Südkoreanische Männer gewannen über zwei Generationen nach der raschen wirtschaftlichen Entwicklung rund 6 cm hinzu. Die Zuwächse in Westeuropa stagnieren seit den 1980er-Jahren weitgehend." },
+      { "q": "Welches ist das kleinste Land der Welt nach Durchschnittsgröße?", "a": "Timor-Leste verzeichnet weltweit den niedrigsten kombinierten Durchschnitt, mit Männern im Durchschnitt von 159,8 cm und Frauen von 152,3 cm. Guatemala und Laos folgen dicht dahinter. Diese niedrigen Durchschnittswerte spiegeln historische Ernährungseinschränkungen und einen eingeschränkten Zugang zur Gesundheitsversorgung wider, nicht genetische Grenzen des Wachstumspotenzials." }
+    ],
+    "references": {
+      "primarySources": {
+        "title": "Primäre Datenquellen",
+        "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016. Vol. 5, e13410.",
+        "ref2": "Rodriguez-Martinez A, Zhou B, Sophiea MK et al. (NCD-RisC). Height and body-mass index trajectories of school-aged children and adolescents from 1985 to 2019 in 200 countries and territories. The Lancet, 2020. Vol. 396, pp. 1511–1524.",
+        "ref3": "World Health Organization. Child Growth Standards — Length/Height-for-Age, Weight-for-Age. WHO Department of Nutrition and Food Safety. Geneva, 2006.",
+        "ref4": "World Health Organization. Global Health Observatory — Nutrition and Body Mass Index Data. WHO Global Health Observatory. Ongoing.",
+        "ref5": "de Onis M, Garza C, Onyango AW, Martorell R (eds). WHO Child Growth Standards. Acta Paediatrica, 2006. Suppl 450:1–101."
+      },
+      "usGovernment": {
+        "title": "US-Regierung — CDC und NIH",
+        "ref1": "Centers for Disease Control and Prevention. CDC Clinical Growth Charts, 2000 (Revised 2022). National Center for Health Statistics.",
+        "ref2": "Kuczmarski RJ, Ogden CL, Guo SS et al. 2000 CDC Growth Charts for the United States: Methods and Development. Vital and Health Statistics. Series 11, No. 246, 2002.",
+        "ref3": "Centers for Disease Control and Prevention — NCHS. National Health and Nutrition Examination Survey (NHANES) — Anthropometric Data. Ongoing survey cycles.",
+        "ref4": "Fryar CD, Gu Q, Ogden CL, Flegal KM. Anthropometric Reference Data for Children and Adults: United States, 2011–2014. Vital and Health Statistics. Series 3, No. 39, August 2016.",
+        "ref5": "National Institutes of Health — National Heart, Lung, and Blood Institute. Classification of Overweight and Obesity by BMI. NIH Publication No. 98-4083, 1998."
+      },
+      "peerReviewed": {
+        "title": "Begutachtete Forschungsarbeiten",
+        "ref1": "Devine BJ. Gentamicin therapy. Drug Intelligence and Clinical Pharmacy, 1974. Vol. 8, pp. 650–655. (Original publication of the Devine ideal body weight formula.)",
+        "ref2": "Robinson JD, Lupkiewicz SM, Palenik L, Lopez LM, Ariet M. Determination of ideal body weight for drug dosage calculations. American Journal of Hospital Pharmacy, 1983. Vol. 40, pp. 1016–1019.",
+        "ref3": "Pai MP, Paloucek FP. The origin of the \"ideal\" body weight equations. Annals of Pharmacotherapy, 2000. Vol. 34, No. 9, pp. 1066–1069.",
+        "ref4": "Janmahasatian S, Duffull SB, Ash S, Ward LC, Byrne NM, Green B. Quantification of lean bodyweight. Clinical Pharmacokinetics, 2005. Vol. 44, No. 10, pp. 1051–1065.",
+        "ref5": "Stulp G, Buunk AP, Pollet TV. Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE, 2013. Vol. 8, Issue 2.",
+        "ref6": "Flegal KM, Ogden CL, Wei R, Kuczmarski RL, Johnson CL. Prevalence of obesity in US adults by age and sex. JAMA, 2002. Vol. 288, pp. 1723–1727."
+      },
+      "unBodies": {
+        "title": "Vereinte Nationen und internationale Organisationen",
+        "ref1": "UNICEF / WHO / World Bank. Joint Child Malnutrition Estimates — Levels and Trends. Edition 2023.",
+        "ref2": "Food and Agriculture Organization of the United Nations. The State of Food Security and Nutrition in the World 2023. FAO, IFAD, UNICEF, WFP, WHO. Rome, 2023."
+      }
+    }
+  }
+}

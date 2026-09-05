@@ -147,10 +147,1780 @@
     "emailLabel": "E-Mail: ",
     "trustFooter": "Ihr Vertrauen ist uns wichtig."
   },
+  "heightPredictor": {
+    "intro": {
+      "title": "Größenrechner: Erwachsenengröße vorhersagen",
+      "description": "Nutzen Sie diesen Größenrechner, um die zukünftige Körpergröße von Kindern, Teenagern und Erwachsenen anhand von Alter, Genetik und Wachstumsmustern zu schätzen. Dieser Rechner verwendet die Khamis-Roche-Methode, eines der genauesten verfügbaren Größenvorhersage-Modelle. Ist Ihr Kind unter vier Jahre alt, oder sind Sie schwanger und neugierig auf die erwartete Größe Ihres Babys, nutzen Sie stattdessen die unten stehende Mid-Parental Height Formula."
+    },
+    "khamisRocheCalculator": {
+      "title": "Größenwachstums-Rechner",
+      "badge": "Khamis-Roche",
+      "description": "Sofortige Größenvorhersage mit wissenschaftlichen Wachstumsmodellen. Schätzen Sie die voraussichtliche Körpergröße anhand von Alter und Elterngröße",
+      "unitUs": "US (ft/in)",
+      "unitMetric": "Metrisch (cm)",
+      "childAgeLabel": "Alter des Kindes (Jahre)",
+      "childAgeAriaLabel": "Alter des Kindes in Jahren",
+      "genderLabel": "Geschlecht",
+      "boy": "Junge",
+      "girl": "Mädchen",
+      "childHeightLabel": "Aktuelle Körpergröße des Kindes",
+      "childHeightCmAriaLabel": "Aktuelle Körpergröße des Kindes in Zentimetern",
+      "childHeightFtAriaLabel": "Aktuelle Körpergröße des Kindes in Fuß",
+      "childHeightInAriaLabel": "Aktuelle Körpergröße des Kindes in Zoll",
+      "childWeightLabel": "Aktuelles Gewicht des Kindes ",
+      "childWeightKgAriaLabel": "Aktuelles Gewicht des Kindes in Kilogramm",
+      "childWeightLbsAriaLabel": "Aktuelles Gewicht des Kindes in Pfund",
+      "motherHeightLabel": "Größe der Mutter",
+      "motherHeightCmAriaLabel": "Größe der Mutter in Zentimetern",
+      "motherHeightFtAriaLabel": "Größe der Mutter in Fuß",
+      "motherHeightInAriaLabel": "Größe der Mutter in Zoll",
+      "fatherHeightLabel": "Größe des Vaters",
+      "fatherHeightCmAriaLabel": "Größe des Vaters in Zentimetern",
+      "fatherHeightFtAriaLabel": "Größe des Vaters in Fuß",
+      "fatherHeightInAriaLabel": "Größe des Vaters in Zoll",
+      "calculate": "Größe berechnen",
+      "clear": "Zurücksetzen",
+      "estimatedAdultHeight": "Geschätzte Erwachsenengröße",
+      "targetRange": "Zielbereich (±5 cm): {min} : {max} cm",
+      "viewComparisonChart": "Vergleichsdiagramm ansehen",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "in",
+      "kgUnit": "kg",
+      "lbsUnit": "lbs"
+    },
+    "midParentalCalculator": {
+      "title": "Nur Elterngröße",
+      "badge": "Mid-Parental",
+      "description": "Schätzen Sie die voraussichtliche Körpergröße allein anhand der Elterngröße. Funktioniert auch für Babys, sehr kleine Kinder und ungeborene Babys. Wenn Sie schwanger sind, geben Sie die Größe beider Elternteile ein, um den geschätzten Erwachsenengrößenbereich Ihres Kindes zu erhalten.",
+      "unitUs": "US (ft/in)",
+      "unitMetric": "Metrisch (cm)",
+      "motherHeightLabel": "Größe der Mutter",
+      "motherHeightCmAriaLabel": "Größe der Mutter in Zentimetern",
+      "motherHeightFtAriaLabel": "Größe der Mutter in Fuß",
+      "motherHeightInAriaLabel": "Größe der Mutter in Zoll",
+      "fatherHeightLabel": "Größe des Vaters",
+      "fatherHeightCmAriaLabel": "Größe des Vaters in Zentimetern",
+      "fatherHeightFtAriaLabel": "Größe des Vaters in Fuß",
+      "fatherHeightInAriaLabel": "Größe des Vaters in Zoll",
+      "calculateEstimate": "Schätzung berechnen",
+      "estimatedAdultHeightBoys": "Geschätzte Erwachsenengröße (Jungen)",
+      "estimatedAdultHeightGirls": "Geschätzte Erwachsenengröße (Mädchen)",
+      "targetRange": "Zielbereich (±5 cm): {min} : {max} cm",
+      "viewComparisonChart": "Vergleichsdiagramm ansehen",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "in"
+    },
+    "heightConverter": {
+      "title": "Schneller Größen-Umrechner",
+      "description": "Rechnen Sie cm sofort in Fuß und Zoll um, Fuß und Zoll in cm, oder Meter in Fuß",
+      "centimeters": "Zentimeter",
+      "centimetersAriaLabel": "Körpergröße in Zentimetern",
+      "feetAndInches": "Fuß & Zoll",
+      "feetAriaLabel": "Körpergröße in Fuß",
+      "inchesAriaLabel": "Körpergröße in Zoll",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "in"
+    },
+    "howItWorks": {
+      "title": "Wie funktioniert es?",
+      "description": "Ein Größenrechner ist ein Tool, das aktuelle Messwerte (Alter, Größe, Gewicht und Elterngröße) mit Wachstumsdaten der Bevölkerung kombiniert, um einen wahrscheinlichen Größenbereich zu ermitteln.",
+      "step1Strong": "1. Messwerte eingeben:",
+      "step1Text": "Alter des Kindes, aktuelle Größe, Gewicht und die Größe beider Elternteile. Je mehr Angaben, desto genauer das Ergebnis.",
+      "step2Strong": "2. Das Modell berechnet:",
+      "step2Text": "Der Rechner wendet die Wachstumsformel auf Bevölkerungsdaten an und berücksichtigt dabei Alter, Geschlecht und Genetik.",
+      "step3Strong": "3. Vorhergesagten Größenbereich erhalten:",
+      "step3Text": "Das Ergebnis ist eine wahrscheinliche Schätzung der Erwachsenengröße, dargestellt als Bereich und nicht als einzelner exakter Wert."
+    },
+    "howTallChild": {
+      "title": "Wie groß wird mein Kind?",
+      "description": "Kein Tool kann die zukünftige Größe eines Kindes mit absoluter Sicherheit vorhersagen. Forschung zu kindlichen Wachstumsmustern ermöglicht jedoch eine Schätzung der Erwachsenengröße mit angemessener Genauigkeit.",
+      "factorsTitle": "Moderne Größenvorhersage-Rechner analysieren drei zentrale Faktoren:",
+      "geneticsLabel": "Genetik",
+      "geneticsText": "verantwortlich für 60–80 % der endgültigen Körpergröße.",
+      "currentGrowthLabel": "Aktuelles Wachstum",
+      "currentGrowthText": "Alter-, Größen- und Gewichtsmessungen verfeinern die Schätzung.",
+      "statisticsLabel": "Statistik",
+      "statisticsText": "Wachstumsmuster, die in großen Bevölkerungsgruppen nach Alter und Geschlecht beobachtet wurden.",
+      "closing": "Das Ergebnis ist ein geschätzter Erwachsenengrößenbereich: eine nützliche Orientierung, keine Garantie. Wachstumsmuster sind individuell und können je nach Gesundheit, Ernährung und Zeitpunkt der Pubertät erheblich variieren."
+    },
+    "teensAdults": {
+      "title": "Wie groß werde ich? Rechner für Teenager & Erwachsene",
+      "description": "Teenager, die sich fragen „Wie groß werde ich?“, können den Khamis-Roche-Rechner nutzen. Geben Sie Ihr aktuelles Alter, Ihre Größe, Ihr Gewicht und die Größe Ihrer Eltern ein, um die genaueste Schätzung zu erhalten.",
+      "teensTitle": "Teenager (unter 18)",
+      "teensText": "Die Wachstumsfugen sind noch offen. Der Khamis-Roche-Rechner liefert die beste Schätzung. Verwenden Sie aktuelle Messwerte für maximale Genauigkeit.",
+      "teensItem1": "Am zuverlässigsten zwischen 4 und 17 Jahren",
+      "teensItem2": "Die Genauigkeit steigt, je näher man der Erwachsenengröße kommt",
+      "teensItem3": "Jungen wachsen oft bis 18, Mädchen bis 15–16",
+      "adultsTitle": "Erwachsene (18+)",
+      "adultsText": "Nach der Pubertät schließen sich die Wachstumsfugen. Für Erwachsene ist eine Größenvorhersage nicht mehr relevant, aber die Mid-Parental Height Formula kann weiterhin abschätzen, welche Größe ihre Kinder erreichen könnten.",
+      "adultsItem1": "Die Erwachsenengröße steht bereits fest",
+      "adultsItem2": "Nutzen Sie das Elterngröße-Tool, um die Größe der Kinder vorherzusagen",
+      "adultsItem3": "Nutzen Sie den Größen-Umrechner zur Einheitenumrechnung",
+      "limitationLabel": "Wichtige Einschränkung:",
+      "limitationText": "Kein Größenrechner kann medizinische Erkrankungen, Wachstumshormonstörungen oder eine vorzeitige Pubertät berücksichtigen. Wirkt das Wachstum ungewöhnlich schnell oder langsam, konsultieren Sie einen Kinderarzt."
+    },
+    "ctaBanner": {
+      "text": "Bereit für Ihre Größenvorhersage? Der Rechner befindet sich oben auf dieser Seite.",
+      "linkText": "Zum Größenwachstums-Rechner"
+    },
+    "determinants": {
+      "title": "Was bestimmt die Körpergröße?",
+      "description": "Die endgültige Erwachsenengröße eines Kindes wird von zwei Faktoren geprägt: Genetik und Umwelt. Beide zu verstehen hilft, realistische Erwartungen an die Größenvorhersage zu stellen.",
+      "geneticsTitle": "Genetik",
+      "geneticsBefore": "Verantwortlich für ",
+      "geneticsStrong1": "60–80 %",
+      "geneticsMiddle": " der endgültigen Körpergröße. Kinder größerer Eltern sind tendenziell größer, doch Kinder sehr großer oder sehr kleiner Eltern wachsen oft näher an die durchschnittliche Bevölkerungsgröße heran – ein Phänomen, das man ",
+      "geneticsStrong2": "Regression zur Mitte nennt.",
+      "nutritionTitle": "Ernährung & Schlaf",
+      "nutritionBefore": "Die restlichen ",
+      "nutritionStrong": "20–40 %",
+      "nutritionAfter": " stammen aus der Umwelt.",
+      "nutritionItem1": "Protein, Kalzium, Vitamin D, Zink",
+      "nutritionItem2": "9–11 Std. Schlaf (Schulkinder)",
+      "nutritionItem3": "8–10 Std. für Teenager",
+      "timingTitle": "Wachstumszeitpunkt",
+      "timingText": "Eine frühe Pubertät kann vorübergehend zu einem größeren Kind, aber einem kleineren Erwachsenen führen. Eine späte Pubertät führt oft zu einem längeren Wachstumsfenster und einer größeren Endgröße."
+    },
+    "growthCharts": {
+      "title": "Durchschnittsgröße nach Alter (Wachstumskurven)",
+      "linkText": "CDC Growth Charts",
+      "textAfterLink": " erfassen die durchschnittliche Größe und das Gewicht von der Geburt bis zum jungen Erwachsenenalter, für Jungen und Mädchen von 2 bis 18 Jahren. Sie zeigen, wo ein Kind auf der Größenperzentile im Vergleich zu Gleichaltrigen liegt.",
+      "percentileBefore": "Die ",
+      "percentileStrong": "50. Perzentile",
+      "percentileAfter": " steht für die mittlere Körpergröße für dieses Alter und Geschlecht. Gesunde Kinder liegen typischerweise zwischen der 3. und 97. Perzentile.",
+      "note": "Hinweis: Kinderärzte achten weniger auf eine einzelne Messung als darauf, ob ein Kind über die Zeit auf einer konstanten Wachstumskurve bleibt."
+    },
+    "comparisonTable": {
+      "title": "Größenrechner vs. Wachstumskurven",
+      "description": "Unterschiedliche Tools beantworten unterschiedliche Fragen. Dieser Vergleich hilft zu verstehen, wann welche Methode sinnvoll ist.",
+      "headerFactor": "Faktor",
+      "headerCalculator": "Größenrechner",
+      "headerGrowthChart": "Wachstumskurve",
+      "rowPurposeLabel": "Zweck",
+      "rowPurposeCalculator": "Zukünftige Erwachsenengröße vorhersagen",
+      "rowPurposeGrowthChart": "Aktuelles Wachstum im Vergleich zu Gleichaltrigen verfolgen",
+      "rowDataLabel": "Benötigte Daten",
+      "rowDataCalculator": "Alter, Größe, Gewicht, Elterngröße",
+      "rowDataGrowthChart": "Alter + aktuelle Größe",
+      "rowBestForLabel": "Am besten geeignet für",
+      "rowBestForCalculator": "Eltern, Teenager, Neugier",
+      "rowBestForGrowthChart": "Wachstum über die Zeit überwachen",
+      "rowDoctorLabel": "Arzt erforderlich",
+      "rowDoctorCalculator": "Nein (online nutzbar)",
+      "rowDoctorGrowthChart": "Nein (online nutzbar)",
+      "rowAccuracyLabel": "Typische Genauigkeit",
+      "rowAccuracyCalculator": "±2–4 Zoll",
+      "rowAccuracyGrowthChart": "Zeigt Perzentile, keine Vorhersage",
+      "rowWithoutParentsLabel": "Funktioniert ohne Elterndaten",
+      "rowWithoutParentsCalculator": "Teilweise (weniger genau)",
+      "rowWithoutParentsGrowthChart": "✓ Ja"
+    },
+    "boysGrowth": {
+      "title": "Wann hören Jungen auf zu wachsen?",
+      "p1Before": "Jungen erleben ihren wichtigsten Wachstumsschub in der Regel während der ",
+      "p1Strong": "Pubertät",
+      "p1After": ".",
+      "p2": "Der typische Wachstumsverlauf bei Jungen sieht so aus:",
+      "item1Before": "die frühe Pubertät beginnt etwa im ",
+      "item1Strong": "Alter von 11–12 Jahren",
+      "item2Before": "starkes Wachstum tritt auf zwischen ",
+      "item2Strong": "13 und 15 Jahren",
+      "item3Before": "das Wachstum verlangsamt sich etwa im Alter von ",
+      "item3Strong": "16–17",
+      "p3Before": "Während der Hauptpubertät können Jungen ",
+      "p3Strong": "3–4 Zoll pro Jahr",
+      "p3After": " wachsen. Die meisten Jungen hören etwa mit 18 Jahren auf zu wachsen, kleine Zuwächse können jedoch bis etwa 20 anhalten."
+    },
+    "girlsGrowth": {
+      "title": "Wann hören Mädchen auf zu wachsen?",
+      "p1": "Mädchen beginnen die Pubertät in der Regel früher als Jungen.",
+      "p2": "Typischer Wachstumsverlauf:",
+      "item1Before": "die Pubertät beginnt etwa im ",
+      "item1Strong": "Alter von 9–10 Jahren",
+      "item2Before": "der Wachstumsschub tritt auf zwischen ",
+      "item2Strong": "10 und 14 Jahren",
+      "p3Before": "Die meisten Mädchen erreichen ihre Erwachsenengröße zwischen ",
+      "p3Strong": "15 und 16 Jahren",
+      "p3After": ". Da Mädchen die Pubertät früher erleben, wirken sie in der späten Kindheit oft größer als Jungen."
+    },
+    "methods": {
+      "title": "Größenvorhersage-Methoden erklärt",
+      "subtitle": "So sagen Sie die Größe Ihres Kindes voraus",
+      "description": "Forscher verwenden mehrere Formeln, um die Erwachsenengröße zu schätzen. Jede Methode wägt Genauigkeit gegen den erforderlichen Datenaufwand ab.",
+      "khamisRoche": {
+        "badge": "Am genauesten",
+        "title": "Khamis-Roche-Methode",
+        "p1": "Gilt als die genaueste Größenvorhersage-Methode ohne Knochenalter-Test. Analysiert vier Eingaben: Alter, Größe und Gewicht des Kindes sowie die durchschnittliche Größe beider Elternteile.",
+        "p2": "Entwickelt nach der Untersuchung der Wachstumsmuster tausender Kinder mittels linearer Regressionsanalyse auf Bevölkerungswachstumsdaten. Da sie aktuelle Körpermessungen einbezieht, übertrifft sie rein genetische Formeln.",
+        "item1Before": "Genauigkeit: ",
+        "item1Strong": "±2,1 Zoll bei Jungen, ±1,7 Zoll bei Mädchen",
+        "item2": "Am besten geeignet für Kinder über 4 Jahre",
+        "item3": "Zuverlässigste verfügbare nicht-klinische Vorhersage",
+        "usedByCalculator": "✓ Wird von diesem Rechner verwendet",
+        "readyText": "Haben Sie Alter, Größe und Gewicht Ihres Kindes sowie die Größe der Eltern parat?",
+        "linkText": "Jetzt mit Khamis-Roche berechnen"
+      },
+      "midParental": {
+        "badge": "EINFACH",
+        "title": "Größenvorhersage anhand der Eltern (Mid-Parental Height Formula)",
+        "p1": "Die Mid-Parental Height Formula ist der einfachste Weg, die Erwachsenengröße eines Kindes allein anhand der Elterngröße zu schätzen. Sie erfordert keine medizinischen Tests und funktioniert für jedes Alter, einschließlich Babys und ungeborener Kinder.",
+        "boysFormulaLabel": "Für Jungen (US-Einheiten)",
+        "boysFormula": "(Vater + Mutter + 5 Zoll) ÷ 2",
+        "girlsFormulaLabel": "Für Mädchen (US-Einheiten)",
+        "girlsFormula": "(Vater + Mutter − 5 Zoll) ÷ 2",
+        "item1": "Funktioniert für Babys und kleine Kinder, wenn keine aktuellen Wachstumsdaten vorliegen",
+        "item2": "Typische Genauigkeit: innerhalb von ±4 Zoll (10 cm) der endgültigen Erwachsenengröße",
+        "item3": "Berücksichtigt nicht den aktuellen Wachstumsverlauf. Nutzen Sie Khamis-Roche für Kinder über 4 Jahre",
+        "item4": "Kann auch als grober Baby-Größenrechner oder für ungeborene Kinder verwendet werden",
+        "onlyHaveText": "Haben Sie nur die Größe der Eltern? Nutzen Sie den Mid-Parental-Height-Formula-Rechner oben.",
+        "linkText": "Nach oben scrollen und jetzt berechnen"
+      },
+      "boneAge": {
+        "badge": "KLINISCH",
+        "title": "Knochenalter-Methode (Handgelenk-Röntgen)",
+        "p1": "Ärzte nutzen Röntgenaufnahmen des linken Handgelenks, um die Reife der Wachstumsfugen zu beurteilen. Wachstumsfugen sind dünne Knorpelbänder. Ihre Dicke zeigt, wie viel Wachstum noch bevorsteht.",
+        "item1": "Genaueste verfügbare Vorhersagemethode",
+        "item2": "Wird nur eingesetzt, wenn Ärzte Wachstumsstörungen vermuten",
+        "item3": "Auswertungsmethoden: Greulich-Pyle, Tanner-Whitehouse"
+      },
+      "bayleyPinneau": {
+        "badge": "KLINISCH",
+        "title": "Bayley-Pinneau-Methode",
+        "text": "Kombiniert Knochenalterdaten mit Größe-für-Alter-Tabellen. Berechnet den bereits erreichten Prozentsatz der Erwachsenengröße, um das verbleibende Wachstumspotenzial zu bestimmen. Erfordert einen Knochenalter-Test."
+      },
+      "rocheWainerThissen": {
+        "badge": "KLINISCH",
+        "title": "Roche-Wainer-Thissen-Methode",
+        "text": "Nutzt Knochenalter, aktuelle Größe, Gewicht und Elterngröße. Verbessert die Genauigkeit in manchen Fällen gegenüber Khamis-Roche, erfordert jedoch eine klinische Knochenaltermessung. Wird vor allem im medizinischen Bereich eingesetzt."
+      }
+    },
+    "canIncrease": {
+      "titlePrefix": "Kannst du deine ",
+      "titleHighlight": "Körpergröße noch steigern",
+      "description": "Deine Gene bestimmen größtenteils, wie groß du wirst. Aber wie gut du dich in der Kindheit ernährst, schläfst und bewegst, kann einen echten Unterschied machen, ob du dieses Potenzial erreichst.",
+      "nutritionTitle": "Ernährung",
+      "nutritionText": "Ausreichende Ernährung unterstützt die Knochenentwicklung. Wichtige Nährstoffe:",
+      "nutritionItem1": "Protein",
+      "nutritionItem2": "Kalzium",
+      "nutritionItem3": "Vitamin D",
+      "nutritionItem4": "Zink",
+      "sleepTitle": "Ausreichender Schlaf",
+      "sleepText": "Das Wachstumshormon erreicht seinen Höhepunkt im Tiefschlaf.",
+      "sleepItem1": "9–11 Std. für Schulkinder",
+      "sleepItem2": "8–10 Std. für Teenager",
+      "exerciseTitle": "Regelmäßige Bewegung",
+      "exerciseText": "Unterstützt die Knochenstärke und die allgemeine Entwicklung. Laufen, Springen und Sport fördern ein gesundes Knochenwachstum.",
+      "warningStrong": "Wichtig:",
+      "warningText": "Kein Training, Nahrungsergänzungsmittel oder Dehnprogramm kann die Körpergröße erhöhen, sobald die Wachstumsfugen geschlossen sind. Vorhersagen sind Schätzungen. Genetik ist der entscheidende Faktor."
+    },
+    "accuracy": {
+      "titlePrefix": "Wie ",
+      "titleHighlight": "genau",
+      "titleSuffix": " ist ein Größenrechner?",
+      "description": "Dieser Größenwachstums-Rechner nutzt das Khamis-Roche-Wachstumsmodell, das auf Langzeitstudien zu kindlichen Wachstumsdaten basiert.",
+      "check1": "Die meisten Vorhersagen liegen innerhalb von 5–10 cm (2–4 Zoll) der endgültigen Erwachsenengröße",
+      "check2": "Die Genauigkeit ist am höchsten, wenn das Kind älter als 4 Jahre ist",
+      "check3": "Genaue Größen- und Gewichtsmessungen verbessern die Ergebnisse erheblich",
+      "check4": "Korrekte Angaben zur Elterngröße sind für zuverlässige Ergebnisse erforderlich",
+      "alert1": "Ergebnisse sind ein wahrscheinlicher Bereich, kein exakter Wert",
+      "alert2": "Nicht geeignet für Kinder mit bekannten Wachstumsstörungen",
+      "alert3": "Eine frühe oder späte Pubertät kann die Vorhersagegenauigkeit verringern",
+      "rangeNotice": "Das Ergebnis stellt einen wahrscheinlichen Bereich dar, keinen exakten Wert.",
+      "disclaimerStrong": "Medizinischer Haftungsausschluss:",
+      "disclaimerText": "Dieser Größenrechner dient nur zu Informationszwecken. Er ersetzt keine professionelle medizinische Beratung. Bei Bedenken zum Wachstum Ihres Kindes wenden Sie sich an einen qualifizierten Kinderarzt oder Endokrinologen."
+    },
+    "faq": [
+      {
+        "q": "Wie groß werde ich?",
+        "a": "Ihre Erwachsenengröße hängt vor allem von der Größe Ihrer Eltern und dem Zeitpunkt Ihres Wachstums ab. Nutzen Sie den Größenrechner oben. Geben Sie Ihr aktuelles Alter, Ihre Größe, Ihr Gewicht und die Größe Ihrer Eltern ein, um anhand des Khamis-Roche-Wachstumsmodells einen vorhergesagten Größenbereich zu erhalten. Sind Sie bereits 18 Jahre oder älter, sind Ihre Wachstumsfugen geschlossen und Ihre Erwachsenengröße steht fest."
+      },
+      {
+        "q": "Wie groß wird mein Sohn?",
+        "a": "Geben Sie das Alter, die aktuelle Größe, das Gewicht Ihres Sohnes sowie die Größe beider Elternteile in den Khamis-Roche-Rechner oben ein. Jungen hören meist mit etwa 18 Jahren auf zu wachsen, kleine Zuwächse können jedoch bis 20 anhalten. Die Mid-Parental Height Formula kann ebenfalls eine grobe Schätzung liefern: (Größe des Vaters + Größe der Mutter + 5 Zoll) ÷ 2."
+      },
+      {
+        "q": "Ist ein Größenrechner genau?",
+        "a": "Die Khamis-Roche-Methode (in diesem Rechner verwendet) ist einer der genauesten verfügbaren nicht-klinischen Größenprädiktoren. Die typische Genauigkeit liegt bei ±2,1 Zoll für Jungen und ±1,7 Zoll für Mädchen. Die Genauigkeit steigt, wenn das Kind älter als 4 Jahre ist, die Messwerte präzise sind und die Elterngröße korrekt angegeben wurde. Ergebnisse sind immer ein Bereich, kein garantierter Wert."
+      },
+      {
+        "q": "Kann die Größe der Eltern meine Größe vorhersagen?",
+        "a": "Ja. Die Größe der Eltern ist der stärkste einzelne Prädiktor für die Erwachsenengröße eines Kindes und macht 60–80 % der Größenvariation aus. Die Mid-Parental Height Formula liefert eine grobe Schätzung allein anhand dieser Daten. Die Kombination der Elterngröße mit den aktuellen Messwerten des Kindes (Alter, Größe, Gewicht) über das Khamis-Roche-Modell liefert jedoch deutlich genauere Ergebnisse."
+      },
+      {
+        "q": "Kann ich die Größe meines Babys vorhersagen?",
+        "a": "Nutzen Sie für Babys und Kleinkinder den Mid-Parental-Height-Formula-Rechner oben. Er benötigt nur die Größe von Mutter und Vater. Das ergibt einen groben geschätzten Größenbereich. Beachten Sie, dass die Genauigkeit bei Babys geringer ist als bei älteren Kindern, da keine aktuellen Wachstumsdaten einfließen."
+      },
+      {
+        "q": "Wie groß sollte mein Kind in seinem Alter sein?",
+        "a": "Nutzen Sie den Wachstumskurven-Abschnitt oben, um den durchschnittlichen Größenbereich nach Alter für Jungen und Mädchen zu sehen. Die 50. Perzentile steht für die mittlere Körpergröße. Gesunde Kinder liegen typischerweise zwischen der 3. und 97. Perzentile. Liegt Ihr Kind dauerhaft über oder unter diesem Bereich, besprechen Sie dies mit dem Kinderarzt."
+      },
+      {
+        "q": "Was ist die genaueste Methode zur Größenvorhersage?",
+        "a": "Die insgesamt genaueste Methode ist der klinische Knochenalter-Test (Handgelenk-Röntgen), der von Ärzten eingesetzt wird. Für nicht-klinische Vorhersagen ist die Khamis-Roche-Methode die genaueste verfügbare Methode. Sie nutzt Alter, Größe, Gewicht und Elterngröße und erreicht eine Genauigkeit von ±2,1 Zoll bei Jungen und ±1,7 Zoll bei Mädchen. Dies ist die Methode, die der Rechner auf dieser Seite verwendet."
+      }
+    ],
+    "toc": [
+      {
+        "id": "height-predictor-calculator",
+        "label": "Größenwachstums-Rechner"
+      },
+      {
+        "id": "how-it-works",
+        "label": "Wie funktioniert es?"
+      },
+      {
+        "id": "how-tall-will-my-child-be",
+        "label": "Wie groß wird mein Kind?",
+        "subItems": [
+          {
+            "id": "how-tall-will-i-be-teens-adults",
+            "label": "Wie groß werde ich (Teenager & Erwachsene)"
+          }
+        ]
+      },
+      {
+        "id": "what-determines-height",
+        "label": "Was bestimmt die Körpergröße?"
+      },
+      {
+        "id": "boys-girls-growth-charts",
+        "label": "Wachstumskurven für Jungen & Mädchen"
+      },
+      {
+        "id": "calculator-vs-growth-charts",
+        "label": "Rechner vs. Wachstumskurven"
+      },
+      {
+        "id": "when-do-boys-stop-growing",
+        "label": "Wann hören Jungen auf zu wachsen?"
+      },
+      {
+        "id": "when-do-girls-stop-growing",
+        "label": "Wann hören Mädchen auf zu wachsen?"
+      },
+      {
+        "id": "height-prediction-methods",
+        "label": "Größenvorhersage-Methoden",
+        "subItems": [
+          {
+            "id": "khamis-roche-method",
+            "label": "Khamis-Roche-Methode"
+          },
+          {
+            "id": "based-on-parents",
+            "label": "Anhand der Eltern"
+          }
+        ]
+      },
+      {
+        "id": "bone-age-method",
+        "label": "Knochenalter-Methode",
+        "subItems": [
+          {
+            "id": "bayley-pinneau-method",
+            "label": "Bayley-Pinneau-Methode"
+          },
+          {
+            "id": "roche-wainer-thissen-method",
+            "label": "Roche-Wainer-Thissen-Methode"
+          }
+        ]
+      },
+      {
+        "id": "can-you-increase-height",
+        "label": "Kannst du deine Körpergröße noch steigern?"
+      },
+      {
+        "id": "accuracy",
+        "label": "Vorhersagegenauigkeit"
+      },
+      {
+        "id": "faq",
+        "label": "FAQ"
+      },
+      {
+        "id": "related-tools",
+        "label": "Verwandte Tools"
+      },
+      {
+        "id": "references",
+        "label": "Quellen"
+      }
+    ],
+    "relatedTools": {
+      "title": "Verwandte Tools",
+      "heightComparisonTitle": "Height Comparison Tool",
+      "heightComparisonText": "Visualisieren Sie Größenunterschiede zwischen Personen, Prominenten und Objekten auf einer proportionalen Skala.",
+      "heightComparisonLink": "Größen vergleichen",
+      "imageToHeightTitle": "Image to Height Tool",
+      "imageToHeightText": "Schätzen Sie die Körpergröße anhand von Fotos, indem Sie Personen mit bekannten Referenzobjekten oder der Umgebung vergleichen.",
+      "imageToHeightLink": "Aus Bild schätzen",
+      "percentileTitle": "Height & Weight Percentile",
+      "percentileText": "Finden Sie mit WHO- und CDC-Daten heraus, wo die Größe und das Gewicht Ihres Kindes innerhalb der Bevölkerung liegen.",
+      "percentileLink": "Perzentile prüfen",
+      "countryTitle": "Average Height by Country",
+      "countryText": "Globale Größendaten für 46 Länder. Sortierbare Tabelle, regionale Diagramme und Weltkarte.",
+      "countryLink": "Daten erkunden",
+      "ibwTitle": "Ideal Body Weight Calculator",
+      "ibwText": "Berechnen Sie das Idealgewicht anhand der Devine-, Robinson- und Hamwi-Formeln im direkten Vergleich.",
+      "ibwLink": "IBW berechnen",
+      "differenceTitle": "Height Difference Calculator",
+      "differenceText": "Berechnen Sie den exakten Unterschied zwischen zwei Körpergrößen in cm, Zoll und Prozent.",
+      "differenceLink": "Unterschied berechnen"
+    },
+    "heightCharts": {
+      "intro": "Basierend auf CDC-Wachstumskurvendaten: Durchschnitts- und Mediangröße nach Alter (2–18 Jahre): cm",
+      "boysToggle": "👦 Jungen",
+      "girlsToggle": "👧 Mädchen",
+      "boysLabel": "Jungen",
+      "girlsLabel": "Mädchen",
+      "chartToggleLine1": "Wachstum",
+      "chartToggleLine2": "Kurve",
+      "tableToggleLine1": "Daten",
+      "tableToggleLine2": "Tabelle",
+      "chartTitle": "{label} Größenperzentil-Diagramm (2–18 Jahre)",
+      "axisAge": "Alter (Jahre)",
+      "axisHeight": "Größe (cm)",
+      "tooltipAge": "Alter {age}",
+      "percentile3": "3. Perzentile (unterer Bereich)",
+      "percentile50": "50. Perzentile (Durchschnitt/Median)",
+      "percentile97": "97. Perzentile (oberer Bereich)",
+      "sourceNote": "Quelle: CDC Growth Charts : National Center for Health Statistics",
+      "tableTitle": "Durchschnitts- und Mediangröße nach Alter (cm)",
+      "tableHeaderAge": "Alter",
+      "tableHeaderBoysAvgCm": "Jungen Ø (cm)",
+      "tableHeaderBoysAvgFt": "Jungen Ø (ft)",
+      "tableHeaderBoysMedian": "Jungen Median",
+      "tableHeaderGirlsAvgCm": "Mädchen Ø (cm)",
+      "tableHeaderGirlsAvgFt": "Mädchen Ø (ft)",
+      "tableHeaderGirlsMedian": "Mädchen Median",
+      "ageYrs": "{age} J.",
+      "insightBoysStopLabel": "Jungen wachsen fertig",
+      "insightBoysStopValue": "~18 J.",
+      "insightGirlsStopLabel": "Mädchen wachsen fertig",
+      "insightGirlsStopValue": "~15–16 J.",
+      "insightMaleHeightLabel": "Durchschnittsgröße erwachsener Männer (USA)",
+      "insightMaleHeightValue": "172.2 cm / 5'8\"",
+      "insightFemaleHeightLabel": "Durchschnittsgröße erwachsener Frauen (USA)",
+      "insightFemaleHeightValue": "160.1 cm / 5'3\""
+    },
+    "references": {
+      "title": "Wissenschaftliche Bibliografie & Datenquellen",
+      "ref1": "Centers for Disease Control and Prevention. CDC Growth Charts.",
+      "ref2": "National Institutes of Health. Child Growth and Development Overview.",
+      "ref3": "Silventoinen K. Determinants of variation in adult body height. Journal of Biosocial Science.",
+      "ref4": "World Health Organization. Child Growth Standards.",
+      "ref5": "National Sleep Foundation. Growth Hormone and Sleep in Children.",
+      "ref6": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age. Pediatrics.",
+      "ref7": "Tanner JM. Growth at Adolescence. Blackwell Scientific Publications.",
+      "ref8": "Greulich WW, Pyle SI. Radiographic Atlas of Skeletal Development of the Hand and Wrist.",
+      "ref9": "Tanner JM, Whitehouse RH. Assessment of Skeletal Maturity.",
+      "ref10": "Bayley N, Pinneau SR. Tables for predicting adult height from skeletal age.",
+      "ref11": "Roche AF, Wainer H, Thissen D. Predicting adult stature for individuals."
+    }
+  },
+  "heightWeightPercentile": {
+    "intro": {
+      "title": "Größen- und Gewichtsperzentil-Rechner",
+      "description": "Vergleichen Sie Ihre Körpergröße und Ihr Gewicht mit Bevölkerungsreferenzdaten der <who>World Health Organization</who> und der <cdc>Centers for Disease Control and Prevention</cdc>. Das Tool deckt Babys, Kleinkinder, Kinder und Erwachsene ab. Geben Sie Ihr Alter, Geschlecht, Ihre Körpergröße und Ihr Gewicht ein, um sofort Ihr Größen- und Gewichtsperzentil zu erhalten.",
+      "disclaimer": "Nur zu Informationszwecken. Wenden Sie sich für klinische Wachstumsbeurteilungen an einen Kinderarzt oder eine medizinische Fachkraft."
+    },
+    "toolSection": {
+      "title": "Berechnen Sie Ihr Größen- und Gewichtsperzentil"
+    },
+    "meaning": {
+      "title": "Was bedeutet das Größen- und Gewichtsperzentil?",
+      "p1Before": "Ein Wachstumsperzentil zeigt, wie die Messung einer Person im Vergleich zu einer Referenzgruppe desselben Alters und Geschlechts steht. Die ",
+      "p1Strong": "World Health Organization",
+      "p1After": " definiert das 50. Perzentil als Median: Genau die Hälfte der Referenzbevölkerung liegt darüber und die Hälfte darunter.",
+      "p2": "Perzentil bedeutet nicht Prozentsatz eines Maximums. Ein Kind im 90. Perzentil für die Körpergröße ist größer als 90 von 100 Kindern desselben Alters und Geschlechts in der Referenzgruppe. Es sagt nichts darüber aus, wie groß es noch werden kann.",
+      "referencePointsTitle": "Zwei Referenzpunkte, die die Skala verdeutlichen:",
+      "p50Label": "50. Perzentil Körpergröße",
+      "p50Value": "= der Durchschnitt für dieses Alter und Geschlecht",
+      "p90Label": "90. Perzentil Körpergröße",
+      "p90Value": "= größer als 90 % der Gleichaltrigen",
+      "p3": "Ein niedriges Ergebnis im Perzentil-Größenrechner bedeutet nicht, dass etwas nicht stimmt. Ein hohes Ergebnis signalisiert kein Problem. Entscheidend ist das Muster über mehrere Messungen im Zeitverlauf, nicht eine einzelne isolierte Zahl."
+    },
+    "howItWorks": {
+      "title": "Wie der Größen- und Gewichtsperzentil-Rechner funktioniert",
+      "descriptionBefore": "Der Größen- und Gewichtsperzentil-Rechner ordnet Ihre Eingaben veröffentlichten Wachstumsdatensätzen der",
+      "cdcLinkText": "CDC",
+      "descriptionMiddle": "und der",
+      "whoLinkText": "WHO",
+      "descriptionAfter": "zu und liefert für Körpergröße und Gewicht jeweils einen eigenen Perzentilrang. Der Ablauf umfasst vier Schritte:",
+      "step1Label": "Schritt 1",
+      "step1Text": "Alter, Geschlecht, Körpergröße und Gewicht eingeben",
+      "step2Label": "Schritt 2",
+      "step2Text": "Eingaben mit dem CDC- oder WHO-Referenzdatensatz abgleichen",
+      "step3Label": "Schritt 3",
+      "step3Text": "Perzentilrang anhand alters- und geschlechtsspezifischer Kurven berechnen",
+      "step4Label": "Schritt 4",
+      "step4Text": "Numerisches Perzentil und Ergebnis in einfacher Sprache anzeigen",
+      "infantsNoteBefore": "Für Kinder im Alter von 0 bis 2 Jahren verwendet das Tool die",
+      "infantsNoteLinkText": "WHO Child Growth Standards",
+      "infantsNoteAfter": ". Ab einem Alter von 2 Jahren wechselt es zu den CDC-Wachstumskurven, der Standardreferenz in der klinischen Praxis der USA. Der pädiatrische Größen- und Gewichtsperzentil-Rechner wendet automatisch den passenden Datensatz für das eingegebene Alter an. Ein manuelles Umschalten ist nicht erforderlich."
+    },
+    "byAgeGroup": {
+      "title": "Größenperzentil-Rechner nach Altersgruppe",
+      "description": "Wachstumsmuster verändern sich in verschiedenen Lebensphasen. Das Tool passt seine Referenzdaten daran an, ob Sie für ein Baby, ein Kind im Schulalter oder einen Erwachsenen rechnen.",
+      "ages0to2Label": "0–2 Jahre",
+      "ages0to2Value": "WHO Child Growth Standards",
+      "ages2to20Label": "2–20 Jahre",
+      "ages2to20Value": "CDC Growth Charts",
+      "adultsLabel": "Erwachsene",
+      "adultsValue": "NHANES-Bevölkerungsdaten",
+      "boysGirlsLabel": "Jungen und Mädchen",
+      "boysGirlsValue": "Geschlechtsspezifische Referenzkurven",
+      "infants": {
+        "title": "Größenperzentil-Rechner für Babys und Säuglinge",
+        "p1Before": "Der Größen- und Gewichtsperzentil-Rechner für Säuglinge nutzt für Kinder in den ersten zwei Lebensjahren die",
+        "p1Strong": "WHO Growth Standards",
+        "p1After": ". Die WHO hat diesen Datensatz aus Daten erstellt, die in sechs Ländern erhoben wurden, um eine internationale Referenz zu schaffen. Der Größenperzentil-Rechner für Babys erfasst die Liegelänge, nicht die Stehgröße. Säuglinge nehmen in dieser Phase mehrere Zentimeter pro Monat zu, sodass kleine Perzentilverschiebungen zwischen den Untersuchungen normal sind.",
+        "p2": "Der Größenperzentil-Rechner für Säuglinge liefert die nützlichsten Informationen, wenn Sie ihn über mehrere Vorsorgeuntersuchungen hinweg anwenden statt nur einmalig."
+      },
+      "toddlers": {
+        "title": "Größenperzentil-Rechner für Kleinkinder und Kinder",
+        "p1Before": "Vom Alter von 2 Jahren bis zur Adoleszenz stützt sich der Größen- und Gewichtsperzentil-Rechner für Kinder auf Referenzdaten der",
+        "p1Strong": "CDC growth chart",
+        "p1After": ". Das Wachstum ist in dieser Phase gleichmäßiger als im Säuglingsalter, folgt aber klaren altersspezifischen Mustern. Der Größenperzentil-Rechner für Kinder berücksichtigt das Alter in Monaten statt in Jahren, um für Kinder zwischen zwei Geburtstagen genaue Ergebnisse zu liefern.",
+        "p2": "Eltern nutzen den Größen- und Gewichtsperzentil-Rechner für Kinder häufig vor jährlichen Vorsorgeuntersuchungen, um die Zahlen schon vor dem Termin beim Kinderarzt zu verstehen. Das Tool ersetzt keine klinische Beurteilung."
+      },
+      "boysGirls": {
+        "title": "Größenperzentil-Rechner für Jungen und Mädchen",
+        "p1": "Jungen und Mädchen folgen getrennten Wachstumskurven, besonders ab einem Alter von 8 Jahren. Mädchen beginnen ihren Wachstumsschub typischerweise im Alter von 10 bis 11 Jahren. Jungen erreichen ihren Höhepunkt meist zwischen 12 und 14 Jahren. Der Größenperzentil-Rechner für Mädchen und der Größenperzentil-Rechner für Jungen greifen jeweils auf geschlechtsspezifische Datensätze der CDC zurück.",
+        "p2": "Die Eingabe des richtigen Geschlechts ist die wichtigste Voraussetzung für ein genaues Ergebnis. Ein Mädchen, das anhand einer männlichen Wachstumskurve gemessen wird, würde ein deutlich anderes Perzentil zeigen als ihr korrektes weibliches Ergebnis. Der Rechner wendet automatisch die richtige Kurve an."
+      },
+      "adults": {
+        "title": "Größenperzentil-Rechner für Erwachsene",
+        "p1Before": "Erwachsene wachsen nicht mehr, daher vergleicht der Größenperzentil-Rechner für Erwachsene Ihre Körpergröße mit einer festen Bevölkerungsverteilung statt mit einer altersangepassten Wachstumskurve. Referenzdaten für Erwachsene stammen aus nationalen Gesundheitsumfragen, einschließlich der",
+        "p1Strong": "NHANES",
+        "p1After": ". Der Größenperzentil-Rechner für Erwachsene ist ein einfacher Bevölkerungsvergleich: Sie sind entweder größer oder kleiner als ein bestimmter Prozentsatz der Erwachsenen desselben Geschlechts.",
+        "p2": "Der Größenperzentil-Rechner für erwachsene Männer verwendet männerspezifische Verteilungen, da sich die Größenverteilungen erwachsener Männer und Frauen unterscheiden. Ein Ergebnis im 50. Perzentil des US-Größenperzentil-Rechners für erwachsene Männer entspricht etwa 175 cm (5 Fuß 9 Zoll)."
+      }
+    },
+    "usCalculator": {
+      "title": "US-Größenperzentil-Rechner",
+      "p1Before": "Der US-Größenperzentil-Rechner stützt sich auf Wachstumsdaten, veröffentlicht von den",
+      "p1Strong": "Centers for Disease Control and Prevention",
+      "p1After": ". Die CDC-Wachstumskurven decken Kinder und Jugendliche im Alter von 2 bis 20 Jahren ab und stammen aus national repräsentativen US-Bevölkerungsdaten, die über mehrere Erhebungszyklen hinweg gesammelt wurden.",
+      "p2Before": "Für US-amerikanische Erwachsene verwendet der Rechner Größenverteilungen aus der",
+      "p2Strong": "National Health and Nutrition Examination Survey (NHANES)",
+      "p2After": ". Die NHANES liefert die Referenzbevölkerung für alle Perzentilvergleiche bei Erwachsenen in diesem Tool."
+    },
+    "interpret": {
+      "title": "So interpretieren Sie Ihr Größenperzentil-Ergebnis",
+      "description": "Das Ergebnis eines einzelnen Perzentil-Größenrechners ist eine Momentaufnahme, keine Diagnose. Nutzen Sie diese Tabelle, um Ihr Ergebnis zu lesen:",
+      "tableHeaderRange": "Perzentilbereich",
+      "tableHeaderInterpretation": "Interpretation",
+      "tableHeaderSuggests": "Was es nahelegt",
+      "row1Range": "90 bis 100",
+      "row1Interpretation": "Sehr groß im Vergleich zu Gleichaltrigen",
+      "row1Suggests": "Deutlich über dem Durchschnitt für Alter und Geschlecht",
+      "row2Range": "75 bis 90",
+      "row2Interpretation": "Überdurchschnittlich",
+      "row2Suggests": "Größer als die meisten Gleichaltrigen",
+      "row3Range": "25 bis 75",
+      "row3Interpretation": "Durchschnittlicher Größenbereich",
+      "row3Suggests": "Normal und für die meisten Menschen zu erwarten",
+      "row4Range": "10 bis 25",
+      "row4Interpretation": "Unterdurchschnittlich",
+      "row4Suggests": "Kleiner als die meisten, innerhalb der normalen Schwankungsbreite",
+      "row5Range": "Unter 10",
+      "row5Interpretation": "Deutlich kleiner als Gleichaltrige",
+      "row5Suggests": "Sollte mit einer medizinischen Fachkraft besprochen werden",
+      "note": "Ein Wert unter dem 10. Perzentil ist beachtenswert. Familiäre Größenverhältnisse, Geburtsgewicht und die Veränderungsrate über mehrere Untersuchungen fließen alle in das ein, was ein Arzt als bedeutsam einstuft. Ein konsistenter Trend innerhalb derselben Bandbreite ist aussagekräftiger als jedes einzelne Perzentilergebnis."
+    },
+    "example": {
+      "title": "Beispielrechnung für das Größenperzentil",
+      "description": "So arbeitet der Perzentil-Größenrechner ein reales Beispiel durch:",
+      "inputParamsTitle": "Eingabeparameter",
+      "ageLabel": "Alter",
+      "ageValue": "10 Jahre",
+      "sexLabel": "Geschlecht",
+      "sexValue": "Männlich",
+      "heightLabel": "Körpergröße",
+      "heightValue": "138 cm",
+      "calculatedDataTitle": "Berechnete Daten",
+      "cdcMedianLabel": "CDC-Referenzmedian",
+      "cdcMedianValue": "137 cm",
+      "deviationLabel": "Abweichung",
+      "deviationValue": "+1 cm darüber",
+      "resultLabel": "Ergebnis",
+      "resultValue": "55. Perzentil",
+      "scaleMin": "0",
+      "scaleQ1": "25",
+      "scaleMid": "50",
+      "scaleQ3": "75",
+      "scaleMax": "100",
+      "resultHeadline": "55.",
+      "resultSubtext": "— durchschnittlicher Bereich",
+      "closing": "Dieses Kind liegt einen Zentimeter über dem Median für einen 10-jährigen Jungen. Ein Ergebnis von 55 im Größenperzentil-Rechner platziert es im durchschnittlichen Bereich, oberhalb von 55 von 100 Gleichaltrigen. Bleibt dieses Ergebnis bei der nächsten Untersuchung in derselben Bandbreite, bestätigt dies ein stetiges, konsistentes Wachstum entlang einer normalen Entwicklungslinie."
+    },
+    "whyUsed": {
+      "title": "Warum Größenperzentile in der pädiatrischen Wachstumsüberwachung verwendet werden",
+      "p1": "Sowohl die World Health Organization als auch die Centers for Disease Control and Prevention empfehlen, Größen- und Gewichtsperzentile über mehrere Untersuchungen hinweg zu verfolgen, als zentralen Bestandteil der pädiatrischen Versorgung. Eine einzelne Messung zeigt, wo ein Kind heute steht. Eine Reihe von Messungen zeigt, ob es wie erwartet wächst.",
+      "p2Intro": "Konsistente Verfolgung über Vorsorgeuntersuchungen hinweg hilft, drei spezifische Muster zu erkennen:",
+      "item1": "Wachstumsstörungen, bei denen das Perzentil eines Kindes zwischen den Untersuchungen deutlich sinkt",
+      "item2": "Frühe Anzeichen hormoneller oder ernährungsbedingter Erkrankungen, die die kindliche Entwicklung beeinträchtigen",
+      "item3": "Ob sich ein Kind nach einer Krankheit oder niedrigem Geburtsgewicht gut erholt",
+      "p3Before": "Der pädiatrische Größen- und Gewichtsperzentil-Rechner ist ein Ausgangspunkt für diese Gespräche, kein Ersatz dafür. Ärzte tragen Ergebnisse über mehrere Untersuchungen hinweg in eine",
+      "p3LinkText": "CDC growth chart",
+      "p3After": "ein und achten auf eine konsistente Entwicklung entlang derselben Perzentilbandbreite, statt sich auf eine einzelne Zahl zu konzentrieren."
+    },
+    "cta": {
+      "title": "Nutzen Sie den Perzentil-Rechner",
+      "descriptionBefore": "Geben Sie Ihr Alter, Ihre Körpergröße und Ihr Gewicht ein, um Ihr Ergebnis sofort anhand von",
+      "descriptionStrong": "WHO- & CDC",
+      "descriptionAfter": "-Referenzdaten zu berechnen.",
+      "feature1": "Babys, Kleinkinder, Kinder und Erwachsene",
+      "feature2": "Größen- & Gewichtsperzentil-Ergebnisse",
+      "feature3": "Interpretation in einfacher Sprache",
+      "feature4": "Globale Referenzdatensätze",
+      "buttonText": "Jetzt berechnen ↑"
+    },
+    "references": {
+      "title": "Wissenschaftliche Quellen",
+      "ref1": "World Health Organization Child Growth Standards. WHO, 2006.",
+      "ref2": "CDC Clinical Growth Charts. Centers for Disease Control and Prevention, 2000 (revised 2022).",
+      "ref3": "NHANES: National Health and Nutrition Examination Survey. CDC National Center for Health Statistics."
+    },
+    "faq": [
+      {
+        "q": "Was ist ein guter Größenperzentilwert?",
+        "a": "Es gibt keinen einzelnen guten Perzentilwert. Der Durchschnittsbereich in einem Größenperzentil-Rechner reicht vom 25. bis zum 75. Perzentil, und die meisten Menschen liegen irgendwo in dieser Bandbreite. Wichtiger ist, ob Ihr Perzentil im Zeitverlauf konstant bleibt und zum typischen Größenmuster Ihrer Familie passt."
+      },
+      {
+        "q": "Wie genau ist ein Größenperzentil-Rechner?",
+        "a": "Ein Perzentil-Größenrechner ist nur so genau wie die eingegebenen Messwerte. Die zugrunde liegenden Referenzdaten stammen aus großen, national repräsentativen Datensätzen der CDC und WHO. Die Genauigkeit verbessert sich, wenn Sie bei Kindern das Alter in Monaten statt in Jahren angeben und wenn die Körpergröße ohne Schuhe gemessen wird — stehend bei älteren Kindern und liegend bei Säuglingen."
+      },
+      {
+        "q": "Können Erwachsene ihr Größenperzentil berechnen?",
+        "a": "Ja. Der Größenperzentil-Rechner für Erwachsene vergleicht Ihre Körpergröße mit einer Bevölkerungsverteilung statt mit einer Wachstumskurve. Der Größenperzentil-Rechner für Erwachsene nutzt NHANES-Umfragedaten, um Ihre Körpergröße innerhalb der Verteilung für Personen desselben Geschlechts einzuordnen. Der Größenperzentil-Rechner für Männer verwendet männerspezifische Daten für einen präzisen Vergleich mit der erwachsenen männlichen Bevölkerung."
+      },
+      {
+        "q": "Haben Jungen und Mädchen unterschiedliche Wachstumsperzentile?",
+        "a": "Ja. Der Größenperzentil-Rechner für Mädchen und der Größenperzentil-Rechner für Jungen verwenden jeweils getrennte CDC-Referenzkurven, da sich die Wachstumsmuster von männlichen und weiblichen Kindern nach der frühen Kindheit unterscheiden. Mädchen wachsen in der frühen Adoleszenz schneller, Jungen holen später auf. Die Eingabe des falschen Geschlechts führt zu einem deutlich ungenauen Ergebnis."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen WHO- und CDC-Wachstumskurven?",
+        "a": "Die WHO Child Growth Standards decken das Alter von 0 bis 2 Jahren ab und basieren auf Daten aus sechs Ländern, konzipiert als internationale Referenz für optimales Wachstum. CDC-Wachstumskurven decken das Alter von 2 bis 20 Jahren ab und basieren auf US-Bevölkerungsdaten, wodurch sie zur Standardreferenz für die klinische Anwendung in den Vereinigten Staaten werden. Dieser Rechner verwendet WHO-Daten für Säuglinge und CDC-Daten ab einem Alter von 2 Jahren."
+      }
+    ],
+    "toc": [
+      {
+        "id": "calculate-your-height-and-weight-percentile",
+        "label": "Berechnen Sie Ihr Größen- und Gewichtsperzentil"
+      },
+      {
+        "id": "what-does-height-and-weight-percentile-mean",
+        "label": "Was bedeutet das Größen- und Gewichtsperzentil?"
+      },
+      {
+        "id": "how-the-height-and-weight-percentile-calculator-works",
+        "label": "Wie der Größen- und Gewichtsperzentil-Rechner funktioniert"
+      },
+      {
+        "id": "height-percentile-calculator-by-age-group",
+        "label": "Größenperzentil-Rechner nach Altersgruppe",
+        "subItems": [
+          {
+            "id": "height-percentile-calculator-for-babies-and-infants",
+            "label": "Größenperzentil-Rechner für Babys und Säuglinge"
+          },
+          {
+            "id": "height-percentile-calculator-for-toddlers-and-kids",
+            "label": "Größenperzentil-Rechner für Kleinkinder und Kinder"
+          },
+          {
+            "id": "height-percentile-calculator-for-boys-and-girls",
+            "label": "Größenperzentil-Rechner für Jungen und Mädchen"
+          },
+          {
+            "id": "height-percentile-calculator-for-adults",
+            "label": "Größenperzentil-Rechner für Erwachsene"
+          }
+        ]
+      },
+      {
+        "id": "us-height-percentile-calculator",
+        "label": "US-Größenperzentil-Rechner"
+      },
+      {
+        "id": "how-to-interpret-height-percentile-result",
+        "label": "So interpretieren Sie Ihr Größenperzentil-Ergebnis"
+      },
+      {
+        "id": "example-height-percentile-calculation",
+        "label": "Beispielrechnung für das Größenperzentil"
+      },
+      {
+        "id": "why-height-percentiles-are-used-in-pediatric-growth-monitoring",
+        "label": "Warum Größenperzentile in der pädiatrischen Wachstumsüberwachung verwendet werden"
+      },
+      {
+        "id": "try-the-height-and-weight-percentile-calculator",
+        "label": "Nutzen Sie den Größen- und Gewichtsperzentil-Rechner"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Häufig gestellte Fragen"
+      },
+      {
+        "id": "references",
+        "label": "Quellen"
+      }
+    ],
+    "tool": {
+      "veryTall": "Sehr groß",
+      "aboveAverage": "Überdurchschnittlich",
+      "average": "Durchschnittlich",
+      "belowAverage": "Unterdurchschnittlich",
+      "significantlyBelowAverage": "Deutlich unterdurchschnittlich",
+      "heightPercentileResult": "Größenperzentil-Ergebnis",
+      "shareTextLine1": "Mein Größenperzentil-Ergebnis:",
+      "shareTextLine2": "{height} cm | Alter {age} | {gender} | {country}",
+      "shareTextLine3": "Ergebnis: {percentile}. Perzentil — {label}",
+      "shareTextLine4": "berechnet auf heightcomparisoncalculator.com",
+      "heightField": "Körpergröße",
+      "ageField": "Alter",
+      "genderField": "Geschlecht",
+      "countryField": "Land",
+      "tallerThanText": "Größer als {percentile}% der {gender} im Alter von {age} in {country}. Basierend auf WHO- & CDC-Referenzdaten.",
+      "copyResult": "Ergebnis kopieren",
+      "copiedConfirmation": "✓ Kopiert!",
+      "closeButton": "Schließen",
+      "footerNote": "heightcomparisoncalculator.com · Nur zu Informationszwecken",
+      "percentileOrdinalSuffix": ".",
+      "unitCm": "cm",
+      "unitFtIn": "ft/in",
+      "heightLabel": "Körpergröße",
+      "heightPlaceholder": "z. B. 175",
+      "unitCmShort": "cm",
+      "feetPlaceholder": "5",
+      "feetAriaLabel": "Körpergröße in Fuß",
+      "unitFtShort": "ft",
+      "inchesPlaceholder": "9",
+      "inchesAriaLabel": "Körpergröße in Zoll",
+      "unitInShort": "in",
+      "ageYearsLabel": "Alter (Jahre)",
+      "agePlaceholder": "z. B. 25",
+      "genderLabel": "Geschlecht",
+      "genderMale": "♂ Männlich",
+      "genderFemale": "♀ Weiblich",
+      "countryLabel": "Land",
+      "errorInvalidHeight": "Bitte geben Sie eine gültige Körpergröße ein (30–280 cm).",
+      "errorInvalidAge": "Bitte geben Sie ein gültiges Alter ein (0–100).",
+      "enterYourDetails": "Geben Sie Ihre Daten ein",
+      "calculatingButton": "Wird berechnet...",
+      "calculateButton": "Mein Perzentil berechnen →",
+      "yourPercentile": "Ihr Perzentil",
+      "heightResultLabel": "Körpergröße",
+      "positionOnCurve": "Position auf der Bevölkerungskurve",
+      "percentileLabel": "Perzentil",
+      "interpretationText": "Sie sind größer als {percentile}% der {gender} im Alter von {age} in {country}. Das platziert Sie im Bereich {label}.",
+      "scaleShort": "Klein",
+      "scaleAvg": "Durchschnitt",
+      "scaleTall": "Groß",
+      "shareButton": "📤 Mein Ergebnis teilen",
+      "disclaimerLine1": "Nur zu Informationszwecken. Wenden Sie sich für eine klinische",
+      "disclaimerLine2": "Wachstumsbeurteilung an eine medizinische Fachkraft. Basierend auf WHO- & CDC-Daten."
+    },
+    "bellCurveIllustration": {
+      "interactiveIllustration": "Interaktive Illustration",
+      "heading": "Größenverteilung nach Perzentil",
+      "instructionBefore": "Bewegen Sie den Mauszeiger über eine Perzentilmarkierung, um diesen Bereich hervorzuheben. Der",
+      "purpleDot": "violette Punkt",
+      "instructionAfter": "zeigt einen Beispielwert im {samplePercentile}. Perzentil.",
+      "populationFrequency": "Bevölkerungshäufigkeit",
+      "xAxisLabel": "Körpergröße (relativ zum Bevölkerungsdurchschnitt)",
+      "sampleLabel": "Beispiel: {samplePercentile}. Perzentil",
+      "sampleSubLabel": "Größer als {samplePercentile}% der Gleichaltrigen",
+      "hoverPrompt": "Bewegen Sie den Mauszeiger über eine Perzentilmarkierung auf der Kurve, um ihre Bedeutung zu sehen.",
+      "ordinalSuffix": ".",
+      "percentileSuffix": ". Perzentil",
+      "hoveredDescription": "{label}. Eine Person hier ist größer als <pct>{percentile}%</pct> der Menschen desselben Alters und Geschlechts.",
+      "hideSampleDot": "Beispielpunkt ausblenden",
+      "showSampleDot": "Beispielpunkt anzeigen",
+      "footerNote": "Das 50. Perzentil ist der Median. Die Hälfte der Bevölkerung liegt darüber, die Hälfte darunter. Im 5. oder 95. Perzentil zu liegen ist nicht ungewöhnlich — es beschreibt lediglich die Position innerhalb der Verteilung. Basierend auf WHO- & CDC-Referenzdaten.",
+      "label5": "Deutlich unterdurchschnittlich",
+      "label25": "Unterdurchschnittlich",
+      "label50": "Durchschnittlich (Median)",
+      "label75": "Überdurchschnittlich",
+      "label95": "Außergewöhnlich groß"
+    },
+    "whoVsCdc": {
+      "yearsAbbrev": "J",
+      "referenceDataGuide": "Referenzdaten-Leitfaden",
+      "heading": "Welche Wachstumskurve verwendet dieser Rechner?",
+      "ageRangeSource": "Altersbereich → Datenquelle",
+      "switchPoint": "Alter 2 · Wechselpunkt",
+      "birthLabel": "Geburt",
+      "age5": "5 J.",
+      "age10": "10 J.",
+      "age15": "15 J.",
+      "age20": "20 J.",
+      "whoTimelineLabel": "WHO Child Growth Standards",
+      "whoTimelineNote": "Geburt bis 24 Monate · Liegelänge gemessen",
+      "whoAges": "0–2 Jahre",
+      "cdcTimelineLabel": "CDC Growth Charts",
+      "cdcTimelineNote": "2–20 Jahre · Stehgröße · US-Bevölkerungsdaten",
+      "cdcAges": "2–20 Jahre",
+      "growthCurvesSideBySide": "Wachstumskurven im Vergleich",
+      "whoChartTitle": "WHO Standards",
+      "whoChartSubtitle": "Geburt bis 24 Monate (Jungen)",
+      "cdcChartTitle": "CDC Growth Charts",
+      "cdcChartSubtitle": "2–20 Jahre (Jungen)",
+      "lengthAxisLabel": "Länge (cm)",
+      "heightAxisLabel": "Körpergröße (cm)",
+      "ageAxisLabel": "Alter (Jahre)",
+      "legendMedian": "50. (Median)",
+      "legend25_75": "25. / 75.",
+      "legend5_95": "5. / 95.",
+      "bottomNoteStrong": "Warum zwei Quellen?",
+      "bottomNoteText": "WHO-Standards wurden anhand von Kindern erstellt, die unter optimalen Bedingungen in sechs Ländern aufwuchsen, und dienen so als internationale Referenz für das frühe Wachstum. CDC-Kurven basieren auf US-Bevölkerungsdaten und sind der Standard in der amerikanischen klinischen Praxis für Kinder ab 2 Jahren. Dieser Rechner wechselt automatisch zwischen beiden, je nach eingegebenem Alter."
+    },
+    "exampleVisual": {
+      "eyebrow": "Visuelles Ergebnis · Beispielrechnung",
+      "heading": "Alter 10, männlich, 138 cm → 55. Perzentil",
+      "percentileScaleWhere": "Perzentilskala — Wo {percentile} liegt",
+      "zoneLabelBelow10": "Unter 10.",
+      "zoneLabel10to25": "10.–25.",
+      "zoneLabel25to75": "25.–75.",
+      "zoneLabel75to90": "75.–90.",
+      "zoneLabel90to100": "90.–100.",
+      "ordinalSuffix": ".",
+      "averageRangeLabel": "Durchschnittsbereich (25.–75.)",
+      "childComparisonText": "Dieses Kind ist größer als <strong>{count} von 100</strong> Jungen im Alter von {age} Jahren. Es liegt komfortabel innerhalb der normalen Wachstumsbandbreite.",
+      "positionOnCdcChart": "Position auf der CDC-Wachstumskurve",
+      "cdcChartTitle": "CDC-Wachstumskurve — Jungen (2–20 Jahre)",
+      "heightAxisLabel": "Körpergröße (cm)",
+      "ageAxisLabel": "Alter (Jahre)",
+      "sampleAgeHeight": "Alter 10 · 138 cm",
+      "samplePercentileLabel": "55. Perzentil",
+      "legend5th": "5.",
+      "legend25th": "25.",
+      "legend50th": "50.",
+      "legendMedian": "50. (Median)",
+      "legend75th": "75.",
+      "legend95th": "95.",
+      "legendSample": "Beispiel: 138 cm, Alter 10",
+      "footerNote": "Basierend auf klinischen CDC-Wachstumskurven (2000). Das schattierte grüne Band stellt den Durchschnittsbereich dar (25.–75. Perzentil). Ein Punkt innerhalb dieses Bandes zeigt konsistentes, gesundes Wachstum an."
+    }
+  },
+  "idealBodyWeight": {
+    "intro": {
+      "title": "Idealgewichts-Rechner",
+      "description": "<ibw>Idealgewicht (IBW)</ibw> ist eine Schätzung des mit guter Gesundheit verbundenen Gewichtsbereichs für eine bestimmte Körpergröße und ein bestimmtes Geschlecht. Dieser Idealgewichts-Rechner wendet drei etablierte klinische Formeln an: die Methoden <devine>Devine</devine>, <robinson>Robinson</robinson> und <hamwi>Hamwi</hamwi>, um einen Bereich statt einer einzelnen Zahl zu liefern. Das Tool funktioniert für Männer, Frauen und pädiatrische Patienten. Geben Sie Ihre Körpergröße und Ihr Geschlecht ein, um Ihr Idealgewicht sofort zu berechnen.",
+      "disclaimer": "(IBW ist eine klinische Referenz, kein Körperziel. Das Gewicht ist einer von vielen Gesundheitsmarkern. Besprechen Sie gewichtsbezogene Gesundheitsfragen immer mit einer qualifizierten medizinischen Fachkraft.)"
+    },
+    "howToCalculate": {
+      "title": "Wie man das Idealgewicht berechnet",
+      "p1": "Alle drei IBW-Formeln folgen derselben Logik. Sie starten von einem Grundgewicht bei genau 5 Fuß (152,4 cm) und addieren einen festen Betrag pro Zoll Körpergröße darüber. Die Formeln unterscheiden sich im Grundgewicht und im Zuwachs pro Zoll, weshalb sie für dieselbe Person leicht unterschiedliche Ergebnisse liefern.",
+      "p2": "Ben J. Devine stellte seine Formel 1974 vor, um Ärzten zu helfen, Medikamentendosierungen anhand von Körpergröße und Gewicht zu schätzen. Sie wurde zur meistzitierten Formel zur Berechnung des Idealgewichts in der klinischen Praxis.",
+      "stepsTitle": "So berechnen Sie das Idealgewicht Schritt für Schritt nach der Devine-Methode:",
+      "step1": "Messen Sie Ihre Körpergröße in Fuß und Zoll.",
+      "step2": "Ziehen Sie 5 Fuß ab, um die Anzahl der Zoll über der Grundgröße zu erhalten.",
+      "step3": "Multiplizieren Sie diese Zoll mit dem Zuwachs der Formel pro Zoll.",
+      "step4": "Addieren Sie das Ergebnis zum Grundgewicht der Formel für Ihr Geschlecht.",
+      "p3": "Der Rechner wendet alle drei Formeln gleichzeitig an. Sie erhalten einen Bereich statt einer einzelnen Zahl, was genauer widerspiegelt, was die Berechnung des Idealgewichts leisten kann und was nicht."
+    },
+    "formulas": {
+      "title": "Formeln zur Berechnung des Idealgewichts",
+      "description": "Die drei folgenden Formeln decken die meisten klinischen Anwendungsfälle ab. Jede wendet die Formel zur Berechnung des Idealgewichts als lineare Funktion der Körpergröße über 5 Fuß an. Alle wurden ursprünglich in Kilogramm hergeleitet.",
+      "tableSexHeader": "Geschlecht",
+      "tableFormulaHeader": "Formel",
+      "maleLabel": "Männlich",
+      "femaleLabel": "Weiblich",
+      "heightRowLabel": "Körpergröße",
+      "calculationRowLabel": "Berechnung (männlich)",
+      "devine": {
+        "title": "Devine-Formel",
+        "p1": "Ben J. Devine veröffentlichte seine Formel 1974. Sie wurde zur meistzitierten IBW-Formel in der klinischen Praxis. Der Zuwachs pro Zoll ist für Männer und Frauen mit 2,3 kg identisch, die Grundgewichte unterscheiden sich jedoch nach Geschlecht.",
+        "maleFormula": "50 kg + 2,3 kg pro Zoll über 5 Fuß",
+        "femaleFormula": "45,5 kg + 2,3 kg pro Zoll über 5 Fuß",
+        "exampleHeightValue": "175 cm = 5 Fuß 9 Zoll",
+        "inchesAboveLabel": "Zoll über 5 Fuß",
+        "inchesAboveValue": "9",
+        "calculationValue": "50 + (2,3 × 9)",
+        "resultLabel": "Devine-IBW",
+        "resultValue": "70,7 kg"
+      },
+      "robinson": {
+        "title": "Robinson-Formel",
+        "p1": "Die Robinson-Formel wurde 1983 als Weiterentwicklung der Devine-Gleichung veröffentlicht. Sie erhöht das männliche Grundgewicht auf 52 kg und senkt den Zuwachs pro Zoll auf 1,9 kg, was für größere Männer eine schlankere Schätzung ergibt. Das weibliche Grundgewicht steigt auf 49 kg bei einem Zuwachs von 1,7 kg. Robinson liefert bei großen Personen tendenziell das niedrigste IBW der drei Formeln.",
+        "maleFormula": "52 kg + 1,9 kg pro Zoll über 5 Fuß",
+        "femaleFormula": "49 kg + 1,7 kg pro Zoll über 5 Fuß",
+        "exampleHeightValue": "175 cm = 5 Fuß 9 Zoll",
+        "calculationValue": "52 + (1,9 × 9)",
+        "resultLabel": "Robinson-IBW",
+        "resultValue": "69,1 kg"
+      },
+      "hamwi": {
+        "title": "Hamwi-Formel",
+        "p1": "Die Hamwi-Formel ist die älteste der drei, veröffentlicht 1964. Sie verwendet einen höheren Zuwachs pro Zoll für Männer und liefert bei größeren Personen tendenziell die höchsten IBW-Schätzungen. Sie ist in der diätetischen und klinischen Ernährungspraxis nach wie vor verbreitet.",
+        "maleFormula": "48 kg + 2,7 kg pro Zoll über 5 Fuß",
+        "femaleFormula": "45,5 kg + 2,2 kg pro Zoll über 5 Fuß",
+        "exampleHeightValue": "175 cm = 5 Fuß 9 Zoll",
+        "calculationValue": "48 + (2,7 × 9)",
+        "resultLabel": "Hamwi-IBW",
+        "resultValue": "72,3 kg"
+      }
+    },
+    "women": {
+      "title": "Idealgewichts-Rechner für Frauen",
+      "p1": "Der Idealgewichts-Rechner für Frauen verwendet niedrigere Grundgewichte als die männlichen Versionen derselben Formeln. Dies spiegelt zwei biologische Tatsachen wider. Frauen haben einen höheren Anteil an Körperfett im Verhältnis zur fettfreien Masse. Frauen haben zudem im Durchschnitt eine geringere Knochendichte und Muskelmasse als Männer derselben Körpergröße.",
+      "p2": "Die Devine-Formel setzt das weibliche Grundgewicht bei 45,5 kg gegenüber 50 kg für Männer an. Die Robinson-Formel erhöht das weibliche Grundgewicht auf 49 kg. Das Ergebnis ist bei jeder Körpergröße eine niedrigere IBW-Schätzung im Vergleich zur männlichen Berechnung.",
+      "exampleTitle": "Beispiel für das weibliche IBW bei 5 Fuß 5 Zoll (165 cm):",
+      "exampleDevine": "Devine: 57,7 kg (127 lb)",
+      "exampleRobinson": "Robinson: 56,2 kg (124 lb)",
+      "exampleHamwi": "Hamwi: 56,4 kg (124 lb)",
+      "exampleRangeSummary": "Gesunder Bereich über alle Formeln: etwa 56 bis 58 kg",
+      "p3": "Faktoren wie Körperbau, durch Training aufgebaute Muskelmasse und hormonelle Schwankungen beeinflussen alle, wie ein gesundes Gewicht bei einer einzelnen Frau aussieht. Keine der Formeln berücksichtigt diese Variablen. Das Ergebnis des Idealgewichts-Rechners für Frauen ist eine Referenzspanne, kein zu erreichendes Ziel."
+    },
+    "men": {
+      "title": "Idealgewichts-Rechner für Männer",
+      "p1": "Der Idealgewichts-Rechner für Männer liefert bei jeder Körpergröße höhere Schätzungen als die weibliche Version. Dies spiegelt die im Durchschnitt größere Muskelmasse und Knochendichte bei männlichen Körpern wider. Muskeln wiegen pro Volumeneinheit mehr als Fett, sodass ein Mann und eine Frau derselben Körpergröße beide gesund sein können, obwohl sie sich im Gewicht deutlich unterscheiden.",
+      "exampleTitle": "Beispiel für das männliche IBW bei 5 Fuß 10 Zoll (178 cm):",
+      "exampleDevine": "Devine: 73 kg (161 lb)",
+      "exampleRobinson": "Robinson: 71 kg (157 lb)",
+      "exampleHamwi": "Hamwi: 75 kg (165 lb)",
+      "exampleRangeSummary": "Gesunder Bereich über alle Formeln: etwa 71 bis 75 kg",
+      "p2": "Stark trainierte Männer, die regelmäßig Gewichte heben, liegen häufig über ihrem IBW, obwohl sie einen niedrigen Körperfettanteil haben. In solchen Fällen ist das IBW eine weniger nützliche klinische Referenz als eine direkte Messung der Körperzusammensetzung. Die Berechnung des männlichen Idealgewichts liefert einen nützlichen Ausgangspunkt, ersetzt aber keine umfassende Gesundheitsbeurteilung."
+    },
+    "pediatrics": {
+      "title": "Idealgewichts-Rechner für Kinder",
+      "p1": "Die Formeln für Erwachsene gelten nicht für Kinder. Der Idealgewichts-Rechner für Kinder verwendet stattdessen alters- und größenbasierte Referenzwerte, da sich Kinderkörper noch entwickeln und sich ihr gesunder Gewichtsbereich mit dem Wachstum kontinuierlich verändert.",
+      "p2Before": "Die gängigste Methode zur Berechnung des Idealgewichts bei Kindern nutzt die Körpergröße, um das erwartete Gewicht anhand von Wachstumskurven zu schätzen. In der klinischen Praxis sind",
+      "cdcLinkText": "CDC growth charts",
+      "p2Middle": "und",
+      "whoLinkText": "WHO Child Growth Standards",
+      "p2After": "die Referenzstandards für die pädiatrische Wachstumsbeurteilung. Das IBW eines Kindes entspricht üblicherweise dem Gewicht, das dem 50. Perzentil für seine Körpergröße auf der entsprechenden Wachstumskurve zugeordnet ist.",
+      "p3": "Der Rechner wechselt automatisch zu dieser Wachstumskurven-Methode, wenn ein Alter unter 18 Jahren eingegeben wird. Das Ergebnis erscheint als Gewichtsbereich statt als einzelne Zahl. Bei Gewichtsfragen im Kindesalter sollten Sie immer mit einem Kinderarzt zusammenarbeiten. Die Wachstumsverfolgung über mehrere Untersuchungen ist aussagekräftiger als jede einzelne Messung."
+    },
+    "adjusted": {
+      "title": "Adjusted-Ideal-Body-Weight-Rechner",
+      "p1": "Der Adjusted-Ideal-Body-Weight-Rechner kommt in klinischen Situationen zum Einsatz, wenn das tatsächliche Gewicht eines Patienten mehr als 30 % über dessen IBW liegt. Ab diesem Punkt unterschätzt die alleinige Verwendung des IBW für die Medikamentendosierung die Stoffwechselaktivität, da ein Teil des überschüssigen Fettgewebes weiterhin metabolisch aktiv ist. Adjusted Body Weight korrigiert dies.",
+      "formulaTitle": "Adjusted-Body-Weight-Formel:",
+      "formulaText": "Adjusted BW = IBW + 0,4 × (tatsächliches Gewicht − IBW)",
+      "exampleTitle": "Beispielrechnung — tatsächliches Gewicht 100 kg, Devine-IBW 70 kg:",
+      "exampleResult": "= 70 + 0,4 × (100 − 70) = 70 + 12 = ",
+      "exampleResultValue": "82 kg",
+      "p2": "Der Faktor 0,4 spiegelt den geschätzten metabolisch aktiven Anteil des überschüssigen Gewichts wider. Adjusted Body Weight wird am häufigsten bei der Dosierung von Aminoglykosid-Antibiotika, bei Chemotherapie-Berechnungen und bei Anpassungen der Nierendosierung verwendet. Es ist kein Gewichtsziel, sondern ein pharmakokinetisches Werkzeug für klinische Dosierungsentscheidungen."
+    },
+    "percentIbw": {
+      "title": "Berechnung des prozentualen Idealgewichts",
+      "p1": "Um das prozentuale Idealgewicht zu berechnen, teilen Sie Ihr tatsächliches Gewicht durch Ihr IBW und multiplizieren das Ergebnis mit 100. So sehen Sie, wie Ihr aktuelles Gewicht im Vergleich zur Schätzung als Prozentsatz ausfällt.",
+      "formulaText": "Prozentuales IBW = (Tatsächliches Gewicht ÷ IBW) × 100",
+      "tableHeaderPercent": "Prozentuales IBW",
+      "tableHeaderStatus": "Gewichtsstatus",
+      "row1Percent": "Unter 70 %",
+      "row1Status": "Stark untergewichtig",
+      "row2Percent": "70 bis 89 %",
+      "row2Status": "Untergewichtig",
+      "row3Percent": "90 bis 110 %",
+      "row3Status": "Normalgewicht",
+      "row4Percent": "110 bis 120 %",
+      "row4Status": "Übergewichtig",
+      "row5Percent": "Über 120 %",
+      "row5Status": "Adipositas-Risikobereich",
+      "p2": "Das prozentuale IBW wird in klinischen Ernährungsbeurteilungen verwendet, um Patienten zu identifizieren, die eine ernährungsmedizinische Intervention benötigen. Ein prozentuales Idealgewicht unter 70 % ist mit einer erheblichen Mangelernährung verbunden. Werte über 120 % dienen als einer von mehreren Schwellenwerten bei adipositasbezogenen Dosierungsentscheidungen."
+    },
+    "healthyRange": {
+      "title": "Gesunder Gewichtsbereich",
+      "p1": "Der gesunde Gewichtsbereich liegt rund um Ihr IBW-Ergebnis, nicht an einem einzelnen Punkt. Da die drei Formeln für dieselbe Person leicht unterschiedliche Werte liefern, ergibt die Spanne zwischen dem niedrigsten und höchsten Ergebnis einen praktischen gesunden Gewichtsbereich. Bei den meisten Erwachsenen beträgt diese Spanne 3 bis 5 kg über alle drei Formeln hinweg.",
+      "illustrativeTitle": "Veranschaulichende Spanne — männlich, 5 Fuß 9 Zoll (175 cm):",
+      "belowLabel": "Unter IBW",
+      "belowValue": "Unter 69 kg",
+      "healthyLabel": "Gesund (69–73 kg)",
+      "healthyValue": "69–73 kg (gesund)",
+      "aboveLabel": "Über IBW",
+      "aboveValue": "73–88 kg",
+      "obesityLabel": "Adipositas-Risiko",
+      "obesityValue": "Über 88 kg"
+    },
+    "vsBmi": {
+      "title": "Idealgewicht vs. BMI",
+      "p1": "Body-Mass-Index und Idealgewicht messen unterschiedliche Dinge und beantworten unterschiedliche Fragen. Der BMI bewertet Ihre Gewichtskategorie, indem er das Gewicht in Kilogramm durch die Körpergröße in Metern zum Quadrat teilt. Er liefert eine Kategoriebezeichnung: Untergewicht, normal, Übergewicht oder Adipositas. Die Berechnung des Idealgewichts hingegen liefert ein angestrebtes Gewicht statt einer Kategoriebezeichnung.",
+      "tableHeaderMeasure": "Kennzahl",
+      "tableHeaderWhatItDoes": "Was sie zeigt",
+      "tableHeaderLimitation": "Hauptgrenze",
+      "row1Measure": "Idealgewicht",
+      "row1WhatItDoes": "Schätzt ein Zielgewicht anhand von Körpergröße und Geschlecht",
+      "row1Limitation": "Ignoriert Körperzusammensetzung, Körperbau und Alter",
+      "row2Measure": "Body-Mass-Index",
+      "row2WhatItDoes": "Klassifiziert den Gewichtsstatus anhand von Gewicht und Körpergröße",
+      "row2Limitation": "Gleiche Einschränkungen, berücksichtigt zudem keine geschlechtsspezifischen Unterschiede in der Körperzusammensetzung",
+      "p2": "Keine der beiden Kennzahlen berücksichtigt, wie sich das Gewicht auf Muskeln, Fett und Knochen verteilt. Eine Person mit hoher Muskelmasse kann ein normales IBW und einen hohen BMI aufweisen. Eine Person mit geringer Muskelmasse kann einen normalen BMI aufweisen und über ihrem IBW liegen. Für ein vollständiges Bild werden beide am besten zusammen mit Körperzusammensetzungsdaten einer medizinischen Fachkraft verwendet.",
+      "scrollButtonText": "Nach oben scrollen und jetzt berechnen ↑"
+    },
+    "references": {
+      "title": "Quellen",
+      "ref1": "Devine BJ (1974). Gentamicin therapy. Drug Intelligence and Clinical Pharmacy.",
+      "ref2": "Robinson JD et al. (1983). Estimation of ideal body weight. American Journal of Hospital Pharmacy.",
+      "ref3": "Hamwi GJ (1964). Changing dietary concepts. In: Diabetes Mellitus: Diagnosis and Treatment. American Diabetes Association.",
+      "ref4": "CDC Growth Charts. Centers for Disease Control and Prevention.",
+      "ref5": "WHO Child Growth Standards. World Health Organization."
+    },
+    "faq": [
+      {
+        "q": "Wie lautet die Definition des Idealgewichts?",
+        "a": "Idealgewicht (IBW) ist eine klinische Schätzung des Gewichtsbereichs, der mit dem geringsten Risiko chronischer Erkrankungen und den besten allgemeinen Gesundheitsergebnissen für eine bestimmte Körpergröße und ein bestimmtes Geschlecht verbunden ist. Es wurde ursprünglich zur Standardisierung der Medikamentendosierung entwickelt, wird heute jedoch breiter im Gesundheits- und Fitnessbereich eingesetzt."
+      },
+      {
+        "q": "Wie genau sind Formeln zur Berechnung des Idealgewichts?",
+        "a": "Sie sind nützliche statistische Schätzungen, haben aber deutliche Einschränkungen. IBW-Formeln unterscheiden nicht zwischen Muskelmasse und Körperfett. Ein sehr muskulöser Athlet könnte mehr wiegen als sein „ideales“ Gewicht und dabei äußerst gesund sein. Sie sollten als einer von vielen Gesundheitsindikatoren betrachtet werden, nicht als abschließendes Urteil über Ihren Gesundheitszustand."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen den Formeln von Devine, Robinson und Hamwi?",
+        "a": "Die Devine-Formel ist im medizinischen Bereich am weitesten verbreitet. Robinson entwickelte ein etwas schlankeres Modell speziell für größere Personen. Hamwi ist eine traditionellere Formel, die häufig in der Ernährungsberatung verwendet wird. Die meisten Menschen finden das beste Ergebnis, indem sie sich den Durchschnittsbereich aller drei Formeln ansehen."
+      },
+      {
+        "q": "Ist die Berechnung des Idealgewichts besser als der BMI?",
+        "a": "Keine der beiden Methoden ist perfekt. Der BMI liefert eine Kategorie (Untergewicht, normal usw.), während das IBW ein konkretes Zielgewicht liefert. Das IBW ist für Einzelpersonen oft intuitiver, kann aber wie der BMI die Körperzusammensetzung (Verhältnis von Muskeln zu Fett) nicht berücksichtigen."
+      }
+    ],
+    "toc": [
+      {
+        "id": "ideal-body-weight-calculator",
+        "label": "Idealgewichts-Rechner"
+      },
+      {
+        "id": "how-to-calculate-ideal-body-weight",
+        "label": "Wie man das Idealgewicht berechnet"
+      },
+      {
+        "id": "ideal-body-weight-calculation-formulas",
+        "label": "Formeln zur Berechnung des Idealgewichts",
+        "subItems": [
+          {
+            "id": "devine-formula",
+            "label": "Devine-Formel"
+          },
+          {
+            "id": "robinson-formula",
+            "label": "Robinson-Formel"
+          },
+          {
+            "id": "hamwi-formula",
+            "label": "Hamwi-Formel"
+          }
+        ]
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-women",
+        "label": "Idealgewichts-Rechner für Frauen"
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-men",
+        "label": "Idealgewichts-Rechner für Männer"
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-pediatrics",
+        "label": "Idealgewichts-Rechner für Kinder"
+      },
+      {
+        "id": "adjusted-ideal-body-weight-calculator",
+        "label": "Adjusted-Ideal-Body-Weight-Rechner"
+      },
+      {
+        "id": "percent-ideal-body-weight-calculation",
+        "label": "Berechnung des prozentualen Idealgewichts"
+      },
+      {
+        "id": "healthy-weight-range",
+        "label": "Gesunder Gewichtsbereich"
+      },
+      {
+        "id": "ideal-body-weight-vs-bmi",
+        "label": "Idealgewicht vs. BMI"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Häufig gestellte Fragen"
+      },
+      {
+        "id": "references",
+        "label": "Quellen"
+      }
+    ],
+    "tool": {
+      "title": "Idealgewichts-Rechner",
+      "description": "Nutzen Sie den Rechner, um Ihr Idealgewicht in Kilogramm oder Pfund zu ermitteln. Geben Sie Ihr Alter, Ihre Körpergröße, Ihr Geschlecht und Ihr aktuelles Gewicht ein, um zu sehen, wie stark Sie von der anhand dreier Formeln geschätzten Idealgewichtsspanne abweichen.",
+      "unitMetric": "Metrisch (kg / cm)",
+      "unitImperial": "Imperial (ft-in)",
+      "heightLabel": "Körpergröße",
+      "heightPlaceholder": "z. B. 175 ",
+      "unitCm": "cm",
+      "feetPlaceholder": "z. B. 5 ",
+      "feetAriaLabel": "Körpergröße in Fuß",
+      "unitFt": "ft",
+      "inchesPlaceholder": "z. B. 5 ",
+      "inchesAriaLabel": "Körpergröße in Zoll",
+      "unitIn": "in",
+      "sexLabel": "Geschlecht",
+      "sexMale": "Männlich",
+      "sexFemale": "Weiblich",
+      "currentWeightLabel": "Aktuelles Gewicht (optional — schaltet die Differenzanzeige frei)",
+      "weightPlaceholder": "z. B. 80",
+      "unitKg": "kg",
+      "invalidInputTitle": "Ungültige Eingabe",
+      "invalidInputText": "Bitte geben Sie eine gültige Körpergröße und ein gültiges Gewicht ein, um Ihre Ergebnisse zu berechnen.",
+      "ideaBodyWeightResultLabel": "Idealgewicht",
+      "rangeUnit": "kg (Bereich)",
+      "healthyWeightRangeLabel": "Gesunder Gewichtsbereich",
+      "differenceLabel": "Differenz zum aktuellen Gewicht",
+      "differenceNone": "—",
+      "differenceAbove": "+{amount} kg darüber",
+      "differenceBelow": "{amount} kg darunter",
+      "differenceWithin": "Innerhalb des Idealbereichs",
+      "devineYear": "Devine (1974)",
+      "robinsonYear": "Robinson (1983)",
+      "hamwiYear": "Hamwi (1964)",
+      "kgLabel": "kg",
+      "badgeFree": "Kostenlos",
+      "badgeNoAccount": "Kein Konto erforderlich",
+      "badgeResultsInKg": "Ergebnisse in kg ",
+      "badgeFormulas": "Basierend auf den Formeln von Devine, Robinson und Hamwi"
+    },
+    "healthyWeightRange": {
+      "intro1": "Ihr Idealgewichts-Ergebnis (IBW) ist eine formelbasierte Schätzung des Gewichts, das für Ihre Körpergröße und Ihr Geschlecht als angemessen gilt. Die vier Formeln, die dieser Rechner verwendet —",
+      "formulaNames": "Devine, Hamwi, Robinson und Miller",
+      "intro1After": "— wurden ursprünglich entwickelt, um Medikamentendosierungen in klinischen Umgebungen zu standardisieren. Sie waren nicht als ästhetische Ziele gedacht. Jede Formel liefert eine leicht unterschiedliche Zahl, und der Rechner zeigt alle vier an, damit Sie sehen können, wo sich die Schätzungen häufen.",
+      "intro2": "Keine der Formeln berücksichtigt Muskelmasse, Knochendichte oder Körperbau. Eine Person mit größerem Körperbau oder höherer Muskelmasse liegt naturgemäß über der IBW-Schätzung, ohne dass dies gesundheitlich bedenklich wäre. Betrachten Sie das Ergebnis als allgemeinen Referenzpunkt, nicht als exaktes Ziel.",
+      "healthyRangeQuestionTitle": "Was gilt als gesunder Gewichtsbereich?",
+      "healthyRangeTextBefore": "Die WHO definiert ein gesundes Gewicht als einen BMI zwischen",
+      "bmiRangeValue": "18,5 und 25 kg/m²",
+      "healthyRangeTextMiddle": ". Für die meisten Erwachsenen entspricht dies einem Fenster von etwa",
+      "windowValue": "14–16 kg",
+      "healthyRangeTextAfter": "rund um die mittlere IBW-Schätzung. Innerhalb dieser Spanne zu liegen, gilt als klinisch normal. Die oben genannten Formeln liegen in der Regel nahe der Mitte dieser Spanne.",
+      "underweightLabel": "Untergewicht",
+      "healthyBmiRangeLabel": "Gesunder BMI-Bereich",
+      "overweightLabel": "Übergewicht",
+      "bmiUnder185": "BMI < 18,5",
+      "bmiRangeShort": "18,5–25",
+      "bmiOver25": "> 25",
+      "distanceTableIntro": "Die folgende Tabelle zeigt, wie Sie den Abstand zwischen Ihrem aktuellen Gewicht und der IBW-Schätzung lesen:",
+      "distanceHeaderDistance": "Abstand von der IBW-Schätzung",
+      "distanceHeaderMeaning": "Was es nahelegt",
+      "distanceRow1Dist": "Innerhalb von ±3 kg",
+      "distanceRow1Meaning": "Sehr nah an der Formelschätzung. Deutlich innerhalb der normalen Schwankungsbreite.",
+      "distanceRow2Dist": "3–7 kg darüber",
+      "distanceRow2Meaning": "Leicht über der Schätzung. Je nach Körpergröße wahrscheinlich noch innerhalb des gesunden BMI-Bereichs.",
+      "distanceRow3Dist": "7–15 kg darüber",
+      "distanceRow3Meaning": "Deutlich über der IBW-Schätzung. Es lohnt sich, den BMI zu prüfen und mit einem Arzt zu sprechen.",
+      "distanceRow4Dist": "Mehr als 15 kg darüber",
+      "distanceRow4Meaning": "Deutlich über dem IBW. Eine klinische Untersuchung wird empfohlen.",
+      "distanceRow5Dist": "3–7 kg darunter",
+      "distanceRow5Meaning": "Leicht darunter. Kann noch innerhalb des gesunden BMI-Bereichs liegen. Beobachten Sie, ob das Gewicht weiter sinkt.",
+      "distanceRow6Dist": "Mehr als 7 kg darunter",
+      "distanceRow6Meaning": "Unter dem gesunden BMI-Schwellenwert. Wenden Sie sich an eine medizinische Fachkraft.",
+      "referenceTablesLabel": "Referenztabellen",
+      "referenceTablesTitle": "Gesundes Gewicht nach Körpergröße — Männer & Frauen",
+      "referenceTablesDescription": "IBW-Schätzungen aller vier Formeln sowie der gesunde BMI-Gewichtsbereich (18,5–25 kg/m²) für die häufigsten Körpergrößen bei Erwachsenen. Wechseln Sie zwischen kg und lbs. Bewegen Sie den Mauszeiger über eine Zeile, um sie hervorzuheben.",
+      "tabMen": "♂ Männer",
+      "tabWomen": "♀ Frauen",
+      "healthyBmiRangeWhoLabel": "Gesunder BMI-Bereich (WHO)",
+      "tableHeightCm": "Körpergröße (cm)",
+      "tableHeightFt": "Körpergröße (ft)",
+      "tableHealthyBmiRange": "Gesunder BMI-Bereich ({unit})",
+      "sourcesNote": "Quellen: Devine BJ (1974). Robinson JD et al. (1983). Miller DR et al. (1983). Hamwi GJ (1964). Der gesunde BMI-Bereich basiert auf dem von der WHO empfohlenen Schwellenwert von 18,5–25 kg/m². Diese Werte sind reine Referenzschätzungen und stellen keine medizinische Beratung dar."
+    }
+  },
+  "heightDifference": {
+    "intro": {
+      "title": "Höhendifferenz-Rechner",
+      "description": "Ein Höhendifferenz-Rechner vergleicht die Körpergrößen zweier Personen und ermittelt den Unterschied zwischen ihnen. Geben Sie zwei Körpergrößen in Zentimetern oder in Fuß und Zoll ein. Das Tool berechnet den Größenunterschied und den prozentualen Unterschied sofort. Vergleichen Sie sich in Sekunden mit einem Freund, einem Partner oder jeder anderen Person."
+    },
+    "calculateSection": {
+      "title": "Größenunterschied berechnen",
+      "description": "Nutzen Sie den unten stehenden Größenunterschied-Rechner. Geben Sie beide Körpergrößen ein, wählen Sie Ihre Einheit, und der Vergleich aktualisiert sich live.",
+      "badgeFree": "Kostenlos",
+      "badgeNoAccount": "Kein Konto erforderlich",
+      "badgeSupportsUnits": "Unterstützt cm und ft/in",
+      "badgeUpdatesLive": "Aktualisiert live"
+    },
+    "howToCalculate": {
+      "title": "Wie man den Größenunterschied berechnet",
+      "p1": "Die Berechnung des Größenunterschieds verwendet eine einzige Operation: Ziehen Sie die Körpergröße der kleineren Person von der Körpergröße der größeren Person ab. Der Höhendifferenz-Rechner erkennt automatisch, welche Person größer ist, sodass das Ergebnis unabhängig davon, welche Größe Sie zuerst eingeben, immer eine positive Zahl ist.",
+      "formulaTitle": "Formel für den Größenunterschied:",
+      "formulaText": "Größenunterschied = Größere Körpergröße − Kleinere Körpergröße",
+      "personALabel": "Person A",
+      "personAValue": "180 cm",
+      "personBLabel": "Person B",
+      "personBValue": "165 cm",
+      "differenceLabel": "Unterschied",
+      "differenceValue": "180 − 165 = 15 cm",
+      "p2": "Subtraktion ist die einzige beteiligte Operation. Der Höhendifferenz-Rechner führt diese aus, sobald beide Werte eingegeben sind. Es sind keine zusätzlichen Schritte erforderlich."
+    },
+    "percentage": {
+      "title": "Prozentualer Größenunterschied",
+      "p1": "Der prozentuale Unterschied fügt der reinen Differenz eine proportionale Dimension hinzu. Ein Unterschied von 10 cm zwischen zwei Personen, die beide über 180 cm groß sind, stellt eine deutlich kleinere relative Differenz dar als dieselben 10 cm zwischen zwei Personen um die 155 cm. Der Prozentsatz macht den Unterschied unabhängig von der absoluten Körpergröße aussagekräftig.",
+      "formulaTitle": "Formel für den prozentualen Unterschied:",
+      "formulaText": "Prozentualer Unterschied = (Größenunterschied ÷ Größere Körpergröße) × 100",
+      "heightDiffLabel": "Größenunterschied",
+      "heightDiffValue": "15 cm",
+      "tallerHeightLabel": "Größere Körpergröße",
+      "tallerHeightValue": "180 cm",
+      "calculationLabel": "Berechnung",
+      "calculationValue": "15 ÷ 180 × 100",
+      "percentDiffLabel": "Prozentualer Unterschied",
+      "percentDiffValue": "8,3 %",
+      "p2": "Das bedeutet, Person B ist relativ zu Person A um 8,3 % kleiner. Der Höhendifferenz-Rechner gibt diesen Wert automatisch zusammen mit der absoluten Differenz aus. Beide Werte aktualisieren sich live, sobald sich eine der Körpergrößen ändert."
+    },
+    "couple": {
+      "title": "Paar-Größenunterschied-Rechner",
+      "p1": "Der Vergleich der Körpergrößen zwischen romantischen Partnern ist eine der häufigsten Anwendungen eines Höhendifferenz-Rechners. Paare möchten wissen, wie der Unterschied auf Fotos wirkt, wie er sich zum Durchschnitt verhält, oder einfach aus Neugier. Das Tool funktioniert für zwei beliebige Personen auf dieselbe Weise.",
+      "globalAvgLabel": "Globaler Durchschnittsunterschied (Mann-Frau-Paare)",
+      "globalAvgValue": "12 bis 15 cm",
+      "feetInLabel": "In Fuß und Zoll",
+      "feetInValue": "etwa 5 bis 6 Zoll",
+      "p2": "Umfragedaten setzen den durchschnittlichen Größenunterschied bei Mann-Frau-Paaren weltweit bei etwa 12 bis 15 cm (etwa 5 bis 6 Zoll) an, wobei dies je nach Land und Person variiert. Es gibt keine Standarddefinition für einen normalen Größenunterschied bei Paaren. Die Zahlen sind einfach nur Zahlen."
+    },
+    "chartSection": {
+      "title": "Höhendifferenz-Tabelle",
+      "p1": "Die folgende Tabelle deckt gängige Größenpaarungen und deren Unterschiede ab. Nutzen Sie sie als schnelle Referenz, ohne Werte in das Tool einzugeben.",
+      "p2": "Der prozentuale Unterschied wächst mit der absoluten Differenz, hängt aber auch von der größeren Körpergröße ab. Ein Unterschied von 15 cm fällt proportional größer aus, wenn die größere Person 165 cm misst, als wenn sie 190 cm misst."
+    },
+    "visualSection": {
+      "title": "Visueller Größenvergleich",
+      "p1": "Ein visueller Größenvergleich stellt den Unterschied zwischen zwei Personen als proportionale Grafik statt nur als Zahl dar. Ist eine Person 10 % größer, wird ihr Balken auf dem Bildschirm 10 % höher dargestellt. Der Unterschied wird sofort erkennbar, ohne Zahlen lesen zu müssen.",
+      "p2": "Das ist besonders nützlich, wenn die reine Zahl mehrdeutig ist. Ein Unterschied von 10 cm zwischen zwei Personen um die 160 cm wirkt ganz anders als derselbe Unterschied zwischen zwei Personen über 185 cm. Der Höhendifferenz-Rechner erzeugt diese skalierte Visualisierung automatisch aus den eingegebenen Werten."
+    },
+    "unitsSection": {
+      "title": "Größenunterschied in verschiedenen Einheiten",
+      "p1": "Sie können den Größenunterschied in Zentimetern oder in Fuß und Zoll berechnen. Der Wechsel der Einheit rechnet Eingaben und Ergebnis gleichzeitig um. Vor der Eingabe ist keine manuelle Umrechnung nötig.",
+      "tableHeaderPersonA": "Person A",
+      "tableHeaderPersonB": "Person B",
+      "tableHeaderDifferenceCm": "Unterschied (cm)",
+      "tableHeaderDifferenceIn": "Unterschied (Zoll)"
+    },
+    "cta": {
+      "title": "Testen Sie den Höhendifferenz-Rechner",
+      "descriptionLine1": "Geben Sie oben zwei Körpergrößen ein, um den Größenunterschied sofort zu berechnen.",
+      "descriptionLine2": "Der visuelle Vergleich und der prozentuale Unterschied aktualisieren sich, während Sie tippen.",
+      "feature1": "Unterschied und prozentualer Unterschied",
+      "feature2": "Proportionaler visueller Vergleich",
+      "feature3": "Unterstützt cm und ft/in",
+      "feature4": "Kostenlos, kein Konto nötig, jedes Gerät",
+      "buttonText": "Nach oben scrollen und jetzt vergleichen ↑"
+    },
+    "references": {
+      "title": "Quellen",
+      "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016.",
+      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE."
+    },
+    "faq": [
+      {
+        "q": "Was ist ein normaler Größenunterschied zwischen Paaren?",
+        "a": "Es gibt keinen festen Standard. Umfragedaten setzen den durchschnittlichen Unterschied bei Mann-Frau-Paaren weltweit bei etwa 12 bis 15 cm (5 bis 6 Zoll) an. Der Paar-Größenunterschied-Rechner zeigt den Unterschied zwischen zwei beliebigen Körpergrößen. Was als normal gilt, variiert je nach Land, Kultur und persönlicher Vorliebe."
+      },
+      {
+        "q": "Wie berechnet man den Größenunterschied?",
+        "a": "Ziehen Sie die Körpergröße der kleineren Person von der Körpergröße der größeren Person ab: Größenunterschied = Größere Körpergröße − Kleinere Körpergröße. Bei 180 cm und 165 cm beträgt der Unterschied 15 cm. Um den Prozentsatz zu erhalten, teilen Sie 15 durch 180 und multiplizieren mit 100, was 8,3 % ergibt."
+      },
+      {
+        "q": "Kann ein Höhendifferenz-Rechner den prozentualen Unterschied anzeigen?",
+        "a": "Ja. Dieser Höhendifferenz-Rechner gibt sowohl die absolute Differenz als auch den prozentualen Unterschied aus. Der Prozentsatz wird relativ zur Körpergröße der größeren Person berechnet und aktualisiert sich automatisch, sobald sich einer der Werte ändert."
+      },
+      {
+        "q": "Welche Einheiten können in einem Höhendifferenz-Rechner verwendet werden?",
+        "a": "Dieser Höhendifferenz-Rechner unterstützt Zentimeter und Fuß/Zoll. Sie können die Einheit jederzeit wechseln, und sowohl die Eingaben als auch das Ergebnis rechnen sich automatisch um. Eine manuelle Umrechnung ist nicht erforderlich."
+      }
+    ],
+    "toc": [
+      {
+        "id": "calculate-height-difference",
+        "label": "Größenunterschied berechnen"
+      },
+      {
+        "id": "how-to-calculate-height-difference",
+        "label": "Wie man den Größenunterschied berechnet"
+      },
+      {
+        "id": "height-difference-percentage",
+        "label": "Prozentualer Größenunterschied"
+      },
+      {
+        "id": "couple-height-difference-calculator",
+        "label": "Paar-Größenunterschied-Rechner"
+      },
+      {
+        "id": "height-difference-chart",
+        "label": "Höhendifferenz-Tabelle"
+      },
+      {
+        "id": "visual-height-comparison",
+        "label": "Visueller Größenvergleich"
+      },
+      {
+        "id": "height-difference-in-different-units",
+        "label": "Größenunterschied in verschiedenen Einheiten"
+      },
+      {
+        "id": "try-the-height-difference-calculator",
+        "label": "Testen Sie den Höhendifferenz-Rechner"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Häufig gestellte Fragen"
+      },
+      {
+        "id": "references",
+        "label": "Quellen"
+      }
+    ],
+    "tool": {
+      "unitMetric": "Metrisch (cm)",
+      "unitImperial": "Imperial (ft/in)",
+      "person1Label": "Person 1",
+      "person2Label": "Person 2",
+      "cmPlaceholder": "Zentimeter",
+      "ftPlaceholder": "Fuß",
+      "inPlaceholder": "Zoll",
+      "unitCm": "cm",
+      "unitFt": "ft",
+      "unitIn": "in",
+      "heightDifferenceLabel": "Größenunterschied",
+      "percentDifferenceLabel": "% Unterschied",
+      "isTallerText": "{person} ist größer",
+      "tallerPersonLabel": "Größere Person",
+      "visualComparisonLabel": "Visueller Vergleich",
+      "enterBothHeightsPrompt": "Geben Sie oben beide Körpergrößen ein, um den Vergleich zu sehen."
+    },
+    "coupleCalc": {
+      "partner1Label": "Partner 1",
+      "partner2Label": "Partner 2",
+      "pctTallerText": "{pct} % größer",
+      "resultSentence": "{p1} ({h1} cm) ist <strong>{diff} cm ({pct} %) größer</strong> als {p2} ({h2} cm)"
+    },
+    "chartTable": {
+      "headerPersonA": "Person A",
+      "headerPersonB": "Person B",
+      "headerDifference": "Unterschied",
+      "headerPercentDifference": "% Unterschied"
+    },
+    "visualComp": {
+      "person1Label": "Person 1",
+      "person2Label": "Person 2",
+      "pairButtonText": "{h1} cm vs {h2} cm",
+      "diffCmText": "{diff} cm Unterschied",
+      "isTallerText": "{person} ist größer"
+    }
+  },
+  "averageHeightByCountry": {
+    "h1": "Durchschnittsgröße nach Land",
+    "intro": {
+      "description": "Die durchschnittliche Körpergröße variiert stärker, als die meisten Menschen erwarten. Die Lücke zwischen den größten und kleinsten Bevölkerungen der Welt beträgt bei Männern fast 24 cm und bei Frauen 21 cm. Diese Seite vergleicht die durchschnittliche menschliche Körpergröße weltweit für beide Geschlechter, von den Niederlanden an der Spitze bis Timor-Leste am unteren Ende, basierend auf Daten der <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> und der <wpr>World Population Review</wpr>. Männer und Frauen folgen demselben groben geografischen Muster, wobei Nordeuropa an der Spitze steht und Teile Süd- und Zentralasiens am unteren Ende liegen."
+    },
+    "globalTable": {
+      "title": "Durchschnittsgröße nach Land (Globale Tabelle)",
+      "unitToggle": {
+        "metric": "Metrisch (cm)",
+        "imperial": "US (ft/in)"
+      },
+      "description": "Die folgende Tabelle zeigt die durchschnittliche Körpergröße von Männern nach Land, die durchschnittliche Körpergröße von Frauen sowie den kombinierten Durchschnitt über 46 Länder. Klicken Sie auf eine Spaltenüberschrift, um zu sortieren. Nutzen Sie das Suchfeld, um ein bestimmtes Land zu finden.",
+      "searchPlaceholder": "Länder suchen...",
+      "tableHeaders": {
+        "rank": "Rang",
+        "country": "Land",
+        "avgMale": "Ø Männer",
+        "avgFemale": "Ø Frauen"
+      },
+      "noResults": "Keine Länder gefunden, die zu \"{query}\" passen",
+      "sourceNote": "Quelle: NCD Risk Factor Collaboration (NCD-RisC) / World Population Review. Erwachsene im Alter von ca. 19 Jahren."
+    },
+    "common": {
+      "tabMen": "Männer",
+      "tabWomen": "Frauen",
+      "tabMale": "Männlich",
+      "tabFemale": "Weiblich"
+    },
+    "tallestCountries": {
+      "title": "Die größten Länder der Welt",
+      "barsLabelMen": "Top 10 größte Nationen — Durchschnittliche Körpergröße Männer (cm)",
+      "barsLabelWomen": "Top 10 größte Nationen — Durchschnittliche Körpergröße Frauen (cm)",
+      "captionMen": "Niederländische Männer sind mit durchschnittlich 183,8 cm die größten weltweit erfassten Landesdurchschnitte. Acht der zehn größten Nationen für Männer liegen in Europa.",
+      "captionWomen": "Niederländische und montenegrinische Frauen sind mit durchschnittlich 170,4 cm bzw. 170,0 cm die größten erfassten weiblichen Bevölkerungen. Lettland und Estland folgen dicht dahinter.",
+      "paragraph1": "Die Niederlande führen seit Jahrzehnten die globale Rangliste der Männergröße an: Männer sind im Durchschnitt 183,8 cm groß, knapp unter 6'1\". Dänemark liegt bei 181,9 cm, Deutschland bei 180,3 cm und Norwegen bei 180,5 cm.",
+      "paragraph2": "Drei Faktoren verstärken sich in dieser Ländergruppe gegenseitig: reichlicher Milchkonsum von früher Kindheit an, ein starkes öffentliches Gesundheitssystem, das Krankheiten während der Wachstumsjahre reduziert, sowie eine langfristige genetische Selektion in gut ernährten Bevölkerungen.",
+      "paragraph3": "Montenegro und Estland haben in jüngster Zeit viele traditionell große westeuropäische Nationen überholt, was die raschen Verbesserungen des Lebensstandards nach der postsowjetischen Zeit widerspiegelt."
+    },
+    "shortestCountries": {
+      "title": "Die kleinsten Länder der Welt",
+      "barsLabelMen": "10 kleinste Nationen — Durchschnittliche Körpergröße Männer (cm)",
+      "barsLabelWomen": "10 kleinste Nationen — Durchschnittliche Körpergröße Frauen (cm)",
+      "captionMen": "Männer aus Timor-Leste sind mit durchschnittlich 159,8 cm der kleinste männliche Durchschnitt aller erfassten Nationen. Sechs der zehn kleinsten Länder für Männer liegen in Süd- oder Südostasien.",
+      "captionWomen": "Guatemaltekische und philippinische Frauen sind mit rund 149 cm die niedrigsten weiblichen Durchschnittswerte in Amerika bzw. Südostasien.",
+      "paragraph1": "Die kleinsten Bevölkerungen befinden sich überwiegend in Süd- und Südostasien sowie Mittelamerika. Timor-Leste verzeichnet weltweit den niedrigsten kombinierten Durchschnitt, dicht gefolgt von Guatemala und Laos.",
+      "paragraph2": "In Guatemala ist fast ein Drittel der Kinder unter fünf Jahren von chronischer Mangelernährung betroffen, was die Skelettentwicklung direkt beeinträchtigt. Bangladesch und Nepal stehen vor ähnlichen Einschränkungen: proteinarme Ernährung, eingeschränkter Zugang zur Gesundheitsversorgung und strukturelle Armut, die das Wachstumspotenzial von Geburt an begrenzt.",
+      "paragraph3": "Diese Werte sind keine genetischen Obergrenzen. Sie sind größtenteils Zeichen historischer Unterentwicklung und umkehrbar, wie Südkorea und China im Laufe des 20. Jahrhunderts gezeigt haben."
+    },
+    "tallestShortest": {
+      "title": "Größte und kleinste Länder nach Durchschnittsgröße",
+      "tabs": {
+        "tallestVsShortest": "Größte vs. Kleinste",
+        "top10Tallest": "Top 10 Größte",
+        "bottom10Shortest": "Bottom 10 Kleinste"
+      },
+      "chartTitleTallestVsShortest": "10 Länder über die gesamte globale Größenspanne — Männer (blau) und Frauen (türkis)",
+      "chartTitleTop10": "Top 10 größte Nationen — Männer vs. Frauen",
+      "chartTitleBottom10": "10 kleinste Nationen — Männer vs. Frauen",
+      "caption": "In allen Bevölkerungen sind Männer 12–15 cm größer als Frauen. Diese Differenz bleibt unabhängig vom allgemeinen Größenniveau konstant — sie ist in den Niederlanden nahezu identisch mit der in Bangladesch.",
+      "paragraph": "Die Durchschnittsgröße variiert stark aufgrund von Genetik, Ernährungsqualität, Gesundheit im Kindesalter und wirtschaftlicher Entwicklung. Nordeuropäische Bevölkerungen zählen durchgehend zu den größten, während einige südasiatische und mittelamerikanische Länder aufgrund historischer Ernährungseinschränkungen niedrigere Durchschnittswerte aufweisen."
+    },
+    "averageMale": {
+      "title": "Durchschnittliche Körpergröße von Männern nach Land",
+      "paragraph1": "Die durchschnittliche Körpergröße eines Mannes weltweit beträgt etwa 171 cm (5'7\"). Diese Zahl verdeckt eine große Bandbreite, von niederländischen Männern mit 183,8 cm bis hinunter zu Timor-Leste mit 159,8 cm. Nord- und osteuropäische Männer sind weltweit die größte Gruppe, mit einem Durchschnitt von 178 bis 184 cm. Nordamerikaner und Australier liegen im Bereich von 176 bis 179 cm.",
+      "paragraph2": "Japan liegt mit 170,8 cm merklich kleiner als Südkorea mit 175,5 cm — eine Lücke, die sich vergrößert hat, da sich Ernährung und Gesundheitsversorgung in Südkorea nach dem Wirtschaftsboom der 1960er-Jahre schneller verbesserten. Der Iran liegt mit 175,6 cm im Mittelfeld. Indien mit 166,5 cm und Bangladesch mit 163 cm liegen am unteren Ende der asiatischen Gruppe. Guatemala mit 163,4 cm und Timor-Leste mit 159,8 cm spiegeln die am stärksten dokumentierten Ernährungseinschränkungen wider."
+    },
+    "averageFemale": {
+      "title": "Durchschnittliche Körpergröße von Frauen nach Land",
+      "paragraph1": "Die durchschnittliche Körpergröße einer Frau weltweit beträgt etwa 159 cm (5'3\"). Niederländische und montenegrinische Frauen mit durchschnittlich 170,4 cm bzw. 170,0 cm sind die größten erfassten weiblichen Bevölkerungen. Russland liegt mit 164,5 cm durchgehend in globalen Ranglisten neben osteuropäischen Ländern, die den Großteil der Top Ten ausmachen.",
+      "paragraph2": "Südkoreanische Frauen sind mit 163,2 cm merklich größer als japanische Frauen mit 158,0 cm — eine Lücke, die sich im letzten halben Jahrhundert vergrößert hat. Philippinische Frauen sind im Durchschnitt 149,6 cm groß und guatemaltekische Frauen 149,4 cm, der niedrigste verifizierte weibliche Durchschnitt in Amerika. Die durchschnittliche Körpergröße von Frauen in Japan lag in den 1950er-Jahren bei etwa 148 cm und ist seitdem um ganze zehn Zentimeter gestiegen — einer der stärksten dokumentierten Anstiege bei einer weiblichen Bevölkerung."
+    },
+    "maleAndFemale": {
+      "title": "Durchschnittliche Körpergröße von Männern und Frauen",
+      "barsLabelMale": "Durchschnittliche Körpergröße Männer (cm)",
+      "barsLabelFemale": "Durchschnittliche Körpergröße Frauen (cm)",
+      "callout": "In praktisch allen Bevölkerungen sind Männer 12 bis 15 Zentimeter größer als Frauen. Diese Differenz bleibt über sehr unterschiedliche absolute Größenbereiche hinweg konstant — der Unterschied in den Niederlanden ist ungefähr derselbe wie in Bangladesch. Er spiegelt hormonelle Unterschiede während der Pubertät wider: Testosteron treibt bei Männern einen längeren Wachstumsschub an, während der frühere Östrogeneinsatz bei Frauen die Wachstumsfugen früher schließt. Das geschlechtsspezifische Gefälle wird durch Ernährung oder wirtschaftliche Entwicklung nicht wesentlich beeinflusst."
+    },
+    "selectedCountries": {
+      "title": "Durchschnittsgröße in ausgewählten Ländern",
+      "countries": {
+        "netherlands": {
+          "name": "Niederlande",
+          "paragraph": "Niederländische Männer führen seit Jahrzehnten die globale Rangliste an. Milchreiche Ernährung und eine allgemeine Gesundheitsversorgung treiben dieses Ergebnis an."
+        },
+        "unitedKingdom": {
+          "name": "Vereinigtes Königreich",
+          "paragraph": "Das Vereinigte Königreich liegt im europäischen Mittelfeld. Die Körpergröße variiert regional — Nordengland und Schottland tendieren zu etwas größeren Durchschnittswerten."
+        },
+        "japan": {
+          "name": "Japan",
+          "paragraph": "Die Körpergröße in Japan ist seit den 1950er-Jahren stark gestiegen. Südkoreanische Männer mit 175,5 cm haben ihre japanischen Nachbarn inzwischen überholt."
+        },
+        "bangladesh": {
+          "name": "Bangladesch",
+          "paragraph": "Hohe Raten kindlicher Mangelernährung haben das Wachstum historisch eingeschränkt. Städtische Bevölkerungen zeigen in den letzten Jahrzehnten moderate Zuwächse."
+        },
+        "iran": {
+          "name": "Iran",
+          "paragraph": "Einer der am stärksten dokumentierten Anstiege im Nahen Osten — die durchschnittliche Körpergröße von Männern ist über 40 Jahre um schätzungsweise 5 bis 6 cm gestiegen."
+        },
+        "canada": {
+          "name": "Kanada",
+          "paragraph": "Kanadas Werte spiegeln die Australiens eng wider und zeigen eine gut ernährte Bevölkerung mit hohem Einkommen. Das Wachstum stagniert seit den 1990er-Jahren."
+        },
+        "ireland": {
+          "name": "Irland",
+          "paragraph": "Irland liegt im oberen Viertel der europäischen Rangliste. Die Körpergröße ist seit Mitte des 20. Jahrhunderts stetig gestiegen."
+        },
+        "sriLanka": {
+          "name": "Sri Lanka",
+          "paragraph": "Städtische Bevölkerungen in Colombo zeigen über zwei Generationen hinweg messbare Größenzuwächse. Ländliche Gebiete hinken aufgrund von Ernährungsunsicherheit hinterher."
+        },
+        "southKorea": {
+          "name": "Südkorea",
+          "paragraph": "Einer der größten dokumentierten generationenübergreifenden Größenanstiege überhaupt — Männer gewannen über zwei Generationen nach dem Krieg rund 6 cm hinzu."
+        },
+        "india": {
+          "name": "Indien",
+          "paragraph": "Indiens landesweiter Durchschnitt verdeckt große regionale Unterschiede. Männer im Punjab sind im Durchschnitt etwa 172 bis 174 cm groß. Städtische Gebiete zeigen durchgehende Zuwächse."
+        },
+        "usa": {
+          "name": "USA",
+          "paragraph": "Die USA lagen einst weltweit auf Platz drei. Heute liegen sie bei Männern etwa auf Platz 47, was eine Ernährungsqualität widerspiegelt, die sich nach den 1970er-Jahren von der europäischer Vergleichsländer entfernt hat."
+        },
+        "denmark": {
+          "name": "Dänemark",
+          "paragraph": "Dänemark rangiert durchgehend in den globalen Top Fünf. Ein starkes öffentliches Gesundheitssystem und hoher Milchkonsum von früher Kindheit an tragen dazu bei."
+        }
+      }
+    },
+    "chartForMen": {
+      "title": "Größendiagramm für Männer",
+      "paragraph": "Das folgende Diagramm zeigt, wie sich die Größenrichtwerte für Männer über die wichtigsten Weltregionen verteilen, von Nordeuropa an der Spitze bis Mittelamerika am unteren Ende. Die Daten auf Länderebene variieren innerhalb jeder Region.",
+      "barsLabel": "Ungefähre regionale durchschnittliche Körpergröße Männer (cm)",
+      "caption": "Die regionalen Werte sind gewichtete Durchschnitte. Einzelne Länder innerhalb jeder Region können über oder unter dem angezeigten Bereich liegen. Quelle: NCD-RisC und World Population Review."
+    },
+    "globalAverage": {
+      "title": "Globale Durchschnittsgröße",
+      "maleStatLabel": "Globale durchschnittliche Körpergröße Männer",
+      "femaleStatLabel": "Globale durchschnittliche Körpergröße Frauen",
+      "paragraph1": "<who>Die World Health Organization</who> und die NCD Risk Factor Collaboration beziffern die globale durchschnittliche Körpergröße von Männern auf etwa 171 cm und die von Frauen auf etwa 159 cm. Diese gewichteten Werte liegen niedriger als die meisten westlichen Landesdurchschnitte, da sie die großen Bevölkerungen Süd- und Südostasiens berücksichtigen.",
+      "paragraph2": "Der globale Wert steigt seit Anfang des 20. Jahrhunderts, mit den dramatischsten Zuwächsen in Ostasien. Südkorea und China gewannen seit den 1950er-Jahren pro Generation etwa 5 bis 8 cm hinzu. Die Zuwächse in Westeuropa, die früher einsetzten, stagnieren seit den 1980er-Jahren weitgehend.",
+      "regionMap": {
+        "colourScaleLabel": "Farbskala — durchschnittliche Körpergröße Männer nach Region",
+        "tallestLabel": "180+ cm (größte)",
+        "shortestLabel": "≤162 cm (kleinste)",
+        "regions": {
+          "northernEurope": {
+            "name": "Nordeuropa",
+            "ex": "Niederlande, Dänemark, Norwegen"
+          },
+          "easternEurope": {
+            "name": "Osteuropa",
+            "ex": "Serbien, Ukraine, Polen"
+          },
+          "westernEurope": {
+            "name": "Westeuropa",
+            "ex": "Deutschland, Frankreich, Vereinigtes Königreich"
+          },
+          "northAmericaOceania": {
+            "name": "Nordamerika/Ozeanien",
+            "ex": "Kanada, USA, Australien"
+          },
+          "middleEast": {
+            "name": "Naher Osten",
+            "ex": "Iran, Türkei"
+          },
+          "eastAsia": {
+            "name": "Ostasien",
+            "ex": "China, Südkorea, Japan"
+          },
+          "latinAmerica": {
+            "name": "Lateinamerika",
+            "ex": "Brasilien, Mexiko"
+          },
+          "southSeAsia": {
+            "name": "Süd-/Südostasien",
+            "ex": "Indien, Indonesien, Nepal"
+          },
+          "centralAmerica": {
+            "name": "Mittelamerika",
+            "ex": "Guatemala, Honduras"
+          }
+        }
+      }
+    },
+    "extremes": {
+      "tallestMan": {
+        "title": "Größter Mann der Welt",
+        "paragraph": "Robert Wadlow aus Alton, Illinois, bleibt mit 272 cm (8'11\") die größte Person der dokumentierten Menschheitsgeschichte. Seine Hypophyse produzierte von Geburt an unkontrolliert Wachstumshormon, und seine Körpergröße hatte ihren Höhepunkt noch nicht erreicht, als er 1940 im Alter von 22 Jahren starb. Der Guinness-Rekord für den größten lebenden Mann gehört dem Türken Sultan Kösen mit 251 cm (8'3\"), dessen Hypophysentumor operativ behandelt wurde, wodurch das weitere Wachstum gestoppt wurde."
+      },
+      "shortestMan": {
+        "title": "Kleinster Mann der Welt",
+        "paragraph": "Chandra Bahadur Dangi aus Nepal, 2012 von Guinness World Records verifiziert, war mit 54,6 cm (1'9\") der kleinste je dokumentierte erwachsene Mann. Er wurde 75 Jahre alt und arbeitete als Bauer und Handwerker. Er wurde von Guinness erstmals gemessen, als er bereits in seinen Siebzigern war — bemerkenswert angesichts der gesundheitlichen Komplikationen, die häufig mit schweren Wachstumsstörungen einhergehen."
+      },
+      "tallestFemale": {
+        "title": "Größte Frau der Welt",
+        "paragraph": "Zeng Jinlian aus der chinesischen Provinz Hunan hält mit 246,3 cm (8'1\") den Rekord für die größte Frau in der verifizierten medizinischen Geschichte. Sie wurde 1964 geboren, wuchs aufgrund von Hypophysengigantismus rasch und starb 1982 im Alter von 17 Jahren. Der aktuelle Rekord unter den Lebenden gehört der Türkin Rumeysa Gelgi mit 215,2 cm (7'1\"), einer Webentwicklerin und Behindertenaktivistin, die mehrere Guinness-Titel hält."
+      },
+      "shortestFemale": {
+        "title": "Kleinste Frau der Welt",
+        "paragraph": "Jyoti Amge aus Nagpur, Indien, hält seit 2011 mit 62,8 cm (2'1\") den Guinness-Weltrekord für die kleinste lebende Frau. Ihre Erkrankung ist Achondroplasie, die häufigste Form von Kleinwuchs. Sie ist außerdem eine aktive Bollywood-Schauspielerin, die in der US-amerikanischen Fernsehserie American Horror Story mitwirkte."
+      },
+      "dataCards": {
+        "tallestManEver": {
+          "label": "Größter Mann aller Zeiten",
+          "name": "Robert Wadlow",
+          "value": "272 cm",
+          "meta": "8'11\" · USA · gest. 1940"
+        },
+        "shortestManEver": {
+          "label": "Kleinster Mann aller Zeiten",
+          "name": "Chandra Bahadur Dangi",
+          "value": "54,6 cm",
+          "meta": "1'9\" · Nepal · gest. 2015"
+        },
+        "tallestWomanEver": {
+          "label": "Größte Frau aller Zeiten",
+          "name": "Zeng Jinlian",
+          "value": "246,3 cm",
+          "meta": "8'1\" · China · gest. 1982"
+        },
+        "shortestLivingWoman": {
+          "label": "Kleinste lebende Frau",
+          "name": "Jyoti Amge",
+          "value": "62,8 cm",
+          "meta": "2'1\" · Indien"
+        }
+      }
+    },
+    "distribution": {
+      "title": "Verteilung der menschlichen Körpergröße",
+      "bellCurve": {
+        "globalAvgLabel": "Globaler Durchschnitt ≈ {mean} cm",
+        "axisLabel": "Körpergröße (cm) — {label}",
+        "male": {
+          "label": "globale männliche Bevölkerung",
+          "pctLabel": "68 % der Männer liegen innerhalb ±1 Standardabweichung",
+          "band1": "68 % der Männer — innerhalb ±1σ (≈164–178 cm)",
+          "band2": "95 % der Männer — innerhalb ±2σ (≈157–185 cm)"
+        },
+        "female": {
+          "label": "globale weibliche Bevölkerung",
+          "pctLabel": "68 % der Frauen liegen innerhalb ±1 Standardabweichung",
+          "band1": "68 % der Frauen — innerhalb ±1σ (≈153–165 cm)",
+          "band2": "95 % der Frauen — innerhalb ±2σ (≈147–171 cm)"
+        }
+      },
+      "legendNote": "Die globale durchschnittliche Körpergröße von Männern beträgt etwa 171 cm bei einer Standardabweichung von 7 cm. Ein Mann mit 185 cm liegt rund zwei Standardabweichungen über dem Mittelwert und ist damit größer als etwa 97,5 % der männlichen Weltbevölkerung.",
+      "dataSourcesLabel": "Datenquellen:",
+      "dataSourcesText": "NCD Risk Factor Collaboration (NCD-RisC), \"A century of trends in adult human height,\" eLife 2016. · World Population Review, Average Height by Country 2026. · World Health Organization (WHO), Global Health Observatory.",
+      "paragraph1": "Die menschliche Körpergröße folgt einer Normalverteilung. Wird sie über eine große Bevölkerung aufgetragen, ergeben die Daten eine nahezu perfekte Glockenkurve — die meisten Personen liegen nahe am Mittelwert, während an den Extremen weniger Menschen zu finden sind. Etwa 68 % der Männer liegen innerhalb einer Standardabweichung vom globalen Mittelwert, also etwa 164 bis 178 cm. Die Standardabweichung der männlichen Körpergröße beträgt weltweit etwa 7 cm. Ein Mann mit 185 cm liegt rund zwei Standardabweichungen über dem globalen Mittelwert und ist damit größer als etwa 97,5 % der männlichen Weltbevölkerung.",
+      "paragraph2": "Bei Frauen ist sie mit rund 6 cm etwas geringer.",
+      "tableHeaders": {
+        "minus2sd": "−2 SD",
+        "minus1sd": "−1 SD",
+        "globalAvg": "Globaler Ø",
+        "plus1sd": "+1 SD",
+        "plus2sd": "+2 SD"
+      },
+      "captionMale": "Globale Größenverteilung Männer · SD ≈ 7 cm",
+      "captionFemale": "Globale Größenverteilung Frauen · SD ≈ 6 cm",
+      "captionSources": "Quellen: NCD-RisC"
+    },
+    "whyDiffers": {
+      "title": "Warum die Durchschnittsgröße nach Land variiert",
+      "paragraph1": "Die Körpergröße wird sowohl von der Genetik als auch von der Umwelt geprägt. Die Genetik setzt die theoretische Obergrenze — große Eltern bekommen tendenziell größere Kinder —, aber ob ein Kind diese Obergrenze erreicht, hängt fast vollständig davon ab, was in den ersten zwei Lebensjahrzehnten geschieht.",
+      "nutritionParagraph": "<bold>Ernährung</bold> ist der stärkste einzelne Umweltfaktor für die Körpergröße im Erwachsenenalter. Ausreichend Protein und Mikronährstoffe in den ersten 1.000 Tagen des Lebens sind entscheidend für die Skelettentwicklung. Die Verfügbarkeit von Milchprodukten und Fleisch im Kindesalter sagt die nationale Größenrangliste durchgehend voraus.",
+      "healthcareParagraph": "<bold>Der Zugang zur Gesundheitsversorgung</bold> bestimmt, ob Kinderkrankheiten Energie vom Wachstum ablenken. Länder mit hohen Impfquoten und geringer Krankheitslast rangieren durchgehend größer.",
+      "economicParagraph": "<bold>Die wirtschaftliche Entwicklung</bold> untermauert sowohl Ernährung als auch Gesundheitsversorgung. Das BIP pro Kopf korreliert stark mit der Durchschnittsgröße, da Wohlstand bessere Nahrung, saubereres Wasser und medizinische Versorgung ermöglicht.",
+      "calloutUS": "Die Vereinigten Staaten sind das aufschlussreichste Fallbeispiel: 1914 belegten amerikanische Männer weltweit den dritten Platz in Sachen Körpergröße. Heute liegen sie global bei etwa Platz 47 — nicht weil sich ihre Genetik verändert hat, sondern weil sich die Ernährungsqualität im Vergleich zu europäischen Ländern nach den 1970er-Jahren verschlechterte."
+    },
+    "toc": [
+      {
+        "id": "average-height-by-country",
+        "label": "Durchschnittsgröße nach Land"
+      },
+      {
+        "id": "tallest-countries-in-the-world",
+        "label": "Die größten Länder der Welt"
+      },
+      {
+        "id": "shortest-countries-in-the-world",
+        "label": "Die kleinsten Länder der Welt"
+      },
+      {
+        "id": "tallest-and-shortest-countries-by-average-height",
+        "label": "Größte und kleinste Länder nach Durchschnittsgröße"
+      },
+      {
+        "id": "average-male-height-by-country",
+        "label": "Durchschnittliche Körpergröße von Männern nach Land"
+      },
+      {
+        "id": "average-female-height-by-country",
+        "label": "Durchschnittliche Körpergröße von Frauen nach Land"
+      },
+      {
+        "id": "average-height-in-selected-countries",
+        "label": "Durchschnittsgröße in ausgewählten Ländern"
+      },
+      {
+        "id": "average-height-chart-for-men",
+        "label": "Größendiagramm für Männer"
+      },
+      {
+        "id": "global-average-height",
+        "label": "Globale Durchschnittsgröße"
+      },
+      {
+        "id": "tallest-man-in-the-world",
+        "label": "Größter Mann der Welt"
+      },
+      {
+        "id": "shortest-man-in-the-world",
+        "label": "Kleinster Mann der Welt"
+      },
+      {
+        "id": "tallest-female-in-the-world",
+        "label": "Größte Frau der Welt"
+      },
+      {
+        "id": "shortest-female-in-the-world",
+        "label": "Kleinste Frau der Welt"
+      },
+      {
+        "id": "human-height-distribution",
+        "label": "Verteilung der menschlichen Körpergröße"
+      },
+      {
+        "id": "why-average-height-differs-by-country",
+        "label": "Warum die Durchschnittsgröße nach Land variiert"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Häufig gestellte Fragen"
+      },
+      {
+        "id": "references",
+        "label": "Quellenangaben"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Wie groß sind Männer im weltweiten Durchschnitt?",
+        "a": "Die globale Durchschnittsgröße für erwachsene Männer beträgt etwa 171 cm (5'7\"). Dieser gewichtete Wert stammt aus Daten der NCD Risk Factor Collaboration und der WHO. Er wird durch die großen Bevölkerungen Süd- und Südostasiens nach unten gezogen, wo die Durchschnittswerte zwischen 160 und 168 cm liegen. Männer in einkommensstarken europäischen Ländern sind im Durchschnitt deutlich größer, oft 178 bis 184 cm."
+      },
+      {
+        "q": "Wie groß ist eine Frau im weltweiten Durchschnitt?",
+        "a": "Die globale Durchschnittsgröße für erwachsene Frauen beträgt etwa 159 cm (5'3\"). Niederländische und montenegrinische Frauen sind im Durchschnitt etwa 170 cm groß. Frauen in Guatemala und auf den Philippinen sind im Durchschnitt eher 149 bis 150 cm groß. Die meisten Frauen in westlichen Ländern liegen zwischen 162 und 168 cm."
+      },
+      {
+        "q": "Welches Land hat die größten Menschen?",
+        "a": "Die Niederlande belegen in den meisten aktuellen Datensätzen sowohl bei Männern als auch bei Frauen den Spitzenplatz. Niederländische Männer sind im Durchschnitt 183,8 cm groß (etwa 6'0\") und niederländische Frauen 170,4 cm (5'7\"). Montenegro und Estland folgen dicht dahinter. Die Niederlande halten diese Position seit mehreren Jahrzehnten, was auf milchreiche Ernährung, ein starkes öffentliches Gesundheitssystem und genetische Faktoren in der Bevölkerung zurückgeführt wird."
+      },
+      {
+        "q": "Ist die durchschnittliche menschliche Körpergröße im Laufe der Zeit gestiegen?",
+        "a": "Ja, deutlich. Die Durchschnittsgröße ist in fast allen Ländern in den letzten 150 Jahren stark gestiegen, angetrieben durch Verbesserungen bei Ernährung, sanitären Einrichtungen, Impfungen und Gesundheitsversorgung. Die dramatischsten jüngsten Zuwächse fanden in Ostasien statt: Südkoreanische Männer gewannen über zwei Generationen nach der raschen wirtschaftlichen Entwicklung rund 6 cm hinzu. Die Zuwächse in Westeuropa stagnieren seit den 1980er-Jahren weitgehend."
+      },
+      {
+        "q": "Welches ist das kleinste Land der Welt nach Durchschnittsgröße?",
+        "a": "Timor-Leste verzeichnet weltweit den niedrigsten kombinierten Durchschnitt, mit Männern im Durchschnitt von 159,8 cm und Frauen von 152,3 cm. Guatemala und Laos folgen dicht dahinter. Diese niedrigen Durchschnittswerte spiegeln historische Ernährungseinschränkungen und einen eingeschränkten Zugang zur Gesundheitsversorgung wider, nicht genetische Grenzen des Wachstumspotenzials."
+      }
+    ],
+    "references": {
+      "primarySources": {
+        "title": "Primäre Datenquellen",
+        "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016. Vol. 5, e13410.",
+        "ref2": "Rodriguez-Martinez A, Zhou B, Sophiea MK et al. (NCD-RisC). Height and body-mass index trajectories of school-aged children and adolescents from 1985 to 2019 in 200 countries and territories. The Lancet, 2020. Vol. 396, pp. 1511–1524.",
+        "ref3": "World Health Organization. Child Growth Standards — Length/Height-for-Age, Weight-for-Age. WHO Department of Nutrition and Food Safety. Geneva, 2006.",
+        "ref4": "World Health Organization. Global Health Observatory — Nutrition and Body Mass Index Data. WHO Global Health Observatory. Ongoing.",
+        "ref5": "de Onis M, Garza C, Onyango AW, Martorell R (eds). WHO Child Growth Standards. Acta Paediatrica, 2006. Suppl 450:1–101."
+      },
+      "usGovernment": {
+        "title": "US-Regierung — CDC und NIH",
+        "ref1": "Centers for Disease Control and Prevention. CDC Clinical Growth Charts, 2000 (Revised 2022). National Center for Health Statistics.",
+        "ref2": "Kuczmarski RJ, Ogden CL, Guo SS et al. 2000 CDC Growth Charts for the United States: Methods and Development. Vital and Health Statistics. Series 11, No. 246, 2002.",
+        "ref3": "Centers for Disease Control and Prevention — NCHS. National Health and Nutrition Examination Survey (NHANES) — Anthropometric Data. Ongoing survey cycles.",
+        "ref4": "Fryar CD, Gu Q, Ogden CL, Flegal KM. Anthropometric Reference Data for Children and Adults: United States, 2011–2014. Vital and Health Statistics. Series 3, No. 39, August 2016.",
+        "ref5": "National Institutes of Health — National Heart, Lung, and Blood Institute. Classification of Overweight and Obesity by BMI. NIH Publication No. 98-4083, 1998."
+      },
+      "peerReviewed": {
+        "title": "Begutachtete Forschungsarbeiten",
+        "ref1": "Devine BJ. Gentamicin therapy. Drug Intelligence and Clinical Pharmacy, 1974. Vol. 8, pp. 650–655. (Original publication of the Devine ideal body weight formula.)",
+        "ref2": "Robinson JD, Lupkiewicz SM, Palenik L, Lopez LM, Ariet M. Determination of ideal body weight for drug dosage calculations. American Journal of Hospital Pharmacy, 1983. Vol. 40, pp. 1016–1019.",
+        "ref3": "Pai MP, Paloucek FP. The origin of the \"ideal\" body weight equations. Annals of Pharmacotherapy, 2000. Vol. 34, No. 9, pp. 1066–1069.",
+        "ref4": "Janmahasatian S, Duffull SB, Ash S, Ward LC, Byrne NM, Green B. Quantification of lean bodyweight. Clinical Pharmacokinetics, 2005. Vol. 44, No. 10, pp. 1051–1065.",
+        "ref5": "Stulp G, Buunk AP, Pollet TV. Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE, 2013. Vol. 8, Issue 2.",
+        "ref6": "Flegal KM, Ogden CL, Wei R, Kuczmarski RL, Johnson CL. Prevalence of obesity in US adults by age and sex. JAMA, 2002. Vol. 288, pp. 1723–1727."
+      },
+      "unBodies": {
+        "title": "Vereinte Nationen und internationale Organisationen",
+        "ref1": "UNICEF / WHO / World Bank. Joint Child Malnutrition Estimates — Levels and Trends. Edition 2023.",
+        "ref2": "Food and Agriculture Organization of the United Nations. The State of Food Security and Nutrition in the World 2023. FAO, IFAD, UNICEF, WFP, WHO. Rome, 2023."
+      }
+    }
+  },
   "metadata": {
     "aboutTitle": "Über uns - Höhenvergleichs-Rechner",
     "aboutDescription": "Erfahren Sie mehr über unser Höhendifferenz- und Vergleichstool mit maßstabsgetreuer visueller Darstellung.",
     "privacyTitle": "Datenschutzerklärung - Höhenvergleichs-Rechner",
-    "privacyDescription": "Lesen Sie die Datenschutzerklärung des Höhenvergleichs-Rechners."
+    "privacyDescription": "Lesen Sie die Datenschutzerklärung des Höhenvergleichs-Rechners.",
+    "heightPredictorTitle": "Größenrechner: Erwachsenengröße vorhersagen (Kinder-Größenrechner)",
+    "heightPredictorDescription": "Berechnen Sie mit unserem Größenrechner die erwartete Erwachsenengröße Ihres Kindes. Der Größenvorhersage-Rechner nutzt wissenschaftlich anerkannte Methoden wie Khamis-Roche zur Vorhersage der Körpergröße.",
+    "heightWeightPercentileTitle": "Größen- und Gewichtsperzentil-Rechner für Babys, Kinder & Erwachsene",
+    "heightWeightPercentileDescription": "Berechnen Sie mit unserem Größen- und Gewichtsperzentil-Rechner das Wachstum. Inklusive Perzentilrechner für Babys und Größenperzentil-Rechner für Erwachsene.",
+    "idealBodyWeightTitle": "Idealgewicht berechnen & Adjusted-Body-Weight-Rechner",
+    "idealBodyWeightDescription": "Berechnen Sie mit unserem Idealgewichts-Rechner in kg Ihr Idealgewicht. Inklusive Adjusted-Body-Weight-Rechner für Männer und Frauen.",
+    "heightDifferenceTitle": "Höhendifferenz-Rechner - Größenunterschied berechnen & Tabelle",
+    "heightDifferenceDescription": "Berechnen Sie den Größenunterschied mit unserem Höhendifferenz-Rechner. Inklusive Paar-Größenunterschied-Rechner und Höhendifferenz-Tabelle.",
+    "averageHeightByCountryTitle": "Durchschnittsgröße nach Land – Weltweiter Körpergrößen-Vergleich",
+    "averageHeightByCountryDescription": "Erfahren Sie die durchschnittliche Körpergröße von Mann und Frau weltweit und vergleichen Sie die Durchschnittsgröße nach Land. Die durchschnittliche menschliche Körpergröße weltweit auf einen Blick."
   }
 }
