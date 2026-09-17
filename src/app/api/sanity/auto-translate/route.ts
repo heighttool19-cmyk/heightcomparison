@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { title, excerpt, body, targetLocale = "de" } = await req.json();
+    const { title, excerpt, body, targetLocale = "de", targetLocaleName } = await req.json();
 
     if (!title) {
       return NextResponse.json(
@@ -64,10 +64,19 @@ export async function POST(req: NextRequest) {
       imageAlts: imageAltsToTranslate.map((a) => a.alt),
     };
 
-    const targetLangName = targetLocale === "de" ? "German (de)" : targetLocale;
+    const localeMap: Record<string, string> = {
+      de: "German",
+      es: "Spanish",
+      fr: "French",
+      it: "Italian",
+      pt: "Portuguese",
+      ja: "Japanese",
+    };
+    const targetLangName = targetLocaleName || localeMap[targetLocale] || targetLocale;
+
     const systemPrompt = `You are a professional translator translating English blog content into ${targetLangName}.
 Requirements:
-1. Translate accurately, keeping natural German idioms, tone, and casing.
+1. Translate accurately into ${targetLangName}, keeping natural idioms, cultural nuances, proper grammar, and tone.
 2. Output ONLY a valid JSON object matching this exact schema:
 {
   "title": "translated title",

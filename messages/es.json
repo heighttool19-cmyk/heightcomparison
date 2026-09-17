@@ -1623,25 +1623,25 @@
     "heightDifferenceDescription": "Calculate height difference with our height difference calculator. Includes couple height difference calculator with a height difference calculator chart.",
     "averageHeightByCountryTitle": "Average Height by Country - Global Human Height Chart",
     "averageHeightByCountryDescription": "Learn the average height of a woman & man worldwide and compare average heights by country. See the average human height around the world in one chart.",
-    "blogsTitle": "Blog Height Comparison Tool",
-    "blogsDescription": "Read the latest articles about height, body proportions, and interesting comparisons."
+    "blogsTitle": "Blog - Comparador de Altura y Artículos",
+    "blogsDescription": "Lea los últimos artículos sobre altura, proporciones corporales y comparaciones interesantes."
   },
   "blogs": {
-    "badge": "Articles & Insights",
-    "heading": "Insights & guides",
-    "subheading": "Explore guides, research, and deep dives into human height, averages, percentiles, and interesting real-world comparisons.",
-    "articleBadge": "Article",
-    "noPostsTitle": "No posts available",
-    "noPostsSubtitle": "Check back later for new content.",
-    "unknownAuthor": "Unknown Author"
+    "badge": "Artículos y Perspectivas",
+    "heading": "Perspectivas y guías",
+    "subheading": "Explore guías, investigaciones y análisis detallados sobre la altura humana, promedios, percentiles y comparaciones interesantes del mundo real.",
+    "articleBadge": "Artículo",
+    "noPostsTitle": "No hay artículos disponibles",
+    "noPostsSubtitle": "Vuelva más tarde para ver contenido nuevo.",
+    "unknownAuthor": "Autor desconocido"
   },
   "blogPost": {
-    "categoryLabel": "Blog Post",
-    "writtenBy": "Written by {author}",
-    "unknownAuthor": "Unknown Author",
-    "jumpToSection": "Jump to section",
-    "fallbackImageAlt": "Blog post image",
-    "postNotFound": "Post Not Found"
+    "categoryLabel": "Artículo de Blog",
+    "writtenBy": "Escrito por {author}",
+    "unknownAuthor": "Autor desconocido",
+    "jumpToSection": "Saltar a sección",
+    "fallbackImageAlt": "Imagen del artículo",
+    "postNotFound": "Artículo no encontrado"
   }
 }
 
