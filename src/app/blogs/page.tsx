@@ -13,7 +13,7 @@ function formatDate(dateStr: string): string {
 }
 
 export default async function BlogsPage() {
-    const posts = await client.fetch<Post[]>(allPostsQuery);
+    const posts = await client.fetch<Post[]>(allPostsQuery, { locale: "en" });
 
     return (
         <ErrorBoundary name="BlogsIndex">

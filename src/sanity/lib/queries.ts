@@ -14,11 +14,11 @@ import { groq } from "next-sanity";
 export const postBySlugQuery = groq`
   *[_type == "post" && slug.current == $slug][0] {
     _id,
-    title,
+    "title": coalesce(translations[$locale].title, title),
     slug,
     publishedAt,
-    excerpt,
-    body[] {
+    "excerpt": coalesce(translations[$locale].excerpt, excerpt),
+    "body": coalesce(translations[$locale].body, body)[] {
       ...,
       _type == "image" => {
         ...,
@@ -46,10 +46,10 @@ export const postBySlugQuery = groq`
 export const allPostsQuery = groq`
   *[_type == "post"] | order(publishedAt desc) {
     _id,
-    title,
+    "title": coalesce(translations[$locale].title, title),
     slug,
     publishedAt,
-    excerpt,
+    "excerpt": coalesce(translations[$locale].excerpt, excerpt),
     mainImage {
       ...,
       asset-> { _ref, url }

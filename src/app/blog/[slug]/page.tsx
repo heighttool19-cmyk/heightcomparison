@@ -73,7 +73,7 @@ function formatDate(dateStr: string): string {
 // ---------------------------------------------------------------------------
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await client.fetch<Post | null>(postBySlugQuery, { slug });
+  const post = await client.fetch<Post | null>(postBySlugQuery, { slug, locale: "en" });
 
   if (!post) {
     notFound();

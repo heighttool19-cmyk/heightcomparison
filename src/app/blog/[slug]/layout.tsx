@@ -12,7 +12,7 @@ export async function generateMetadata({
   params,
 }: LayoutProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await client.fetch<Post | null>(postBySlugQuery, { slug });
+  const post = await client.fetch<Post | null>(postBySlugQuery, { slug, locale: "en" });
 
   if (!post) {
     return { title: "Post Not Found" };
