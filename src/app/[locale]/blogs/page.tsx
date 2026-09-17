@@ -12,8 +12,14 @@ function formatDate(dateStr: string): string {
     });
 }
 
-export default async function BlogsPage() {
-    const posts = await client.fetch<Post[]>(allPostsQuery, { locale: "en" });
+export default async function BlogsPage({
+    params,
+}: {
+    params?: Promise<{ locale?: string }>;
+}) {
+    const resolvedParams = params ? await params : undefined;
+    const locale = resolvedParams?.locale || "en";
+    const posts = await client.fetch<Post[]>(allPostsQuery, { locale });
 
     return (
         <ErrorBoundary name="BlogsIndex">
