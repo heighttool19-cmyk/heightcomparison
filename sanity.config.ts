@@ -2,6 +2,7 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { table } from '@sanity/table'
 import { schemaTypes } from './src/sanity/schemas'
+import { AutoTranslateAction } from './src/sanity/actions/autoTranslateAction'
 
 export default defineConfig({
     name: 'height-comparison-blog-studio',
@@ -17,4 +18,14 @@ export default defineConfig({
     schema: {
         types: schemaTypes,
     },
+
+    document: {
+        actions: (prev, context) => {
+            if (context.schemaType === 'post') {
+                return [...prev, AutoTranslateAction]
+            }
+            return prev
+        },
+    },
 })
+
