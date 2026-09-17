@@ -1,12 +1,5 @@
 import { type Metadata, type Viewport } from "next";
-
-export const metadata: Metadata = {
-    title: 'Blog Height Comparison Tool',
-    description: 'Read the latest articles about height, body proportions, and interesting comparisons.',
-    alternates: {
-        canonical: 'https://heightcomparisoncalculator.com/blogs',
-    },
-};
+import { getTranslations } from "next-intl/server";
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -16,6 +9,30 @@ export const viewport: Viewport = {
     themeColor: "#3B82F6",
 };
 
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: "metadata" });
+    const baseUrl = "https://heightcomparisoncalculator.com";
+    const canonical = locale === "en" ? `${baseUrl}/blogs` : `${baseUrl}/${locale}/blogs`;
+
+    return {
+        title: t("blogsTitle"),
+        description: t("blogsDescription"),
+        alternates: {
+            canonical,
+            languages: {
+                en: `${baseUrl}/blogs`,
+                de: `${baseUrl}/de/blogs`,
+                "x-default": `${baseUrl}/blogs`,
+            },
+        },
+    };
+}
+
 export default function BlogsLayout({
     children,
 }: {
@@ -23,3 +40,4 @@ export default function BlogsLayout({
 }) {
     return <>{children}</>;
 }
+

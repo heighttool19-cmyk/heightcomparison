@@ -1622,6 +1622,26 @@
     "heightDifferenceTitle": "Height Difference Calculator - Calculate Height Difference Chart",
     "heightDifferenceDescription": "Calculate height difference with our height difference calculator. Includes couple height difference calculator with a height difference calculator chart.",
     "averageHeightByCountryTitle": "Average Height by Country - Global Human Height Chart",
-    "averageHeightByCountryDescription": "Learn the average height of a woman & man worldwide and compare average heights by country. See the average human height around the world in one chart."
+    "averageHeightByCountryDescription": "Learn the average height of a woman & man worldwide and compare average heights by country. See the average human height around the world in one chart.",
+    "blogsTitle": "Blog Height Comparison Tool",
+    "blogsDescription": "Read the latest articles about height, body proportions, and interesting comparisons."
+  },
+  "blogs": {
+    "badge": "Articles & Insights",
+    "heading": "Insights & guides",
+    "subheading": "Explore guides, research, and deep dives into human height, averages, percentiles, and interesting real-world comparisons.",
+    "articleBadge": "Article",
+    "noPostsTitle": "No posts available",
+    "noPostsSubtitle": "Check back later for new content.",
+    "unknownAuthor": "Unknown Author"
+  },
+  "blogPost": {
+    "categoryLabel": "Blog Post",
+    "writtenBy": "Written by {author}",
+    "unknownAuthor": "Unknown Author",
+    "jumpToSection": "Jump to section",
+    "fallbackImageAlt": "Blog post image",
+    "postNotFound": "Post Not Found"
   }
 }
+

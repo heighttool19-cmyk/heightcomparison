@@ -11,6 +11,7 @@
  *   - Responsive: two-column on desktop, single-column on mobile
  */
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import type { PortableTextBlock } from "@portabletext/types";
 
 import { client } from "@/sanity/lib/client";
@@ -59,9 +60,10 @@ function extractHeadings(body: PortableTextBlock[]): TocHeading[] {
     // Filter out headings that are empty, just whitespace, or just '#'
     .filter((heading) => heading.text.length > 0 && heading.text !== "#");
 }
-/** Format a date string into a human-readable form */
-function formatDate(dateStr: string): string {
-  return new Date(dateStr).toLocaleDateString("en-US", {
+
+/** Format a date string into a localized human-readable form */
+function formatDate(dateStr: string, locale: string): string {
+  return new Date(dateStr).toLocaleDateString(locale === "de" ? "de-DE" : "en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -73,7 +75,9 @@ function formatDate(dateStr: string): string {
 // ---------------------------------------------------------------------------
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string; locale?: string }> }) {
   const { slug, locale } = await params;
-  const post = await client.fetch<Post | null>(postBySlugQuery, { slug, locale: locale || "en" });
+  const currentLocale = locale || "en";
+  const t = await getTranslations({ locale: currentLocale, namespace: "blogPost" });
+  const post = await client.fetch<Post | null>(postBySlugQuery, { slug, locale: currentLocale });
 
   if (!post) {
     notFound();
@@ -91,7 +95,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-12 xl:grid-cols-[280px_1fr] xl:gap-16">
 
           {/* ── LEFT: Sticky Table of Contents (desktop only) ──────────── */}
-          <TableOfContents headings={headings} />
+          <TableOfContents headings={headings} title={t("jumpToSection")} />
 
           {/* ── RIGHT: Article content ─────────────────────────────────── */}
           <div className="min-w-0">
@@ -99,7 +103,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <header className="mb-12 lg:mb-16">
               {/* Category / label */}
               <p className="mb-4 text-xs font-bold uppercase tracking-widest text-accent">
-                Blog Post
+                {t("categoryLabel")}
               </p>
 
               {/* Title */}
@@ -134,7 +138,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
                 <div>
                   <p className="text-sm font-semibold text-foreground">
-                    {post.author?.name || "Unknown Author"}
+                    {post.author?.name || t("unknownAuthor")}
                   </p>
                   <div className="flex items-center gap-2 text-xs text-muted">
                     {post.author?.role && (
@@ -144,7 +148,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                       </>
                     )}
                     <time dateTime={post.publishedAt}>
-                      {formatDate(post.publishedAt)}
+                      {formatDate(post.publishedAt, currentLocale)}
                     </time>
                   </div>
                 </div>
@@ -168,7 +172,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             )}
             {/* ── Mobile ToC (below header) ──────────────────────────── */}
             <div className="lg:hidden">
-              <TableOfContents headings={headings} />
+              <TableOfContents headings={headings} title={t("jumpToSection")} />
             </div>
 
             {/* ── Article body ────────────────────────────────────────── */}
@@ -195,7 +199,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               )}
               <div>
                 <p className="text-base font-semibold text-foreground">
-                  Written by {post.author?.name || "Unknown Author"}
+                  {t("writtenBy", { author: post.author?.name || t("unknownAuthor") })}
                 </p>
                 {post.author?.role && (
                   <p className="text-sm text-muted">{post.author.role}</p>

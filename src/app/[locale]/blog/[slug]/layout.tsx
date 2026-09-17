@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { client } from "@/sanity/lib/client";
 import { postBySlugQuery } from "@/sanity/lib/queries";
 import type { Post } from "@/sanity/lib/types";
@@ -12,15 +13,20 @@ export async function generateMetadata({
   params,
 }: LayoutProps): Promise<Metadata> {
   const { slug, locale } = await params;
-  const post = await client.fetch<Post | null>(postBySlugQuery, { slug, locale: locale || "en" });
+  const currentLocale = locale || "en";
+  const t = await getTranslations({ locale: currentLocale, namespace: "blogPost" });
+  const post = await client.fetch<Post | null>(postBySlugQuery, { slug, locale: currentLocale });
 
   if (!post) {
-    return { title: "Post Not Found" };
+    return { title: t("postNotFound") };
   }
 
+  const baseUrl = "https://heightcomparisoncalculator.com";
+  const canonical = currentLocale === "en" ? `${baseUrl}/blog/${slug}` : `${baseUrl}/${currentLocale}/blog/${slug}`;
+
   return {
-    title: `${post.title} - Blog Height Comparison Tool`,
-    description: post.excerpt || `Read "${post.title}" on our blog.`,
+    title: `${post.title} - Height Comparison`,
+    description: post.excerpt || `${post.title}`,
     openGraph: {
       title: post.title,
       description: post.excerpt || undefined,
@@ -31,7 +37,12 @@ export async function generateMetadata({
       }),
     },
     alternates: {
-      canonical: `https://heightcomparisoncalculator.com/blog/${slug}`,
+      canonical,
+      languages: {
+        en: `${baseUrl}/blog/${slug}`,
+        de: `${baseUrl}/de/blog/${slug}`,
+        "x-default": `${baseUrl}/blog/${slug}`,
+      },
     },
   };
 }
@@ -39,3 +50,4 @@ export async function generateMetadata({
 export default function BlogPostLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
+

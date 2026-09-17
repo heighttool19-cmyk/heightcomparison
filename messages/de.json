@@ -1921,6 +1921,26 @@
     "heightDifferenceTitle": "Höhendifferenz-Rechner - Größenunterschied berechnen & Tabelle",
     "heightDifferenceDescription": "Berechnen Sie den Größenunterschied mit unserem Höhendifferenz-Rechner. Inklusive Paar-Größenunterschied-Rechner und Höhendifferenz-Tabelle.",
     "averageHeightByCountryTitle": "Durchschnittsgröße nach Land – Weltweiter Körpergrößen-Vergleich",
-    "averageHeightByCountryDescription": "Erfahren Sie die durchschnittliche Körpergröße von Mann und Frau weltweit und vergleichen Sie die Durchschnittsgröße nach Land. Die durchschnittliche menschliche Körpergröße weltweit auf einen Blick."
+    "averageHeightByCountryDescription": "Erfahren Sie die durchschnittliche Körpergröße von Mann und Frau weltweit und vergleichen Sie die Durchschnittsgröße nach Land. Die durchschnittliche menschliche Körpergröße weltweit auf einen Blick.",
+    "blogsTitle": "Blog – Größenvergleichs-Rechner & Ratgeber",
+    "blogsDescription": "Lesen Sie aktuelle Artikel und Ratgeber über Körpergröße, Körperproportionen und spannende Vergleiche."
+  },
+  "blogs": {
+    "badge": "Artikel & Einblicke",
+    "heading": "Einblicke & Ratgeber",
+    "subheading": "Entdecken Sie Ratgeber, wissenschaftliche Studien und Analysen zu menschlicher Körpergröße, Durchschnittswerten, Perzentilen und spannenden Alltagsvergleichen.",
+    "articleBadge": "Artikel",
+    "noPostsTitle": "Keine Beiträge verfügbar",
+    "noPostsSubtitle": "Schauen Sie bald wieder vorbei für neue Inhalte.",
+    "unknownAuthor": "Unbekannter Autor"
+  },
+  "blogPost": {
+    "categoryLabel": "Blogbeitrag",
+    "writtenBy": "Geschrieben von {author}",
+    "unknownAuthor": "Unbekannter Autor",
+    "jumpToSection": "Zum Abschnitt springen",
+    "fallbackImageAlt": "Blogbeitrag-Bild",
+    "postNotFound": "Beitrag nicht gefunden"
   }
 }
+

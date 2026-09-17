@@ -13,9 +13,10 @@ import type { TocHeading } from "@/sanity/lib/types";
 
 interface TableOfContentsProps {
   headings: TocHeading[];
+  title?: string;
 }
 
-export default function TableOfContents({ headings }: TableOfContentsProps) {
+export default function TableOfContents({ headings, title }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -100,7 +101,7 @@ export default function TableOfContents({ headings }: TableOfContentsProps) {
       <aside className="hidden lg:block">
         <div className="sticky top-24">
           <p className="mb-4 text-xs font-bold uppercase tracking-widest text-muted">
-            Jump to section
+            {title || "Jump to section"}
           </p>
           <div className="max-h-[calc(100vh-8rem)] overflow-y-auto custom-toc-scrollbar pr-2">
             {renderList()}

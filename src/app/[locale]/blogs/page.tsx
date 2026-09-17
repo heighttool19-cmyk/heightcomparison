@@ -1,11 +1,12 @@
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
+import { getTranslations } from 'next-intl/server';
 import { client } from '@/sanity/lib/client';
 import { allPostsQuery } from '@/sanity/lib/queries';
 import type { Post } from '@/sanity/lib/types';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
 
-function formatDate(dateStr: string): string {
-    return new Date(dateStr).toLocaleDateString('en-US', {
+function formatDate(dateStr: string, locale: string): string {
+    return new Date(dateStr).toLocaleDateString(locale === 'de' ? 'de-DE' : 'en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
@@ -19,6 +20,7 @@ export default async function BlogsPage({
 }) {
     const resolvedParams = params ? await params : undefined;
     const locale = resolvedParams?.locale || "en";
+    const t = await getTranslations({ locale, namespace: 'blogs' });
     const posts = await client.fetch<Post[]>(allPostsQuery, { locale });
 
     return (
@@ -30,20 +32,20 @@ export default async function BlogsPage({
                 <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-24 lg:pt-20">
                     <header className="mb-12 lg:mb-16">
                         <p className="mb-4 text-xs font-bold uppercase tracking-widest text-accent">
-                            Articles & Insights
+                            {t('badge')}
                         </p>
                         <h1 className="text-4xl font-black leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl uppercase">
-                            Insights & guides
+                            {t('heading')}
                         </h1>
                         <p className="mt-6 text-lg leading-relaxed text-muted lg:text-xl max-w-2xl font-bold opacity-80">
-                            Explore guides, research, and deep dives into human height, averages, percentiles, and interesting real-world comparisons.
+                            {t('subheading')}
                         </p>
                     </header>
 
                     {posts.length === 0 ? (
                         <div className="py-24 text-center border-2 border-dashed border-border rounded-3xl">
-                            <h2 className="text-xl font-bold text-muted mb-2">No posts available</h2>
-                            <p className="text-muted/60">Check back later for new content.</p>
+                            <h2 className="text-xl font-bold text-muted mb-2">{t('noPostsTitle')}</h2>
+                            <p className="text-muted/60">{t('noPostsSubtitle')}</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -78,10 +80,10 @@ export default async function BlogsPage({
                                     <div className="p-6 md:p-8 flex flex-col flex-1">
                                         <div className="flex items-center gap-2 mb-4">
                                             <div className="text-[10px] font-black uppercase tracking-widest text-accent bg-accent/10 px-2.5 py-1 rounded-md">
-                                                Article
+                                                {t('articleBadge')}
                                             </div>
                                             <time dateTime={post.publishedAt} className="text-xs font-bold text-muted/70">
-                                                {formatDate(post.publishedAt)}
+                                                {formatDate(post.publishedAt, locale)}
                                             </time>
                                         </div>
 
@@ -111,7 +113,7 @@ export default async function BlogsPage({
                                             )}
                                             <div className="flex flex-col">
                                                 <span className="text-xs font-bold text-foreground">
-                                                    {post.author?.name || 'Unknown Author'}
+                                                    {post.author?.name || t('unknownAuthor')}
                                                 </span>
                                             </div>
                                         </div>
