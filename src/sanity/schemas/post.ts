@@ -6,6 +6,7 @@
  */
 import { defineField, defineType } from "sanity";
 import { portableTextBodyTypes } from "./shared/portableTextBody";
+import { TARGET_LANGUAGES } from "../languages";
 
 export default defineType({
   name: "post",
@@ -72,11 +73,12 @@ export default defineType({
       title: "Translations",
       type: "object",
       options: { collapsible: true, collapsed: false },
-      fields: [
+      fields: TARGET_LANGUAGES.map((lang) =>
         defineField({
-          name: "de",
-          title: "German (de)",
+          name: lang.id,
+          title: `${lang.flag} ${lang.title} (${lang.nativeLabel})`,
           type: "object",
+          options: { collapsible: true, collapsed: true },
           fields: [
             defineField({ name: "title", title: "Title", type: "string" }),
             defineField({ name: "excerpt", title: "Excerpt", type: "text", rows: 3 }),
@@ -87,8 +89,8 @@ export default defineType({
               of: portableTextBodyTypes,
             }),
           ],
-        }),
-      ],
+        })
+      ),
     }),
   ],
   orderings: [
