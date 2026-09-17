@@ -5,6 +5,7 @@
  * author reference, main image, and standard metadata fields.
  */
 import { defineField, defineType } from "sanity";
+import { portableTextBodyTypes } from "./shared/portableTextBody";
 
 export default defineType({
   name: "post",
@@ -64,73 +65,29 @@ export default defineType({
       name: "body",
       title: "Body",
       type: "array",
-      of: [
-        {
-          type: "block",
-          styles: [
-            { title: "Normal", value: "normal" },
-            { title: "H2", value: "h2" },
-            { title: "H3", value: "h3" },
-            { title: "H4", value: "h4" },
-            { title: "Quote", value: "blockquote" },
-          ],
-          marks: {
-            decorators: [
-              { title: "Bold", value: "strong" },
-              { title: "Italic", value: "em" },
-              { title: "Code", value: "code" },
-              { title: "Underline", value: "underline" },
-              { title: "Strikethrough", value: "strike-through" },
-            ],
-            annotations: [
-              {
-                name: "link",
-                type: "object",
-                title: "Link",
-                fields: [
-                  defineField({
-                    name: "href",
-                    title: "URL",
-                    type: "url",
-                    validation: (rule) =>
-                      rule.uri({
-                        scheme: ["http", "https", "mailto", "tel"],
-                      }),
-                  }),
-                  defineField({
-                    name: "blank",
-                    title: "Open in new tab",
-                    type: "boolean",
-                    initialValue: true,
-                  }),
-                ],
-              },
-            ],
-          },
-          lists: [
-            { title: "Bullet", value: "bullet" },
-            { title: "Numbered", value: "number" },
-          ],
-        },
-        {
-          type: "image",
-          options: { hotspot: true },
+      of: portableTextBodyTypes,
+    }),
+    defineField({
+      name: "translations",
+      title: "Translations",
+      type: "object",
+      options: { collapsible: true, collapsed: false },
+      fields: [
+        defineField({
+          name: "de",
+          title: "German (de)",
+          type: "object",
           fields: [
+            defineField({ name: "title", title: "Title", type: "string" }),
+            defineField({ name: "excerpt", title: "Excerpt", type: "text", rows: 3 }),
             defineField({
-              name: "alt",
-              title: "Alt Text",
-              type: "string",
-            }),
-            defineField({
-              name: "caption",
-              title: "Caption",
-              type: "string",
+              name: "body",
+              title: "Body",
+              type: "array",
+              of: portableTextBodyTypes,
             }),
           ],
-        },
-        {
-          type: "table",
-        },
+        }),
       ],
     }),
   ],
