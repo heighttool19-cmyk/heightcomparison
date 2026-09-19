@@ -11,12 +11,19 @@ interface ImageAltItem {
   alt: string;
 }
 
+interface TableCellItem {
+  blockIndex: number;
+  rowIndex: number;
+  cellIndex: number;
+  text: string;
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const apiKey = process.env.OPENROUTER_API_KEY;
+    const apiKey = process.env.SANITY_OPENROUTER_API_KEY || process.env.OPENROUTER_API_KEY;
     if (!apiKey) {
       return NextResponse.json(
-        { error: "OPENROUTER_API_KEY is not configured on server" },
+        { error: "SANITY_OPENROUTER_API_KEY or OPENROUTER_API_KEY is not configured on server" },
         { status: 500 }
       );
     }
@@ -30,9 +37,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Extract plain text spans and image alts from Portable Text body
+    // 1. Extract plain text spans, image alts, and table cells from Portable Text body
     const spansToTranslate: SpanItem[] = [];
     const imageAltsToTranslate: ImageAltItem[] = [];
+    const tableCellsToTranslate: TableCellItem[] = [];
 
     if (Array.isArray(body)) {
       body.forEach((block: any, blockIndex: number) => {
@@ -52,6 +60,16 @@ export async function POST(req: NextRequest) {
           block.alt.trim().length > 0
         ) {
           imageAltsToTranslate.push({ blockIndex, alt: block.alt });
+        } else if (block._type === "table" && Array.isArray(block.rows)) {
+          block.rows.forEach((row: any, rowIndex: number) => {
+            if (Array.isArray(row.cells)) {
+              row.cells.forEach((cellText: any, cellIndex: number) => {
+                if (typeof cellText === "string" && cellText.trim().length > 0) {
+                  tableCellsToTranslate.push({ blockIndex, rowIndex, cellIndex, text: cellText });
+                }
+              });
+            }
+          });
         }
       });
     }
@@ -62,6 +80,7 @@ export async function POST(req: NextRequest) {
       excerpt: excerpt || "",
       spans: spansToTranslate.map((s) => s.text),
       imageAlts: imageAltsToTranslate.map((a) => a.alt),
+      tableCells: tableCellsToTranslate.map((c) => c.text),
     };
 
     const localeMap: Record<string, string> = {
@@ -76,34 +95,36 @@ export async function POST(req: NextRequest) {
     };
     const targetLangName = targetLocaleName || localeMap[targetLocale] || targetLocale;
 
-    // Free OpenRouter models in order of priority & reliability
-    const FREE_MODELS = [
+    // High-performance models (Google Gemini 2.5 Flash as primary paid model)
+    const MODELS_TO_TRY = [
+      "google/gemini-2.5-flash",
+      "deepseek/deepseek-chat",
+      "openai/gpt-4o-mini",
       "inclusionai/ling-3.0-flash-vl:free",
-      "nex-agi/nex-n2.5-mini:free",
-      "deepseek/deepseek-v4-flash-0731:free",
-      "inclusionai/ling-3.0-flash-fin:free",
     ];
 
     const systemPrompt = `You are an elite, highly accurate professional translator translating English blog content into ${targetLangName}.
 Requirements:
 1. Translate accurately into ${targetLangName}, keeping natural idioms, cultural nuances, proper grammar, and tone.
-${targetLocale === "ar" ? "2. For Arabic, produce fluent Modern Standard Arabic (فصحى) with appropriate phrasing.\n" : ""}3. Output ONLY a valid JSON object matching this exact schema:
+${targetLocale === "ar" ? "2. For Arabic, produce fluent Modern Standard Arabic (فصحى) with natural phrasing.\n" : ""}3. Output ONLY a valid JSON object matching this exact schema:
 {
   "title": "translated title",
   "excerpt": "translated excerpt",
   "spans": ["translated span 0", "translated span 1", ...],
-  "imageAlts": ["translated alt 0", ...]
+  "imageAlts": ["translated alt 0", ...],
+  "tableCells": ["translated cell 0", ...]
 }
-4. The number of elements in the 'spans' array must EXACTLY match the input spans count (${promptPayload.spans.length}).
-5. The number of elements in the 'imageAlts' array must EXACTLY match the input imageAlts count (${promptPayload.imageAlts.length}).
-6. Do NOT include markdown code blocks, explanation, or commentary. Output pure JSON only.`;
+4. The number of elements in 'spans' must EXACTLY match ${promptPayload.spans.length}.
+5. The number of elements in 'imageAlts' must EXACTLY match ${promptPayload.imageAlts.length}.
+6. The number of elements in 'tableCells' must EXACTLY match ${promptPayload.tableCells.length}.
+7. Do NOT include markdown code blocks or explanations. Output pure JSON only.`;
 
     let parsedTranslation: any = null;
     let successfulModel = "";
     let lastError = "";
 
-    // 3. Resilient model execution: iterate through free models until one succeeds
-    for (const model of FREE_MODELS) {
+    // 3. Resilient model execution
+    for (const model of MODELS_TO_TRY) {
       try {
         console.log(`[Auto-Translate] Attempting translation into ${targetLangName} using ${model}...`);
         const openRouterRes = await fetch("https://openrouter.ai/api/v1/chat/completions", {
@@ -122,7 +143,7 @@ ${targetLocale === "ar" ? "2. For Arabic, produce fluent Modern Standard Arabic 
             ],
             temperature: 0.1,
           }),
-          signal: AbortSignal.timeout(18000), // 18s timeout per candidate model
+          signal: AbortSignal.timeout(60000), // 60s timeout
         });
 
         if (!openRouterRes.ok) {
@@ -149,7 +170,6 @@ ${targetLocale === "ar" ? "2. For Arabic, produce fluent Modern Standard Arabic 
         try {
           parsedTranslation = JSON.parse(cleanedJsonString);
         } catch {
-          // Fallback: extract JSON object via regex if there was preamble text
           const jsonMatch = rawContent.match(/\{[\s\S]*\}/);
           if (jsonMatch) {
             parsedTranslation = JSON.parse(jsonMatch[0]);
@@ -170,8 +190,8 @@ ${targetLocale === "ar" ? "2. For Arabic, produce fluent Modern Standard Arabic 
     if (!parsedTranslation || !successfulModel) {
       return NextResponse.json(
         {
-          error: `All free translation models failed. Last error: ${lastError}`,
-          modelsAttempted: FREE_MODELS,
+          error: `All translation models failed. Last error: ${lastError}`,
+          modelsAttempted: MODELS_TO_TRY,
         },
         { status: 502 }
       );
@@ -198,6 +218,17 @@ ${targetLocale === "ar" ? "2. For Arabic, produce fluent Modern Standard Arabic 
           clonedBody[item.blockIndex]
         ) {
           clonedBody[item.blockIndex].alt = parsedTranslation.imageAlts[index];
+        }
+      });
+    }
+
+    if (Array.isArray(parsedTranslation.tableCells)) {
+      tableCellsToTranslate.forEach((item, index) => {
+        if (
+          parsedTranslation.tableCells[index] !== undefined &&
+          clonedBody[item.blockIndex]?.rows?.[item.rowIndex]?.cells
+        ) {
+          clonedBody[item.blockIndex].rows[item.rowIndex].cells[item.cellIndex] = parsedTranslation.tableCells[index];
         }
       });
     }
