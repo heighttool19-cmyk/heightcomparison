@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useThemeStore } from "@/store"; // Adjust path if necessary
 
 interface Zone {
@@ -11,6 +12,8 @@ interface Zone {
     bg: string;
     text: string;
 }
+
+const ZONE_LABEL_KEYS = ["zoneLabelBelow10", "zoneLabel10to25", "zoneLabel25to75", "zoneLabel75to90", "zoneLabel90to100"];
 
 const ZONES: Zone[] = [
     { lo: 0, hi: 10, label: "Below 10th", color: "#ef4444", bg: "#fef2f2", text: "Significantly below average" },
@@ -59,6 +62,7 @@ function getZone(p: number): Zone {
 
 // ── Percentile Scale Bar ─────────────────────────────────────────────────
 function PercentileBar({ percentile }: { percentile: number }) {
+    const t = useTranslations('heightWeightPercentile.exampleVisual');
     const zone = getZone(percentile);
     const [hoveredZone, setHoveredZone] = useState<number | null>(null);
     const { theme } = useThemeStore();
@@ -67,7 +71,7 @@ function PercentileBar({ percentile }: { percentile: number }) {
     return (
         <div style={{ fontFamily: "Georgia, serif" }} className="w-full">
             <p style={{ margin: "0 0 12px", fontSize: 11, color: isDark ? "#94a3b8" : "#64748b", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                Percentile Scale — Where {percentile} sits
+                {t('percentileScaleWhere', { percentile })}
             </p>
 
             <div style={{ display: "flex", marginBottom: 6 }}>
@@ -75,6 +79,7 @@ function PercentileBar({ percentile }: { percentile: number }) {
                     const width = z.hi - z.lo;
                     const isActive = percentile >= z.lo && percentile < z.hi;
                     const isHov = hoveredZone === i;
+                    const zoneLabel = t(ZONE_LABEL_KEYS[i]);
                     return (
                         <div key={i} style={{ flex: width, textAlign: "center", position: "relative" }}
                             onMouseEnter={() => setHoveredZone(i)}
@@ -92,7 +97,7 @@ function PercentileBar({ percentile }: { percentile: number }) {
                             }}
                                 className="px-0.5"
                             >
-                                {z.label.replace('–', '–\u200B')}
+                                {zoneLabel.replace('–', '–\u200B')}
                             </span>
                         </div>
                     );
@@ -138,9 +143,9 @@ function PercentileBar({ percentile }: { percentile: number }) {
                     }} />
                 </div>
 
-                {[10, 25, 50, 75, 90].map(t => (
-                    <div key={t} style={{
-                        position: "absolute", left: `${t}%`, top: 0,
+                {[10, 25, 50, 75, 90].map(tick => (
+                    <div key={tick} style={{
+                        position: "absolute", left: `${tick}%`, top: 0,
                         transform: "translateX(-50%)",
                         width: 2, height: 22, background: isDark ? "#475569" : "white", opacity: 0.6,
                         pointerEvents: "none"
@@ -149,13 +154,13 @@ function PercentileBar({ percentile }: { percentile: number }) {
             </div>
 
             <div style={{ position: "relative", height: 20, marginTop: 4 }}>
-                {[0, 10, 25, 50, 75, 90, 100].map(t => (
-                    <div key={t} style={{
-                        position: "absolute", left: `${t}%`,
+                {[0, 10, 25, 50, 75, 90, 100].map(tick => (
+                    <div key={tick} style={{
+                        position: "absolute", left: `${tick}%`,
                         transform: "translateX(-50%)",
                         fontSize: 9.5, color: isDark ? "#64748b" : "#94a3b8", fontFamily: "Georgia, serif"
                     }}>
-                        {t}
+                        {tick}
                     </div>
                 ))}
             </div>
@@ -178,17 +183,20 @@ function PercentileBar({ percentile }: { percentile: number }) {
                             {percentile}
                         </span>
                         <span style={{ color: "rgba(255,255,255,0.8)", fontSize: 9 }}>
-                            th
+                            {t('ordinalSuffix')}
                         </span>
                     </span>
                 </div>
                 <div>
                     <p style={{ margin: 0, fontSize: 13, fontWeight: 800, color: zone.color }}>
-                        Average Range (25th–75th)
+                        {t('averageRangeLabel')}
                     </p>
                     <p style={{ margin: "2px 0 0", fontSize: 12, color: isDark ? "#cbd5e1" : "#475569", lineHeight: 1.5 }}>
-                        This child is taller than <strong style={{ color: zone.color }}>55 out of 100</strong> boys aged 10.
-                        Sits comfortably within the normal growth band.
+                        {t.rich('childComparisonText', {
+                            count: SAMPLE.percentile,
+                            age: SAMPLE.age,
+                            strong: (chunks) => <strong style={{ color: zone.color }}>{chunks}</strong>,
+                        })}
                     </p>
                 </div>
             </div>
@@ -198,6 +206,7 @@ function PercentileBar({ percentile }: { percentile: number }) {
 
 // ── CDC Growth Chart (With Scrolling Wrapper) ─────────────────────────────
 function CDCChart({ sample }: { sample: { age: number, height: number, percentile: number } }) {
+    const t = useTranslations('heightWeightPercentile.exampleVisual');
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
@@ -213,11 +222,11 @@ function CDCChart({ sample }: { sample: { age: number, height: number, percentil
     const toY = (h: number) => padT + plotH - ((h - minH) / (maxH - minH)) * plotH;
 
     const percentileLines = [
-        { key: "p5", label: "5th", color: "#fca5a5", dash: "4,3" },
-        { key: "p25", label: "25th", color: "#fcd34d", dash: "4,3" },
-        { key: "p50", label: "50th", color: "#86efac", dash: "none" },
-        { key: "p75", label: "75th", color: "#93c5fd", dash: "4,3" },
-        { key: "p95", label: "95th", color: "#c4b5fd", dash: "4,3" },
+        { key: "p5", label: t('legend5th'), color: "#fca5a5", dash: "4,3" },
+        { key: "p25", label: t('legend25th'), color: "#fcd34d", dash: "4,3" },
+        { key: "p50", label: t('legend50th'), color: "#86efac", dash: "none" },
+        { key: "p75", label: t('legend75th'), color: "#93c5fd", dash: "4,3" },
+        { key: "p95", label: t('legend95th'), color: "#c4b5fd", dash: "4,3" },
     ];
 
     const makePath = (key: string) =>
@@ -234,7 +243,7 @@ function CDCChart({ sample }: { sample: { age: number, height: number, percentil
     return (
         <div style={{ fontFamily: "Georgia, serif" }} className="w-full">
             <p style={{ margin: "0 0 10px", fontSize: 11, color: isDark ? "#94a3b8" : "#64748b", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                CDC Growth Chart — Boys (ages 2–20)
+                {t('cdcChartTitle')}
             </p>
 
             <div className="w-full overflow-x-auto pb-2 scrollbar-thin">
@@ -272,8 +281,8 @@ function CDCChart({ sample }: { sample: { age: number, height: number, percentil
 
                         <rect x={sampleX + 10} y={sampleY - 32} width={108} height={34} rx={5} fill="#7c3aed" opacity="0.95" />
                         <polygon points={`${sampleX + 10},${sampleY - 15} ${sampleX + 3},${sampleY} ${sampleX + 10},${sampleY - 4}`} fill="#7c3aed" opacity="0.95" />
-                        <text x={sampleX + 64} y={sampleY - 19} textAnchor="middle" fontSize="9.5" fontWeight="800" fill="white" fontFamily="Georgia, serif">Age 10 · 138 cm</text>
-                        <text x={sampleX + 64} y={sampleY - 8} textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.85)" fontFamily="Georgia, serif">55th percentile</text>
+                        <text x={sampleX + 64} y={sampleY - 19} textAnchor="middle" fontSize="9.5" fontWeight="800" fill="white" fontFamily="Georgia, serif">{t('sampleAgeHeight')}</text>
+                        <text x={sampleX + 64} y={sampleY - 8} textAnchor="middle" fontSize="9" fill="rgba(255,255,255,0.85)" fontFamily="Georgia, serif">{t('samplePercentileLabel')}</text>
 
                         <line x1={padL} y1={padT} x2={padL} y2={padT + plotH} stroke={isDark ? "#475569" : "#cbd5e1"} strokeWidth="1.5" />
                         <line x1={padL} y1={padT + plotH} x2={padL + plotW} y2={padT + plotH} stroke={isDark ? "#475569" : "#cbd5e1"} strokeWidth="1.5" />
@@ -281,8 +290,8 @@ function CDCChart({ sample }: { sample: { age: number, height: number, percentil
                         {hGrids.map(h => (<text key={h} x={padL - 7} y={toY(h) + 4} textAnchor="end" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif">{h}</text>))}
                         {ageGrids.map(age => (<text key={age} x={toX(age)} y={padT + plotH + 16} textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif">{age}</text>))}
 
-                        <text x={14} y={padT + plotH / 2} textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif" transform={`rotate(-90, 14, ${padT + plotH / 2})`}>Height (cm)</text>
-                        <text x={padL + plotW / 2} y={H - 4} textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif">Age (years)</text>
+                        <text x={14} y={padT + plotH / 2} textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif" transform={`rotate(-90, 14, ${padT + plotH / 2})`}>{t('heightAxisLabel')}</text>
+                        <text x={padL + plotW / 2} y={H - 4} textAnchor="middle" fontSize="9" fill={isDark ? "#94a3b8" : "#94a3b8"} fontFamily="Georgia, serif">{t('ageAxisLabel')}</text>
 
                         {percentileLines.map(pl => {
                             const last = CDC_BOYS[CDC_BOYS.length - 1];
@@ -297,6 +306,7 @@ function CDCChart({ sample }: { sample: { age: number, height: number, percentil
 
 // ── Main Visual ───────────────────────────────────────────────────────────
 export default function ExampleCalculationVisual() {
+    const t = useTranslations('heightWeightPercentile.exampleVisual');
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
@@ -306,8 +316,8 @@ export default function ExampleCalculationVisual() {
             <div className={`px-6 py-4 flex items-center gap-3.5 ${isDark ? 'bg-surface border-b border-border' : 'bg-[#0f172a]'}`}>
                 <div style={{ background: "#7c3aed", borderRadius: 8, width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, flexShrink: 0 }}>📍</div>
                 <div>
-                    <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em" }}>Visual Result · Example Calculation</p>
-                    <p style={{ margin: "2px 0 0", fontSize: 15, fontWeight: 800, color: isDark ? "var(--foreground)" : "white" }}>Age 10, Male, 138 cm → 55th Percentile</p>
+                    <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em" }}>{t('eyebrow')}</p>
+                    <p style={{ margin: "2px 0 0", fontSize: 15, fontWeight: 800, color: isDark ? "var(--foreground)" : "white" }}>{t('heading')}</p>
                 </div>
             </div>
 
@@ -318,7 +328,7 @@ export default function ExampleCalculationVisual() {
 
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
                     <div style={{ flex: 1, height: 1, background: isDark ? "var(--border)" : "#e2e8f0" }} />
-                    <span style={{ fontSize: 11, color: isDark ? "#64748b" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", textAlign: "center" }}>Position on CDC growth chart</span>
+                    <span style={{ fontSize: 11, color: isDark ? "#64748b" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em", textAlign: "center" }}>{t('positionOnCdcChart')}</span>
                     <div style={{ flex: 1, height: 1, background: isDark ? "var(--border)" : "#e2e8f0" }} />
                 </div>
 
@@ -327,18 +337,18 @@ export default function ExampleCalculationVisual() {
 
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 14 }}>
                         {[
-                            { color: "#fca5a5", label: "5th" },
-                            { color: "#fcd34d", label: "25th" },
-                            { color: "#86efac", label: "50th (median)" },
-                            { color: "#93c5fd", label: "75th" },
-                            { color: "#c4b5fd", label: "95th" },
-                            { color: "#7c3aed", label: "Sample: 138 cm, age 10" },
+                            { color: "#fca5a5", label: t('legend5th'), isSample: false },
+                            { color: "#fcd34d", label: t('legend25th'), isSample: false },
+                            { color: "#86efac", label: t('legendMedian'), isSample: false },
+                            { color: "#93c5fd", label: t('legend75th'), isSample: false },
+                            { color: "#c4b5fd", label: t('legend95th'), isSample: false },
+                            { color: "#7c3aed", label: t('legendSample'), isSample: true },
                         ].map(item => (
                             <div key={item.label} style={{ display: "flex", alignItems: "center", gap: 5 }}>
                                 <div style={{
-                                    width: item.label.startsWith("Sample") ? 10 : 22,
-                                    height: item.label.startsWith("Sample") ? 10 : 4,
-                                    borderRadius: item.label.startsWith("Sample") ? "50%" : 2,
+                                    width: item.isSample ? 10 : 22,
+                                    height: item.isSample ? 10 : 4,
+                                    borderRadius: item.isSample ? "50%" : 2,
                                     background: item.color
                                 }} />
                                 <span style={{ fontSize: 10, color: isDark ? "#94a3b8" : "#64748b" }}>{item.label}</span>
@@ -350,8 +360,7 @@ export default function ExampleCalculationVisual() {
 
             <div className={`px-6 py-4 transition-colors ${isDark ? 'border-t border-border bg-bg' : 'border-t border-[#f1f5f9] bg-white'}`}>
                 <p style={{ margin: 0, fontSize: 11, color: isDark ? "#64748b" : "#94a3b8", lineHeight: 1.6 }}>
-                    Based on CDC clinical growth charts (2000). The shaded green band represents the average range
-                    (25th–75th percentile). A dot within this band indicates consistent, healthy growth.
+                    {t('footerNote')}
                 </p>
             </div>
         </div>

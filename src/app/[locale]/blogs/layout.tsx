@@ -1,5 +1,6 @@
 import { type Metadata, type Viewport } from "next";
 import { getTranslations } from "next-intl/server";
+import { getAlternateLanguages, getCanonicalUrl } from "@/i18n/config";
 
 export const viewport: Viewport = {
     width: "device-width",
@@ -16,19 +17,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: "metadata" });
-    const baseUrl = "https://heightcomparisoncalculator.com";
-    const canonical = locale === "en" ? `${baseUrl}/blogs` : `${baseUrl}/${locale}/blogs`;
 
     return {
         title: t("blogsTitle"),
         description: t("blogsDescription"),
         alternates: {
-            canonical,
-            languages: {
-                en: `${baseUrl}/blogs`,
-                de: `${baseUrl}/de/blogs`,
-                "x-default": `${baseUrl}/blogs`,
-            },
+            canonical: getCanonicalUrl('/blogs', locale),
+            languages: getAlternateLanguages('/blogs'),
         },
     };
 }

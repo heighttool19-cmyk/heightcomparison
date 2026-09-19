@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useThemeStore } from "@/store"; // Adjust path as needed
 
 // function erf(x: number) {
@@ -38,15 +39,16 @@ const COLORS: Record<number, { fill: string; label: string; band: string; darkFi
     95: { fill: "#ede9fe", label: "#7c3aed", band: "#c4b5fd", darkFill: "#2e1065" },
 };
 
-const LABELS: Record<number, string> = {
-    5: "Significantly below average",
-    25: "Below average",
-    50: "Average (median)",
-    75: "Above average",
-    95: "Exceptionally tall",
+const LABEL_KEYS: Record<number, string> = {
+    5: "label5",
+    25: "label25",
+    50: "label50",
+    75: "label75",
+    95: "label95",
 };
 
 export default function BellCurveIllustration() {
+    const t = useTranslations('heightWeightPercentile.bellCurveIllustration');
     const [hovered, setHovered] = useState<number | null>(null);
     const [showSample, setShowSample] = useState(true);
     const { theme } = useThemeStore();
@@ -111,14 +113,14 @@ export default function BellCurveIllustration() {
             {/* Title */}
             <div style={{ marginBottom: 16 }}>
                 <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                    Interactive Illustration
+                    {t('interactiveIllustration')}
                 </p>
                 <h3 style={{ margin: "4px 0 0", fontSize: 17, fontWeight: 800, color: isDark ? "white" : "#0f172a" }}>
-                    Height Distribution by Percentile
+                    {t('heading')}
                 </h3>
                 <p style={{ margin: "4px 0 0", fontSize: 12, color: isDark ? "#cbd5e1" : "#64748b" }}>
-                    Hover any percentile marker to highlight that range. The{" "}
-                    <span style={{ color: "#7c3aed", fontWeight: 700 }}>purple dot</span> shows a sample score at the {SAMPLE_PERCENTILE}th percentile.
+                    {t('instructionBefore')}{" "}
+                    <span style={{ color: "#7c3aed", fontWeight: 700 }}>{t('purpleDot')}</span> {t('instructionAfter', { samplePercentile: SAMPLE_PERCENTILE })}
                 </p>
             </div>
 
@@ -214,7 +216,7 @@ export default function BellCurveIllustration() {
                                     fontFamily="Georgia, serif"
                                     style={{ transition: "all 0.2s" }}
                                 >
-                                    {pct}th
+                                    {pct}{t('ordinalSuffix')}
                                 </text>
 
                                 {/* Bottom label */}
@@ -270,14 +272,14 @@ export default function BellCurveIllustration() {
                                 textAnchor="middle" fontSize="10" fontWeight="800"
                                 fill="white" fontFamily="Georgia, serif"
                             >
-                                Sample: 72nd percentile
+                                {t('sampleLabel', { samplePercentile: SAMPLE_PERCENTILE })}
                             </text>
                             <text
                                 x={sampleX} y={sampleCurveY - 19}
                                 textAnchor="middle" fontSize="9"
                                 fill="rgba(255,255,255,0.85)" fontFamily="Georgia, serif"
                             >
-                                Taller than 72% of peers
+                                {t('sampleSubLabel', { samplePercentile: SAMPLE_PERCENTILE })}
                             </text>
                         </g>
                     )}
@@ -289,7 +291,7 @@ export default function BellCurveIllustration() {
                         fontFamily="Georgia, serif"
                         transform={`rotate(-90, 14, ${padT + plotH / 2})`}
                     >
-                        Population frequency
+                        {t('populationFrequency')}
                     </text>
 
                     {/* X-axis label */}
@@ -298,7 +300,7 @@ export default function BellCurveIllustration() {
                         textAnchor="middle" fontSize="10" fill={isDark ? "#94a3b8" : "#94a3b8"}
                         fontFamily="Georgia, serif"
                     >
-                        Height (relative to population average)
+                        {t('xAxisLabel')}
                     </text>
                 </svg>
             </div>
@@ -316,16 +318,19 @@ export default function BellCurveIllustration() {
                 {hovered ? (
                     <>
                         <p style={{ margin: 0, fontSize: 13, fontWeight: 800, color: COLORS[hovered].label }}>
-                            {hovered}th Percentile
+                            {hovered}{t('percentileSuffix')}
                         </p>
                         <p style={{ margin: "3px 0 0", fontSize: 12, color: isDark ? "#cbd5e1" : "#475569", lineHeight: 1.5 }}>
-                            {LABELS[hovered]}. A person here is taller than{" "}
-                            <strong style={{ color: COLORS[hovered].label }}>{hovered}%</strong> of people the same age and sex.
+                            {t.rich('hoveredDescription', {
+                                label: t(LABEL_KEYS[hovered]),
+                                percentile: hovered,
+                                pct: (chunks) => <strong style={{ color: COLORS[hovered].label }}>{chunks}</strong>,
+                            })}
                         </p>
                     </>
                 ) : (
                     <p style={{ margin: 0, fontSize: 12, color: isDark ? "#64748b" : "#94a3b8", fontStyle: "italic" }}>
-                        Hover a percentile marker on the curve to see what it means.
+                        {t('hoverPrompt')}
                     </p>
                 )}
             </div>
@@ -354,7 +359,7 @@ export default function BellCurveIllustration() {
                             color: hovered === pct ? COLORS[pct].label : (isDark ? "#94a3b8" : "#64748b"),
                             fontFamily: "Georgia, serif"
                         }}>
-                            {pct}th
+                            {pct}{t('ordinalSuffix')}
                         </span>
                     </div>
                 ))}
@@ -368,16 +373,14 @@ export default function BellCurveIllustration() {
                 >
                     <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#7c3aed" }} />
                     <span style={{ fontSize: 11, fontWeight: 700, color: isDark ? "#c4b5fd" : "#7c3aed", fontFamily: "Georgia, serif" }}>
-                        {showSample ? "Hide" : "Show"} sample dot
+                        {showSample ? t('hideSampleDot') : t('showSampleDot')}
                     </span>
                 </div>
             </div>
 
             {/* Footer note */}
             <p style={{ margin: "14px 0 0", fontSize: 10.5, color: isDark ? "#64748b" : "#94a3b8", lineHeight: 1.6 }}>
-                The 50th percentile is the median. Half the population falls above, half below.
-                Being at the 5th or 95th percentile is not abnormal — it simply describes position within the distribution.
-                Based on WHO &amp; CDC reference data.
+                {t('footerNote')}
             </p>
         </div>
     );

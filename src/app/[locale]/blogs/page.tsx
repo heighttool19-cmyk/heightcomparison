@@ -4,14 +4,7 @@ import { client } from '@/sanity/lib/client';
 import { allPostsQuery } from '@/sanity/lib/queries';
 import type { Post } from '@/sanity/lib/types';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
-
-function formatDate(dateStr: string, locale: string): string {
-    return new Date(dateStr).toLocaleDateString(locale === 'de' ? 'de-DE' : 'en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-    });
-}
+import { formatLocalizedDate as formatDate } from '@/i18n/config';
 
 export default async function BlogsPage({
     params,

@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { client } from "@/sanity/lib/client";
 import { postBySlugQuery } from "@/sanity/lib/queries";
 import type { Post } from "@/sanity/lib/types";
+import { getAlternateLanguages, getCanonicalUrl } from "@/i18n/config";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -21,9 +22,6 @@ export async function generateMetadata({
     return { title: t("postNotFound") };
   }
 
-  const baseUrl = "https://heightcomparisoncalculator.com";
-  const canonical = currentLocale === "en" ? `${baseUrl}/blog/${slug}` : `${baseUrl}/${currentLocale}/blog/${slug}`;
-
   return {
     title: `${post.title} - Height Comparison`,
     description: post.excerpt || `${post.title}`,
@@ -37,12 +35,8 @@ export async function generateMetadata({
       }),
     },
     alternates: {
-      canonical,
-      languages: {
-        en: `${baseUrl}/blog/${slug}`,
-        de: `${baseUrl}/de/blog/${slug}`,
-        "x-default": `${baseUrl}/blog/${slug}`,
-      },
+      canonical: getCanonicalUrl(`/blog/${slug}`, currentLocale),
+      languages: getAlternateLanguages(`/blog/${slug}`),
     },
   };
 }

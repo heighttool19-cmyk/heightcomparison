@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
+import { useTranslations } from 'next-intl';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -85,58 +86,59 @@ interface CustomTooltipProps {
     payload?: TooltipPayload[];
     label?: string | number;
 }
-const CustomLegend = (props: any) => {
-    const { payload } = props;
-    if (!payload) return null;
-
-    return (
-        <div className="flex flex-col sm:flex-row justify-center items-start sm:items-center gap-2 sm:gap-6 pt-4 w-full" style={{ fontFamily: GEORGIA }}>
-            {payload.map((entry: any, index: number) => (
-                <div key={`item-${index}`} className="flex items-center gap-1.5">
-                    {/* The colored circle icon */}
-                    <div
-                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full shrink-0"
-                        style={{ backgroundColor: entry.color }}
-                    />
-                    {/* The perfectly aligned text */}
-                    <span
-                        className="text-[10px] sm:text-[13px] font-semibold tracking-wide whitespace-nowrap"
-                        style={{ color: entry.color }}
-                    >
-                        {entry.value}
-                    </span>
-                </div>
-            ))}
-        </div>
-    );
-};
-const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
-    if (active && payload && payload.length) {
-        return (
-            <div
-                className="bg-surface/95 backdrop-blur-md border border-[#e94560] rounded-xl p-2 sm:p-4 shadow-[0_0_15px_rgba(233,69,96,0.15)] max-w-[180px] sm:max-w-none z-50 relative"
-                style={{ fontFamily: GEORGIA }}
-            >
-                <p className="font-bold text-[#e94560] mb-1 sm:mb-2 text-xs sm:text-base">Age {label}</p>
-                <div className="space-y-0.5 sm:space-y-1">
-                    {payload.map((p: TooltipPayload, i: number) => (
-                        <div key={i} className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-sm">
-                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full flex-shrink-0" style={{ backgroundColor: p.color }} />
-                            <span className="text-muted truncate">{p.name.split(' (')[0]}:</span>
-                            <span className="font-bold whitespace-nowrap" style={{ color: p.color }}>{p.value} cm</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        );
-    }
-    return null;
-};
-
 export default function HeightCharts() {
+    const t = useTranslations('heightPredictor.heightCharts');
     const [activeChart, setActiveChart] = useState<"boys" | "girls">("boys");
     const [activeView, setActiveView] = useState<"chart" | "table">("chart");
     const [isMobile, setIsMobile] = useState(false);
+
+    const CustomLegend = (props: any) => {
+        const { payload } = props;
+        if (!payload) return null;
+
+        return (
+            <div className="flex flex-col sm:flex-row justify-center items-start sm:items-center gap-2 sm:gap-6 pt-4 w-full" style={{ fontFamily: GEORGIA }}>
+                {payload.map((entry: any, index: number) => (
+                    <div key={`item-${index}`} className="flex items-center gap-1.5">
+                        {/* The colored circle icon */}
+                        <div
+                            className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full shrink-0"
+                            style={{ backgroundColor: entry.color }}
+                        />
+                        {/* The perfectly aligned text */}
+                        <span
+                            className="text-[10px] sm:text-[13px] font-semibold tracking-wide whitespace-nowrap"
+                            style={{ color: entry.color }}
+                        >
+                            {entry.value}
+                        </span>
+                    </div>
+                ))}
+            </div>
+        );
+    };
+    const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
+        if (active && payload && payload.length) {
+            return (
+                <div
+                    className="bg-surface/95 backdrop-blur-md border border-[#e94560] rounded-xl p-2 sm:p-4 shadow-[0_0_15px_rgba(233,69,96,0.15)] max-w-[180px] sm:max-w-none z-50 relative"
+                    style={{ fontFamily: GEORGIA }}
+                >
+                    <p className="font-bold text-[#e94560] mb-1 sm:mb-2 text-xs sm:text-base">{t('tooltipAge', { age: label ?? '' })}</p>
+                    <div className="space-y-0.5 sm:space-y-1">
+                        {payload.map((p: TooltipPayload, i: number) => (
+                            <div key={i} className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-sm">
+                                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full flex-shrink-0" style={{ backgroundColor: p.color }} />
+                                <span className="text-muted truncate">{p.name.split(' (')[0]}:</span>
+                                <span className="font-bold whitespace-nowrap" style={{ color: p.color }}>{p.value} cm</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+        return null;
+    };
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -151,13 +153,13 @@ export default function HeightCharts() {
     const color1 = activeChart === "boys" ? "#3b82f6" : "#ec4899";
     const color2 = activeChart === "boys" ? "#06b6d4" : "#f59e0b";
     const color3 = activeChart === "boys" ? "#8b5cf6" : "#10b981";
-    const label = activeChart === "boys" ? "Boys" : "Girls";
+    const label = activeChart === "boys" ? t('boysLabel') : t('girlsLabel');
 
     return (
         <div className="space-y-6 mt-2 flex flex-col justify-center items-center w-full max-w-[100vw] overflow-x-hidden px-2 sm:px-4" style={{ fontFamily: GEORGIA }}>
 
             <p className="text-muted leading-relaxed max-w-3xl text-center">
-                Based on CDC growth chart data : average & median height by age (ages 2–18) : cm
+                {t('intro')}
             </p>
 
             <div className="bg-bg border border-border rounded-[2.5rem] p-4 sm:p-6 md:p-10 relative overflow-hidden group shadow-sm transition-colors duration-500 w-full max-w-7xl mx-auto min-w-0">
@@ -179,7 +181,7 @@ export default function HeightCharts() {
                                         } capitalize flex items-center justify-center gap-1 sm:gap-2 leading-none shrink-0`}
                                     style={{ fontFamily: GEORGIA }}
                                 >
-                                    {g === "boys" ? "👦 Boys" : "👧 Girls"}
+                                    {g === "boys" ? t('boysToggle') : t('girlsToggle')}
                                 </button>
                             ))}
                         </div>
@@ -204,8 +206,8 @@ export default function HeightCharts() {
 
                                             {/* Text block: stacked + left-aligned on mobile, inline on desktop */}
                                             <div className="flex flex-col sm:flex-row items-start sm:items-center text-left leading-[1.1] sm:leading-none sm:gap-1">
-                                                <span className="whitespace-nowrap">Growth</span>
-                                                <span className="whitespace-nowrap">Chart</span>
+                                                <span className="whitespace-nowrap">{t('chartToggleLine1')}</span>
+                                                <span className="whitespace-nowrap">{t('chartToggleLine2')}</span>
                                             </div>
                                         </div>
                                     ) : (
@@ -215,8 +217,8 @@ export default function HeightCharts() {
 
                                             {/* Text block: stacked + left-aligned on mobile, inline on desktop */}
                                             <div className="flex flex-col sm:flex-row items-start sm:items-center text-left leading-[1.1] sm:leading-none sm:gap-1">
-                                                <span className="whitespace-nowrap">Data</span>
-                                                <span className="whitespace-nowrap">Table</span>
+                                                <span className="whitespace-nowrap">{t('tableToggleLine1')}</span>
+                                                <span className="whitespace-nowrap">{t('tableToggleLine2')}</span>
                                             </div>
                                         </div>
                                     )}
@@ -238,7 +240,7 @@ export default function HeightCharts() {
                                 className="bg-bg border border-border rounded-3xl p-4 sm:p-6 md:p-8 w-full min-w-0 overflow-hidden"
                             >
                                 <h3 className="text-center font-bold text-foreground mb-4 text-xl sm:text-2xl" style={{ fontFamily: GEORGIA }}>
-                                    {label} Height Percentile Chart (Ages 2–18)
+                                    {t('chartTitle', { label })}
                                 </h3>
 
                                 {/* ADDED: overflow-x-auto wrapper to allow the chart to scroll horizontally on small screens */}
@@ -262,7 +264,7 @@ export default function HeightCharts() {
                                                     tick={{ fill: "#888888", fontSize: isMobile ? 12 : 14, fontFamily: GEORGIA, fontWeight: 600 }}
                                                     tickMargin={isMobile ? 8 : 12}
                                                     label={{
-                                                        value: 'Age (years)',
+                                                        value: t('axisAge'),
                                                         position: 'bottom',
                                                         offset: isMobile ? 0 : 10,
                                                         fill: '#888888',
@@ -278,7 +280,7 @@ export default function HeightCharts() {
                                                     tickMargin={isMobile ? 5 : 10}
                                                     tickCount={14}
                                                     label={{
-                                                        value: 'Height (cm)',
+                                                        value: t('axisHeight'),
                                                         angle: -90,
                                                         position: 'insideLeft',
                                                         offset: isMobile ? 0 : 0,
@@ -291,16 +293,16 @@ export default function HeightCharts() {
                                                 />
                                                 <Tooltip content={<CustomTooltip />} cursor={{ stroke: 'rgba(255,255,255,0.1)', strokeWidth: 2 }} />
                                                 <Legend content={<CustomLegend />} verticalAlign="bottom" />
-                                                <Line type="monotone" dataKey="p3" name="3rd Percentile (Short Range)" stroke={color3} strokeWidth={isMobile ? 2.5 : 3} strokeDasharray="6 6" dot={{ r: isMobile ? 2 : 3, fill: color3, strokeDasharray: 'none' }} activeDot={{ r: 6, strokeDasharray: 'none' }} />
-                                                <Line type="monotone" dataKey="p50" name="50th Percentile (Average/Median)" stroke={color1} strokeWidth={isMobile ? 4 : 5} dot={{ r: isMobile ? 3 : 4, fill: color1 }} activeDot={{ r: isMobile ? 8 : 10 }} />
-                                                <Line type="monotone" dataKey="p97" name="97th Percentile (Tall Range)" stroke={color2} strokeWidth={isMobile ? 2.5 : 3} strokeDasharray="6 6" dot={{ r: isMobile ? 2 : 3, fill: color2, strokeDasharray: 'none' }} activeDot={{ r: 6, strokeDasharray: 'none' }} />
+                                                <Line type="monotone" dataKey="p3" name={t('percentile3')} stroke={color3} strokeWidth={isMobile ? 2.5 : 3} strokeDasharray="6 6" dot={{ r: isMobile ? 2 : 3, fill: color3, strokeDasharray: 'none' }} activeDot={{ r: 6, strokeDasharray: 'none' }} />
+                                                <Line type="monotone" dataKey="p50" name={t('percentile50')} stroke={color1} strokeWidth={isMobile ? 4 : 5} dot={{ r: isMobile ? 3 : 4, fill: color1 }} activeDot={{ r: isMobile ? 8 : 10 }} />
+                                                <Line type="monotone" dataKey="p97" name={t('percentile97')} stroke={color2} strokeWidth={isMobile ? 2.5 : 3} strokeDasharray="6 6" dot={{ r: isMobile ? 2 : 3, fill: color2, strokeDasharray: 'none' }} activeDot={{ r: 6, strokeDasharray: 'none' }} />
                                             </LineChart>
                                         </ResponsiveContainer>
                                     </div>
                                 </div>
 
                                 <p className="text-center text-[10px] sm:text-xs text-muted uppercase tracking-wider font-bold mt-4" style={{ fontFamily: GEORGIA }}>
-                                    Source: CDC Growth Charts : National Center for Health Statistics
+                                    {t('sourceNote')}
                                 </p>
                             </motion.div>
                         )}
@@ -315,14 +317,14 @@ export default function HeightCharts() {
                                 className="bg-bg border border-border rounded-2xl sm:rounded-3xl p-3 sm:p-6 w-full min-w-0"
                             >
                                 <h3 className="text-center font-bold text-foreground mb-4 sm:mb-6 text-base sm:text-lg" style={{ fontFamily: GEORGIA }}>
-                                    Average & Median Height by Age (cm)
+                                    {t('tableTitle')}
                                 </h3>
 
                                 <div className="w-full overflow-x-auto pb-2">
                                     <table className="w-full text-left min-w-[500px] sm:min-w-[600px] border-collapse" style={{ fontFamily: GEORGIA }}>
                                         <thead>
                                             <tr className="border-b-2 border-border">
-                                                {["Age", "Boys Avg (cm)", "Boys Avg (ft)", "Boys Median", "Girls Avg (cm)", "Girls Avg (ft)", "Girls Median"].map(h => (
+                                                {[t('tableHeaderAge'), t('tableHeaderBoysAvgCm'), t('tableHeaderBoysAvgFt'), t('tableHeaderBoysMedian'), t('tableHeaderGirlsAvgCm'), t('tableHeaderGirlsAvgFt'), t('tableHeaderGirlsMedian')].map(h => (
                                                     <th key={h} className="py-2 sm:py-4 px-1 sm:px-2 font-bold text-muted text-[10px] sm:text-xs md:text-sm whitespace-nowrap">
                                                         {h}
                                                     </th>
@@ -332,7 +334,7 @@ export default function HeightCharts() {
                                         <tbody className="divide-y divide-border/50 text-xs sm:text-sm">
                                             {tableData.map((row) => (
                                                 <tr key={row.age} className="hover:bg-surface/50 transition-colors text-center">
-                                                    <td className="py-2 sm:py-3 px-1 font-black text-[#e94560] whitespace-nowrap">{row.age} yrs</td>
+                                                    <td className="py-2 sm:py-3 px-1 font-black text-[#e94560] whitespace-nowrap">{t('ageYrs', { age: row.age })}</td>
                                                     <td className="py-2 sm:py-3 px-1 sm:px-4 font-semibold text-[#4f8ef7] whitespace-nowrap">{row.boysAvg}</td>
                                                     <td className="py-2 sm:py-3 px-1 sm:px-4 font-medium text-[10px] sm:text-xs font-mono text-[#38d9f5] whitespace-nowrap">{toFt(row.boysAvg)}</td>
                                                     <td className="py-2 sm:py-3 px-1 sm:px-4 font-semibold text-[#a78bfa] whitespace-nowrap">{row.boysMedian}</td>
@@ -346,7 +348,7 @@ export default function HeightCharts() {
                                 </div>
 
                                 <p className="text-center text-[9px] sm:text-xs text-muted mt-4 sm:mt-6 uppercase tracking-wider font-bold" style={{ fontFamily: GEORGIA }}>
-                                    Source: CDC Growth Charts : National Center for Health Statistics
+                                    {t('sourceNote')}
                                 </p>
                             </motion.div>
                         )}
@@ -355,13 +357,13 @@ export default function HeightCharts() {
                     {/* Insight Cards */}
                     <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 pt-4 w-full min-w-0">
                         {[
-                            { label: "Boys stop growing", value: "~18 yrs", color: "text-blue-500", bg: "bg-blue-500/10", border: "border-blue-500/20" },
-                            { label: "Girls stop growing", value: "~15-16 yrs", color: "text-pink-500", bg: "bg-pink-500/10", border: "border-pink-500/20" },
+                            { label: t('insightBoysStopLabel'), value: t('insightBoysStopValue'), color: "text-blue-500", bg: "bg-blue-500/10", border: "border-blue-500/20" },
+                            { label: t('insightGirlsStopLabel'), value: t('insightGirlsStopValue'), color: "text-pink-500", bg: "bg-pink-500/10", border: "border-pink-500/20" },
                             {
-                                label: "Average adult male height (US)", value: `172.2 cm / 5'8" `, color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/20"
+                                label: t('insightMaleHeightLabel'), value: t('insightMaleHeightValue'), color: "text-blue-400", bg: "bg-blue-400/10", border: "border-blue-400/20"
                             },
                             {
-                                label: "Average adult female height (US)", value: `160.1 cm / 5'3"`, color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/20"
+                                label: t('insightFemaleHeightLabel'), value: t('insightFemaleHeightValue'), color: "text-pink-400", bg: "bg-pink-400/10", border: "border-pink-400/20"
                             },
                         ].map(card => (
                             <div key={card.label} className={`p-2 rounded-2xl border ${card.border} ${card.bg} text-center min-w-0`} style={{ fontFamily: GEORGIA }}>

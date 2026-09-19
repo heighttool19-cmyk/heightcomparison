@@ -2,7 +2,13 @@
   "common": {
     "language": "Language",
     "english": "English",
-    "german": "Deutsch"
+    "german": "German",
+    "spanish": "Spanish",
+    "french": "French",
+    "portuguese": "Portuguese",
+    "italian": "Italian",
+    "dutch": "Dutch",
+    "arabic": "Arabic"
   },
   "nav": {
     "home": "Home",
@@ -463,41 +469,92 @@
       }
     ],
     "toc": [
-      { "id": "height-predictor-calculator", "label": "Height Predictor Calculator" },
-      { "id": "how-it-works", "label": "How Does it Work?" },
+      {
+        "id": "height-predictor-calculator",
+        "label": "Height Predictor Calculator"
+      },
+      {
+        "id": "how-it-works",
+        "label": "How Does it Work?"
+      },
       {
         "id": "how-tall-will-my-child-be",
         "label": "How Tall Will My Child Be?",
         "subItems": [
-          { "id": "how-tall-will-i-be-teens-adults", "label": "How Tall Will I Be (Teens & Adults)" }
+          {
+            "id": "how-tall-will-i-be-teens-adults",
+            "label": "How Tall Will I Be (Teens & Adults)"
+          }
         ]
       },
-      { "id": "what-determines-height", "label": "What Determines Height?" },
-      { "id": "boys-girls-growth-charts", "label": "Boys & Girls Growth Charts" },
-      { "id": "calculator-vs-growth-charts", "label": "Calculator vs. Growth Charts" },
-      { "id": "when-do-boys-stop-growing", "label": "When Do Boys Stop Growing?" },
-      { "id": "when-do-girls-stop-growing", "label": "When Do Girls Stop Growing?" },
+      {
+        "id": "what-determines-height",
+        "label": "What Determines Height?"
+      },
+      {
+        "id": "boys-girls-growth-charts",
+        "label": "Boys & Girls Growth Charts"
+      },
+      {
+        "id": "calculator-vs-growth-charts",
+        "label": "Calculator vs. Growth Charts"
+      },
+      {
+        "id": "when-do-boys-stop-growing",
+        "label": "When Do Boys Stop Growing?"
+      },
+      {
+        "id": "when-do-girls-stop-growing",
+        "label": "When Do Girls Stop Growing?"
+      },
       {
         "id": "height-prediction-methods",
         "label": "Height Prediction Methods",
         "subItems": [
-          { "id": "khamis-roche-method", "label": "Khamis-Roche Method" },
-          { "id": "based-on-parents", "label": "Based on Parents" }
+          {
+            "id": "khamis-roche-method",
+            "label": "Khamis-Roche Method"
+          },
+          {
+            "id": "based-on-parents",
+            "label": "Based on Parents"
+          }
         ]
       },
       {
         "id": "bone-age-method",
         "label": "Bone Age Method",
         "subItems": [
-          { "id": "bayley-pinneau-method", "label": "Bayley-Pinneau Method" },
-          { "id": "roche-wainer-thissen-method", "label": "Roche-Wainer-Thissen Method" }
+          {
+            "id": "bayley-pinneau-method",
+            "label": "Bayley-Pinneau Method"
+          },
+          {
+            "id": "roche-wainer-thissen-method",
+            "label": "Roche-Wainer-Thissen Method"
+          }
         ]
       },
-      { "id": "can-you-increase-height", "label": "Can You Increase Height?" },
-      { "id": "accuracy", "label": "Prediction Accuracy" },
-      { "id": "faq", "label": "FAQ" },
-      { "id": "related-tools", "label": "Related Tools" },
-      { "id": "references", "label": "References" }
+      {
+        "id": "can-you-increase-height",
+        "label": "Can You Increase Height?"
+      },
+      {
+        "id": "accuracy",
+        "label": "Prediction Accuracy"
+      },
+      {
+        "id": "faq",
+        "label": "FAQ"
+      },
+      {
+        "id": "related-tools",
+        "label": "Related Tools"
+      },
+      {
+        "id": "references",
+        "label": "References"
+      }
     ],
     "relatedTools": {
       "title": "Related Tools",
@@ -759,26 +816,68 @@
       }
     ],
     "toc": [
-      { "id": "calculate-your-height-and-weight-percentile", "label": "Calculate Your Height and Weight Percentile" },
-      { "id": "what-does-height-and-weight-percentile-mean", "label": "What Does Height and Weight Percentile Mean?" },
-      { "id": "how-the-height-and-weight-percentile-calculator-works", "label": "How the Height and Weight Percentile Calculator Works" },
+      {
+        "id": "calculate-your-height-and-weight-percentile",
+        "label": "Calculate Your Height and Weight Percentile"
+      },
+      {
+        "id": "what-does-height-and-weight-percentile-mean",
+        "label": "What Does Height and Weight Percentile Mean?"
+      },
+      {
+        "id": "how-the-height-and-weight-percentile-calculator-works",
+        "label": "How the Height and Weight Percentile Calculator Works"
+      },
       {
         "id": "height-percentile-calculator-by-age-group",
         "label": "Height Percentile Calculator by Age Group",
         "subItems": [
-          { "id": "height-percentile-calculator-for-babies-and-infants", "label": "Height Percentile Calculator for Babies and Infants" },
-          { "id": "height-percentile-calculator-for-toddlers-and-kids", "label": "Height Percentile Calculator for Toddlers and Kids" },
-          { "id": "height-percentile-calculator-for-boys-and-girls", "label": "Height Percentile Calculator for Boys and Girls" },
-          { "id": "height-percentile-calculator-for-adults", "label": "Height Percentile Calculator for Adults" }
+          {
+            "id": "height-percentile-calculator-for-babies-and-infants",
+            "label": "Height Percentile Calculator for Babies and Infants"
+          },
+          {
+            "id": "height-percentile-calculator-for-toddlers-and-kids",
+            "label": "Height Percentile Calculator for Toddlers and Kids"
+          },
+          {
+            "id": "height-percentile-calculator-for-boys-and-girls",
+            "label": "Height Percentile Calculator for Boys and Girls"
+          },
+          {
+            "id": "height-percentile-calculator-for-adults",
+            "label": "Height Percentile Calculator for Adults"
+          }
         ]
       },
-      { "id": "us-height-percentile-calculator", "label": "US Height Percentile Calculator" },
-      { "id": "how-to-interpret-height-percentile-result", "label": "How to Interpret Your Height Percentile Result" },
-      { "id": "example-height-percentile-calculation", "label": "Example Height Percentile Calculation" },
-      { "id": "why-height-percentiles-are-used-in-pediatric-growth-monitoring", "label": "Why Height Percentiles Are Used in Pediatric Growth Monitoring" },
-      { "id": "try-the-height-and-weight-percentile-calculator", "label": "Try the Height and Weight Percentile Calculator" },
-      { "id": "frequently-asked-questions", "label": "Frequently Asked Questions" },
-      { "id": "references", "label": "References" }
+      {
+        "id": "us-height-percentile-calculator",
+        "label": "US Height Percentile Calculator"
+      },
+      {
+        "id": "how-to-interpret-height-percentile-result",
+        "label": "How to Interpret Your Height Percentile Result"
+      },
+      {
+        "id": "example-height-percentile-calculation",
+        "label": "Example Height Percentile Calculation"
+      },
+      {
+        "id": "why-height-percentiles-are-used-in-pediatric-growth-monitoring",
+        "label": "Why Height Percentiles Are Used in Pediatric Growth Monitoring"
+      },
+      {
+        "id": "try-the-height-and-weight-percentile-calculator",
+        "label": "Try the Height and Weight Percentile Calculator"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Frequently Asked Questions"
+      },
+      {
+        "id": "references",
+        "label": "References"
+      }
     ],
     "tool": {
       "veryTall": "Very Tall",
@@ -1090,26 +1189,68 @@
       }
     ],
     "toc": [
-      { "id": "ideal-body-weight-calculator", "label": "Ideal Body Weight Calculator" },
-      { "id": "how-to-calculate-ideal-body-weight", "label": "How to Calculate Ideal Body Weight" },
+      {
+        "id": "ideal-body-weight-calculator",
+        "label": "Ideal Body Weight Calculator"
+      },
+      {
+        "id": "how-to-calculate-ideal-body-weight",
+        "label": "How to Calculate Ideal Body Weight"
+      },
       {
         "id": "ideal-body-weight-calculation-formulas",
         "label": "Ideal Body Weight Calculation Formulas",
         "subItems": [
-          { "id": "devine-formula", "label": "Devine Formula" },
-          { "id": "robinson-formula", "label": "Robinson Formula" },
-          { "id": "hamwi-formula", "label": "Hamwi Formula" }
+          {
+            "id": "devine-formula",
+            "label": "Devine Formula"
+          },
+          {
+            "id": "robinson-formula",
+            "label": "Robinson Formula"
+          },
+          {
+            "id": "hamwi-formula",
+            "label": "Hamwi Formula"
+          }
         ]
       },
-      { "id": "ideal-body-weight-calculator-for-women", "label": "Ideal Body Weight Calculator for Women" },
-      { "id": "ideal-body-weight-calculator-for-men", "label": "Ideal Body Weight Calculator for Men" },
-      { "id": "ideal-body-weight-calculator-for-pediatrics", "label": "Ideal Body Weight Calculator for Pediatrics" },
-      { "id": "adjusted-ideal-body-weight-calculator", "label": "Adjusted Ideal Body Weight Calculator" },
-      { "id": "percent-ideal-body-weight-calculation", "label": "Percent Ideal Body Weight Calculation" },
-      { "id": "healthy-weight-range", "label": "Healthy Weight Range" },
-      { "id": "ideal-body-weight-vs-bmi", "label": "Ideal Body Weight vs BMI" },
-      { "id": "frequently-asked-questions", "label": "Frequently Asked Questions" },
-      { "id": "references", "label": "References" }
+      {
+        "id": "ideal-body-weight-calculator-for-women",
+        "label": "Ideal Body Weight Calculator for Women"
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-men",
+        "label": "Ideal Body Weight Calculator for Men"
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-pediatrics",
+        "label": "Ideal Body Weight Calculator for Pediatrics"
+      },
+      {
+        "id": "adjusted-ideal-body-weight-calculator",
+        "label": "Adjusted Ideal Body Weight Calculator"
+      },
+      {
+        "id": "percent-ideal-body-weight-calculation",
+        "label": "Percent Ideal Body Weight Calculation"
+      },
+      {
+        "id": "healthy-weight-range",
+        "label": "Healthy Weight Range"
+      },
+      {
+        "id": "ideal-body-weight-vs-bmi",
+        "label": "Ideal Body Weight vs BMI"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Frequently Asked Questions"
+      },
+      {
+        "id": "references",
+        "label": "References"
+      }
     ],
     "tool": {
       "title": "Ideal Body Weight Calculator",
@@ -1296,16 +1437,46 @@
       }
     ],
     "toc": [
-      { "id": "calculate-height-difference", "label": "Calculate Height Difference" },
-      { "id": "how-to-calculate-height-difference", "label": "How to Calculate Height Difference" },
-      { "id": "height-difference-percentage", "label": "Height Difference Percentage" },
-      { "id": "couple-height-difference-calculator", "label": "Couple Height Difference Calculator" },
-      { "id": "height-difference-chart", "label": "Height Difference Chart" },
-      { "id": "visual-height-comparison", "label": "Visual Height Comparison" },
-      { "id": "height-difference-in-different-units", "label": "Height Difference in Different Units" },
-      { "id": "try-the-height-difference-calculator", "label": "Try the Height Difference Calculator" },
-      { "id": "frequently-asked-questions", "label": "Frequently Asked Questions" },
-      { "id": "references", "label": "References" }
+      {
+        "id": "calculate-height-difference",
+        "label": "Calculate Height Difference"
+      },
+      {
+        "id": "how-to-calculate-height-difference",
+        "label": "How to Calculate Height Difference"
+      },
+      {
+        "id": "height-difference-percentage",
+        "label": "Height Difference Percentage"
+      },
+      {
+        "id": "couple-height-difference-calculator",
+        "label": "Couple Height Difference Calculator"
+      },
+      {
+        "id": "height-difference-chart",
+        "label": "Height Difference Chart"
+      },
+      {
+        "id": "visual-height-comparison",
+        "label": "Visual Height Comparison"
+      },
+      {
+        "id": "height-difference-in-different-units",
+        "label": "Height Difference in Different Units"
+      },
+      {
+        "id": "try-the-height-difference-calculator",
+        "label": "Try the Height Difference Calculator"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Frequently Asked Questions"
+      },
+      {
+        "id": "references",
+        "label": "References"
+      }
     ],
     "tool": {
       "unitMetric": "Metric (cm)",
@@ -1425,18 +1596,54 @@
     "selectedCountries": {
       "title": "Average Height in Selected Countries",
       "countries": {
-        "netherlands": { "name": "Netherlands", "paragraph": "Netherlands men have topped global rankings for decades. Dairy-rich diets and universal healthcare drive the result." },
-        "unitedKingdom": { "name": "United Kingdom", "paragraph": "UK sits mid-table in Europe. Heights vary by region — northern England and Scotland tend to average slightly taller." },
-        "japan": { "name": "Japan", "paragraph": "Japanese heights have risen sharply since the 1950s. South Korean men at 175.5 cm have since overtaken their Japanese neighbours." },
-        "bangladesh": { "name": "Bangladesh", "paragraph": "High rates of childhood malnutrition have historically limited growth. Urban populations show modest gains over recent decades." },
-        "iran": { "name": "Iran", "paragraph": "One of the fastest documented rises in the Middle East — average male height has increased an estimated 5 to 6 cm over 40 years." },
-        "canada": { "name": "Canada", "paragraph": "Canada's figures mirror Australia's closely, reflecting a well-nourished, high-income population profile. Growth has plateaued since the 1990s." },
-        "ireland": { "name": "Ireland", "paragraph": "Ireland sits in the upper quarter of European rankings. Heights have risen steadily since the mid-20th century." },
-        "sriLanka": { "name": "Sri Lanka", "paragraph": "Urban populations in Colombo show measurable height gains over two generations. Rural areas have lagged due to food insecurity." },
-        "southKorea": { "name": "South Korea", "paragraph": "One of the largest documented generational height increases ever recorded — men gained around 6 cm across two generations post-war." },
-        "india": { "name": "India", "paragraph": "India's national average masks large regional variation. Men in Punjab average around 172 to 174 cm. Urban areas show consistent gains." },
-        "usa": { "name": "USA", "paragraph": "The US was once third tallest globally. It now sits around 47th for men, reflecting diet quality diverging from European peers after the 1970s." },
-        "denmark": { "name": "Denmark", "paragraph": "Denmark consistently ranks in the global top five. Strong public healthcare and high dairy consumption from early childhood contribute." }
+        "netherlands": {
+          "name": "Netherlands",
+          "paragraph": "Netherlands men have topped global rankings for decades. Dairy-rich diets and universal healthcare drive the result."
+        },
+        "unitedKingdom": {
+          "name": "United Kingdom",
+          "paragraph": "UK sits mid-table in Europe. Heights vary by region — northern England and Scotland tend to average slightly taller."
+        },
+        "japan": {
+          "name": "Japan",
+          "paragraph": "Japanese heights have risen sharply since the 1950s. South Korean men at 175.5 cm have since overtaken their Japanese neighbours."
+        },
+        "bangladesh": {
+          "name": "Bangladesh",
+          "paragraph": "High rates of childhood malnutrition have historically limited growth. Urban populations show modest gains over recent decades."
+        },
+        "iran": {
+          "name": "Iran",
+          "paragraph": "One of the fastest documented rises in the Middle East — average male height has increased an estimated 5 to 6 cm over 40 years."
+        },
+        "canada": {
+          "name": "Canada",
+          "paragraph": "Canada's figures mirror Australia's closely, reflecting a well-nourished, high-income population profile. Growth has plateaued since the 1990s."
+        },
+        "ireland": {
+          "name": "Ireland",
+          "paragraph": "Ireland sits in the upper quarter of European rankings. Heights have risen steadily since the mid-20th century."
+        },
+        "sriLanka": {
+          "name": "Sri Lanka",
+          "paragraph": "Urban populations in Colombo show measurable height gains over two generations. Rural areas have lagged due to food insecurity."
+        },
+        "southKorea": {
+          "name": "South Korea",
+          "paragraph": "One of the largest documented generational height increases ever recorded — men gained around 6 cm across two generations post-war."
+        },
+        "india": {
+          "name": "India",
+          "paragraph": "India's national average masks large regional variation. Men in Punjab average around 172 to 174 cm. Urban areas show consistent gains."
+        },
+        "usa": {
+          "name": "USA",
+          "paragraph": "The US was once third tallest globally. It now sits around 47th for men, reflecting diet quality diverging from European peers after the 1970s."
+        },
+        "denmark": {
+          "name": "Denmark",
+          "paragraph": "Denmark consistently ranks in the global top five. Strong public healthcare and high dairy consumption from early childhood contribute."
+        }
       }
     },
     "chartForMen": {
@@ -1456,15 +1663,42 @@
         "tallestLabel": "180+ cm (tallest)",
         "shortestLabel": "≤162 cm (shortest)",
         "regions": {
-          "northernEurope": { "name": "Northern Europe", "ex": "Netherlands, Denmark, Norway" },
-          "easternEurope": { "name": "Eastern Europe", "ex": "Serbia, Ukraine, Poland" },
-          "westernEurope": { "name": "Western Europe", "ex": "Germany, France, UK" },
-          "northAmericaOceania": { "name": "Northern America/Oceania", "ex": "Canada, USA, Australia" },
-          "middleEast": { "name": "Middle East", "ex": "Iran, Turkey" },
-          "eastAsia": { "name": "East Asia", "ex": "China, South Korea, Japan" },
-          "latinAmerica": { "name": "Latin America", "ex": "Brazil, Mexico" },
-          "southSeAsia": { "name": "South/SE Asia", "ex": "India, Indonesia, Nepal" },
-          "centralAmerica": { "name": "Central America", "ex": "Guatemala, Honduras" }
+          "northernEurope": {
+            "name": "Northern Europe",
+            "ex": "Netherlands, Denmark, Norway"
+          },
+          "easternEurope": {
+            "name": "Eastern Europe",
+            "ex": "Serbia, Ukraine, Poland"
+          },
+          "westernEurope": {
+            "name": "Western Europe",
+            "ex": "Germany, France, UK"
+          },
+          "northAmericaOceania": {
+            "name": "Northern America/Oceania",
+            "ex": "Canada, USA, Australia"
+          },
+          "middleEast": {
+            "name": "Middle East",
+            "ex": "Iran, Turkey"
+          },
+          "eastAsia": {
+            "name": "East Asia",
+            "ex": "China, South Korea, Japan"
+          },
+          "latinAmerica": {
+            "name": "Latin America",
+            "ex": "Brazil, Mexico"
+          },
+          "southSeAsia": {
+            "name": "South/SE Asia",
+            "ex": "India, Indonesia, Nepal"
+          },
+          "centralAmerica": {
+            "name": "Central America",
+            "ex": "Guatemala, Honduras"
+          }
         }
       }
     },
@@ -1486,10 +1720,30 @@
         "paragraph": "Jyoti Amge of Nagpur, India has held the Guinness World Record for the shortest living woman since 2011 at 62.8 cm (2'1\"). Her condition is achondroplasia, the most common form of dwarfism. She is also a working Bollywood actress who appeared in the US television series American Horror Story."
       },
       "dataCards": {
-        "tallestManEver": { "label": "Tallest man ever", "name": "Robert Wadlow", "value": "272 cm", "meta": "8'11\" · USA · d. 1940" },
-        "shortestManEver": { "label": "Shortest man ever", "name": "Chandra Bahadur Dangi", "value": "54.6 cm", "meta": "1'9\" · Nepal · d. 2015" },
-        "tallestWomanEver": { "label": "Tallest woman ever", "name": "Zeng Jinlian", "value": "246.3 cm", "meta": "8'1\" · China · d. 1982" },
-        "shortestLivingWoman": { "label": "Shortest living woman", "name": "Jyoti Amge", "value": "62.8 cm", "meta": "2'1\" · India" }
+        "tallestManEver": {
+          "label": "Tallest man ever",
+          "name": "Robert Wadlow",
+          "value": "272 cm",
+          "meta": "8'11\" · USA · d. 1940"
+        },
+        "shortestManEver": {
+          "label": "Shortest man ever",
+          "name": "Chandra Bahadur Dangi",
+          "value": "54.6 cm",
+          "meta": "1'9\" · Nepal · d. 2015"
+        },
+        "tallestWomanEver": {
+          "label": "Tallest woman ever",
+          "name": "Zeng Jinlian",
+          "value": "246.3 cm",
+          "meta": "8'1\" · China · d. 1982"
+        },
+        "shortestLivingWoman": {
+          "label": "Shortest living woman",
+          "name": "Jyoti Amge",
+          "value": "62.8 cm",
+          "meta": "2'1\" · India"
+        }
       }
     },
     "distribution": {
@@ -1535,23 +1789,74 @@
       "calloutUS": "The United States is the most telling case study: in 1914, American men ranked third tallest in the world. Today they sit around 47th globally, not because their genetics changed but because diet quality declined relative to European peers after the 1970s."
     },
     "toc": [
-      { "id": "average-height-by-country", "label": "Average Height by Country" },
-      { "id": "tallest-countries-in-the-world", "label": "Tallest Countries in the World" },
-      { "id": "shortest-countries-in-the-world", "label": "Shortest Countries in the World" },
-      { "id": "tallest-and-shortest-countries-by-average-height", "label": "Tallest and Shortest Countries by Average Height" },
-      { "id": "average-male-height-by-country", "label": "Average Male Height by Country" },
-      { "id": "average-female-height-by-country", "label": "Average Female Height by Country" },
-      { "id": "average-height-in-selected-countries", "label": "Average Height in Selected Countries" },
-      { "id": "average-height-chart-for-men", "label": "Average Height Chart for Men" },
-      { "id": "global-average-height", "label": "Global Average Height" },
-      { "id": "tallest-man-in-the-world", "label": "Tallest Man in the World" },
-      { "id": "shortest-man-in-the-world", "label": "Shortest Man in the World" },
-      { "id": "tallest-female-in-the-world", "label": "Tallest Female in the World" },
-      { "id": "shortest-female-in-the-world", "label": "Shortest Female in the World" },
-      { "id": "human-height-distribution", "label": "Human Height Distribution" },
-      { "id": "why-average-height-differs-by-country", "label": "Why Average Height Differs by Country" },
-      { "id": "frequently-asked-questions", "label": "Frequently Asked Questions" },
-      { "id": "references", "label": "References" }
+      {
+        "id": "average-height-by-country",
+        "label": "Average Height by Country"
+      },
+      {
+        "id": "tallest-countries-in-the-world",
+        "label": "Tallest Countries in the World"
+      },
+      {
+        "id": "shortest-countries-in-the-world",
+        "label": "Shortest Countries in the World"
+      },
+      {
+        "id": "tallest-and-shortest-countries-by-average-height",
+        "label": "Tallest and Shortest Countries by Average Height"
+      },
+      {
+        "id": "average-male-height-by-country",
+        "label": "Average Male Height by Country"
+      },
+      {
+        "id": "average-female-height-by-country",
+        "label": "Average Female Height by Country"
+      },
+      {
+        "id": "average-height-in-selected-countries",
+        "label": "Average Height in Selected Countries"
+      },
+      {
+        "id": "average-height-chart-for-men",
+        "label": "Average Height Chart for Men"
+      },
+      {
+        "id": "global-average-height",
+        "label": "Global Average Height"
+      },
+      {
+        "id": "tallest-man-in-the-world",
+        "label": "Tallest Man in the World"
+      },
+      {
+        "id": "shortest-man-in-the-world",
+        "label": "Shortest Man in the World"
+      },
+      {
+        "id": "tallest-female-in-the-world",
+        "label": "Tallest Female in the World"
+      },
+      {
+        "id": "shortest-female-in-the-world",
+        "label": "Shortest Female in the World"
+      },
+      {
+        "id": "human-height-distribution",
+        "label": "Human Height Distribution"
+      },
+      {
+        "id": "why-average-height-differs-by-country",
+        "label": "Why Average Height Differs by Country"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Frequently Asked Questions"
+      },
+      {
+        "id": "references",
+        "label": "References"
+      }
     ],
     "faq": [
       {
@@ -1644,4 +1949,3 @@
     "postNotFound": "Post Not Found"
   }
 }
-

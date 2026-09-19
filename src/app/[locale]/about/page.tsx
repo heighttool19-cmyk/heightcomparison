@@ -2,24 +2,18 @@ import { getTranslations } from 'next-intl/server';
 import { Info, BarChart2, Zap, Lock, ShieldCheck } from 'lucide-react';
 import JsonLd from '@/components/common/JsonLd';
 import { ABOUT_SCHEMA } from '@/constants/schemas/about';
+import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'metadata' });
 
-  const baseUrl = 'https://heightcomparisoncalculator.com';
-  const canonicalUrl = locale === 'en' ? `${baseUrl}/about` : `${baseUrl}/${locale}/about`;
-
   return {
     title: t('aboutTitle'),
     description: t('aboutDescription'),
     alternates: {
-      canonical: canonicalUrl,
-      languages: {
-        en: `${baseUrl}/about`,
-        de: `${baseUrl}/de/about`,
-        'x-default': `${baseUrl}/about`
-      }
+      canonical: getCanonicalUrl('/about', locale),
+      languages: getAlternateLanguages('/about'),
     }
   };
 }

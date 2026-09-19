@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useThemeStore, useUnitStore } from "@/store"; // Integrated Unit Store
 import { NumericInput } from "@/components/ui/NumericInput";
 
@@ -61,12 +62,12 @@ function getPercentile(heightCm: number, gender: string, age: number, country: s
     return Math.round(normalCDF(heightCm, adjMean, ref.sd) * 100);
 }
 
-function getLabel(p: number) {
-    if (p >= 90) return { label: "Very Tall", color: "#0f766e", bg: "#f0fdfa" };
-    if (p >= 75) return { label: "Above Average", color: "#0369a1", bg: "#eff6ff" };
-    if (p >= 25) return { label: "Average", color: "#4338ca", bg: "#eef2ff" };
-    if (p >= 10) return { label: "Below Average", color: "#b45309", bg: "#fffbeb" };
-    return { label: "Significantly Below Average", color: "#be123c", bg: "#fff1f2" };
+function getLabel(p: number, t: (key: string) => string) {
+    if (p >= 90) return { label: t('veryTall'), color: "#0f766e", bg: "#f0fdfa" };
+    if (p >= 75) return { label: t('aboveAverage'), color: "#0369a1", bg: "#eff6ff" };
+    if (p >= 25) return { label: t('average'), color: "#4338ca", bg: "#eef2ff" };
+    if (p >= 10) return { label: t('belowAverage'), color: "#b45309", bg: "#fffbeb" };
+    return { label: t('significantlyBelowAverage'), color: "#be123c", bg: "#fff1f2" };
 }
 
 // ── Bell Curve SVG ────────────────────────────────────────────────────────
@@ -108,7 +109,8 @@ function BellCurve({ percentile }: { percentile: number }) {
     const markerX = PAD + cutT * plotW;
 
     const ticks = [10, 25, 50, 75, 90];
-    const { color } = getLabel(percentile);
+    const t = useTranslations('heightWeightPercentile.tool');
+    const { color } = getLabel(percentile, t);
 
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
@@ -176,12 +178,13 @@ function ShareCard({ inputs, percentile, onClose }: {
     percentile: number,
     onClose: () => void
 }) {
-    const { label, color, bg } = getLabel(percentile);
+    const t = useTranslations('heightWeightPercentile.tool');
+    const { label, color, bg } = getLabel(percentile, t);
     const [copied, setCopied] = useState(false);
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
-    const text = `My height percentile result:\n${inputs.height} cm | Age ${inputs.age} | ${inputs.gender} | ${inputs.country}\nResult: ${percentile}th percentile — ${label}\ncalculated at heightcomparisoncalculator.com`;
+    const text = `${t('shareTextLine1')}\n${t('shareTextLine2', { height: inputs.height, age: inputs.age, gender: inputs.gender, country: inputs.country })}\n${t('shareTextLine3', { percentile, label })}\n${t('shareTextLine4')}`;
 
     const copyToClipboard = () => {
         navigator.clipboard.writeText(text).then(() => {
@@ -205,10 +208,10 @@ function ShareCard({ inputs, percentile, onClose }: {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                         <div>
                             <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#64748b", fontFamily: "Georgia, serif", letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                                Height Percentile Result
+                                {t('heightPercentileResult')}
                             </p>
                             <p style={{ margin: "4px 0 0", fontSize: 42, fontWeight: 900, color, fontFamily: "Georgia, serif", lineHeight: 1 }}>
-                                {percentile}<span style={{ fontSize: 18 }}>th</span>
+                                {percentile}<span style={{ fontSize: 18 }}>{t('percentileOrdinalSuffix')}</span>
                             </p>
                             <p style={{ margin: "6px 0 0", fontSize: 15, color, fontFamily: "Georgia, serif", fontWeight: 600 }}>
                                 {label}
@@ -227,10 +230,10 @@ function ShareCard({ inputs, percentile, onClose }: {
                 <div style={{ padding: "20px 28px" }}>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 20 }}>
                         {[
-                            ["Height", `${inputs.height} cm`],
-                            ["Age", `${inputs.age} yrs`],
-                            ["Gender", inputs.gender],
-                            ["Country", inputs.country],
+                            [t('heightField'), `${inputs.height} cm`],
+                            [t('ageField'), `${inputs.age} yrs`],
+                            [t('genderField'), inputs.gender],
+                            [t('countryField'), inputs.country],
                         ].map(([k, v]) => (
                             <div key={k} style={{ background: isDark ? "#1e293b" : "#f8fafc", borderRadius: 10, padding: "10px 14px" }}>
                                 <p style={{ margin: 0, fontSize: 10, color: isDark ? "#94a3b8" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.08em", fontFamily: "Georgia, serif" }}>{k}</p>
@@ -240,7 +243,7 @@ function ShareCard({ inputs, percentile, onClose }: {
                     </div>
 
                     <p style={{ margin: "0 0 16px", fontSize: 12, color: isDark ? "#94a3b8" : "#64748b", fontFamily: "Georgia, serif", lineHeight: 1.6 }}>
-                        Taller than <strong style={{ color }}>{percentile}%</strong> of {inputs.gender.toLowerCase()}s aged {inputs.age} in {inputs.country}. Based on WHO & CDC reference data.
+                        {t('tallerThanText', { percentile, gender: inputs.gender.toLowerCase(), age: inputs.age, country: inputs.country })}
                     </p>
 
                     <div style={{ display: "flex", gap: 10 }}>
@@ -250,7 +253,7 @@ function ShareCard({ inputs, percentile, onClose }: {
                             fontSize: 13, fontWeight: 700, cursor: "pointer",
                             fontFamily: "Georgia, serif", transition: "background 0.3s"
                         }}>
-                            {copied ? "✓ Copied!" : "Copy Result"}
+                            {copied ? t('copiedConfirmation') : t('copyResult')}
                         </button>
                         <button onClick={onClose} style={{
                             flex: 1, padding: "11px 0", borderRadius: 10,
@@ -258,14 +261,14 @@ function ShareCard({ inputs, percentile, onClose }: {
                             color, fontSize: 13, fontWeight: 700, cursor: "pointer",
                             fontFamily: "Georgia, serif"
                         }}>
-                            Close
+                            {t('closeButton')}
                         </button>
                     </div>
                 </div>
 
                 <div style={{ padding: "10px 28px 16px", borderTop: `1px solid ${isDark ? "#1e293b" : "#f1f5f9"}` }}>
                     <p style={{ margin: 0, fontSize: 10, color: isDark ? "#475569" : "#cbd5e1", textAlign: "center", fontFamily: "Georgia, serif" }}>
-                        heightcomparisoncalculator.com · For informational purposes only
+                        {t('footerNote')}
                     </p>
                 </div>
             </div>
@@ -275,6 +278,7 @@ function ShareCard({ inputs, percentile, onClose }: {
 
 // ── Main Tool ─────────────────────────────────────────────────────────────
 export default function HeightPercentileTool() {
+    const t = useTranslations('heightWeightPercentile.tool');
     const [height, setHeight] = useState<number | "">("");
     const [age, setAge] = useState<number | "">("");
     const [ftHeight, setFtHeight] = useState<number | "">("");
@@ -309,11 +313,11 @@ export default function HeightPercentileTool() {
         const ageNum = age === "" ? 0 : Number(age);
 
         if (!heightCm || heightCm < 30 || heightCm > 280) {
-            setError("Please enter a valid height (30–280 cm).");
+            setError(t('errorInvalidHeight'));
             return;
         }
         if (!ageNum || ageNum < 0 || ageNum > 100) {
-            setError("Please enter a valid age (0–100).");
+            setError(t('errorInvalidAge'));
             return;
         }
 
@@ -325,7 +329,7 @@ export default function HeightPercentileTool() {
         }, 600);
     };
 
-    const { label, color, bg } = result ? getLabel(result.percentile) : { label: "", color: "#4338ca", bg: "#eef2ff" };
+    const { label, color, bg } = result ? getLabel(result.percentile, t) : { label: "", color: "#4338ca", bg: "#eef2ff" };
 
     const inputStyle = {
         width: "100%", padding: "12px 14px", borderRadius: 10,
@@ -370,7 +374,7 @@ export default function HeightPercentileTool() {
                 }}>
                     <div style={{ background: isDark ? "#101011" : "#0f172a", padding: "16px 24px", borderBottom: isDark ? '1px solid var(--border)' : 'none' }}>
                         <p style={{ margin: 0, fontSize: 12, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                            Enter your details
+                            {t('enterYourDetails')}
                         </p>
                     </div>
 
@@ -378,7 +382,7 @@ export default function HeightPercentileTool() {
                         {/* Unit toggle (Now linked to Global Store) */}
                         <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
                             {["metric", "imperial"].map(u => {
-                                const displayLabel = u === 'metric' ? 'cm' : 'ft/in';
+                                const displayLabel = u === 'metric' ? t('unitCm') : t('unitFtIn');
                                 return (
                                     <button key={u} onClick={() => setUnitSystem(u as 'metric' | 'imperial')} style={{
                                         flex: 1, padding: "9px 0", borderRadius: 8,
@@ -396,35 +400,35 @@ export default function HeightPercentileTool() {
 
                         {/* Height */}
                         <div style={{ marginBottom: 16 }}>
-                            <label htmlFor={unit === "metric" ? "height-input" : "ft-input"} style={labelStyle}>Height</label>
+                            <label htmlFor={unit === "metric" ? "height-input" : "ft-input"} style={labelStyle}>{t('heightLabel')}</label>
                             {unit === "metric" ? (
                                 <div style={{ position: "relative" }}>
                                     <NumericInput
                                         id="height-input"
-                                        placeholder="e.g. 175"
+                                        placeholder={t('heightPlaceholder')}
                                         value={height}
                                         onValueChange={setHeight}
                                         style={{ ...inputStyle, paddingRight: 48 }}
                                     />
-                                    <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>cm</span>
+                                    <span style={{ position: "absolute", right: 14, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>{t('unitCmShort')}</span>
                                 </div>
                             ) : (
                                 <div style={{ display: "flex", gap: 10 }}>
                                     <div style={{ flex: 1, position: "relative" }}>
-                                        <NumericInput id="ft-input" placeholder="5"
+                                        <NumericInput id="ft-input" placeholder={t('feetPlaceholder')}
                                             value={ftHeight}
                                             onValueChange={setFtHeight}
-                                            aria-label="Height in feet"
+                                            aria-label={t('feetAriaLabel')}
                                             style={{ ...inputStyle, paddingRight: 36 }} />
-                                        <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>ft</span>
+                                        <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>{t('unitFtShort')}</span>
                                     </div>
                                     <div style={{ flex: 1, position: "relative" }}>
-                                        <NumericInput id="in-input" placeholder="9"
+                                        <NumericInput id="in-input" placeholder={t('inchesPlaceholder')}
                                             value={inHeight}
                                             onValueChange={setInHeight}
-                                            aria-label="Height in inches"
+                                            aria-label={t('inchesAriaLabel')}
                                             style={{ ...inputStyle, paddingRight: 36 }} />
-                                        <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>in</span>
+                                        <span style={{ position: "absolute", right: 10, top: "50%", transform: "translateY(-50%)", color: "#94a3b8", fontSize: 13 }}>{t('unitInShort')}</span>
                                     </div>
                                 </div>
                             )}
@@ -432,10 +436,10 @@ export default function HeightPercentileTool() {
 
                         {/* Age */}
                         <div style={{ marginBottom: 16 }}>
-                            <label htmlFor="age-input" style={labelStyle}>Age (years)</label>
+                            <label htmlFor="age-input" style={labelStyle}>{t('ageYearsLabel')}</label>
                             <NumericInput
                                 id="age-input"
-                                placeholder="e.g. 25" min="0" max="100"
+                                placeholder={t('agePlaceholder')} min="0" max="100"
                                 value={age} onValueChange={setAge}
                                 style={inputStyle}
                             />
@@ -443,7 +447,7 @@ export default function HeightPercentileTool() {
 
                         {/* Gender */}
                         <div style={{ marginBottom: 16 }}>
-                            <label style={labelStyle}>Gender</label>
+                            <label style={labelStyle}>{t('genderLabel')}</label>
                             <div style={{ display: "flex", gap: 10 }}>
                                 {["Male", "Female"].map(g => (
                                     <button key={g} onClick={() => setGender(g)} style={{
@@ -454,7 +458,7 @@ export default function HeightPercentileTool() {
                                         fontSize: 14, fontWeight: 900, cursor: "pointer",
                                         fontFamily: "Georgia, serif", transition: "all 0.2s"
                                     }}>
-                                        {g === "Male" ? "♂ Male" : "♀ Female"}
+                                        {g === "Male" ? t('genderMale') : t('genderFemale')}
                                     </button>
                                 ))}
                             </div>
@@ -462,7 +466,7 @@ export default function HeightPercentileTool() {
 
                         {/* Country */}
                         <div style={{ marginBottom: 24 }}>
-                            <label htmlFor="country-select" style={labelStyle}>Country</label>
+                            <label htmlFor="country-select" style={labelStyle}>{t('countryLabel')}</label>
                             <div style={{ position: 'relative' }}>
                                 <select
                                     id="country-select"
@@ -521,7 +525,7 @@ export default function HeightPercentileTool() {
                             fontFamily: "Georgia, serif", letterSpacing: "0.02em",
                             transition: "all 0.3s", boxShadow: animating ? "none" : (isDark ? "0 4px 16px rgba(22,163,74,0.3)" : "0 4px 16px rgba(67,56,202,0.3)")
                         }}>
-                            {animating ? "Calculating..." : "Calculate My Percentile →"}
+                            {animating ? t('calculatingButton') : t('calculateButton')}
                         </button>
                     </div>
                 </div>
@@ -538,10 +542,10 @@ export default function HeightPercentileTool() {
                             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                                 <div>
                                     <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#64748b", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                                        Your percentile
+                                        {t('yourPercentile')}
                                     </p>
                                     <p style={{ margin: "4px 0 0", fontSize: 52, fontWeight: 900, color, lineHeight: 1, letterSpacing: "-2px" }}>
-                                        {result.percentile}<span style={{ fontSize: 22, letterSpacing: 0 }}>th</span>
+                                        {result.percentile}<span style={{ fontSize: 22, letterSpacing: 0 }}>{t('percentileOrdinalSuffix')}</span>
                                     </p>
                                     <span style={{
                                         display: "inline-block", marginTop: 8, padding: "4px 12px",
@@ -552,7 +556,7 @@ export default function HeightPercentileTool() {
                                     </span>
                                 </div>
                                 <div style={{ textAlign: "right" }}>
-                                    <p style={{ margin: 0, fontSize: 13, color: isDark ? "#94a3b8" : "#64748b" }}>Height</p>
+                                    <p style={{ margin: 0, fontSize: 13, color: isDark ? "#94a3b8" : "#64748b" }}>{t('heightResultLabel')}</p>
                                     <p style={{ margin: "2px 0", fontSize: 22, fontWeight: 800, color: isDark ? "white" : "#0f172a" }}>
                                         {result.heightCm} cm
                                     </p>
@@ -566,11 +570,11 @@ export default function HeightPercentileTool() {
                         {/* Bell curve */}
                         <div style={{ padding: "20px 24px 8px" }}>
                             <p style={{ margin: "0 0 12px", fontSize: 11, color: isDark ? "#94a3b8" : "#94a3b8", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                                Position on population curve
+                                {t('positionOnCurve')}
                             </p>
                             <BellCurve percentile={result.percentile} />
                             <p style={{ margin: "8px 0 0", fontSize: 11, color: isDark ? "#475569" : "#cbd5e1", textAlign: "center" }}>
-                                Percentile
+                                {t('percentileLabel')}
                             </p>
                         </div>
 
@@ -578,9 +582,7 @@ export default function HeightPercentileTool() {
                         <div style={{ padding: "8px 24px 20px" }}>
                             <div style={{ background: isDark ? "#1e293b" : "#f8fafc", borderRadius: 12, padding: "14px 16px" }}>
                                 <p style={{ margin: 0, fontSize: 13, color: isDark ? "#cbd5e1" : "#475569", lineHeight: 1.6 }}>
-                                    You are taller than <strong style={{ color }}>{result.percentile}%</strong> of {gender.toLowerCase()}s
-                                    aged {age} in <strong>{country}</strong>. This places you in the{" "}
-                                    <strong style={{ color }}>{label.toLowerCase()}</strong> range.
+                                    {t('interpretationText', { percentile: result.percentile, gender: gender.toLowerCase(), age, country, label: label.toLowerCase() })}
                                 </p>
                             </div>
                         </div>
@@ -597,7 +599,7 @@ export default function HeightPercentileTool() {
                                 }} />
                             </div>
                             <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
-                                {["Short", "Avg", "Tall"].map((l) => (
+                                {[t('scaleShort'), t('scaleAvg'), t('scaleTall')].map((l) => (
                                     <span key={l} style={{ fontSize: 10, color: isDark ? "#64748b" : "#94a3b8" }}>{l}</span>
                                 ))}
                             </div>
@@ -611,7 +613,7 @@ export default function HeightPercentileTool() {
                                 color, fontSize: 14, fontWeight: 900, cursor: "pointer",
                                 fontFamily: "Georgia, serif", transition: "all 0.2s"
                             }}>
-                                📤 Share My Result
+                                {t('shareButton')}
                             </button>
                         </div>
                     </div>
@@ -619,8 +621,8 @@ export default function HeightPercentileTool() {
 
                 {/* Disclaimer */}
                 <p style={{ textAlign: "center", fontSize: 11, color: isDark ? "#475569" : "#cbd5e1", marginTop: 24, lineHeight: 1.6 }}>
-                    For informational purposes only. Consult a healthcare provider<br />
-                    for clinical growth assessment. Based on WHO &amp; CDC data.
+                    {t('disclaimerLine1')}<br />
+                    {t('disclaimerLine2')}
                 </p>
             </div>
 

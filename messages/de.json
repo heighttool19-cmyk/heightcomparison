@@ -1,8 +1,14 @@
 {
   "common": {
     "language": "Sprache",
-    "english": "English",
-    "german": "Deutsch"
+    "english": "Englisch",
+    "german": "Deutsch",
+    "spanish": "Spanisch",
+    "french": "Französisch",
+    "portuguese": "Portugiesisch",
+    "italian": "Italienisch",
+    "dutch": "Niederländisch",
+    "arabic": "Arabisch"
   },
   "nav": {
     "home": "Startseite",
@@ -1943,4 +1949,3 @@
     "postNotFound": "Beitrag nicht gefunden"
   }
 }
-

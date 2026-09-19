@@ -63,7 +63,7 @@ src/app/[locale]/layout.tsx (LocaleLayout)
 
 ### Step 2: Content Extraction & Source of Truth (`messages/en.json`)
 1. Read the target `.tsx` component/page.
-2. Identify all visible English text strings, including headings, paragraphs, badge texts, and array lists.
+2. Identify all visible English text strings, including headings, paragraphs, badge texts, array lists, and meta titles/descriptions.
 3. Copy the text **verbatim** into `messages/en.json` under an explicit namespace:
 ```json
 {
@@ -74,11 +74,10 @@ src/app/[locale]/layout.tsx (LocaleLayout)
   }
 }
 ```
-4. Check `messages/en.json` for a shared, top-level `metadata` namespace with page-prefixed keys (e.g. `metadata.aboutTitle`, `metadata.aboutDescription`) — this project keeps SEO title/description separate from each page's own namespace, not nested inside it. If this page has a `<page-name>Title`/`<page-name>Description` pair there, note both key paths — they are in scope for Step 3 alongside the page's own namespace, even though they live in a different top-level object.
 
 ### Step 3: Create Target Locale Dictionary (`messages/de.json`)
-1. Invoke the `semantic-seo-localization` skill with the namespace extracted in Step 2 as the source content, the target locale (e.g. `de`), and — if Step 2.4 found one — this page's `metadata.<page-name>Title`/`metadata.<page-name>Description` key pair. Do not hand-translate this file yourself.
-2. Do not proceed to Step 4 until `semantic-seo-localization` reports its Stage 5 completeness gate passed (which must cover the `metadata.<page-name>Title`/`Description` keys, not just the page's own namespace, if they exist) and its Human Review Gate has been explicitly approved — its output is the finished `messages/<locale>.json` content, mirroring `messages/en.json`'s key structure key-for-key with only string values translated (variable placeholders like `{count}` are preserved unchanged by that skill's `contextual-translation.md` rules).
+1. Invoke the `semantic-seo-localization` skill with the namespace extracted in Step 2 as the source content, and the target locale (e.g. `de`). Do not hand-translate this file yourself.
+2. Do not proceed to Step 4 until `semantic-seo-localization` reports its Stage 5 completeness gate passed and its Human Review Gate has been explicitly approved — its output is the finished `messages/<locale>.json` content, mirroring `messages/en.json`'s key structure key-for-key with only string values translated (variable placeholders like `{count}` are preserved unchanged by that skill's `contextual-translation.md` rules).
 3. `semantic-seo-localization` never touches this `.tsx` file or any other application file — only `messages/<locale>.json` — so Steps 1 and 4-7 of this migration are unaffected by this step.
 
 ### Step 4: Relocate & Update TSX Page Component

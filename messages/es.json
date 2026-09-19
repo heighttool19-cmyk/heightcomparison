@@ -1,8 +1,14 @@
 {
   "common": {
     "language": "Idioma",
-    "english": "English",
-    "german": "Deutsch"
+    "english": "Inglés",
+    "german": "Alemán",
+    "spanish": "Español",
+    "french": "Francés",
+    "portuguese": "Portugués",
+    "italian": "Italiano",
+    "dutch": "Holandés",
+    "arabic": "Árabe"
   },
   "nav": {
     "home": "Inicio",
@@ -181,7 +187,7 @@
       "calculate": "Predecir estatura adulta",
       "clear": "Borrar",
       "estimatedAdultHeight": "Estatura adulta estimada",
-      "targetRange": "Rango probable (intervalo del 90%)",
+      "targetRange": "Rango objetivo (±5 cm): {min} : {max} cm",
       "viewComparisonChart": "Ver gráfico de comparación",
       "cmUnit": "cm",
       "ftUnit": "pies",
@@ -206,7 +212,7 @@
       "calculateEstimate": "Calcular estatura estimada",
       "estimatedAdultHeightBoys": "Estatura adulta estimada (varón)",
       "estimatedAdultHeightGirls": "Estatura adulta estimada (mujer)",
-      "targetRange": "Rango genético objetivo (±5 cm / ±2 pulg)",
+      "targetRange": "Rango objetivo (±5 cm): {min} : {max} cm",
       "viewComparisonChart": "Ver gráfico de comparación",
       "cmUnit": "cm",
       "ftUnit": "pies",
@@ -555,7 +561,7 @@
       "chartToggleLine2": "gráfico",
       "tableToggleLine1": "Vista de",
       "tableToggleLine2": "tabla",
-      "chartTitle": "Curva de percentiles de estatura por edad (CDC)",
+      "chartTitle": "Tabla de percentiles de altura para {label} (de 2 a 18 años)",
       "axisAge": "Edad (años)",
       "axisHeight": "Estatura (cm)",
       "tooltipAge": "Edad: {age} años",
@@ -836,15 +842,15 @@
       "belowAverage": "Por debajo del promedio",
       "significantlyBelowAverage": "Significativamente por debajo del promedio",
       "heightPercentileResult": "Percentil de estatura",
-      "shareTextLine1": "Mi percentil de estatura es {percentile} ({interpretation}).",
-      "shareTextLine2": "Estatura: {height} | Edad: {age} | Sexo: {gender}",
-      "shareTextLine3": "Calculado con el comparador de percentiles.",
+      "shareTextLine1": "Mi resultado del percentil de estatura:",
+      "shareTextLine2": "{height} cm | Edad {age} | {gender} | {country}",
+      "shareTextLine3": "Resultado: percentil {percentile} — {label}",
       "shareTextLine4": "¡Comprueba tu percentil aquí!",
       "heightField": "Estatura",
       "ageField": "Edad",
       "genderField": "Sexo",
       "countryField": "País / Referencia",
-      "tallerThanText": "Más alto/a que el {percentile}% de las personas de su edad y sexo.",
+      "tallerThanText": "Más alto que el {percentile}% de {gender}s de {age} años en {country}. Basado en datos de la OMS y los CDC.",
       "copyResult": "Copiar resultado",
       "copiedConfirmation": "¡Copiado al portapapeles!",
       "closeButton": "Cerrar",
@@ -876,7 +882,7 @@
       "heightResultLabel": "Resultado de estatura",
       "positionOnCurve": "Posición en la curva poblacional",
       "percentileLabel": "Percentil",
-      "interpretationText": "Interpretación",
+      "interpretationText": "Eres más alto que el {percentile}% de los {gender}s de {age} años en {country}. Esto te sitúa en el rango {label}.",
       "scaleShort": "Bajo",
       "scaleAvg": "Promedio",
       "scaleTall": "Alto",
@@ -889,15 +895,15 @@
       "heading": "Campana de distribución poblacional de estatura",
       "instructionBefore": "Pase el cursor por la curva para explorar percentiles. El ",
       "purpleDot": "punto resaltado",
-      "instructionAfter": " muestra su posición relativa.",
+      "instructionAfter": "muestra una puntuación de muestra en el percentil {samplePercentile}.",
       "populationFrequency": "Frecuencia poblacional",
       "xAxisLabel": "Percentil de estatura",
-      "sampleLabel": "Ejemplo: percentil 55",
-      "sampleSubLabel": "Ligeramente por encima de la mediana",
+      "sampleLabel": "Muestra: percentil {samplePercentile}",
+      "sampleSubLabel": "Más alto que el {samplePercentile}% de sus pares",
       "hoverPrompt": "Pase el cursor sobre la curva para ver detalles",
       "ordinalSuffix": "º",
       "percentileSuffix": "percentil",
-      "hoveredDescription": "Más alto/a que el {percentile}% de la población de referencia.",
+      "hoveredDescription": "{label}. Una persona aquí es más alta que el <pct>{percentile}%</pct> de las personas de la misma edad y sexo.",
       "hideSampleDot": "Ocultar punto de ejemplo",
       "showSampleDot": "Mostrar punto de ejemplo",
       "footerNote": "Distribución gaussiana normal modelada con parámetros CDC / OMS.",
@@ -941,7 +947,7 @@
     "exampleVisual": {
       "eyebrow": "Ejemplo visual",
       "heading": "Posición en la escala percentilar y en la curva clínica",
-      "percentileScaleWhere": "¿Dónde se ubica en la escala percentilar?",
+      "percentileScaleWhere": "Escala de percentiles — Dónde se sitúa el percentil {percentile}",
       "zoneLabelBelow10": "< 10º",
       "zoneLabel10to25": "10º–25º",
       "zoneLabel25to75": "25º–75º (Promedio)",
@@ -949,7 +955,7 @@
       "zoneLabel90to100": "90º–100º",
       "ordinalSuffix": "º",
       "averageRangeLabel": "Rango promedio (P25–P75)",
-      "childComparisonText": "Este niño es más alto que <strong>{count} de cada 100</strong> niños de {age} años. Se encuentra con comodidad dentro de la franja normal de crecimiento.",
+      "childComparisonText": "Este niño es más alto que <strong>{count} de cada 100</strong> niños de {age} años. Se sitúa cómodamente dentro de la franja de crecimiento normal.",
       "positionOnCdcChart": "Posición en la curva de crecimiento de los CDC",
       "cdcChartTitle": "Curva de crecimiento CDC — Varones (2 a 20 años)",
       "heightAxisLabel": "Estatura (cm)",
@@ -1058,7 +1064,7 @@
     },
     "adjusted": {
       "title": "Calculadora de peso corporal ideal ajustado",
-      "p1": "La calculadora de peso corporal ideal ajustado se emplea en entornos clínicos para pacientes cuyo peso real supera en más de un 30% su IBW. En ese punto, utilizar únicamente el IBW para dosificar medicamentos subestima la actividad metabólica, ya que el exceso de tejido adiposo conserva cierta actividad metabólica. El Peso Corporal Ajustado (ABW) corrige esta discrepancia.",
+      "p1": "La calculadora de peso corporal ajustado se aplica en entornos clínicos para pacientes cuyo peso real supera en más de un 30% su peso corporal ideal. En ese punto, usar solo el IBW para la dosificación de medicamentos subestima la actividad metabólica, porque parte del tejido graso sobrante sigue siendo metabólicamente activo. El Peso Corporal Ajustado corrige esto.",
       "formulaTitle": "Fórmula del Peso Corporal Ajustado:",
       "formulaText": "ABW = IBW + 0,4 × (Peso Real − IBW)",
       "exampleTitle": "Ejemplo práctico — peso real 100 kg, IBW Devine 70 kg:",
@@ -1441,7 +1447,7 @@
       "unitIn": "in",
       "heightDifferenceLabel": "Diferencia de Altura",
       "percentDifferenceLabel": "% de Diferencia",
-      "isTallerText": "{person} es más alto/a",
+      "isTallerText": "{person} es más alto",
       "tallerPersonLabel": "Persona más alta",
       "visualComparisonLabel": "Comparación Visual",
       "enterBothHeightsPrompt": "Ingrese ambas estaturas arriba para ver la comparación."
@@ -1450,7 +1456,7 @@
       "partner1Label": "Pareja 1",
       "partner2Label": "Pareja 2",
       "pctTallerText": "{pct}% más alto/a",
-      "resultSentence": "{p1} ({h1} cm) es <strong>{diff} cm ({pct}%) más alto/a</strong> que {p2} ({h2} cm)"
+      "resultSentence": "{p1} ({h1} cm) es <strong>{diff} cm ({pct}%) más alto</strong> que {p2} ({h2} cm)"
     },
     "chartTable": {
       "headerPersonA": "Persona A",
@@ -1463,13 +1469,13 @@
       "person2Label": "Persona 2",
       "pairButtonText": "{h1} cm vs {h2} cm",
       "diffCmText": "{diff} cm de diferencia",
-      "isTallerText": "{person} es más alto/a"
+      "isTallerText": "{person} es más alto"
     }
   },
   "averageHeightByCountry": {
     "h1": "Estatura promedio por país",
     "intro": {
-      "description": "La estatura promedio varía mucho más de lo que la mayoría de la gente espera. La diferencia entre las poblaciones más altas y más bajas del mundo alcanza casi 24 cm en los hombres y 21 cm en las mujeres. Esta página compara la estatura humana promedio en todo el mundo para ambos sexos, desde los Países Bajos en la cima hasta Timor Oriental (Timor-Leste) en el último lugar, a partir de datos de la <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> y <wpr>World Population Review</wpr>. Hombres y mujeres siguen el mismo patrón geográfico general: el norte de Europa se sitúa en los puestos más altos y regiones del sur y centro de Asia en los puestos inferiores."
+      "description": "La altura media varía más de lo que la mayoría espera. La diferencia entre las poblaciones más altas y más bajas del mundo abarca casi 24 cm para los hombres y 21 cm para las mujeres. Esta página compara la altura humana promedio en todo el mundo para ambos sexos, desde los Países Bajos en la cima hasta Timor Oriental al final, basándose en datos de <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> y <wpr>World Population Review</wpr>. Hombres y mujeres siguen el mismo patrón geográfico general, con el norte de Europa a la cabeza y partes del sur y centro de Asia en el extremo inferior."
     },
     "globalTable": {
       "title": "Estatura promedio por país (Tabla global)",
@@ -1606,7 +1612,7 @@
       "title": "Estatura promedio global de la humanidad",
       "maleStatLabel": "Promedio global hombres",
       "femaleStatLabel": "Promedio global mujeres",
-      "paragraph1": "La media global estandarizada para toda la población adulta mundial se sitúa en aproximadamente 171 cm para hombres y 159 cm para mujeres. Estos valores ponderan poblaciones muy densas como China e India.",
+      "paragraph1": "<who>La Organización Mundial de la Salud</who> y NCD Risk Factor Collaboration sitúan la altura promedio mundial masculina en aproximadamente 171 cm y la femenina en aproximadamente 159 cm. Estas cifras ponderadas son más bajas que los promedios de la mayoría de los países occidentales porque tienen en cuenta las grandes poblaciones del sur y sureste de Asia.",
       "paragraph2": "A continuación se muestra la distribución regional estimada, reflejando cómo los factores genéticos y las condiciones de bienestar configuran el mapa de estatura mundial.",
       "regionMap": {
         "colourScaleLabel": "Escala de color — estatura masculina promedio por región",
@@ -1733,9 +1739,9 @@
     "whyDiffers": {
       "title": "¿Por qué varía la estatura entre países?",
       "paragraph1": "La estatura de una población adulta refleja una combinación de predisposición genética colectiva y condiciones ambientales acumuladas a lo largo del desarrollo infantil y juvenil. Si bien los genes determinan el potencial biológico máximo de un individuo, el entorno socioeconómico decide qué proporción de ese potencial se alcanza realmente.",
-      "nutritionParagraph": "La nutrición durante los primeros mil días de vida y la adolescencia temprana es el factor ambiental más crítico. El acceso continuado a proteínas de alto valor biológico, calcio, micronutrientes como el zinc y vitamina D correlaciona directamente con el crecimiento esquelético. Las naciones con alto consumo de lácteos y dietas equilibradas encabezan las listas mundiales de estatura.",
-      "healthcareParagraph": "La atención médica y la higiene pública evitan que las infecciones gastrointestinales y respiratorias recurrentes consuman las calorías y reservas energéticas que los niños necesitan para crecer. La erradicación de parásitos y el acceso a agua potable impulsaron drásticos saltos en la estatura promedio en Europa y Asia durante el siglo XX.",
-      "economicParagraph": "El nivel socioeconómico general, la reducción de la pobreza infantil y la igualdad social reducen el estrés metabólico y garantizan que los beneficios del desarrollo lleguen a toda la población, no solo a las clases más favorecidas.",
+      "nutritionParagraph": "<bold>La nutrición</bold> es el factor ambiental determinante más fuerte de la altura adulta. La ingesta adecuada de proteínas y micronutrientes durante los primeros 1.000 días de vida es crucial para el desarrollo esquelético. La disponibilidad de lácteos y carne en la infancia predice constantemente las clasificaciones nacionales de estatura.",
+      "healthcareParagraph": "<bold>El acceso a la atención médica</bold> determina si las enfermedades infantiles desvían energía del crecimiento. Los países con altas tasas de vacunación y baja carga de morbilidad se clasifican consistentemente como más altos.",
+      "economicParagraph": "<bold>El desarrollo económico</bold> respalda tanto la nutrición como la atención de la salud. El PIB per cápita se correlaciona fuertemente con la altura media porque la riqueza permite mejores alimentos, agua más limpia y atención médica.",
       "calloutUS": "El estancamiento de la estatura promedio en Estados Unidos durante las últimas décadas, en contraste con los aumentos continuos en el norte y centro de Europa, ilustra cómo las diferencias en hábitos dietéticos, ultraprocesados y acceso equitativo a la salud influyen a nivel demográfico."
     },
     "toc": [

@@ -1,0 +1,1887 @@
+{
+  "common": {
+    "language": "Taal",
+    "english": "Engels",
+    "german": "Duits",
+    "spanish": "Spaans",
+    "french": "Frans",
+    "portuguese": "Portugees",
+    "italian": "Italiaans",
+    "dutch": "Nederlands",
+    "arabic": "Arabisch"
+  },
+  "nav": {
+    "home": "Home",
+    "toolsAndCalculators": "Tools & Calculators",
+    "heightPredictor": "Lengtevoorspeller",
+    "heightWeightPercentileCalculator": "Lengte en Gewicht Percentiel Calculator",
+    "idealBodyWeightCalculator": "Ideaal Lichaamsgewicht Calculator",
+    "averageHeightByCountry": "Gemiddelde Lengte per Land",
+    "heightDifferenceCalculator": "Hoogteverschil Calculator",
+    "imageToHeight": "Afbeelding naar Lengte",
+    "about": "Over Ons",
+    "blogs": "Blog",
+    "brandName": "Height Comparison",
+    "metricCm": "metrisch (cm)",
+    "imperialFtIn": "imperiaal (ft/in)",
+    "switchTo": "Wisselen naar"
+  },
+  "footer": {
+    "brandDescription": "De meest intuïtieve manier om lengtes zij aan zij te visualiseren en te vergelijken. Voeg echte mensen, beroemdheden, fictieve personages of aangepaste lengtes toe en zie ze direct samen.",
+    "badgeFreeToUse": "Gratis te gebruiken",
+    "badgeNoAccountNeeded": "Geen account nodig",
+    "badgeMetricImperial": "Metrisch & Imperiaal",
+    "calculatorsHeading": "Calculators",
+    "companyHeading": "Bedrijf",
+    "heightPredictor": "Lengtevoorspeller",
+    "heightWeightPercentile": "Lengte & Gewicht Percentiel",
+    "idealBodyWeight": "Ideaal Lichaamsgewicht",
+    "heightDifference": "Hoogteverschil",
+    "averageHeightByCountry": "Gemiddelde Lengte per Land",
+    "imageToHeight": "Afbeelding naar Lengte",
+    "about": "Over Ons",
+    "blogs": "Blog",
+    "privacyPolicy": "Privacybeleid",
+    "copyright": "© {year} Height Comparison. Alle rechten voorbehouden. Met zorg gemaakt door ",
+    "theTeam": "het team"
+  },
+  "about": {
+    "badge": "Over het Project",
+    "brandName": "HeightComparison",
+    "heroQuote": "De meeste lengtevergelijkingstools zijn gebouwd voor snelle SEO of opdringerige advertenties. Wij hebben een tool gebouwd die we zelf graag wilden gebruiken.",
+    "builtDifferent": "Vanaf de eerste dag anders ontworpen",
+    "whatItDoesTitle": "Wat Het Doet",
+    "whatItDoesParagraphs": [
+      "HeightComparison is een gratis visuele schaaltool voor mensen, beroemdheden en objecten. Het tekent proportionele, nauwkeurige silhouetten naast elkaar in realtime, zodat u precies kunt zien hoe twee of meer lengtes zich tot elkaar verhouden in de echte wereld.",
+      "De tool ondersteunt zowel metrische als imperiale eenheden met directe conversie. De bibliotheek bevat honderden beroemdheden uit Hollywood, Bollywood, anime, gaming, sport en fictie (Marvel, DC en meer), evenals alledaagse voorwerpen en bezienswaardigheden om schaal te geven."
+    ],
+    "otherCalculatorsTitle": "Andere Calculators op de Site",
+    "calculators": [
+      {
+        "title": "Hoogteverschil Calculator",
+        "text": "Toont het exacte verschil tussen twee lengtes in centimeters, inches en percentages, met een vergelijkingstabel voor koppels."
+      },
+      {
+        "title": "Lengtevoorspeller",
+        "text": "Schat de volwassen lengte met de Khamis-Roche methode en de Mid-Parental methode op basis van CDC-groeicurves."
+      },
+      {
+        "title": "Lengte en Gewicht Percentiel Calculator",
+        "text": "Vergelijkt lengte en gewicht met populatiegegevens van de WHO en het CDC, uitgesplitst naar leeftijd en geslacht."
+      },
+      {
+        "title": "Ideaal Lichaamsgewicht Calculator",
+        "text": "Berekent gelijktijdig de formules van Devine, Robinson en Hamwi om een realistisch bereik te tonen in plaats van één enkel getal."
+      },
+      {
+        "title": "Gemiddelde Lengte per Land",
+        "text": "Omvat 46 landen met een sorteerbare tabel, regionale verdelingen, wereldkaart en uitersten in menselijke lengte."
+      },
+      {
+        "title": "Afbeelding naar Lengte",
+        "text": "Schat lengte aan de hand van een geüploade foto. Bevat ook een gids over lengtevariatie in de ochtend."
+      }
+    ],
+    "noAccountTitle": "Geen Account, Geen Betaling, Geen Watermerken",
+    "noAccountParagraphs": [
+      "Deze beslissing is vroeg genomen en niet veranderd. De PNG-export heeft geen watermerk. De database met beroemdheden zit niet achter een betaalmuur. Er is geen betaald abonnement. De volledige tool is 100% gratis.",
+      "Dat is geen marketingpraatje. Het is gewoon hoe de tool is ontworpen. Frictie toevoegen door accounts of betaalde functies zou de tool slechter maken. Lengte vergelijken is geen premiumactiviteit."
+    ],
+    "accuracyTitle": "Een Opmerking over Gegevensnauwkeurigheid",
+    "accuracyParagraphs": [
+      "Tegenstrijdige lengtegegevens komen vaak voor, vooral bij beroemdheden. Waar gegevens conflicteren, normaliseren we naar het meest recent geverifieerde cijfer uit betrouwbare openbare bronnen. Fictieve personages zijn gebaseerd op officiële licentiematerialen. Monumenten en objecten komen uit wetenschappelijke en architectonische bronnen."
+    ],
+    "nothingUserSubmitted": "Niets hier is door gebruikers ingezonden.",
+    "footerQuote": "Lengtecontext visualiseren, één pixel tegelijk."
+  },
+  "privacy": {
+    "titlePrefix": "Privacy",
+    "titleSuffix": "beleid",
+    "subheading": "Wij helpen u begrijpen hoe wij uw gegevens beschermen.",
+    "intro": "Dit Privacybeleid legt uit welke informatie Height Comparison Calculator verzamelt, hoe deze wordt gebruikt en welke keuzes u heeft. HeightComparison is een gratis vergelijkingstool beschikbaar op heightcomparisoncalculator.com. Er worden geen persoonlijke gegevens verkocht of gedeeld met derden voor commerciële doeleinden.",
+    "whatWeCollectTitle": "Wat Wij Verzamelen",
+    "infoYouProvideTitle": "Informatie die U Verstrekt",
+    "infoYouProvideIntro": "Wanneer u bepaalde functies van de tool gebruikt, worden sommige gegevens tijdelijk opgeslagen op onze servers:",
+    "uploadedImagesLabel": "Geüploade afbeeldingen.",
+    "uploadedImagesText": " Als u de functie Afbeelding naar Lengte gebruikt, wordt de geüploade foto naar onze servers gestuurd om de lengteschatting te verwerken. De afbeelding wordt niet permanent bewaard: deze wordt maximaal 7 dagen bewaard en daarna automatisch verwijderd.",
+    "shareableLinksLabel": "Deelbare grafieklinks en grafiekstatus.",
+    "shareableLinksText": " Wanneer u een deelbare link genereert voor uw vergelijking, wordt de configuratie (de toegevoegde lengtes, namen en onderwerpen) opgeslagen op onze servers zodat de link geopend kan worden. Deze gegevens worden maximaal 7 dagen bewaard en daarna automatisch gewist. Er is geen account nodig en de gegevens zijn niet gekoppeld aan persoonlijk identificeerbare informatie.",
+    "infoCollectedAutoTitle": "Automatisch Verzamelde Informatie",
+    "googleAnalyticsLabel": "Google Analytics.",
+    "googleAnalyticsText": " Wij gebruiken Google Analytics om te begrijpen hoe bezoekers de site gebruiken. Deze dienst verzamelt standaard gebruiksgegevens waaronder bezochte pagina's, verblijfsduur, algemene geografische regio (land of stad), browsertype en apparaattype. Google Analytics gebruikt eigen cookies. HeightComparison stelt zelf geen first-party trackingcookies in.",
+    "googleAnalyticsNote": "Voor meer informatie over hoe Google met deze gegevens omgaat, zie het Privacybeleid van Google en de Servicevoorwaarden van Google Analytics.",
+    "serverLogsLabel": "Serverlogboeken.",
+    "serverLogsText": " Zoals de meeste webservers registreren de onze automatisch standaard loggegevens inclusief IP-adressen, verwijzende URL's en tijdstempels. Deze informatie wordt uitsluitend gebruikt voor operationele veiligheid en diagnostiek.",
+    "whatWeDoNotCollectTitle": "Wat Wij Niet Verzamelen",
+    "whatWeDoNotCollectIntro": "Voor alle duidelijkheid over wat deze website niet doet:",
+    "whatWeDoNotCollectList": [
+      "Wij verzamelen geen naam, e-mailadres of accountgegevens. Er zijn geen accounts.",
+      "Wij verzamelen geen betalingsgegevens. De tool is gratis.",
+      "Wij volgen de ingevoerde lengtes niet. Invoergegevens worden in uw browser verwerkt en niet naar onze servers verzonden (behalve in de hierboven beschreven gevallen).",
+      "Wij zijn niet aangesloten bij een advertentienetwerk. Er worden geen gegevens gedeeld met advertentienetwerken en er vindt geen gedragsgerichte reclame plaats."
+    ],
+    "howWeUseTitle": "Hoe Wij de Gegevens Gebruiken",
+    "howWeUseIntro": "De hierboven beschreven gegevens worden uitsluitend gebruikt voor:",
+    "howWeUseList": [
+      "Het verwerken en retourneren van lengteschattingen op basis van foto's",
+      "Het genereren en laden van deelbare vergelijkingslinks",
+      "Het analyseren van algemene gebruikspatronen via Google Analytics om de tool te verbeteren",
+      "Het waarborgen van de serverbeveiliging en het oplossen van technische problemen"
+    ],
+    "howWeUseFooter": "Wij gebruiken verzamelde gegevens niet om gebruikersprofielen op te bouwen, gerichte advertenties te tonen of te delen met derden buiten Google Analytics.",
+    "dataRetentionTitle": "Gegevensbewaring",
+    "dataRetentionText": "Geüploade afbeeldingen en gegevens van deelbare links worden binnen 7 dagen na aanmaak verwijderd. Serverlogboeken worden bewaard gedurende standaard operationele perioden conform beveiligingseisen.",
+    "yourRightsTitle": "Uw Rechten en Keuzes",
+    "requestDeletionLabel": "Gegevensverwijdering aanvragen.",
+    "requestDeletionText": " Als u een deelbare link heeft gebruikt of een afbeelding heeft geüpload en de gegevens wilt laten verwijderen vóór de 7 dagen, neem dan contact met ons op via ",
+    "requestDeletionTextEnd": " en wij zullen deze direct verwijderen.",
+    "optOutGaLabel": "Afmelden voor Google Analytics.",
+    "optOutGaText": " U kunt voorkomen dat Google Analytics gegevens verzamelt over uw bezoek door de Google Analytics Opt-out Browser Add-on te installeren.",
+    "browserControlsLabel": "Browserinstellingen.",
+    "browserControlsText": " Omdat HeightComparison geen first-party cookies plaatst, zijn er geen cookie-instellingen van onze kant. Cookies die aanwezig zijn, zijn afkomstig van Google Analytics.",
+    "childrensPrivacyTitle": "Privacy van Kinderen",
+    "childrensPrivacyText": "HeightComparison richt zich niet op kinderen onder de 13 jaar. Wij verzamelen niet bewust persoonlijke gegevens van kinderen. Als u denkt dat een kind gegevens heeft verstrekt, neem dan contact op via ",
+    "childrensPrivacyTextEnd": " zodat we deze direct kunnen wissen.",
+    "thirdPartyLinksTitle": "Links naar Derden",
+    "thirdPartyLinksText": "De site kan links naar externe websites bevatten. Dit Privacybeleid is uitsluitend van toepassing op HeightComparison. Wij zijn niet verantwoordelijk voor de privacypraktijken van websites van derden.",
+    "changesToPolicyTitle": "Wijzigingen in Dit Beleid",
+    "changesToPolicyText": "Bij wezenlijke wijzigingen in dit beleid werken wij de datum 'Laatst bijgewerkt' bovenaan bij. Voortgezet gebruik van de site na wijzigingen geldt als acceptatie.",
+    "contactTitle": "Contact",
+    "contactIntro": "Als u vragen heeft over dit Privacybeleid of gegevensverwijdering wilt aanvragen, neem contact op via:",
+    "emailLabel": "E-mail: ",
+    "trustFooter": "Uw vertrouwen is belangrijk voor ons."
+  },
+  "heightPredictor": {
+    "intro": {
+      "title": "Lengtevoorspeller: Bereken Jouw Volwassen Lengte",
+      "description": "Gebruik deze lengtevoorspeller om de toekomstige lengte van kinderen, tieners en jongeren te schatten op basis van huidige leeftijd, ouderlijke genetica en groeipatronen. Deze tool past de Khamis-Roche methode toe, een van de meest nauwkeurige voorspellingsmodellen zonder röntgenfoto's in de kindergeneeskunde. Als uw kind jonger is dan 4 jaar of als u een baby verwacht, gebruik dan de Mid-Parental formule hieronder."
+    },
+    "khamisRocheCalculator": {
+      "title": "Khamis-Roche Lengtecalculator",
+      "badge": "Meest Nauwkeurig (Leeftijd 4–17)",
+      "description": "Schat de volwassen lengte met behulp van de huidige leeftijd, geslacht, lengte, gewicht en de lengte van beide biologische ouders. Geen röntgenonderzoek nodig.",
+      "unitUs": "VS (ft/in, lbs)",
+      "unitMetric": "Metrisch (cm, kg)",
+      "childAgeLabel": "Leeftijd Kind (jaren)",
+      "childAgeAriaLabel": "Leeftijd van het Kind",
+      "genderLabel": "Geslacht",
+      "boy": "Jongen",
+      "girl": "Meisje",
+      "childHeightLabel": "Huidige Lengte van het Kind",
+      "childHeightCmAriaLabel": "Lengte van het Kind in centimeters",
+      "childHeightFtAriaLabel": "Lengte van het Kind in voet",
+      "childHeightInAriaLabel": "Lengte van het Kind in inches",
+      "childWeightLabel": "Huidig Gewicht van het Kind",
+      "childWeightKgAriaLabel": "Gewicht van het Kind in kilogram",
+      "childWeightLbsAriaLabel": "Gewicht van het Kind in pond",
+      "motherHeightLabel": "Lengte Biologische Moeder",
+      "motherHeightCmAriaLabel": "Lengte van de Moeder in centimeters",
+      "motherHeightFtAriaLabel": "Lengte van de Moeder in voet",
+      "motherHeightInAriaLabel": "Lengte van de Moeder in inches",
+      "fatherHeightLabel": "Lengte Biologische Vader",
+      "fatherHeightCmAriaLabel": "Lengte van de Vader in centimeters",
+      "fatherHeightFtAriaLabel": "Lengte van de Vader in voet",
+      "fatherHeightInAriaLabel": "Lengte van de Vader in inches",
+      "calculate": "Bereken Verwachte Lengte",
+      "clear": "Wissen",
+      "estimatedAdultHeight": "Verwachte Volwassen Lengte:",
+      "targetRange": "Doelbereik (±5 cm): {min} : {max} cm",
+      "viewComparisonChart": "Bekijk Vergelijkingsgrafiek",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "in",
+      "kgUnit": "kg",
+      "lbsUnit": "lbs"
+    },
+    "midParentalCalculator": {
+      "title": "Mid-Parental Lengtecalculator",
+      "badge": "Voor Alle Leeftijden (en Verwachte Baby's)",
+      "description": "Berekent het genetische groeipotentieel uitsluitend op basis van de lengtes van beide biologische ouders.",
+      "unitUs": "VS (ft/in)",
+      "unitMetric": "Metrisch (cm)",
+      "motherHeightLabel": "Lengte Biologische Moeder",
+      "motherHeightCmAriaLabel": "Lengte van de Moeder in centimeters",
+      "motherHeightFtAriaLabel": "Lengte van de Moeder in voet",
+      "motherHeightInAriaLabel": "Lengte van de Moeder in inches",
+      "fatherHeightLabel": "Lengte Biologische Vader",
+      "fatherHeightCmAriaLabel": "Lengte van de Vader in centimeters",
+      "fatherHeightFtAriaLabel": "Lengte van de Vader in voet",
+      "fatherHeightInAriaLabel": "Lengte van de Vader in inches",
+      "calculateEstimate": "Bereken Ouderlijke Schatting",
+      "estimatedAdultHeightBoys": "Geschatte Lengte voor Jongens:",
+      "estimatedAdultHeightGirls": "Geschatte Lengte voor Meisjes:",
+      "targetRange": "Doelbereik (±5 cm): {min} : {max} cm",
+      "viewComparisonChart": "Bekijk Vergelijkingsgrafiek",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "in"
+    },
+    "heightConverter": {
+      "title": "Snelle Lengteconverter",
+      "description": "Reken direct om tussen centimeters en voet/inches.",
+      "centimeters": "Centimeters (cm)",
+      "centimetersAriaLabel": "Centimeters",
+      "feetAndInches": "Voet en Inches",
+      "feetAriaLabel": "Voet",
+      "inchesAriaLabel": "Inches",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "in"
+    },
+    "howItWorks": {
+      "title": "Hoe Werkt de Lengtevoorspeller",
+      "description": "Onze voorspeller combineert wetenschappelijk gevalideerde biometrische modellen voor een hoge betrouwbaarheid:",
+      "step1Strong": "1. Antropometrische Invoer: ",
+      "step1Text": "Leeftijd, geslacht, huidige lengte en gewicht bepalen het individuele ontwikkelingstempo.",
+      "step2Strong": "2. Ouderlijke Genetica: ",
+      "step2Text": "De gemiddelde lengte van beide biologische ouders stelt het erfelijke groeikader vast.",
+      "step3Strong": "3. Khamis-Roche Berekening: ",
+      "step3Text": "Gewogen statistische coëfficiënten berekenen de uiteindelijke lengte met een typische nauwkeurigheid van ±2 tot 5 cm."
+    },
+    "howTallChild": {
+      "title": "Hoe Lang Wordt Mijn Kind?",
+      "description": "Dit is een van de meest gestelde vragen aan artsen. De uiteindelijke lengte hangt af van drie hoofdfactoren:",
+      "factorsTitle": "Bepalende Factoren:",
+      "geneticsLabel": "Genetische Aanleg:",
+      "geneticsText": "Ongeveer 60% tot 80% van de volwassen lengte wordt bepaald door erfelijke genen van de ouders.",
+      "currentGrowthLabel": "Huidige Groeisnelheid:",
+      "currentGrowthText": "Het stabiele percentielkanaal dat een kind tijdens de jeugd volgt, toont het biologische ritme.",
+      "statisticsLabel": "Statistische Modellen:",
+      "statisticsText": "Formules zoals Khamis-Roche en Mid-Parental verfijnen de schatting op basis van grootschalige populatiestudies.",
+      "closing": "Hoewel geen enkel model garanties biedt, leveren deze berekeningen de best mogelijke wetenschappelijke benadering zonder röntgenonderzoek."
+    },
+    "teensAdults": {
+      "title": "Lengtevoorspelling voor Tieners en Volwassenen",
+      "description": "De resterende groeiruimte hangt direct af van de staat van de groeischijven:",
+      "teensTitle": "Tieners (13 tot 18 jaar):",
+      "teensText": "Tijdens de puberteit vindt de laatste groeispurt plaats:",
+      "teensItem1": "Meisjes: De groei vertraagt aanzienlijk na de menarche en stopt meestal rond 15–16 jaar.",
+      "teensItem2": "Jongens: De groeispurt begint later en groei kan doorgaan tot 18–19 jaar.",
+      "teensItem3": "Het sluiten van de epifysaire groeischijven markeert het definitieve einde van de lengtegroei.",
+      "adultsTitle": "Volwassenen (18+ jaar):",
+      "adultsText": "Zodra de groeischijven eenmaal verbeend zijn:",
+      "adultsItem1": "Kunnen de lange beenderen niet meer op natuurlijke wijze langer worden.",
+      "adultsItem2": "Verschillen van 1–2 cm tussen ochtend en avond ontstaan door druk op de tussenwervelschijven.",
+      "adultsItem3": "Gerichte houdingsoefeningen en versterking van de rugspieren kunnen de staande houding optimaliseren.",
+      "limitationLabel": "Belangrijke Opmerking:",
+      "limitationText": "Geen enkel supplement of trainingsprogramma kan gesloten groeischijven opnieuw openen."
+    },
+    "ctaBanner": {
+      "text": "Wilt u zien hoe de lengte van uw kind zich verhoudt tot anderen?",
+      "linkText": "Probeer Onze Visuele Lengtevergelijker"
+    },
+    "determinants": {
+      "title": "Wat Bepaalt de Lengte van een Persoon?",
+      "description": "De menselijke lengte is een samenspel van genetica en ondersteunende omgevingsfactoren:",
+      "geneticsTitle": "1. Genetica (60%–80%)",
+      "geneticsBefore": "Tweelingonderzoek toont aan dat ",
+      "geneticsStrong1": "honderden genvarianten",
+      "geneticsMiddle": " de botgroei reguleren. Kinderen van lange ouders zijn meestal lang, hoewel ",
+      "geneticsStrong2": "regressie naar het gemiddelde",
+      "nutritionTitle": "2. Voeding en Gezondheid",
+      "nutritionBefore": "Voeding in de eerste levensjaren en tijdens de puberteit is de belangrijkste omgevingsfactor:",
+      "nutritionStrong": "Essentiële Voedingsstoffen: ",
+      "nutritionAfter": "Volwaardige eiwitten, calcium, zink, ijzer en vitamine D zijn onmisbaar voor de botaanmaak.",
+      "nutritionItem1": "Eiwitten: Bouwstenen voor botmatrix en spierweefsel.",
+      "nutritionItem2": "Calcium & Vitamine D: Cruciaal voor sterke botmineralisatie.",
+      "nutritionItem3": "Zink: Belangrijke cofactor voor celdeling en groeihormoonsignalen.",
+      "timingTitle": "3. Slaap en Groeihormoon (GH)",
+      "timingText": "Het grootste deel van het menselijk groeihormoon (GH) wordt door de hypofyse afgegeven tijdens diepe slaapfasen (N3). Chronisch slaaptekort kan het groeipotentieel belemmeren."
+    },
+    "growthCharts": {
+      "title": "Groeicurves: Hoe Artsen Groei Monitoren",
+      "linkText": "Officiële Groeicurves van het CDC en de WHO",
+      "textAfterLink": " vormen het fundament van de preventieve jeugdgezondheidszorg.",
+      "percentileBefore": "Door het volgen van een ",
+      "percentileStrong": "stabiel percentielkanaal",
+      "percentileAfter": " kunnen kinderartsen tijdig aandoeningen zoals coeliakie, groeihormoongerelateerde tekorten of schildklierproblemen ontdekken.",
+      "note": "Een constante groei langs een percentiel (of dat nu de 20e of 80e lijn is) duidt op een gezonde ontwikkeling."
+    },
+    "comparisonTable": {
+      "title": "Vergelijking: Lengtecalculator vs Groeicurves",
+      "description": "Begrijp het doel van elk evaluatie-instrument:",
+      "headerFactor": "Aspect",
+      "headerCalculator": "Calculator (Khamis-Roche / Mid-Parental)",
+      "headerGrowthChart": "Groeicurve (CDC / WHO)",
+      "rowPurposeLabel": "Hoofddoel",
+      "rowPurposeCalculator": "Volwassen lengte voorspellen op basis van genetica",
+      "rowPurposeGrowthChart": "Huidige groei en gezondheid opvolgen",
+      "rowDataLabel": "Benodigde Gegevens",
+      "rowDataCalculator": "Lengte ouders, leeftijd, lengte en gewicht van kind",
+      "rowDataGrowthChart": "Leeftijd en gemeten lengte van het kind",
+      "rowBestForLabel": "Meest Geschikt Voor",
+      "rowBestForCalculator": "Toekomstige projecties en inzicht in volwassen lengte",
+      "rowBestForGrowthChart": "Periodieke controles door artsen en consultatiebureaus",
+      "rowDoctorLabel": "Klinisch Gebruik",
+      "rowDoctorCalculator": "Erfelijkheidsadvies en prognose",
+      "rowDoctorGrowthChart": "Opsporen van groeistoornissen en screening",
+      "rowAccuracyLabel": "Nauwkeurigheid",
+      "rowAccuracyCalculator": "±2 tot 5 cm bij de meeste gezonde kinderen",
+      "rowAccuracyGrowthChart": "Exacte weergave van het huidige percentiel",
+      "rowWithoutParentsLabel": "Zonder Lengte Ouders?",
+      "rowWithoutParentsCalculator": "Khamis-Roche kan niet betrouwbaar worden toegepast",
+      "rowWithoutParentsGrowthChart": "Werkt uitstekend enkel met leeftijd en lengte"
+    },
+    "boysGrowth": {
+      "title": "Groeipatronen bij Jongens",
+      "p1Before": "Jongens volgen een ander tijdschema dan meisjes. Jongens beginnen hun ",
+      "p1Strong": "puberteitsgroeispurt (piek groeisnelheid)",
+      "p1After": " later, meestal tussen 12 en 15 jaar.",
+      "p2": "Tijdens de piekgroei kunnen jongens 8 tot 12 cm in één enkel jaar groeien.",
+      "item1Before": "Start Puberteit: ",
+      "item1Strong": "Gemiddeld rond 11–12 jaar.",
+      "item2Before": "Piekgroeisnelheid: ",
+      "item2Strong": "Gemiddeld tussen 13,5 en 14 jaar.",
+      "item3Before": "Einde Groei: ",
+      "item3Strong": "Tussen 17 en 19 jaar bij het merendeel van de jongens.",
+      "p3Before": "Dankzij deze twee extra jaren groei vóór de puberteit worden mannen gemiddeld ",
+      "p3Strong": "ongeveer 13 cm langer",
+      "p3After": " dan vrouwen in dezelfde bevolking."
+    },
+    "girlsGrowth": {
+      "title": "Groeipatronen bij Meisjes",
+      "p1": "Bij meisjes begint de puberteitsgroeispurt ongeveer twee jaar eerder dan bij jongens, gewoonlijk tussen 9 en 11 jaar.",
+      "p2": "De piekgroei vindt doorgaans plaats tussen 11 en 12 jaar, voorafgaand aan de eerste menstruatie (menarche).",
+      "item1Before": "Groeipiek Meisjes: ",
+      "item1Strong": "Ongeveer 7 tot 9 cm per jaar vóór de menarche.",
+      "item2Before": "Na de Menarche: ",
+      "item2Strong": "De groei vertraagt snel; meisjes groeien doorgaans nog slechts 3 tot 7 cm in totaal.",
+      "p3Before": "De groeischijven bij meisjes sluiten doorgaans rond de leeftijd van ",
+      "p3Strong": "15 tot 16 jaar",
+      "p3After": "."
+    },
+    "methods": {
+      "title": "Wetenschappelijke Voorspellingsmethoden",
+      "subtitle": "Hoe Onderzoekers de Lengte van Kinderen Schatten",
+      "description": "In de geneeskunde zijn verschillende formules ontwikkeld om volwassen lengte te berekenen:",
+      "khamisRoche": {
+        "badge": "Gouden Standaard Zonder Röntgen",
+        "title": "Khamis-Roche Methode (1994)",
+        "p1": "Ontwikkeld door Dr. Harry Khamis en Dr. Alex Roche in het gerenommeerde Fels Longitudinal Study. Berekent de voorspelling aan de hand van leeftijd, geslacht, huidige lengte, gewicht en de gemiddelde lengte van beide ouders.",
+        "p2": "Onderzoek bewijst dat deze methode even nauwkeurig is als röntgenmethoden bij gezonde kinderen.",
+        "item1Before": "Leeftijdsgroep: ",
+        "item1Strong": "Kinderen van 4 tot 17 jaar.",
+        "item2": "Geen straling of medische scans nodig.",
+        "item3": "Foutmarge van slechts ±2,5 tot 5 cm in de meeste gevallen.",
+        "usedByCalculator": "Dit is de primaire methode in onze calculator.",
+        "readyText": "Klaar om de lengte van uw kind te berekenen?",
+        "linkText": "Gebruik Khamis-Roche Calculator"
+      },
+      "midParental": {
+        "badge": "Klassieke Ouderformule",
+        "title": "Mid-Parental Formule (Tanner Methode)",
+        "p1": "Ontwikkeld door de Britse kinderarts J.M. Tanner; de meest toegepaste snelle formule wanneer alleen de lengtes van de ouders bekend zijn:",
+        "boysFormulaLabel": "Formule voor Jongens:",
+        "boysFormula": "[Lengte Moeder + Lengte Vader + 13 cm] / 2",
+        "girlsFormulaLabel": "Formule voor Meisjes:",
+        "girlsFormula": "[Lengte Moeder + Lengte Vader - 13 cm] / 2",
+        "item1": "Telt 13 cm op voor jongens (gemiddeld verschil in seksuele diformie).",
+        "item2": "Trekt 13 cm af voor meisjes.",
+        "item3": "Biedt een genetisch doelbereik van ±5 cm (±2 inches).",
+        "item4": "Ideaal voor baby's en kinderen onder de 4 jaar.",
+        "onlyHaveText": "Heeft u alleen de lengte van de ouders?",
+        "linkText": "Bereken met Mid-Parental Formule"
+      },
+      "boneAge": {
+        "badge": "Klinisch Röntgenonderzoek",
+        "title": "Botleeftijdmethode (Hand-Pols Scan)",
+        "p1": "Vereist een röntgenfoto van de linkerhand en -pols om de verbening van de groeischijven te vergelijken met de Greulich-Pyle atlas of de Tanner-Whitehouse (TW3) standaard:",
+        "item1": "Geïndiceerd bij vermoeden van groeistoornissen of vroege/late puberteit.",
+        "item2": "Bepaalt de exacte resterende biologische groei.",
+        "item3": "Uitsluitend uitgevoerd onder medische supervisie."
+      },
+      "bayleyPinneau": {
+        "badge": "Klinische Tabellen",
+        "title": "Bayley-Pinneau Methode",
+        "text": "Zet de radiologische botleeftijd om in een percentage van de uiteindelijke volwassen lengte, veel gebruikt bij het monitoren van groeihormoonbehandelingen."
+      },
+      "rocheWainerThissen": {
+        "badge": "Multivariaat Model",
+        "title": "Roche-Wainer-Thissen Methode (RWT)",
+        "text": "Geavanceerd model dat botleeftijd, gewicht en ouderlengte combineert voor betrouwbare prognoses in specialistische klinieken."
+      }
+    },
+    "canIncrease": {
+      "titlePrefix": "Hoe U het ",
+      "titleHighlight": "Groeipotentieel Maximaliseert",
+      "description": "Hoewel genetica de bovengrens bepaalt, zorgen gezonde leefgewoonten ervoor dat een kind zijn volledige potentieel kan benutten:",
+      "nutritionTitle": "1. Volwaardige en Gevarieerde Voeding",
+      "nutritionText": "De voeding moet voldoende bouwstoffen leveren voor gezonde celdeling en botaanmaak:",
+      "nutritionItem1": "Hoogwaardige eiwitten (eieren, vis, mager vlees, peulvruchten).",
+      "nutritionItem2": "Calcium en Fosfor (zuivel, zaden, groene bladgroenten).",
+      "nutritionItem3": "Vitamine D (voldoende zonlicht en verrijkte voeding).",
+      "nutritionItem4": "Zink en IJzer (volkoren granen, noten, vlees).",
+      "sleepTitle": "2. Diepe en Regelmatige Nachtrust",
+      "sleepText": "Het menselijk groeihormoon (GH) wordt grotendeels afgescheiden tijdens de diepe slaapfasen:",
+      "sleepItem1": "Kinderen (6–12 jaar): 9 tot 12 uur per nacht.",
+      "sleepItem2": "Tieners (13–18 jaar): 8 tot 10 uur ononderbroken slaap.",
+      "exerciseTitle": "3. Lichaamsbeweging en Sport",
+      "exerciseText": "Regelmatige beweging met matige belasting stimuleert de botdichtheid en versterkt de houdingsspieren.",
+      "warningStrong": "Pas Op voor Misleiding: ",
+      "warningText": "Geloof geen wonderpillen op internet die beweren volwassenen langer te maken. Er bestaan geen wetenschappelijk bewezen middelen om gesloten groeischijven opnieuw te laten groeien."
+    },
+    "accuracy": {
+      "titlePrefix": "Nauwkeurigheid en ",
+      "titleHighlight": "Beperkingen",
+      "titleSuffix": " van Voorspellingen",
+      "description": "Houd bij het interpreteren rekening met deze methodologische kenmerken:",
+      "check1": "Khamis-Roche heeft een typische foutmarge van ±2,5 tot 5 cm.",
+      "check2": "De Mid-Parental formule kent een bandbreedte van ±5 cm.",
+      "check3": "De nauwkeurigheid neemt toe naarmate het kind ouder wordt.",
+      "check4": "Vroeg- of laatrijpe kinderen kunnen tijdelijk afwijken van de voorspelling voordat ze convergeren.",
+      "alert1": "Geen vervanging voor medisch onderzoek bij groeiproblemen.",
+      "alert2": "Gaat uit van gezonde voeding en afwezigheid van chronische ziekten.",
+      "alert3": "Vereist nauwkeurige recente metingen van lengte en gewicht.",
+      "rangeNotice": "Beschouw de uitkomst altijd als een waarschijnlijkheidsbereik en niet als een star getal.",
+      "disclaimerStrong": "Medische Disclaimer: ",
+      "disclaimerText": "Deze calculator dient uitsluitend voor informatieve doeleinden. Raadpleeg bij vragen over de groei van uw kind altijd een kinderarts."
+    },
+    "faq": [
+      {
+        "q": "Is de Khamis-Roche methode betrouwbaar?",
+        "a": "Ja, het wordt in de wetenschappelijke literatuur algemeen erkend als de meest betrouwbare voorspellingsmethode zonder röntgenstraling, met een typische marge van 2 tot 5 cm voor gezonde kinderen."
+      },
+      {
+        "q": "Kan ik de lengte van mijn kind voorspellen vóór de geboorte?",
+        "a": "Ja, met de Mid-Parental formule kan het verwachte genetische doelbereik worden berekend op basis van de lengte van beide biologische ouders."
+      },
+      {
+        "q": "Vanaf welke leeftijd is een lengtevoorspelling betrouwbaar?",
+        "a": "De Khamis-Roche methode is gevalideerd vanaf 4 jaar. Tussen 0 en 4 jaar bieden de Mid-Parental methode en de WHO-groeicurves de beste indicaties."
+      },
+      {
+        "q": "Kan een volwassene nog langer worden?",
+        "a": "Nee. Zodra de groeischijven gesloten zijn (meestal tussen 16 en 20 jaar), is natuurlijke botgroei in de lengte niet meer mogelijk."
+      },
+      {
+        "q": "Waarom is slaap zo belangrijk voor de groei?",
+        "a": "Meer dan de helft van het dagelijkse groeihormoon wordt tijdens de diepe slaapfasen uitgescheiden door de hypofyse. Voldoende slaap is daarom essentieel."
+      },
+      {
+        "q": "Waarom zijn jongens gemiddeld langer dan meisjes?",
+        "a": "Jongens genieten van twee extra jaren groei vóór de puberteit en hebben tijdens de puberteit een iets intensievere groeispurt."
+      },
+      {
+        "q": "Belemmert krachttraining de groei van kinderen?",
+        "a": "Nee, dat is een mythe. Onder professionele begeleiding met passende gewichten versterkt krachttraining juist de botten. Alleen ongecontroleerde zware blessures aan groeischijven vormen een risico."
+      }
+    ],
+    "toc": [
+      {
+        "id": "khamis-roche-calculator",
+        "label": "Khamis-Roche Calculator"
+      },
+      {
+        "id": "mid-parental-calculator",
+        "label": "Mid-Parental Calculator"
+      },
+      {
+        "id": "height-converter",
+        "label": "Snelle Lengteconverter"
+      },
+      {
+        "id": "how-the-height-predictor-works",
+        "label": "Hoe Werkt de Lengtevoorspeller"
+      },
+      {
+        "id": "how-tall-will-my-child-be",
+        "label": "Hoe Lang Wordt Mijn Kind?"
+      },
+      {
+        "id": "can-teens-and-adults-still-grow",
+        "label": "Kunnen Tieners Nog Groeien?"
+      },
+      {
+        "id": "what-determines-a-persons-height",
+        "label": "Wat Bepaalt de Lengte?"
+      },
+      {
+        "id": "growth-charts-and-pediatric-tracking",
+        "label": "Groeicurves en Pediatrie"
+      },
+      {
+        "id": "height-calculator-vs-growth-charts",
+        "label": "Calculator vs Groeicurves"
+      },
+      {
+        "id": "growth-patterns-in-boys",
+        "label": "Groeipatronen bij Jongens"
+      },
+      {
+        "id": "growth-patterns-in-girls",
+        "label": "Groeipatronen bij Meisjes"
+      },
+      {
+        "id": "scientific-height-prediction-methods",
+        "label": "Wetenschappelijke Methoden"
+      },
+      {
+        "id": "can-you-increase-your-growth-potential",
+        "label": "Groeipotentieel Maximaliseren"
+      },
+      {
+        "id": "prediction-accuracy-and-limitations",
+        "label": "Nauwkeurigheid en Limieten"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Veelgestelde Vragen"
+      }
+    ],
+    "relatedTools": {
+      "title": "Gerelateerde Tools & Calculators",
+      "heightComparisonTitle": "Visuele Lengtevergelijker",
+      "heightComparisonText": "Vergelijk silhouetten op schaal zij aan zij met echte mensen, beroemdheden en monumenten.",
+      "heightComparisonLink": "Open Lengtevergelijker",
+      "imageToHeightTitle": "Afbeelding naar Lengte",
+      "imageToHeightText": "Schat de lengte van een persoon aan de hand van een foto met referentiepunten.",
+      "imageToHeightLink": "Probeer Afbeelding naar Lengte",
+      "percentileTitle": "Percentiel Calculator",
+      "percentileText": "Bereken uw lengte- en gewichtspercentiel ten opzichte van CDC- en WHO-gegevens.",
+      "percentileLink": "Bereken Percentiel",
+      "countryTitle": "Gemiddelde Lengte per Land",
+      "countryText": "Bekijk gemiddelde lengtes van mannen en vrouwen in 46 landen met een wereldkaart.",
+      "countryLink": "Bekijk Lengte per Land",
+      "ibwTitle": "Ideaal Gewicht Calculator",
+      "ibwText": "Bereken een gezond gewichtsbereik via de klinische formules van Devine, Robinson en Hamwi.",
+      "ibwLink": "Bereken Ideaal Gewicht",
+      "differenceTitle": "Hoogteverschil Calculator",
+      "differenceText": "Bereken het exacte verschil tussen twee lengtes in centimeters, inches en percentages.",
+      "differenceLink": "Bereken Verschil"
+    },
+    "heightCharts": {
+      "intro": "Bekijk officiële CDC-groeigegevens naar leeftijd voor jongens en meisjes van 2 tot 20 jaar:",
+      "boysToggle": "Jongens",
+      "girlsToggle": "Meisjes",
+      "boysLabel": "Jongens (CDC)",
+      "girlsLabel": "Meisjes (CDC)",
+      "chartToggleLine1": "Grafiekweergave",
+      "chartToggleLine2": "Visualiseer percentielcurves",
+      "tableToggleLine1": "Tabelweergave",
+      "tableToggleLine2": "Bekijk gedetailleerde tabelwaarden",
+      "chartTitle": "Lengtepercentielgrafiek voor {label} (2–18 jaar)",
+      "axisAge": "Leeftijd (jaren)",
+      "axisHeight": "Lengte (cm)",
+      "tooltipAge": "Leeftijd: {age} jaar",
+      "percentile3": "3e Percentiel",
+      "percentile50": "50e Percentiel (Mediaan)",
+      "percentile97": "97e Percentiel",
+      "sourceNote": "Bron: Amerikaanse CDC Klinische Groeicurves voor jongens en meisjes van 2 tot 20 jaar.",
+      "tableTitle": "Gemiddelde Lengte naar Leeftijd (CDC Percentielen)",
+      "tableHeaderAge": "Leeftijd",
+      "tableHeaderBoysAvgCm": "Jongens (cm)",
+      "tableHeaderBoysAvgFt": "Jongens (ft/in)",
+      "tableHeaderBoysMedian": "Mediaan Jongens",
+      "tableHeaderGirlsAvgCm": "Meisjes (cm)",
+      "tableHeaderGirlsAvgFt": "Meisjes (ft/in)",
+      "tableHeaderGirlsMedian": "Mediaan Meisjes",
+      "ageYrs": "{age} jaar",
+      "insightBoysStopLabel": "Einde Groei Jongens:",
+      "insightBoysStopValue": "Tussen 17 en 19 jaar",
+      "insightGirlsStopLabel": "Einde Groei Meisjes:",
+      "insightGirlsStopValue": "Tussen 15 en 16 jaar",
+      "insightMaleHeightLabel": "Volwassen Mediaan Mannen (CDC):",
+      "insightMaleHeightValue": "176,5 cm (5'9,5\")",
+      "insightFemaleHeightLabel": "Volwassen Mediaan Vrouwen (CDC):",
+      "insightFemaleHeightValue": "163,2 cm (5'4,3\")"
+    },
+    "references": {
+      "title": "Wetenschappelijke Bronnen & Referenties",
+      "ref1": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age: the Khamis-Roche method. Pediatrics. 1994;94(4 Pt 1):504-507.",
+      "ref2": "Tanner JM, Goldstein H, Whitehouse RH. Standards for children's height at ages 2-9 years allowing for height of parents. Arch Dis Child. 1970;45(244):755-762.",
+      "ref3": "Kuczmarski RJ, Ogden CL, Guo SS, et al. 2000 CDC Growth Charts for the United States: methods and development. Vital Health Stat 11. 2002;(246):1-190.",
+      "ref4": "World Health Organization. WHO Child Growth Standards: Length/height-for-age, weight-for-age, weight-for-length, weight-for-height and body mass index-for-age. Geneva: World Health Organization; 2006.",
+      "ref5": "Bayley N, Pinneau SR. Tables for predicting adult height from skeletal age: revised for use with the Greulich-Pyle hand standards. J Pediatr. 1952;40(4):423-441.",
+      "ref6": "Roche AF, Wainer H, Thissen D. The RWT method for the prediction of adult stature. Pediatrics. 1975;56(6):1026-1033.",
+      "ref7": "Greulich WW, Pyle SI. Radiographic Atlas of Skeletal Development of the Hand and Wrist. 2nd ed. Stanford, CA: Stanford University Press; 1959.",
+      "ref8": "Tanner JM, Whitehouse RH, Cameron N, Marshall WA, Healy MJR, Goldstein H. Assessment of Skeletal Maturity and Prediction of Adult Height (TW2 Method). 2nd ed. London: Academic Press; 1983.",
+      "ref9": "Wood DL, Hermida R, et al. Circadian rhythm of growth hormone secretion in children. J Clin Endocrinol Metab. 1999;84(1):123-128.",
+      "ref10": "Silventoinen K. Determinants of variation in adult body height. J Biosoc Sci. 2003;35(2):263-285.",
+      "ref11": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife. 2016;5:e13410."
+    }
+  },
+  "heightWeightPercentile": {
+    "intro": {
+      "title": "Lengte en Gewicht Percentiel Calculator",
+      "description": "Vergelijk uw lengte en gewicht met officiële populatiegegevens van de <who>Wereldgezondheidsorganisatie (WHO)</who> en de <cdc>Centers for Disease Control and Prevention (CDC)</cdc>. Deze calculator is geschikt voor baby's, peuters, tieners en volwassenen. Voer leeftijd, geslacht, lengte en gewicht in om direct uw percentiel te berekenen.",
+      "disclaimer": "Uitsluitend voor informatieve doeleinden. Raadpleeg voor klinische beoordelingen van groei en ontwikkeling altijd een arts of kinderarts."
+    },
+    "toolSection": {
+      "title": "Lengte en Gewicht Percentiel Calculator"
+    },
+    "meaning": {
+      "title": "Wat Betekent Uw Percentiel?",
+      "p1Before": "Een groeipercentiel geeft aan hoe iemands metingen zich verhouden tot een representatieve referentiegroep van dezelfde leeftijd en hetzelfde geslacht. Als een kind zich op het ",
+      "p1Strong": "75e lengtepercentiel",
+      "p1After": " bevindt, betekent dit dat het langer is dan 75% van de leeftijdsgenoten, terwijl 25% langer is.",
+      "p2": "Percentielen zijn geen schoolcijfers. Zich op het 50e percentiel bevinden betekent simpelweg dat men zich precies op de mediaan bevindt. Ook het 25e of 75e percentiel is volkomen normaal en gezond.",
+      "referencePointsTitle": "Veelvoorkomende Referentiepunten:",
+      "p50Label": "50e Percentiel (Mediaan):",
+      "p50Value": "Precies de helft van de referentiepopulatie is kleiner en de helft is langer.",
+      "p90Label": "90e Percentiel:",
+      "p90Value": "Slechts 10% van de leeftijdsgenoten van hetzelfde geslacht is langer.",
+      "p3": "Artsen letten er vooral op of een kind in de loop der tijd een stabiele groeicurve volgt, in plaats van te focussen op één geïsoleerde meting."
+    },
+    "howItWorks": {
+      "title": "Hoe Werkt de Percentielberekening",
+      "descriptionBefore": "Onze calculator koppelt uw invoer aan officiële datasets van het ",
+      "cdcLinkText": "Amerikaanse CDC",
+      "descriptionMiddle": " en de ",
+      "whoLinkText": "Wereldgezondheidsorganisatie (WHO)",
+      "descriptionAfter": ", en zet metingen om in Z-scores via de wiskundige LMS-methode.",
+      "step1Label": "Stap 1: Selectie van de Juiste Tabel",
+      "step1Text": "Leeftijd en geslacht bepalen of de WHO-standaarden (0 tot 2 jaar) of de CDC-curves (2 tot 20 jaar en volwassenen) worden gebruikt.",
+      "step2Label": "Stap 2: Ophalen van LMS-Parameters",
+      "step2Text": "De specifieke parameters voor scheefheid (L), mediaan (M) en variatiecoëfficiënt (S) worden opgehaald voor de exacte leeftijd in maanden.",
+      "step3Label": "Stap 3: Berekening van de Z-score",
+      "step3Text": "De genormaliseerde formule rekent de invoerwaarde om naar het aantal standaarddeviaties ten opzichte van de mediaan.",
+      "step4Label": "Stap 4: Conversie naar Percentiel",
+      "step4Text": "De Z-score wordt omgezet via de cumulatieve normale verdelingsfunctie naar een percentiel tussen 1 en 99.",
+      "infantsNoteBefore": "Opmerking voor zuigelingen: Voor kinderen jonger dan 2 jaar wordt de liggende lichaamslengte gemeten, zoals voorgeschreven door de ",
+      "infantsNoteLinkText": "WHO-groeistandaarden voor kinderen",
+      "infantsNoteAfter": "."
+    },
+    "byAgeGroup": {
+      "title": "Percentielen per Leeftijdsgroep",
+      "description": "Groeipatronen verschillen per levensfase:",
+      "ages0to2Label": "Baby's en Zuigelingen (0–2 jaar):",
+      "ages0to2Value": "WHO-groeistandaarden gebaseerd op optimale groei bij borstvoeding.",
+      "ages2to20Label": "Kinderen en Jongeren (2–20 jaar):",
+      "ages2to20Value": "CDC-groeicurves die de lineaire groei en de puberteitsgroeispurt monitoren.",
+      "adultsLabel": "Volwassenen (20+ jaar):",
+      "adultsValue": "NHANES-onderzoeksdata van het CDC voor volwassen lengte en gewicht.",
+      "boysGirlsLabel": "Jongens vs Meisjes:",
+      "boysGirlsValue": "Aparte curves vanaf de geboorte vanwege natuurlijke biologische verschillen.",
+      "infants": {
+        "title": "Baby's en Peuters (0 tot 24 maanden)",
+        "p1Before": "In de eerste twee levensjaren verloopt de groei sneller dan in enige andere periode na de geboorte. De tabellen van de ",
+        "p1Strong": "WHO",
+        "p1After": " vormen de wereldwijde gouden standaard voor kinderartsen.",
+        "p2": "Regelmatige controle helpt voedingsproblemen of opnamestoornissen tijdig te signaleren."
+      },
+      "toddlers": {
+        "title": "Kleuters (2 tot 5 jaar)",
+        "p1Before": "Vanaf 2 jaar wordt de lengte staand gemeten. Hier worden de tabellen van het ",
+        "p1Strong": "CDC en de WHO",
+        "p1After": " gebruikt om de jaarlijkse groei te volgen.",
+        "p2": "In deze fase stabiliseert een kind zich doorgaans op zijn eigen genetische percentiellijn."
+      },
+      "boysGirls": {
+        "title": "Schoolkinderen en Tieners (5 tot 20 jaar)",
+        "p1": "Tijdens de adolescentie zorgt de groeispurt voor tijdelijke verschillen: meisjes versnellen eerder (gemiddeld op 11–12-jarige leeftijd), terwijl jongens hun piek ongeveer twee jaar later bereiken (op 13–14-jarige leeftijd).",
+        "p2": "CDC-tabellen bieden gescheiden trajecten om deze verschillende groeitempo's nauwkeurig in kaart te brengen."
+      },
+      "adults": {
+        "title": "Volwassenen (20 jaar en ouder)",
+        "p1Before": "Nadat de groeischijven gesloten zijn, blijft de lengte stabiel tot op middelbare leeftijd. Onze tool gebruikt epidemiologische gegevens van ",
+        "p1Strong": "NHANES",
+        "p1After": " om uw lengte te vergelijken met de volwassen populatie.",
+        "p2": "Bij volwassenen dient het gewichtspercentiel altijd in samenhang met het BMI en de lichaamssamenstelling te worden beoordeeld."
+      }
+    },
+    "usCalculator": {
+      "title": "Referentiedata: CDC vs WHO",
+      "p1Before": "De ",
+      "p1Strong": "American Academy of Pediatrics (AAP)",
+      "p1After": " en het CDC bevelen aan om de WHO-standaarden te gebruiken voor kinderen van 0 tot 2 jaar en de CDC-tabellen voor kinderen van 2 tot 20 jaar.",
+      "p2Before": "De hoofdreden is dat de WHO-standaarden beschrijven hoe kinderen ",
+      "p2Strong": "onder optimale omstandigheden zouden moeten groeien",
+      "p2After": " (inclusief borstvoeding), terwijl de CDC-curves weergeven hoe Amerikaanse kinderen historisch daadwerkelijk zijn gegroeid."
+    },
+    "interpret": {
+      "title": "Hoe Interpreteer je Percentielresultaten",
+      "description": "Dit betekenen de verschillende percentielmarges voor lengte en gewicht:",
+      "tableHeaderRange": "Percentielbereik",
+      "tableHeaderInterpretation": "Algemene Interpretatie",
+      "tableHeaderSuggests": "Typische Medische Duiding",
+      "row1Range": "< 3e percentiel",
+      "row1Interpretation": "Aanzienlijk onder het gemiddelde",
+      "row1Suggests": "Medisch advies aangeraden om mogelijke genetische of voedingsfactoren te onderzoeken.",
+      "row2Range": "3e – 15e percentiel",
+      "row2Interpretation": "Onder het gemiddelde",
+      "row2Suggests": "Vaak normaal bij ouders met een kleinere lengte; volg de groeisnelheid.",
+      "row3Range": "15e – 85e percentiel",
+      "row3Interpretation": "Gemiddeld bereik",
+      "row3Suggests": "Gezonde en verwachte bevolkingsgroei.",
+      "row4Range": "85e – 97e percentiel",
+      "row4Interpretation": "Boven het gemiddelde",
+      "row4Suggests": "Gebruikelijk bij langere ouders; harmonieuze groei.",
+      "row5Range": "> 97e percentiel",
+      "row5Interpretation": "Aanzienlijk boven het gemiddelde",
+      "row5Suggests": "Veelvoorkomend in lange families; controleer of de groeicurve evenwichtig blijft.",
+      "note": "Belangrijk: De continuïteit van de groeicurve in de loop der tijd is klinisch veel waardevoller dan een eenmalige meting."
+    },
+    "example": {
+      "title": "Praktijkvoorbeeld van een Percentielberekening",
+      "description": "Neem het voorbeeld van een 8-jarige jongen met een lengte van 132 cm:",
+      "inputParamsTitle": "Invoergegevens:",
+      "ageLabel": "Leeftijd:",
+      "ageValue": "8 jaar en 0 maanden",
+      "sexLabel": "Geslacht:",
+      "sexValue": "Mannelijk",
+      "heightLabel": "Gemeten Lengte:",
+      "heightValue": "132,0 cm",
+      "calculatedDataTitle": "Statistische Analyse:",
+      "cdcMedianLabel": "CDC Mediaan (50e Percentiel):",
+      "cdcMedianValue": "128,0 cm",
+      "deviationLabel": "Verschil met Mediaan:",
+      "deviationValue": "+4,0 cm",
+      "resultLabel": "Berekend Percentiel:",
+      "resultValue": "75e Percentiel",
+      "scaleMin": "3e",
+      "scaleQ1": "25e",
+      "scaleMid": "50e",
+      "scaleQ3": "75e",
+      "scaleMax": "97e",
+      "resultHeadline": "Langer dan 75% van de 8-jarige jongens",
+      "resultSubtext": "Slechts 25% van de jongens van dezelfde leeftijd is langer volgens de CDC-curves.",
+      "closing": "Als deze jongen in eerdere metingen ook rond het 70e–75e percentiel zat, verloopt zijn groei volkomen stabiel."
+    },
+    "whyUsed": {
+      "title": "Waarom Gebruiken Kinderartsen Groeicurves?",
+      "p1": "Groeicurves behoren tot de meest waardevolle preventieve instrumenten in de kindergeneeskunde.",
+      "p2Intro": "Ze stellen artsen in staat om:",
+      "item1": "De stabiliteit van de lineaire groei zonder plotselinge afbuigingen te controleren.",
+      "item2": "Hormonale afwijkingen, darmziekten of stofwisselingsproblemen vroegtijdig te ontdekken.",
+      "item3": "Ouders te voorzien van objectief wetenschappelijk onderbouwd advies.",
+      "p3Before": "Een plotselinge afbuiging waarbij twee of meer percentiellijnen worden gekruist (bijvoorbeeld van het 60e naar het 20e percentiel) vereist onderzoek door de ",
+      "p3LinkText": "behandelend kinderarts",
+      "p3After": "."
+    },
+    "cta": {
+      "title": "Vergelijk Lengtes met Onze Visuele Tool",
+      "descriptionBefore": "Nu u uw percentiel kent, kunt u zien hoe uw lengte zich ",
+      "descriptionStrong": "zij aan zij in realtime",
+      "descriptionAfter": " verhoudt tot vrienden, partners, atleten of bekende personen in onze hoofdtool.",
+      "feature1": "Nauwkeurige weergave op schaal",
+      "feature2": "Vergelijk kinderen met de volwassen lengte van ouders",
+      "feature3": "Schakel direct tussen metrisch en imperiaal",
+      "feature4": "100% gratis en zonder registratie",
+      "buttonText": "Open Lengte Vergelijking Tool"
+    },
+    "references": {
+      "title": "Wetenschappelijke Bronnen & Referenties",
+      "ref1": "Kuczmarski RJ, Ogden CL, Guo SS et al. 2000 CDC Growth Charts for the United States: Methods and Development. Vital and Health Statistics, 2002.",
+      "ref2": "World Health Organization. WHO Child Growth Standards based on length/height, weight and age. Acta Paediatrica, 2006.",
+      "ref3": "National Center for Health Statistics. National Health and Nutrition Examination Survey (NHANES) Anthropometric Data. Centers for Disease Control and Prevention."
+    },
+    "faq": [
+      {
+        "q": "Wat betekent een lengte op het 50e percentiel?",
+        "a": "Het 50e percentiel is de exacte mediaan: 50% van de referentiepopulatie van dezelfde leeftijd en hetzelfde geslacht is kleiner en 50% is langer."
+      },
+      {
+        "q": "Betekent een hoog gewichtspercentiel automatisch overgewicht?",
+        "a": "Niet noodzakelijk. Een lang kind weegt vaak meer om in verhouding te blijven. Artsen kijken naar het BMI-voor-leeftijd percentiel om overgewicht nauwkeurig te beoordelen."
+      },
+      {
+        "q": "Voorspelt het percentiel van een kind de uiteindelijke volwassen lengte?",
+        "a": "Er is een sterke correlatie na de leeftijd van 2 à 3 jaar, maar de puberteitsspurt en genetica kunnen de uiteindelijke lengte beïnvloeden. De Khamis-Roche methode biedt een nauwkeurigere voorspelling."
+      },
+      {
+        "q": "Wat is het verschil tussen WHO- en CDC-tabellen?",
+        "a": "De WHO mat gezonde kinderen met borstvoeding onder optimale omstandigheden in 6 landen (hoe kinderen zouden moeten groeien). Het CDC mat historische steekproeven van de Amerikaanse bevolking (hoe kinderen zijn gegroeid)."
+      },
+      {
+        "q": "Wanneer moet ik contact opnemen met een arts over het percentiel?",
+        "a": "Raadpleeg een arts als uw kind plotseling twee percentiellijnen kruist, of als de lengte aanhoudend onder het 3e of boven het 97e percentiel ligt."
+      }
+    ],
+    "toc": [
+      {
+        "id": "height-weight-percentile-calculator",
+        "label": "Lengte en Gewicht Percentiel Calculator"
+      },
+      {
+        "id": "what-does-your-percentile-mean",
+        "label": "Wat Betekent Uw Percentiel?"
+      },
+      {
+        "id": "how-the-percentile-calculator-works",
+        "label": "Hoe Werkt de Percentielberekening"
+      },
+      {
+        "id": "percentiles-by-age-group",
+        "label": "Percentielen per Leeftijdsgroep"
+      },
+      {
+        "id": "us-growth-calculator-cdc-vs-who",
+        "label": "CDC vs WHO: Groeistandaarden"
+      },
+      {
+        "id": "how-to-interpret-percentile-results",
+        "label": "Resultaten Interpreteren"
+      },
+      {
+        "id": "percentile-calculation-example",
+        "label": "Praktijkvoorbeeld van Berekening"
+      },
+      {
+        "id": "why-pediatricians-use-growth-charts",
+        "label": "Waarom Artsen Groeicurves Gebruiken"
+      },
+      {
+        "id": "interactive-bell-curve",
+        "label": "Interactieve Klokkromme"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Veelgestelde Vragen"
+      },
+      {
+        "id": "scientific-references",
+        "label": "Wetenschappelijke Bronnen"
+      }
+    ],
+    "tool": {
+      "veryTall": "Zeer Lang",
+      "aboveAverage": "Boven Gemiddeld",
+      "average": "Gemiddeld",
+      "belowAverage": "Onder Gemiddeld",
+      "significantlyBelowAverage": "Aanzienlijk Onder Gemiddeld",
+      "heightPercentileResult": "Resultaat Lengtepercentiel",
+      "shareTextLine1": "Mijn lengtepercentiel op HeightComparison:",
+      "shareTextLine2": "{height} cm | Leeftijd {age} | {gender} | {country}",
+      "shareTextLine3": "Resultaat: {percentile}e percentiel — {label}",
+      "shareTextLine4": "Bereken uw percentiel op:",
+      "heightField": "Lengte",
+      "ageField": "Leeftijd",
+      "genderField": "Biologisch Geslacht",
+      "countryField": "Referentie Dataset",
+      "tallerThanText": "Langer dan {percentile}% van de {gender}s van {age} jaar in {country}. Gebaseerd op WHO- en CDC-referentiegegevens.",
+      "copyResult": "Kopieer Resultaat",
+      "copiedConfirmation": "Gekopieerd naar klembord!",
+      "closeButton": "Sluiten",
+      "footerNote": "Referentiedata gebaseerd op CDC/NCHS- en WHO-onderzoeken.",
+      "percentileOrdinalSuffix": "e",
+      "unitCm": "Metrisch (cm)",
+      "unitFtIn": "Imperiaal (ft / in)",
+      "heightLabel": "Lengte",
+      "heightPlaceholder": "cm",
+      "unitCmShort": "cm",
+      "feetPlaceholder": "ft",
+      "feetAriaLabel": "Voet",
+      "unitFtShort": "ft",
+      "inchesPlaceholder": "in",
+      "inchesAriaLabel": "Inches",
+      "unitInShort": "in",
+      "ageYearsLabel": "Leeftijd (jaren)",
+      "agePlaceholder": "Leeftijd",
+      "genderLabel": "Biologisch Geslacht",
+      "genderMale": "Mannelijk",
+      "genderFemale": "Vrouwelijk",
+      "countryLabel": "Populatie Dataset",
+      "errorInvalidHeight": "Voer een geldige lengte in tussen 30 cm en 250 cm.",
+      "errorInvalidAge": "Voer een geldige leeftijd in tussen 0 en 100 jaar.",
+      "enterYourDetails": "Voer uw gegevens in om uw lengtepercentiel te berekenen",
+      "calculatingButton": "Berekenen...",
+      "calculateButton": "Bereken Percentiel",
+      "yourPercentile": "Uw Lengtepercentiel",
+      "heightResultLabel": "Geschat Percentiel",
+      "positionOnCurve": "Positie op de Populatiecurve",
+      "percentileLabel": "Percentiel",
+      "interpretationText": "Je bent langer dan {percentile}% van de {gender}s van {age} jaar in {country}. Dit plaatst je in het bereik {label}.",
+      "scaleShort": "Klein",
+      "scaleAvg": "Gemiddeld",
+      "scaleTall": "Groot",
+      "shareButton": "Deel Resultaat",
+      "disclaimerLine1": "Deze berekening is gebaseerd op geaggregeerde gezondheidsenquêtes.",
+      "disclaimerLine2": "Dit is geen vervanging voor een professioneel medisch onderzoek."
+    },
+    "bellCurveIllustration": {
+      "interactiveIllustration": "Interactieve Illustratie van de Normale Verdeling",
+      "heading": "Populatieverdeling van Lengte",
+      "instructionBefore": "Beweeg over de curve om percentielen te verkennen of klik op het ",
+      "purpleDot": "voorbeeldpunt",
+      "instructionAfter": "toont een voorbeeldscore op het {samplePercentile}e percentiel.",
+      "populationFrequency": "Relatieve Frequentie in de Populatie",
+      "xAxisLabel": "Lengte (Standaarddeviaties van het Gemiddelde)",
+      "sampleLabel": "Voorbeeld: {samplePercentile}e percentiel",
+      "sampleSubLabel": "Langer dan {samplePercentile}% van leeftijdgenoten",
+      "hoverPrompt": "Beweeg over de curve om details te bekijken",
+      "ordinalSuffix": "e",
+      "percentileSuffix": "Percentiel",
+      "hoveredDescription": "{label}. Een persoon hier is langer dan <pct>{percentile}%</pct> van de mensen van dezelfde leeftijd en hetzelfde geslacht.",
+      "hideSampleDot": "Verberg Voorbeeldpunt",
+      "showSampleDot": "Toon Voorbeeldpunt",
+      "footerNote": "De klokkromme illustreert de normale verdeling van antropometrische CDC-gegevens.",
+      "label5": "5e Percentiel",
+      "label25": "25e Percentiel",
+      "label50": "50e (Mediaan)",
+      "label75": "75e Percentiel",
+      "label95": "95e Percentiel"
+    },
+    "whoVsCdc": {
+      "yearsAbbrev": "jaar",
+      "referenceDataGuide": "Handleiding Referentiegegevens",
+      "heading": "Tijdlijn: WHO vs CDC Groeistandaarden",
+      "ageRangeSource": "Aanbevolen Leeftijdsgroepen en Bronnen",
+      "switchPoint": "Overgangspunt op 2 Jaar",
+      "birthLabel": "Geboorte",
+      "age5": "5 Jaar",
+      "age10": "10 Jaar",
+      "age15": "15 Jaar",
+      "age20": "20 Jaar",
+      "whoTimelineLabel": "WHO-aanbeveling (0–2 jaar)",
+      "whoTimelineNote": "Optimale biologische groeistandaarden in gezonde omstandigheden.",
+      "whoAges": "0–2 Jaar",
+      "cdcTimelineLabel": "CDC-aanbeveling (2–20 jaar)",
+      "cdcTimelineNote": "Epidemiologische referentiecurves voor kleuters tot volwassenen.",
+      "cdcAges": "2–20 Jaar",
+      "growthCurvesSideBySide": "Vergelijking van Groeicurves Naast Elkaar",
+      "whoChartTitle": "WHO: Jongens (0 tot 24 maanden)",
+      "whoChartSubtitle": "Liggende lengte naar leeftijd (cm)",
+      "cdcChartTitle": "CDC: Jongens (2 tot 20 jaar)",
+      "cdcChartSubtitle": "Staande lengte naar leeftijd (cm)",
+      "lengthAxisLabel": "Lengte (cm)",
+      "heightAxisLabel": "Lengte (cm)",
+      "ageAxisLabel": "Leeftijd",
+      "legendMedian": "50e Percentiel (Mediaan)",
+      "legend25_75": "25e – 75e Percentiel (Middenbereik)",
+      "legend5_95": "5e – 95e Percentiel (Typische Marge)",
+      "bottomNoteStrong": "Klinische Richtlijn: ",
+      "bottomNoteText": "Zowel de WHO als het CDC adviseren de overgang van de WHO-tabellen naar de CDC-curves exact op 2-jarige leeftijd, gelijk met de overgang van liggend naar staand meten."
+    },
+    "exampleVisual": {
+      "eyebrow": "Geïllustreerde Casus",
+      "heading": "Visualisatie van het Percentiel van een 8-jarige Jongen",
+      "percentileScaleWhere": "Percentielschaal — Waar het {percentile}e percentiel zich bevindt",
+      "zoneLabelBelow10": "Zeer Klein (<10e)",
+      "zoneLabel10to25": "Onder Gemiddeld",
+      "zoneLabel25to75": "Gemiddeld Bereik (25e–75e)",
+      "zoneLabel75to90": "Boven Gemiddeld",
+      "zoneLabel90to100": "Zeer Lang (>90e)",
+      "ordinalSuffix": "e",
+      "averageRangeLabel": "Typisch Bevolkingsbereik",
+      "childComparisonText": "Dit kind is langer dan <strong>{count} van de 100</strong> jongens van {age} jaar. Bevindt zich comfortabel binnen de normale groeicurve.",
+      "positionOnCdcChart": "Positie op de CDC-Groeicurve:",
+      "cdcChartTitle": "Lengte voor Leeftijd: Jongens van 2 tot 20 Jaar",
+      "heightAxisLabel": "Lengte (cm)",
+      "ageAxisLabel": "Leeftijd (jaren)",
+      "sampleAgeHeight": "8 jaar, 132 cm",
+      "samplePercentileLabel": "75e Percentiel",
+      "legend5th": "5e Percentiel",
+      "legend25th": "25e Percentiel",
+      "legend50th": "50e Percentiel",
+      "legendMedian": "Mediaan",
+      "legend75th": "75e Percentiel",
+      "legend95th": "95e Percentiel",
+      "legendSample": "Voorbeeldkind",
+      "footerNote": "Referentiedata: CDC Klinische Groeicurves 2000 voor de Verenigde Staten."
+    }
+  },
+  "idealBodyWeight": {
+    "intro": {
+      "title": "Ideaal Lichaamsgewicht Calculator",
+      "description": "Het <ibw>Ideaal Lichaamsgewicht (IBW)</ibw> is een schatting van het gewichtsbereik dat geassocieerd wordt met een optimale gezondheid voor een specifieke lengte en geslacht. Deze calculator hanteert drie erkende klinische formules: de methoden van <devine>Devine</devine>, <robinson>Robinson</robinson> en <hamwi>Hamwi</hamwi> om een realistisch bereik te bieden in plaats van één enkel getal. De tool is geschikt voor mannen, vrouwen en kinderen. Voer uw lengte en geslacht in om direct uw ideale lichaamsgewicht te berekenen.",
+      "disclaimer": "(Het IBW is een klinische richtlijn en geen cosmetisch doel. Lichaamsgewicht is slechts één van vele gezondheidsindicatoren. Raadpleeg bij gezondheidsvragen altijd een arts of diëtist.)"
+    },
+    "howToCalculate": {
+      "title": "Hoe Bereken je het Ideale Lichaamsgewicht",
+      "p1": "Het berekenen van het ideale lichaamsgewicht vereist een gestandaardiseerde klinische formule of een gezond BMI-bereik (18,5–24,9 kg/m²). Alle traditionele IBW-formules delen dezelfde basisstructuur: een basisgewicht toegekend aan een lengte van 5 voet (152,4 cm), met een vaste gewichtstoename voor elke extra inch.",
+      "p2": "De onderstaande stappen tonen de berekening via de klassieke Devine-formule voor een man van 175 cm (5 ft 9 in):",
+      "stepsTitle": "Rekenstappen (Devine Formule)",
+      "step1": "1. Bepaal de basislengte: 5 voet (152,4 cm).",
+      "step2": "2. Bereken de inches boven 5 voet: 5 ft 9 in = 9 inches boven de basis.",
+      "step3": "3. Vermenigvuldig met de gewichtsfactor: 9 × 2,3 kg = 20,7 kg.",
+      "step4": "4. Tel op bij het mannelijke basisgewicht: 50 kg + 20,7 kg = 70,7 kg IBW.",
+      "p3": "Voor vrouwen van dezelfde lengte hanteert Devine een basisgewicht van 45,5 kg: 45,5 + (2,3 × 9) = 66,2 kg. De formules van Robinson en Hamwi volgen ditzelfde principe met licht gewijzigde factoren."
+    },
+    "formulas": {
+      "title": "Formules voor Ideaal Lichaamsgewicht: Devine, Robinson en Hamwi",
+      "description": "Er bestaan meerdere klinische formules om het ideale gewicht te schatten. Geen enkele formule is universeel superieur; elke formule weerspiegelt de oorspronkelijke studiepopulatie. Onze calculator toont alle drie de hoofdformules gelijktijdig:",
+      "tableSexHeader": "Geslacht",
+      "tableFormulaHeader": "Formule",
+      "maleLabel": "Mannelijk",
+      "femaleLabel": "Vrouwelijk",
+      "heightRowLabel": "Voorbeeldlengte: 175 cm (5 ft 9 in)",
+      "calculationRowLabel": "Berekening",
+      "devine": {
+        "title": "Devine Formule",
+        "p1": "Ben J. Devine publiceerde zijn formule in 1974. Het werd de meest toegepaste IBW-formule in de medische praktijk, vooral voor doseringen van medicatie. De toename per inch is 2,3 kg voor beide geslachten, uitgaande van verschillende basisgewichten.",
+        "maleFormula": "50 kg + 2,3 kg per inch boven 5 voet",
+        "femaleFormula": "45,5 kg + 2,3 kg per inch boven 5 voet",
+        "exampleHeightValue": "175 cm = 5 ft 9 in",
+        "inchesAboveLabel": "Inches boven 5 voet",
+        "inchesAboveValue": "9",
+        "calculationValue": "50 + (2,3 × 9)",
+        "resultLabel": "IBW Devine",
+        "resultValue": "70,7 kg"
+      },
+      "robinson": {
+        "title": "Robinson Formule",
+        "p1": "In 1983 herzag Robinson de data van Devine om beter aan te sluiten bij empirische populatiemetingen. Deze formule hanteert lagere gewichtstoenames per inch voor vrouwen (1,7 kg) en mannen (1,9 kg).",
+        "maleFormula": "52 kg + 1,9 kg per inch boven 5 voet",
+        "femaleFormula": "49 kg + 1,7 kg per inch boven 5 voet",
+        "exampleHeightValue": "175 cm = 5 ft 9 in",
+        "calculationValue": "52 + (1,9 × 9)",
+        "resultLabel": "IBW Robinson",
+        "resultValue": "69,1 kg"
+      },
+      "hamwi": {
+        "title": "Hamwi Formule",
+        "p1": "G. J. Hamwi introduceerde deze vuistregel in 1964 voor snelle voedingsbeoordeling bij diabetes. Deze methode kent een grotere toename per inch voor mannen (2,7 kg) en een afgerond basisgewicht voor vrouwen (45,5 kg).",
+        "maleFormula": "48 kg + 2,7 kg per inch boven 5 voet",
+        "femaleFormula": "45,5 kg + 2,2 kg per inch boven 5 voet",
+        "exampleHeightValue": "175 cm = 5 ft 9 in",
+        "calculationValue": "48 + (2,7 × 9)",
+        "resultLabel": "IBW Hamwi",
+        "resultValue": "72,3 kg"
+      }
+    },
+    "women": {
+      "title": "Ideaal Lichaamsgewicht voor Vrouwen",
+      "p1": "Bij het bepalen van het ideale gewicht voor vrouwen wordt rekening gehouden met een lagere botdichtheid, een hoger essentieel vetpercentage en een andere verdeling van spiermassa. De basisgewichten liggen daarom lager dan bij mannen.",
+      "p2": "Bijvoorbeeld voor een vrouw van 165 cm (5 ft 5 in):",
+      "exampleTitle": "Voorbeeld: Vrouw van 165 cm (5 ft 5 in)",
+      "exampleDevine": "Devine: 45,5 + (2,3 × 5) = 57,0 kg",
+      "exampleRobinson": "Robinson: 49 + (1,7 × 5) = 57,5 kg",
+      "exampleHamwi": "Hamwi: 45,5 + (2,2 × 5) = 56,5 kg",
+      "exampleRangeSummary": "IBW-Bereik: 56,5 kg – 57,5 kg",
+      "p3": "Deze grote overeenstemming tussen de drie methoden illustreert de betrouwbaarheid van de formules bij gemiddelde lengtes."
+    },
+    "men": {
+      "title": "Ideaal Lichaamsgewicht voor Mannen",
+      "p1": "Bij mannen houden de formules rekening met een groter aandeel spiermassa en skeletgewicht, wat resulteert in hogere basisgewichten (48 tot 52 kg) en toenames tussen 1,9 en 2,7 kg per inch.",
+      "exampleTitle": "Voorbeeld: Man van 180 cm (5 ft 11 in)",
+      "exampleDevine": "Devine: 50 + (2,3 × 11) = 75,3 kg",
+      "exampleRobinson": "Robinson: 52 + (1,9 × 11) = 72,9 kg",
+      "exampleHamwi": "Hamwi: 48 + (2,7 × 11) = 77,7 kg",
+      "exampleRangeSummary": "IBW-Bereik: 72,9 kg – 77,7 kg",
+      "p2": "Het verschil van 4,8 kg tussen Robinson en Hamwi toont aan waarom het raadplegen van een bereik waardevoller is dan één enkel getal."
+    },
+    "pediatrics": {
+      "title": "Ideaal Gewicht in de Kindergeneeskunde",
+      "p1": "Klassieke volwassenenformules zijn niet geschikt voor opgroeiende kinderen. In de kindergeneeskunde wordt het ideale gewicht beoordeeld aan de hand van leeftijd- en geslachtsspecifieke groeicurves.",
+      "p2Before": "De beoordeling is gebaseerd op officiële groeidiagrammen van het ",
+      "cdcLinkText": "CDC (Centers for Disease Control and Prevention)",
+      "p2Middle": " en de standaarden van de ",
+      "whoLinkText": "WHO (Wereldgezondheidsorganisatie)",
+      "p2After": ", waarbij gewicht voor leeftijd en BMI voor leeftijd worden geëvalueerd.",
+      "p3": "Voor kinderen tussen 2 en 19 jaar wordt een gezond gewicht gedefinieerd als een waarde tussen het 5e en 85e percentiel."
+    },
+    "adjusted": {
+      "title": "Aangepast Lichaamsgewicht Calculator (ABW)",
+      "p1": "De rekenmachine voor aangepast ideaal lichaamsgewicht is van toepassing in klinische settings voor patiënten wier werkelijke gewicht meer dan 30% boven hun IBW ligt. Op dat punt onderschat het gebruik van alleen IBW voor medicatiedoseringen de metabolische activiteit, omdat overtollig vetweefsel nog steeds metabolisch actief is. Aangepast Lichaamsgewicht corrigeert hiervoor.",
+      "formulaTitle": "Formule voor Aangepast Lichaamsgewicht",
+      "formulaText": "ABW = IBW + 0,4 × (Werkelijk Gewicht - IBW)",
+      "exampleTitle": "Voorbeeldberekening ABW",
+      "exampleResult": "Voor iemand met een IBW van 70 kg en een werkelijk gewicht van 100 kg:",
+      "exampleResultValue": "ABW = 70 + 0,4 × (100 - 70) = 70 + 12 = 82,0 kg",
+      "p2": "De correctiefactor van 0,4 weerspiegelt de farmacokinetische verdeling in hydrofiele en vetweefsels."
+    },
+    "percentIbw": {
+      "title": "Percentage van het Ideale Lichaamsgewicht (% IBW)",
+      "p1": "Het percentage IBW (% IBW) vergelijkt het werkelijke gewicht direct met de ideale referentiewaarde en wordt veel gebruikt bij voedingsevaluaties:",
+      "formulaText": "% IBW = (Werkelijk Gewicht / IBW) × 100",
+      "tableHeaderPercent": "% van IBW",
+      "tableHeaderStatus": "Voedingsstatus Beoordeling",
+      "row1Percent": "< 70%",
+      "row1Status": "Ernstige ondervoeding",
+      "row2Percent": "70% – 79%",
+      "row2Status": "Matige ondervoeding",
+      "row3Percent": "80% – 89%",
+      "row3Status": "Lichte ondervoeding",
+      "row4Percent": "90% – 109%",
+      "row4Status": "Normaal / ideaal gewicht",
+      "row5Percent": "≥ 120%",
+      "row5Status": "Overgewicht / obesitas",
+      "p2": "Dit overzicht biedt een snelle indicatie van de voedingstoestand in zowel klinische als ambulante situaties."
+    },
+    "healthyRange": {
+      "title": "Gezond Lichaamsgewicht Bereik",
+      "p1": "Naast de formules van Devine, Robinson en Hamwi definieert de Wereldgezondheidsorganisatie een gezond gewichtsbereik op basis van de Body Mass Index (BMI tussen 18,5 en 24,9 kg/m²). Wij tonen beide benaderingen.",
+      "illustrativeTitle": "BMI Categorieën (WHO)",
+      "belowLabel": "Ondergewicht:",
+      "belowValue": "BMI < 18,5 kg/m²",
+      "healthyLabel": "Gezond gewicht:",
+      "healthyValue": "BMI 18,5 – 24,9 kg/m²",
+      "aboveLabel": "Overgewicht:",
+      "aboveValue": "BMI 25,0 – 29,9 kg/m²",
+      "obesityLabel": "Obesitas:",
+      "obesityValue": "BMI ≥ 30,0 kg/m²"
+    },
+    "vsBmi": {
+      "title": "IBW vs BMI (Body Mass Index)",
+      "p1": "Zowel IBW als BMI zijn veelgebruikte antropometrische maten, maar ze hebben verschillende toepassingen en beperkingen:",
+      "tableHeaderMeasure": "Maatstaf",
+      "tableHeaderWhatItDoes": "Primaire Functie",
+      "tableHeaderLimitation": "Beperkingen",
+      "row1Measure": "IBW (Ideaal Gewicht)",
+      "row1WhatItDoes": "Schat een specifiek streefgewicht voor lengte en geslacht",
+      "row1Limitation": "Houdt geen rekening met vetpercentage vs spiermassa",
+      "row2Measure": "BMI (Body Mass Index)",
+      "row2WhatItDoes": "Deelt gewicht in verhouding tot lengte in categorieën in",
+      "row2Limitation": "Kan overgewicht aangeven bij gespierde atleten",
+      "p2": "Het combineren van IBW met het gezonde BMI-bereik biedt het meest evenwichtige en realistische inzicht.",
+      "scrollButtonText": "Bereken Mijn Ideale Gewicht"
+    },
+    "references": {
+      "title": "Bronnen",
+      "ref1": "Devine BJ (1974). Gentamicin therapy. Drug Intelligence and Clinical Pharmacy.",
+      "ref2": "Robinson JD et al. (1983). Estimation of ideal body weight. American Journal of Hospital Pharmacy.",
+      "ref3": "Hamwi GJ (1964). Changing dietary concepts. In: Diabetes Mellitus: Diagnosis and Treatment. American Diabetes Association.",
+      "ref4": "CDC Growth Charts. Centers for Disease Control and Prevention.",
+      "ref5": "WHO Child Growth Standards. World Health Organization."
+    },
+    "faq": [
+      {
+        "q": "Wat is het ideale lichaamsgewicht (IBW)?",
+        "a": "Het ideale lichaamsgewicht is een klinische schatting van het gewicht dat gepaard gaat met het laagste risico op gezondheidsproblemen voor een bepaalde lengte en geslacht."
+      },
+      {
+        "q": "Welke IBW-formule is het meest nauwkeurig?",
+        "a": "Geen enkele formule is universeel het beste. Devine is de klinische farmacologische standaard, terwijl Robinson en Hamwi veel in voedingsadvies worden gebruikt. Onze tool toont ze alle drie naast elkaar."
+      },
+      {
+        "q": "Waarom verschilt het ideale gewicht tussen mannen en vrouwen?",
+        "a": "Mannen hebben van nature een hogere botdichtheid en een groter aandeel spiermassa vergeleken met vrouwen van dezelfde lengte, wat een hoger basisgewicht rechtvaardigt."
+      },
+      {
+        "q": "Wat moet ik doen als mijn gewicht buiten het ideale bereik valt?",
+        "a": "Het IBW is een theoretische richtlijn. Spiermassa, botstructuur en algehele conditie zijn doorslaggevend. Raadpleeg een arts of diëtist voor een persoonlijk advies."
+      }
+    ],
+    "toc": [
+      {
+        "id": "ideal-body-weight-calculator",
+        "label": "Ideaal Lichaamsgewicht Calculator"
+      },
+      {
+        "id": "how-to-calculate-ideal-body-weight",
+        "label": "Ideaal Gewicht Berekenen"
+      },
+      {
+        "id": "ideal-body-weight-formulas",
+        "label": "Formules voor Ideaal Gewicht"
+      },
+      {
+        "id": "ideal-body-weight-for-women",
+        "label": "Ideaal Gewicht voor Vrouwen"
+      },
+      {
+        "id": "ideal-body-weight-for-men",
+        "label": "Ideaal Gewicht voor Mannen"
+      },
+      {
+        "id": "pediatric-ideal-body-weight",
+        "label": "Ideaal Gewicht bij Kinderen"
+      },
+      {
+        "id": "adjusted-body-weight-calculator",
+        "label": "Aangepast Gewicht Calculator (ABW)"
+      },
+      {
+        "id": "percent-ideal-body-weight",
+        "label": "Percentage van IBW"
+      },
+      {
+        "id": "healthy-weight-range",
+        "label": "Gezond Gewichtsbereik"
+      },
+      {
+        "id": "ideal-body-weight-vs-bmi",
+        "label": "IBW vs BMI"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Veelgestelde Vragen"
+      },
+      {
+        "id": "references",
+        "label": "Bronnen"
+      }
+    ],
+    "tool": {
+      "title": "Ideaal Lichaamsgewicht Calculator",
+      "description": "Bereken uw ideale gewichtsbereik op basis van de klinische formules van Devine, Robinson en Hamwi.",
+      "unitMetric": "Metrisch (cm, kg)",
+      "unitImperial": "Imperiaal (ft, in, lbs)",
+      "heightLabel": "Lengte",
+      "heightPlaceholder": "cm",
+      "unitCm": "cm",
+      "feetPlaceholder": "ft",
+      "feetAriaLabel": "Voet",
+      "unitFt": "ft",
+      "inchesPlaceholder": "in",
+      "inchesAriaLabel": "Inches",
+      "unitIn": "in",
+      "sexLabel": "Geslacht",
+      "sexMale": "Mannelijk",
+      "sexFemale": "Vrouwelijk",
+      "currentWeightLabel": "Huidig Gewicht (optioneel)",
+      "weightPlaceholder": "kg",
+      "unitKg": "kg",
+      "invalidInputTitle": "Ongeldige Invoer",
+      "invalidInputText": "Voer een geldige lengte in van minimaal 5 voet (152,4 cm) voor een betrouwbare IBW-berekening.",
+      "ideaBodyWeightResultLabel": "Ideaal Lichaamsgewicht Bereik",
+      "rangeUnit": "kg",
+      "healthyWeightRangeLabel": "Gezond Gewichtsbereik (BMI 18,5–24,9)",
+      "differenceLabel": "Verschil met Huidig Gewicht",
+      "differenceNone": "Precies binnen het ideale bereik",
+      "differenceAbove": "+{amount} kg erboven",
+      "differenceBelow": "{amount} kg eronder",
+      "differenceWithin": "Binnen het aanbevolen bereik",
+      "devineYear": "Devine (1974)",
+      "robinsonYear": "Robinson (1983)",
+      "hamwiYear": "Hamwi (1964)",
+      "kgLabel": "kg",
+      "badgeFree": "100% Gratis",
+      "badgeNoAccount": "Geen Account",
+      "badgeResultsInKg": "Resultaten in kg en lbs",
+      "badgeFormulas": "3 Klinische Formules"
+    },
+    "healthyWeightRange": {
+      "intro1": "Het ideale lichaamsgewicht is geen enkel star getal. Wij tonen de resultaten van ",
+      "formulaNames": "Devine, Robinson en Hamwi",
+      "intro1After": " naast elkaar zodat u de natuurlijke spreiding tussen de modellen kunt zien.",
+      "intro2": "Naast de klassieke formules biedt het gezonde BMI-bereik van de WHO (18,5–24,9 kg/m²) een waardevol referentiekader op basis van wereldwijde bevolkingsdata.",
+      "healthyRangeQuestionTitle": "Wat is Mijn Gezonde Gewichtsbereik?",
+      "healthyRangeTextBefore": "Voor uw lengte komt een gezond BMI-bereik van ",
+      "bmiRangeValue": "18,5 tot 24,9 kg/m²",
+      "healthyRangeTextMiddle": " overeen met een gewichtsvenster van ",
+      "windowValue": "14–16 kg",
+      "healthyRangeTextAfter": ". Deze marge vangt normale variaties in spiermassa, lichaamsbouw en leeftijd op.",
+      "underweightLabel": "Ondergewicht",
+      "healthyBmiRangeLabel": "Gezond BMI-Bereik",
+      "overweightLabel": "Overgewicht",
+      "bmiUnder185": "BMI < 18,5",
+      "bmiRangeShort": "18,5 – 24,9",
+      "bmiOver25": "BMI ≥ 25,0",
+      "distanceTableIntro": "Afstand van het huidige gewicht tot het berekende ideale bereik:",
+      "distanceHeaderDistance": "Afstand",
+      "distanceHeaderMeaning": "Klinische Betekenis",
+      "distanceRow1Dist": "Binnen het bereik",
+      "distanceRow1Meaning": "Uw gewicht valt binnen de geschatte IBW-marge.",
+      "distanceRow2Dist": "1 – 5 kg verschil",
+      "distanceRow2Meaning": "Kleine afwijking, vaak verklaarbaar door spiermassa of vochtbalans.",
+      "distanceRow3Dist": "5 – 10 kg verschil",
+      "distanceRow3Meaning": "Matige afwijking; evalueer in samenhang met BMI en leefstijl.",
+      "distanceRow4Dist": "10 – 20 kg verschil",
+      "distanceRow4Meaning": "Aanzienlijk verschil met de theoretische richtwaarde.",
+      "distanceRow5Dist": "20+ kg erboven",
+      "distanceRow5Meaning": "Aanbevolen om het Aangepast Lichaamsgewicht (ABW) te raadplegen.",
+      "distanceRow6Dist": "20+ kg eronder",
+      "distanceRow6Meaning": "Mogelijk signaal van ernstig ondergewicht of ondervoeding.",
+      "referenceTablesLabel": "Referentietabellen",
+      "referenceTablesTitle": "Referentietabellen Gezond Gewicht",
+      "referenceTablesDescription": "Bekijk de aanbevolen gezonde gewichtsbereiken op basis van lengte voor mannen en vrouwen.",
+      "tabMen": "Mannen",
+      "tabWomen": "Vrouwen",
+      "healthyBmiRangeWhoLabel": "WHO Gezond BMI-Bereik (18,5–24,9)",
+      "tableHeightCm": "Lengte (cm)",
+      "tableHeightFt": "Lengte (ft/in)",
+      "tableHealthyBmiRange": "Gezond BMI-bereik ({unit})",
+      "sourcesNote": "Bronnen: Wereldgezondheidsorganisatie (WHO), Devine (1974), Robinson (1983), Hamwi (1964)."
+    }
+  },
+  "heightDifference": {
+    "intro": {
+      "title": "Hoogteverschil Calculator",
+      "description": "Een hoogteverschil calculator vergelijkt de lengte van twee personen en berekent de exacte afstand ertussen. Voer twee lengtes in centimeters of voet en inches in. De tool berekent direct het absolute verschil en het percentageverschil. Vergelijk uzelf binnen enkele seconden met een vriend, uw partner of wie dan ook."
+    },
+    "calculateSection": {
+      "title": "Bereken Hoogteverschil",
+      "description": "Voer hieronder twee lengtes in om direct het exacte verschil te berekenen. Schakel op elk moment tussen metrische en imperiale eenheden.",
+      "badgeFree": "100% Gratis",
+      "badgeNoAccount": "Geen Account Nodig",
+      "badgeSupportsUnits": "Ondersteunt cm en ft/in",
+      "badgeUpdatesLive": "Live Bijgewerkt"
+    },
+    "howToCalculate": {
+      "title": "Hoe Bereken je het Hoogteverschil",
+      "p1": "Het berekenen van het hoogteverschil tussen twee personen vereist slechts een eenvoudige aftrekking. Trek de kleinere lengte af van de grotere lengte. De uitkomst is het absolute verschil.",
+      "formulaTitle": "Formule voor Hoogteverschil",
+      "formulaText": "Hoogteverschil = Langere Lengte - Kortere Lengte",
+      "personALabel": "Persoon A:",
+      "personAValue": "180 cm (5 ft 11 in)",
+      "personBLabel": "Persoon B:",
+      "personBValue": "165 cm (5 ft 5 in)",
+      "differenceLabel": "Verschil:",
+      "differenceValue": "180 cm - 165 cm = 15 cm (5,9 inch)",
+      "p2": "Wanneer u voet en inches gebruikt, reken dan eerst beide lengtes om naar het totale aantal inches alvorens af te trekken. Iemand van 5 ft 11 in meet 71 inches. Iemand van 5 ft 5 in meet 65 inches. Het verschil is 71 - 65 = 6 inches (15,24 cm)."
+    },
+    "percentage": {
+      "title": "Percentage Hoogteverschil",
+      "p1": "Het percentageverschil drukt het lengteverschil uit ten opzichte van de lengte van de langste persoon. Het toont welk deel van de lengte van de langste persoon het verschil uitmaakt.",
+      "formulaTitle": "Formule voor Percentageverschil",
+      "formulaText": "Percentageverschil = (Hoogteverschil / Langste Lengte) × 100",
+      "heightDiffLabel": "Hoogteverschil:",
+      "heightDiffValue": "15 cm",
+      "tallerHeightLabel": "Langste Lengte:",
+      "tallerHeightValue": "180 cm",
+      "calculationLabel": "Berekening:",
+      "calculationValue": "(15 / 180) × 100",
+      "percentDiffLabel": "Percentageverschil:",
+      "percentDiffValue": "8,33%",
+      "p2": "Het percentageverschil helpt om het verschil in perspectief te plaatsen: een verschil van 10 cm bij jonge kinderen vertegenwoordigt een veel groter deel van hun totale lengte dan hetzelfde verschil bij twee lange volwassenen."
+    },
+    "couple": {
+      "title": "Hoogteverschil Calculator voor Koppels",
+      "p1": "Het lengteverschil tussen koppels is een veelbesproken onderwerp in relaties. Wereldwijd zijn mannen gemiddeld ongeveer 12 tot 15 cm langer dan vrouwen binnen dezelfde populatie.",
+      "globalAvgLabel": "Wereldwijd Gemiddeld Koppelverschil:",
+      "globalAvgValue": "~12–15 cm",
+      "feetInLabel": "In Voet en Inches:",
+      "feetInValue": "~4,7–5,9 in",
+      "p2": "Onderzoek toont aan dat relaties met een gematigd lengteverschil (tussen 5 en 15 cm) wereldwijd het meest voorkomen. Gebruik onze interactieve calculator om het verschil tussen partners te bekijken."
+    },
+    "chartSection": {
+      "title": "Hoogteverschil Tabel",
+      "p1": "Deze hoogteverschiltabel geeft veelvoorkomende lengteverschillen weer in centimeters, inches en percentages voor snelle referentie.",
+      "p2": "De tabel gaat uit van een referentielengte van 175 cm (5 ft 9 in) voor de langere persoon bij elke procentuele vergelijking."
+    },
+    "visualSection": {
+      "title": "Visuele Lengtevergelijking",
+      "p1": "Cijfers zijn nuttig, maar een visuele lengtevergelijking maakt het verschil direct tastbaar. Een verschil van 10 cm oogt heel anders bij mensen van verschillende lengtes.",
+      "p2": "Kies vooraf ingestelde paren hieronder of voer aangepaste lengtes in om het verschil op schaal te zien."
+    },
+    "unitsSection": {
+      "title": "Hoogteverschil in Verschillende Eenheden",
+      "p1": "Het omrekenen tussen metrische en imperiale eenheden leidt vaak tot verwarring. De onderstaande tabel biedt directe omrekeningen van veelvoorkomende lengtes en verschillen.",
+      "tableHeaderPersonA": "Persoon A",
+      "tableHeaderPersonB": "Persoon B",
+      "tableHeaderDifferenceCm": "Verschil (cm)",
+      "tableHeaderDifferenceIn": "Verschil (in)"
+    },
+    "cta": {
+      "title": "Probeer de Volledige Lengte Vergelijking Tool",
+      "descriptionLine1": "Wilt u meer dan twee personen vergelijken?",
+      "descriptionLine2": "Met onze hoofdtool kunt u onbeperkt silhouetten naast elkaar toevoegen in realtime.",
+      "feature1": "Voeg onbeperkt mensen, beroemdheden of voorwerpen toe",
+      "feature2": "Schakel direct tussen metrisch en imperiaal",
+      "feature3": "Exporteer afbeeldingen in hoge resolutie zonder watermerk",
+      "feature4": "Volledig gratis, geen registratie of betaling",
+      "buttonText": "Open Lengte Vergelijking Tool"
+    },
+    "references": {
+      "title": "Bronnen & Referenties",
+      "ref1": "NCD Risk Factor Collaboration (NCD-RisC). Een eeuw aan trends in volwassen menselijke lengte. eLife, 2016.",
+      "ref2": "Wereldgezondheidsorganisatie (WHO). Groeistandaarden voor Kinderen en Ontwikkelingsreferenties. Genève: WHO, 2006."
+    },
+    "faq": [
+      {
+        "q": "Wat is het gemiddelde lengteverschil tussen mannen en vrouwen?",
+        "a": "Wereldwijd zijn mannen gemiddeld ongeveer 12 tot 15 cm (4,7 tot 5,9 inch) langer dan vrouwen binnen dezelfde populatie volgens antropometrische studies."
+      },
+      {
+        "q": "Hoe reken je het hoogteverschil om van centimeters naar inches?",
+        "a": "Om centimeters naar inches om te rekenen, deelt u de waarde in centimeters door 2,54. Bijvoorbeeld: 15 cm ÷ 2,54 = 5,91 inch."
+      },
+      {
+        "q": "Hoe bereken je het percentageverschil in lengte?",
+        "a": "Deel het absolute lengteverschil door de lengte van de langste persoon en vermenigvuldig met 100: (Verschil / Langste Lengte) × 100."
+      },
+      {
+        "q": "Heeft het lengteverschil tussen partners invloed op de relatie?",
+        "a": "Onderzoek toont aan dat voorkeuren voor lengte cultureel variëren, maar geen statistisch bewezen invloed hebben op het langetermijnsucces van een relatie."
+      }
+    ],
+    "toc": [
+      {
+        "id": "calculate-height-difference",
+        "label": "Hoogteverschil Berekenen"
+      },
+      {
+        "id": "how-to-calculate-height-difference",
+        "label": "Hoe Bereken je het Hoogteverschil"
+      },
+      {
+        "id": "height-difference-percentage",
+        "label": "Percentage Hoogteverschil"
+      },
+      {
+        "id": "couple-height-difference-calculator",
+        "label": "Hoogteverschil voor Koppels"
+      },
+      {
+        "id": "height-difference-chart",
+        "label": "Hoogteverschil Tabel"
+      },
+      {
+        "id": "visual-height-comparison",
+        "label": "Visuele Lengtevergelijking"
+      },
+      {
+        "id": "height-difference-in-different-units",
+        "label": "Verschil in Verschillende Eenheden"
+      },
+      {
+        "id": "try-the-height-difference-calculator",
+        "label": "Probeer de Hoogteverschil Calculator"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Veelgestelde Vragen"
+      },
+      {
+        "id": "references",
+        "label": "Bronnen & Referenties"
+      }
+    ],
+    "tool": {
+      "unitMetric": "Metrisch (cm)",
+      "unitImperial": "Imperiaal (ft / in)",
+      "person1Label": "Persoon 1",
+      "person2Label": "Persoon 2",
+      "cmPlaceholder": "cm",
+      "ftPlaceholder": "ft",
+      "inPlaceholder": "in",
+      "unitCm": "cm",
+      "unitFt": "ft",
+      "unitIn": "in",
+      "heightDifferenceLabel": "Hoogteverschil",
+      "percentDifferenceLabel": "Percentageverschil",
+      "isTallerText": "{person} is langer",
+      "tallerPersonLabel": "Langste Persoon",
+      "visualComparisonLabel": "Visuele Vergelijking",
+      "enterBothHeightsPrompt": "Voer beide lengtes in om het verschil te berekenen"
+    },
+    "coupleCalc": {
+      "partner1Label": "Partner 1",
+      "partner2Label": "Partner 2",
+      "pctTallerText": "{pct}% langer",
+      "resultSentence": "{p1} ({h1} cm) is <strong>{diff} cm ({pct}%) langer</strong> dan {p2} ({h2} cm)"
+    },
+    "chartTable": {
+      "headerPersonA": "Persoon A",
+      "headerPersonB": "Persoon B",
+      "headerDifference": "Verschil",
+      "headerPercentDifference": "Percentageverschil"
+    },
+    "visualComp": {
+      "person1Label": "Persoon 1",
+      "person2Label": "Persoon 2",
+      "pairButtonText": "{h1} cm vs {h2} cm",
+      "diffCmText": "{diff} cm verschil",
+      "isTallerText": "{person} is langer"
+    }
+  },
+  "averageHeightByCountry": {
+    "h1": "Gemiddelde lengte per land",
+    "intro": {
+      "description": "De gemiddelde lengte varieert meer dan de meeste mensen verwachten. Het verschil tussen 's werelds langste en kortste populaties bedraagt bijna 24 cm voor mannen en 21 cm voor vrouwen. Deze pagina vergelijkt de gemiddelde menselijke lengte wereldwijd voor beide geslachten, van Nederland aan de top tot Oost-Timor aan de basis, op basis van gegevens van de <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> en <wpr>World Population Review</wpr>. Mannen en vrouwen volgen hetzelfde brede geografische patroon, met Noord-Europa bovenaan en delen van Zuid- en Centraal-Azië aan de onderkant."
+    },
+    "globalTable": {
+      "title": "Wereldwijde Tabel Gemiddelde Lengte",
+      "unitToggle": {
+        "metric": "Metrisch (cm)",
+        "imperial": "Imperiaal (ft/in)"
+      },
+      "description": "Geaggregeerde gegevens over de gemiddelde lengte van mannen en vrouwen per land, sorteerbaar en doorzoekbaar op basis van toonaangevend onderzoek van NCD-RisC.",
+      "searchPlaceholder": "Zoek land...",
+      "tableHeaders": {
+        "rank": "Rang",
+        "country": "Land",
+        "avgMale": "Gemiddelde Mannen",
+        "avgFemale": "Gemiddelde Vrouwen"
+      },
+      "noResults": "Geen landen gevonden die overeenkomen met \"{query}\"",
+      "sourceNote": "Bronnen: NCD Risk Factor Collaboration (NCD-RisC) in samenwerking met de Wereldgezondheidsorganisatie (WHO)."
+    },
+    "common": {
+      "tabMen": "Mannen",
+      "tabWomen": "Vrouwen",
+      "tabMale": "Mannelijk",
+      "tabFemale": "Vrouwelijk"
+    },
+    "tallestCountries": {
+      "title": "Landen met de Grootste Gemiddelde Lengte",
+      "barsLabelMen": "Langste mannen per land (cm)",
+      "barsLabelWomen": "Langste vrouwen per land (cm)",
+      "captionMen": "Gemiddelde volwassen lengte van mannen in de hoogst genoteerde landen ter wereld.",
+      "captionWomen": "Gemiddelde volwassen lengte van vrouwen in de landen met de hoogste gemiddelden.",
+      "paragraph1": "Nederland voert steevast de wereldranglijsten aan voor zowel mannen als vrouwen. De gemiddelde lengte van Nederlandse mannen ligt rond de 183,8 cm (6'0,4\"), terwijl Nederlandse vrouwen gemiddeld 170,4 cm (5'7,1\") meten.",
+      "paragraph2": "Andere landen in Noord- en Zuidoost-Europa — waaronder Montenegro, Denemarken, Noorwegen, Servië en Bosnië en Herzegovina — volgen op de voet met mannelijke gemiddelden die vaker boven de 182 cm uitkomen.",
+      "paragraph3": "Factoren zoals een voedingspatroon rijk aan zuivel en hoogwaardige eiwitten in de jeugd, universele gezondheidszorg en een lage sociale ongelijkheid verklaren deze hoge gemiddelden grotendeels."
+    },
+    "shortestCountries": {
+      "title": "Landen met de Kleinste Gemiddelde Lengte",
+      "barsLabelMen": "Mannen met de kleinste gemiddelde lengte per land (cm)",
+      "barsLabelWomen": "Vrouwen met de kleinste gemiddelde lengte per land (cm)",
+      "captionMen": "Gemiddelde volwassen lengte van mannen in landen met de laagste gemiddelden.",
+      "captionWomen": "Gemiddelde volwassen lengte van vrouwen in naties met de laagste antropometrische waarden.",
+      "paragraph1": "Oost-Timor (Timor-Leste), Madagaskar, Guatemala en de Filipijnen behoren tot de landen met de laagste gemiddelde lengtes ter wereld. In Oost-Timor ligt het mannelijk gemiddelde rond de 160 cm (5'3\"), terwijl vrouwen gemiddeld circa 151 cm (4'11,5\") meten.",
+      "paragraph2": "In Guatemala vertoont de inheemse vrouwelijke bevolking een van de laagste gemiddelden ter wereld, met waarden tussen 149 en 150 cm.",
+      "paragraph3": "Deze verschillen zijn voornamelijk het gevolg van langdurige historische ondervoeding in de kindertijd, terugkerende darminfecties op jonge leeftijd en aanhoudende armoede, waardoor bevolkingsgroepen hun genetisch potentieel niet ten volle konden benutten."
+    },
+    "tallestShortest": {
+      "title": "Vergelijking: Langste vs Kortste Landen",
+      "tabs": {
+        "tallestVsShortest": "Langste vs Kortste",
+        "top10Tallest": "Top 10 Langste",
+        "bottom10Shortest": "Top 10 Kortste"
+      },
+      "chartTitleTallestVsShortest": "Verschil tussen Wereldwijde Uitersten in Lengte",
+      "chartTitleTop10": "Top 10 Landen met Grootste Gemiddelde Lengte",
+      "chartTitleBottom10": "Top 10 Landen met Kleinste Gemiddelde Lengte",
+      "caption": "Directe vergelijking van de uiterste gemiddelde lengtes volgens internationale studies.",
+      "paragraph": "Het gemiddelde verschil tussen het langste land (Nederland) en het kortste land (Oost-Timor) bedraagt ruim 23 cm voor mannen en circa 20 cm voor vrouwen — een aanzienlijk verschil gevormd door een wisselwerking van genetica en sociaaleconomische omstandigheden."
+    },
+    "averageMale": {
+      "title": "Gemiddelde Lengte van Mannen Wereldwijd",
+      "paragraph1": "Wereldwijd bedraagt de gemiddelde lengte van een volwassen man naar schatting 171 cm (5'7,5\"), met aanzienlijke regionale variaties. In Noord- en West-Europa schommelen de gemiddelden tussen 178 en 183 cm, terwijl in Zuid-Azië en Afrika ten zuiden van de Sahara gemiddelden tussen 164 en 168 cm liggen.",
+      "paragraph2": "De mannelijke lengte stabiliseert zich doorgaans tussen het 18e en 21e levensjaar, wanneer de groeischijven in de lange beenderen onder invloed van hormonen definitief sluiten."
+    },
+    "averageFemale": {
+      "title": "Gemiddelde Lengte van Vrouwen Wereldwijd",
+      "paragraph1": "Wereldwijd is de gemiddelde lengte van een volwassen vrouw ongeveer 159 cm (5'2,5\"). In vrijwel alle bevolkingsgroepen zijn vrouwen gemiddeld 12 tot 15 cm korter dan mannen binnen dezelfde gemeenschap.",
+      "paragraph2": "Bij meisjes vindt de puberteitsgroeispurt eerder plaats en eindigt de lengtegroei meestal tussen het 15e en 17e levensjaar, kort na de menarche."
+    },
+    "maleAndFemale": {
+      "title": "Seksuele Diformie in Menselijke Lengte",
+      "barsLabelMale": "Gemiddelde Mannen (cm)",
+      "barsLabelFemale": "Gemiddelde Vrouwen (cm)",
+      "callout": "Seksuele diformie in lengte is een universeel biologisch fenomeen: volwassen mannen zijn in alle gedocumenteerde menselijke samenlevingen gemiddeld zo'n 7% tot 8% langer dan vrouwen."
+    },
+    "selectedCountries": {
+      "title": "Lengte-inzichten uit Geselecteerde Landen",
+      "countries": {
+        "netherlands": {
+          "name": "Nederland",
+          "paragraph": "Nederlandse mannen voeren al decennia de wereldranglijsten aan. Een dieet rijk aan zuivel en universele gezondheidszorg stimuleren dit resultaat."
+        },
+        "unitedKingdom": {
+          "name": "Verenigd Koninkrijk",
+          "paragraph": "De gemiddelde lengte in het VK is de afgelopen twintig jaar gestabiliseerd op ongeveer 178 cm voor mannen en 164 cm voor vrouwen."
+        },
+        "japan": {
+          "name": "Japan",
+          "paragraph": "Japan kende een van de snelste toenames in lengte in de 20e eeuw na aanzienlijke verbeteringen in de naoorlogse schoolmaaltijden."
+        },
+        "bangladesh": {
+          "name": "Bangladesh",
+          "paragraph": "De lengte in Bangladesh herstelt zich geleidelijk dankzij aanhoudende investeringen in voeding voor moeder en kind."
+        },
+        "iran": {
+          "name": "Iran",
+          "paragraph": "Iraanse mannen lieten in de 20e eeuw een van de grootste absolute lengtestijgingen ter wereld zien (meer dan 16 cm winst)."
+        },
+        "canada": {
+          "name": "Canada",
+          "paragraph": "Hoge gemiddelden dankzij een uitstekende levensstandaard, gevarieerde voeding en universele toegang tot de gezondheidszorg."
+        },
+        "ireland": {
+          "name": "Ierland",
+          "paragraph": "Ierland heeft over de afgelopen generaties een zeer gestage groei doorgemaakt en behoort nu tot de langste landen van West-Europa."
+        },
+        "sriLanka": {
+          "name": "Sri Lanka",
+          "paragraph": "Gunstige indicatoren voor de volksgezondheid vertalen zich in iets hogere gemiddelden dan in veel buurlanden in Zuid-Azië."
+        },
+        "southKorea": {
+          "name": "Zuid-Korea",
+          "paragraph": "Zuid-Koreaanse vrouwen lieten over een periode van 100 jaar de grootste lengtetoename ter wereld zien (meer dan 20 cm)."
+        },
+        "india": {
+          "name": "India",
+          "paragraph": "Grote regionale diversiteit: noordelijke staten laten aanzienlijk grotere lengtes zien dan het oosten en zuiden van het land."
+        },
+        "usa": {
+          "name": "Verenigde Staten",
+          "paragraph": "Ooit de langste bevolking ter wereld in de 19e eeuw, kenden de VS een stagnatie door voedingsongelijkheid in de vroege jeugd."
+        },
+        "denmark": {
+          "name": "Denemarken",
+          "paragraph": "Denemarken staat consequent in de top drie van langste landen ter wereld, met een uitzonderlijk hoge levensstandaard."
+        }
+      }
+    },
+    "chartForMen": {
+      "title": "Vergelijkingsgrafiek Lengte Mannen",
+      "paragraph": "Vergelijkende visualisatie van de gemiddelde lengte van volwassen mannen in landen over de hele wereld.",
+      "barsLabel": "Gemiddelde lengte mannen (cm)",
+      "caption": "Mannelijke bevolkingsgemiddelden gerangschikt in aflopende volgorde."
+    },
+    "globalAverage": {
+      "title": "Geconsolideerde Wereldwijde Gemiddelden",
+      "maleStatLabel": "Wereldgemiddelde Mannen",
+      "femaleStatLabel": "Wereldgemiddelde Vrouwen",
+      "paragraph1": "<who>De Wereldgezondheidsorganisatie</who> en de NCD Risk Factor Collaboration plaatsen de wereldwijde gemiddelde lengte voor mannen op ongeveer 171 cm en voor vrouwen op ongeveer 159 cm. Deze gewogen cijfers vallen lager uit dan de gemiddelden in de meeste westerse landen omdat ze rekening houden met de grote bevolkingsgroepen van Zuid- en Zuidoost-Azië.",
+      "paragraph2": "Regionale gemiddelden tonen duidelijke contrasten tussen Europa (hoogste gecombineerde gemiddelden) en delen van Zuidoost-Azië en Midden-Amerika.",
+      "regionMap": {
+        "colourScaleLabel": "Kleurschaal — gemiddelde mannelijke lengte per regio",
+        "tallestLabel": "180+ cm (langste)",
+        "shortestLabel": "≤162 cm (kortste)",
+        "regions": {
+          "northernEurope": {
+            "name": "Noord-Europa",
+            "ex": "Nederland, Denemarken, Noorwegen"
+          },
+          "easternEurope": {
+            "name": "Oost-Europa",
+            "ex": "Servië, Oekraïne, Polen"
+          },
+          "westernEurope": {
+            "name": "West-Europa",
+            "ex": "Duitsland, Frankrijk, VK"
+          },
+          "northAmericaOceania": {
+            "name": "Noord-Amerika/Oceanië",
+            "ex": "Canada, VS, Australië"
+          },
+          "middleEast": {
+            "name": "Midden-Oosten",
+            "ex": "Iran, Turkije"
+          },
+          "eastAsia": {
+            "name": "Oost-Azië",
+            "ex": "China, Zuid-Korea, Japan"
+          },
+          "latinAmerica": {
+            "name": "Latijns-Amerika",
+            "ex": "Brazilië, Mexico"
+          },
+          "southSeAsia": {
+            "name": "Zuid/Zuidoost-Azië",
+            "ex": "India, Indonesië, Nepal"
+          },
+          "centralAmerica": {
+            "name": "Midden-Amerika",
+            "ex": "Guatemala, Honduras"
+          }
+        }
+      }
+    },
+    "extremes": {
+      "tallestMan": {
+        "title": "De Langste Man ter Wereld Ooit",
+        "paragraph": "Robert Wadlow uit Alton (Illinois) blijft de langste gedocumenteerde persoon in de geschiedenis met 272 cm (8'11\"). Zijn hypofyse produceerde continu een overmaat aan groeihormoon en hij groeide nog steeds toen hij in 1940 op 22-jarige leeftijd overleed. Het Guinness World Record voor de langste levende man staat op naam van Sultan Kösen uit Turkije met 251 cm (8'3\")."
+      },
+      "shortestMan": {
+        "title": "De Kleinste Man ter Wereld Ooit",
+        "paragraph": "Chandra Bahadur Dangi uit Nepal bezit het geverifieerde record als de kleinste volwassen man in de geschiedenis met slechts 54,6 cm (1'9\"). Hij leefde tot zijn 75e in een afgelegen bergdorp. De kleinste levende man die kan lopen is Afshin Ghaderzadeh uit Iran met 65,2 cm (2'1,7\"), geverifieerd door Guinness World Records in 2022."
+      },
+      "tallestFemale": {
+        "title": "De Langste Vrouw ter Wereld Ooit",
+        "paragraph": "Zeng Jinlian uit de provincie Hunan (China) is de langste geverifieerde vrouw in de medische geschiedenis met 246,3 cm (8'1\") voor haar overlijden in 1982 op 17-jarige leeftijd. De langste levende vrouw is Rumeysa Gelgi uit Turkije met 215,16 cm (7'0,7\"), veroorzaakt door het zeldzame Weaver-syndroom."
+      },
+      "shortestFemale": {
+        "title": "De Kleinste Vrouw ter Wereld",
+        "paragraph": "Jyoti Amge uit Nagpur (India) is volgens het Guinness Book of Records de kleinste levende vrouw ter wereld met een lengte van 62,8 cm (2'0,7\"). Haar lengte is het gevolg van achondroplasie, een vorm van dwerggroei. Jyoti is actrice en speelde onder meer in de Amerikaanse televisieserie American Horror Story."
+      },
+      "dataCards": {
+        "tallestManEver": {
+          "label": "Langste man ooit",
+          "name": "Robert Wadlow",
+          "value": "272 cm",
+          "meta": "8'11\" · VS · overleden 1940"
+        },
+        "shortestManEver": {
+          "label": "Kleinste man ooit",
+          "name": "Chandra Bahadur Dangi",
+          "value": "54,6 cm",
+          "meta": "1'9\" · Nepal · overleden 2015"
+        },
+        "tallestWomanEver": {
+          "label": "Langste vrouw ooit",
+          "name": "Zeng Jinlian",
+          "value": "246,3 cm",
+          "meta": "8'1\" · China · overleden 1982"
+        },
+        "shortestLivingWoman": {
+          "label": "Kleinste levende vrouw",
+          "name": "Jyoti Amge",
+          "value": "62,8 cm",
+          "meta": "2'1\" · India"
+        }
+      }
+    },
+    "distribution": {
+      "title": "Normale Verdeling van Menselijke Lengte",
+      "bellCurve": {
+        "globalAvgLabel": "Wereldwijd gem. ≈ {mean} cm",
+        "axisLabel": "Lengte (cm) — {label}",
+        "male": {
+          "label": "wereldwijde mannelijke bevolking",
+          "pctLabel": "68% van de mannen valt binnen ±1 standaarddeviatie",
+          "band1": "68% van de mannen — binnen ±1σ (≈164–178 cm)",
+          "band2": "95% van de mannen — binnen ±2σ (≈157–185 cm)"
+        },
+        "female": {
+          "label": "wereldwijde vrouwelijke bevolking",
+          "pctLabel": "68% van de vrouwen valt binnen ±1 standaarddeviatie",
+          "band1": "68% van de vrouwen — binnen ±1σ (≈153–165 cm)",
+          "band2": "95% van de vrouwen — binnen ±2σ (≈147–171 cm)"
+        }
+      },
+      "legendNote": "Opmerking: De klokkromme illustreert een klassieke normale (Gaussische) verdeling.",
+      "dataSourcesLabel": "Databronnen:",
+      "dataSourcesText": "NCD-RisC en de Wereldgezondheidsorganisatie (WHO).",
+      "paragraph1": "In een gezonde en goed gevoede bevolking volgt menselijke lengte met opmerkelijke nauwkeurigheid een normale verdeling, met een standaarddeviatie van circa 7 cm bij volwassenen.",
+      "paragraph2": "Ongeveer 68% van de individuen valt binnen ±1 standaarddeviatie van het gemiddelde en meer dan 95% valt binnen ±2 standaarddeviaties.",
+      "tableHeaders": {
+        "minus2sd": "−2 SD",
+        "minus1sd": "−1 SD",
+        "globalAvg": "Wereldgemiddelde",
+        "plus1sd": "+1 SD",
+        "plus2sd": "+2 SD"
+      },
+      "captionMale": "Verdelingscurve voor mannelijke lengte.",
+      "captionFemale": "Verdelingscurve voor vrouwelijke lengte.",
+      "captionSources": "Geaggregeerde data uit internationaal antropometrisch onderzoek."
+    },
+    "whyDiffers": {
+      "title": "Waarom Verschilt Lengte Tussen Landen?",
+      "paragraph1": "De uiteindelijke volwassen lengte wordt bepaald door een samenspel van polygene erfelijkheid (ongeveer 60% tot 80%) en omgevingsfactoren tijdens de eerste 1.000 dagen van het leven.",
+      "nutritionParagraph": "<bold>Voeding</bold> is de sterkste omgevingsfactor voor de uiteindelijke lengte van volwassenen. Voldoende eiwitten en micronutriënten tijdens de eerste 1.000 dagen van het leven zijn cruciaal voor de skeletontwikkeling. De beschikbaarheid van zuivel en vlees in de kindertijd voorspelt consequent de nationale lengteranglijst.",
+      "healthcareParagraph": "<bold>Toegang tot gezondheidszorg</bold> bepaalt of kinderziekten energie wegleiden van de groei. Landen met hoge vaccinatiegraden en een lage ziektelast zijn steevast langer.",
+      "economicParagraph": "<bold>Economische ontwikkeling</bold> vormt de basis voor zowel voeding als gezondheidszorg. Het bbp per hoofd van de bevolking correleert sterk met de gemiddelde lengte, omdat welvaart zorgt voor betere voeding, schoner drinkwater en hoogwaardige medische zorg.",
+      "calloutUS": "Het Voorbeeld van de VS: De stagnatie van de gemiddelde lengte in de Verenigde Staten toont aan dat een hoog inkomen per hoofd van de bevolking geen garantie is voor goede kindervoeding als er ongelijkheid bestaat in toegang tot gezond voedsel en prenatale zorg."
+    },
+    "toc": [
+      {
+        "id": "global-average-height-table",
+        "label": "Tabel Gemiddelde Lengte Wereldwijd"
+      },
+      {
+        "id": "tallest-countries-in-the-world",
+        "label": "Langste Landen ter Wereld"
+      },
+      {
+        "id": "shortest-countries-in-the-world",
+        "label": "Kortste Landen ter Wereld"
+      },
+      {
+        "id": "tallest-vs-shortest-countries",
+        "label": "Vergelijking: Langste vs Kortste"
+      },
+      {
+        "id": "average-male-height-worldwide",
+        "label": "Gemiddelde Lengte Mannen Wereldwijd"
+      },
+      {
+        "id": "average-female-height-worldwide",
+        "label": "Gemiddelde Lengte Vrouwen Wereldwijd"
+      },
+      {
+        "id": "male-and-female-height-comparison",
+        "label": "Seksuele Diformie in Lengte"
+      },
+      {
+        "id": "selected-countries-height-highlights",
+        "label": "Inzichten uit Geselecteerde Landen"
+      },
+      {
+        "id": "chart-for-men-height-by-country",
+        "label": "Grafiek Lengte Mannen per Land"
+      },
+      {
+        "id": "global-average-height-numbers",
+        "label": "Geconsolideerde Wereldgemiddelden"
+      },
+      {
+        "id": "human-height-extremes-records",
+        "label": "Uitersten en Wereldrecords in Lengte"
+      },
+      {
+        "id": "human-height-distribution-bell-curve",
+        "label": "Normale Verdeling van Lengte"
+      },
+      {
+        "id": "why-does-height-differ-between-countries",
+        "label": "Waarom Verschilt Lengte per Land?"
+      },
+      {
+        "id": "try-the-height-comparison-tool",
+        "label": "Probeer de Lengte Vergelijker"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Veelgestelde Vragen"
+      },
+      {
+        "id": "references",
+        "label": "Bronnen & Referenties"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Wat is de gemiddelde lengte van een man wereldwijd?",
+        "a": "Het wereldwijde gemiddelde voor een volwassen man is circa 171 cm (5'7,5\"), variërend van 160 cm in landen met de laagste gemiddelden tot ruim 183 cm in Nederland."
+      },
+      {
+        "q": "Wat is de gemiddelde lengte van een vrouw wereldwijd?",
+        "a": "Het wereldwijde gemiddelde voor vrouwen ligt rond de 159 cm (5'2,5\"), variërend van circa 150 cm in Guatemala tot 170 cm in Nederland en Montenegro."
+      },
+      {
+        "q": "Waarom zijn Nederlanders de langste mensen ter wereld?",
+        "a": "Nederlanders profiteren al generaties lang van een dieet rijk aan zuivel en eiwitten, uitstekende universele gezondheidszorg, geringe sociale ongelijkheid en natuurlijke partnerkeuze voor langere partners."
+      },
+      {
+        "q": "Kan een volwassene nog in de lengte groeien?",
+        "a": "Onder normale fysiologische omstandigheden stopt de groei na de puberteit (tussen 16 en 21 jaar) zodra de groeischijven in de beenderen volledig gesloten zijn."
+      },
+      {
+        "q": "Waarom verschilt je lengte tussen ochtend en avond?",
+        "a": "Gedurende de dag drukt de zwaartekracht de tussenwervelschijven in de wervelkolom samen. Hierdoor is men bij het opstaan meestal 1 tot 2 cm langer dan voor het slapengaan."
+      }
+    ],
+    "references": {
+      "primarySources": {
+        "title": "Primaire Databronnen",
+        "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016. Vol. 5, e13410.",
+        "ref2": "Rodriguez-Martinez A, Zhou B, Sophiea MK et al. (NCD-RisC). Height and body-mass index trajectories of school-aged children and adolescents from 1985 to 2019 in 200 countries and territories. The Lancet, 2020. Vol. 396, pp. 1511–1524.",
+        "ref3": "World Health Organization. Child Growth Standards — Length/Height-for-Age, Weight-for-Age. WHO Department of Nutrition and Food Safety. Genève, 2006.",
+        "ref4": "World Health Organization. Global Health Observatory — Nutrition and Body Mass Index Data. WHO Global Health Observatory.",
+        "ref5": "de Onis M, Garza C, Onyango AW, Martorell R (eds). WHO Child Growth Standards. Acta Paediatrica, 2006. Suppl 450:1–101."
+      },
+      "usGovernment": {
+        "title": "Amerikaanse Overheid — CDC en NIH",
+        "ref1": "Centers for Disease Control and Prevention. CDC Clinical Growth Charts, 2000 (Herzien in 2022). National Center for Health Statistics.",
+        "ref2": "Kuczmarski RJ, Ogden CL, Guo SS et al. 2000 CDC Growth Charts for the United States: Methods and Development. Vital and Health Statistics. Series 11, No. 246, 2002.",
+        "ref3": "Centers for Disease Control and Prevention — NCHS. National Health and Nutrition Examination Survey (NHANES) — Anthropometric Data.",
+        "ref4": "Fryar CD, Gu Q, Ogden CL, Flegal KM. Anthropometric Reference Data for Children and Adults: United States, 2011–2014. Vital and Health Statistics. Series 3, No. 39, augustus 2016.",
+        "ref5": "National Institutes of Health — National Heart, Lung, and Blood Institute. Classification of Overweight and Obesity by BMI. NIH Publication No. 98-4083, 1998."
+      },
+      "peerReviewed": {
+        "title": "Peer-Reviewed Wetenschappelijke Publicaties",
+        "ref1": "Devine BJ. Gentamicin therapy. Drug Intelligence and Clinical Pharmacy, 1974. Vol. 8, pp. 650–655.",
+        "ref2": "Robinson JD, Lupkiewicz SM, Palenik L, Lopez LM, Ariet M. Determination of ideal body weight for drug dosage calculations. American Journal of Hospital Pharmacy, 1983. Vol. 40, pp. 1016–1019.",
+        "ref3": "Pai MP, Paloucek FP. The origin of the \"ideal\" body weight equations. Annals of Pharmacotherapy, 2000. Vol. 34, No. 9, pp. 1066–1069.",
+        "ref4": "Janmahasatian S, Duffull SB, Ash S, Ward LC, Byrne NM, Green B. Quantification of lean bodyweight. Clinical Pharmacokinetics, 2005. Vol. 44, No. 10, pp. 1051–1065.",
+        "ref5": "Stulp G, Buunk AP, Pollet TV. Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE, 2013. Vol. 8, Issue 2.",
+        "ref6": "Flegal KM, Ogden CL, Wei R, Kuczmarski RL, Johnson CL. Prevalence of obesity in US adults by age and sex. JAMA, 2002. Vol. 288, pp. 1723–1727."
+      },
+      "unBodies": {
+        "title": "Verenigde Naties & Internationale Organisaties",
+        "ref1": "UNICEF / WHO / Wereldbank. Joint Child Malnutrition Estimates — Levels and Trends. Editie 2023.",
+        "ref2": "Voedsel- en Landbouworganisatie van de VN. The State of Food Security and Nutrition in the World 2023. FAO, IFAD, UNICEF, WFP, WHO. Rome, 2023."
+      }
+    }
+  },
+  "metadata": {
+    "aboutTitle": "Over Ons - Lengte Vergelijking Tool",
+    "aboutDescription": "Ontdek onze nauwkeurige tool voor lengtevergelijking op schaal, calculators, databronnen en nauwkeurigheidsnormen.",
+    "privacyTitle": "Privacybeleid - Lengte Vergelijking Tool",
+    "privacyDescription": "Lees het privacybeleid van de Lengte Vergelijking Tool om te zien hoe wij uw gegevens beschermen en verwerken.",
+    "heightPredictorTitle": "Lengte Calculator: Voorspel Jouw Lengte als Volwassene",
+    "heightPredictorDescription": "Voorspel jouw volwassen lengte met onze Lengtevoorspeller Calculator. Gebruikt wetenschappelijk bewezen methoden.",
+    "heightWeightPercentileTitle": "Lengte en Gewicht Percentiel Calculator voor Baby's, Kinderen & Volwassenen",
+    "heightWeightPercentileDescription": "Gebruik onze Lengte en Gewicht Percentiel Calculator om groei te meten. Inclusief percentielen voor baby's, kinderen en volwassenen.",
+    "idealBodyWeightTitle": "Bereken Ideaal Lichaamsgewicht & Aangepast Gewicht Calculator",
+    "idealBodyWeightDescription": "Gebruik onze Ideaal Gewicht Calculator in kg om het ideale gewicht te berekenen voor mannen en vrouwen.",
+    "heightDifferenceTitle": "Hoogteverschil Calculator - Bereken Lengteverschil Tabel",
+    "heightDifferenceDescription": "Bereken het hoogteverschil met onze hoogteverschil calculator. Inclusief hoogteverschil voor koppels met vergelijkingstabel.",
+    "averageHeightByCountryTitle": "Gemiddelde Lengte per Land - Wereldwijde Lengte Tabel",
+    "averageHeightByCountryDescription": "Ontdek de gemiddelde lengte van vrouwen en mannen wereldwijd en vergelijk gemiddelde lengtes per land in één overzicht.",
+    "blogsTitle": "Blog van de Lengte Vergelijking Tool",
+    "blogsDescription": "Lees de nieuwste artikelen over lengte, lichaamsverhoudingen en boeiende vergelijkingen."
+  },
+  "blogs": {
+    "badge": "Artikelen & Inzichten",
+    "heading": "Inzichten & gidsen",
+    "subheading": "Ontdek gidsen, onderzoeken en diepgaande analyses over menselijke lengte, gemiddelden, percentielen en boeiende vergelijkingen.",
+    "articleBadge": "Artikel",
+    "noPostsTitle": "Geen artikelen beschikbaar",
+    "noPostsSubtitle": "Kom later terug voor nieuwe inhoud.",
+    "unknownAuthor": "Onbekende auteur"
+  },
+  "blogPost": {
+    "categoryLabel": "Blogartikel",
+    "writtenBy": "Geschreven door {author}",
+    "unknownAuthor": "Onbekende auteur",
+    "jumpToSection": "Ga naar sectie",
+    "fallbackImageAlt": "Artikelafbeelding",
+    "postNotFound": "Artikel Niet Gevonden"
+  }
+}

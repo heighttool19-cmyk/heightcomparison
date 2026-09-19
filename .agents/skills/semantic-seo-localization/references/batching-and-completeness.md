@@ -36,8 +36,8 @@ Runs once per page, after all batches have passed Stage 4d, before the Human Rev
 This is a **mechanical set comparison, not an LLM judgment call.**
 
 ### Steps
-1. Recursively list every leaf key path in the source namespace (`messages/en.json`, this page-id's namespace) — same enumeration method as Stage 3 Step 2. **Independently check `messages/en.json` for a top-level `metadata` namespace** containing a `<page-id>Title` / `<page-id>Description` pair for this page (e.g. `metadata.aboutTitle` for page-id `about`) — do this check yourself, directly against the source file, rather than trusting that `target-market-seo.md`'s Stage 2 output already reported it. If such a pair exists, add both key paths to this set. This check is mandatory and unconditional — it does not depend on Stage 2 having remembered to flag it; the whole point of this gate being mechanical is that it does not trust an earlier stage's self-report.
-2. Recursively list every leaf key path in the merged candidate translation: all batches' Stage 4b output (combined in document order), **plus** the actual current values at `metadata.<page-id>Title` / `metadata.<page-id>Description` in the candidate output, if Step 1 found that pair in the source. If Stage 2 did produce translated values for them, they should be present here; if Stage 2 never produced them (the failure this check exists to catch), they will be absent or still in English — either way, list what is actually there, not what should be there.
+1. Recursively list every leaf key path in the source namespace (`messages/en.json`, this page-id's namespace) — same enumeration method as Stage 3 Step 2.
+2. Recursively list every leaf key path in the merged candidate translation (all batches' Stage 4b output, combined in document order).
 3. Diff the two sets:
    - **Missing keys:** present in source, absent from candidate.
    - **Extra keys:** present in candidate, absent from source.
@@ -49,4 +49,3 @@ This is a **mechanical set comparison, not an LLM judgment call.**
 - Treating a "looks complete to me" read-through as sufficient — this must be an explicit enumerate-and-diff of key paths, not a skim.
 - Skipping the gate for small pages ("it's only 3 keys, I'll just check by eye") — the gate always runs, regardless of page or batch count, so a single-batch page still gets diffed.
 - Reporting "some keys may be missing" instead of the exact key paths — the gate's value is in being specific enough to route the fix to the right batch.
-- Forgetting the shared `metadata.<page-id>Title`/`Description` pair (if the project has one) because it lives outside the page's own namespace — it's easy to enumerate only the page namespace and silently miss these two keys, leaving the page's SEO metadata untranslated even though every other key checks out.

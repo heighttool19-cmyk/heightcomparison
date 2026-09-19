@@ -1,10 +1,12 @@
 'use client';
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useUnitStore } from '@/store';
 import { CheckCircle2, AlertCircle } from 'lucide-react';
 import { NumericInput } from '@/components/ui/NumericInput';
 
 export default function IdealWeightInteractive() {
+    const t = useTranslations('idealBodyWeight.tool');
     const { unitSystem, setUnitSystem } = useUnitStore();
 
     // Calculator State
@@ -74,9 +76,9 @@ export default function IdealWeightInteractive() {
         let difference = null;
         if (weightKg) {
             const currentWeight = Number(weightKg);
-            if (currentWeight > max) difference = `+${(currentWeight - max).toFixed(1)} kg above`;
-            else if (currentWeight < min) difference = `${(currentWeight - min).toFixed(1)} kg below`;
-            else difference = 'Within ideal range';
+            if (currentWeight > max) difference = t('differenceAbove', { amount: (currentWeight - max).toFixed(1) });
+            else if (currentWeight < min) difference = t('differenceBelow', { amount: (currentWeight - min).toFixed(1) });
+            else difference = t('differenceWithin');
         }
 
         return { devine, robinson, hamwi, min, max, bmiMin, bmiMax, difference };
@@ -86,9 +88,9 @@ export default function IdealWeightInteractive() {
 
     return (
         <section id="calculate-your-ideal-body-weight-in-kg-or-pounds" className="scroll-mt-24 bg-surface border border-border p-6 md:p-10 rounded-3xl shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
-            <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4 text-foreground">Ideal Body Weight Calculator</h2>
+            <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4 text-foreground">{t('title')}</h2>
             <p className="text-muted leading-relaxed mb-8">
-                Use the calculator to find your ideal body weight in kilograms or pounds. Enter your age, height, sex, and current weight to see how much you differ from the ideal weight estimate based on three formulas.
+                {t('description')}
             </p>
 
             {/* Controls */}
@@ -97,83 +99,83 @@ export default function IdealWeightInteractive() {
                     onClick={() => setUnitSystem('metric')}
                     className={`flex-1 py-3 rounded-xl font-black text-sm transition-all border-2 ${unitSystem === 'metric' ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}
                 >
-                    Metric (kg / cm)
+                    {t('unitMetric')}
                 </button>
                 <button
                     onClick={() => setUnitSystem('imperial')}
                     className={`flex-1 py-3 rounded-xl font-black text-sm transition-all border-2 ${unitSystem === 'imperial' ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}
                 >
-                    Imperial (ft-in)
+                    {t('unitImperial')}
                 </button>
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6 mb-8">
                 <div className="space-y-2">
-                    <label htmlFor="height-cm" className="text-sm font-bold text-muted uppercase tracking-wider">Height</label>
+                    <label htmlFor="height-cm" className="text-sm font-bold text-muted uppercase tracking-wider">{t('heightLabel')}</label>
                     {unitSystem === 'metric' ? (
                         <div className="relative">
                             <NumericInput
                                 id="height-cm"
                                 value={heightCm}
                                 onValueChange={setHeightCm}
-                                placeholder="e.g. 175 "
+                                placeholder={t('heightPlaceholder')}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors"
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">cm</span>
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">{t('unitCm')}</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
-                                <label htmlFor="height-ft" className="sr-only">Height in feet</label>
+                                <label htmlFor="height-ft" className="sr-only">{t('feetAriaLabel')}</label>
                                 <NumericInput
                                     id="height-ft"
                                     value={heightFt}
                                     onValueChange={setHeightFt}
-                                    placeholder="e.g. 5 "
+                                    placeholder={t('feetPlaceholder')}
                                     className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors"
                                 />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">ft</span>
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">{t('unitFt')}</span>
                             </div>
                             <div className="relative flex-1">
-                                <label htmlFor="height-in" className="sr-only">Height in inches</label>
+                                <label htmlFor="height-in" className="sr-only">{t('inchesAriaLabel')}</label>
                                 <NumericInput
                                     id="height-in"
                                     value={heightIn}
                                     onValueChange={setHeightIn}
-                                    placeholder="e.g. 5 "
+                                    placeholder={t('inchesPlaceholder')}
                                     className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors tracking-normal" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">in</span>
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">{t('unitIn')}</span>
                             </div>
                         </div>
                     )}
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-bold text-muted uppercase tracking-wider">Sex</label>
+                    <label className="text-sm font-bold text-muted uppercase tracking-wider">{t('sexLabel')}</label>
                     <div className="flex gap-2 h-[46px]">
                         <button
                             onClick={() => setSex('male')}
                             className={`flex-1 rounded-xl font-black transition-all border-2 ${sex === 'male' ? 'bg-blue-500/10 text-blue-500 border-blue-500' : 'bg-bg text-muted border-border hover:bg-surface'}`}
                         >
-                            Male
+                            {t('sexMale')}
                         </button>
                         <button
                             onClick={() => setSex('female')}
                             className={`flex-1 rounded-xl font-black transition-all border-2 ${sex === 'female' ? 'bg-pink-500/10 text-pink-500 border-pink-500' : 'bg-bg text-muted border-border hover:bg-surface'}`}
                         >
-                            Female
+                            {t('sexFemale')}
                         </button>
                     </div>
                 </div>
                 <div className="space-y-2 sm:col-span-2 text-center">
-                    <label htmlFor="current-weight" className="text-sm font-bold text-muted uppercase tracking-wider  ">Current weight (optional — unlocks difference readout)</label>
+                    <label htmlFor="current-weight" className="text-sm font-bold text-muted uppercase tracking-wider  ">{t('currentWeightLabel')}</label>
                     <div className="relative mt-6  w-full sm:w-1/2">
                         <NumericInput
                             id="current-weight"
                             value={weightKg}
                             onValueChange={setWeightKg}
-                            placeholder="e.g. 80"
+                            placeholder={t('weightPlaceholder')}
                             className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent text-foreground transition-colors tracking-normal" />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">kg</span>
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted font-bold">{t('unitKg')}</span>
                     </div>
                 </div>
             </div>
@@ -182,8 +184,8 @@ export default function IdealWeightInteractive() {
                 <div className="bg-red-500/10 border border-red-500/30 rounded-2xl p-6 mb-6 flex items-start gap-4">
                     <AlertCircle className="text-red-500 shrink-0 mt-0.5" size={20} />
                     <div>
-                        <h3 className="font-bold text-red-500 mb-1">Invalid Input</h3>
-                        <p className="text-sm text-red-500/90">Please enter a valid height and weight to calculate your results.</p>
+                        <h3 className="font-bold text-red-500 mb-1">{t('invalidInputTitle')}</h3>
+                        <p className="text-sm text-red-500/90">{t('invalidInputText')}</p>
                     </div>
                 </div>
             )}
@@ -192,28 +194,28 @@ export default function IdealWeightInteractive() {
                 <div className="bg-accent/5 border border-accent/20 rounded-2xl p-3 mb-6">
                     <div className="grid sm:grid-cols-3 gap-6 mb-6 pb-6 border-b border-border/50 text-center sm:text-left">
                         <div>
-                            <span className="block text-xs font-bold text-muted uppercase tracking-wider mb-1">Ideal body weight</span>
-                            <span className="text-2xl font-black text-foreground">{results.min.toFixed(1)} – {results.max.toFixed(1)} <span className="text-base text-accent">kg (range)</span></span>
+                            <span className="block text-xs font-bold text-muted uppercase tracking-wider mb-1">{t('ideaBodyWeightResultLabel')}</span>
+                            <span className="text-2xl font-black text-foreground">{results.min.toFixed(1)} – {results.max.toFixed(1)} <span className="text-base text-accent">{t('rangeUnit')}</span></span>
                         </div>
                         <div>
-                            <span className="block text-xs font-bold text-muted uppercase tracking-wider mb-1">Healthy weight range</span>
-                            <span className="text-2xl font-black text-foreground">{results.bmiMin.toFixed(1)} – {results.bmiMax.toFixed(1)} <span className="text-base text-accent">kg</span></span>
+                            <span className="block text-xs font-bold text-muted uppercase tracking-wider mb-1">{t('healthyWeightRangeLabel')}</span>
+                            <span className="text-2xl font-black text-foreground">{results.bmiMin.toFixed(1)} – {results.bmiMax.toFixed(1)} <span className="text-base text-accent">{t('kgLabel')}</span></span>
                         </div>
                         <div>
-                            <span className="block text-xs font-bold text-muted uppercase tracking-wider mb-1">Difference from current</span>
-                            <span className="text-2xl font-black text-foreground">{results.difference ? results.difference : '—'}</span>
+                            <span className="block text-xs font-bold text-muted uppercase tracking-wider mb-1">{t('differenceLabel')}</span>
+                            <span className="text-2xl font-black text-foreground">{results.difference ? results.difference : t('differenceNone')}</span>
                         </div>
                     </div>
                     <div className="grid grid-cols-3 gap-1 text-center">
                         <div className="bg-bg border border-border p-3 rounded-xl flex flex-wrap items-center justify-center gap-1.5">
-                            <span className="text-xs font-bold text-muted">Devine (1974)</span>
+                            <span className="text-xs font-bold text-muted">{t('devineYear')}</span>
                             <span className="font-bold text-foreground text-sm whitespace-nowrap">{results.devine.toFixed(1)} kg</span>                        </div>
                         <div className="bg-bg border border-border p-3 rounded-xl flex flex-wrap items-center justify-center gap-1.5">
-                            <span className="text-xs font-bold text-muted">Robinson (1983)</span>
+                            <span className="text-xs font-bold text-muted">{t('robinsonYear')}</span>
                             <span className="font-bold text-foreground text-sm whitespace-nowrap">{results.robinson.toFixed(1)} kg</span>
                         </div>
                         <div className="bg-bg border border-border p-3 rounded-xl flex flex-wrap items-center justify-center gap-1.5">
-                            <span className="text-xs font-bold text-muted">Hamwi (1964)</span>
+                            <span className="text-xs font-bold text-muted">{t('hamwiYear')}</span>
                             <span className="font-bold text-foreground text-sm whitespace-nowrap">{results.hamwi.toFixed(1)} kg</span>
                         </div>
                     </div>
@@ -221,10 +223,10 @@ export default function IdealWeightInteractive() {
             )}
 
             <div className="flex flex-wrap items-center gap-4 text-xs font-bold text-muted uppercase tracking-wider">
-                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> Free</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> No account needed</span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> Results in kg </span>
-                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> Based on Devine, Robinson, and Hamwi formulas</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> {t('badgeFree')}</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> {t('badgeNoAccount')}</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> {t('badgeResultsInKg')}</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 size={14} className="text-accent" /> {t('badgeFormulas')}</span>
             </div>
         </section>
     );

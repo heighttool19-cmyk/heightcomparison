@@ -3,21 +3,20 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { routing } from '@/i18n/routing';
+import { getLocalizedHref as toLocalizedHref } from '@/i18n/config';
 import { useThemeStore, useUIStore } from '@/store';
 
 const Footer = () => {
     const t = useTranslations('footer');
+    const locale = useLocale();
     const { theme } = useThemeStore();
     const { isCustomFullscreen } = useUIStore();
     const pathname = usePathname() || '/';
 
-    const currentLocale = (pathname.startsWith('/de/') || pathname === '/de') ? 'de' : 'en';
-
-    const getLocalizedHref = (path: string) => {
-        if (currentLocale === 'en') return path;
-        return path === '/' ? '/de' : `/de${path}`;
-    };
+    const currentLocale = locale || (routing.locales.find(loc => loc !== 'en' && (pathname.startsWith(`/${loc}/`) || pathname === `/${loc}`)) || 'en');
+    const getLocalizedHref = (path: string) => toLocalizedHref(path, currentLocale);
 
     if (isCustomFullscreen || pathname?.startsWith('/studio')) return null;
 

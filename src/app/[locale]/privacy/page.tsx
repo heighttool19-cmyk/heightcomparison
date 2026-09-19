@@ -1,24 +1,18 @@
 import React from 'react';
 import { getTranslations } from 'next-intl/server';
 import { Shield, Lock, FileText, Eye, Database, HelpCircle, Clock, Mail } from 'lucide-react';
+import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'metadata' });
 
-    const baseUrl = 'https://heightcomparisoncalculator.com';
-    const canonicalUrl = locale === 'en' ? `${baseUrl}/privacy` : `${baseUrl}/${locale}/privacy`;
-
     return {
         title: t('privacyTitle'),
         description: t('privacyDescription'),
         alternates: {
-            canonical: canonicalUrl,
-            languages: {
-                en: `${baseUrl}/privacy`,
-                de: `${baseUrl}/de/privacy`,
-                'x-default': `${baseUrl}/privacy`
-            }
+            canonical: getCanonicalUrl('/privacy', locale),
+            languages: getAlternateLanguages('/privacy'),
         }
     };
 }

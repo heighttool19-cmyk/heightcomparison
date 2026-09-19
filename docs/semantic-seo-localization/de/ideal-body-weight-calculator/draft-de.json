@@ -1,0 +1,283 @@
+{
+  "idealBodyWeight": {
+    "intro": {
+      "title": "Idealgewichts-Rechner",
+      "description": "<ibw>Idealgewicht (IBW)</ibw> ist eine Schätzung des mit guter Gesundheit verbundenen Gewichtsbereichs für eine bestimmte Körpergröße und ein bestimmtes Geschlecht. Dieser Idealgewichts-Rechner wendet drei etablierte klinische Formeln an: die Methoden <devine>Devine</devine>, <robinson>Robinson</robinson> und <hamwi>Hamwi</hamwi>, um einen Bereich statt einer einzelnen Zahl zu liefern. Das Tool funktioniert für Männer, Frauen und pädiatrische Patienten. Geben Sie Ihre Körpergröße und Ihr Geschlecht ein, um Ihr Idealgewicht sofort zu berechnen.",
+      "disclaimer": "(IBW ist eine klinische Referenz, kein Körperziel. Das Gewicht ist einer von vielen Gesundheitsmarkern. Besprechen Sie gewichtsbezogene Gesundheitsfragen immer mit einer qualifizierten medizinischen Fachkraft.)"
+    },
+    "howToCalculate": {
+      "title": "Wie man das Idealgewicht berechnet",
+      "p1": "Alle drei IBW-Formeln folgen derselben Logik. Sie starten von einem Grundgewicht bei genau 5 Fuß (152,4 cm) und addieren einen festen Betrag pro Zoll Körpergröße darüber. Die Formeln unterscheiden sich im Grundgewicht und im Zuwachs pro Zoll, weshalb sie für dieselbe Person leicht unterschiedliche Ergebnisse liefern.",
+      "p2": "Ben J. Devine stellte seine Formel 1974 vor, um Ärzten zu helfen, Medikamentendosierungen anhand von Körpergröße und Gewicht zu schätzen. Sie wurde zur meistzitierten Formel zur Berechnung des Idealgewichts in der klinischen Praxis.",
+      "stepsTitle": "So berechnen Sie das Idealgewicht Schritt für Schritt nach der Devine-Methode:",
+      "step1": "Messen Sie Ihre Körpergröße in Fuß und Zoll.",
+      "step2": "Ziehen Sie 5 Fuß ab, um die Anzahl der Zoll über der Grundgröße zu erhalten.",
+      "step3": "Multiplizieren Sie diese Zoll mit dem Zuwachs der Formel pro Zoll.",
+      "step4": "Addieren Sie das Ergebnis zum Grundgewicht der Formel für Ihr Geschlecht.",
+      "p3": "Der Rechner wendet alle drei Formeln gleichzeitig an. Sie erhalten einen Bereich statt einer einzelnen Zahl, was genauer widerspiegelt, was die Berechnung des Idealgewichts leisten kann und was nicht."
+    },
+    "formulas": {
+      "title": "Formeln zur Berechnung des Idealgewichts",
+      "description": "Die drei folgenden Formeln decken die meisten klinischen Anwendungsfälle ab. Jede wendet die Formel zur Berechnung des Idealgewichts als lineare Funktion der Körpergröße über 5 Fuß an. Alle wurden ursprünglich in Kilogramm hergeleitet.",
+      "tableSexHeader": "Geschlecht",
+      "tableFormulaHeader": "Formel",
+      "maleLabel": "Männlich",
+      "femaleLabel": "Weiblich",
+      "heightRowLabel": "Körpergröße",
+      "calculationRowLabel": "Berechnung (männlich)",
+      "devine": {
+        "title": "Devine-Formel",
+        "p1": "Ben J. Devine veröffentlichte seine Formel 1974. Sie wurde zur meistzitierten IBW-Formel in der klinischen Praxis. Der Zuwachs pro Zoll ist für Männer und Frauen mit 2,3 kg identisch, die Grundgewichte unterscheiden sich jedoch nach Geschlecht.",
+        "maleFormula": "50 kg + 2,3 kg pro Zoll über 5 Fuß",
+        "femaleFormula": "45,5 kg + 2,3 kg pro Zoll über 5 Fuß",
+        "exampleHeightValue": "175 cm = 5 Fuß 9 Zoll",
+        "inchesAboveLabel": "Zoll über 5 Fuß",
+        "inchesAboveValue": "9",
+        "calculationValue": "50 + (2,3 × 9)",
+        "resultLabel": "Devine-IBW",
+        "resultValue": "70,7 kg"
+      },
+      "robinson": {
+        "title": "Robinson-Formel",
+        "p1": "Die Robinson-Formel wurde 1983 als Weiterentwicklung der Devine-Gleichung veröffentlicht. Sie erhöht das männliche Grundgewicht auf 52 kg und senkt den Zuwachs pro Zoll auf 1,9 kg, was für größere Männer eine schlankere Schätzung ergibt. Das weibliche Grundgewicht steigt auf 49 kg bei einem Zuwachs von 1,7 kg. Robinson liefert bei großen Personen tendenziell das niedrigste IBW der drei Formeln.",
+        "maleFormula": "52 kg + 1,9 kg pro Zoll über 5 Fuß",
+        "femaleFormula": "49 kg + 1,7 kg pro Zoll über 5 Fuß",
+        "exampleHeightValue": "175 cm = 5 Fuß 9 Zoll",
+        "calculationValue": "52 + (1,9 × 9)",
+        "resultLabel": "Robinson-IBW",
+        "resultValue": "69,1 kg"
+      },
+      "hamwi": {
+        "title": "Hamwi-Formel",
+        "p1": "Die Hamwi-Formel ist die älteste der drei, veröffentlicht 1964. Sie verwendet einen höheren Zuwachs pro Zoll für Männer und liefert bei größeren Personen tendenziell die höchsten IBW-Schätzungen. Sie ist in der diätetischen und klinischen Ernährungspraxis nach wie vor verbreitet.",
+        "maleFormula": "48 kg + 2,7 kg pro Zoll über 5 Fuß",
+        "femaleFormula": "45,5 kg + 2,2 kg pro Zoll über 5 Fuß",
+        "exampleHeightValue": "175 cm = 5 Fuß 9 Zoll",
+        "calculationValue": "48 + (2,7 × 9)",
+        "resultLabel": "Hamwi-IBW",
+        "resultValue": "72,3 kg"
+      }
+    },
+    "women": {
+      "title": "Idealgewichts-Rechner für Frauen",
+      "p1": "Der Idealgewichts-Rechner für Frauen verwendet niedrigere Grundgewichte als die männlichen Versionen derselben Formeln. Dies spiegelt zwei biologische Tatsachen wider. Frauen haben einen höheren Anteil an Körperfett im Verhältnis zur fettfreien Masse. Frauen haben zudem im Durchschnitt eine geringere Knochendichte und Muskelmasse als Männer derselben Körpergröße.",
+      "p2": "Die Devine-Formel setzt das weibliche Grundgewicht bei 45,5 kg gegenüber 50 kg für Männer an. Die Robinson-Formel erhöht das weibliche Grundgewicht auf 49 kg. Das Ergebnis ist bei jeder Körpergröße eine niedrigere IBW-Schätzung im Vergleich zur männlichen Berechnung.",
+      "exampleTitle": "Beispiel für das weibliche IBW bei 5 Fuß 5 Zoll (165 cm):",
+      "exampleDevine": "Devine: 57,7 kg (127 lb)",
+      "exampleRobinson": "Robinson: 56,2 kg (124 lb)",
+      "exampleHamwi": "Hamwi: 56,4 kg (124 lb)",
+      "exampleRangeSummary": "Gesunder Bereich über alle Formeln: etwa 56 bis 58 kg",
+      "p3": "Faktoren wie Körperbau, durch Training aufgebaute Muskelmasse und hormonelle Schwankungen beeinflussen alle, wie ein gesundes Gewicht bei einer einzelnen Frau aussieht. Keine der Formeln berücksichtigt diese Variablen. Das Ergebnis des Idealgewichts-Rechners für Frauen ist eine Referenzspanne, kein zu erreichendes Ziel."
+    },
+    "men": {
+      "title": "Idealgewichts-Rechner für Männer",
+      "p1": "Der Idealgewichts-Rechner für Männer liefert bei jeder Körpergröße höhere Schätzungen als die weibliche Version. Dies spiegelt die im Durchschnitt größere Muskelmasse und Knochendichte bei männlichen Körpern wider. Muskeln wiegen pro Volumeneinheit mehr als Fett, sodass ein Mann und eine Frau derselben Körpergröße beide gesund sein können, obwohl sie sich im Gewicht deutlich unterscheiden.",
+      "exampleTitle": "Beispiel für das männliche IBW bei 5 Fuß 10 Zoll (178 cm):",
+      "exampleDevine": "Devine: 73 kg (161 lb)",
+      "exampleRobinson": "Robinson: 71 kg (157 lb)",
+      "exampleHamwi": "Hamwi: 75 kg (165 lb)",
+      "exampleRangeSummary": "Gesunder Bereich über alle Formeln: etwa 71 bis 75 kg",
+      "p2": "Stark trainierte Männer, die regelmäßig Gewichte heben, liegen häufig über ihrem IBW, obwohl sie einen niedrigen Körperfettanteil haben. In solchen Fällen ist das IBW eine weniger nützliche klinische Referenz als eine direkte Messung der Körperzusammensetzung. Die Berechnung des männlichen Idealgewichts liefert einen nützlichen Ausgangspunkt, ersetzt aber keine umfassende Gesundheitsbeurteilung."
+    },
+    "pediatrics": {
+      "title": "Idealgewichts-Rechner für Kinder",
+      "p1": "Die Formeln für Erwachsene gelten nicht für Kinder. Der Idealgewichts-Rechner für Kinder verwendet stattdessen alters- und größenbasierte Referenzwerte, da sich Kinderkörper noch entwickeln und sich ihr gesunder Gewichtsbereich mit dem Wachstum kontinuierlich verändert.",
+      "p2Before": "Die gängigste Methode zur Berechnung des Idealgewichts bei Kindern nutzt die Körpergröße, um das erwartete Gewicht anhand von Wachstumskurven zu schätzen. In der klinischen Praxis sind",
+      "cdcLinkText": "CDC growth charts",
+      "p2Middle": "und",
+      "whoLinkText": "WHO Child Growth Standards",
+      "p2After": "die Referenzstandards für die pädiatrische Wachstumsbeurteilung. Das IBW eines Kindes entspricht üblicherweise dem Gewicht, das dem 50. Perzentil für seine Körpergröße auf der entsprechenden Wachstumskurve zugeordnet ist.",
+      "p3": "Der Rechner wechselt automatisch zu dieser Wachstumskurven-Methode, wenn ein Alter unter 18 Jahren eingegeben wird. Das Ergebnis erscheint als Gewichtsbereich statt als einzelne Zahl. Bei Gewichtsfragen im Kindesalter sollten Sie immer mit einem Kinderarzt zusammenarbeiten. Die Wachstumsverfolgung über mehrere Untersuchungen ist aussagekräftiger als jede einzelne Messung."
+    },
+    "adjusted": {
+      "title": "Adjusted-Ideal-Body-Weight-Rechner",
+      "p1": "Der Adjusted-Ideal-Body-Weight-Rechner kommt in klinischen Situationen zum Einsatz, wenn das tatsächliche Gewicht eines Patienten mehr als 30 % über dessen IBW liegt. Ab diesem Punkt unterschätzt die alleinige Verwendung des IBW für die Medikamentendosierung die Stoffwechselaktivität, da ein Teil des überschüssigen Fettgewebes weiterhin metabolisch aktiv ist. Adjusted Body Weight korrigiert dies.",
+      "formulaTitle": "Adjusted-Body-Weight-Formel:",
+      "formulaText": "Adjusted BW = IBW + 0,4 × (tatsächliches Gewicht − IBW)",
+      "exampleTitle": "Beispielrechnung — tatsächliches Gewicht 100 kg, Devine-IBW 70 kg:",
+      "exampleResult": "= 70 + 0,4 × (100 − 70) = 70 + 12 = ",
+      "exampleResultValue": "82 kg",
+      "p2": "Der Faktor 0,4 spiegelt den geschätzten metabolisch aktiven Anteil des überschüssigen Gewichts wider. Adjusted Body Weight wird am häufigsten bei der Dosierung von Aminoglykosid-Antibiotika, bei Chemotherapie-Berechnungen und bei Anpassungen der Nierendosierung verwendet. Es ist kein Gewichtsziel, sondern ein pharmakokinetisches Werkzeug für klinische Dosierungsentscheidungen."
+    },
+    "percentIbw": {
+      "title": "Berechnung des prozentualen Idealgewichts",
+      "p1": "Um das prozentuale Idealgewicht zu berechnen, teilen Sie Ihr tatsächliches Gewicht durch Ihr IBW und multiplizieren das Ergebnis mit 100. So sehen Sie, wie Ihr aktuelles Gewicht im Vergleich zur Schätzung als Prozentsatz ausfällt.",
+      "formulaText": "Prozentuales IBW = (Tatsächliches Gewicht ÷ IBW) × 100",
+      "tableHeaderPercent": "Prozentuales IBW",
+      "tableHeaderStatus": "Gewichtsstatus",
+      "row1Percent": "Unter 70 %",
+      "row1Status": "Stark untergewichtig",
+      "row2Percent": "70 bis 89 %",
+      "row2Status": "Untergewichtig",
+      "row3Percent": "90 bis 110 %",
+      "row3Status": "Normalgewicht",
+      "row4Percent": "110 bis 120 %",
+      "row4Status": "Übergewichtig",
+      "row5Percent": "Über 120 %",
+      "row5Status": "Adipositas-Risikobereich",
+      "p2": "Das prozentuale IBW wird in klinischen Ernährungsbeurteilungen verwendet, um Patienten zu identifizieren, die eine ernährungsmedizinische Intervention benötigen. Ein prozentuales Idealgewicht unter 70 % ist mit einer erheblichen Mangelernährung verbunden. Werte über 120 % dienen als einer von mehreren Schwellenwerten bei adipositasbezogenen Dosierungsentscheidungen."
+    },
+    "healthyRange": {
+      "title": "Gesunder Gewichtsbereich",
+      "p1": "Der gesunde Gewichtsbereich liegt rund um Ihr IBW-Ergebnis, nicht an einem einzelnen Punkt. Da die drei Formeln für dieselbe Person leicht unterschiedliche Werte liefern, ergibt die Spanne zwischen dem niedrigsten und höchsten Ergebnis einen praktischen gesunden Gewichtsbereich. Bei den meisten Erwachsenen beträgt diese Spanne 3 bis 5 kg über alle drei Formeln hinweg.",
+      "illustrativeTitle": "Veranschaulichende Spanne — männlich, 5 Fuß 9 Zoll (175 cm):",
+      "belowLabel": "Unter IBW",
+      "belowValue": "Unter 69 kg",
+      "healthyLabel": "Gesund (69–73 kg)",
+      "healthyValue": "69–73 kg (gesund)",
+      "aboveLabel": "Über IBW",
+      "aboveValue": "73–88 kg",
+      "obesityLabel": "Adipositas-Risiko",
+      "obesityValue": "Über 88 kg"
+    },
+    "vsBmi": {
+      "title": "Idealgewicht vs. BMI",
+      "p1": "Body-Mass-Index und Idealgewicht messen unterschiedliche Dinge und beantworten unterschiedliche Fragen. Der BMI bewertet Ihre Gewichtskategorie, indem er das Gewicht in Kilogramm durch die Körpergröße in Metern zum Quadrat teilt. Er liefert eine Kategoriebezeichnung: Untergewicht, normal, Übergewicht oder Adipositas. Die Berechnung des Idealgewichts hingegen liefert ein angestrebtes Gewicht statt einer Kategoriebezeichnung.",
+      "tableHeaderMeasure": "Kennzahl",
+      "tableHeaderWhatItDoes": "Was sie zeigt",
+      "tableHeaderLimitation": "Hauptgrenze",
+      "row1Measure": "Idealgewicht",
+      "row1WhatItDoes": "Schätzt ein Zielgewicht anhand von Körpergröße und Geschlecht",
+      "row1Limitation": "Ignoriert Körperzusammensetzung, Körperbau und Alter",
+      "row2Measure": "Body-Mass-Index",
+      "row2WhatItDoes": "Klassifiziert den Gewichtsstatus anhand von Gewicht und Körpergröße",
+      "row2Limitation": "Gleiche Einschränkungen, berücksichtigt zudem keine geschlechtsspezifischen Unterschiede in der Körperzusammensetzung",
+      "p2": "Keine der beiden Kennzahlen berücksichtigt, wie sich das Gewicht auf Muskeln, Fett und Knochen verteilt. Eine Person mit hoher Muskelmasse kann ein normales IBW und einen hohen BMI aufweisen. Eine Person mit geringer Muskelmasse kann einen normalen BMI aufweisen und über ihrem IBW liegen. Für ein vollständiges Bild werden beide am besten zusammen mit Körperzusammensetzungsdaten einer medizinischen Fachkraft verwendet.",
+      "scrollButtonText": "Nach oben scrollen und jetzt berechnen ↑"
+    },
+    "references": {
+      "title": "Quellen",
+      "ref1": "Devine BJ (1974). Gentamicin therapy. Drug Intelligence and Clinical Pharmacy.",
+      "ref2": "Robinson JD et al. (1983). Estimation of ideal body weight. American Journal of Hospital Pharmacy.",
+      "ref3": "Hamwi GJ (1964). Changing dietary concepts. In: Diabetes Mellitus: Diagnosis and Treatment. American Diabetes Association.",
+      "ref4": "CDC Growth Charts. Centers for Disease Control and Prevention.",
+      "ref5": "WHO Child Growth Standards. World Health Organization."
+    },
+    "faq": [
+      {
+        "q": "Wie lautet die Definition des Idealgewichts?",
+        "a": "Idealgewicht (IBW) ist eine klinische Schätzung des Gewichtsbereichs, der mit dem geringsten Risiko chronischer Erkrankungen und den besten allgemeinen Gesundheitsergebnissen für eine bestimmte Körpergröße und ein bestimmtes Geschlecht verbunden ist. Es wurde ursprünglich zur Standardisierung der Medikamentendosierung entwickelt, wird heute jedoch breiter im Gesundheits- und Fitnessbereich eingesetzt."
+      },
+      {
+        "q": "Wie genau sind Formeln zur Berechnung des Idealgewichts?",
+        "a": "Sie sind nützliche statistische Schätzungen, haben aber deutliche Einschränkungen. IBW-Formeln unterscheiden nicht zwischen Muskelmasse und Körperfett. Ein sehr muskulöser Athlet könnte mehr wiegen als sein „ideales“ Gewicht und dabei äußerst gesund sein. Sie sollten als einer von vielen Gesundheitsindikatoren betrachtet werden, nicht als abschließendes Urteil über Ihren Gesundheitszustand."
+      },
+      {
+        "q": "Was ist der Unterschied zwischen den Formeln von Devine, Robinson und Hamwi?",
+        "a": "Die Devine-Formel ist im medizinischen Bereich am weitesten verbreitet. Robinson entwickelte ein etwas schlankeres Modell speziell für größere Personen. Hamwi ist eine traditionellere Formel, die häufig in der Ernährungsberatung verwendet wird. Die meisten Menschen finden das beste Ergebnis, indem sie sich den Durchschnittsbereich aller drei Formeln ansehen."
+      },
+      {
+        "q": "Ist die Berechnung des Idealgewichts besser als der BMI?",
+        "a": "Keine der beiden Methoden ist perfekt. Der BMI liefert eine Kategorie (Untergewicht, normal usw.), während das IBW ein konkretes Zielgewicht liefert. Das IBW ist für Einzelpersonen oft intuitiver, kann aber wie der BMI die Körperzusammensetzung (Verhältnis von Muskeln zu Fett) nicht berücksichtigen."
+      }
+    ],
+    "toc": [
+      { "id": "ideal-body-weight-calculator", "label": "Idealgewichts-Rechner" },
+      { "id": "how-to-calculate-ideal-body-weight", "label": "Wie man das Idealgewicht berechnet" },
+      {
+        "id": "ideal-body-weight-calculation-formulas",
+        "label": "Formeln zur Berechnung des Idealgewichts",
+        "subItems": [
+          { "id": "devine-formula", "label": "Devine-Formel" },
+          { "id": "robinson-formula", "label": "Robinson-Formel" },
+          { "id": "hamwi-formula", "label": "Hamwi-Formel" }
+        ]
+      },
+      { "id": "ideal-body-weight-calculator-for-women", "label": "Idealgewichts-Rechner für Frauen" },
+      { "id": "ideal-body-weight-calculator-for-men", "label": "Idealgewichts-Rechner für Männer" },
+      { "id": "ideal-body-weight-calculator-for-pediatrics", "label": "Idealgewichts-Rechner für Kinder" },
+      { "id": "adjusted-ideal-body-weight-calculator", "label": "Adjusted-Ideal-Body-Weight-Rechner" },
+      { "id": "percent-ideal-body-weight-calculation", "label": "Berechnung des prozentualen Idealgewichts" },
+      { "id": "healthy-weight-range", "label": "Gesunder Gewichtsbereich" },
+      { "id": "ideal-body-weight-vs-bmi", "label": "Idealgewicht vs. BMI" },
+      { "id": "frequently-asked-questions", "label": "Häufig gestellte Fragen" },
+      { "id": "references", "label": "Quellen" }
+    ],
+    "tool": {
+      "title": "Idealgewichts-Rechner",
+      "description": "Nutzen Sie den Rechner, um Ihr Idealgewicht in Kilogramm oder Pfund zu ermitteln. Geben Sie Ihr Alter, Ihre Körpergröße, Ihr Geschlecht und Ihr aktuelles Gewicht ein, um zu sehen, wie stark Sie von der anhand dreier Formeln geschätzten Idealgewichtsspanne abweichen.",
+      "unitMetric": "Metrisch (kg / cm)",
+      "unitImperial": "Imperial (ft-in)",
+      "heightLabel": "Körpergröße",
+      "heightPlaceholder": "z. B. 175 ",
+      "unitCm": "cm",
+      "feetPlaceholder": "z. B. 5 ",
+      "feetAriaLabel": "Körpergröße in Fuß",
+      "unitFt": "ft",
+      "inchesPlaceholder": "z. B. 5 ",
+      "inchesAriaLabel": "Körpergröße in Zoll",
+      "unitIn": "in",
+      "sexLabel": "Geschlecht",
+      "sexMale": "Männlich",
+      "sexFemale": "Weiblich",
+      "currentWeightLabel": "Aktuelles Gewicht (optional — schaltet die Differenzanzeige frei)",
+      "weightPlaceholder": "z. B. 80",
+      "unitKg": "kg",
+      "invalidInputTitle": "Ungültige Eingabe",
+      "invalidInputText": "Bitte geben Sie eine gültige Körpergröße und ein gültiges Gewicht ein, um Ihre Ergebnisse zu berechnen.",
+      "ideaBodyWeightResultLabel": "Idealgewicht",
+      "rangeUnit": "kg (Bereich)",
+      "healthyWeightRangeLabel": "Gesunder Gewichtsbereich",
+      "differenceLabel": "Differenz zum aktuellen Gewicht",
+      "differenceNone": "—",
+      "differenceAbove": "+{amount} kg darüber",
+      "differenceBelow": "{amount} kg darunter",
+      "differenceWithin": "Innerhalb des Idealbereichs",
+      "devineYear": "Devine (1974)",
+      "robinsonYear": "Robinson (1983)",
+      "hamwiYear": "Hamwi (1964)",
+      "kgLabel": "kg",
+      "badgeFree": "Kostenlos",
+      "badgeNoAccount": "Kein Konto erforderlich",
+      "badgeResultsInKg": "Ergebnisse in kg ",
+      "badgeFormulas": "Basierend auf den Formeln von Devine, Robinson und Hamwi"
+    },
+    "healthyWeightRange": {
+      "intro1": "Ihr Idealgewichts-Ergebnis (IBW) ist eine formelbasierte Schätzung des Gewichts, das für Ihre Körpergröße und Ihr Geschlecht als angemessen gilt. Die vier Formeln, die dieser Rechner verwendet —",
+      "formulaNames": "Devine, Hamwi, Robinson und Miller",
+      "intro1After": "— wurden ursprünglich entwickelt, um Medikamentendosierungen in klinischen Umgebungen zu standardisieren. Sie waren nicht als ästhetische Ziele gedacht. Jede Formel liefert eine leicht unterschiedliche Zahl, und der Rechner zeigt alle vier an, damit Sie sehen können, wo sich die Schätzungen häufen.",
+      "intro2": "Keine der Formeln berücksichtigt Muskelmasse, Knochendichte oder Körperbau. Eine Person mit größerem Körperbau oder höherer Muskelmasse liegt naturgemäß über der IBW-Schätzung, ohne dass dies gesundheitlich bedenklich wäre. Betrachten Sie das Ergebnis als allgemeinen Referenzpunkt, nicht als exaktes Ziel.",
+      "healthyRangeQuestionTitle": "Was gilt als gesunder Gewichtsbereich?",
+      "healthyRangeTextBefore": "Die WHO definiert ein gesundes Gewicht als einen BMI zwischen",
+      "bmiRangeValue": "18,5 und 25 kg/m²",
+      "healthyRangeTextMiddle": ". Für die meisten Erwachsenen entspricht dies einem Fenster von etwa",
+      "windowValue": "14–16 kg",
+      "healthyRangeTextAfter": "rund um die mittlere IBW-Schätzung. Innerhalb dieser Spanne zu liegen, gilt als klinisch normal. Die oben genannten Formeln liegen in der Regel nahe der Mitte dieser Spanne.",
+      "underweightLabel": "Untergewicht",
+      "healthyBmiRangeLabel": "Gesunder BMI-Bereich",
+      "overweightLabel": "Übergewicht",
+      "bmiUnder185": "BMI < 18,5",
+      "bmiRangeShort": "18,5–25",
+      "bmiOver25": "> 25",
+      "distanceTableIntro": "Die folgende Tabelle zeigt, wie Sie den Abstand zwischen Ihrem aktuellen Gewicht und der IBW-Schätzung lesen:",
+      "distanceHeaderDistance": "Abstand von der IBW-Schätzung",
+      "distanceHeaderMeaning": "Was es nahelegt",
+      "distanceRow1Dist": "Innerhalb von ±3 kg",
+      "distanceRow1Meaning": "Sehr nah an der Formelschätzung. Deutlich innerhalb der normalen Schwankungsbreite.",
+      "distanceRow2Dist": "3–7 kg darüber",
+      "distanceRow2Meaning": "Leicht über der Schätzung. Je nach Körpergröße wahrscheinlich noch innerhalb des gesunden BMI-Bereichs.",
+      "distanceRow3Dist": "7–15 kg darüber",
+      "distanceRow3Meaning": "Deutlich über der IBW-Schätzung. Es lohnt sich, den BMI zu prüfen und mit einem Arzt zu sprechen.",
+      "distanceRow4Dist": "Mehr als 15 kg darüber",
+      "distanceRow4Meaning": "Deutlich über dem IBW. Eine klinische Untersuchung wird empfohlen.",
+      "distanceRow5Dist": "3–7 kg darunter",
+      "distanceRow5Meaning": "Leicht darunter. Kann noch innerhalb des gesunden BMI-Bereichs liegen. Beobachten Sie, ob das Gewicht weiter sinkt.",
+      "distanceRow6Dist": "Mehr als 7 kg darunter",
+      "distanceRow6Meaning": "Unter dem gesunden BMI-Schwellenwert. Wenden Sie sich an eine medizinische Fachkraft.",
+      "referenceTablesLabel": "Referenztabellen",
+      "referenceTablesTitle": "Gesundes Gewicht nach Körpergröße — Männer & Frauen",
+      "referenceTablesDescription": "IBW-Schätzungen aller vier Formeln sowie der gesunde BMI-Gewichtsbereich (18,5–25 kg/m²) für die häufigsten Körpergrößen bei Erwachsenen. Wechseln Sie zwischen kg und lbs. Bewegen Sie den Mauszeiger über eine Zeile, um sie hervorzuheben.",
+      "tabMen": "♂ Männer",
+      "tabWomen": "♀ Frauen",
+      "healthyBmiRangeWhoLabel": "Gesunder BMI-Bereich (WHO)",
+      "tableHeightCm": "Körpergröße (cm)",
+      "tableHeightFt": "Körpergröße (ft)",
+      "tableHealthyBmiRange": "Gesunder BMI-Bereich ({unit})",
+      "sourcesNote": "Quellen: Devine BJ (1974). Robinson JD et al. (1983). Miller DR et al. (1983). Hamwi GJ (1964). Der gesunde BMI-Bereich basiert auf dem von der WHO empfohlenen Schwellenwert von 18,5–25 kg/m². Diese Werte sind reine Referenzschätzungen und stellen keine medizinische Beratung dar."
+    }
+  },
+  "metadata": {
+    "idealBodyWeightTitle": "Idealgewicht berechnen & Adjusted-Body-Weight-Rechner",
+    "idealBodyWeightDescription": "Berechnen Sie mit unserem Idealgewichts-Rechner in kg Ihr Idealgewicht. Inklusive Adjusted-Body-Weight-Rechner für Männer und Frauen."
+  }
+}

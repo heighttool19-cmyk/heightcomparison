@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 
 const BLUE = "#1A56DB", TEAL = "#0694A2", PINK = "#DB2777";
 
@@ -32,10 +33,14 @@ function Silhouette({ heightPx, color, label, heightLabel }: { heightPx: number,
 }
 
 export default function VisualHeightComparison() {
+    const t = useTranslations('heightDifference.visualComp');
+    const person1Label = t('person1Label');
+    const person2Label = t('person2Label');
+
     const PAIRS = [
-        { p1: "Person 1", h1: 190, p2: "Person 2", h2: 170, c1: BLUE, c2: TEAL },
-        { p1: "Person 1", h1: 180, p2: "Person 2", h2: 165, c1: BLUE, c2: PINK },
-        { p1: "Person 1", h1: 175, p2: "Person 2", h2: 155, c1: TEAL, c2: PINK },
+        { p1: person1Label, h1: 190, p2: person2Label, h2: 170, c1: BLUE, c2: TEAL },
+        { p1: person1Label, h1: 180, p2: person2Label, h2: 165, c1: BLUE, c2: PINK },
+        { p1: person1Label, h1: 175, p2: person2Label, h2: 155, c1: TEAL, c2: PINK },
     ];
 
     const [sel, setSel] = useState(0);
@@ -53,7 +58,7 @@ export default function VisualHeightComparison() {
                         onClick={() => setSel(i)}
                         className={`px-4 py-1.5 rounded-full text-[11.5px] font-bold cursor-pointer transition-colors border-2 ${i === sel ? 'bg-[#1A56DB] text-white border-[#1A56DB]' : 'bg-surface text-muted border-border hover:text-foreground'}`}
                     >
-                        {p.h1} cm vs {p.h2} cm
+                        {t('pairButtonText', { h1: p.h1, h2: p.h2 })}
                     </button>
                 ))}
             </div>
@@ -78,11 +83,11 @@ export default function VisualHeightComparison() {
                 {/* Result pill */}
                 <div className="flex justify-center mt-5">
                     <div className="inline-flex flex-wrap items-center justify-center gap-3 bg-surface border border-border rounded-full px-5 py-2 shadow-sm">
-                        <span className="text-[13px] font-black text-foreground">{diff} cm difference</span>
+                        <span className="text-[13px] font-black text-foreground">{t('diffCmText', { diff })}</span>
                         <span className="w-px h-3 bg-border hidden sm:block" />
                         <span className="text-[13px] font-bold text-[#1A56DB]">{pct}%</span>
                         <span className="w-px h-3 bg-border hidden sm:block" />
-                        <span className="text-[13px] font-bold text-muted">{p1} is taller</span>
+                        <span className="text-[13px] font-bold text-muted">{t('isTallerText', { person: p1 })}</span>
                     </div>
                 </div>
             </div>

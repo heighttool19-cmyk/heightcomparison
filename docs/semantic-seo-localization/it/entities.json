@@ -1,0 +1,391 @@
+{
+  "entities": [
+    {
+      "canonical_name": "American Horror Story",
+      "entity_type": "Brand",
+      "description": "US television anthology series referenced once, noting Jyoti Amge's appearance as an actress in it.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "average-height-by-country",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Average Height by Country",
+      "entity_type": "Product",
+      "description": "In-app page comparing average male and female heights across countries with a sortable table, regional breakdowns, and a world heatmap.",
+      "translate": true,
+      "localized_form": "Altezza media per paese",
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Bayley-Pinneau Method",
+      "entity_type": "Concept",
+      "description": "A clinical height-prediction method combining bone age data with height-for-age tables to estimate remaining growth potential.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "height-predictor",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Bollywood",
+      "entity_type": "Organization",
+      "description": "The Hindi-language film industry based in Mumbai, referenced here as one of the celebrity database's regional entertainment categories.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "CDC",
+      "entity_type": "Organization",
+      "description": "The U.S. Centers for Disease Control and Prevention, whose population data is used as a reference dataset for the percentile calculator.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "CDC Growth Charts",
+      "entity_type": "Product",
+      "description": "The CDC's named growth-chart dataset/tool tracking average child height and weight by age, cited as a bibliography source and referenced inline on the height predictor page.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "height-predictor",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Chandra Bahadur Dangi",
+      "entity_type": "Person",
+      "description": "Nepalese man verified by Guinness World Records in 2012 as the shortest adult male ever documented, at 54.6 cm.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "average-height-by-country",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "DC",
+      "entity_type": "Brand",
+      "description": "DC Comics/DC Entertainment, referenced as one of the fictional character library's franchise categories.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Devine formula",
+      "entity_type": "Concept",
+      "description": "One of three ideal-body-weight estimation formulas (named after B. J. Devine) run side by side in the Ideal Body Weight Calculator.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Google",
+      "entity_type": "Organization",
+      "description": "The company providing Google Analytics, referenced in the privacy policy as the operator of that analytics service and its related policy documents.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Google Analytics",
+      "entity_type": "Software",
+      "description": "Google's web analytics service, used by the site to collect standard usage data such as pages visited and general geographic region.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Google Analytics Opt-out Browser Add-on",
+      "entity_type": "Product",
+      "description": "Google's official browser extension that lets visitors prevent Google Analytics from collecting data about their visit.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Google Analytics Terms of Service",
+      "entity_type": "Other",
+      "description": "Google's named legal document governing use of Google Analytics, referenced as a link target in the privacy policy.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Google Privacy Policy",
+      "entity_type": "Other",
+      "description": "Google's own named privacy policy document, referenced as a link target for how Google handles analytics data.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Guinness World Records",
+      "entity_type": "Organization",
+      "description": "The organization that verifies and certifies extreme human height records (tallest/shortest man/woman), cited multiple times in the extremes section.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "average-height-by-country",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Hamwi formula",
+      "entity_type": "Concept",
+      "description": "One of three ideal-body-weight estimation formulas (named after G. J. Hamwi) run side by side in the Ideal Body Weight Calculator.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Height Comparison Calculator",
+      "entity_type": "Brand",
+      "description": "The formal/full product name of the tool, used interchangeably with the short brand name HeightComparison.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Height Difference Calculator",
+      "entity_type": "Product",
+      "description": "In-app calculator showing the exact gap between two heights in centimetres, inches, and percentage.",
+      "translate": true,
+      "localized_form": "Calcolatore di differenza di altezza",
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Height Predictor",
+      "entity_type": "Product",
+      "description": "In-app calculator estimating a child's adult height using the Khamis-Roche formula and the Mid-Parental method.",
+      "translate": true,
+      "localized_form": "Previsore di altezza",
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Height Weight Percentile Calculator",
+      "entity_type": "Product",
+      "description": "In-app calculator comparing a person's height and weight against WHO and CDC population data.",
+      "translate": true,
+      "localized_form": "Calcolatore di percentili di altezza e peso",
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "HeightComparison",
+      "entity_type": "Brand",
+      "description": "The product/brand name of this height comparison tool.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "heightcomparisoncalculator.com",
+      "entity_type": "Brand",
+      "description": "The site's domain name, referenced in the privacy policy as the URL where the tool is available. Never translated or altered.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "privacy",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Ideal Body Weight Calculator",
+      "entity_type": "Product",
+      "description": "In-app calculator that runs the Devine, Robinson, and Hamwi formulas side by side.",
+      "translate": true,
+      "localized_form": "Calcolatore del peso corporeo ideale",
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Image to Height",
+      "entity_type": "Product",
+      "description": "In-app feature estimating height from an uploaded photo, including a morning height variation guide.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Jyoti Amge",
+      "entity_type": "Person",
+      "description": "Indian actress from Nagpur who has held the Guinness World Record for shortest living woman since 2011, at 62.8 cm.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "average-height-by-country",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Khamis-Roche formula",
+      "entity_type": "Concept",
+      "description": "A clinical formula for estimating adult height from a child's current measurements and parent heights.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Khamis-Roche Method",
+      "entity_type": "Concept",
+      "description": "A clinical formula for estimating adult height without bone age testing.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "height-predictor",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Mid-Parental Height Formula",
+      "entity_type": "Concept",
+      "description": "The named formula for estimating a child's adult height from parents' heights alone.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "height-predictor",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Mid-Parental method",
+      "entity_type": "Concept",
+      "description": "A clinical method for estimating adult height from the average of both parents' heights.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Miller formula",
+      "entity_type": "Concept",
+      "description": "One of four ideal-body-weight estimation formulas shown alongside Devine, Robinson, and Hamwi.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "ideal-body-weight-calculator",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "National Center for Health Statistics",
+      "entity_type": "Organization",
+      "description": "The CDC division credited as the data source for the growth-percentile chart on the height predictor page.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "height-predictor",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "NCD Risk Factor Collaboration",
+      "entity_type": "Organization",
+      "description": "Global research collaboration (also referenced by its abbreviation 'NCD-RisC') that publishes the primary adult height dataset by country.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "average-height-by-country",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "NHANES",
+      "entity_type": "Organization",
+      "description": "The National Health and Nutrition Examination Survey.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "height-weight-percentile",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "PNG",
+      "entity_type": "Technology",
+      "description": "The image file format used for the tool's chart export.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Robert Wadlow",
+      "entity_type": "Person",
+      "description": "American man from Alton, Illinois, the tallest person in documented human history at 272 cm.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "average-height-by-country",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Robinson formula",
+      "entity_type": "Concept",
+      "description": "One of three ideal-body-weight estimation formulas run side by side in the Ideal Body Weight Calculator.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Roche-Wainer-Thissen Method",
+      "entity_type": "Concept",
+      "description": "A clinical height-prediction method using bone age, current height, weight, and parental heights.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "height-predictor",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Rumeysa Gelgi",
+      "entity_type": "Person",
+      "description": "Turkish web developer and disability advocate, holder of the current living-record title for tallest woman at 215.2 cm.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "average-height-by-country",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Sultan Kösen",
+      "entity_type": "Person",
+      "description": "Turkish man holding the Guinness record for tallest living man at 251 cm.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "average-height-by-country",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "WHO",
+      "entity_type": "Organization",
+      "description": "The World Health Organization (Organizzazione Mondiale della Sanità - OMS), whose population data is used as reference.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "about",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "WHO Child Growth Standards",
+      "entity_type": "Product",
+      "description": "WHO's named growth-reference dataset for children aged 0-2.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "height-weight-percentile",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "World Population Review",
+      "entity_type": "Organization",
+      "description": "Data publisher whose country-level average height figures are cited.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "average-height-by-country",
+      "added_at": "2026-09-19"
+    },
+    {
+      "canonical_name": "Zeng Jinlian",
+      "entity_type": "Person",
+      "description": "Woman from Hunan Province, China, holder of the record for tallest woman in verified medical history at 246.3 cm.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "average-height-by-country",
+      "added_at": "2026-09-19"
+    }
+  ]
+}

@@ -5,7 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Moon, Sun, Menu, ArrowLeftRight, ChevronDown } from 'lucide-react';
 import { usePathname } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { routing } from '@/i18n/routing';
+import { getLocalizedHref as toLocalizedHref } from '@/i18n/config';
 import { useThemeStore, useUnitStore, useUIStore } from '@/store';
 import ThemeInitializer from './ThemeInitializer';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -37,18 +39,14 @@ const NAVIGATION: NavItem[] = [
 
 const Navbar: React.FC = () => {
     const t = useTranslations('nav');
+    const locale = useLocale();
     const pathname = usePathname() || '/';
     
-    // Normalize active page calculation regardless of locale prefix
-    const cleanPath = pathname.replace(/^\/(de|en)(\/|$)/, '/');
+    // Support all configured locales dynamically
+    const currentLocale = locale || (routing.locales.find(loc => loc !== 'en' && (pathname.startsWith(`/${loc}/`) || pathname === `/${loc}`)) || 'en');
+    const cleanPath = pathname.replace(new RegExp(`^\\/(${routing.locales.join('|')})(\\/|$)`), '/');
     const activePage = cleanPath === '/' ? 'home' : cleanPath.split('/').filter(Boolean).pop() || 'home';
-    
-    const currentLocale = (pathname.startsWith('/de/') || pathname === '/de') ? 'de' : 'en';
-
-    const getLocalizedHref = (path: string) => {
-        if (currentLocale === 'en') return path;
-        return path === '/' ? '/de' : `/de${path}`;
-    };
+    const getLocalizedHref = (path: string) => toLocalizedHref(path, currentLocale);
 
     const { theme, toggleTheme } = useThemeStore();
     const { unitSystem, toggleUnitSystem } = useUnitStore();

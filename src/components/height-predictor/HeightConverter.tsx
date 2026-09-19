@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useUnitStore } from '@/store';
 import { NumericInput } from '@/components/ui/NumericInput';
 import { ArrowLeftRight } from 'lucide-react';
@@ -18,6 +19,7 @@ const ftInToCm = (ft: number, inc: number) => {
 };
 
 export default function HeightConverter() {
+    const t = useTranslations('heightPredictor.heightConverter');
     useUnitStore();
 
     const [convCm, setConvCm] = useState<number | ''>('');
@@ -27,16 +29,16 @@ export default function HeightConverter() {
     return (
         <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
             <div className="space-y-4 mb-8">
-                <h2 className="text-3xl font-black tracking-tight text-foreground uppercase">Quick Height Converter</h2>
+                <h2 className="text-3xl font-black tracking-tight text-foreground uppercase">{t('title')}</h2>
                 <p className="text-muted font-medium leading-relaxed">
-                    Convert cm to feet and inches, feet and inches to cm, or meters to feet instantly
+                    {t('description')}
                 </p>
             </div>
 
             <div className="flex flex-col md:flex-row items-center gap-6">
                 <div className="flex-1 w-full">
                     <label htmlFor="conv-cm" className="text-sm font-bold text-muted mb-2 block text-center md:text-left">
-                        Centimeters
+                        {t('centimeters')}
                     </label>
 
                     {/* NEW RELATIVE WRAPPER */}
@@ -58,10 +60,10 @@ export default function HeightConverter() {
                             }}
                             className="w-full bg-bg border border-border rounded-xl px-4 pr-12 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors "
                             placeholder="e.g. 170"
-                            aria-label="Height in Centimeters"
+                            aria-label={t('centimetersAriaLabel')}
                         />
                         <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">
-                            cm
+                            {t('cmUnit')}
                         </span>
                     </div>
                 </div>
@@ -74,10 +76,10 @@ export default function HeightConverter() {
                 </div>
 
                 <div className="flex-1 w-full space-y-2">
-                    <label className="text-sm font-bold text-muted mb-2 block text-center md:text-left">Feet & Inches</label>
+                    <label className="text-sm font-bold text-muted mb-2 block text-center md:text-left">{t('feetAndInches')}</label>
                     <div className="flex gap-2">
                         <div className="relative flex-1">
-                            <label htmlFor="conv-ft" className="sr-only">Feet</label>
+                            <label htmlFor="conv-ft" className="sr-only">{t('feetAriaLabel')}</label>
                             <NumericInput
                                 id="conv-ft"
                                 value={convFt}
@@ -89,12 +91,12 @@ export default function HeightConverter() {
                                 }}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors placeholder:text-left"
                                 placeholder="e.g. 5"
-                                aria-label="Height in Feet"
+                                aria-label={t('feetAriaLabel')}
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('ftUnit')}</span>
                         </div>
                         <div className="relative flex-1">
-                            <label htmlFor="conv-in" className="sr-only">Inches</label>
+                            <label htmlFor="conv-in" className="sr-only">{t('inchesAriaLabel')}</label>
                             <NumericInput
                                 id="conv-in"
                                 value={convIn}
@@ -106,9 +108,9 @@ export default function HeightConverter() {
                                 }}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-4 text-center text-xl font-bold outline-none focus:border-accent transition-colors placeholder:text-left"
                                 placeholder="e.g. 7"
-                                aria-label="Height in Inches"
+                                aria-label={t('inchesAriaLabel')}
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('inUnit')}</span>
                         </div>
                     </div>
                 </div>

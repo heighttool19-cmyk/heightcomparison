@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useUnitStore, useThemeStore } from "@/store";
 import { NumericInput } from "@/components/ui/NumericInput";
 
@@ -43,29 +44,33 @@ function Silhouette({ heightPx, color, label, heightLabel }: { heightPx: number,
     );
 }
 
-function HeightInput({ 
-    label, 
-    cmValue, 
-    ftValue, 
-    inValue, 
-    onCmChange, 
-    onFtChange, 
-    onInChange, 
-    isMetric, 
-    isDark 
-}: { 
-    label: string, 
-    cmValue: number | '', 
-    ftValue: number | '', 
-    inValue: number | '', 
-    onCmChange: (v: number | '') => void, 
-    onFtChange: (v: number | '') => void, 
-    onInChange: (v: number | '') => void, 
-    isMetric: boolean, 
-    isDark: boolean 
+function HeightInput({
+    label,
+    idPrefix,
+    cmValue,
+    ftValue,
+    inValue,
+    onCmChange,
+    onFtChange,
+    onInChange,
+    isMetric,
+    isDark,
+    t
+}: {
+    label: string,
+    idPrefix: string,
+    cmValue: number | '',
+    ftValue: number | '',
+    inValue: number | '',
+    onCmChange: (v: number | '') => void,
+    onFtChange: (v: number | '') => void,
+    onInChange: (v: number | '') => void,
+    isMetric: boolean,
+    isDark: boolean,
+    t: (key: string) => string
 }) {
     const inputBaseClass = `w-full p-3 rounded-xl border-2 border-border bg-bg text-foreground text-base font-bold outline-none transition-all ${isDark ? 'focus:border-blue-400' : 'focus:border-blue-600'}`;
-    
+
     return (
         <div className="flex-1 min-w-[280px]">
             <label className="m-0 mb-3 text-[11px] font-bold text-muted uppercase tracking-[0.09em] block">{label}</label>
@@ -73,35 +78,35 @@ function HeightInput({
                 {isMetric ? (
                     <div className="flex-1 relative">
                         <NumericInput
-                            id={`${label}-cm`}
+                            id={`${idPrefix}-cm`}
                             value={cmValue}
                             onValueChange={onCmChange}
-                            placeholder="Centimetres"
+                            placeholder={t('cmPlaceholder')}
                             className={inputBaseClass}
                         />
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-muted uppercase">cm</span>
+                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-muted uppercase">{t('unitCm')}</span>
                     </div>
                 ) : (
                     <>
                         <div className="flex-1 relative">
                             <NumericInput
-                                id={`${label}-ft`}
+                                id={`${idPrefix}-ft`}
                                 value={ftValue}
                                 onValueChange={onFtChange}
-                                placeholder="Feet"
+                                placeholder={t('ftPlaceholder')}
                                 className={inputBaseClass}
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-muted uppercase">ft</span>
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-muted uppercase">{t('unitFt')}</span>
                         </div>
                         <div className="flex-1 relative">
                             <NumericInput
-                                id={`${label}-in`}
+                                id={`${idPrefix}-in`}
                                 value={inValue}
                                 onValueChange={onInChange}
-                                placeholder="Inches"
+                                placeholder={t('inPlaceholder')}
                                 className={inputBaseClass}
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-muted uppercase">in</span>
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] font-bold text-muted uppercase">{t('unitIn')}</span>
                         </div>
                     </>
                 )}
@@ -111,6 +116,7 @@ function HeightInput({
 }
 
 export default function CalculateHeightDifference() {
+    const t = useTranslations('heightDifference.tool');
     const { unitSystem, setUnitSystem } = useUnitStore();
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
@@ -147,7 +153,9 @@ export default function CalculateHeightDifference() {
     const taller = valid ? Math.max(cm1, cm2) : 0;
     const shorter = valid ? Math.min(cm1, cm2) : 0;
     const pct = taller > 0 ? ((diffCm / taller) * 100).toFixed(1) : "0";
-    const tallerIs = cm1 >= cm2 ? "Person 1" : "Person 2";
+    const person1Label = t('person1Label');
+    const person2Label = t('person2Label');
+    const tallerIs = cm1 >= cm2 ? person1Label : person2Label;
 
     const maxH = 120;
     const minH = valid && taller > 0 ? Math.round((shorter / taller) * maxH) : maxH;
@@ -162,39 +170,43 @@ export default function CalculateHeightDifference() {
                     onClick={() => setUnitSystem('metric')}
                     className={`px-6 py-2.5 rounded-full text-xs font-black cursor-pointer transition-all shadow-sm border-2 btn-glow ${isMetric ? 'bg-accent text-white border-accent shadow-md' : 'bg-surface text-muted border-border hover:text-foreground'}`}
                 >
-                    Metric (cm)
+                    {t('unitMetric')}
                 </button>
                 <button
                     onClick={() => setUnitSystem('imperial')}
                     className={`px-6 py-2.5 rounded-full text-xs font-black cursor-pointer transition-all shadow-sm border-2 btn-glow ${!isMetric ? 'bg-accent text-white border-accent shadow-md' : 'bg-surface text-muted border-border hover:text-foreground'}`}
                 >
-                    Imperial (ft/in)
+                    {t('unitImperial')}
                 </button>
             </div>
 
             {/* Inputs */}
             <div className="flex flex-wrap gap-6 mb-8">
-                <HeightInput 
-                    label="Person 1" 
-                    cmValue={h1Cm} 
-                    ftValue={h1Ft} 
+                <HeightInput
+                    label={person1Label}
+                    idPrefix="person-1"
+                    cmValue={h1Cm}
+                    ftValue={h1Ft}
                     inValue={h1In}
                     onCmChange={setH1Cm}
                     onFtChange={setH1Ft}
                     onInChange={setH1In}
-                    isMetric={isMetric} 
-                    isDark={isDark} 
+                    isMetric={isMetric}
+                    isDark={isDark}
+                    t={t}
                 />
-                <HeightInput 
-                    label="Person 2" 
-                    cmValue={h2Cm} 
-                    ftValue={h2Ft} 
+                <HeightInput
+                    label={person2Label}
+                    idPrefix="person-2"
+                    cmValue={h2Cm}
+                    ftValue={h2Ft}
                     inValue={h2In}
                     onCmChange={setH2Cm}
                     onFtChange={setH2Ft}
                     onInChange={setH2In}
-                    isMetric={isMetric} 
-                    isDark={isDark} 
+                    isMetric={isMetric}
+                    isDark={isDark}
+                    t={t}
                 />
             </div>
 
@@ -203,17 +215,17 @@ export default function CalculateHeightDifference() {
                     {/* Result cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                         <div className={`rounded-2xl p-5 text-center border transition-all hover:shadow-lg ${isDark ? 'bg-blue-500/10 border-blue-500/20' : 'bg-[#EBF5FF] border-transparent'}`}>
-                            <p style={{ color: currentBlue }} className="m-0 mb-2 text-[10px] font-bold uppercase tracking-[0.12em]">Height Difference</p>
+                            <p style={{ color: currentBlue }} className="m-0 mb-2 text-[10px] font-bold uppercase tracking-[0.12em]">{t('heightDifferenceLabel')}</p>
                             <p style={{ color: currentBlue }} className="m-0 text-3xl font-black">{Math.round(diffCm)} cm</p>
                             <p className="m-0 mt-2 text-[12px] text-muted font-sans font-bold opacity-80">{cmToFtIn(diffCm)}</p>
                         </div>
                         <div className={`rounded-2xl p-5 text-center border transition-all hover:shadow-lg ${isDark ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-[#F0FDF4] border-transparent'}`}>
-                            <p style={{ color: currentGreen }} className="m-0 mb-2 text-[10px] font-bold uppercase tracking-[0.12em]">% Difference</p>
+                            <p style={{ color: currentGreen }} className="m-0 mb-2 text-[10px] font-bold uppercase tracking-[0.12em]">{t('percentDifferenceLabel')}</p>
                             <p style={{ color: currentGreen }} className="m-0 text-3xl font-black">{pct}%</p>
-                            <p className="m-0 mt-2 text-[12px] text-muted font-sans font-bold opacity-80">{tallerIs} is taller</p>
+                            <p className="m-0 mt-2 text-[12px] text-muted font-sans font-bold opacity-80">{t('isTallerText', { person: tallerIs })}</p>
                         </div>
                         <div className={`rounded-2xl p-5 text-center border transition-all hover:shadow-lg ${isDark ? 'bg-pink-500/10 border-pink-500/20' : 'bg-[#FDF4FF] border-transparent'}`}>
-                            <p style={{ color: currentPink }} className="m-0 mb-2 text-[10px] font-bold uppercase tracking-[0.12em]">Taller Person</p>
+                            <p style={{ color: currentPink }} className="m-0 mb-2 text-[10px] font-bold uppercase tracking-[0.12em]">{t('tallerPersonLabel')}</p>
                             <p style={{ color: currentPink }} className="m-0 text-3xl font-black">{fmtH(taller)}</p>
                             <p className="m-0 mt-2 text-[12px] text-muted font-sans font-bold opacity-80">{tallerIs}</p>
                         </div>
@@ -221,12 +233,12 @@ export default function CalculateHeightDifference() {
 
                     {/* Silhouette visual */}
                     <div className="bg-surface border border-border rounded-2xl p-8 text-center shadow-md">
-                        <p className="m-0 mb-8 text-[11px] text-muted font-bold uppercase tracking-[0.15em]">Visual Comparison</p>
+                        <p className="m-0 mb-8 text-[11px] text-muted font-bold uppercase tracking-[0.15em]">{t('visualComparisonLabel')}</p>
                         <div className="flex items-end justify-center gap-12 sm:gap-20">
                             <Silhouette
                                 heightPx={maxH}
                                 color={cm1 >= cm2 ? currentBlue : currentTeal}
-                                label="Person 1"
+                                label={person1Label}
                                 heightLabel={fmtH(cm1)}
                             />
                             {/* Gap annotation */}
@@ -241,7 +253,7 @@ export default function CalculateHeightDifference() {
                             <Silhouette
                                 heightPx={minH}
                                 color={cm2 < cm1 ? currentTeal : currentBlue}
-                                label="Person 2"
+                                label={person2Label}
                                 heightLabel={fmtH(cm2)}
                             />
                         </div>
@@ -249,7 +261,7 @@ export default function CalculateHeightDifference() {
                 </>
             ) : (
                 <div className="bg-bg border border-border rounded-2xl p-10 text-center">
-                    <p className="m-0 text-[15px] font-medium text-muted">Enter both heights above to see the comparison.</p>
+                    <p className="m-0 text-[15px] font-medium text-muted">{t('enterBothHeightsPrompt')}</p>
                 </div>
             )}
         </div>

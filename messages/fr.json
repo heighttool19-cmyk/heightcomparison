@@ -1,8 +1,14 @@
 {
   "common": {
     "language": "Langue",
-    "english": "English",
-    "german": "Deutsch"
+    "english": "Anglais",
+    "german": "Allemand",
+    "spanish": "Espagnol",
+    "french": "Français",
+    "portuguese": "Portugais",
+    "italian": "Italien",
+    "dutch": "Néerlandais",
+    "arabic": "Arabe"
   },
   "nav": {
     "home": "Accueil",
@@ -175,7 +181,7 @@
       "calculate": "Prédire la taille adulte",
       "clear": "Effacer",
       "estimatedAdultHeight": "Taille adulte estimée",
-      "targetRange": "Fourchette probable (intervalle à 90 %)",
+      "targetRange": "Plage cible (±5 cm) : {min} : {max} cm",
       "viewComparisonChart": "Voir le graphique comparatif",
       "cmUnit": "cm",
       "ftUnit": "pi",
@@ -200,7 +206,7 @@
       "calculateEstimate": "Calculer la taille estimée",
       "estimatedAdultHeightBoys": "Taille adulte estimée (garçon)",
       "estimatedAdultHeightGirls": "Taille adulte estimée (fille)",
-      "targetRange": "Fourchette génétique cible (±5 cm / ±2 po)",
+      "targetRange": "Plage cible (±5 cm) : {min} : {max} cm",
       "viewComparisonChart": "Voir le graphique comparatif",
       "cmUnit": "cm",
       "ftUnit": "pi",
@@ -549,7 +555,7 @@
       "chartToggleLine2": "graphique",
       "tableToggleLine1": "Affichage",
       "tableToggleLine2": "tableau",
-      "chartTitle": "Courbes de percentiles de taille par âge (CDC)",
+      "chartTitle": "Courbe des percentiles de taille pour {label} (2–18 ans)",
       "axisAge": "Âge (années)",
       "axisHeight": "Taille (cm)",
       "tooltipAge": "Âge : {age} ans",
@@ -830,15 +836,15 @@
       "belowAverage": "En dessous de la moyenne",
       "significantlyBelowAverage": "Nettement en dessous de la moyenne",
       "heightPercentileResult": "Percentile de taille",
-      "shareTextLine1": "Mon percentile de taille est {percentile} ({interpretation}).",
-      "shareTextLine2": "Taille : {height} | Âge : {age} | Sexe : {gender}",
-      "shareTextLine3": "Calculé avec le calculateur de percentile de taille.",
+      "shareTextLine1": "Mon résultat de percentile de taille :",
+      "shareTextLine2": "{height} cm | Âge {age} | {gender} | {country}",
+      "shareTextLine3": "Résultat : {percentile}e percentile — {label}",
       "shareTextLine4": "Découvrez votre percentile ici !",
       "heightField": "Taille",
       "ageField": "Âge",
       "genderField": "Sexe",
       "countryField": "Jeu de données de référence",
-      "tallerThanText": "Plus grand(e) que {percentile} % des personnes de même âge et sexe.",
+      "tallerThanText": "Plus grand que {percentile}% des {gender}s âgés de {age} ans en {country}. Basé sur les données de l'OMS et du CDC.",
       "copyResult": "Copier le résultat",
       "copiedConfirmation": "Copié dans le presse-papiers !",
       "closeButton": "Fermer",
@@ -870,7 +876,7 @@
       "heightResultLabel": "Résultat de taille",
       "positionOnCurve": "Position sur la courbe de distribution",
       "percentileLabel": "Percentile",
-      "interpretationText": "Interprétation",
+      "interpretationText": "Vous êtes plus grand que {percentile}% des {gender}s de {age} ans en {country}. Cela vous place dans la fourchette {label}.",
       "scaleShort": "Petit",
       "scaleAvg": "Moyen",
       "scaleTall": "Grand",
@@ -883,15 +889,15 @@
       "heading": "Courbe de distribution normale de la taille",
       "instructionBefore": "Survolez la courbe pour explorer les percentiles. Le ",
       "purpleDot": "point violet",
-      "instructionAfter": " indique votre position relative.",
+      "instructionAfter": "affiche un score d'échantillon au {samplePercentile}e percentile.",
       "populationFrequency": "Fréquence dans la population",
       "xAxisLabel": "Percentile de taille",
-      "sampleLabel": "Exemple : 55e percentile",
-      "sampleSubLabel": "Légèrement au-dessus de la médiane",
+      "sampleLabel": "Échantillon : {samplePercentile}e percentile",
+      "sampleSubLabel": "Plus grand que {samplePercentile}% de ses pairs",
       "hoverPrompt": "Survolez la courbe pour afficher les détails",
       "ordinalSuffix": "e",
       "percentileSuffix": "percentile",
-      "hoveredDescription": "Plus grand(e) que {percentile} % de la population de référence.",
+      "hoveredDescription": "{label}. Une personne ici est plus grande que <pct>{percentile}%</pct> des personnes du même âge et sexe.",
       "hideSampleDot": "Masquer le point d'exemple",
       "showSampleDot": "Afficher le point d'exemple",
       "footerNote": "Modélisation gaussienne basée sur les paramètres de distribution CDC / OMS.",
@@ -935,7 +941,7 @@
     "exampleVisual": {
       "eyebrow": "Exemple visuel",
       "heading": "Position sur l'échelle centile et la courbe clinique",
-      "percentileScaleWhere": "Où vous situez-vous sur l'échelle des percentiles ?",
+      "percentileScaleWhere": "Échelle des percentiles — Où se situe le {percentile}e percentile",
       "zoneLabelBelow10": "< 10e",
       "zoneLabel10to25": "10e–25e",
       "zoneLabel25to75": "25e–75e (Moyenne)",
@@ -943,7 +949,7 @@
       "zoneLabel90to100": "90e–100e",
       "ordinalSuffix": "e",
       "averageRangeLabel": "Zone moyenne (P25–P75)",
-      "childComparisonText": "Cet enfant est plus grand que <strong>{count} garçons sur 100</strong> âgés de {age} ans. Il se situe idéalement dans la zone moyenne de croissance.",
+      "childComparisonText": "Cet enfant est plus grand que <strong>{count} sur 100</strong> garçons âgés de {age} ans. Il se situe confortablement dans la courbe normale de croissance.",
       "positionOnCdcChart": "Position sur la courbe de croissance des CDC",
       "cdcChartTitle": "Courbe de croissance CDC — Garçons (2 à 20 ans)",
       "heightAxisLabel": "Taille (cm)",
@@ -1052,7 +1058,7 @@
     },
     "adjusted": {
       "title": "Calculateur de poids corporel ajusté",
-      "p1": "Le calculateur de poids corporel ajusté (ABW) est utilisé en milieu hospitalier pour les patients dont le poids réel dépasse de plus de 30 % leur IBW. À ce stade, se baser uniquement sur l'IBW pour doser certains médicaments sous-estimerait l'activité métabolique, car le tissu adipeux excédentaire conserve une certaine activité. Le poids corporel ajusté permet de corriger ce biais.",
+      "p1": "Le calculateur de poids corporel ajusté s'applique en milieu clinique pour les patients dont le poids réel dépasse de plus de 30 % leur poids corporel idéal. À ce stade, l'utilisation du seul IBW sous-estime l'activité métabolique, car une partie du tissu adipeux reste métaboliquement active. Le poids corporel ajusté corrige cela.",
       "formulaTitle": "Formule du poids corporel ajusté :",
       "formulaText": "Poids Ajusté = IBW + 0,4 × (Poids Réel − IBW)",
       "exampleTitle": "Exemple pratique — poids réel 100 kg, IBW Devine 70 kg :",
@@ -1275,7 +1281,7 @@
       "healthyBmiRangeWhoLabel": "Fourchette d'IMC santé (OMS)",
       "tableHeightCm": "Taille (cm)",
       "tableHeightFt": "Taille (pi)",
-      "tableHealthyBmiRange": "Fourchette d'IMC santé ({unit})",
+      "tableHealthyBmiRange": "Plage d'IMC sain ({unit})",
       "sourcesNote": "Sources : Devine BJ (1974). Robinson JD et al. (1983). Miller DR et al. (1983). Hamwi GJ (1964). Fourchette d'IMC santé basée sur le seuil OMS de 18,5–25 kg/m². Ces données sont des estimations de référence et ne constituent pas un avis médical."
     }
   },
@@ -1435,8 +1441,8 @@
       "unitIn": "po",
       "heightDifferenceLabel": "Différence de taille",
       "percentDifferenceLabel": "Écart en pourcentage",
-      "isTallerText": "{person} est plus grand(e)",
-      "tallerPersonLabel": "Plus grand(e) : {person}",
+      "isTallerText": "{person} est plus grand",
+      "tallerPersonLabel": "Personne la plus grande",
       "visualComparisonLabel": "Comparaison visuelle",
       "enterBothHeightsPrompt": "Entrez les deux tailles pour afficher la comparaison"
     },
@@ -1444,7 +1450,7 @@
       "partner1Label": "Partenaire 1",
       "partner2Label": "Partenaire 2",
       "pctTallerText": "{pct}% de différence",
-      "resultSentence": "{p1} ({h1}) mesure {diff} de plus que {p2} ({h2})"
+      "resultSentence": "{p1} ({h1} cm) est <strong>plus grand de {diff} cm ({pct}%)</strong> que {p2} ({h2} cm)"
     },
     "chartTable": {
       "headerPersonA": "Personne A",
@@ -1457,13 +1463,13 @@
       "person2Label": "Personne 2",
       "pairButtonText": "{h1} cm vs {h2} cm",
       "diffCmText": "{diff} cm d'écart",
-      "isTallerText": "{person} est plus grand(e)"
+      "isTallerText": "{person} est plus grand"
     }
   },
   "averageHeightByCountry": {
     "h1": "Taille moyenne par pays",
     "intro": {
-      "description": "La taille moyenne varie bien plus qu'on ne l'imagine. L'écart entre les populations les plus grandes et les plus petites du monde atteint près de 24 cm pour les hommes et 21 cm pour les femmes. Cette page compare la stature humaine moyenne à travers le globe pour les deux sexes, des Pays-Bas au sommet jusqu'au Timor oriental (Timor-Leste) en bas de tableau, d'après les données de la <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> et de <wpr>World Population Review</wpr>. Hommes et femmes suivent la même tendance géographique générale, l'Europe du Nord occupant les premières places et des régions d'Asie du Sud et Centrale les rangs inférieurs."
+      "description": "La taille moyenne varie plus que la plupart des gens ne le pensent. L'écart entre les populations les plus grandes et les plus petites atteint près de 24 cm pour les hommes et 21 cm pour les femmes. Cette page compare la taille humaine moyenne dans le monde pour les deux sexes, des Pays-Bas au sommet au Timor oriental au bas de l'échelle, d'après les données de la <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> et de <wpr>World Population Review</wpr>. Hommes et femmes suivent le même schéma géographique global, avec l'Europe du Nord en tête et des parties de l'Asie du Sud et centrale en queue de peloton."
     },
     "globalTable": {
       "title": "Taille moyenne par pays (Tableau mondial)",
@@ -1479,7 +1485,7 @@
         "avgMale": "Moy. Hommes",
         "avgFemale": "Moy. Femmes"
       },
-      "noResults": "Aucun pays ne correspond à \"{query}\"",
+      "noResults": "Aucun pays trouvé correspondant à \"{query}\"",
       "sourceNote": "Source : NCD Risk Factor Collaboration (NCD-RisC) / World Population Review. Adultes âgés d'environ 19 ans."
     },
     "common": {
@@ -1600,7 +1606,7 @@
       "title": "Moyenne mondiale de la taille humaine",
       "maleStatLabel": "Moyenne mondiale hommes",
       "femaleStatLabel": "Moyenne mondiale femmes",
-      "paragraph1": "La moyenne mondiale pondérée pour l'ensemble de la population adulte s'établit à environ 171 cm pour les hommes et 159 cm pour les femmes. Ces chiffres reflètent le poids démographique déterminant de pays très peuplés comme la Chine et l'Inde.",
+      "paragraph1": "<who>L'Organisation mondiale de la santé</who> et la NCD Risk Factor Collaboration situent la taille moyenne mondiale masculine à environ 171 cm et la taille moyenne féminine à environ 159 cm. Ces chiffres pondérés sont inférieurs aux moyennes de la plupart des pays occidentaux car ils tiennent compte des fortes populations d'Asie du Sud et du Sud-Est.",
       "paragraph2": "Ci-dessous figure la répartition par grandes régions du monde, illustrant la manière dont les facteurs génétiques et les conditions socio-sanitaires modèlent la carte de la taille humaine.",
       "regionMap": {
         "colourScaleLabel": "Échelle de couleur — taille moyenne masculine par région",
@@ -1727,9 +1733,9 @@
     "whyDiffers": {
       "title": "Pourquoi la taille varie-t-elle selon les pays ?",
       "paragraph1": "La taille d'une population adulte est le produit combiné de prédispositions génétiques et de l'environnement nutritionnel et sanitaire cumulé durant les années de croissance. Si le patrimoine génétique fixe le potentiel biologique maximal d'un individu, c'est l'environnement qui détermine dans quelle mesure ce potentiel sera atteint.",
-      "nutritionParagraph": "L'alimentation durant les 1 000 premiers jours de vie et au début de l'adolescence est le facteur déterminant. L'apport régulier en protéines nobles, calcium, zinc et vitamine D stimule directement la fabrication osseuse. Les nations consommant d'importantes quantités de produits laitiers et disposant de régimes variés dominent le classement mondial.",
-      "healthcareParagraph": "Le système de soins et l'hygiène publique empêchent les maladies infectieuses et parasitaires récurrentes de détourner les calories et nutriments nécessaires à la croissance. L'eau potable et les vaccins ont permis des gains spectaculaires de stature au cours du siècle dernier en Europe et en Asie.",
-      "economicParagraph": "Le niveau économique global, la baisse de la pauvreté et la réduction des inégalités sociales réduisent le stress métabolique infantile et garantissent que les progrès profitent à toute la société.",
+      "nutritionParagraph": "<bold>La nutrition</bold> est le facteur environnemental déterminant le plus puissant de la taille adulte. Des apports adéquats en protéines et en micronutriments au cours des 1 000 premiers jours de vie sont cruciaux pour le développement squelettique. La disponibilité des produits laitiers et de la viande pendant l'enfance est un prédicteur constant des classements nationaux de taille.",
+      "healthcareParagraph": "<bold>L'accès aux soins de santé</bold> détermine si les maladies infantiles détournent l'énergie de la croissance. Les pays ayant des taux de vaccination élevés et un faible fardeau de maladies se classent régulièrement parmi les plus grands.",
+      "economicParagraph": "<bold>Le développement économique</bold> sous-tend à la fois la nutrition et les soins de santé. Le PIB par habitant est fortement corrélé à la taille moyenne, car la richesse permet une meilleure alimentation, une eau plus propre et des soins médicaux de qualité.",
       "calloutUS": "La stagnation de la taille moyenne aux États-Unis ces dernières décennies, en contraste avec les hausses régulières en Europe du Nord, illustre l'impact des déséquilibres alimentaires (aliments ultra-transformés) et des inégalités d'accès aux soins de santé."
     },
     "toc": [

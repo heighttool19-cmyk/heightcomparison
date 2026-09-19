@@ -1,0 +1,1887 @@
+{
+  "common": {
+    "language": "Lingua",
+    "english": "Inglese",
+    "german": "Tedesco",
+    "spanish": "Spagnolo",
+    "french": "Francese",
+    "portuguese": "Portoghese",
+    "italian": "Italiano",
+    "dutch": "Olandese",
+    "arabic": "Arabo"
+  },
+  "nav": {
+    "home": "Home",
+    "toolsAndCalculators": "Strumenti e Calcolatori",
+    "heightPredictor": "Previsore di Altezza",
+    "heightWeightPercentileCalculator": "Calcolatore Percentili Altezza e Peso",
+    "idealBodyWeightCalculator": "Calcolatore Peso Corporeo Ideale",
+    "averageHeightByCountry": "Altezza Media per Paese",
+    "heightDifferenceCalculator": "Calcolatore Differenza di Altezza",
+    "imageToHeight": "Immagine in Altezza",
+    "about": "Chi Siamo",
+    "blogs": "Blog",
+    "brandName": "Height Comparison",
+    "metricCm": "metrico (cm)",
+    "imperialFtIn": "imperiale (ft/in)",
+    "switchTo": "Passa a"
+  },
+  "footer": {
+    "brandDescription": "Il modo più intuitivo per visualizzare e confrontare le altezze fianco a fianco. Aggiungi persone reali, celebrità, personaggi di fantasia o qualsiasi altezza personalizzata e guardali insieme all'istante.",
+    "badgeFreeToUse": "Gratuito",
+    "badgeNoAccountNeeded": "Nessun account richiesto",
+    "badgeMetricImperial": "Metrico e Imperiale",
+    "calculatorsHeading": "Calcolatori",
+    "companyHeading": "Azienda",
+    "heightPredictor": "Previsore di Altezza",
+    "heightWeightPercentile": "Percentili Altezza e Peso",
+    "idealBodyWeight": "Peso Corporeo Ideale",
+    "heightDifference": "Differenza di Altezza",
+    "averageHeightByCountry": "Altezza Media per Paese",
+    "imageToHeight": "Immagine in Altezza",
+    "about": "Chi Siamo",
+    "blogs": "Blog",
+    "privacyPolicy": "Informativa sulla Privacy",
+    "copyright": "© {year} Height Comparison. Tutti i diritti riservati. Creato con cura da ",
+    "theTeam": "il team"
+  },
+  "about": {
+    "badge": "Sul Progetto",
+    "brandName": "HeightComparison",
+    "heroQuote": "La maggior parte degli strumenti di confronto altezza è stata creata per SEO rapido o per monetizzare con pubblicità invadenti. Noi abbiamo creato uno strumento che vorremmo davvero usare.",
+    "builtDifferent": "Costruito diversamente fin dal primo giorno",
+    "whatItDoesTitle": "Cosa Fa",
+    "whatItDoesParagraphs": [
+      "HeightComparison è uno strumento gratuito di scala visiva per persone, celebrità e oggetti. Disegna sagome proporzionate e precise affiancate in tempo reale, permettendoti di vedere esattamente come due o più altezze si confrontano nel mondo reale.",
+      "Lo strumento supporta unità metriche e imperiali con conversione istantanea. La libreria include centinaia di celebrità di Hollywood, Bollywood, anime, videogiochi, sport e finzione (Marvel, DC e altri), oltre a punti di riferimento del mondo reale per dare scala agli oggetti quotidiani."
+    ],
+    "otherCalculatorsTitle": "Altri Calcolatori sul Sito",
+    "calculators": [
+      {
+        "title": "Calcolatore Differenza di Altezza",
+        "text": "Mostra l'esatto divario tra due altezze in centimetri, pollici e percentuale, con una tabella di confronto visivo per coppie."
+      },
+      {
+        "title": "Previsore di Altezza",
+        "text": "Stima l'altezza da adulto con il metodo Khamis-Roche e il metodo Mid-Parental, utilizzando i dati delle curve di crescita del CDC."
+      },
+      {
+        "title": "Calcolatore Percentili Altezza e Peso",
+        "text": "Confronta altezza e peso con i dati di riferimento della popolazione OMS e CDC, con curve divise per età e sesso per bambini e adulti."
+      },
+      {
+        "title": "Calcolatore Peso Corporeo Ideale",
+        "text": "Applica le formule di Devine, Robinson e Hamwi affiancate, mostrando una gamma di riferimento piuttosto che un singolo valore rigido."
+      },
+      {
+        "title": "Altezza Media per Paese",
+        "text": "Copre 46 paesi con una tabella ordinabile, suddivisioni regionali, mappa termica mondiale e record estremi di altezza."
+      },
+      {
+        "title": "Immagine in Altezza",
+        "text": "Stima l'altezza da una foto caricata. Include una guida alla variazione dell'altezza mattutina, fondamentale per confronti accurati."
+      }
+    ],
+    "noAccountTitle": "Nessun Account, Nessun Pagamento, Nessun Watermark",
+    "noAccountParagraphs": [
+      "Questa decisione è stata presa fin dall'inizio e non è cambiata. L'esportazione in PNG non ha watermark. Il database delle celebrità non è bloccato da abbonamenti. Non esiste un piano a pagamento. L'intero strumento è completamente gratuito.",
+      "Non è una strategia di marketing. È semplicemente il modo in cui lo strumento è stato progettato. Aggiungere barriere con la creazione di account o esportazioni a pagamento peggiorerebbe l'esperienza d'uso. Confrontare le altezze non deve essere un'attività a pagamento."
+    ],
+    "accuracyTitle": "Una Nota sull'Accuratezza dei Dati",
+    "accuracyParagraphs": [
+      "Dati contrastanti sull'altezza sono frequenti, soprattutto per i personaggi pubblici. In caso di discrepanze, normalizziamo il valore alla cifra verificata più recente proveniente da fonti pubbliche autorevoli, non a quella più ripetuta. Le altezze dei personaggi provengono da fonti ufficiali autorizzate ove possibile. Le dimensioni di monumenti e oggetti provengono da fonti architettoniche e scientifiche."
+    ],
+    "nothingUserSubmitted": "Nessun contenuto qui è inviato direttamente dagli utenti.",
+    "footerQuote": "Visualizzare il contesto dell'altezza, un pixel alla volta."
+  },
+  "privacy": {
+    "titlePrefix": "Informativa sulla ",
+    "titleSuffix": "Privacy",
+    "subheading": "Per aiutarti a capire come proteggiamo le tue informazioni.",
+    "intro": "Questa Informativa sulla Privacy spiega quali informazioni raccoglie lo Strumento di Confronto Altezza, come vengono utilizzate e quali scelte hai a disposizione. HeightComparison è uno strumento gratuito disponibile su heightcomparisoncalculator.com. Nessun dato personale viene venduto o condiviso con terze parti a fini commerciali.",
+    "whatWeCollectTitle": "Cosa Raccogliamo",
+    "infoYouProvideTitle": "Informazioni che Fornisci",
+    "infoYouProvideIntro": "Quando utilizzi determinate funzioni dello strumento, alcuni dati vengono temporaneamente memorizzati sui nostri server:",
+    "uploadedImagesLabel": "Immagini caricate.",
+    "uploadedImagesText": " Se utilizzi la funzione Immagine in Altezza, la foto caricata viene inviata ai nostri server per elaborare la stima dell'altezza. L'immagine non viene memorizzata in modo permanente: viene conservata per un massimo di 7 giorni e poi eliminata automaticamente.",
+    "shareableLinksLabel": "Link di grafici condivisibili e stato del grafico.",
+    "shareableLinksText": " Quando generi un link condivisibile per il tuo grafico di confronto, la configurazione del grafico (altezze, nomi e soggetti aggiunti) viene memorizzata sui nostri server per consentire a chiunque apra il link di visualizzarla. Questi dati vengono conservati per un massimo di 7 giorni e poi eliminati automaticamente. Nessun account è richiesto e i dati memorizzati non sono associati a informazioni di identificazione personale.",
+    "infoCollectedAutoTitle": "Informazioni Raccolte Automaticamente",
+    "googleAnalyticsLabel": "Google Analytics.",
+    "googleAnalyticsText": " Utilizziamo Google Analytics per capire come i visitatori utilizzano il sito. Questo servizio raccoglie dati di utilizzo standard tra cui pagine visitate, tempo trascorso sul sito, regione geografica approssimativa (paese o città), tipo di browser e dispositivo. Google Analytics utilizza cookie propri per funzionare. HeightComparison non imposta cookie proprietari di profilazione.",
+    "googleAnalyticsNote": "Per maggiori informazioni su come Google gestisce questi dati, consulta le Norme sulla Privacy di Google e i Termini di Servizio di Google Analytics.",
+    "serverLogsLabel": "Log del server.",
+    "serverLogsText": " Come la maggior parte dei server web, i nostri possono registrare automaticamente dati standard di log tra cui indirizzi IP, URL di provenienza e data/ora delle richieste. Queste informazioni sono utilizzate unicamente per scopi operativi e di sicurezza.",
+    "whatWeDoNotCollectTitle": "Cosa Non Raccogliamo",
+    "whatWeDoNotCollectIntro": "Per essere chiari su ciò che questo sito non fa:",
+    "whatWeDoNotCollectList": [
+      "Non raccogliamo il tuo nome, indirizzo email o alcuna informazione di account. Non ci sono account.",
+      "Non raccogliamo dati di pagamento. Lo strumento è gratuito.",
+      "Non tracciamo le altezze inserite nello strumento di confronto. I dati inseriti vengono elaborati nel tuo browser e non vengono inviati né memorizzati sui nostri server (tranne nei casi specifici descritti sopra).",
+      "Non siamo affiliati ad alcuna rete pubblicitaria. Nessun dato viene condiviso con reti pubblicitarie e non viene effettuata pubblicità comportamentale su questo sito."
+    ],
+    "howWeUseTitle": "Come Utilizziamo i Dati",
+    "howWeUseIntro": "I dati descritti sopra vengono utilizzati unicamente per i seguenti scopi:",
+    "howWeUseList": [
+      "Elaborare e restituire le stime di altezza basate sulle immagini caricate",
+      "Generare e risolvere i link condivisibili dei grafici di confronto",
+      "Comprendere i modelli di utilizzo generali tramite Google Analytics per migliorare lo strumento",
+      "Mantenere la sicurezza del server e diagnosticare problemi tecnici"
+    ],
+    "howWeUseFooter": "Non utilizziamo i dati raccolti per creare profili utente, mostrare annunci personalizzati o condividerli con terze parti oltre a Google Analytics come descritto.",
+    "dataRetentionTitle": "Conservazione dei Dati",
+    "dataRetentionText": "Le immagini caricate e i dati dei grafici condivisibili vengono eliminati dai nostri server entro 7 giorni dalla creazione. I log del server vengono conservati per i periodi operativi standard necessari alla sicurezza e al debug.",
+    "yourRightsTitle": "I Tuoi Diritti e le Tue Scelte",
+    "requestDeletionLabel": "Richiesta di eliminazione dei dati.",
+    "requestDeletionText": " Se hai utilizzato un link condivisibile o caricato un'immagine e desideri che i dati associati vengano rimossi prima dei 7 giorni, puoi contattarci all'indirizzo ",
+    "requestDeletionTextEnd": " e provvederemo tempestivamente all'eliminazione.",
+    "optOutGaLabel": "Disattivazione di Google Analytics.",
+    "optOutGaText": " Puoi impedire a Google Analytics di raccogliere dati sulla tua visita installando il Componente aggiuntivo del browser per la disattivazione di Google Analytics.",
+    "browserControlsLabel": "Controlli del browser.",
+    "browserControlsText": " Poiché HeightComparison non imposta cookie proprietari, non ci sono preferenze di cookie da gestire da parte nostra. Eventuali cookie presenti nel tuo browser da questo sito provengono da Google Analytics.",
+    "childrensPrivacyTitle": "Privacy dei Minori",
+    "childrensPrivacyText": "HeightComparison non è rivolto a minori di 13 anni. Non raccogliamo consapevolmente alcuna informazione personale da minori. Se ritieni che un minore abbia inviato informazioni personali attraverso questo sito, contattaci all'indirizzo ",
+    "childrensPrivacyTextEnd": " e le rimuoveremo immediatamente.",
+    "thirdPartyLinksTitle": "Link a Siti di Terze Parti",
+    "thirdPartyLinksText": "Il sito può contenere link a siti web esterni. Questa Informativa sulla Privacy si applica solo a HeightComparison. Non siamo responsabili per le pratiche sulla privacy di siti terzi.",
+    "changesToPolicyTitle": "Modifiche a Questa Informativa",
+    "changesToPolicyText": "In caso di modifiche sostanziali a questa informativa, aggiorneremo la data di \"Ultimo aggiornamento\" all'inizio di questa pagina. L'uso continuato del sito dopo eventuali modifiche costituisce accettazione dell'informativa aggiornata.",
+    "contactTitle": "Contatti",
+    "contactIntro": "Se hai domande su questa Informativa sulla Privacy o desideri richiedere l'eliminazione dei dati, contattaci all'indirizzo:",
+    "emailLabel": "Email: ",
+    "trustFooter": "La tua fiducia è fondamentale per noi."
+  },
+  "heightPredictor": {
+    "intro": {
+      "title": "Previsore di Altezza: Calcola la Tua Altezza Finale da Adulto",
+      "description": "Utilizza questo calcolatore per stimare l'altezza futura di bambini, adolescenti e ragazzi a partire dall'età attuale, dalla genetica dei genitori e dai ritmi di accrescimento. Questo strumento impiega il metodo Khamis-Roche, uno dei modelli di previsione dell'altezza senza radiografia più accurati della medicina pediatrica. Se tuo figlio ha meno di quattro anni o stai aspettando un bambino, usa la formula dell'altezza media genitoriale più in basso."
+    },
+    "khamisRocheCalculator": {
+      "title": "Calcolatore di Altezza Khamis-Roche",
+      "badge": "Più Accurato (Età 4–17)",
+      "description": "Stima l'altezza da adulto utilizzando età attuale, sesso, altezza, peso e la statura di entrambi i genitori biologici. Non richiede radiografie dell'età ossea.",
+      "unitUs": "USA (piedi/pollici, lbs)",
+      "unitMetric": "Metrico (cm, kg)",
+      "childAgeLabel": "Età del Bambino (anni)",
+      "childAgeAriaLabel": "Età del Bambino",
+      "genderLabel": "Sesso",
+      "boy": "Maschio",
+      "girl": "Femmina",
+      "childHeightLabel": "Altezza Attuale del Bambino",
+      "childHeightCmAriaLabel": "Altezza del Bambino in centimetri",
+      "childHeightFtAriaLabel": "Altezza del Bambino in piedi",
+      "childHeightInAriaLabel": "Altezza del Bambino in pollici",
+      "childWeightLabel": "Peso Attuale del Bambino",
+      "childWeightKgAriaLabel": "Peso del Bambino in chilogrammi",
+      "childWeightLbsAriaLabel": "Peso del Bambino in libbre",
+      "motherHeightLabel": "Altezza della Madre Biologica",
+      "motherHeightCmAriaLabel": "Altezza della Madre in centimetri",
+      "motherHeightFtAriaLabel": "Altezza della Madre in piedi",
+      "motherHeightInAriaLabel": "Altezza della Madre in pollici",
+      "fatherHeightLabel": "Altezza del Padre Biologico",
+      "fatherHeightCmAriaLabel": "Altezza del Padre in centimetri",
+      "fatherHeightFtAriaLabel": "Altezza del Padre in piedi",
+      "fatherHeightInAriaLabel": "Altezza del Padre in pollici",
+      "calculate": "Calcola Altezza Prevista",
+      "clear": "Cancella",
+      "estimatedAdultHeight": "Altezza Adulta Prevista:",
+      "targetRange": "Intervallo target (±5 cm): {min} : {max} cm",
+      "viewComparisonChart": "Visualizza Grafico di Confronto",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "in",
+      "kgUnit": "kg",
+      "lbsUnit": "lbs"
+    },
+    "midParentalCalculator": {
+      "title": "Calcolatore dell'Altezza Media Genitoriale",
+      "badge": "Per Tutte le Età (e Futuri Neonati)",
+      "description": "Calcola il potenziale genetico bersaglio basandosi esclusivamente sulle stature dei genitori biologici.",
+      "unitUs": "USA (piedi/pol)",
+      "unitMetric": "Metrico (cm)",
+      "motherHeightLabel": "Altezza della Madre Biologica",
+      "motherHeightCmAriaLabel": "Altezza della Madre in centimetri",
+      "motherHeightFtAriaLabel": "Altezza della Madre in piedi",
+      "motherHeightInAriaLabel": "Altezza della Madre in pollici",
+      "fatherHeightLabel": "Altezza del Padre Biologico",
+      "fatherHeightCmAriaLabel": "Altezza del Padre in centimetri",
+      "fatherHeightFtAriaLabel": "Altezza del Padre in piedi",
+      "fatherHeightInAriaLabel": "Altezza del Padre in pollici",
+      "calculateEstimate": "Calcola Stima Genitoriale",
+      "estimatedAdultHeightBoys": "Altezza Prevista per Maschi:",
+      "estimatedAdultHeightGirls": "Altezza Prevista per Femmine:",
+      "targetRange": "Intervallo target (±5 cm): {min} : {max} cm",
+      "viewComparisonChart": "Visualizza Grafico di Confronto",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "in"
+    },
+    "heightConverter": {
+      "title": "Convertitore Rapido di Statura",
+      "description": "Converti istantaneamente tra centimetri e piedi/pollici.",
+      "centimeters": "Centimetri (cm)",
+      "centimetersAriaLabel": "Centimetri",
+      "feetAndInches": "Piedi e Pollici",
+      "feetAriaLabel": "Piedi",
+      "inchesAriaLabel": "Pollici",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "in"
+    },
+    "howItWorks": {
+      "title": "Come Funziona il Previsore di Altezza",
+      "description": "Il nostro strumento combina modelli biometrici validati scientificamente per offrire stime di altezza adulta ad alta affidabilità:",
+      "step1Strong": "1. Dati Antropometrici del Bambino: ",
+      "step1Text": "Età, sesso, altezza attuale e peso recente forniscono la velocità individuale di sviluppo.",
+      "step2Strong": "2. Genetica Genitoriale: ",
+      "step2Text": "La statura media dei genitori biologici stabilisce l'intervallo ereditario di accrescimento.",
+      "step3Strong": "3. Modello Khamis-Roche: ",
+      "step3Text": "Coefficienti statistici ponderati calcolano la proiezione finale con una precisione tipica di ±2–5 cm."
+    },
+    "howTallChild": {
+      "title": "Quanto Diventerà Alto Mio Figlio?",
+      "description": "È una delle domande più ricorrenti tra genitori e pediatri. L'altezza finale dipende dall'azione congiunta di tre fattori determinanti:",
+      "factorsTitle": "Fattori Determinanti:",
+      "geneticsLabel": "Genetica Ereditaria:",
+      "geneticsText": "Circa il 60%–80% della statura finale è determinata dalle varianti genetiche trasmesse dai genitori biologici.",
+      "currentGrowthLabel": "Velocità di Crescita Attuale:",
+      "currentGrowthText": "Il canale percentile seguito con regolarità durante l'infanzia riflette la traiettoria biologica individuale.",
+      "statisticsLabel": "Modelli Matematici:",
+      "statisticsText": "Algoritmi scientifici come Khamis-Roche e Mid-Parental affinano la stima sulla base di ampie coorti di popolazione.",
+      "closing": "Pur non potendo prevedere il futuro al millimetro, questi calcoli offrono la migliore approssimazione scientifica possibile senza esami radiologici invasivi."
+    },
+    "teensAdults": {
+      "title": "Previsione di Statura per Adolescenti e Adulti",
+      "description": "Le possibilità di ulteriore accrescimento dipendono direttamente dal grado di maturazione scheletrica:",
+      "teensTitle": "Adolescenti (13–18 anni):",
+      "teensText": "Durante l'adolescenza si manifesta l'ultimo scatto puberale:",
+      "teensItem1": "Ragazze: La crescita rallenta fortemente dopo il menarca, terminando in genere intorno ai 15–16 anni.",
+      "teensItem2": "Ragazzi: Lo scatto puberale si protrae più a lungo, con aumenti di statura possibili fino a 18–19 anni.",
+      "teensItem3": "La saldatura delle cartilagini epifisarie ossee segna la conclusione definitiva della crescita longitudinale.",
+      "adultsTitle": "Adulti (18+ anni):",
+      "adultsText": "Una volta ossificate le cartilagini di coniugazione epifisarie:",
+      "adultsItem1": "Le ossa lunghe non possono più aumentare di lunghezza in modo naturale.",
+      "adultsItem2": "Le variazioni di 1–2 cm osservabili tra mattina e sera sono dovute alla compressione elastica dei dischi intervertebrali.",
+      "adultsItem3": "Esercizi posturali mirati e potenziamento del corsetto muscolare possono ottimizzare la postura eretta e la statura percepita.",
+      "limitationLabel": "Nota Importante:",
+      "limitationText": "Nessun integratore, dieta o esercizio può riaprire cartilagini ossee ormai saldate."
+    },
+    "ctaBanner": {
+      "text": "Vuoi visualizzare come si confronta l'altezza di tuo figlio rispetto ad altre persone?",
+      "linkText": "Prova il Nostro Confronto Visivo di Altezza"
+    },
+    "determinants": {
+      "title": "Cosa Determina la Statura di una Persona?",
+      "description": "La statura finale di un individuo è il risultato di un equilibrio tra predisposizione genetica e fattori ambientali favorevoli:",
+      "geneticsTitle": "1. Genetica (60%–80%)",
+      "geneticsBefore": "Gli studi sui gemelli dimostrano che ",
+      "geneticsStrong1": "centinaia di varianti geniche",
+      "geneticsMiddle": " controllano l'attività delle cartilagini di accrescimento. Figli di genitori alti hanno un'alta probabilità di essere alti, sebbene ",
+      "geneticsStrong2": "la regressione verso la media",
+      "nutritionTitle": "2. Nutrizione e Salute Infantile",
+      "nutritionBefore": "La qualità dell'alimentazione nei primi anni di vita e nella pubertà è il fattore ambientale principale:",
+      "nutritionStrong": "Nutrienti Fondamentali: ",
+      "nutritionAfter": "Proteine complete, calcio, zinco, ferro e vitamina D sono indispensabili per la formazione e l'allungamento della matrice ossea.",
+      "nutritionItem1": "Proteine: Forniscono aminoacidi essenziali per tessuti e cartilagini.",
+      "nutritionItem2": "Calcio e Vitamina D: Garantiscono una mineralizzazione ottimale dello scheletro.",
+      "nutritionItem3": "Zinco: Cofattore essenziale per la sintesi cellulare e la proliferazione ormonale.",
+      "timingTitle": "3. Sonno e Ormone della Crescita (GH)",
+      "timingText": "La maggior parte dell'ormone della crescita (GH) viene secreta dalla ghiandola ipofisi durante le fasi di sonno profondo a onde lente (fase N3). La carenza cronica di riposo notturno può compromettere il pieno potenziale staturale."
+    },
+    "growthCharts": {
+      "title": "Curve di Crescita: Come i Pediatri Monitorano lo Sviluppo",
+      "linkText": "Tabelle di Crescita Ufficiali CDC e OMS",
+      "textAfterLink": " costituiscono lo strumento cardine della medicina dell'età evolutiva.",
+      "percentileBefore": "Seguendo un canale di ",
+      "percentileStrong": "percentile stabile",
+      "percentileAfter": " nei controlli periodici, il medico può intercettare tempestivamente celiachia, deficit di GH o disfunzioni tiroidee prima che causino ritardi permanenti.",
+      "note": "Una crescita costante lungo un canale di percentile (che sia il 25º o l'85º) è segno di pieno benessere biologico."
+    },
+    "comparisonTable": {
+      "title": "Confronto: Calcolatore di Altezza vs Curve di Crescita",
+      "description": "Scopri la funzione peculiare di ciascun approccio di valutazione dell'altezza:",
+      "headerFactor": "Parametro",
+      "headerCalculator": "Calcolatore (Khamis-Roche / Mid-Parental)",
+      "headerGrowthChart": "Curva di Crescita (CDC / OMS)",
+      "rowPurposeLabel": "Scopo Principale",
+      "rowPurposeCalculator": "Prevedere la statura adulta finale in base alla genetica",
+      "rowPurposeGrowthChart": "Monitorare la regolarità della crescita attuale",
+      "rowDataLabel": "Dati Richiesti",
+      "rowDataCalculator": "Altezza genitori, età, statura e peso del bambino",
+      "rowDataGrowthChart": "Età e statura attuale del bambino",
+      "rowBestForLabel": "Ideale Per",
+      "rowBestForCalculator": "Stime future e curiosità sul potenziale adulto",
+      "rowBestForGrowthChart": "Controlli periodici dal pediatra e prevenzione sanitaria",
+      "rowDoctorLabel": "Impiego Clinico",
+      "rowDoctorCalculator": "Consulenza genetica e orientamento prognostico",
+      "rowDoctorGrowthChart": "Diagnosi di anomalie della crescita e screening",
+      "rowAccuracyLabel": "Accuratezza Tipica",
+      "rowAccuracyCalculator": "±2–5 cm nella maggioranza dei bambini sani",
+      "rowAccuracyGrowthChart": "Posizionamento percentile istantaneo esatto",
+      "rowWithoutParentsLabel": "Senza Altezza dei Genitori?",
+      "rowWithoutParentsCalculator": "Non è possibile applicare Khamis-Roche con rigore",
+      "rowWithoutParentsGrowthChart": "Funziona perfettamente solo con età e statura"
+    },
+    "boysGrowth": {
+      "title": "Modelli di Crescita nei Ragazzi",
+      "p1Before": "La crescita maschile segue una scansione temporale peculiare. I ragazzi iniziano il loro ",
+      "p1Strong": "scatto di crescita puberale (picco di velocità di accrescimento)",
+      "p1After": " più tardi rispetto alle ragazze, solitamente tra i 12 e i 15 anni.",
+      "p2": "Durante l'anno di picco puberale, i ragazzi possono crescere tra gli 8 e i 12 cm in soli dodici mesi.",
+      "item1Before": "Inizio Pubertà: ",
+      "item1Strong": "Generalmente intorno agli 11–12 anni.",
+      "item2Before": "Picco di Velocità Statuale: ",
+      "item2Strong": "In media tra i 13,5 e i 14 anni.",
+      "item3Before": "Completamento Accrescimento: ",
+      "item3Strong": "Tra i 17 e i 19 anni nella grande maggioranza dei casi.",
+      "p3Before": "Grazie a questi due anni supplementari di crescita pre-puberale, gli uomini sono in media ",
+      "p3Strong": "circa 13 cm più alti",
+      "p3After": " delle donne nella stessa popolazione."
+    },
+    "girlsGrowth": {
+      "title": "Modelli di Crescita nelle Ragazze",
+      "p1": "Nelle ragazze l'accelerazione della crescita puberale si manifesta circa due anni prima rispetto ai maschi, iniziando in genere tra i 9 e gli 11 anni.",
+      "p2": "Il picco di crescita femminile si verifica solitamente tra gli 11 e i 12 anni, prima della comparsa della prima mestruazione (menarca).",
+      "item1Before": "Picco Statuale Femminile: ",
+      "item1Strong": "Circa 7–9 cm all'anno nella fase precedente il menarca.",
+      "item2Before": "Fase Post-Menarca: ",
+      "item2Strong": "La crescita rallenta notevolmente: la maggior parte delle ragazze cresce in totale solo altri 3–7 cm dopo il menarca.",
+      "p3Before": "La completa fusione epifisaria nelle ragazze avviene solitamente tra i ",
+      "p3Strong": "15 e i 16 anni di età",
+      "p3After": "."
+    },
+    "methods": {
+      "title": "Metodi Scientifici di Previsione della Statura",
+      "subtitle": "Come i Ricercatori Stimano l'Altezza dei Bambini",
+      "description": "La comunità scientifica ha sviluppato diversi modelli matematici per calcolare il potenziale di crescita umano:",
+      "khamisRoche": {
+        "badge": "Standard Senza Raggi X",
+        "title": "Metodo di Khamis-Roche (1994)",
+        "p1": "Sviluppato dal Dr. Harry Khamis e dal Dr. Alex Roche nell'ambito del celebre Fels Longitudinal Study, calcola l'altezza stimata impiegando età, sesso, statura attuale, peso e altezza media di entrambi i genitori.",
+        "p2": "È stato dimostrato essere accurato quanto i metodi radiologici della mano e del polso nei bambini sani.",
+        "item1Before": "Fascia di Età: ",
+        "item1Strong": "Bambini e ragazzi dai 4 ai 17 anni.",
+        "item2": "Non richiede radiazioni o visite radiologiche complesse.",
+        "item3": "Margine di errore tipico di circa ±2,5–5 cm nella maggior parte dei soggetti.",
+        "usedByCalculator": "È il metodo cardine utilizzato dal nostro calcolatore principale.",
+        "readyText": "Vuoi calcolare la previsione per tuo figlio?",
+        "linkText": "Usa il Calcolatore Khamis-Roche"
+      },
+      "midParental": {
+        "badge": "Metodo Familiare Classico",
+        "title": "Formula dell'Altezza Media Genitoriale (Metodo Tanner)",
+        "p1": "Formulata dall'endocrinologo britannico J.M. Tanner, è la formula più adoperata in ambito ambulatoriale quando si conoscono solo le stature dei genitori:",
+        "boysFormulaLabel": "Formula per Maschi:",
+        "boysFormula": "[Altezza Madre + Altezza Padre + 13 cm] / 2",
+        "girlsFormulaLabel": "Formula per Femmine:",
+        "girlsFormula": "[Altezza Madre + Altezza Padre - 13 cm] / 2",
+        "item1": "Aggiunge 13 cm per i maschi per considerare il dimorfismo sessuale.",
+        "item2": "Sottrae 13 cm per le femmine.",
+        "item3": "Fornisce una finestra bersaglio genetica con margine di ±5 cm (±2 pollici).",
+        "item4": "Adatto a neonati e bambini con meno di 4 anni.",
+        "onlyHaveText": "Conosci solo l'altezza dei genitori?",
+        "linkText": "Calcola con l'Altezza Media Genitoriale"
+      },
+      "boneAge": {
+        "badge": "Clinico Radiografico",
+        "title": "Metodo dell'Età Ossea (Radiografia del Polso)",
+        "p1": "Richiede una radiografia della mano e del polso sinistro per valutare il grado di fusione epifisaria rispetto all'atlante di Greulich-Pyle o al metodo Tanner-Whitehouse (TW3):",
+        "item1": "Indicato nei casi sospetti di pubertà precoce, ritardo costituzionale o patologie endocrine.",
+        "item2": "Determina il potenziale di accrescimento scheletrico residuo effettivo.",
+        "item3": "Viene eseguito esclusivamente su prescrizione medica specialistica."
+      },
+      "bayleyPinneau": {
+        "badge": "Tabelle Cliniche",
+        "title": "Metodo di Bayley-Pinneau",
+        "text": "Converte l'età ossea radiografica in percentuale della statura adulta finale, comunemente impiegato in endocrinologia per monitorare la terapia con ormone della crescita."
+      },
+      "rocheWainerThissen": {
+        "badge": "Modello Multivariato",
+        "title": "Metodo Roche-Wainer-Thissen (RWT)",
+        "text": "Algoritmo avanzato che combina età ossea, peso corporeo e altezza dei genitori per formulare previsioni staturali ad elevata sensibilità statistica."
+      }
+    },
+    "canIncrease": {
+      "titlePrefix": "Come Massimizzare il ",
+      "titleHighlight": "Potenziale di Crescita",
+      "description": "Benché la genetica stabilisca il limite massimo raggiungibile, abitudini corrette assicurano che il bambino esprima appieno il proprio potenziale:",
+      "nutritionTitle": "1. Nutrizione Equilibrata e Ricca di Micronutrienti",
+      "nutritionText": "La dieta deve apportare elementi strutturali essenziali per sostenere la moltiplicazione cellulare delle cartilagini:",
+      "nutritionItem1": "Proteine nobili (uova, pesce, carni magre, legumi).",
+      "nutritionItem2": "Calcio e Fosforo (latticini, semi oleosi, verdure a foglia verde).",
+      "nutritionItem3": "Vitamina D (adeguata esposizione solare e alimenti arricchiti).",
+      "nutritionItem4": "Zinco e Ferro (cereali integrali, frutta secca, carne).",
+      "sleepTitle": "2. Sonno Notturno Profondo e Regolare",
+      "sleepText": "L'ormone della crescita (GH) raggiunge i massimi livelli plasmatici durante le fasi di sonno profondo notturno:",
+      "sleepItem1": "Bambini (6–12 anni): 9–12 ore per notte.",
+      "sleepItem2": "Adolescenti (13–18 anni): 8–10 ore di sonno continuativo.",
+      "exerciseTitle": "3. Attività Fisica e Movimento Regolare",
+      "exerciseText": "Lo sport e le attività ad impatto moderato favoriscono la densità minerale ossea e rafforzano la postura vertebrale.",
+      "warningStrong": "Attenzione alle False Promesse: ",
+      "warningText": "Diffida da pillole o integratori miracolosi venduti online che promettono di far crescere gli adulti. Non esistono farmaci comprovati capaci di allungare ossa le cui cartilagini siano già completamente saldate."
+    },
+    "accuracy": {
+      "titlePrefix": "Accuratezza e ",
+      "titleHighlight": "Limiti",
+      "titleSuffix": " delle Previsioni",
+      "description": "Per interpretare correttamente i risultati, tieni presenti queste caratteristiche metodologiche:",
+      "check1": "Khamis-Roche ha un margine di errore medio di circa ±2,5–5 cm.",
+      "check2": "La formula Mid-Parental offre un intervallo di probabilità tipico di ±5 cm.",
+      "check3": "L'accuratezza cresce sensibilmente man mano che il bambino si avvicina alla pubertà.",
+      "check4": "Bambini con maturazione precoce o tardiva possono discostarsi provvisoriamente dalla stima prima di convergere verso la loro statura finale.",
+      "alert1": "Non sostituisce in alcun modo una visita medica in caso di sospetti disturbi della crescita.",
+      "alert2": "Presuppone nutrizione infantile adeguata e assenza di patologie croniche gravi.",
+      "alert3": "Richiede misurazioni precise e aggiornate di altezza e peso.",
+      "rangeNotice": "Considera sempre il valore come un intervallo di confidenza probabilistico e non come un numero fisso immutabile.",
+      "disclaimerStrong": "Avvertenza Sanitaria: ",
+      "disclaimerText": "Questo calcolatore ha finalità puramente informative ed educative. In caso di dubbi sulla crescita o sullo sviluppo di tuo figlio, consulta un pediatra o un endocrinologo infantile."
+    },
+    "faq": [
+      {
+        "q": "Il metodo Khamis-Roche è attendibile?",
+        "a": "Sì, è ampiamente riconosciuto come il metodo senza radiazioni più accurato della letteratura scientifica, con un margine di errore tipico compreso tra 2 e 5 cm per la quasi totalità dei bambini sani."
+      },
+      {
+        "q": "Posso stimare l'altezza di mio figlio prima che nasca?",
+        "a": "Sì, la formula dell'Altezza Media Genitoriale (Mid-Parental) consente di calcolare la finestra bersaglio genetica futura impiegando solo le altezze di entrambi i genitori biologici."
+      },
+      {
+        "q": "A che età la previsione di altezza diventa affidabile?",
+        "a": "Il metodo Khamis-Roche è validato a partire dai 4 anni di età. Da 0 a 4 anni, la formula Mid-Parental e le tabelle di crescita OMS offrono le indicazioni migliori."
+      },
+      {
+        "q": "Un adulto può ancora crescere in altezza?",
+        "a": "No. Dopo la chiusura completa delle cartilagini epifisarie ossee (di norma tra i 16 e i 20 anni), non è più possibile alcun allungamento scheletrico naturale."
+      },
+      {
+        "q": "Come incide il sonno sulla statura finale?",
+        "a": "Oltre metà dell'ormone della crescita quotidiano viene rilasciata durante il sonno profondo notturno a onde lente, rendendo un riposo regolare un fattore di crescita essenziale."
+      },
+      {
+        "q": "Perché i ragazzi sono generalmente più alti delle ragazze?",
+        "a": "I maschi beneficiano di circa due anni aggiuntivi di accrescimento pre-puberale prima dello scatto puberale e presentano un picco di crescita leggermente più marcato."
+      },
+      {
+        "q": "Sollevare pesi blocca la crescita dei bambini?",
+        "a": "No, è un falso mito. Esercizi adeguati e supervisionati rinforzano le ossa e la postura. Il rischio sussiste solo in caso di traumi acuti alle cartilagini provocati da carichi eccessivi e scorretti senza supervisione."
+      }
+    ],
+    "toc": [
+      {
+        "id": "khamis-roche-calculator",
+        "label": "Calcolatore Khamis-Roche"
+      },
+      {
+        "id": "mid-parental-calculator",
+        "label": "Calcolatore Altezza Media Genitoriale"
+      },
+      {
+        "id": "height-converter",
+        "label": "Convertitore Rapido di Statura"
+      },
+      {
+        "id": "how-the-height-predictor-works",
+        "label": "Come Funziona il Previsore"
+      },
+      {
+        "id": "how-tall-will-my-child-be",
+        "label": "Quanto Diventerà Alto Mio Figlio?"
+      },
+      {
+        "id": "can-teens-and-adults-still-grow",
+        "label": "Adolescenti e Adulti Possono Crescere?"
+      },
+      {
+        "id": "what-determines-a-persons-height",
+        "label": "Cosa Determina la Statura?"
+      },
+      {
+        "id": "growth-charts-and-pediatric-tracking",
+        "label": "Curve di Crescita e Pediatria"
+      },
+      {
+        "id": "height-calculator-vs-growth-charts",
+        "label": "Calcolatore vs Curve di Crescita"
+      },
+      {
+        "id": "growth-patterns-in-boys",
+        "label": "Modelli di Crescita nei Ragazzi"
+      },
+      {
+        "id": "growth-patterns-in-girls",
+        "label": "Modelli di Crescita nelle Ragazze"
+      },
+      {
+        "id": "scientific-height-prediction-methods",
+        "label": "Metodi Scientifici di Previsione"
+      },
+      {
+        "id": "can-you-increase-your-growth-potential",
+        "label": "Massimizzare il Potenziale di Crescita"
+      },
+      {
+        "id": "prediction-accuracy-and-limitations",
+        "label": "Accuratezza e Limiti"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Domande Frequenti"
+      }
+    ],
+    "relatedTools": {
+      "title": "Strumenti e Calcolatori Correlati",
+      "heightComparisonTitle": "Confronto Visivo di Altezza",
+      "heightComparisonText": "Confronta sagome proporzionate fianco a fianco con persone reali, celebrità e monumenti.",
+      "heightComparisonLink": "Apri Confronto Altezza",
+      "imageToHeightTitle": "Immagine in Altezza",
+      "imageToHeightText": "Stima l'altezza di una persona a partire da una foto caricata con riferimenti dimensionali.",
+      "imageToHeightLink": "Prova Immagine in Altezza",
+      "percentileTitle": "Calcolatore Percentili",
+      "percentileText": "Calcola il percentile di altezza e peso in base ai dati di riferimento CDC e OMS.",
+      "percentileLink": "Calcola Percentile",
+      "countryTitle": "Altezza Media per Paese",
+      "countryText": "Consulta le stature medie maschili e femminili in 46 paesi con mappa termica mondiale.",
+      "countryLink": "Vedi Altezza per Paese",
+      "ibwTitle": "Calcolatore Peso Ideale",
+      "ibwText": "Calcola la gamma di peso sano secondo le formule convalidate di Devine, Robinson e Hamwi.",
+      "ibwLink": "Calcola Peso Ideale",
+      "differenceTitle": "Calcolatore Differenza di Altezza",
+      "differenceText": "Calcola la differenza esatta tra due stature in centimetri, pollici e percentuale.",
+      "differenceLink": "Calcola Differenza"
+    },
+    "heightCharts": {
+      "intro": "Consulta i dati ufficiali di crescita CDC per età per ragazzi e ragazze dai 2 ai 20 anni:",
+      "boysToggle": "Ragazzi",
+      "girlsToggle": "Ragazze",
+      "boysLabel": "Ragazzi (CDC)",
+      "girlsLabel": "Ragazze (CDC)",
+      "chartToggleLine1": "Vista Grafico",
+      "chartToggleLine2": "Visualizza curve percentili",
+      "tableToggleLine1": "Vista Tabella",
+      "tableToggleLine2": "Visualizza dati tabellari",
+      "chartTitle": "Grafico dei percentili di altezza per {label} (2–18 anni)",
+      "axisAge": "Età (anni)",
+      "axisHeight": "Altezza (cm)",
+      "tooltipAge": "Età: {age} anni",
+      "percentile3": "3º Percentile",
+      "percentile50": "50º Percentile (Mediana)",
+      "percentile97": "97º Percentile",
+      "sourceNote": "Fonte: Tabelle di Crescita Cliniche CDC USA per ragazzi e ragazze dai 2 ai 20 anni.",
+      "tableTitle": "Tabella Altezza Media per Età (Percentili CDC)",
+      "tableHeaderAge": "Età",
+      "tableHeaderBoysAvgCm": "Ragazzi (cm)",
+      "tableHeaderBoysAvgFt": "Ragazzi (ft/in)",
+      "tableHeaderBoysMedian": "Mediana Maschile",
+      "tableHeaderGirlsAvgCm": "Ragazze (cm)",
+      "tableHeaderGirlsAvgFt": "Ragazze (ft/in)",
+      "tableHeaderGirlsMedian": "Mediana Femminile",
+      "ageYrs": "{age} anni",
+      "insightBoysStopLabel": "Termine Accrescimento Ragazzi:",
+      "insightBoysStopValue": "Tra i 17 e i 19 anni",
+      "insightGirlsStopLabel": "Termine Accrescimento Ragazze:",
+      "insightGirlsStopValue": "Tra i 15 e i 16 anni",
+      "insightMaleHeightLabel": "Mediana Maschile Adulta (CDC):",
+      "insightMaleHeightValue": "176,5 cm (5'9,5\")",
+      "insightFemaleHeightLabel": "Mediana Femminile Adulta (CDC):",
+      "insightFemaleHeightValue": "163,2 cm (5'4,3\")"
+    },
+    "references": {
+      "title": "Fonti e Riferimenti Scientifici",
+      "ref1": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age: the Khamis-Roche method. Pediatrics. 1994;94(4 Pt 1):504-507.",
+      "ref2": "Tanner JM, Goldstein H, Whitehouse RH. Standards for children's height at ages 2-9 years allowing for height of parents. Arch Dis Child. 1970;45(244):755-762.",
+      "ref3": "Kuczmarski RJ, Ogden CL, Guo SS, et al. 2000 CDC Growth Charts for the United States: methods and development. Vital Health Stat 11. 2002;(246):1-190.",
+      "ref4": "World Health Organization. WHO Child Growth Standards: Length/height-for-age, weight-for-age, weight-for-length, weight-for-height and body mass index-for-age. Geneva: World Health Organization; 2006.",
+      "ref5": "Bayley N, Pinneau SR. Tables for predicting adult height from skeletal age: revised for use with the Greulich-Pyle hand standards. J Pediatr. 1952;40(4):423-441.",
+      "ref6": "Roche AF, Wainer H, Thissen D. The RWT method for the prediction of adult stature. Pediatrics. 1975;56(6):1026-1033.",
+      "ref7": "Greulich WW, Pyle SI. Radiographic Atlas of Skeletal Development of the Hand and Wrist. 2nd ed. Stanford, CA: Stanford University Press; 1959.",
+      "ref8": "Tanner JM, Whitehouse RH, Cameron N, Marshall WA, Healy MJR, Goldstein H. Assessment of Skeletal Maturity and Prediction of Adult Height (TW2 Method). 2nd ed. London: Academic Press; 1983.",
+      "ref9": "Wood DL, Hermida R, et al. Circadian rhythm of growth hormone secretion in children. J Clin Endocrinol Metab. 1999;84(1):123-128.",
+      "ref10": "Silventoinen K. Determinants of variation in adult body height. J Biosoc Sci. 2003;35(2):263-285.",
+      "ref11": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife. 2016;5:e13410."
+    }
+  },
+  "heightWeightPercentile": {
+    "intro": {
+      "title": "Calcolatore di Percentili di Altezza e Peso",
+      "description": "Confronta la tua altezza e il tuo peso con i dati di riferimento dell'<who>Organizzazione Mondiale della Sanità (OMS)</who> e dei <cdc>Centers for Disease Control and Prevention (CDC)</cdc>. Questo strumento copre neonati, bambini, adolescenti e adulti. Inserisci età, sesso, altezza e peso per calcolare all'istante il tuo percentile di altezza e peso.",
+      "disclaimer": "Esclusivamente a scopo informativo. Per valutazioni cliniche dello sviluppo e della crescita, consulta sempre un pediatra o un medico qualificato."
+    },
+    "toolSection": {
+      "title": "Calcolatore di Percentili di Altezza e Peso"
+    },
+    "meaning": {
+      "title": "Che Cosa Significa il Tuo Percentile?",
+      "p1Before": "Un percentile di crescita indica come le misurazioni di un individuo si collocano rispetto a un campione rappresentativo della stessa età e sesso. Se un bambino si trova al ",
+      "p1Strong": "75º percentile di altezza",
+      "p1After": ", significa che è più alto del 75% dei coetanei dello stesso sesso, mentre il 25% risulta più alto.",
+      "p2": "I percentili non sono voti scolastici. Essere al 50º percentile significa semplicemente trovarsi esattamente sulla mediana della popolazione. Anche trovarsi al 25º o al 75º percentile è del tutto normale e sano.",
+      "referencePointsTitle": "Punti di Riferimento Comuni:",
+      "p50Label": "50º Percentile (Mediana):",
+      "p50Value": "Esattamente metà della popolazione di pari età e sesso ha statura inferiore e metà statura superiore.",
+      "p90Label": "90º Percentile:",
+      "p90Value": "Solo il 10% della popolazione di riferimento ha una statura più alta.",
+      "p3": "I pediatri verificano soprattutto che il bambino segua un canale di crescita coerente e regolare nel tempo, anziché focalizzarsi su un singolo valore isolato."
+    },
+    "howItWorks": {
+      "title": "Come Funziona il Calcolo dei Percentili",
+      "descriptionBefore": "Il nostro calcolatore incrocia i dati immessi con i dataset ufficiali del ",
+      "cdcLinkText": "CDC statunitense",
+      "descriptionMiddle": " e dell'",
+      "whoLinkText": "Organizzazione Mondiale della Sanità (OMS)",
+      "descriptionAfter": ", convertendo le misurazioni in Z-score attraverso il metodo matematico LMS.",
+      "step1Label": "Passaggio 1: Selezione della Tabella Appropriata",
+      "step1Text": "Età e sesso determinano l'uso degli standard OMS (da 0 a 2 anni) o delle curve CDC (da 2 a 20 anni e adulti).",
+      "step2Label": "Passaggio 2: Recupero dei Parametri LMS",
+      "step2Text": "Vengono estratti i valori di asimmetria (L), mediana (M) e coefficiente di variazione (S) per il mese di età specifico.",
+      "step3Label": "Passaggio 3: Calcolo dello Z-score",
+      "step3Text": "La formula normalizzata converte la misura inserita nel numero di deviazioni standard rispetto alla mediana.",
+      "step4Label": "Passaggio 4: Conversione in Percentile",
+      "step4Text": "Lo Z-score viene integrato nella funzione di distribuzione cumulativa normale per determinare il percentile finale tra 1 e 99.",
+      "infantsNoteBefore": "Nota per i lattanti: Per i bambini sotto i 2 anni si misura la lunghezza corporea da sdraiati (statura recumbente), come previsto dagli ",
+      "infantsNoteLinkText": "Standard di Crescita Infantile dell'OMS",
+      "infantsNoteAfter": "."
+    },
+    "byAgeGroup": {
+      "title": "Percentili per Fascia di Età",
+      "description": "I modelli di crescita variano a seconda delle diverse fasi dello sviluppo umano:",
+      "ages0to2Label": "Neonati e Lattanti (0–2 anni):",
+      "ages0to2Value": "Standard OMS basati su condizioni ottimali di allattamento al seno e ambiente favorevole.",
+      "ages2to20Label": "Bambini e Ragazzi (2–20 anni):",
+      "ages2to20Value": "Curve di crescita CDC per monitorare l'accrescimento lineare e lo scatto puberale.",
+      "adultsLabel": "Adulti (20+ anni):",
+      "adultsValue": "Dati dell'indagine NHANES del CDC, che offrono percentili stabili per l'altezza e il peso maturi.",
+      "boysGirlsLabel": "Maschi vs Femmine:",
+      "boysGirlsValue": "Curve distinte per ciascun sesso biologico fin dalla nascita a causa delle fisiologiche differenze ormonali.",
+      "infants": {
+        "title": "Neonati e Bambini Piccoli (0 a 24 mesi)",
+        "p1Before": "Nei primi due anni di vita la velocità di accrescimento è superiore a qualsiasi altro periodo post-natale. Le tabelle dell'",
+        "p1Strong": "OMS",
+        "p1After": " rappresentano lo standard internazionale seguito dai pediatri di tutto il mondo.",
+        "p2": "Il monitoraggio regolare permette di intercettare precocemente difficoltà nutrizionali, intolleranze o deficit di assorbimento."
+      },
+      "toddlers": {
+        "title": "Bambini in Età Prescolare (2 a 5 anni)",
+        "p1Before": "Dai 2 anni in poi la misurazione viene effettuata in posizione eretta. Si utilizzano le curve del ",
+        "p1Strong": "CDC e dell'OMS",
+        "p1After": " per seguire la progressione annuale costante.",
+        "p2": "In questa fase i bambini iniziano a stabilizzarsi stabilmente sul loro canale percentile genetico."
+      },
+      "boysGirls": {
+        "title": "Bambini in Età Scolare e Adolescenti (5 a 20 anni)",
+        "p1": "Durante l'adolescenza lo scatto di crescita puberale crea sfasamenti temporali: le ragazze accelerano prima (in media a 11–12 anni), mentre i ragazzi raggiungono il picco circa due anni più tardi (a 13–14 anni).",
+        "p2": "Le tabelle CDC forniscono percorsi separati per cogliere fedelmente queste finestre di maturazione differenziate."
+      },
+      "adults": {
+        "title": "Adulti (20 anni o più)",
+        "p1Before": "Con la fusione completa delle placche ossee epifisarie, la statura rimane costante fino alla mezza età. Il nostro strumento impiega i dati epidemiologici del ",
+        "p1Strong": "NHANES",
+        "p1After": " per posizionare la tua statura nella popolazione adulta contemporanea.",
+        "p2": "Negli adulti, il percentile di peso deve essere sempre interpretato in correlazione con la composizione corporea e l'IMC."
+      }
+    },
+    "usCalculator": {
+      "title": "Dati di Riferimento: CDC vs OMS",
+      "p1Before": "L'",
+      "p1Strong": "American Academy of Pediatrics (AAP)",
+      "p1After": " e il CDC raccomandano l'impiego degli standard OMS per i primi 2 anni di vita e delle tabelle CDC dai 2 ai 20 anni.",
+      "p2Before": "La motivazione principale è che le tabelle OMS descrivono la ",
+      "p2Strong": "crescita ottimale in condizioni ideali",
+      "p2After": " (compreso l'allattamento al seno materno), mentre le curve CDC documentano la crescita effettivamente osservata nella popolazione storica nordamericana."
+    },
+    "interpret": {
+      "title": "Come Interpretare i Risultati dei Percentili",
+      "description": "Ecco il significato clinico delle diverse fasce percentili di statura e peso:",
+      "tableHeaderRange": "Fascia di Percentile",
+      "tableHeaderInterpretation": "Interpretazione Generale",
+      "tableHeaderSuggests": "Valutazione Pediatrica Tipica",
+      "row1Range": "< 3º percentile",
+      "row1Interpretation": "Significativamente sotto la media",
+      "row1Suggests": "Si raccomanda una valutazione medica per verificare eventuali cause nutrizionali o endocrine.",
+      "row2Range": "3º – 15º percentile",
+      "row2Interpretation": "Sotto la media",
+      "row2Suggests": "Spesso normale se i genitori hanno statura contenuta; da monitorare nel tempo.",
+      "row3Range": "15º – 85º percentile",
+      "row3Interpretation": "Fascia media / tipica",
+      "row3Suggests": "Crescita regolare e pienamente conforme alla popolazione di riferimento.",
+      "row4Range": "85º – 97º percentile",
+      "row4Interpretation": "Sopra la media",
+      "row4Suggests": "Frequente in figli di genitori alti; sviluppo perfettamente armonico.",
+      "row5Range": "> 97º percentile",
+      "row5Interpretation": "Significativamente sopra la media",
+      "row5Suggests": "Comune in famiglie molto alte; il medico controllerà l'armonia complessiva dello sviluppo.",
+      "note": "Attenzione: La costanza del canale di crescita nel tempo è molto più significativa del valore isolato rilevato in una singola visita."
+    },
+    "example": {
+      "title": "Esempio Pratico di Calcolo del Percentile",
+      "description": "Consideriamo il caso di un bambino di 8 anni alto 132 cm:",
+      "inputParamsTitle": "Parametri di Ingresso:",
+      "ageLabel": "Età:",
+      "ageValue": "8 anni e 0 mesi",
+      "sexLabel": "Sesso:",
+      "sexValue": "Maschile",
+      "heightLabel": "Altezza Misurata:",
+      "heightValue": "132,0 cm",
+      "calculatedDataTitle": "Analisi Statistica:",
+      "cdcMedianLabel": "Mediana CDC (50º Percentile):",
+      "cdcMedianValue": "128,0 cm",
+      "deviationLabel": "Differenza dalla Mediana:",
+      "deviationValue": "+4,0 cm",
+      "resultLabel": "Percentile Calcolato:",
+      "resultValue": "75º Percentile",
+      "scaleMin": "3º",
+      "scaleQ1": "25º",
+      "scaleMid": "50º",
+      "scaleQ3": "75º",
+      "scaleMax": "97º",
+      "resultHeadline": "Più alto del 75% dei bambini di 8 anni",
+      "resultSubtext": "Solo il 25% dei bambini della stessa età presenta una statura superiore secondo i dati CDC.",
+      "closing": "Se il bambino ha mantenuto il 70º–75º percentile anche nei controlli precedenti, il suo percorso di crescita è perfettamente costante."
+    },
+    "whyUsed": {
+      "title": "Perché i Pediatri Usano le Curve di Crescita?",
+      "p1": "I grafici percentili costituiscono uno dei pilastri fondamentali della pediatria preventiva a livello globale.",
+      "p2Intro": "Consentono ai medici di:",
+      "item1": "Accertare la continuità della crescita lineare senza rallentamenti o arresti improvvisi.",
+      "item2": "Individuare precocemente alterazioni ormonali, metaboliche o celiachia.",
+      "item3": "Fornire rassicurazioni oggettive e scientifiche ai genitori.",
+      "p3Before": "Una brusca deviazione che attraversa due o più canali di percentile (ad esempio passando dal 60º al 20º percentile) merita un'attenta valutazione clinica da parte del ",
+      "p3LinkText": "pediatra curante",
+      "p3After": "."
+    },
+    "cta": {
+      "title": "Confronta le Altezze con il Nostro Strumento Visivo",
+      "descriptionBefore": "Ora che conosci il tuo percentile, scopri come la tua altezza si confronta ",
+      "descriptionStrong": "fianco a fianco in tempo reale",
+      "descriptionAfter": " con amici, partner, atleti o personaggi famosi nel nostro comparatore principale.",
+      "feature1": "Visualizzazione in scala proporzionale precisa",
+      "feature2": "Confronta i bambini con le stature adulte dei genitori",
+      "feature3": "Passa subito dal sistema metrico a quello imperiale",
+      "feature4": "100% gratuito e senza registrazione",
+      "buttonText": "Apri lo Strumento di Confronto Altezza"
+    },
+    "references": {
+      "title": "Fonti e Riferimenti Scientifici",
+      "ref1": "Kuczmarski RJ, Ogden CL, Guo SS et al. 2000 CDC Growth Charts for the United States: Methods and Development. Vital and Health Statistics, 2002.",
+      "ref2": "World Health Organization. WHO Child Growth Standards based on length/height, weight and age. Acta Paediatrica, 2006.",
+      "ref3": "National Center for Health Statistics. National Health and Nutrition Examination Survey (NHANES) Anthropometric Data. Centers for Disease Control and Prevention."
+    },
+    "faq": [
+      {
+        "q": "Cosa significa essere al 50º percentile di altezza?",
+        "a": "Significa trovarsi esattamente sulla mediana: il 50% delle persone della stessa età e sesso è più basso e il 50% è più alto."
+      },
+      {
+        "q": "Un percentile di peso elevato indica obesità infantile?",
+        "a": "Non necessariamente. Un bambino alto avrà naturalmente un peso proporzionato alla sua statura. I medici valutano il percentile di IMC per età per diagnosticare sovrappeso o obesità con accuratezza."
+      },
+      {
+        "q": "Il percentile infantile predice con certezza l'altezza da adulti?",
+        "a": "Esiste una forte correlazione statistica dopo i 2–3 anni, ma la pubertà e la genetica familiare possono influenzare il risultato definitivo. Il metodo Khamis-Roche offre una previsione più precisa."
+      },
+      {
+        "q": "Qual è la differenza sostanziale tra le tabelle OMS e CDC?",
+        "a": "L'OMS ha monitorato bambini sani allattati al seno in 6 paesi con condizioni ottimali (come dovrebbero crescere). Il CDC ha registrato campioni rappresentativi della popolazione statunitense storica (come sono effettivamente cresciuti)."
+      },
+      {
+        "q": "Quando è opportuno consultare il pediatra per il percentile?",
+        "a": "Consulta il medico se il bambino attraversa improvvisamente due canali percentili o se la statura si colloca in modo persistente al di sotto del 3º o al di sopra del 97º percentile."
+      }
+    ],
+    "toc": [
+      {
+        "id": "height-weight-percentile-calculator",
+        "label": "Calcolatore Percentili Altezza e Peso"
+      },
+      {
+        "id": "what-does-your-percentile-mean",
+        "label": "Cosa Significa il Tuo Percentile?"
+      },
+      {
+        "id": "how-the-percentile-calculator-works",
+        "label": "Come Funziona il Calcolo dei Percentili"
+      },
+      {
+        "id": "percentiles-by-age-group",
+        "label": "Percentili per Fascia di Età"
+      },
+      {
+        "id": "us-growth-calculator-cdc-vs-who",
+        "label": "CDC vs OMS: Standard di Crescita"
+      },
+      {
+        "id": "how-to-interpret-percentile-results",
+        "label": "Come Interpretare i Risultati"
+      },
+      {
+        "id": "percentile-calculation-example",
+        "label": "Esempio Pratico di Calcolo"
+      },
+      {
+        "id": "why-pediatricians-use-growth-charts",
+        "label": "Perché i Pediatri Usano le Tabelle?"
+      },
+      {
+        "id": "interactive-bell-curve",
+        "label": "Curva a Campana Interattiva"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Domande Frequenti"
+      },
+      {
+        "id": "scientific-references",
+        "label": "Fonti e Riferimenti Scientifici"
+      }
+    ],
+    "tool": {
+      "veryTall": "Molto Alto(a)",
+      "aboveAverage": "Sopra la Media",
+      "average": "Nella Media",
+      "belowAverage": "Sotto la Media",
+      "significantlyBelowAverage": "Significativamente Sotto la Media",
+      "heightPercentileResult": "Risultato Percentile di Altezza",
+      "shareTextLine1": "Il mio risultato del percentile di altezza su HeightComparison:",
+      "shareTextLine2": "{height} cm | Età {age} | {gender} | {country}",
+      "shareTextLine3": "Risultato: {percentile}º percentile — {label}",
+      "shareTextLine4": "Calcola il tuo percentile su:",
+      "heightField": "Altezza",
+      "ageField": "Età",
+      "genderField": "Sesso Biologico",
+      "countryField": "Dataset di Riferimento",
+      "tallerThanText": "Più alto del {percentile}% di {gender} di età {age} in {country}. Basato sui dati OMS e CDC.",
+      "copyResult": "Copia Risultato",
+      "copiedConfirmation": "Copiato negli appunti!",
+      "closeButton": "Chiudi",
+      "footerNote": "Dati di riferimento basati sulle indagini CDC/NCHS e OMS.",
+      "percentileOrdinalSuffix": "º",
+      "unitCm": "Metrico (cm)",
+      "unitFtIn": "Imperiale (piedi / pol)",
+      "heightLabel": "Altezza",
+      "heightPlaceholder": "cm",
+      "unitCmShort": "cm",
+      "feetPlaceholder": "piedi",
+      "feetAriaLabel": "Piedi",
+      "unitFtShort": "ft",
+      "inchesPlaceholder": "pol",
+      "inchesAriaLabel": "Pollici",
+      "unitInShort": "in",
+      "ageYearsLabel": "Età (anni)",
+      "agePlaceholder": "Età",
+      "genderLabel": "Sesso Biologico",
+      "genderMale": "Maschile",
+      "genderFemale": "Femminile",
+      "countryLabel": "Dataset di Popolazione",
+      "errorInvalidHeight": "Inserisci un'altezza valida compresa tra 30 cm e 250 cm.",
+      "errorInvalidAge": "Inserisci un'età valida compresa tra 0 e 100 anni.",
+      "enterYourDetails": "Inserisci i tuoi dati per calcolare il tuo percentile di altezza",
+      "calculatingButton": "Calcolo in corso...",
+      "calculateButton": "Calcola Percentile",
+      "yourPercentile": "Il Tuo Percentile di Statura",
+      "heightResultLabel": "Percentile Stimato",
+      "positionOnCurve": "Posizione sulla Curva di Popolazione",
+      "percentileLabel": "Percentile",
+      "interpretationText": "Sei più alto del {percentile}% dei {gender} di età {age} in {country}. Questo ti colloca nella fascia {label}.",
+      "scaleShort": "Basso",
+      "scaleAvg": "Medio",
+      "scaleTall": "Alto",
+      "shareButton": "Condividi Risultato",
+      "disclaimerLine1": "Questo calcolo si basa su dati statistici aggregati di indagini sanitarie.",
+      "disclaimerLine2": "Non sostituisce in alcun modo una visita medica o pediatrica specialistica."
+    },
+    "bellCurveIllustration": {
+      "interactiveIllustration": "Illustrazione Interattiva della Curva Normale",
+      "heading": "Curva di Distribuzione dell'Altezza della Popolazione",
+      "instructionBefore": "Passa il cursore sulla curva per esplorare i percentili oppure clicca sul ",
+      "purpleDot": "punto di esempio",
+      "instructionAfter": "mostra un punteggio campione al {samplePercentile}º percentile.",
+      "populationFrequency": "Frequenza Relativa nella Popolazione",
+      "xAxisLabel": "Altezza (Deviazioni Standard dalla Media)",
+      "sampleLabel": "Campione: {samplePercentile}º percentile",
+      "sampleSubLabel": "Più alto del {samplePercentile}% dei coetanei",
+      "hoverPrompt": "Passa il mouse sulla curva per visualizzare i dettagli",
+      "ordinalSuffix": "º",
+      "percentileSuffix": "Percentile",
+      "hoveredDescription": "{label}. Una persona qui è più alta del <pct>{percentile}%</pct> delle persone della stessa età e sesso.",
+      "hideSampleDot": "Nascondi Punto di Esempio",
+      "showSampleDot": "Mostra Punto di Esempio",
+      "footerNote": "La curva a campana illustra la distribuzione normale (gaussiana) dei dati antropometrici CDC.",
+      "label5": "5º Percentile",
+      "label25": "25º Percentile",
+      "label50": "50º (Mediana)",
+      "label75": "75º Percentile",
+      "label95": "95º Percentile"
+    },
+    "whoVsCdc": {
+      "yearsAbbrev": "anni",
+      "referenceDataGuide": "Guida ai Dati di Riferimento",
+      "heading": "Cronologia: Standard di Crescita OMS vs CDC",
+      "ageRangeSource": "Fasce di Età e Fonti Raccomandate",
+      "switchPoint": "Punto di Transizione ai 2 Anni",
+      "birthLabel": "Nascita",
+      "age5": "5 Anni",
+      "age10": "10 Anni",
+      "age15": "15 Anni",
+      "age20": "20 Anni",
+      "whoTimelineLabel": "Raccomandazione OMS (0–2 anni)",
+      "whoTimelineNote": "Standard di crescita biologica ottimale in condizioni favorevoli.",
+      "whoAges": "0–2 Anni",
+      "cdcTimelineLabel": "Raccomandazione CDC (2–20 anni)",
+      "cdcTimelineNote": "Curve epidemiologiche di riferimento per età prescolare e scolare.",
+      "cdcAges": "2–20 Anni",
+      "growthCurvesSideBySide": "Confronto Affiancato delle Curve di Crescita",
+      "whoChartTitle": "OMS: Bambini (0 a 24 mesi)",
+      "whoChartSubtitle": "Lunghezza recumbente per età (cm)",
+      "cdcChartTitle": "CDC: Ragazzi (2 a 20 anni)",
+      "cdcChartSubtitle": "Altezza in piedi per età (cm)",
+      "lengthAxisLabel": "Lunghezza (cm)",
+      "heightAxisLabel": "Altezza (cm)",
+      "ageAxisLabel": "Età",
+      "legendMedian": "50º Percentile (Mediana)",
+      "legend25_75": "25º – 75º Percentile (Fascia Media)",
+      "legend5_95": "5º – 95º Percentile (Estensione Tipica)",
+      "bottomNoteStrong": "Nota di Buona Pratica Pediatrica: ",
+      "bottomNoteText": "Sia l'OMS che il CDC raccomandano di passare dalle tabelle OMS a quelle CDC esattamente al compimento dei 2 anni, in coincidenza con il passaggio dalla misurazione da sdraiati a quella in piedi."
+    },
+    "exampleVisual": {
+      "eyebrow": "Caso Studio Illustrato",
+      "heading": "Visualizzazione del Percentile di un Bambino di 8 Anni",
+      "percentileScaleWhere": "Scala dei percentili — Dove si posiziona il {percentile}º percentile",
+      "zoneLabelBelow10": "Molto Basso (<10º)",
+      "zoneLabel10to25": "Sotto la Media",
+      "zoneLabel25to75": "Fascia Media (25º–75º)",
+      "zoneLabel75to90": "Sopra la Media",
+      "zoneLabel90to100": "Molto Alto (>90º)",
+      "ordinalSuffix": "º",
+      "averageRangeLabel": "Intervallo di Popolazione Tipico",
+      "childComparisonText": "Questo bambino è più alto di <strong>{count} su 100</strong> ragazzi di {age} anni. Si posiziona comodamente nella fascia di crescita normale.",
+      "positionOnCdcChart": "Posizione sulla Curva di Crescita CDC:",
+      "cdcChartTitle": "Altezza per Età: Maschi da 2 a 20 Anni",
+      "heightAxisLabel": "Altezza (cm)",
+      "ageAxisLabel": "Età (anni)",
+      "sampleAgeHeight": "8 anni, 132 cm",
+      "samplePercentileLabel": "75º Percentile",
+      "legend5th": "5º Percentile",
+      "legend25th": "25º Percentile",
+      "legend50th": "50º Percentile",
+      "legendMedian": "Mediana",
+      "legend75th": "75º Percentile",
+      "legend95th": "95º Percentile",
+      "legendSample": "Bambino in Esempio",
+      "footerNote": "Dati di riferimento: Curve Cliniche di Crescita CDC 2000 per gli Stati Uniti."
+    }
+  },
+  "idealBodyWeight": {
+    "intro": {
+      "title": "Calcolatore del Peso Corporeo Ideale",
+      "description": "Il <ibw>Peso Corporeo Ideale (IBW)</ibw> è una stima dell'intervallo di peso associato a una salute ottimale per una specifica statura e sesso. Questo calcolatore del peso ideale applica tre formule cliniche riconosciute: i metodi di <devine>Devine</devine>, <robinson>Robinson</robinson> e <hamwi>Hamwi</hamwi> per fornire una gamma di riferimento anziché un unico valore rigido. Lo strumento supporta uomini, donne e pazienti pediatrici. Inserisci la tua altezza e il tuo sesso per calcolare subito il tuo peso corporeo ideale.",
+      "disclaimer": "(L'IBW è un riferimento clinico e non un obiettivo estetico. Il peso corporeo è solo uno dei molteplici indicatori di salute. Consulta sempre un professionista sanitario qualificato per qualsiasi valutazione medica.)"
+    },
+    "howToCalculate": {
+      "title": "Come Calcolare il Peso Corporeo Ideale",
+      "p1": "Il calcolo del peso corporeo ideale richiede una formula clinica validata o un intervallo di IMC sano (18,5–24,9 kg/m²). Tutte le formule classiche di IBW impiegano la medesima struttura: un peso base assegnato a un'altezza di 5 piedi (152,4 cm), più un incremento fisso di peso per ogni pollice supplementare.",
+      "p2": "La tabella seguente illustra il calcolo passo dopo passo con la formula di Devine per un uomo alto 175 cm (5 piedi e 9 pollici):",
+      "stepsTitle": "Passaggi del Calcolo (Formula di Devine)",
+      "step1": "1. Identifica l'altezza base: 5 piedi (152,4 cm).",
+      "step2": "2. Calcola i pollici oltre i 5 piedi: 5 piedi e 9 pollici = 9 pollici sopra la base.",
+      "step3": "3. Moltiplica l'eccedenza per il fattore di incremento: 9 × 2,3 kg = 20,7 kg.",
+      "step4": "4. Somma al peso base maschile: 50 kg + 20,7 kg = 70,7 kg di IBW.",
+      "p3": "Per una donna della stessa statura, la formula di Devine parte da una base di 45,5 kg: 45,5 + (2,3 × 9) = 66,2 kg. Le formule di Robinson e Hamwi seguono la stessa logica con coefficienti leggermente differenti."
+    },
+    "formulas": {
+      "title": "Formule di Peso Corporeo Ideale: Devine, Robinson e Hamwi",
+      "description": "Esistono diverse formule cliniche per stimare il peso ideale. Nessuna formula è universalmente superiore; ciascuna riflette la coorte di pazienti e le finalità dello studio originale. Il nostro calcolatore le elabora contemporaneamente per offrire un quadro completo:",
+      "tableSexHeader": "Sesso",
+      "tableFormulaHeader": "Formula",
+      "maleLabel": "Maschile",
+      "femaleLabel": "Femminile",
+      "heightRowLabel": "Esempio di Altezza: 175 cm (5 piedi e 9 pollici)",
+      "calculationRowLabel": "Calcolo",
+      "devine": {
+        "title": "Formula di Devine",
+        "p1": "Ben J. Devine pubblicò la sua formula nel 1974. È divenuta la formula di IBW più utilizzata nella medicina clinica, specialmente per la posologia farmacologica. L'incremento per pollice è di 2,3 kg per entrambi i sessi, variando il peso base.",
+        "maleFormula": "50 kg + 2,3 kg per pollice sopra i 5 piedi",
+        "femaleFormula": "45,5 kg + 2,3 kg per pollice sopra i 5 piedi",
+        "exampleHeightValue": "175 cm = 5 piedi e 9 pollici",
+        "inchesAboveLabel": "Pollici sopra i 5 piedi",
+        "inchesAboveValue": "9",
+        "calculationValue": "50 + (2,3 × 9)",
+        "resultLabel": "IBW Devine",
+        "resultValue": "70,7 kg"
+      },
+      "robinson": {
+        "title": "Formula di Robinson",
+        "p1": "Nel 1983, Robinson e collaboratori revisionarono i dati di Devine per allinearli meglio alle misurazioni antropometriche contemporanee. Prevede incrementi per pollice inferiori per le donne (1,7 kg) e gli uomini (1,9 kg).",
+        "maleFormula": "52 kg + 1,9 kg per pollice sopra i 5 piedi",
+        "femaleFormula": "49 kg + 1,7 kg per pollice sopra i 5 piedi",
+        "exampleHeightValue": "175 cm = 5 piedi e 9 pollici",
+        "calculationValue": "52 + (1,9 × 9)",
+        "resultLabel": "IBW Robinson",
+        "resultValue": "69,1 kg"
+      },
+      "hamwi": {
+        "title": "Formula di Hamwi",
+        "p1": "G. J. Hamwi introdusse questa regola pratica nel 1964 per una valutazione nutrizionale rapida nel diabete. Applica un incremento maggiore per gli uomini (2,7 kg) e un peso base femminile di 45,5 kg.",
+        "maleFormula": "48 kg + 2,7 kg per pollice sopra i 5 piedi",
+        "femaleFormula": "45,5 kg + 2,2 kg per pollice sopra i 5 piedi",
+        "exampleHeightValue": "175 cm = 5 piedi e 9 pollici",
+        "calculationValue": "48 + (2,7 × 9)",
+        "resultLabel": "IBW Hamwi",
+        "resultValue": "72,3 kg"
+      }
+    },
+    "women": {
+      "title": "Peso Corporeo Ideale per le Donne",
+      "p1": "Il calcolo del peso ideale femminile tiene conto di una densità minerale ossea inferiore, di una percentuale fisiologica di grasso essenziale e di una diversa distribuzione della massa magra. I pesi base sono inferiori a quelli maschili.",
+      "p2": "Ad esempio, per una donna alta 165 cm (5 piedi e 5 pollici):",
+      "exampleTitle": "Esempio: Donna di 165 cm (5 piedi e 5 pollici)",
+      "exampleDevine": "Devine: 45,5 + (2,3 × 5) = 57,0 kg",
+      "exampleRobinson": "Robinson: 49 + (1,7 × 5) = 57,5 kg",
+      "exampleHamwi": "Hamwi: 45,5 + (2,2 × 5) = 56,5 kg",
+      "exampleRangeSummary": "Gamma di IBW: 56,5 kg – 57,5 kg",
+      "p3": "La stretta concordanza tra i tre metodi per stature medie evidenzia la solidità dei modelli previsionali."
+    },
+    "men": {
+      "title": "Peso Corporeo Ideale per gli Uomini",
+      "p1": "Negli uomini, le stime di IBW incorporano una maggiore massa muscolare e densità scheletrica, con pesi base compresi tra 48 e 52 kg e incrementi compresi tra 1,9 e 2,7 kg per pollice.",
+      "exampleTitle": "Esempio: Uomo di 180 cm (5 piedi e 11 pollici)",
+      "exampleDevine": "Devine: 50 + (2,3 × 11) = 75,3 kg",
+      "exampleRobinson": "Robinson: 52 + (1,9 × 11) = 72,9 kg",
+      "exampleHamwi": "Hamwi: 48 + (2,7 × 11) = 77,7 kg",
+      "exampleRangeSummary": "Gamma di IBW: 72,9 kg – 77,7 kg",
+      "p2": "La differenza di 4,8 kg tra Robinson e Hamwi sottolinea l'importanza di considerare un intervallo anziché un unico numero."
+    },
+    "pediatrics": {
+      "title": "Peso Corporeo Ideale in Pediatria",
+      "p1": "Le formule classiche per adulti non sono applicabili a bambini e adolescenti in fase di accrescimento. In pediatria, il peso ideale viene valutato tramite curve percentili di crescita per età e sesso.",
+      "p2Before": "La valutazione pediatrica si fonda sulle tabelle ufficiali del ",
+      "cdcLinkText": "CDC (Centers for Disease Control and Prevention)",
+      "p2Middle": " e sugli standard dell'",
+      "whoLinkText": "OMS (Organizzazione Mondiale della Sanità)",
+      "p2After": ", confrontando altezza per età, peso per età e indice di massa corporea per età.",
+      "p3": "Per bambini e ragazzi tra 2 e 19 anni, un peso sano corrisponde a un percentile compreso tra il 5º e l'85º percentile."
+    },
+    "adjusted": {
+      "title": "Calcolatore del Peso Corporeo Aggiustato (ABW)",
+      "p1": "Il calcolatore del peso corporeo corretto si applica in contesti clinici per pazienti il cui peso effettivo supera di oltre il 30% il peso corporeo ideale. A quel punto, l'uso del solo IBW sottovaluta l'attività metabolica, poiché parte del tessuto adiposo in eccesso rimane metabolicamente attivo. Il Peso Corporeo Corretto tiene conto di questo.",
+      "formulaTitle": "Formula del Peso Corporeo Aggiustato",
+      "formulaText": "ABW = IBW + 0,4 × (Peso Reale - IBW)",
+      "exampleTitle": "Esempio di Calcolo ABW",
+      "exampleResult": "Per un paziente con IBW di 70 kg e peso reale di 100 kg:",
+      "exampleResultValue": "ABW = 70 + 0,4 × (100 - 70) = 70 + 12 = 82,0 kg",
+      "p2": "Il fattore 0,4 corregge il volume di distribuzione farmacocinetica nei tessuti adiposi."
+    },
+    "percentIbw": {
+      "title": "Percentuale del Peso Corporeo Ideale (% IBW)",
+      "p1": "La percentuale di IBW (% IBW) valuta il peso reale rispetto al valore teorico di riferimento ideale ed è ampiamente impiegata nelle valutazioni dello stato nutrizionale:",
+      "formulaText": "% IBW = (Peso Reale / IBW) × 100",
+      "tableHeaderPercent": "% di IBW",
+      "tableHeaderStatus": "Classificazione Nutrizionale",
+      "row1Percent": "< 70%",
+      "row1Status": "Malnutrizione grave",
+      "row2Percent": "70% – 79%",
+      "row2Status": "Malnutrizione moderata",
+      "row3Percent": "80% – 89%",
+      "row3Status": "Malnutrizione lieve",
+      "row4Percent": "90% – 109%",
+      "row4Status": "Peso normale / ideale",
+      "row5Percent": "≥ 120%",
+      "row5Status": "Sovrappeso / obesità",
+      "p2": "Questo indicatore fornisce una panoramica rapida dell'adeguatezza nutrizionale in ambito clinico e ospedaliero."
+    },
+    "healthyRange": {
+      "title": "Intervallo di Peso Corporeo Sano",
+      "p1": "Oltre alle formule di Devine, Robinson e Hamwi, l'Organizzazione Mondiale della Sanità definisce una gamma di peso sano basata sull'Indice di Massa Corporea (IMC tra 18,5 e 24,9 kg/m²). Presentiamo entrambi gli approcci per una visione completa.",
+      "illustrativeTitle": "Classificazione IMC (OMS)",
+      "belowLabel": "Sottopeso:",
+      "belowValue": "IMC < 18,5 kg/m²",
+      "healthyLabel": "Normopeso:",
+      "healthyValue": "IMC 18,5 – 24,9 kg/m²",
+      "aboveLabel": "Sovrappeso:",
+      "aboveValue": "IMC 25,0 – 29,9 kg/m²",
+      "obesityLabel": "Obesità:",
+      "obesityValue": "IMC ≥ 30,0 kg/m²"
+    },
+    "vsBmi": {
+      "title": "IBW vs IMC (Indice di Massa Corporea)",
+      "p1": "Sia l'IBW che l'IMC sono parametri antropometrici diffusi, ma presentano scopi e limiti clinici differenti:",
+      "tableHeaderMeasure": "Parametro",
+      "tableHeaderWhatItDoes": "Funzione Primaria",
+      "tableHeaderLimitation": "Limiti",
+      "row1Measure": "IBW (Peso Ideale)",
+      "row1WhatItDoes": "Stima un peso target specifico per statura e sesso biologico",
+      "row1Limitation": "Non distingue tra massa muscolare magra e tessuto adiposo",
+      "row2Measure": "IMC (Indice Massa Corporea)",
+      "row2WhatItDoes": "Classifica il rapporto peso/altezza su una scala standardizzata",
+      "row2Limitation": "Può sovrastimare l'adiposità negli atleti molto muscolosi",
+      "p2": "Confrontare l'IBW con la gamma di normopeso dell'IMC offre una prospettiva sanitaria più equilibrata e realistica.",
+      "scrollButtonText": "Calcola il Mio Peso Ideale"
+    },
+    "references": {
+      "title": "Fonti",
+      "ref1": "Devine BJ (1974). Gentamicin therapy. Drug Intelligence and Clinical Pharmacy.",
+      "ref2": "Robinson JD et al. (1983). Estimation of ideal body weight. American Journal of Hospital Pharmacy.",
+      "ref3": "Hamwi GJ (1964). Changing dietary concepts. In: Diabetes Mellitus: Diagnosis and Treatment. American Diabetes Association.",
+      "ref4": "CDC Growth Charts. Centers for Disease Control and Prevention.",
+      "ref5": "WHO Child Growth Standards. World Health Organization."
+    },
+    "faq": [
+      {
+        "q": "Che cos'è il peso corporeo ideale (IBW)?",
+        "a": "Il peso corporeo ideale è una stima clinica dell'intervallo di peso associato a minori rischi di morbilità e mortalità per una data altezza e sesso biologico."
+      },
+      {
+        "q": "Quale formula di IBW è la più accurata?",
+        "a": "Nessuna formula singola è universalmente superiore. Devine è lo standard farmacologico più diffuso, mentre Robinson e Hamwi sono molto usate in nutrizione. La nostra applicazione calcola tutte e tre le formule affiancate."
+      },
+      {
+        "q": "Perché l'IBW è diverso tra uomini e donne?",
+        "a": "Gli uomini presentano mediamente una densità minerale ossea superiore e una percentuale maggiore di massa muscolare rispetto alle donne, motivando pesi base più elevati."
+      },
+      {
+        "q": "Cosa fare se il mio peso non rientra nell'intervallo ideale?",
+        "a": "L'IBW è una stima statistica. Livello di attività fisica, massa muscolare e salute metabolica sono determinanti reali. Consulta sempre un medico o nutrizionista per un quadro su misura."
+      }
+    ],
+    "toc": [
+      {
+        "id": "ideal-body-weight-calculator",
+        "label": "Calcolatore Peso Corporeo Ideale"
+      },
+      {
+        "id": "how-to-calculate-ideal-body-weight",
+        "label": "Come Calcolare il Peso Ideale"
+      },
+      {
+        "id": "ideal-body-weight-formulas",
+        "label": "Formule di Peso Corporeo Ideale"
+      },
+      {
+        "id": "ideal-body-weight-for-women",
+        "label": "Peso Ideale per le Donne"
+      },
+      {
+        "id": "ideal-body-weight-for-men",
+        "label": "Peso Ideale per gli Uomini"
+      },
+      {
+        "id": "pediatric-ideal-body-weight",
+        "label": "Peso Ideale in Pediatria"
+      },
+      {
+        "id": "adjusted-body-weight-calculator",
+        "label": "Calcolatore Peso Aggiustato (ABW)"
+      },
+      {
+        "id": "percent-ideal-body-weight",
+        "label": "Percentuale di IBW"
+      },
+      {
+        "id": "healthy-weight-range",
+        "label": "Intervallo di Peso Sano"
+      },
+      {
+        "id": "ideal-body-weight-vs-bmi",
+        "label": "IBW vs IMC"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Domande Frequenti"
+      },
+      {
+        "id": "references",
+        "label": "Riferimenti"
+      }
+    ],
+    "tool": {
+      "title": "Calcolatore del Peso Corporeo Ideale",
+      "description": "Calcola il tuo intervallo di peso ideale in base alle formule cliniche validate di Devine, Robinson e Hamwi.",
+      "unitMetric": "Metrico (cm, kg)",
+      "unitImperial": "Imperiale (piedi, pol, lbs)",
+      "heightLabel": "Altezza",
+      "heightPlaceholder": "cm",
+      "unitCm": "cm",
+      "feetPlaceholder": "piedi",
+      "feetAriaLabel": "Piedi",
+      "unitFt": "ft",
+      "inchesPlaceholder": "pol",
+      "inchesAriaLabel": "Pollici",
+      "unitIn": "in",
+      "sexLabel": "Sesso",
+      "sexMale": "Maschile",
+      "sexFemale": "Femminile",
+      "currentWeightLabel": "Peso Attuale (opzionale)",
+      "weightPlaceholder": "kg",
+      "unitKg": "kg",
+      "invalidInputTitle": "Dati di Ingresso Non Validi",
+      "invalidInputText": "Inserisci un'altezza valida di almeno 5 piedi (152,4 cm) per ottenere una stima affidabile di IBW.",
+      "ideaBodyWeightResultLabel": "Gamma di Peso Corporeo Ideale",
+      "rangeUnit": "kg",
+      "healthyWeightRangeLabel": "Gamma di Peso Sano (IMC 18,5–24,9)",
+      "differenceLabel": "Differenza rispetto al Peso Attuale",
+      "differenceNone": "Esattamente nella gamma ideale",
+      "differenceAbove": "+{amount} kg sopra",
+      "differenceBelow": "{amount} kg sotto",
+      "differenceWithin": "All'interno della gamma consigliata",
+      "devineYear": "Devine (1974)",
+      "robinsonYear": "Robinson (1983)",
+      "hamwiYear": "Hamwi (1964)",
+      "kgLabel": "kg",
+      "badgeFree": "100% Gratuito",
+      "badgeNoAccount": "Nessun Account",
+      "badgeResultsInKg": "Risultati in kg e lbs",
+      "badgeFormulas": "3 Formule Cliniche"
+    },
+    "healthyWeightRange": {
+      "intro1": "Il peso corporeo ideale non è un singolo valore rigido. Mostriamo i risultati di ",
+      "formulaNames": "Devine, Robinson e Hamwi",
+      "intro1After": " affiancati per consentirti di osservare l'intervallo naturale tra i modelli clinici.",
+      "intro2": "Parallelamente alle formule storiche, la gamma di normopeso secondo l'IMC dell'OMS (18,5–24,9 kg/m²) fornisce una finestra di riferimento complementare basata su ampie evidenze di popolazione.",
+      "healthyRangeQuestionTitle": "Qual è il Mio Intervallo di Peso Sano?",
+      "healthyRangeTextBefore": "Per la tua altezza, un intervallo di IMC sano compreso tra ",
+      "bmiRangeValue": "18,5 e 24,9 kg/m²",
+      "healthyRangeTextMiddle": " corrisponde a una finestra di peso compresa tra ",
+      "windowValue": "14–16 kg",
+      "healthyRangeTextAfter": ". Questa ampiezza accoglie le naturali differenze di massa muscolare, corporatura scheletrica ed età.",
+      "underweightLabel": "Sottopeso",
+      "healthyBmiRangeLabel": "Intervallo Normopeso IMC",
+      "overweightLabel": "Sovrappeso",
+      "bmiUnder185": "IMC < 18,5",
+      "bmiRangeShort": "18,5 – 24,9",
+      "bmiOver25": "IMC ≥ 25,0",
+      "distanceTableIntro": "Distanza del peso attuale dall'intervallo ideale calcolato:",
+      "distanceHeaderDistance": "Distanza",
+      "distanceHeaderMeaning": "Significato Clinico",
+      "distanceRow1Dist": "Nell'intervallo",
+      "distanceRow1Meaning": "Il tuo peso rientra pienamente nella gamma stimata di IBW.",
+      "distanceRow2Dist": "1 – 5 kg di differenza",
+      "distanceRow2Meaning": "Lieve scostamento, spesso correlato a massa muscolare o idratazione.",
+      "distanceRow3Dist": "5 – 10 kg di differenza",
+      "distanceRow3Meaning": "Scostamento moderato; da valutare congiuntamente a IMC e stile di vita.",
+      "distanceRow4Dist": "10 – 20 kg di differenza",
+      "distanceRow4Meaning": "Divario rilevante rispetto alla stima teorica di riferimento.",
+      "distanceRow5Dist": "20+ kg sopra",
+      "distanceRow5Meaning": "Si raccomanda l'uso del Peso Corporeo Aggiustato (ABW) per considerazioni mediche.",
+      "distanceRow6Dist": "20+ kg sotto",
+      "distanceRow6Meaning": "Possibile indicazione di sottopeso significativo o carenze nutrizionali.",
+      "referenceTablesLabel": "Tabelle di Riferimento",
+      "referenceTablesTitle": "Tabelle di Riferimento del Peso Sano",
+      "referenceTablesDescription": "Consulta gli intervalli di peso raccomandati in base all'altezza per uomini e donne.",
+      "tabMen": "Uomini",
+      "tabWomen": "Donne",
+      "healthyBmiRangeWhoLabel": "Gamma di Normopeso IMC OMS (18,5–24,9)",
+      "tableHeightCm": "Altezza (cm)",
+      "tableHeightFt": "Altezza (ft/in)",
+      "tableHealthyBmiRange": "Intervallo di BMI sano ({unit})",
+      "sourcesNote": "Fonti: Organizzazione Mondiale della Sanità (OMS), Devine (1974), Robinson (1983), Hamwi (1964)."
+    }
+  },
+  "heightDifference": {
+    "intro": {
+      "title": "Calcolatore Differenza di Altezza",
+      "description": "Un calcolatore di differenza di altezza confronta la statura di due persone e calcola la distanza esatta tra loro. Inserisci due altezze in centimetri o piedi e pollici. Lo strumento calcola all'istante la differenza assoluta e la differenza percentuale. Confrontati con un amico, il tuo partner o chiunque altro in pochi secondi."
+    },
+    "calculateSection": {
+      "title": "Calcola la Differenza di Altezza",
+      "description": "Inserisci due altezze qui sotto per calcolare all'istante la differenza esatta. Passa dal sistema metrico a quello imperiale in qualsiasi momento.",
+      "badgeFree": "100% Gratuito",
+      "badgeNoAccount": "Nessun Account Richiesto",
+      "badgeSupportsUnits": "Supporta cm e piedi/pollici",
+      "badgeUpdatesLive": "Aggiornamento in Tempo Reale"
+    },
+    "howToCalculate": {
+      "title": "Come Calcolare la Differenza di Altezza",
+      "p1": "Calcolare la differenza di altezza tra due persone richiede solo una semplice sottrazione. Sottrai l'altezza minore da quella maggiore. Il risultato è la differenza assoluta.",
+      "formulaTitle": "Formula della Differenza di Altezza",
+      "formulaText": "Differenza di Altezza = Altezza Maggiore - Altezza Minore",
+      "personALabel": "Persona A:",
+      "personAValue": "180 cm (5 piedi e 11 pollici)",
+      "personBLabel": "Persona B:",
+      "personBValue": "165 cm (5 piedi e 5 pollici)",
+      "differenceLabel": "Differenza:",
+      "differenceValue": "180 cm - 165 cm = 15 cm (5,9 pollici)",
+      "p2": "Quando usi piedi e pollici, converti prima entrambe le altezze nel totale di pollici prima di sottrarre. Una persona di 5 piedi e 11 pollici misura 71 pollici. Una di 5 piedi e 5 pollici misura 65 pollici. La differenza è 71 - 65 = 6 pollici (15,24 cm)."
+    },
+    "percentage": {
+      "title": "Percentuale di Differenza di Altezza",
+      "p1": "La differenza percentuale esprime il divario di altezza rispetto alla statura della persona più alta. Mostra quale percentuale dell'altezza della persona più alta rappresenta la differenza.",
+      "formulaTitle": "Formula della Differenza Percentuale",
+      "formulaText": "Differenza Percentuale = (Differenza di Altezza / Altezza Maggiore) × 100",
+      "heightDiffLabel": "Differenza di Altezza:",
+      "heightDiffValue": "15 cm",
+      "tallerHeightLabel": "Altezza Maggiore:",
+      "tallerHeightValue": "180 cm",
+      "calculationLabel": "Calcolo:",
+      "calculationValue": "(15 / 180) × 100",
+      "percentDiffLabel": "Differenza Percentuale:",
+      "percentDiffValue": "8,33%",
+      "p2": "La differenza percentuale aiuta a contestualizzare il divario: un divario di 10 cm tra bambini piccoli rappresenta una percentuale molto più significativa rispetto allo stesso divario tra due adulti alti."
+    },
+    "couple": {
+      "title": "Calcolatore Differenza di Altezza per Coppie",
+      "p1": "La differenza di altezza tra partner è uno degli argomenti più cercati nelle relazioni. A livello globale, gli uomini sono in media circa 12–15 cm più alti delle donne nella stessa popolazione.",
+      "globalAvgLabel": "Differenza Media Globale di Coppia:",
+      "globalAvgValue": "~12–15 cm",
+      "feetInLabel": "In Piedi e Pollici:",
+      "feetInValue": "~4,7–5,9 pollici",
+      "p2": "La maggior parte delle ricerche mostra che le coppie con un divario di altezza moderato (tra 5 e 15 cm) sono le più diffuse al mondo. Usa il nostro strumento interattivo per esplorare la differenza di altezza nella coppia."
+    },
+    "chartSection": {
+      "title": "Tabella delle Differenze di Altezza",
+      "p1": "Questa tabella elenca i divari di altezza più comuni in centimetri, pollici e percentuali per una rapida consultazione.",
+      "p2": "La tabella assume un'altezza di riferimento di 175 cm (5 piedi e 9 pollici) per la persona più alta in ogni confronto percentuale."
+    },
+    "visualSection": {
+      "title": "Confronto Visivo di Altezza",
+      "p1": "Guardare i numeri è utile, ma visualizzare il confronto rende il divario immediatamente percepibile. Una differenza di 10 cm appare diversa su persone di stature differenti.",
+      "p2": "Seleziona le coppie preimpostate qui sotto o inserisci altezze personalizzate per vedere la differenza disegnata in scala proporzionale esatta."
+    },
+    "unitsSection": {
+      "title": "Differenza di Altezza in Unità Diverse",
+      "p1": "La conversione tra unità metriche e imperiali genera spesso confusione. La tabella sottostante fornisce conversioni dirette delle stature e delle rispettive differenze.",
+      "tableHeaderPersonA": "Persona A",
+      "tableHeaderPersonB": "Persona B",
+      "tableHeaderDifferenceCm": "Differenza (cm)",
+      "tableHeaderDifferenceIn": "Differenza (pol)"
+    },
+    "cta": {
+      "title": "Prova lo Strumento Completo di Confronto Altezza",
+      "descriptionLine1": "Vuoi confrontare più di due persone?",
+      "descriptionLine2": "Il nostro strumento principale ti permette di aggiungere sagome illimitate affiancate in tempo reale.",
+      "feature1": "Aggiungi persone illimitate, celebrità o oggetti",
+      "feature2": "Passa istantaneamente da unità metriche a imperiali",
+      "feature3": "Esporta immagini ad alta risoluzione senza watermark",
+      "feature4": "Completamente gratuito, nessun account o pagamento richiesto",
+      "buttonText": "Apri lo Strumento di Confronto Altezza"
+    },
+    "references": {
+      "title": "Fonti e Riferimenti",
+      "ref1": "NCD Risk Factor Collaboration (NCD-RisC). Un secolo di tendenze nell'altezza umana adulta. eLife, 2016.",
+      "ref2": "Organizzazione Mondiale della Sanità (OMS). Standard di Crescita Infantile e Riferimenti di Sviluppo. Ginevra: OMS, 2006."
+    },
+    "faq": [
+      {
+        "q": "Qual è la differenza media di altezza tra uomini e donne?",
+        "a": "A livello globale, gli uomini sono in media circa 12–15 cm (4,7–5,9 pollici) più alti delle donne appartenenti alla stessa popolazione."
+      },
+      {
+        "q": "Come si converte la differenza di altezza da cm a pollici?",
+        "a": "Per convertire i centimetri in pollici, dividi il valore in cm per 2,54. Ad esempio, 15 cm ÷ 2,54 = 5,91 pollici."
+      },
+      {
+        "q": "Come si calcola la differenza percentuale di altezza?",
+        "a": "Dividi la differenza assoluta di altezza per l'altezza della persona più alta e moltiplica per 100: (Differenza / Altezza Maggiore) × 100."
+      },
+      {
+        "q": "La differenza di altezza influisce sulla compatibilità di coppia?",
+        "a": "Le ricerche sociologiche indicano che le preferenze di altezza variano culturalmente, ma non hanno alcuna correlazione statistica con il successo relazionale a lungo termine."
+      }
+    ],
+    "toc": [
+      {
+        "id": "calculate-height-difference",
+        "label": "Calcolare la Differenza di Altezza"
+      },
+      {
+        "id": "how-to-calculate-height-difference",
+        "label": "Come Calcolare la Differenza di Altezza"
+      },
+      {
+        "id": "height-difference-percentage",
+        "label": "Percentuale di Differenza di Altezza"
+      },
+      {
+        "id": "couple-height-difference-calculator",
+        "label": "Calcolatore Differenza di Altezza in Coppia"
+      },
+      {
+        "id": "height-difference-chart",
+        "label": "Tabella delle Differenze di Altezza"
+      },
+      {
+        "id": "visual-height-comparison",
+        "label": "Confronto Visivo di Altezza"
+      },
+      {
+        "id": "height-difference-in-different-units",
+        "label": "Differenza di Altezza in Unità Diverse"
+      },
+      {
+        "id": "try-the-height-difference-calculator",
+        "label": "Prova il Calcolatore di Differenza di Altezza"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Domande Frequenti"
+      },
+      {
+        "id": "references",
+        "label": "Fontes e Riferimenti"
+      }
+    ],
+    "tool": {
+      "unitMetric": "Metrico (cm)",
+      "unitImperial": "Imperiale (piedi / pol)",
+      "person1Label": "Persona 1",
+      "person2Label": "Persona 2",
+      "cmPlaceholder": "cm",
+      "ftPlaceholder": "piedi",
+      "inPlaceholder": "pol",
+      "unitCm": "cm",
+      "unitFt": "ft",
+      "unitIn": "in",
+      "heightDifferenceLabel": "Differenza di Altezza",
+      "percentDifferenceLabel": "Differenza Percentuale",
+      "isTallerText": "{person} è più alto",
+      "tallerPersonLabel": "Persona Più Alta",
+      "visualComparisonLabel": "Confronto Visivo",
+      "enterBothHeightsPrompt": "Inserisci entrambe le altezze per calcolare la differenza"
+    },
+    "coupleCalc": {
+      "partner1Label": "Partner 1",
+      "partner2Label": "Partner 2",
+      "pctTallerText": "{pct}% più alto(a)",
+      "resultSentence": "{p1} ({h1} cm) è <strong>più alto di {diff} cm ({pct}%)</strong> rispetto a {p2} ({h2} cm)"
+    },
+    "chartTable": {
+      "headerPersonA": "Persona A",
+      "headerPersonB": "Persona B",
+      "headerDifference": "Differenza",
+      "headerPercentDifference": "Differenza Percentuale"
+    },
+    "visualComp": {
+      "person1Label": "Persona 1",
+      "person2Label": "Persona 2",
+      "pairButtonText": "{h1} cm vs {h2} cm",
+      "diffCmText": "{diff} cm di differenza",
+      "isTallerText": "{person} è più alto"
+    }
+  },
+  "averageHeightByCountry": {
+    "h1": "Altezza media per paese",
+    "intro": {
+      "description": "L'altezza media varia più di quanto la maggior parte delle persone si aspetti. Il divario tra le popolazioni più alte e più basse del mondo si estende per quasi 24 cm per gli uomini e 21 cm per le donne. Questa pagina confronta l'altezza umana media in tutto il mondo per entrambi i sessi, dai Paesi Bassi in cima a Timor Est in fondo, attingendo ai dati della <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> e di <wpr>World Population Review</wpr>. Uomini e donne seguono lo stesso schema geografico generale, con il Nord Europa al vertice e parti dell'Asia meridionale e centrale nella fascia inferiore."
+    },
+    "globalTable": {
+      "title": "Tabella Globale dell'Altezza Media",
+      "unitToggle": {
+        "metric": "Metrico (cm)",
+        "imperial": "Imperiale (ft/in)"
+      },
+      "description": "Dati aggregati di altezza media per uomini e donne ordinabili e ricercabili per paese, basati sulle ricerche di riferimento della collaborazione NCD-RisC.",
+      "searchPlaceholder": "Cerca paese...",
+      "tableHeaders": {
+        "rank": "Posizione",
+        "country": "Paese",
+        "avgMale": "Media Uomini",
+        "avgFemale": "Media Donne"
+      },
+      "noResults": "Nessun paese trovato corrispondente a \"{query}\"",
+      "sourceNote": "Fonti: NCD Risk Factor Collaboration (NCD-RisC) in collaborazione con l'Organizzazione Mondiale della Sanità (OMS)."
+    },
+    "common": {
+      "tabMen": "Uomini",
+      "tabWomen": "Donne",
+      "tabMale": "Maschile",
+      "tabFemale": "Femminile"
+    },
+    "tallestCountries": {
+      "title": "I Paesi con le Altezze Medie Più Elevate",
+      "barsLabelMen": "Uomini più alti per paese (cm)",
+      "barsLabelWomen": "Donne più alte per paese (cm)",
+      "captionMen": "Altezza media maschile adulta nei paesi in cima alla classifica mondiale.",
+      "captionWomen": "Altezza media femminile adulta nei paesi con le medie più alte.",
+      "paragraph1": "I Paesi Bassi guidano costantemente le classifiche globali di altezza sia per gli uomini sia per le donne. L'altezza media degli uomini olandesi è di circa 183,8 cm (6'0,4\"), mentre le donne raggiungono in media 170,4 cm (5'7,1\").",
+      "paragraph2": "Altre nazioni dell'Europa settentrionale e sud-orientale — tra cui Montenegro, Danimarca, Norvegia, Serbia e Bosnia ed Erzegovina — occupano i primi posti, con medie maschili che superano regolarmente i 182 cm.",
+      "paragraph3": "Fattori come diete ricche di latticini e proteine nobili nell'infanzia, sistemi sanitari universali e bassi livelli di disuguaglianza sociale spiegano in larga parte queste stature eccezionali."
+    },
+    "shortestCountries": {
+      "title": "I Paesi con le Altezze Medie Più Basse",
+      "barsLabelMen": "Uomini con statura media più bassa (cm)",
+      "barsLabelWomen": "Donne con statura media più bassa (cm)",
+      "captionMen": "Altezza media maschile adulta nei paesi con le medie più basse.",
+      "captionWomen": "Altezza media femminile adulta nelle nazioni con i valori antropometrici più contenuti.",
+      "paragraph1": "Timor Est, Madagascar, Guatemala e Filippine registrano alcune delle altezze medie più basse al mondo. A Timor Est, l'altezza media maschile è di circa 160 cm (5'3\"), mentre le donne registrano circa 151 cm (4'11,5\").",
+      "paragraph2": "In Guatemala, le donne delle comunità indigene presentano una delle stature medie più basse documentate, con valori compresi tra 149 e 150 cm.",
+      "paragraph3": "Queste differenze sono ampiamente riconducibili a lunghi periodi storici di denutrizione infantile, infezioni intestinali ricorrenti nei primi anni di vita e povertà cronica, che hanno impedito alle popolazioni di esprimere il pieno potenziale genetico."
+    },
+    "tallestShortest": {
+      "title": "Confronto: Paesi Più Alti vs Paesi Più Bassi",
+      "tabs": {
+        "tallestVsShortest": "Più Alti vs Più Bassi",
+        "top10Tallest": "Top 10 Più Alti",
+        "bottom10Shortest": "Top 10 Più Bassi"
+      },
+      "chartTitleTallestVsShortest": "Divario tra Estremi Mondiali di Altezza",
+      "chartTitleTop10": "Top 10 Paesi con Maggiore Statura Media",
+      "chartTitleBottom10": "Top 10 Paesi con Minore Statura Media",
+      "caption": "Confronto diretto tra le altezze medie estreme rilevate a livello internazionale.",
+      "paragraph": "La differenza media tra il paese più alto (Paesi Bassi) e quello più basso (Timor Est) supera i 23 cm per gli uomini e circa 20 cm per le donne: un divario notevole dovuto alla sinergia tra genetica e condizioni socioeconomiche secolari."
+    },
+    "averageMale": {
+      "title": "Altezza Media Maschile nel Mondo",
+      "paragraph1": "A livello mondiale, l'altezza media di un uomo adulto è stimata in circa 171 cm (5'7,5\"), con ampie variazioni geografiche. In Europa settentrionale e occidentale le medie oscillano tra 178 e 183 cm, mentre in Asia meridionale e Africa subsahariana si attestano tra 164 e 168 cm.",
+      "paragraph2": "La statura maschile si stabilizza generalmente tra i 18 e i 21 anni, in coincidenza con la saldatura completa delle cartilagini epifisarie delle ossa lunghe."
+    },
+    "averageFemale": {
+      "title": "Altezza Media Femminile nel Mondo",
+      "paragraph1": "Globalmente, l'altezza media delle donne adulte è di circa 159 cm (5'2,5\"). In quasi tutte le popolazioni, le donne sono in media 12–15 cm più basse degli uomini della medesima comunità biologica.",
+      "paragraph2": "Nelle ragazze il picco di crescita puberale avviene più precocemente e si conclude solitamente tra i 15 e i 17 anni, poco dopo il menarca."
+    },
+    "maleAndFemale": {
+      "title": "Dimorfismo Sessuale nell'Altezza Umana",
+      "barsLabelMale": "Media Uomini (cm)",
+      "barsLabelFemale": "Media Donne (cm)",
+      "callout": "Il dimorfismo sessuale nella statura è una costante biologica universale: gli uomini adulti sono in media il 7%–8% più alti delle donne in tutte le popolazioni umane documentate."
+    },
+    "selectedCountries": {
+      "title": "Dati Salienti di Paesi Selezionati",
+      "countries": {
+        "netherlands": {
+          "name": "Paesi Bassi",
+          "paragraph": "Gli uomini olandesi dominano le classifiche mondiali da decenni. Diete ricche di latticini e sanità universale trainano questo risultato."
+        },
+        "unitedKingdom": {
+          "name": "Regno Unito",
+          "paragraph": "L'altezza media nel Regno Unito si è stabilizzata negli ultimi vent'anni, con gli uomini a circa 178 cm e le donne a 164 cm."
+        },
+        "japan": {
+          "name": "Giappone",
+          "paragraph": "Il Giappone ha vissuto uno dei progressi staturali più veloci del Novecento grazie al miglioramento dell'alimentazione infantile post-bellica."
+        },
+        "bangladesh": {
+          "name": "Bangladesh",
+          "paragraph": "La statura in Bangladesh è in graduale ripresa grazie ai costanti investimenti nei programmi di salute materno-infantile."
+        },
+        "iran": {
+          "name": "Iran",
+          "paragraph": "Gli uomini iraniani hanno registrato uno dei maggiori aumenti staturali assoluti a livello mondiale nel corso del XX secolo."
+        },
+        "canada": {
+          "name": "Canada",
+          "paragraph": "Medie elevate favorite da eccellenti condizioni di vita, varietà alimentare e accesso universale all'assistenza medica."
+        },
+        "ireland": {
+          "name": "Irlanda",
+          "paragraph": "L'Irlanda ha mostrato un incremento staturale continuo nelle ultime generazioni, posizionandosi tra le nazioni più alte d'Europa."
+        },
+        "sriLanka": {
+          "name": "Sri Lanka",
+          "paragraph": "Gli ottimi indicatori di salute pubblica si traducono in altezze medie superiori rispetto a diversi paesi vicini dell'Asia meridionale."
+        },
+        "southKorea": {
+          "name": "Corea del Sud",
+          "paragraph": "Le donne sudcoreane hanno registrato il più marcato aumento di altezza al mondo negli ultimi 100 anni (oltre 20 cm)."
+        },
+        "india": {
+          "name": "India",
+          "paragraph": "Notevole eterogeneità regionale: gli stati del nord registrano stature sensibilmente superiori a quelle del sud e dell'est del paese."
+        },
+        "usa": {
+          "name": "Stati Uniti",
+          "paragraph": "Un tempo la popolazione più alta al mondo nel XIX secolo, gli USA hanno registrato una stagnazione dovuta a disparità nutrizionali infantili."
+        },
+        "denmark": {
+          "name": "Danimarca",
+          "paragraph": "La Danimarca è costantemente tra i primi tre paesi più alti al mondo, con standard di vita e benessere sociale elevatissimi."
+        }
+      }
+    },
+    "chartForMen": {
+      "title": "Grafico di Confronto dell'Altezza Maschile",
+      "paragraph": "Visualizzazione comparativa della statura media degli uomini adulti nei paesi di tutti i continenti.",
+      "barsLabel": "Altezza maschile media (cm)",
+      "caption": "Medie nazionali maschili ordinate in senso decrescente."
+    },
+    "globalAverage": {
+      "title": "Medie Globali Consolidate",
+      "maleStatLabel": "Media Mondiale Uomini",
+      "femaleStatLabel": "Media Mondiale Donne",
+      "paragraph1": "<who>L'Organizzazione Mondiale della Sanità</who> e la NCD Risk Factor Collaboration stimano l'altezza media maschile globale a circa 171 cm e l'altezza media femminile globale a circa 159 cm. Questi dati ponderati risultano inferiori alle medie della maggior parte dei paesi occidentali perché tengono conto delle vaste popolazioni dell'Asia meridionale e sud-orientale.",
+      "paragraph2": "Le medie regionali mostrano forti contrasti tra l'Europa (medie complessive più elevate) e aree del Sud-est asiatico e dell'America centrale.",
+      "regionMap": {
+        "colourScaleLabel": "Scala cromatica — altezza media maschile per regione",
+        "tallestLabel": "180+ cm (più alti)",
+        "shortestLabel": "≤162 cm (più bassi)",
+        "regions": {
+          "northernEurope": {
+            "name": "Europa Settentrionale",
+            "ex": "Paesi Bassi, Danimarca, Norvegia"
+          },
+          "easternEurope": {
+            "name": "Europa Orientale",
+            "ex": "Serbia, Ucraina, Polonia"
+          },
+          "westernEurope": {
+            "name": "Europa Occidentale",
+            "ex": "Germania, Francia, Regno Unito"
+          },
+          "northAmericaOceania": {
+            "name": "Nord America/Oceania",
+            "ex": "Canada, USA, Australia"
+          },
+          "middleEast": {
+            "name": "Medio Oriente",
+            "ex": "Iran, Turchia"
+          },
+          "eastAsia": {
+            "name": "Asia Orientale",
+            "ex": "Cina, Corea del Sud, Giappone"
+          },
+          "latinAmerica": {
+            "name": "America Latina",
+            "ex": "Brasile, Messico"
+          },
+          "southSeAsia": {
+            "name": "Asia Meridionale/Sud-est",
+            "ex": "India, Indonesia, Nepal"
+          },
+          "centralAmerica": {
+            "name": "America Centrale",
+            "ex": "Guatemala, Honduras"
+          }
+        }
+      }
+    },
+    "extremes": {
+      "tallestMan": {
+        "title": "L'Uomo Più Alto della Storia",
+        "paragraph": "Robert Wadlow, di Alton (Illinois), resta la persona più alta mai documentata nella storia con 272 cm (8'11\"). La sua ghiandola pituitaria produceva un eccesso continuo di ormone della crescita e la sua statura stava ancora aumentando quando morì nel 1940 a 22 anni. Il record Guinness per l'uomo vivente più alto appartiene a Sultan Kösen, della Turchia, con 251 cm (8'3\")."
+      },
+      "shortestMan": {
+        "title": "L'Uomo Più Basso della Storia",
+        "paragraph": "Chandra Bahadur Dangi, del Nepal, detiene il record verificato come uomo adulto più basso della storia con appena 54,6 cm (1'9\"). È vissuto fino a 75 anni in un remoto villaggio. L'uomo vivente con capacità di deambulazione più basso è Afshin Ghaderzadeh, dell'Iran, con 65,2 cm (2'1,7\"), certificato da Guinness World Records nel 2022."
+      },
+      "tallestFemale": {
+        "title": "La Donna Più Alta della Storia",
+        "paragraph": "Zeng Jinlian, della provincia di Hunan (Cina), è la donna più alta verificata nella storia medica, avendo raggiunto 246,3 cm (8'1\") prima della scomparsa nel 1982 a 17 anni. La donna vivente più alta è Rumeysa Gelgi, della Turchia, con 215,16 cm (7'0,7\"), statura dovuta alla rara sindrome di Weaver."
+      },
+      "shortestFemale": {
+        "title": "La Donna Più Bassa del Mondo",
+        "paragraph": "Jyoti Amge, di Nagpur (India), è la donna vivente più bassa del mondo secondo il Guinness dei Primati, con 62,8 cm (2'0,7\"). La sua statura è dovuta all'acondroplasia, una forma di nanismo genetico. Jyoti lavora come attrice professionista ed è apparsa nella serie televisiva statunitense American Horror Story."
+      },
+      "dataCards": {
+        "tallestManEver": {
+          "label": "Uomo più alto di sempre",
+          "name": "Robert Wadlow",
+          "value": "272 cm",
+          "meta": "8'11\" · USA · deceduto nel 1940"
+        },
+        "shortestManEver": {
+          "label": "Uomo più basso di sempre",
+          "name": "Chandra Bahadur Dangi",
+          "value": "54,6 cm",
+          "meta": "1'9\" · Nepal · deceduto nel 2015"
+        },
+        "tallestWomanEver": {
+          "label": "Donna più alta di sempre",
+          "name": "Zeng Jinlian",
+          "value": "246,3 cm",
+          "meta": "8'1\" · Cina · deceduta nel 1982"
+        },
+        "shortestLivingWoman": {
+          "label": "Donna vivente più bassa",
+          "name": "Jyoti Amge",
+          "value": "62,8 cm",
+          "meta": "2'1\" · India"
+        }
+      }
+    },
+    "distribution": {
+      "title": "Distribuzione Normale dell'Altezza Umana",
+      "bellCurve": {
+        "globalAvgLabel": "Media globale ≈ {mean} cm",
+        "axisLabel": "Altezza (cm) — {label}",
+        "male": {
+          "label": "popolazione maschile globale",
+          "pctLabel": "Il 68% degli uomini rientra in ±1 deviazione standard",
+          "band1": "68% degli uomini — entro ±1σ (≈164–178 cm)",
+          "band2": "95% degli uomini — entro ±2σ (≈157–185 cm)"
+        },
+        "female": {
+          "label": "popolazione femminile globale",
+          "pctLabel": "Il 68% delle donne rientra in ±1 deviazione standard",
+          "band1": "68% delle donne — entro ±1σ (≈153–165 cm)",
+          "band2": "95% delle donne — entro ±2σ (≈147–171 cm)"
+        }
+      },
+      "legendNote": "Nota: La curva a campana illustra la distribuzione normale (gaussiana) classica.",
+      "dataSourcesLabel": "Fonti dei Dati:",
+      "dataSourcesText": "NCD-RisC e Organizzazione Mondiale della Sanità (OMS).",
+      "paragraph1": "In una popolazione sana e ben nutrita, l'altezza umana segue con straordinaria precisione una curva normale a campana, con una deviazione standard di circa 7 cm negli adulti.",
+      "paragraph2": "Circa il 68% degli individui si colloca entro ±1 deviazione standard dalla media e oltre il 95% rientra entro ±2 deviazioni standard.",
+      "tableHeaders": {
+        "minus2sd": "−2 DS",
+        "minus1sd": "−1 DS",
+        "globalAvg": "Media Globale",
+        "plus1sd": "+1 DS",
+        "plus2sd": "+2 DS"
+      },
+      "captionMale": "Curva di distribuzione dell'altezza maschile.",
+      "captionFemale": "Curva di distribuzione dell'altezza femminile.",
+      "captionSources": "Dati aggregati da studi antropometrici internazionali."
+    },
+    "whyDiffers": {
+      "title": "Perché la Statura Varia tra i Paesi?",
+      "paragraph1": "L'altezza adulta finale è il risultato dell'interazione tra eredità poligenica (60%–80%) e fattori ambientali decisivi durante i primi 1.000 giorni di vita.",
+      "nutritionParagraph": "<bold>La nutrizione</bold> è il determinante ambientale più influente dell'altezza negli adulti. Un apporto adeguato di proteine e micronutrienti nei primi 1.000 giorni di vita è cruciale per lo sviluppo scheletrico. La disponibilità di latticini e carne durante l'infanzia predice costantemente le classifiche nazionali dell'altezza.",
+      "healthcareParagraph": "<bold>L'accesso all'assistenza sanitaria</bold> determina se le malattie infantili sottraggono energia alla crescita. I paesi con tassi di vaccinazione elevati e un basso carico di malattie risultano costantemente più alti.",
+      "economicParagraph": "<bold>Lo sviluppo economico</bold> sostiene sia la nutrizione che l'assistenza sanitaria. Il PIL pro capite è fortemente correlato all'altezza media, poiché la ricchezza consente una migliore alimentazione, acqua più pulita e cure mediche adeguate.",
+      "calloutUS": "Il Caso USA: La stagnazione dell'altezza media negli Stati Uniti dimostra che un reddito elevato non garantisce automaticamente una corretta nutrizione infantile se permangono disparità nell'accesso a cibi sani e cure prenatali."
+    },
+    "toc": [
+      {
+        "id": "global-average-height-table",
+        "label": "Tabella Globale dell'Altezza Media"
+      },
+      {
+        "id": "tallest-countries-in-the-world",
+        "label": "I Paesi Più Alti del Mondo"
+      },
+      {
+        "id": "shortest-countries-in-the-world",
+        "label": "I Paesi Più Bassi del Mondo"
+      },
+      {
+        "id": "tallest-vs-shortest-countries",
+        "label": "Confronto: Più Alti vs Più Bassi"
+      },
+      {
+        "id": "average-male-height-worldwide",
+        "label": "Altezza Media Maschile nel Mondo"
+      },
+      {
+        "id": "average-female-height-worldwide",
+        "label": "Altezza Media Femminile nel Mondo"
+      },
+      {
+        "id": "male-and-female-height-comparison",
+        "label": "Dimorfismo Sessuale nell'Altezza"
+      },
+      {
+        "id": "selected-countries-height-highlights",
+        "label": "Dati Salienti di Paesi Selezionati"
+      },
+      {
+        "id": "chart-for-men-height-by-country",
+        "label": "Grafico di Altezza per Uomini"
+      },
+      {
+        "id": "global-average-height-numbers",
+        "label": "Medie Globali Consolidate"
+      },
+      {
+        "id": "human-height-extremes-records",
+        "label": "Estremi e Record Mondiali di Altezza"
+      },
+      {
+        "id": "human-height-distribution-bell-curve",
+        "label": "Distribuzione Normale dell'Altezza"
+      },
+      {
+        "id": "why-does-height-differ-between-countries",
+        "label": "Perché la Statura Varia?"
+      },
+      {
+        "id": "try-the-height-comparison-tool",
+        "label": "Prova lo Strumento di Confronto"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Domande Frequenti"
+      },
+      {
+        "id": "references",
+        "label": "Fonti e Riferimenti"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Qual è l'altezza media di un uomo nel mondo?",
+        "a": "La media globale stimata per un uomo adulto è di circa 171 cm (5'7,5\"), variando da 160 cm nei paesi con medie inferiori a oltre 183 cm nei Paesi Bassi."
+      },
+      {
+        "q": "Qual è l'altezza media di una donna nel mondo?",
+        "a": "La media globale femminile si attesta intorno a 159 cm (5'2,5\"), con variazioni che vanno da circa 150 cm in Guatemala a 170 cm nei Paesi Bassi e in Montenegro."
+      },
+      {
+        "q": "Perché gli olandesi sono i più alti del mondo?",
+        "a": "Gli olandesi hanno beneficiato di una dieta ricca di latticini e proteine, di un sistema sanitario universale eccellente, di bassa disuguaglianza e di una selezione naturale e culturale di partner alti nel corso delle generazioni."
+      },
+      {
+        "q": "Un adulto può ancora aumentare di statura?",
+        "a": "No, in condizioni fisiologiche normali l'accrescimento scheletrico cessa al termine della pubertà (tra i 16 e i 21 anni) con la completa fusione delle cartilagini di accrescimento."
+      },
+      {
+        "q": "Perché l'altezza varia tra mattina e sera?",
+        "a": "Durante la giornata, la gravità comprime i dischi intervertebrali della colonna vertebrale. Di conseguenza, si è in genere 1–2 cm più alti al risveglio rispetto alla sera."
+      }
+    ],
+    "references": {
+      "primarySources": {
+        "title": "Fonti Primarie di Dati",
+        "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016. Vol. 5, e13410.",
+        "ref2": "Rodriguez-Martinez A, Zhou B, Sophiea MK et al. (NCD-RisC). Height and body-mass index trajectories of school-aged children and adolescents from 1985 to 2019 in 200 countries and territories. The Lancet, 2020. Vol. 396, pp. 1511–1524.",
+        "ref3": "World Health Organization. Child Growth Standards — Length/Height-for-Age, Weight-for-Age. WHO Department of Nutrition and Food Safety. Ginevra, 2006.",
+        "ref4": "World Health Organization. Global Health Observatory — Nutrition and Body Mass Index Data. WHO Global Health Observatory.",
+        "ref5": "de Onis M, Garza C, Onyango AW, Martorell R (eds). WHO Child Growth Standards. Acta Paediatrica, 2006. Suppl 450:1–101."
+      },
+      "usGovernment": {
+        "title": "Governo degli Stati Uniti — CDC e NIH",
+        "ref1": "Centers for Disease Control and Prevention. CDC Clinical Growth Charts, 2000 (Revisionate nel 2022). National Center for Health Statistics.",
+        "ref2": "Kuczmarski RJ, Ogden CL, Guo SS et al. 2000 CDC Growth Charts for the United States: Methods and Development. Vital and Health Statistics. Series 11, No. 246, 2002.",
+        "ref3": "Centers for Disease Control and Prevention — NCHS. National Health and Nutrition Examination Survey (NHANES) — Anthropometric Data.",
+        "ref4": "Fryar CD, Gu Q, Ogden CL, Flegal KM. Anthropometric Reference Data for Children and Adults: United States, 2011–2014. Vital and Health Statistics. Series 3, No. 39, agosto 2016.",
+        "ref5": "National Institutes of Health — National Heart, Lung, and Blood Institute. Classification of Overweight and Obesity by BMI. NIH Publication No. 98-4083, 1998."
+      },
+      "peerReviewed": {
+        "title": "Articoli Scientifici Peer-Reviewed",
+        "ref1": "Devine BJ. Gentamicin therapy. Drug Intelligence and Clinical Pharmacy, 1974. Vol. 8, pp. 650–655.",
+        "ref2": "Robinson JD, Lupkiewicz SM, Palenik L, Lopez LM, Ariet M. Determination of ideal body weight for drug dosage calculations. American Journal of Hospital Pharmacy, 1983. Vol. 40, pp. 1016–1019.",
+        "ref3": "Pai MP, Paloucek FP. The origin of the \"ideal\" body weight equations. Annals of Pharmacotherapy, 2000. Vol. 34, No. 9, pp. 1066–1069.",
+        "ref4": "Janmahasatian S, Duffull SB, Ash S, Ward LC, Byrne NM, Green B. Quantification of lean bodyweight. Clinical Pharmacokinetics, 2005. Vol. 44, No. 10, pp. 1051–1065.",
+        "ref5": "Stulp G, Buunk AP, Pollet TV. Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE, 2013. Vol. 8, Issue 2.",
+        "ref6": "Flegal KM, Ogden CL, Wei R, Kuczmarski RL, Johnson CL. Prevalence of obesity in US adults by age and sex. JAMA, 2002. Vol. 288, pp. 1723–1727."
+      },
+      "unBodies": {
+        "title": "Nazioni Unite e Organismi Internazionali",
+        "ref1": "UNICEF / OMS / Banca Mondiale. Joint Child Malnutrition Estimates — Levels and Trends. Edizione 2023.",
+        "ref2": "Organizzazione delle Nazioni Unite per l'Alimentazione e l'Agricoltura. Lo Stato della Sicurezza Alimentare e della Nutrizione nel Mondo 2023. FAO, IFAD, UNICEF, WFP, OMS. Roma, 2023."
+      }
+    }
+  },
+  "metadata": {
+    "aboutTitle": "Chi Siamo - Strumento di Confronto Altezza",
+    "aboutDescription": "Scopri il nostro strumento di confronto dell'altezza su scala proporzionale reale, i calcolatori, le fonti dei dati e gli standard di accuratezza.",
+    "privacyTitle": "Informativa sulla Privacy - Strumento di Confronto Altezza",
+    "privacyDescription": "Leggi l'informativa sulla privacy dello Strumento di Confronto Altezza per scoprire come proteggiamo le tue informazioni e gestiamo i dati.",
+    "heightPredictorTitle": "Calcolatore di Altezza: Prevedi la Tua Altezza da Adulto",
+    "heightPredictorDescription": "Prevedi la tua altezza con il nostro Calcolatore di Previsione Altezza. Utilizza metodi scientificamente comprovati per stimare l'altezza da adulto.",
+    "heightWeightPercentileTitle": "Calcolatore Percentili Altezza e Peso per Neonati, Bambini e Adulti",
+    "heightWeightPercentileDescription": "Usa il nostro Calcolatore di Percentili di Altezza e Peso per misurare la crescita. Include percentili per neonati, bambini e adulti.",
+    "idealBodyWeightTitle": "Calcola il Peso Corporeo Ideale e Calcolatore del Peso Aggiustato",
+    "idealBodyWeightDescription": "Utilizza il nostro Calcolatore di Peso Ideale in kg. Include il calcolo del peso corporeo ideale aggiustato per uomini e donne.",
+    "heightDifferenceTitle": "Calcolatore di Differenza di Altezza - Tabella e Confronto",
+    "heightDifferenceDescription": "Calcola la differenza di altezza con il nostro calcolatore. Include il confronto di altezza per coppie con tabella visiva.",
+    "averageHeightByCountryTitle": "Altezza Media per Paese - Grafico Globale dell'Altezza Umana",
+    "averageHeightByCountryDescription": "Scopri l'altezza media di donne e uomini nel mondo e confronta le stature per paese in un'unica tabella globale.",
+    "blogsTitle": "Blog dello Strumento di Confronto Altezza",
+    "blogsDescription": "Leggi gli articoli più recenti su altezza, proporzioni corporee e confronti affascinanti."
+  },
+  "blogs": {
+    "badge": "Articoli e Approfondimenti",
+    "heading": "Approfondimenti e guide",
+    "subheading": "Esplora guide, ricerche e analisi approfondite sull'altezza umana, medie, percentili e interessanti confronti nel mondo reale.",
+    "articleBadge": "Articolo",
+    "noPostsTitle": "Nessun articolo disponibile",
+    "noPostsSubtitle": "Torna più tardi per nuovi contenuti.",
+    "unknownAuthor": "Autore sconosciuto"
+  },
+  "blogPost": {
+    "categoryLabel": "Articolo del Blog",
+    "writtenBy": "Scritto da {author}",
+    "unknownAuthor": "Autore sconosciuto",
+    "jumpToSection": "Vai alla sezione",
+    "fallbackImageAlt": "Immagine dell'articolo",
+    "postNotFound": "Articolo non trovato"
+  }
+}

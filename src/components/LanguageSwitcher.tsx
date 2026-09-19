@@ -4,21 +4,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { Globe, ChevronDown, Check } from 'lucide-react';
 
-export interface LanguageOption {
-  code: string;
-  name: string;
-  nativeName: string;
-  flag: string;
-}
+import { SUPPORTED_LOCALES, ALL_LOCALE_CODES, type AppLocale } from '@/i18n/config';
 
-export const LANGUAGES: LanguageOption[] = [
-  { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
-  { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪' },
-  { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸' },
-  { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷' },
-];
-
-const ALL_LOCALES = LANGUAGES.map((l) => l.code);
+export type LanguageOption = AppLocale;
+export const LANGUAGES: LanguageOption[] = SUPPORTED_LOCALES;
+const ALL_LOCALES = ALL_LOCALE_CODES;
 
 /** Remove any existing locale prefix from pathname */
 function getCleanPath(rawPathname: string, locales: string[]): string {

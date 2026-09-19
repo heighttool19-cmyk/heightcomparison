@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useThemeStore } from "@/store"; // Make sure to import your theme store
 
 const BLUE = "#1B4F8A";
@@ -52,6 +53,7 @@ function WeightTable({ data, sex }: {
     data: ({ cm: number, ft: string, devine: number, hamwi: number, robinson: number, miller: number, bmiLo: number, bmiHi: number } & Record<string, string | number>)[],
     sex: string
 }) {
+    const t = useTranslations('idealBodyWeight.healthyWeightRange');
     const [unit, setUnit] = useState("kg");
     const [hovered, setHovered] = useState<number | null>(null);
     const { theme } = useThemeStore();
@@ -87,15 +89,15 @@ function WeightTable({ data, sex }: {
                 <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12, fontFamily: "Georgia, serif" }}>
                     <thead>
                         <tr style={{ background: sex === "Men" ? (isDark ? "#1d4ed8" : BLUE) : (isDark ? "#0f766e" : TEAL) }}>
-                            <th style={{ padding: "10px 12px", textAlign: "left", fontWeight: 700, fontSize: 11, letterSpacing: "0.06em", whiteSpace: "nowrap", color: "white" }}>Height (cm)</th>
-                            <th style={{ padding: "10px 12px", textAlign: "left", fontWeight: 700, fontSize: 11, letterSpacing: "0.06em", color: "white" }}>Height (ft)</th>
+                            <th style={{ padding: "10px 12px", textAlign: "left", fontWeight: 700, fontSize: 11, letterSpacing: "0.06em", whiteSpace: "nowrap", color: "white" }}>{t('tableHeightCm')}</th>
+                            <th style={{ padding: "10px 12px", textAlign: "left", fontWeight: 700, fontSize: 11, letterSpacing: "0.06em", color: "white" }}>{t('tableHeightFt')}</th>
                             {FORMULAS.map(f => (
                                 <th key={f.key} style={{ padding: "10px 12px", textAlign: "center", fontWeight: 700, fontSize: 11, letterSpacing: "0.04em", whiteSpace: "nowrap", color: "white" }}>
                                     {f.label} ({u})
                                 </th>
                             ))}
                             <th style={{ padding: "10px 12px", textAlign: "center", fontWeight: 700, fontSize: 11, letterSpacing: "0.04em", whiteSpace: "nowrap", background: "rgba(255,255,255,0.18)", color: "white" }}>
-                                Healthy BMI Range ({u})
+                                {t('tableHealthyBmiRange', { unit: u })}
                             </th>
                         </tr>
                     </thead>
@@ -152,6 +154,7 @@ function WeightTable({ data, sex }: {
 }
 
 export default function HealthyWeightRange() {
+    const t = useTranslations('idealBodyWeight.healthyWeightRange');
     const [activeTab, setActiveTab] = useState("Men");
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
@@ -162,17 +165,11 @@ export default function HealthyWeightRange() {
             {/* ── Section: What IBW means ── */}
             <div style={{ marginBottom: 28 }}>
                 <p style={{ margin: "0 0 14px", fontSize: 14.5, lineHeight: 1.75, color: isDark ? "var(--muted)" : "#334155" }}>
-                    Your ideal body weight (IBW) result is a formula-based estimate of the weight that is
-                    considered appropriate for your height and sex. The four formulas this calculator uses —{" "}
-                    <strong style={{ color: isDark ? "var(--foreground)" : "#0f172a" }}>Devine, Hamwi, Robinson, and Miller</strong> — were originally developed to standardise
-                    drug dosages in clinical settings. They were not designed as aesthetic targets. Each formula
-                    produces a slightly different number, and the calculator shows all four so you can see where
-                    the estimates cluster.
+                    {t('intro1')}{" "}
+                    <strong style={{ color: isDark ? "var(--foreground)" : "#0f172a" }}>{t('formulaNames')}</strong> {t('intro1After')}
                 </p>
                 <p style={{ margin: "0 0 14px", fontSize: 14.5, lineHeight: 1.75, color: isDark ? "var(--muted)" : "#334155" }}>
-                    None of the formulas account for muscle mass, bone density, or frame size. A person with
-                    a larger frame or higher muscle mass will naturally sit above the IBW estimate without any
-                    health concern. Treat the result as a general reference point, not a precise target.
+                    {t('intro2')}
                 </p>
             </div>
 
@@ -183,20 +180,17 @@ export default function HealthyWeightRange() {
                 borderColor: isDark ? "rgba(34, 197, 94, 0.3)" : "#86efac"
             }}>
                 <p style={{ margin: "0 0 6px", fontSize: 12, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.08em", color: isDark ? "#22c55e" : "#16a34a" }}>
-                    What counts as a healthy weight range?
+                    {t('healthyRangeQuestionTitle')}
                 </p>
                 <p style={{ margin: "0 0 12px", fontSize: 14, lineHeight: 1.7, color: isDark ? "var(--muted)" : "#334155" }}>
-                    The WHO defines a healthy weight as a BMI between <strong style={{ color: isDark ? "var(--foreground)" : "#0f172a" }}>18.5 and 25 kg/m²</strong>.
-                    For most adults, this translates to a window of roughly <strong style={{ color: isDark ? "var(--foreground)" : "#0f172a" }}>14–16 kg</strong> around
-                    the median IBW estimate. Falling anywhere within this band is considered clinically normal.
-                    The formulas above typically sit near the middle of this band.
+                    {t('healthyRangeTextBefore')} <strong style={{ color: isDark ? "var(--foreground)" : "#0f172a" }}>{t('bmiRangeValue')}</strong>{t('healthyRangeTextMiddle')} <strong style={{ color: isDark ? "var(--foreground)" : "#0f172a" }}>{t('windowValue')}</strong> {t('healthyRangeTextAfter')}
                 </p>
                 {/* Mini visual range */}
                 <div style={{ marginTop: 10 }}>
                     <div style={{ display: "flex", marginBottom: 4, paddingRight: "10px", alignItems: "flex-end" }}>
-                        <span style={{ flex: 18.5, fontSize: "clamp(8.5px, 2.5vw, 10.5px)", whiteSpace: "nowrap", color: isDark ? "var(--muted)" : "#64748b" }}>Underweight</span>
-                        <span style={{ flex: 6.5, fontSize: "clamp(8.5px, 2.5vw, 10.5px)", fontWeight: 700, textAlign: "center", whiteSpace: "nowrap", color: isDark ? "#22c55e" : "#16a34a" }}>Healthy BMI range</span>
-                        <span style={{ flex: 5, fontSize: "clamp(5px, 1.5vw, 10.5px)", textAlign: "right", whiteSpace: "nowrap", color: isDark ? "var(--muted)" : "#64748b" }}>Overweight</span>
+                        <span style={{ flex: 18.5, fontSize: "clamp(8.5px, 2.5vw, 10.5px)", whiteSpace: "nowrap", color: isDark ? "var(--muted)" : "#64748b" }}>{t('underweightLabel')}</span>
+                        <span style={{ flex: 6.5, fontSize: "clamp(8.5px, 2.5vw, 10.5px)", fontWeight: 700, textAlign: "center", whiteSpace: "nowrap", color: isDark ? "#22c55e" : "#16a34a" }}>{t('healthyBmiRangeLabel')}</span>
+                        <span style={{ flex: 5, fontSize: "clamp(5px, 1.5vw, 10.5px)", textAlign: "right", whiteSpace: "nowrap", color: isDark ? "var(--muted)" : "#64748b" }}>{t('overweightLabel')}</span>
                     </div>
                     <div style={{ height: 14, borderRadius: 99, display: "flex", overflow: "hidden" }}>
                         <div style={{ flex: 18.5, background: isDark ? "rgba(234, 179, 8, 0.5)" : "#fde68a" }} />
@@ -207,9 +201,9 @@ export default function HealthyWeightRange() {
                         <div style={{ flex: 5, background: isDark ? "rgba(239, 68, 68, 0.5)" : "#fca5a5" }} />
                     </div>
                     <div style={{ display: "flex", marginTop: 4 }}>
-                        <span style={{ flex: 18.5, fontSize: 9.5, color: isDark ? "rgba(255,255,255,0.5)" : "#94a3b8" }}>BMI &lt; 18.5</span>
-                        <span style={{ flex: 6.5, fontSize: 9.5, textAlign: "center", color: isDark ? "#22c55e" : "#16a34a" }}>18.5–25</span>
-                        <span style={{ flex: 5, fontSize: 9.5, textAlign: "right", color: isDark ? "rgba(255,255,255,0.5)" : "#94a3b8" }}>&gt; 25</span>
+                        <span style={{ flex: 18.5, fontSize: 9.5, color: isDark ? "rgba(255,255,255,0.5)" : "#94a3b8" }}>{t('bmiUnder185')}</span>
+                        <span style={{ flex: 6.5, fontSize: 9.5, textAlign: "center", color: isDark ? "#22c55e" : "#16a34a" }}>{t('bmiRangeShort')}</span>
+                        <span style={{ flex: 5, fontSize: 9.5, textAlign: "right", color: isDark ? "rgba(255,255,255,0.5)" : "#94a3b8" }}>{t('bmiOver25')}</span>
                     </div>
                 </div>
             </div>
@@ -217,25 +211,25 @@ export default function HealthyWeightRange() {
             {/* ── How far above or below ── */}
             <div style={{ marginBottom: 28 }}>
                 <p style={{ margin: "0 0 14px", fontSize: 14.5, lineHeight: 1.75, color: isDark ? "var(--muted)" : "#334155" }}>
-                    The table below shows how to read the distance from your current weight to the IBW estimate:
+                    {t('distanceTableIntro')}
                 </p>
                 <div style={{ overflowX: "auto", border: "1px solid", borderColor: isDark ? "var(--border)" : "#e2e8f0", borderRadius: 12 }}>
                     <table style={{ width: "100%", borderCollapse: "collapse", fontFamily: "Georgia, serif", fontSize: 13 }}>
                         <thead>
                             <tr style={{ background: isDark ? "var(--accent)" : BLUE }}>
-                                {["Distance from IBW estimate", "What it suggests"].map(h => (
+                                {[t('distanceHeaderDistance'), t('distanceHeaderMeaning')].map(h => (
                                     <th key={h} style={{ padding: "10px 16px", textAlign: "left", fontWeight: 700, fontSize: 11, letterSpacing: "0.06em", color: "white" }}>{h}</th>
                                 ))}
                             </tr>
                         </thead>
                         <tbody>
                             {[
-                                ["Within ±3 kg", "Very close to the formula estimate. Well within normal variation."],
-                                ["3–7 kg above", "Slightly above the estimate. Still likely within healthy BMI range depending on height."],
-                                ["7–15 kg above", "Noticeably above the IBW estimate. Worth checking BMI and discussing with a doctor."],
-                                ["More than 15 kg above", "Significantly above IBW. Clinical review recommended."],
-                                ["3–7 kg below", "Slightly below. May still be within healthy BMI range. Monitor if weight continues to drop."],
-                                ["More than 7 kg below", "Below the healthy BMI threshold. Consult a healthcare provider."],
+                                [t('distanceRow1Dist'), t('distanceRow1Meaning')],
+                                [t('distanceRow2Dist'), t('distanceRow2Meaning')],
+                                [t('distanceRow3Dist'), t('distanceRow3Meaning')],
+                                [t('distanceRow4Dist'), t('distanceRow4Meaning')],
+                                [t('distanceRow5Dist'), t('distanceRow5Meaning')],
+                                [t('distanceRow6Dist'), t('distanceRow6Meaning')],
                             ].map(([dist, meaning], i) => (
                                 <tr key={i} style={{ background: i % 2 === 0 ? (isDark ? "rgba(var(--bg-rgb), 0.5)" : "#f8fafc") : (isDark ? "var(--surface)" : "white"), borderTop: `1px solid ${isDark ? "rgba(255,255,255,0.1)" : "#e2e8f0"}` }}>
                                     <td style={{ padding: "9px 16px", fontWeight: 700, whiteSpace: "nowrap", color: isDark ? "var(--foreground)" : "#0f172a" }}>{dist}</td>
@@ -250,13 +244,13 @@ export default function HealthyWeightRange() {
             {/* ── Reference tables ── */}
             <div>
                 <p style={{ margin: "0 0 6px", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", fontWeight: 700, color: isDark ? "var(--muted)" : "#64748b" }}>
-                    Reference tables
+                    {t('referenceTablesLabel')}
                 </p>
                 <h3 style={{ margin: "0 0 4px", fontSize: 18, fontWeight: 800, color: isDark ? "var(--foreground)" : "#0f172a" }}>
-                    Healthy Weight by Height — Men &amp; Women
+                    {t('referenceTablesTitle')}
                 </h3>
                 <p style={{ margin: "0 0 18px", fontSize: 13, lineHeight: 1.6, color: isDark ? "var(--muted)" : "#64748b" }}>
-                    IBW estimates from all four formulas plus the healthy BMI weight range (18.5–25 kg/m²) for the most common adult heights. Toggle between kg and lbs. Hover any row to highlight it.
+                    {t('referenceTablesDescription')}
                 </p>
 
                 {/* Sex tabs */}
@@ -273,7 +267,7 @@ export default function HealthyWeightRange() {
                                 borderColor: isActive ? (sex === "Men" ? (isDark ? "#2563eb" : BLUE) : (isDark ? "#0d9488" : TEAL)) : (isDark ? "var(--border)" : "#e2e8f0"),
                                 color: isActive ? "white" : (isDark ? "var(--muted)" : "#64748b")
                             }}>
-                                {sex === "Men" ? "♂ Men" : "♀ Women"}
+                                {sex === "Men" ? t('tabMen') : t('tabWomen')}
                             </button>
                         );
                     })}
@@ -300,7 +294,7 @@ export default function HealthyWeightRange() {
                     }}>
                         <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#16a34a" }} />
                         <span style={{ fontSize: 11, fontWeight: 700, fontFamily: "Georgia, serif", color: isDark ? "#22c55e" : "#16a34a" }}>
-                            Healthy BMI range (WHO)
+                            {t('healthyBmiRangeWhoLabel')}
                         </span>
                     </div>
                 </div>
@@ -313,9 +307,7 @@ export default function HealthyWeightRange() {
                 </div>
 
                 <p style={{ margin: "14px 0 0", fontSize: 11.5, lineHeight: 1.7, color: isDark ? "rgba(255,255,255,0.5)" : "#94a3b8" }}>
-                    Sources: Devine BJ (1974). Robinson JD et al. (1983). Miller DR et al. (1983). Hamwi GJ (1964).
-                    Healthy BMI range based on WHO recommended threshold of 18.5–25 kg/m². These values are
-                    reference estimates only and do not constitute medical advice.
+                    {t('sourcesNote')}
                 </p>
             </div>
         </div>

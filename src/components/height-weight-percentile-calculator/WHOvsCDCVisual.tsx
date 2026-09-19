@@ -1,6 +1,7 @@
 'use client';
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import { useThemeStore } from "@/store"; // Adjust path as needed
 
 const WHO_BOYS = [
@@ -55,6 +56,7 @@ interface SmallChartProps {
 }
 
 function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, minH, maxH, badge }: SmallChartProps) {
+    const t = useTranslations('heightWeightPercentile.whoVsCdc');
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
@@ -148,17 +150,17 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
                     {ageTicks.map(a => (
                         <text key={a} x={toX(a)} y={pT + plotH + 14}
                             textAnchor="middle" fontSize="8" fill={axisTextColor} fontFamily="Georgia, serif">
-                            {maxH <= 95 ? (a === 0 ? "Birth" : `${a}y`) : `${a}`}
+                            {maxH <= 95 ? (a === 0 ? t('birthLabel') : `${a}${t('yearsAbbrev')}`) : `${a}`}
                         </text>
                     ))}
 
                     {/* Axis titles */}
                     <text x={10} y={pT + plotH / 2} textAnchor="middle" fontSize="7.5" fill={axisTextColor}
                         fontFamily="Georgia, serif" transform={`rotate(-90,10,${pT + plotH / 2})`}>
-                        {maxH <= 95 ? "Length (cm)" : "Height (cm)"}
+                        {maxH <= 95 ? t('lengthAxisLabel') : t('heightAxisLabel')}
                     </text>
                     <text x={pL + plotW / 2} y={H - 2} textAnchor="middle" fontSize="7.5" fill={axisTextColor}
-                        fontFamily="Georgia, serif">Age (years)</text>
+                        fontFamily="Georgia, serif">{t('ageAxisLabel')}</text>
 
                     {/* P labels on right - 3. MUTED CLUTTER & HIGHLIGHTED 50TH */}
                     {["p95", "p75", "p50", "p25", "p5"].map(k => {
@@ -179,9 +181,9 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
                 {/* Mini legend */}
                 <div style={{ display: "flex", justifyContent: "center", gap: 10, paddingLeft: 8, paddingBottom: 4, paddingTop: 8, flexWrap: "wrap" }}>
                     {[
-                        { style: "solid", label: "50th (median)" },
-                        { style: "dashed", label: "25th / 75th" },
-                        { style: "dotted", label: "5th / 95th" },
+                        { style: "solid", label: t('legendMedian') },
+                        { style: "dashed", label: t('legend25_75') },
+                        { style: "dotted", label: t('legend5_95') },
                     ].map(l => (
                         <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 4 }}>
                             <svg width="18" height="8">
@@ -201,12 +203,13 @@ function SmallChart({ title, subtitle, data, color, bandColor, minAge, maxAge, m
 }
 
 export default function WHOvsCDCVisual() {
+    const t = useTranslations('heightWeightPercentile.whoVsCdc');
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
     const TIMELINE = [
-        { lo: 0, hi: 2, source: "WHO", color: WHO_COLOR, bg: "#ecfeff", darkBg: "#083344", label: "WHO Child Growth Standards", note: "Birth to 24 months · Length measured lying down" },
-        { lo: 2, hi: 20, source: "CDC", color: CDC_COLOR, bg: "#eff6ff", darkBg: "#172554", label: "CDC Growth Charts", note: "Ages 2–20 · Standing height · US population data" },
+        { lo: 0, hi: 2, source: "WHO", color: WHO_COLOR, bg: "#ecfeff", darkBg: "#083344", label: t('whoTimelineLabel'), note: t('whoTimelineNote') },
+        { lo: 2, hi: 20, source: "CDC", color: CDC_COLOR, bg: "#eff6ff", darkBg: "#172554", label: t('cdcTimelineLabel'), note: t('cdcTimelineNote') },
     ];
 
     // UPDATED text colors for better contrast
@@ -218,17 +221,17 @@ export default function WHOvsCDCVisual() {
             {/* Header */}
             <div style={{ background: isDark ? "#101011" : "#0f172a", padding: "16px 24px", borderBottom: isDark ? '1px solid var(--border)' : 'none' }}>
                 <p style={{ margin: 0, fontSize: 11, color: isDark ? "#94a3b8" : "#cbd5e1", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                    Reference Data Guide
+                    {t('referenceDataGuide')}
                 </p>
                 <h3 style={{ margin: "3px 0 0", fontSize: 17, fontWeight: 800, color: "white" }}>
-                    Which growth chart does this calculator use?
+                    {t('heading')}
                 </h3>
             </div>
 
             {/* Age timeline switcher */}
             <div style={{ padding: "20px 24px 0" }}>
                 <p style={{ margin: "0 0 10px", fontSize: 11, color: mutedText, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                    Age range → data source
+                    {t('ageRangeSource')}
                 </p>
 
                 {/* Visual timeline */}
@@ -257,7 +260,7 @@ export default function WHOvsCDCVisual() {
                             padding: "2px 7px", borderRadius: 4,
                             fontSize: 9, fontWeight: 700, whiteSpace: "nowrap"
                         }}>
-                            Age 2 · Switch point
+                            {t('switchPoint')}
                         </div>
                     </div>
 
@@ -272,39 +275,39 @@ export default function WHOvsCDCVisual() {
 
                     {/* Age end labels - UPDATED Contrast */}
                     <div style={{ display: "flex", justifyContent: "space-between", marginTop: 24, paddingTop: 20 }}>
-                        <span style={{ fontSize: 9.5, color: mutedText }}>Birth</span>
-                        <span style={{ fontSize: 9.5, color: mutedText }}>5 yrs</span>
-                        <span style={{ fontSize: 9.5, color: darkMutedText }}>10 yrs</span>
-                        <span style={{ fontSize: 9.5, color: mutedText }}>15 yrs</span>
-                        <span style={{ fontSize: 9.5, color: mutedText }}>20 yrs</span>
+                        <span style={{ fontSize: 9.5, color: mutedText }}>{t('birthLabel')}</span>
+                        <span style={{ fontSize: 9.5, color: mutedText }}>{t('age5')}</span>
+                        <span style={{ fontSize: 9.5, color: darkMutedText }}>{t('age10')}</span>
+                        <span style={{ fontSize: 9.5, color: mutedText }}>{t('age15')}</span>
+                        <span style={{ fontSize: 9.5, color: mutedText }}>{t('age20')}</span>
                     </div>
                 </div>
 
                 {/* Two info cards (Responsive Grid) */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-5">
-                    {TIMELINE.map(t => (
-                        <div key={t.source} style={{
-                            border: `2px solid ${t.color}50`,
-                            background: isDark ? t.darkBg : t.bg,
+                    {TIMELINE.map(tl => (
+                        <div key={tl.source} style={{
+                            border: `2px solid ${tl.color}50`,
+                            background: isDark ? tl.darkBg : tl.bg,
                             borderRadius: 12, padding: "14px 16px"
                         }}>
                             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
                                 <div style={{
-                                    background: t.color, borderRadius: 6,
+                                    background: tl.color, borderRadius: 6,
                                     padding: "2px 9px",
                                     fontSize: 11, fontWeight: 900, color: "white"
                                 }}>
-                                    {t.source}
+                                    {tl.source}
                                 </div>
                                 <span style={{ fontSize: 11, fontWeight: 700, color: isDark ? "white" : "#0f172a" }}>
-                                    Ages {t.lo}–{t.hi}
+                                    {tl.source === "WHO" ? t('whoAges') : t('cdcAges')}
                                 </span>
                             </div>
-                            <p style={{ margin: "0 0 4px", fontSize: 12, fontWeight: 700, color: isDark ? "white" : t.color }}>
-                                {t.label}
+                            <p style={{ margin: "0 0 4px", fontSize: 12, fontWeight: 700, color: isDark ? "white" : tl.color }}>
+                                {tl.label}
                             </p>
                             <p style={{ margin: 0, fontSize: 11, color: mutedText, lineHeight: 1.5 }}>
-                                {t.note}
+                                {tl.note}
                             </p>
                         </div>
                     ))}
@@ -315,7 +318,7 @@ export default function WHOvsCDCVisual() {
             <div style={{ display: "flex", alignItems: "center", gap: 12, padding: "0 24px 16px" }}>
                 <div style={{ flex: 1, height: 1, background: isDark ? "#334155" : "#cbd5e1" }} />
                 <span style={{ fontSize: 11, color: mutedText, textTransform: "uppercase", letterSpacing: "0.1em" }}>
-                    Growth curves side by side
+                    {t('growthCurvesSideBySide')}
                 </span>
                 <div style={{ flex: 1, height: 1, background: isDark ? "#334155" : "#cbd5e1" }} />
             </div>
@@ -323,8 +326,8 @@ export default function WHOvsCDCVisual() {
             {/* Side-by-side charts (Responsive Grid) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-6 pb-6">
                 <SmallChart
-                    title="WHO Standards"
-                    subtitle="Birth to 24 months (boys)"
+                    title={t('whoChartTitle')}
+                    subtitle={t('whoChartSubtitle')}
                     data={WHO_BOYS}
                     color={WHO_COLOR}
                     bandColor={BAND_WHO}
@@ -333,8 +336,8 @@ export default function WHOvsCDCVisual() {
                     badge="🌍"
                 />
                 <SmallChart
-                    title="CDC Growth Charts"
-                    subtitle="Ages 2–20 (boys)"
+                    title={t('cdcChartTitle')}
+                    subtitle={t('cdcChartSubtitle')}
                     data={CDC_BOYS}
                     color={CDC_COLOR}
                     bandColor={BAND_CDC}
@@ -351,7 +354,7 @@ export default function WHOvsCDCVisual() {
                 background: isDark ? "#101011" : "#f8fafc"
             }}>
                 <p style={{ margin: 0, fontSize: 11, color: mutedText, lineHeight: 1.7 }}>
-                    <strong style={{ color: isDark ? "white" : "#334155" }}>Why two sources?</strong> WHO standards were built from children raised in optimal conditions across six countries, making them an international reference for early growth. CDC charts are based on US population data and are standard in American clinical practice for children aged 2 and above. This calculator switches automatically between them based on the age entered.
+                    <strong style={{ color: isDark ? "white" : "#334155" }}>{t('bottomNoteStrong')}</strong> {t('bottomNoteText')}
                 </p>
             </div>
         </div>

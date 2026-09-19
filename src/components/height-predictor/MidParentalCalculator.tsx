@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useUnitStore, usePersonStore } from '@/store';
 import { NumericInput } from '@/components/ui/NumericInput';
 import { Person } from '@/types';
@@ -23,6 +24,7 @@ const ftInToCm = (ft: number, inc: number) => {
 };
 
 export default function MidParentalCalculator() {
+    const t = useTranslations('heightPredictor.midParentalCalculator');
     const router = useRouter();
     const { unitSystem: unit, setUnitSystem } = useUnitStore();
     const { setPersons: storeSetPersons } = usePersonStore();
@@ -65,11 +67,11 @@ export default function MidParentalCalculator() {
             <div className="flex flex-col mb-8 gap-4">
                 <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                        <h2 id="how-to-predict" className="text-3xl font-black tracking-tight text-foreground uppercase">Parent&apos;s Height Only</h2>
-                        <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20">Mid-Parental</span>
+                        <h2 id="how-to-predict" className="text-3xl font-black tracking-tight text-foreground uppercase">{t('title')}</h2>
+                        <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20">{t('badge')}</span>
                     </div>
                     <p className="text-muted font-medium leading-relaxed">
-                        Estimate predicted height using only parents&apos; heights. Works for babies, very young children, and unborn babies too. If you are pregnant, enter both parents&apos; heights to get your child&apos;s estimated adult height range.
+                        {t('description')}
                     </p>
                 </div>
 
@@ -79,83 +81,83 @@ export default function MidParentalCalculator() {
                         onClick={() => setUnitSystem('imperial')}
                         className={`flex-1 px-4 py-2 sm:py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}
                     >
-                        US (ft/in)
+                        {t('unitUs')}
                     </button>
                     <button
                         onClick={() => setUnitSystem('metric')}
                         className={`flex-1 px-4 py-2 sm:py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}
                     >
-                        Metric (cm)
+                        {t('unitMetric')}
                     </button>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                 <div className="space-y-2">
-                    <label className="text-base font-semibold text-muted">Mother&apos;s Height</label>
+                    <label className="text-base font-semibold text-muted">{t('motherHeightLabel')}</label>
                     {unit === 'metric' ? (
                         <div className="relative">
-                            <label htmlFor="p-mother-height-cm" className="sr-only">Mother&apos;s Height (cm)</label>
+                            <label htmlFor="p-mother-height-cm" className="sr-only">{t('motherHeightCmAriaLabel')}</label>
                             <NumericInput
                                 id="p-mother-height-cm"
                                 value={parentMotherHtCm}
                                 onValueChange={setParentMotherHtCm}
                                 className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors"
                                 placeholder="e.g. 165"
-                                aria-label="Mother's Height in Centimeters"
+                                aria-label={t('motherHeightCmAriaLabel')}
                             />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('cmUnit')}</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
-                                <label htmlFor="p-mother-height-ft" className="sr-only">Mother&apos;s Height (ft)</label>
-                                <NumericInput id="p-mother-height-ft" value={parentMotherHtFt} onValueChange={setParentMotherHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Feet" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
+                                <label htmlFor="p-mother-height-ft" className="sr-only">{t('motherHeightFtAriaLabel')}</label>
+                                <NumericInput id="p-mother-height-ft" value={parentMotherHtFt} onValueChange={setParentMotherHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label={t('motherHeightFtAriaLabel')} />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('ftUnit')}</span>
                             </div>
                             <div className="relative flex-1">
-                                <label htmlFor="p-mother-height-in" className="sr-only">Mother&apos;s Height (in)</label>
-                                <NumericInput id="p-mother-height-in" value={parentMotherHtIn} onValueChange={setParentMotherHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Inches" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
+                                <label htmlFor="p-mother-height-in" className="sr-only">{t('motherHeightInAriaLabel')}</label>
+                                <NumericInput id="p-mother-height-in" value={parentMotherHtIn} onValueChange={setParentMotherHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label={t('motherHeightInAriaLabel')} />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('inUnit')}</span>
                             </div>
                         </div>
                     )}
                 </div>
                 <div className="space-y-2">
-                    <label className="text-base font-semibold text-muted">Father&apos;s Height</label>
+                    <label className="text-base font-semibold text-muted">{t('fatherHeightLabel')}</label>
                     {unit === 'metric' ? (
                         <div className="relative">
-                            <label htmlFor="p-father-height-cm" className="sr-only">Father&apos;s Height (cm)</label>
-                            <NumericInput id="p-father-height-cm" value={parentFatherHtCm} onValueChange={setParentFatherHtCm} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" aria-label="Father's Height in Centimeters" />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
+                            <label htmlFor="p-father-height-cm" className="sr-only">{t('fatherHeightCmAriaLabel')}</label>
+                            <NumericInput id="p-father-height-cm" value={parentFatherHtCm} onValueChange={setParentFatherHtCm} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" aria-label={t('fatherHeightCmAriaLabel')} />
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('cmUnit')}</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
-                                <label htmlFor="p-father-height-ft" className="sr-only">Father&apos;s Height (ft)</label>
-                                <NumericInput id="p-father-height-ft" value={parentFatherHtFt} onValueChange={setParentFatherHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Father's Height in Feet" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
+                                <label htmlFor="p-father-height-ft" className="sr-only">{t('fatherHeightFtAriaLabel')}</label>
+                                <NumericInput id="p-father-height-ft" value={parentFatherHtFt} onValueChange={setParentFatherHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label={t('fatherHeightFtAriaLabel')} />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('ftUnit')}</span>
                             </div>
                             <div className="relative flex-1">
-                                <label htmlFor="p-father-height-in" className="sr-only">Father&apos;s Height (in)</label>
-                                <NumericInput id="p-father-height-in" value={parentFatherHtIn} onValueChange={setParentFatherHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" aria-label="Father's Height in Inches" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
+                                <label htmlFor="p-father-height-in" className="sr-only">{t('fatherHeightInAriaLabel')}</label>
+                                <NumericInput id="p-father-height-in" value={parentFatherHtIn} onValueChange={setParentFatherHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" aria-label={t('fatherHeightInAriaLabel')} />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('inUnit')}</span>
                             </div>
                         </div>
                     )}
                 </div>
             </div>
-            <button onClick={calculateMidParental} className="w-full bg-surface border-2 border-border hover:border-accent hover:bg-accent/5 text-foreground font-black py-3.5 rounded-xl transition-all shadow-sm btn-glow active:scale-95">Calculate Estimate</button>
+            <button onClick={calculateMidParental} className="w-full bg-surface border-2 border-border hover:border-accent hover:bg-accent/5 text-foreground font-black py-3.5 rounded-xl transition-all shadow-sm btn-glow active:scale-95">{t('calculateEstimate')}</button>
 
             {predictedParentOnlyBoys && predictedParentOnlyGirls && (
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
 
                     {/* Boys Result Card (Updated to match image style) */}
                     <div className="bg-accent/10 border border-accent/20 rounded-2xl p-6 text-center shadow-lg shadow-accent/5">
-                        <p className="text-base font-black text-accent uppercase tracking-widest mb-2">Estimated Adult Height (Boys)</p>
+                        <p className="text-base font-black text-accent uppercase tracking-widest mb-2">{t('estimatedAdultHeightBoys')}</p>
                         <div className="flex items-center justify-center gap-4">
                             <span className="text-4xl md:text-5xl font-black text-foreground">
-                                {predictedParentOnlyBoys.cm} <span className="text-xl md:text-2xl text-accent">cm</span>
+                                {predictedParentOnlyBoys.cm} <span className="text-xl md:text-2xl text-accent">{t('cmUnit')}</span>
                             </span>
                             <div className="w-px h-10 bg-border" />
                             <span className="text-4xl md:text-5xl font-black text-accent">
@@ -163,7 +165,7 @@ export default function MidParentalCalculator() {
                             </span>
                         </div>
                         <p className="text-xs font-bold text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">
-                            Target Range (±5 cm): {predictedParentOnlyBoys.cm - 5} : {predictedParentOnlyBoys.cm + 5} cm
+                            {t('targetRange', { min: predictedParentOnlyBoys.cm - 5, max: predictedParentOnlyBoys.cm + 5 })}
                         </p>
 
                         <button
@@ -184,17 +186,17 @@ export default function MidParentalCalculator() {
                             }}
                             className="w-full mt-6 bg-accent hover:bg-accent/90 text-white font-black py-4 rounded-xl transition-all shadow-xl shadow-accent/20 flex items-center justify-center gap-2 group"
                         >
-                            View Comparison Chart
+                            {t('viewComparisonChart')}
                             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                         </button>
                     </div>
 
                     {/* Girls Result Card (Updated to match image style) */}
                     <div className="bg-accent/10 border border-accent/20 rounded-2xl p-6 text-center shadow-lg shadow-accent/5">
-                        <p className="text-base font-black text-accent uppercase tracking-widest mb-2">Estimated Adult Height (Girls)</p>
+                        <p className="text-base font-black text-accent uppercase tracking-widest mb-2">{t('estimatedAdultHeightGirls')}</p>
                         <div className="flex items-center justify-center gap-4">
                             <span className="text-4xl md:text-5xl font-black text-foreground">
-                                {predictedParentOnlyGirls.cm} <span className="text-xl md:text-2xl text-accent">cm</span>
+                                {predictedParentOnlyGirls.cm} <span className="text-xl md:text-2xl text-accent">{t('cmUnit')}</span>
                             </span>
                             <div className="w-px h-10 bg-border" />
                             <span className="text-4xl md:text-5xl font-black text-accent">
@@ -202,7 +204,7 @@ export default function MidParentalCalculator() {
                             </span>
                         </div>
                         <p className="text-xs font-bold text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">
-                            Target Range (±5 cm): {predictedParentOnlyGirls.cm - 5} : {predictedParentOnlyGirls.cm + 5} cm
+                            {t('targetRange', { min: predictedParentOnlyGirls.cm - 5, max: predictedParentOnlyGirls.cm + 5 })}
                         </p>
 
                         <button
@@ -223,7 +225,7 @@ export default function MidParentalCalculator() {
                             }}
                             className="w-full mt-6 bg-accent hover:bg-accent/90 text-white font-black py-4 rounded-xl transition-all shadow-xl shadow-accent/20 flex items-center justify-center gap-2 group"
                         >
-                            View Comparison Chart
+                            {t('viewComparisonChart')}
                             <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                         </button>
                     </div>

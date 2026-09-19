@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useThemeStore } from "@/store";
 
 const BLUE = "#1A56DB", PINK = "#DB2777";
@@ -33,13 +34,17 @@ function Silhouette({ heightPx, color, label, heightLabel }: { heightPx: number,
 }
 
 export default function CoupleHeightDifferenceCalculator() {
+    const t = useTranslations('heightDifference.coupleCalc');
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
+    const partner1Label = t('partner1Label');
+    const partner2Label = t('partner2Label');
+
     const EXAMPLES = [
-        { p1: "Partner 1", h1: 183, p2: "Partner 2", h2: 165 },
-        { p1: "Partner 1", h1: 178, p2: "Partner 2", h2: 163 },
-        { p1: "Partner 1", h1: 175, p2: "Partner 2", h2: 160 },
+        { p1: partner1Label, h1: 183, p2: partner2Label, h2: 165 },
+        { p1: partner1Label, h1: 178, p2: partner2Label, h2: 163 },
+        { p1: partner1Label, h1: 175, p2: partner2Label, h2: 160 },
     ];
 
     const [idx, setIdx] = useState(0);
@@ -76,7 +81,7 @@ export default function CoupleHeightDifferenceCalculator() {
                         <div className="w-[1.5px] flex-1 bg-pink-600 opacity-40" />
                         <div className="bg-surface border border-pink-600/30 rounded-lg px-3 py-1.5 shadow-sm my-1">
                             <p className="m-0 text-[13px] font-black text-pink-600 text-center">{diff} cm</p>
-                            <p className="m-0 text-[10px] text-muted text-center font-sans mt-0.5">{pct}% taller</p>
+                            <p className="m-0 text-[10px] text-muted text-center font-sans mt-0.5">{t('pctTallerText', { pct })}</p>
                         </div>
                         <div className="w-[1.5px] flex-1 bg-pink-600 opacity-40" />
                     </div>
@@ -85,7 +90,15 @@ export default function CoupleHeightDifferenceCalculator() {
                 </div>
 
                 <p className="m-0 mt-5 text-xs text-foreground text-center leading-[1.6]">
-                    {ex.p1} ({ex.h1} cm) is <strong className="font-black text-pink-600">{diff} cm ({pct}%) taller</strong> than {ex.p2} ({ex.h2} cm)
+                    {t.rich('resultSentence', {
+                        p1: ex.p1,
+                        h1: ex.h1,
+                        p2: ex.p2,
+                        h2: ex.h2,
+                        diff,
+                        pct,
+                        strong: (chunks) => <strong className="font-black text-pink-600">{chunks}</strong>,
+                    })}
                 </p>
             </div>
         </div>

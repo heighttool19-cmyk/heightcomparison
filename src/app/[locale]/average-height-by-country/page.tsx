@@ -13,22 +13,17 @@ import TallestCountriesBars from '@/components/average-height-by-country/Tallest
 import ShortestCountriesBars from '@/components/average-height-by-country/ShortestCountriesBars';
 import TallestVsShortestChart from '@/components/average-height-by-country/TallestVsShortestChart';
 import HeightDistributionChart from '@/components/average-height-by-country/HeightDistributionChart';
+import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'metadata' });
-    const baseUrl = 'https://heightcomparisoncalculator.com';
-    const canonicalUrl = locale === 'en' ? `${baseUrl}/average-height-by-country` : `${baseUrl}/${locale}/average-height-by-country`;
     return {
         title: t('averageHeightByCountryTitle'),
         description: t('averageHeightByCountryDescription'),
         alternates: {
-            canonical: canonicalUrl,
-            languages: {
-                en: `${baseUrl}/average-height-by-country`,
-                de: `${baseUrl}/de/average-height-by-country`,
-                'x-default': `${baseUrl}/average-height-by-country`
-            }
+            canonical: getCanonicalUrl('/average-height-by-country', locale),
+            languages: getAlternateLanguages('/average-height-by-country')
         }
     };
 }

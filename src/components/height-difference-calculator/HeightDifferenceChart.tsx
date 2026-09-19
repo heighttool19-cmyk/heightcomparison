@@ -1,6 +1,7 @@
 'use client';
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import { useThemeStore } from "@/store";
 
 const CHART_DATA = [
@@ -14,6 +15,7 @@ const CHART_DATA = [
 ];
 
 export default function HeightDifferenceChart() {
+    const t = useTranslations('heightDifference.chartTable');
     const { theme } = useThemeStore();
     const isDark = theme === 'dark';
 
@@ -22,7 +24,7 @@ export default function HeightDifferenceChart() {
             <table className="w-full border-collapse text-[13px]">
                 <thead>
                     <tr className="bg-surface border-b-2 border-border">
-                        {["Person A", "Person B", "Difference", "% Difference"].map((h) => (
+                        {[t('headerPersonA'), t('headerPersonB'), t('headerDifference'), t('headerPercentDifference')].map((h) => (
                             <th key={h} className="p-2 text-left text-[10px] font-black text-muted uppercase whitespace-nowrap">
                                 {h}
                             </th>

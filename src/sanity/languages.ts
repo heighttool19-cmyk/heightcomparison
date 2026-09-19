@@ -6,6 +6,8 @@
  * The Sanity schema and translation actions will automatically adapt!
  */
 
+import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from '@/i18n/config';
+
 export interface TranslationLanguage {
   id: string;          // ISO-639-1 code used in URLs and Sanity fields (e.g. 'de', 'es', 'fr')
   title: string;       // English name for AI prompt instructions (e.g. 'German', 'Spanish', 'French')
@@ -13,23 +15,11 @@ export interface TranslationLanguage {
   flag: string;        // Flag emoji for editor visual clarity
 }
 
-export const TARGET_LANGUAGES: TranslationLanguage[] = [
-  {
-    id: 'de',
-    title: 'German',
-    nativeLabel: 'Deutsch',
-    flag: '🇩🇪',
-  },
-  {
-    id: 'es',
-    title: 'Spanish',
-    nativeLabel: 'Español',
-    flag: '🇪🇸',
-  },
-  {
-    id: 'fr',
-    title: 'French',
-    nativeLabel: 'Français',
-    flag: '🇫🇷',
-  },
-];
+export const TARGET_LANGUAGES: TranslationLanguage[] = SUPPORTED_LOCALES
+  .filter((l) => l.code !== DEFAULT_LOCALE)
+  .map((l) => ({
+    id: l.code,
+    title: l.name,
+    nativeLabel: l.nativeName,
+    flag: l.flag,
+  }));

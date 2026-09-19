@@ -227,3 +227,25 @@ German).
 - Backfilling posts published after this design ships is the same manual
   workflow, not a separate migration — there is no ongoing backlog
   concept once this ships, since the dataset currently has one post.
+
+
+
+
+
+
+
+
+
+Yes — there's an official Sanity plugin built exactly for this: @sanity/internationalized-array. It's a meaningfully better fit than the custom translations object I designed:
+
+- Explicitly supports Portable Text (block content) — solves the hardest part of the design natively instead of me hand-rolling shared block-type definitions.
+- Scales to any number of languages with zero schema changes. It stores translations as array items ({_key, language, value}) rather than one field per locale — adding French or Spanish later is just an editor adding an array item in Studio, not a code change. This is strictly better than my design, which still required a small schema edit per new language.
+- Native GROQ pattern: title[language == $locale][0].value, with coalesce() for the English fallback — same fallback mechanism I designed, just using the plugin's array shape instead of my nested-object shape.
+- One documented limitation: the plain built-in array UI needs a popup dialog per item, which the plugin's own custom input component fixes (renders fields inline).
+
+I'll revise the spec to use this plugin instead of the custom translations object — it's less code for us to write and maintain, and it's actually the officially recommended approach for this exact scenario (per Sanity's own docs: field-level via internationalized-array for conross languages, which describesour blog post fields exactly). Want me to update the spec now?
+
+Sources:
+- @sanity/document-internationa(https://www.npmjs.com/package/@sanity/document-internationalization)
+- Sanity CMS Translations (FielMedium (https://medium.com/@erindhoxha/sanity-cms-translations-field-level-or-document-level-2f1a8f84f56e)
+- How to Localize Content (Docu(https://www.sanity.io/docs/studio/localization)

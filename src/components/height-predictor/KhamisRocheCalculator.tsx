@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useUnitStore, usePersonStore } from '@/store';
 import { NumericInput } from '@/components/ui/NumericInput';
 import { Person } from '@/types';
@@ -23,6 +24,7 @@ const ftInToCm = (ft: number, inc: number) => {
 };
 
 export default function KhamisRocheCalculator() {
+    const t = useTranslations('heightPredictor.khamisRocheCalculator');
     const router = useRouter();
     const { unitSystem: unit, setUnitSystem } = useUnitStore();
     const { setPersons: storeSetPersons } = usePersonStore();
@@ -127,11 +129,11 @@ export default function KhamisRocheCalculator() {
             <div className="flex flex-col mb-8 gap-4">
                 <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                        <h2 id="calculator" className="text-3xl font-black tracking-tight text-foreground uppercase">Height Predictor</h2>
-                        <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20">Khamis-Roche</span>
+                        <h2 id="calculator" className="text-3xl font-black tracking-tight text-foreground uppercase">{t('title')}</h2>
+                        <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20">{t('badge')}</span>
                     </div>
                     <p className="text-muted font-medium leading-relaxed">
-                        Instant height prediction using scientific growth models. Estimate predicted height based on age and parents
+                        {t('description')}
                     </p>
                 </div>
                 {/* Synced Unit Toggle */}
@@ -142,116 +144,116 @@ export default function KhamisRocheCalculator() {
                         onClick={() => setUnitSystem('imperial')}
                         className={`flex-1 px-4 py-2 sm:py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}
                     >
-                        US (ft/in)
+                        {t('unitUs')}
                     </button>
                     <button
                         onClick={() => setUnitSystem('metric')}
                         className={`flex-1 px-4 py-2 sm:py-1.5 rounded-full text-xs font-black transition-colors ${unit === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}
                     >
-                        Metric (cm)
+                        {t('unitMetric')}
                     </button>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                 <div className="space-y-2">
-                    <label htmlFor="child-age-years" className="text-base font-semibold text-muted">Child&apos;s Age (Years)</label>
-                    <NumericInput id="child-age-years" value={childAge} onValueChange={setChildAge} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Child's Age in Years" />
+                    <label htmlFor="child-age-years" className="text-base font-semibold text-muted">{t('childAgeLabel')}</label>
+                    <NumericInput id="child-age-years" value={childAge} onValueChange={setChildAge} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label={t('childAgeAriaLabel')} />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-base font-semibold text-muted">Gender</label>
+                    <label className="text-base font-semibold text-muted">{t('genderLabel')}</label>
                     <div className="flex gap-2">
-                        <button onClick={() => setChildGender('male')} className={`flex-1 py-3 rounded-xl border border-border font-black transition-all ${childGender === 'male' ? 'bg-blue-600/10 text-blue-700 border-blue-600' : 'bg-bg text-muted hover:bg-surface'}`}>Boy</button>
-                        <button onClick={() => setChildGender('female')} className={`flex-1 py-3 rounded-xl border border-border font-black transition-all ${childGender === 'female' ? 'bg-pink-600/10 text-pink-700 border-pink-600' : 'bg-bg text-muted hover:bg-surface'}`}>Girl</button>
+                        <button onClick={() => setChildGender('male')} className={`flex-1 py-3 rounded-xl border border-border font-black transition-all ${childGender === 'male' ? 'bg-blue-600/10 text-blue-700 border-blue-600' : 'bg-bg text-muted hover:bg-surface'}`}>{t('boy')}</button>
+                        <button onClick={() => setChildGender('female')} className={`flex-1 py-3 rounded-xl border border-border font-black transition-all ${childGender === 'female' ? 'bg-pink-600/10 text-pink-700 border-pink-600' : 'bg-bg text-muted hover:bg-surface'}`}>{t('girl')}</button>
                     </div>
                 </div>
 
                 {/* Child Height / Weight */}
                 <div className="space-y-2">
-                    <label className="text-base font-semibold text-muted">Child&apos;s Current Height</label>
+                    <label className="text-base font-semibold text-muted">{t('childHeightLabel')}</label>
                     {unit === 'metric' ? (
                         <div className="relative">
-                            <label htmlFor="child-height-cm" className="sr-only">Child&apos;s Current Height (cm)</label>
-                            <NumericInput id="child-height-cm" value={childHtCm} onValueChange={setChildHtCm} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 110" aria-label="Child's Current Height in Centimeters" />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
+                            <label htmlFor="child-height-cm" className="sr-only">{t('childHeightCmAriaLabel')}</label>
+                            <NumericInput id="child-height-cm" value={childHtCm} onValueChange={setChildHtCm} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 110" aria-label={t('childHeightCmAriaLabel')} />
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('cmUnit')}</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
-                                <label htmlFor="child-height-ft" className="sr-only">Child&apos;s Current Height (ft)</label>
-                                <NumericInput id="child-height-ft" value={childHtFt} onValueChange={setChildHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 3" aria-label="Child's Current Height in Feet" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
+                                <label htmlFor="child-height-ft" className="sr-only">{t('childHeightFtAriaLabel')}</label>
+                                <NumericInput id="child-height-ft" value={childHtFt} onValueChange={setChildHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 3" aria-label={t('childHeightFtAriaLabel')} />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('ftUnit')}</span>
                             </div>
                             <div className="relative flex-1">
-                                <label htmlFor="child-height-in" className="sr-only">Child&apos;s Current Height (in)</label>
-                                <NumericInput id="child-height-in" value={childHtIn} onValueChange={setChildHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Child's Current Height in Inches" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
+                                <label htmlFor="child-height-in" className="sr-only">{t('childHeightInAriaLabel')}</label>
+                                <NumericInput id="child-height-in" value={childHtIn} onValueChange={setChildHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label={t('childHeightInAriaLabel')} />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('inUnit')}</span>
                             </div>
                         </div>
                     )}
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-base font-semibold text-muted">Child&apos;s Current Weight </label>
+                    <label className="text-base font-semibold text-muted">{t('childWeightLabel')}</label>
                     {unit === 'metric' ? (
                         <div className="relative">
-                            <label htmlFor="child-weight-kg" className="sr-only">Child&apos;s Current Weight (kg)</label>
-                            <NumericInput id="child-weight-kg" value={childWtKg} onValueChange={setChildWtKg} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 20" aria-label="Child's Current Weight in Kilograms" />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">kg</span>
+                            <label htmlFor="child-weight-kg" className="sr-only">{t('childWeightKgAriaLabel')}</label>
+                            <NumericInput id="child-weight-kg" value={childWtKg} onValueChange={setChildWtKg} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 20" aria-label={t('childWeightKgAriaLabel')} />
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('kgUnit')}</span>
                         </div>
                     ) : (
                         <div className="relative">
-                            <label htmlFor="child-weight-lbs" className="sr-only">Child&apos;s Current Weight (lbs)</label>
-                            <NumericInput id="child-weight-lbs" value={childWtLbs} onValueChange={setChildWtLbs} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 45" aria-label="Child's Current Weight in Pounds" />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">lbs</span>
+                            <label htmlFor="child-weight-lbs" className="sr-only">{t('childWeightLbsAriaLabel')}</label>
+                            <NumericInput id="child-weight-lbs" value={childWtLbs} onValueChange={setChildWtLbs} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 45" aria-label={t('childWeightLbsAriaLabel')} />
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('lbsUnit')}</span>
                         </div>
                     )}
                 </div>
 
                 {/* Parents */}
                 <div className="space-y-2">
-                    <label className="text-base font-semibold text-muted">Mother&apos;s Height</label>
+                    <label className="text-base font-semibold text-muted">{t('motherHeightLabel')}</label>
                     {unit === 'metric' ? (
                         <div className="relative">
-                            <label htmlFor="mother-height-cm" className="sr-only">Mother&apos;s Height (cm)</label>
-                            <NumericInput id="mother-height-cm" value={motherHtCm} onValueChange={setMotherHtCm} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 165" aria-label="Mother's Height in Centimeters" />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
+                            <label htmlFor="mother-height-cm" className="sr-only">{t('motherHeightCmAriaLabel')}</label>
+                            <NumericInput id="mother-height-cm" value={motherHtCm} onValueChange={setMotherHtCm} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 165" aria-label={t('motherHeightCmAriaLabel')} />
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('cmUnit')}</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
-                                <label htmlFor="mother-height-ft" className="sr-only">Mother&apos;s Height (ft)</label>
-                                <NumericInput id="mother-height-ft" value={motherHtFt} onValueChange={setMotherHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Feet" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
+                                <label htmlFor="mother-height-ft" className="sr-only">{t('motherHeightFtAriaLabel')}</label>
+                                <NumericInput id="mother-height-ft" value={motherHtFt} onValueChange={setMotherHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label={t('motherHeightFtAriaLabel')} />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('ftUnit')}</span>
                             </div>
                             <div className="relative flex-1">
-                                <label htmlFor="mother-height-in" className="sr-only">Mother&apos;s Height (in)</label>
-                                <NumericInput id="mother-height-in" value={motherHtIn} onValueChange={setMotherHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Mother's Height in Inches" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
+                                <label htmlFor="mother-height-in" className="sr-only">{t('motherHeightInAriaLabel')}</label>
+                                <NumericInput id="mother-height-in" value={motherHtIn} onValueChange={setMotherHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label={t('motherHeightInAriaLabel')} />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('inUnit')}</span>
                             </div>
                         </div>
                     )}
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-base font-semibold text-muted">Father&apos;s Height</label>
+                    <label className="text-base font-semibold text-muted">{t('fatherHeightLabel')}</label>
                     {unit === 'metric' ? (
                         <div className="relative">
-                            <label htmlFor="father-height-cm" className="sr-only">Father&apos;s Height (cm)</label>
-                            <NumericInput id="father-height-cm" value={fatherHtCm} onValueChange={setFatherHtCm} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" aria-label="Father's Height in Centimeters" />
-                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">cm</span>
+                            <label htmlFor="father-height-cm" className="sr-only">{t('fatherHeightCmAriaLabel')}</label>
+                            <NumericInput id="father-height-cm" value={fatherHtCm} onValueChange={setFatherHtCm} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 180" aria-label={t('fatherHeightCmAriaLabel')} />
+                            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('cmUnit')}</span>
                         </div>
                     ) : (
                         <div className="flex gap-2">
                             <div className="relative flex-1">
-                                <label htmlFor="father-height-ft" className="sr-only">Father&apos;s Height (ft)</label>
-                                <NumericInput id="father-height-ft" value={fatherHtFt} onValueChange={setFatherHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label="Father's Height in Feet" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">ft</span>
+                                <label htmlFor="father-height-ft" className="sr-only">{t('fatherHeightFtAriaLabel')}</label>
+                                <NumericInput id="father-height-ft" value={fatherHtFt} onValueChange={setFatherHtFt} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label={t('fatherHeightFtAriaLabel')} />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('ftUnit')}</span>
                             </div>
                             <div className="relative flex-1">
-                                <label htmlFor="father-height-in" className="sr-only">Father&apos;s Height (in)</label>
-                                <NumericInput id="father-height-in" value={fatherHtIn} onValueChange={setFatherHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" aria-label="Father's Height in Inches" />
-                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">in</span>
+                                <label htmlFor="father-height-in" className="sr-only">{t('fatherHeightInAriaLabel')}</label>
+                                <NumericInput id="father-height-in" value={fatherHtIn} onValueChange={setFatherHtIn} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 10" aria-label={t('fatherHeightInAriaLabel')} />
+                                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-muted">{t('inUnit')}</span>
                             </div>
                         </div>
                     )}
@@ -259,19 +261,19 @@ export default function KhamisRocheCalculator() {
             </div>
 
             <div className="flex gap-4">
-                <button onClick={calculateKhamis} className="flex-1 bg-accent hover:bg-accent/90 text-white font-black py-3.5 rounded-xl transition-all shadow-lg btn-glow active:scale-95">Calculate Height</button>
-                <button onClick={clearKhamis} className="px-6 bg-bg border border-border text-muted font-black rounded-xl hover:text-foreground transition-all">Clear</button>
+                <button onClick={calculateKhamis} className="flex-1 bg-accent hover:bg-accent/90 text-white font-black py-3.5 rounded-xl transition-all shadow-lg btn-glow active:scale-95">{t('calculate')}</button>
+                <button onClick={clearKhamis} className="px-6 bg-bg border border-border text-muted font-black rounded-xl hover:text-foreground transition-all">{t('clear')}</button>
             </div>
 
             {predictedKhamis && (
                 <div className="bg-accent/10 border border-accent/20 rounded-2xl p-6 text-center shadow-lg shadow-accent/5 mt-8">
-                    <p className="text-base font-black text-accent uppercase tracking-widest mb-2">Estimated Adult Height</p>
+                    <p className="text-base font-black text-accent uppercase tracking-widest mb-2">{t('estimatedAdultHeight')}</p>
                     <div className="flex items-center justify-center gap-4">
-                        <span className="text-4xl md:text-5xl font-black text-foreground">{predictedKhamis.cm} <span className="text-xl md:text-2xl text-accent">cm</span></span>
+                        <span className="text-4xl md:text-5xl font-black text-foreground">{predictedKhamis.cm} <span className="text-xl md:text-2xl text-accent">{t('cmUnit')}</span></span>
                         <div className="w-px h-10 bg-border" />
                         <span className="text-4xl md:text-5xl font-black text-accent">{predictedKhamis.ft}&apos;{predictedKhamis.in}&quot;</span>
                     </div>
-                    <p className="text-xs font-black text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">Target Range (±5 cm): {predictedKhamis.cm - 5} : {predictedKhamis.cm + 5} cm</p>
+                    <p className="text-xs font-black text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">{t('targetRange', { min: predictedKhamis.cm - 5, max: predictedKhamis.cm + 5 })}</p>
 
                     <button
                         onClick={() => {
@@ -286,7 +288,7 @@ export default function KhamisRocheCalculator() {
                         }}
                         className="w-full mt-6 bg-accent hover:bg-accent/90 text-white font-black py-4 rounded-xl transition-all shadow-xl shadow-accent/20 flex items-center justify-center gap-2 group"
                     >
-                        View Comparison Chart
+                        {t('viewComparisonChart')}
                         <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                     </button>
                 </div>

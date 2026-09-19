@@ -2,6 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
+import { isRtlLocale } from '@/i18n/config';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/layout/Footer';
 
@@ -22,7 +23,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <div className="flex flex-col min-h-[100dvh] overflow-x-clip">
+      <div dir={isRtlLocale(locale) ? 'rtl' : 'ltr'} className="flex flex-col min-h-[100dvh] overflow-x-clip">
         <Navbar />
         <main className="flex-1">
           {children}

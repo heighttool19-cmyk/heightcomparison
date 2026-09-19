@@ -20,6 +20,7 @@ import type { Post, TocHeading } from "@/sanity/lib/types";
 
 import CustomPortableText from "@/components/blog/CustomPortableText";
 import TableOfContents from "@/components/blog/TableOfContents";
+import { formatLocalizedDate as formatDate } from "@/i18n/config";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -59,15 +60,6 @@ function extractHeadings(body: PortableTextBlock[]): TocHeading[] {
     })
     // Filter out headings that are empty, just whitespace, or just '#'
     .filter((heading) => heading.text.length > 0 && heading.text !== "#");
-}
-
-/** Format a date string into a localized human-readable form */
-function formatDate(dateStr: string, locale: string): string {
-  return new Date(dateStr).toLocaleDateString(locale === "de" ? "de-DE" : "en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
 }
 
 // ---------------------------------------------------------------------------
