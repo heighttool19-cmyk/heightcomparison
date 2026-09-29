@@ -1,0 +1,1945 @@
+{
+  "common": {
+    "language": "Språk",
+    "english": "Engelska",
+    "german": "Tyska",
+    "spanish": "Spanska",
+    "french": "Franska",
+    "portuguese": "Portugisiska",
+    "italian": "Italienska",
+    "dutch": "Nederländska",
+    "arabic": "Arabiska"
+  },
+  "nav": {
+    "home": "Hem",
+    "toolsAndCalculators": "Verktyg & Kalkylatorer",
+    "heightPredictor": "Längdprognos",
+    "heightWeightPercentileCalculator": "Percentilräknare för längd och vikt",
+    "idealBodyWeightCalculator": "Kalkylator för ideal kroppsvikt",
+    "averageHeightByCountry": "Medellängd efter land",
+    "heightDifferenceCalculator": "Höjdskillnadsräknare",
+    "imageToHeight": "Image to Height",
+    "about": "Om oss",
+    "blogs": "Bloggar",
+    "brandName": "Height Comparison",
+    "metricCm": "metrisk (cm)",
+    "imperialFtIn": "imperial (fot/tum)",
+    "switchTo": "Byt till"
+  },
+  "footer": {
+    "brandDescription": "Det mest intuitiva sättet att visualisera och jämföra längder sida vid sida. Lägg till verkliga personer, kändisar, fiktiva karaktärer eller valfri anpassad längd och se dem tillsammans direkt.",
+    "badgeFreeToUse": "Gratis att använda",
+    "badgeNoAccountNeeded": "Inget konto behövs",
+    "badgeMetricImperial": "Metriskt & imperialt",
+    "calculatorsHeading": "Kalkylatorer",
+    "companyHeading": "Företag",
+    "heightPredictor": "Längdprognos",
+    "heightWeightPercentile": "Percentilräknare för längd och vikt",
+    "idealBodyWeight": "Kalkylator för ideal kroppsvikt",
+    "heightDifference": "Höjdskillnadsräknare",
+    "averageHeightByCountry": "Medellängd efter land",
+    "imageToHeight": "Image to Height",
+    "about": "Om oss",
+    "blogs": "Bloggar",
+    "privacyPolicy": "Integritetspolicy",
+    "copyright": "© {year} Height Comparison. Alla rättigheter förbehållna. Byggd med omsorg av ",
+    "theTeam": "teamet"
+  },
+  "about": {
+    "badge": "Om oss",
+    "brandName": "Height Comparison",
+    "heroQuote": "HeightComparison började som ett sidoprojekt byggt kring en enkel observation: längdsiffror är nästan värdelösa utan sammanhang. Du måste se dem. En 12 cm skillnad mellan två personer på 165 cm är en genuint annorlunda upplevelse än samma 12 cm skillnad på 185 cm. Proportionerna ändras. Den visuella relationen ändras. Ändå subtraherar alla andra jämförelseverktyg på internet bara ett nummer från ett annat och kallar det klart.",
+    "builtDifferent": "Vi byggde något annorlunda.",
+    "whatItDoesTitle": "Vad verktyget faktiskt gör",
+    "whatItDoesParagraphs": [
+      "Längdjämförelsetabellen tar dina mått och återger dem i sann proportionell skala. Varje stapel är matematiskt dimensionerad i förhållande till varje annan stapel på skärmen. Ingen avrundning, inga visuella genvägar, inga staplar som ser \"tillräckligt nära\" ut. Om Person A är 170 cm och Person B är 198 cm, är den 16,5% skillnaden synlig precis som den ska vara.",
+      "Du kan jämföra ett obegränsat antal subjekt samtidigt, vilket visar sig vara användbart oftare än du förväntar dig. En familj på fem, en idrottstrupp, en uppställning av anime-karaktärer, en person som står bredvid ett vattenfall. Allt på en tabell, allt i skala.",
+      "Kändisdatabasen täcker idrottare, skådespelare, musiker och offentliga personer inom regioner som Bollywood, brittisk, asiatisk och amerikansk underhållning. Biblioteket med fiktiva karaktärer hämtar information från officiella produktionsguider och licensierade databöcker för anime, tecknade serier, DC och fantasy-franchiser. Dessa är inte uppskattade siffror från allmänheten. De kommer från de register som skaparna och organisationerna själva publicerat.",
+      "Det finns också en bilduppladdningsfunktion som placerar ett foto i tabellen i verkliga proportioner, med en noggrannhet på 1 till 2 cm. Användbart om du vill visualisera dig själv mot en referens utan att mäta manuellt."
+    ],
+    "otherCalculatorsTitle": "Andra räknare",
+    "calculators": [
+      {
+        "title": "Höjdskillnadsräknare",
+        "text": "När du vill ha den exakta skillnaden mellan två längder i centimeter, tum och procent, utan att bygga ett fullständigt diagram. Snabbare för fokuserade jämförelser."
+      },
+      {
+        "title": "Längdprognos",
+        "text": "Använder Khamis-Roche- och Mid-Parental-formlerna för att uppskatta vuxenlängden utifrån ett barns nuvarande mått och föräldrarnas längder. Dessa är samma formler som används i kliniska miljöer, inte gissningar."
+      },
+      {
+        "title": "Percentilräknare för längd och vikt",
+        "text": "Jämför en persons längd och vikt med WHO:s och CDC:s befolkningsdata, med diagram uppdelade efter ålder och kön. Den täcker både vuxna och barn."
+      },
+      {
+        "title": "Kalkylator för ideal kroppsvikt",
+        "text": "Kör Devine-, Robinson- och Hamwi-formlerna sida vid sida så att du kan se var var och en landar, istället för att presentera ett enda nummer som om det vore hela svaret."
+      },
+      {
+        "title": "Medellängd efter land",
+        "text": "Omfattar 46 länder med en sorterbar tabell, regionala uppdelningar, en världskarta och längdextremvärden. Det är den referens vi alltid ville ha öppen i en annan flik när vi tänkte på global längdkontext."
+      },
+      {
+        "title": "Image to Height",
+        "text": "Uppskattar längd från ett foto. Det finns också en guide för variation i morgonlängd inbyggd i den, vilket är viktigare än de flesta inser när man jämför mätningar tagna vid olika tidpunkter på dagen."
+      }
+    ],
+    "noAccountTitle": "Inget konto, ingen betalning, inga vattenstämplar",
+    "noAccountParagraphs": [
+      "Detta beslut fattades tidigt och har inte ändrats. PNG-exporten har ingen vattenstämpel. Kändisdatabasen är inte bakom en betalvägg. Det finns ingen prenumerationsnivå som låser upp funktioner. Hela verktyget är gratis.",
+      "Det är ingen marknadsföringsvinkel. Det är bara så verktyget designades. Att lägga till friktion genom att skapa ett konto eller betalväggsexporter skulle göra verktyget sämre. Längdjämförelse är ingen premiumaktivitet."
+    ],
+    "accuracyTitle": "En anmärkning om datanoggrannhet",
+    "accuracyParagraphs": [
+      "Motstridiga längdregister är vanliga, särskilt för kändisar. Där data strider mot varandra normaliserar vi till den senast verifierade siffran från en trovärdig offentlig källa, inte den mest upprepade. Karaktärslängder kommer från licensierat officiellt material där det är möjligt. Landmärkes- och objektdimensioner kommer från arkitektoniska och vetenskapliga referenskällor."
+    ],
+    "nothingUserSubmitted": "Inget här är användarskapat.",
+    "footerQuote": "Visualiserar höjdkontext, en pixel i taget."
+  },
+  "privacy": {
+    "titlePrefix": "Integritets-",
+    "titleSuffix": "policy",
+    "subheading": "Hjälper dig att förstå hur vi skyddar din information.",
+    "intro": "Denna integritetspolicy förklarar vilken information Height Comparison Calculator samlar in, hur den används och vilka val du har. HeightComparison är ett gratis verktyg för höjdjämförelse tillgängligt på heightcomparisoncalculator.com. Ingen personlig data säljs eller delas med tredje part för kommersiella ändamål.",
+    "whatWeCollectTitle": "Vad vi samlar in",
+    "infoYouProvideTitle": "Information du tillhandahåller",
+    "infoYouProvideIntro": "När du använder vissa funktioner i verktyget lagras viss data tillfälligt på våra servrar:",
+    "uploadedImagesLabel": "Uppladdade bilder.",
+    "uploadedImagesText": " Om du använder funktionen Image to Height skickas fotot du laddar upp till våra servrar för att bearbeta höjdberäkningen. Bilden lagras inte permanent. Den behålls i upp till 7 dagar och raderas sedan automatiskt.",
+    "shareableLinksLabel": "Delbara diagramlänkar och diagramstatus.",
+    "shareableLinksText": " När du genererar en delbar länk för ditt höjdjämförelsesdiagram lagras diagramkonfigurationen (höjderna, namnen och ämnena du lade till) på våra servrar så att länken kan lösas när någon öppnar den. Denna data behålls i upp till 7 dagar och raderas sedan automatiskt. Inget konto krävs för att generera en länk, och den lagrade datan är inte kopplad till någon personligt identifierbar information.",
+    "infoCollectedAutoTitle": "Information som samlas in automatiskt",
+    "googleAnalyticsLabel": "Google Analytics.",
+    "googleAnalyticsText": " Vi använder Google Analytics för att förstå hur besökare använder webbplatsen. Denna tjänst samlar in standardanvändningsdata inklusive besökta sidor, tid på webbplatsen, allmän geografisk region (land- eller stadsnivå), webbläsartyp och enhetstyp. Google Analytics använder cookies på sin sida för att fungera. HeightComparison själv sätter inga förstapartscookies.",
+    "googleAnalyticsNote": "För mer information om hur Google hanterar denna data, se Googles integritetspolicy och Google Analytics användarvillkor.",
+    "serverLogsLabel": "Serverloggar.",
+    "serverLogsText": " Liksom de flesta webbservrar kan våra automatiskt registrera standardloggdata inklusive IP-adresser, hänvisande URL:er och tidsstämplar när du gör förfrågningar till webbplatsen. Denna information används endast för säkerhets- och driftsändamål.",
+    "whatWeDoNotCollectTitle": "Vad vi inte samlar in",
+    "whatWeDoNotCollectIntro": "För att vara tydlig med vad denna webbplats inte gör:",
+    "whatWeDoNotCollectList": [
+      "Vi samlar inte in ditt namn, e-postadress eller någon kontoinformation. Det finns inga konton.",
+      "Vi samlar inte in betalningsinformation. Verktyget är gratis.",
+      "Vi spårar inte höjder du anger i jämförelseverktyget. Indata bearbetas i din webbläsare och skickas inte till eller lagras på våra servrar (förutom i de specifika fall som beskrivs ovan).",
+      "Vi är inte anslutna till något annonsnätverk. Ingen data delas med annonsnätverk, och ingen beteendebaserad annonsering sker på denna webbplats."
+    ],
+    "howWeUseTitle": "Hur vi använder data",
+    "howWeUseIntro": "Den data som beskrivs ovan används endast för följande ändamål:",
+    "howWeUseList": [
+      "Bearbeta och returnera bildbaserade höjdberäkningar till dig",
+      "Generera och lösa delbara diagramlänkar",
+      "Förstå allmänna användningsmönster via Google Analytics så att vi kan förbättra verktyget",
+      "Upprätthålla serversäkerhet och diagnostisera tekniska problem"
+    ],
+    "howWeUseFooter": "Vi använder ingen insamlad data för att bygga användarprofiler, visa riktade annonser eller dela med tredje part utöver Google Analytics som beskrivits.",
+    "dataRetentionTitle": "Datalagring",
+    "dataRetentionText": "Uppladdade bilder och delbara diagramlänksdata raderas från våra servrar inom 7 dagar efter skapandet. Serverloggdata behålls under standardiserade driftsperioder i enlighet med säkerhets- och felsökningsbehov.",
+    "yourRightsTitle": "Dina rättigheter och val",
+    "requestDeletionLabel": "Begära radering av data.",
+    "requestDeletionText": " Om du har använt en delbar länk eller laddat upp en bild och vill att tillhörande data ska tas bort före den automatiska 7-dagarsraderingen, kan du kontakta oss på ",
+    "requestDeletionTextEnd": " så raderar vi det omgående.",
+    "optOutGaLabel": "Välja bort Google Analytics.",
+    "optOutGaText": " Du kan förhindra Google Analytics från att samla in data om ditt besök genom att installera tillägget Google Analytics Opt-out Browser Add-on.",
+    "browserControlsLabel": "Webbläsarkontroller.",
+    "browserControlsText": " Eftersom HeightComparison inte sätter förstapartscookies finns det inget att hantera ur ett cookiepreferensperspektiv från vår sida. Eventuella cookies som finns i din webbläsare från denna webbplats kommer från Google Analytics.",
+    "childrensPrivacyTitle": "Barns integritet",
+    "childrensPrivacyText": "HeightComparison riktar sig inte till barn under 13 år. Vi samlar inte medvetet in personlig information från barn. Om du tror att ett barn har skickat in personlig information via denna webbplats, vänligen kontakta oss på ",
+    "childrensPrivacyTextEnd": " så tar vi bort den.",
+    "thirdPartyLinksTitle": "Tredjepartslänkar",
+    "thirdPartyLinksText": "Webbplatsen kan innehålla länkar till externa webbplatser. Denna integritetspolicy gäller endast för HeightComparison. Vi ansvarar inte för integritetspraxisen på några tredjepartswebbplatser.",
+    "changesToPolicyTitle": "Ändringar i denna policy",
+    "changesToPolicyText": "Om vi gör väsentliga ändringar i denna policy kommer vi att uppdatera datumet \"Senast uppdaterad\" högst upp på denna sida. Fortsatt användning av webbplatsen efter eventuella ändringar innebär acceptans av den uppdaterade policyn.",
+    "contactTitle": "Kontakt",
+    "contactIntro": "Om du har frågor om denna integritetspolicy eller vill begära radering av data, kontakta oss på:",
+    "emailLabel": "E-post: ",
+    "trustFooter": "Ditt förtroende är viktigt för oss."
+  },
+  "heightPredictor": {
+    "intro": {
+      "title": "Längdprognos och kalkylator för vuxenlängd",
+      "description": "Använd denna längdkalkylator för att uppskatta den framtida längden för barn, tonåringar och vuxna baserat på ålder, genetik och tillväxtmönster. Denna kalkylator använder Khamis-Roche-metoden, en av de mest exakta modellerna för längdprognos som finns tillgängliga. Om ditt barn är under fyra år, eller om du är gravid och nyfiken på ditt barns förväntade längd, använd istället Mid-Parental Height Formula nedan, som anges nedan."
+    },
+    "khamisRocheCalculator": {
+      "title": "Längdprognos",
+      "badge": "Khamis-Roche",
+      "description": "Omedelbar längdprognos med vetenskapliga tillväxtmodeller. Uppskatta förväntad längd baserat på ålder och föräldrar",
+      "unitUs": "USA (fot/tum)",
+      "unitMetric": "Metrisk (cm)",
+      "childAgeLabel": "Barnets ålder (år)",
+      "childAgeAriaLabel": "Barnets ålder i år",
+      "genderLabel": "Kön",
+      "boy": "Pojke",
+      "girl": "Flicka",
+      "childHeightLabel": "Barnets nuvarande längd",
+      "childHeightCmAriaLabel": "Barnets nuvarande längd i centimeter",
+      "childHeightFtAriaLabel": "Barnets nuvarande längd i fot",
+      "childHeightInAriaLabel": "Barnets nuvarande längd i tum",
+      "childWeightLabel": "Barnets nuvarande vikt",
+      "childWeightKgAriaLabel": "Barnets nuvarande vikt i kilogram",
+      "childWeightLbsAriaLabel": "Barnets nuvarande vikt i pund",
+      "motherHeightLabel": "Moderns längd",
+      "motherHeightCmAriaLabel": "Moderns längd i centimeter",
+      "motherHeightFtAriaLabel": "Moderns längd i fot",
+      "motherHeightInAriaLabel": "Moderns längd i tum",
+      "fatherHeightLabel": "Faderns längd",
+      "fatherHeightCmAriaLabel": "Faderns längd i centimeter",
+      "fatherHeightFtAriaLabel": "Faderns längd i fot",
+      "fatherHeightInAriaLabel": "Faderns längd i tum",
+      "calculate": "Beräkna längd",
+      "clear": "Rensa",
+      "estimatedAdultHeight": "Beräknad vuxenlängd",
+      "targetRange": "Målintervall (±5 cm): {min} : {max} cm",
+      "viewComparisonChart": "Visa jämförelsetabell",
+      "cmUnit": "cm",
+      "ftUnit": "fot",
+      "inUnit": "tum",
+      "kgUnit": "kg",
+      "lbsUnit": "lbs"
+    },
+    "midParentalCalculator": {
+      "title": "Endast föräldrars längd",
+      "badge": "Mid-Parental",
+      "description": "Beräkna förväntad längd med endast föräldrarnas längd. Fungerar även för spädbarn, mycket små barn och ofödda barn. Om du är gravid, ange båda föräldrarnas längd för att få ditt barns beräknade vuxenlängdsintervall.",
+      "unitUs": "USA (fot/tum)",
+      "unitMetric": "Metrisk (cm)",
+      "motherHeightLabel": "Mammans längd",
+      "motherHeightCmAriaLabel": "Mammans längd i centimeter",
+      "motherHeightFtAriaLabel": "Mammans längd i fot",
+      "motherHeightInAriaLabel": "Mammans längd i tum",
+      "fatherHeightLabel": "Pappans längd",
+      "fatherHeightCmAriaLabel": "Pappans längd i centimeter",
+      "fatherHeightFtAriaLabel": "Pappans längd i fot",
+      "fatherHeightInAriaLabel": "Pappans längd i tum",
+      "calculateEstimate": "Beräkna uppskattning",
+      "estimatedAdultHeightBoys": "Beräknad vuxenlängd (pojkar)",
+      "estimatedAdultHeightGirls": "Beräknad vuxenlängd (flickor)",
+      "targetRange": "Målintervall (±5 cm): {min} : {max} cm",
+      "viewComparisonChart": "Visa jämförelsetabell",
+      "cmUnit": "cm",
+      "ftUnit": "fot",
+      "inUnit": "tum"
+    },
+    "heightConverter": {
+      "title": "Snabb längdomvandlare",
+      "description": "Omvandla cm till fot och tum, fot och tum till cm, eller meter till fot direkt",
+      "centimeters": "Centimeter",
+      "centimetersAriaLabel": "Längd i centimeter",
+      "feetAndInches": "Fot & tum",
+      "feetAriaLabel": "Längd i fot",
+      "inchesAriaLabel": "Längd i tum",
+      "cmUnit": "cm",
+      "ftUnit": "fot",
+      "inUnit": "tum"
+    },
+    "howItWorks": {
+      "title": "Hur fungerar det?",
+      "description": "En längdkalkylator är ett verktyg som kombinerar aktuella mätningar (ålder, längd, vikt och föräldrars längd) och tillämpar dem på befolkningsdata för att producera ett sannolikt längdintervall.",
+      "step1Strong": "1. Ange mätningar:",
+      "step1Text": "barnets ålder, nuvarande längd, vikt och båda föräldrarnas längd. Fler inmatningar ger mer exakta resultat.",
+      "step2Strong": "2. Modellen beräknar:",
+      "step2Text": "kalkylatorn tillämpar tillväxtformeln på befolkningsdata, justerat för ålder, kön och genetik.",
+      "step3Strong": "3. Få ett förutsagt längdintervall:",
+      "step3Text": "Resultatet är en sannolik uppskattning av vuxenlängden, visad som ett intervall snarare än ett enda exakt nummer."
+    },
+    "howTallChild": {
+      "title": "Hur lång blir mitt barn?",
+      "description": "Inget verktyg kan förutsäga ett barns framtida längd med fullständig säkerhet. Forskning om barns tillväxtmönster gör det dock möjligt att uppskatta vuxenlängden med rimlig noggrannhet.",
+      "factorsTitle": "Moderna kalkylatorer för längdprognos analyserar tre nyckelfaktorer:",
+      "geneticsLabel": "Genetik",
+      "geneticsText": "ansvarar för 60-80% av den slutliga längden.",
+      "currentGrowthLabel": "Nuvarande tillväxt",
+      "currentGrowthText": "Ålder, längd och viktmått förfinar uppskattningen.",
+      "statisticsLabel": "Statistik",
+      "statisticsText": "Tillväxtmönster observerade i stora populationer efter ålder och kön.",
+      "closing": "Resultatet är ett uppskattat intervall för vuxenlängd: en användbar riktlinje, inte en garanti. Barns tillväxtmönster är individuella och kan variera betydligt beroende på hälsa, näring och tidpunkt för puberteten."
+    },
+    "teensAdults": {
+      "title": "Hur lång blir jag? Kalkylator för tonåringar och vuxna",
+      "description": "Tonåringar som frågar \"hur lång blir jag\" kan använda Khamis-Roche-kalkylatorn. Ange din nuvarande ålder, längd, vikt och dina föräldrars längder för den mest exakta uppskattningen.",
+      "teensTitle": "Tonåringar (under 18 år)",
+      "teensText": "Tillväxtplattorna är fortfarande öppna. Khamis-Roche-kalkylatorn ger den bästa uppskattningen. Använd aktuella mått för maximal noggrannhet.",
+      "teensItem1": "Mest tillförlitlig mellan 4-17 år",
+      "teensItem2": "Noggrannheten förbättras ju närmare vuxenlängden du kommer",
+      "teensItem3": "Pojkar växer ofta tills de är 18; flickor tills de är 15-16",
+      "adultsTitle": "Vuxna (18+)",
+      "adultsText": "Tillväxtplattorna stängs efter puberteten. För vuxna är längdprognos inte längre relevant, men Mid-Parental Height Formula kan fortfarande uppskatta vilken längd deras barn kan uppnå.",
+      "adultsItem1": "Vuxenlängden är redan bestämd",
+      "adultsItem2": "Använd verktyget Föräldrars längd för att förutsäga barns längd",
+      "adultsItem3": "Använd längdomvandlaren för enhetskonvertering",
+      "limitationLabel": "Viktig begränsning:",
+      "limitationText": "Ingen längdkalkylator kan ta hänsyn till medicinska tillstånd, tillväxthormonstörningar eller för tidig pubertet. Om tillväxten verkar ovanligt snabb eller långsam, kontakta en barnläkare."
+    },
+    "ctaBanner": {
+      "text": "Redo för att få din längdprognos? Kalkylatorn finns högst upp på denna sida.",
+      "linkText": "Använd Längdprognos"
+    },
+    "determinants": {
+      "title": "Vad bestämmer längden?",
+      "description": "Ett barns slutliga vuxenlängd formas av två faktorer: genetik och miljö. Att förstå båda hjälper till att sätta realistiska förväntningar för längdprognoser.",
+      "geneticsTitle": "Genetik",
+      "geneticsBefore": "Står för ",
+      "geneticsStrong1": "60-80%",
+      "geneticsMiddle": " av den slutliga längden. Barn till längre föräldrar tenderar att vara längre, men barn till mycket långa eller mycket korta föräldrar växer ofta närmare den genomsnittliga befolkningslängden, ett fenomen som kallas ",
+      "geneticsStrong2": "regression mot medelvärdet.",
+      "nutritionTitle": "Näring & Sömn",
+      "nutritionBefore": "Återstående ",
+      "nutritionStrong": "20-40%",
+      "nutritionAfter": " kommer från miljön.",
+      "nutritionItem1": "Protein, kalcium, D-vitamin, zink",
+      "nutritionItem2": "9-11 timmars sömn (skolåldern)",
+      "nutritionItem3": "8-10 timmar för tonåringar",
+      "timingTitle": "Tillväxttiming",
+      "timingText": "Tidig pubertet kan tillfälligt ge ett längre barn men en kortare vuxen. Sen pubertet resulterar ofta i ett längre tillväxtfönster och en större slutlig längd."
+    },
+    "growthCharts": {
+      "title": "Medellängd efter ålder (tillväxtkurvor)",
+      "linkText": "CDC growth charts",
+      "textAfterLink": " spårar medellängd och vikt från födseln till ung vuxen ålder, och täcker pojkar och flickor från 2 till 18 år. De visar var ett barn befinner sig på längdpercentilkurvan i förhållande till jämnåriga.",
+      "percentileBefore": "Den ",
+      "percentileStrong": "50:e percentilen",
+      "percentileAfter": " representerar medianlängden för den åldern och könet. Friska barn ligger vanligtvis mellan den 3:e och 97:e percentilen.",
+      "note": "Obs: Barnläkare fokuserar mindre på en enskild mätning och mer på om ett barn håller sig på en konsekvent tillväxtkurva över tid."
+    },
+    "comparisonTable": {
+      "title": "Längdkalkylator vs. tillväxtkurvor",
+      "description": "Olika verktyg besvarar olika frågor. Använd denna jämförelse för att förstå när du ska använda varje metod.",
+      "headerFactor": "Faktor",
+      "headerCalculator": "Längdkalkylator",
+      "headerGrowthChart": "Tillväxtkurva",
+      "rowPurposeLabel": "Syfte",
+      "rowPurposeCalculator": "Förutsäga framtida vuxenlängd",
+      "rowPurposeGrowthChart": "Spåra aktuell tillväxt jämfört med jämnåriga",
+      "rowDataLabel": "Data som behövs",
+      "rowDataCalculator": "Ålder, längd, vikt, föräldrars längd",
+      "rowDataGrowthChart": "Ålder + aktuell längd",
+      "rowBestForLabel": "Bäst för",
+      "rowBestForCalculator": "Föräldrar, tonåringar, nyfikenhet",
+      "rowBestForGrowthChart": "Övervakning av tillväxt över tid",
+      "rowDoctorLabel": "Kräver läkare",
+      "rowDoctorCalculator": "Nej (använd online)",
+      "rowDoctorGrowthChart": "Nej (använd online)",
+      "rowAccuracyLabel": "Typisk noggrannhet",
+      "rowAccuracyCalculator": "±5-10 cm",
+      "rowAccuracyGrowthChart": "Visar percentil, inte förutsägelse",
+      "rowWithoutParentsLabel": "Fungerar utan föräldrar",
+      "rowWithoutParentsCalculator": "Delvis (mindre noggrant)",
+      "rowWithoutParentsGrowthChart": "✓ Ja"
+    },
+    "boysGrowth": {
+      "title": "När slutar pojkar växa?",
+      "p1Before": "Pojkar upplever vanligtvis sin huvudsakliga tillväxtspurt under ",
+      "p1Strong": "puberteten",
+      "p1After": ".",
+      "p2": "Den typiska tillväxttidslinjen för pojkar ser ut så här:",
+      "item1Before": "tidig pubertet börjar runt ",
+      "item1Strong": "11-12 års ålder",
+      "item2Before": "snabb tillväxt sker mellan ",
+      "item2Strong": "13 och 15 års ålder",
+      "item3Before": "tillväxten saktar ner runt ",
+      "item3Strong": "16-17 års ålder",
+      "p3Before": "Under pubertetens topp kan pojkar växa ",
+      "p3Strong": "7-10 cm per år",
+      "p3After": ". De flesta pojkar slutar växa runt 18 års ålder, även om små ökningar kan fortsätta fram till cirka 20 års ålder."
+    },
+    "girlsGrowth": {
+      "title": "När slutar flickor växa?",
+      "p1": "Flickor börjar i allmänhet puberteten tidigare än pojkar.",
+      "p2": "Typisk tillväxttidslinje:",
+      "item1Before": "puberteten börjar runt ",
+      "item1Strong": "9-10 års ålder",
+      "item2Before": "tillväxtspurten sker mellan ",
+      "item2Strong": "10 och 14 års ålder",
+      "p3Before": "De flesta flickor når sin vuxna längd mellan ",
+      "p3Strong": "15 och 16 års ålder",
+      "p3After": ". Eftersom flickor upplever puberteten tidigare, verkar de ofta längre än pojkar under sen barndom."
+    },
+    "methods": {
+      "title": "Förklarade metoder för längdprognos",
+      "subtitle": "Hur du förutsäger ditt barns längd",
+      "description": "Forskare använder flera formler för att uppskatta vuxenlängd. Varje metod balanserar noggrannhet mot den data den kräver.",
+      "khamisRoche": {
+        "badge": "Mest exakt",
+        "title": "Khamis-Roche-metoden",
+        "p1": "Betraktas som den mest exakta metoden för längdprognos som inte kräver bentestning. Analyserar fyra ingångar: barnets ålder, längd, vikt och medellängd för båda föräldrarna.",
+        "p2": "Utvecklad efter att ha studerat tusentals barns tillväxtmönster med linjär regressionsanalys tillämpad på befolkningsnivådata. Eftersom den inkluderar aktuella kroppsmått, överträffar den formler som endast baseras på genetik.",
+        "item1Before": "Noggrannhet: ",
+        "item1Strong": "±2,1 tum för pojkar, ±1,7 tum för flickor",
+        "item2": "Bäst för barn över 4 år",
+        "item3": "Mest tillförlitliga icke-kliniska prognosen tillgänglig",
+        "usedByCalculator": "✓ Används av denna kalkylator",
+        "readyText": "Har du ditt barns ålder, längd, vikt och föräldrarnas längder redo?",
+        "linkText": "Beräkna med Khamis-Roche nu"
+      },
+      "midParental": {
+        "badge": "ENKEL",
+        "title": "Längdprognos baserad på föräldrar (Mid-Parental Height Formula)",
+        "boysFormulaLabel": "För pojkar (amerikanska enheter)",
+        "p1": "Mid-Parental Height Formula är det enklaste sättet att uppskatta ett barns vuxenlängd med endast föräldrarnas längder. Den kräver inga medicinska tester och fungerar för alla åldrar, inklusive spädbarn och ofödda barn.",
+        "boysFormula": "(Pappa + Mamma + 5 tum) ÷ 2",
+        "girlsFormulaLabel": "För flickor (amerikanska enheter)",
+        "girlsFormula": "(Pappa + Mamma - 5 tum) ÷ 2",
+        "item1": "Fungerar för spädbarn och små barn när ingen aktuell tillväxtdata finns tillgänglig",
+        "item2": "Typisk noggrannhet: inom ±4 tum (10 cm) från slutlig vuxenlängd",
+        "item3": "Tar inte hänsyn till aktuell tillväxtkurva. Använd Khamis-Roche för barn över 4 år",
+        "item4": "Kan också användas som en grov kalkylator för spädbarnslängd eller för ofödda barn",
+        "onlyHaveText": "Har du bara föräldrarnas längder? Använd kalkylatorn för Mid-Parental Height Formula ovan.",
+        "linkText": "Scrolla till toppen och beräkna nu"
+      },
+      "boneAge": {
+        "badge": "KLINISK",
+        "title": "Benåldersmetoden (handledsröntgen)",
+        "p1": "Läkare använder röntgenbilder av vänster handled för att bedöma tillväxtplattornas mognad. Tillväxtplattor är tunna broskband. Deras tjocklek avslöjar hur mycket tillväxt som återstår.",
+        "item1": "Mest exakta prognosmetoden tillgänglig",
+        "item2": "Används endast när läkare misstänker tillväxtstörningar",
+        "item3": "Utvärderingsmetoder: Greulich-Pyle, Tanner-Whitehouse"
+      },
+      "bayleyPinneau": {
+        "badge": "KLINISK",
+        "title": "Bayley-Pinneau-metoden",
+        "text": "Kombinerar benåldersdata med längd-för-ålder-tabeller. Beräknar procentandelen av vuxenlängden som redan uppnåtts för att bestämma återstående tillväxtpotential. Kräver bentestning."
+      },
+      "rocheWainerThissen": {
+        "badge": "KLINISK",
+        "title": "Roche-Wainer-Thissen-metoden",
+        "text": "Använder benålder, aktuell längd, vikt och föräldrarnas längder. Förbättrar noggrannheten i vissa fall jämfört med Khamis-Roche men kräver klinisk benåldersmätning. Används främst i medicinska miljöer."
+      }
+    },
+    "canIncrease": {
+      "titlePrefix": "Kan du ",
+      "titleHighlight": "öka din längd",
+      "description": "Dina gener avgör till stor del hur lång du blir. Men hur väl du äter, sover och håller dig aktiv under barndomen kan göra en verklig skillnad för om du når den potentialen.",
+      "nutritionTitle": "Näring",
+      "nutritionText": "Tillräcklig näring stöder benutvecklingen. Viktiga näringsämnen:",
+      "nutritionItem1": "Protein",
+      "nutritionItem2": "Kalcium",
+      "nutritionItem3": "D-vitamin",
+      "nutritionItem4": "Zink",
+      "sleepTitle": "Tillräcklig sömn",
+      "sleepText": "Tillväxthormonet är som högst under djupsömnen.",
+      "sleepItem1": "9-11 timmar för barn i skolåldern",
+      "sleepItem2": "8-10 timmar för tonåringar",
+      "exerciseTitle": "Regelbunden motion",
+      "exerciseText": "Stöder benstyrka och allmän utveckling. Löpning, hoppning och sport uppmuntrar en sund bentillväxt.",
+      "warningStrong": "Viktigt:",
+      "warningText": "Ingen träning, inget kosttillskott eller stretchprogram kan öka längden när tillväxtplattorna har stängts. Förutsägelser är uppskattningar. Genetik är den dominerande faktorn."
+    },
+    "accuracy": {
+      "titlePrefix": "Hur ",
+      "titleHighlight": "Noggrann",
+      "titleSuffix": " Är en längdkalkylator?",
+      "description": "Denna längdprognos använder Khamis-Roche tillväxtmodell, tränad på långtidsstudier av barns tillväxtdata.",
+      "check1": "De flesta förutsägelser ligger inom 5-10 cm (2-4 tum) från den slutliga vuxenlängden",
+      "check2": "Noggrannheten är högst när barnet är äldre än 4 år",
+      "check3": "Noggranna längd- och viktmätningar förbättrar resultaten avsevärt",
+      "check4": "Korrekta föräldralängdsdata krävs för tillförlitlig utdata",
+      "alert1": "Resultaten är ett sannolikt intervall, inte ett exakt värde",
+      "alert2": "Ej lämplig för barn med kända tillväxtstörningar",
+      "alert3": "Tidig eller sen pubertet kan minska prognosens noggrannhet",
+      "rangeNotice": "Resultatet representerar ett sannolikt intervall snarare än ett exakt värde.",
+      "disclaimerStrong": "Medicinsk friskrivning:",
+      "disclaimerText": "Denna längdkalkylator är endast avsedd för informationsändamål. Den ersätter inte professionell medicinsk rådgivning. Om du har funderingar kring ditt barns tillväxt, kontakta en kvalificerad barnläkare eller endokrinolog."
+    },
+    "faq": [
+      {
+        "q": "Hur lång kommer jag att bli?",
+        "a": "Din vuxenlängd beror främst på dina föräldrars längd och din tillväxttiming. Använd längdkalkylatorn ovan. Ange din nuvarande ålder, längd, vikt och dina föräldrars längd för att få ett förutsagt längdintervall baserat på Khamis-Roche tillväxtmodell. Om du redan är 18 år eller äldre har dina tillväxtplattor stängts och din vuxenlängd är fastställd."
+      },
+      {
+        "q": "Hur lång kommer min son att bli?",
+        "a": "Ange din sons ålder, nuvarande längd, vikt och båda föräldrarnas längd i Khamis-Roche-kalkylatorn ovan. Pojkar slutar vanligtvis växa runt 18 års ålder, även om små ökningar kan fortsätta fram till 20. Mid-Parental Height Formula kan också ge en grov uppskattning: (Faderns längd + Moderns längd + 5 tum) ÷ 2."
+      },
+      {
+        "q": "Är en längdkalkylator korrekt?",
+        "a": "Khamis-Roche-metoden (som används i denna kalkylator) är en av de mest exakta icke-kliniska längdprognoserna som finns tillgängliga. Typisk noggrannhet är inom ±2,1 tum för pojkar och ±1,7 tum för flickor. Noggrannheten förbättras när barnet är äldre än 4 år, mätningarna är exakta och föräldrarnas längd är korrekt. Resultaten är alltid ett intervall, inte ett garanterat värde."
+      },
+      {
+        "q": "Kan föräldrars längd förutsäga min längd?",
+        "a": "Ja. Föräldrars längd är den enskilt starkaste prediktorn för ett barns vuxenlängd och står för 60–80 % av längdvariationen. Mid-Parental Height Formula ger en grov uppskattning med endast dessa data. Men att kombinera föräldrars längd med barnets nuvarande mätningar (ålder, längd, vikt) genom Khamis-Roche-modellen ger betydligt mer exakta resultat."
+      },
+      {
+        "q": "Kan jag förutsäga mitt barns längd?",
+        "a": "För spädbarn och småbarn, använd Mid-Parental Height Formula-kalkylatorn ovan. Den kräver endast moderns och faderns längd. Detta ger ett grovt uppskattat längdintervall. Observera att noggrannheten är lägre för spädbarn än för äldre barn, eftersom nuvarande tillväxtdata inte beaktas."
+      },
+      {
+        "q": "Hur lång ska mitt barn vara i sin ålder?",
+        "a": "Använd tillväxtdiagrammet ovan för att se det genomsnittliga längdintervallet efter ålder för pojkar och flickor. Den 50:e percentilen representerar medianlängden. Friska barn ligger vanligtvis mellan den 3:e och 97:e percentilen. Om ditt barn konsekvent ligger över eller under detta intervall, diskutera det med deras barnläkare."
+      },
+      {
+        "q": "Vilken är den mest exakta metoden för längdprognos?",
+        "a": "Den mest exakta metoden totalt sett är benålderstestning (handledsröntgen), som används kliniskt av läkare. För icke-klinisk prognos är Khamis-Roche-metoden den mest exakta tillgängliga. Den använder ålder, längd, vikt och föräldrars längd, och uppnår ±2,1 tums noggrannhet för pojkar och ±1,7 tum för flickor. Detta är metoden som används i kalkylatorn på denna sida."
+      }
+    ],
+    "toc": [
+      {
+        "id": "height-predictor-calculator",
+        "label": "Längdprognoskalkylator"
+      },
+      {
+        "id": "how-it-works",
+        "label": "Hur fungerar det?"
+      },
+      {
+        "id": "how-tall-will-my-child-be",
+        "label": "Hur lång kommer mitt barn att bli?"
+      },
+      {
+        "id": "how-tall-will-i-be-teens-adults",
+        "label": "Hur lång kommer jag att bli (tonåringar och vuxna)"
+      },
+      {
+        "id": "what-determines-height",
+        "label": "Vad bestämmer längden?"
+      },
+      {
+        "id": "boys-girls-growth-charts",
+        "label": "Tillväxtdiagram för pojkar och flickor"
+      },
+      {
+        "id": "calculator-vs-growth-charts",
+        "label": "Kalkylator vs. tillväxtdiagram"
+      },
+      {
+        "id": "when-do-boys-stop-growing",
+        "label": "När slutar pojkar växa?"
+      },
+      {
+        "id": "when-do-girls-stop-growing",
+        "label": "När slutar flickor växa?"
+      },
+      {
+        "id": "height-prediction-methods",
+        "label": "Metoder för längdprognos"
+      },
+      {
+        "id": "khamis-roche-method",
+        "label": "Khamis-Roche-metoden"
+      },
+      {
+        "id": "based-on-parents",
+        "label": "Baserat på föräldrar"
+      },
+      {
+        "id": "bone-age-method",
+        "label": "Benåldersmetoden"
+      },
+      {
+        "id": "bayley-pinneau-method",
+        "label": "Bayley-Pinneau-metoden"
+      },
+      {
+        "id": "roche-wainer-thissen-method",
+        "label": "Roche-Wainer-Thissen-metoden"
+      },
+      {
+        "id": "can-you-increase-height",
+        "label": "Kan du öka längden?"
+      },
+      {
+        "id": "accuracy",
+        "label": "Prognosnoggrannhet"
+      },
+      {
+        "id": "faq",
+        "label": "FAQ"
+      },
+      {
+        "id": "related-tools",
+        "label": "Relaterade verktyg"
+      },
+      {
+        "id": "references",
+        "label": "Referenser"
+      }
+    ],
+    "relatedTools": {
+      "title": "Relaterade verktyg",
+      "heightComparisonTitle": "Verktyg för längdjämförelse",
+      "heightComparisonText": "Visualisera längdskillnader mellan människor, kändisar och objekt på en proportionell skala.",
+      "heightComparisonLink": "Jämför längder",
+      "imageToHeightTitle": "Bild till längd-verktyg",
+      "imageToHeightText": "Uppskatta längd från foton genom att jämföra motiv mot kända referensobjekt eller omgivningar.",
+      "imageToHeightLink": "Uppskatta från bild",
+      "percentileTitle": "Percentilräknare för längd och vikt",
+      "percentileText": "Hitta var ditt barns längd och vikt ligger inom befolkningen med hjälp av WHO- och CDC-data.",
+      "percentileLink": "Kontrollera percentil",
+      "countryTitle": "Medellängd efter land",
+      "countryText": "Global längddata för 46 länder. Sorterbar tabell, regionala diagram och världskarta.",
+      "countryLink": "Utforska data",
+      "ibwTitle": "Kalkylator för ideal kroppsvikt",
+      "ibwText": "Beräkna idealvikt med Devine-, Robinson- och Hamwi-formlerna sida vid sida.",
+      "ibwLink": "Beräkna idealvikt",
+      "differenceTitle": "Höjdskillnadsräknare",
+      "differenceText": "Beräkna den exakta skillnaden mellan två längder i cm, tum och procentuell skillnad.",
+      "differenceLink": "Beräkna skillnad"
+    },
+    "heightCharts": {
+      "intro": "Baserat på CDC:s tillväxtdiagramdata: genomsnittlig och medianlängd efter ålder (2–18 år): cm",
+      "boysToggle": "👦 Pojkar",
+      "girlsToggle": "👧 Flickor",
+      "boysLabel": "Pojkar",
+      "girlsLabel": "Flickor",
+      "chartToggleLine1": "Tillväxt",
+      "chartToggleLine2": "Diagram",
+      "tableToggleLine1": "Data",
+      "tableToggleLine2": "Tabell",
+      "chartTitle": "{label} Längdpercentildiagram (2–18 år)",
+      "axisAge": "Ålder (år)",
+      "axisHeight": "Längd (cm)",
+      "tooltipAge": "Ålder {age}",
+      "percentile3": "3:e percentilen (kort intervall)",
+      "percentile50": "50:e percentilen (genomsnitt/median)",
+      "percentile97": "97:e percentilen (lång intervall)",
+      "sourceNote": "Källa: CDC Growth Charts : National Center for Health Statistics",
+      "tableTitle": "Genomsnittlig & medianlängd efter ålder (cm)",
+      "tableHeaderAge": "Ålder",
+      "tableHeaderBoysAvgCm": "Pojkar genomsnitt (cm)",
+      "tableHeaderBoysAvgFt": "Pojkar genomsnitt (fot)",
+      "tableHeaderBoysMedian": "Pojkar median",
+      "tableHeaderGirlsAvgCm": "Flickor genomsnitt (cm)",
+      "tableHeaderGirlsAvgFt": "Flickor genomsnitt (fot)",
+      "tableHeaderGirlsMedian": "Flickors median",
+      "ageYrs": "{age} år",
+      "insightBoysStopLabel": "Pojkar slutar växa",
+      "insightBoysStopValue": "~18 år",
+      "insightGirlsStopLabel": "Flickor slutar växa",
+      "insightGirlsStopValue": "~15-16 år",
+      "insightMaleHeightLabel": "Genomsnittlig vuxen manlig längd (USA)",
+      "insightMaleHeightValue": "172.2 cm / 5'8\"",
+      "insightFemaleHeightLabel": "Genomsnittlig vuxen kvinnlig längd (USA)",
+      "insightFemaleHeightValue": "160.1 cm / 5'3\""
+    },
+    "references": {
+      "title": "Vetenskaplig bibliografi och datakällor",
+      "ref1": "Centers for Disease Control and Prevention. CDC Growth Charts.",
+      "ref2": "National Institutes of Health. Översikt över barns tillväxt och utveckling.",
+      "ref3": "Silventoinen K. Determinants of variation in adult body height. Journal of Biosocial Science.",
+      "ref4": "World Health Organization. Child Growth Standards.",
+      "ref5": "National Sleep Foundation. Tillväxthormon och sömn hos barn.",
+      "ref6": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age. Pediatrics.",
+      "ref7": "Tanner JM. Growth at Adolescence. Blackwell Scientific Publications.",
+      "ref8": "Greulich WW, Pyle SI. Radiographic Atlas of Skeletal Development of the Hand and Wrist.",
+      "ref9": "Tanner JM, Whitehouse RH. Assessment of Skeletal Maturity.",
+      "ref10": "Bayley N, Pinneau SR. Tables for predicting adult height from skeletal age.",
+      "ref11": "Roche AF, Wainer H, Thissen D. Predicting adult stature for individuals."
+    }
+  },
+  "heightWeightPercentile": {
+    "intro": {
+      "title": "Percentilräknare för längd och vikt",
+      "description": "Jämför din längd och vikt med befolkningsreferensdata från <who>Världshälsoorganisationen</who> och <cdc>Centers for Disease Control and Prevention</cdc>. Verktyget omfattar spädbarn, småbarn, barn och vuxna. Ange din ålder, kön, längd och vikt för att omedelbart få din längdpercentil och viktpercentil.",
+      "disclaimer": "Endast för informationsändamål. Rådgör med en barnläkare eller vårdgivare för kliniska tillväxtbedömningar."
+    },
+    "toolSection": {
+      "title": "Beräkna din längd- och viktpercentil"
+    },
+    "meaning": {
+      "title": "Vad betyder längd- och viktpercentil?",
+      "p1Before": "En tillväxtpercentil visar hur en persons mått förhåller sig till en referensgrupp av samma ålder och kön. ",
+      "p1Strong": "Världshälsoorganisationen",
+      "p1After": " definierar den 50:e percentilen som medianen: exakt hälften av referenspopulationen ligger över den och hälften ligger under.",
+      "p2": "Percentil betyder inte procentandel av ett maximum. Ett barn på den 90:e percentilen för längd är längre än 90 av 100 barn av samma ålder och kön i referensgruppen. Det säger inget om hur långa de kan bli.",
+      "referencePointsTitle": "Två referenspunkter som förtydligar skalan:",
+      "p50Label": "50:e percentilen för längd",
+      "p50Value": "= genomsnittet för den åldern och könet",
+      "p90Label": "90:e percentilen för längd",
+      "p90Value": "= längre än 90 % av jämnåriga av samma ålder",
+      "p3": "Ett lågt resultat på percentilräknaren för längd betyder inte att något är fel. Ett högt resultat indikerar inte ett problem. Det som spelar roll är mönstret över flera mätningar över tid, inte ett enskilt nummer isolerat."
+    },
+    "howItWorks": {
+      "title": "Hur percentilräknaren för längd och vikt fungerar",
+      "descriptionBefore": "Percentilräknaren för längd och vikt matchar dina inmatningar med publicerade tillväxtdata från",
+      "cdcLinkText": "CDC",
+      "descriptionMiddle": "och",
+      "whoLinkText": "WHO",
+      "descriptionAfter": "och returnerar en percentilrangordning för längd och vikt separat. Processen följer fyra steg:",
+      "step1Label": "Steg 1",
+      "step1Text": "Ange ålder, kön, längd och vikt",
+      "step2Label": "Steg 2",
+      "step2Text": "Matcha inmatningar med CDC eller WHO referensdata",
+      "step3Label": "Steg 3",
+      "step3Text": "Beräkna percentilrangordning med ålders- och könsmatchade kurvor",
+      "step4Label": "Steg 4",
+      "step4Text": "Visa numerisk percentil och resultat i klartext",
+      "infantsNoteBefore": "För barn i åldern 0 till 2 år använder verktyget",
+      "infantsNoteLinkText": "WHO Child Growth Standards",
+      "infantsNoteAfter": ". Från 2 års ålder övergår det till CDC:s tillväxtdiagram, standardreferensen i amerikansk klinisk praxis. Den pediatriska percentilräknaren för längd och vikt tillämpar rätt dataset baserat på den ålder du anger. Ingen manuell växling behövs."
+    },
+    "byAgeGroup": {
+      "title": "Längdpercentilräknare efter åldersgrupp",
+      "description": "Tillväxtmönster förändras i olika livsstadier. Verktyget justerar sina referensdata beroende på om du beräknar för ett spädbarn, ett skolbarn eller en vuxen.",
+      "ages0to2Label": "Ålder 0–2",
+      "ages0to2Value": "WHO Child Growth Standards",
+      "ages2to20Label": "Ålder 2–20",
+      "ages2to20Value": "CDC Growth Charts",
+      "adultsLabel": "Vuxna",
+      "adultsValue": "NHANES Population Data",
+      "boysGirlsLabel": "Pojkar och flickor",
+      "boysGirlsValue": "Könsspecifika referenskurvor",
+      "infants": {
+        "title": "Längdpercentilräknare för spädbarn",
+        "p1Before": "Spädbarnets längd- och viktpercentilräknare använder",
+        "p1Strong": "WHO Growth Standards",
+        "p1After": "för barn under de första två levnadsåren. WHO byggde detta dataset från data insamlade i sex länder för att skapa en internationell referens. Spädbarnets längdpercentilräknare spårar längd mätt liggande, inte stående längd. Spädbarn växer flera centimeter på en enda månad under denna period, så små percentilförändringar mellan besöken är normala.",
+        "p2": "Spädbarnets längdpercentilräknare ger den mest användbara informationen när du kör den under flera barnavårdsbesök snarare än som en engångskontroll."
+      },
+      "toddlers": {
+        "title": "Längdpercentilräknare för småbarn och barn",
+        "p1Before": "Från 2 års ålder genom tonåren hämtar barnets längd- och viktpercentilräknare data från",
+        "p1Strong": "CDC growth chart",
+        "p1After": "referensdata. Tillväxten i denna fas är stadigare än under spädbarnstiden men följer tydliga åldersspecifika mönster. Barnets längdpercentilräknare tar hänsyn till ålder i månader snarare än år för att hålla resultaten korrekta för barn som befinner sig mellan födelsedagar.",
+        "p2": "Föräldrar kör ofta längd- och viktpercentilräknaren för barn före årliga kontroller för att förstå vad siffrorna betyder innan de träffar barnläkaren. Verktyget ersätter inte en klinisk bedömning."
+      },
+      "boysGirls": {
+        "title": "Percentilräknare för längd för pojkar och flickor",
+        "p1": "Pojkar och flickor följer separata tillväxtkurvor, särskilt efter 8 års ålder. Flickor börjar vanligtvis sin tillväxtspurt runt 10 till 11 års ålder. Pojkar tenderar att nå sin topp mellan 12 och 14 års ålder. Längdpercentilräknaren för flickor och längdpercentilräknaren för pojkar refererar båda till könsspecifika datamängder från CDC.",
+        "p2": "Att ange rätt kön är den enskilt viktigaste inmatningen för ett korrekt resultat. En flicka mätt mot en manlig tillväxtkurva skulle visa en betydligt annorlunda percentil än hennes korrekta kvinnliga resultat. Kalkylatorn tillämpar rätt kurva automatiskt."
+      },
+      "adults": {
+        "title": "Percentilräknare för längd för vuxna",
+        "p1Before": "Vuxna växer inte, så percentilräknaren för vuxnas längd jämför din längd med en fast populationsfördelning snarare än en åldersjusterad tillväxtkurva. Referensdata för vuxna kommer från nationella hälsoenkäter inklusive",
+        "p1Strong": "NHANES",
+        "p1After": ". Percentilräknaren för vuxnas längd är en enkel populationsjämförelse: du är antingen längre eller kortare än en given procentandel av vuxna av samma kön.",
+        "p2": "Percentilräknaren för vuxna mäns längd använder mansspecifika fördelningar eftersom vuxna mäns och kvinnors längdfördelningar är distinkta. Ett resultat vid 50:e percentilen på den amerikanska percentilräknaren för vuxna mäns längd motsvarar ungefär 175 cm (5 fot 9 tum)."
+      }
+    },
+    "usCalculator": {
+      "title": "Amerikansk percentilräknare för längd",
+      "p1Before": "Den amerikanska percentilräknaren för längd bygger på tillväxtdata publicerade av",
+      "p1Strong": "Centers for Disease Control and Prevention",
+      "p1After": ". CDC:s tillväxtdiagram täcker barn och ungdomar i åldern 2 till 20 år och kommer från nationellt representativa amerikanska befolkningsdata insamlade under flera undersökningscykler.",
+      "p2Before": "För amerikanska vuxna använder kalkylatorn längdfördelningar från",
+      "p2Strong": "National Health and Nutrition Examination Survey (NHANES)",
+      "p2After": ". NHANES tillhandahåller referenspopulationen för alla percentiljämförelser för vuxna i detta verktyg."
+    },
+    "interpret": {
+      "title": "Hur du tolkar ditt längdpercentilresultat",
+      "description": "Ett enskilt resultat från en längdpercentilräknare är en ögonblicksbild, inte en diagnos. Använd denna tabell för att läsa av ditt resultat:",
+      "tableHeaderRange": "Percentilintervall",
+      "tableHeaderInterpretation": "Tolkning",
+      "tableHeaderSuggests": "Vad det antyder",
+      "row1Range": "90 till 100",
+      "row1Interpretation": "Mycket lång jämfört med jämnåriga",
+      "row1Suggests": "Långt över genomsnittet för ålder och kön",
+      "row2Range": "75 till 90",
+      "row2Interpretation": "Över genomsnittet",
+      "row2Suggests": "Längre än de flesta jämnåriga",
+      "row3Range": "25 till 75",
+      "row3Interpretation": "Genomsnittligt längdintervall",
+      "row3Suggests": "Normalt och förväntat för de flesta människor",
+      "row4Range": "10 till 25",
+      "row4Interpretation": "Under genomsnittet",
+      "row4Suggests": "Kortare än de flesta, inom normal variation",
+      "row5Range": "Under 10",
+      "row5Interpretation": "Betydligt kortare än jämnåriga",
+      "row5Suggests": "Värt att diskutera med en vårdgivare",
+      "note": "Att hamna under den 10:e percentilen är värt att notera. Familjens längdhistorik, födelsevikt och förändringstakt över flera besök är alla faktorer som en kliniker anser vara meningsfulla. En konsekvent trend inom samma band är mer informativ än något enskilt percentilresultat."
+    },
+    "example": {
+      "title": "Exempel på beräkning av längdpercentil",
+      "description": "Så här fungerar percentilräknaren för längd genom ett verkligt exempel:",
+      "inputParamsTitle": "Inmatningsparametrar",
+      "ageLabel": "Ålder",
+      "ageValue": "10 år",
+      "sexLabel": "Kön",
+      "sexValue": "Man",
+      "heightLabel": "Längd",
+      "heightValue": "138 cm",
+      "calculatedDataTitle": "Beräknad data",
+      "cdcMedianLabel": "CDC referensmedian",
+      "cdcMedianValue": "137 cm",
+      "deviationLabel": "Avvikelse",
+      "deviationValue": "+1 cm över",
+      "resultLabel": "Resultat",
+      "resultValue": "55:e percentilen",
+      "scaleMin": "0",
+      "scaleQ1": "25",
+      "scaleMid": "50",
+      "scaleQ3": "75",
+      "scaleMax": "100",
+      "resultHeadline": "55:e",
+      "resultSubtext": "— genomsnittligt intervall",
+      "closing": "Detta barn ligger en centimeter över medianen för en 10-årig pojke. Ett resultat på 55 på längdpercentilräknaren placerar honom i det genomsnittliga intervallet, över 55 av 100 jämnåriga. Om detta resultat ligger kvar i samma intervall vid nästa kontroll bekräftar det en stadig, konsekvent tillväxt längs en normal bana."
+    },
+    "whyUsed": {
+      "title": "Varför längdpercentiler används vid pediatrisk tillväxtövervakning",
+      "p1": "Både Världshälsoorganisationen och Centers for Disease Control and Prevention rekommenderar att man spårar längd- och viktpercentiler vid flera besök som en central del av pediatrisk vård. En enskild mätning visar var ett barn står idag. En serie mätningar visar om de växer som förväntat.",
+      "p2Intro": "Konsekvent spårning under kontroller hjälper till att identifiera tre specifika mönster:",
+      "item1": "Tillväxthämning, där ett barns percentil sjunker betydligt mellan besöken",
+      "item2": "Tidiga tecken på hormonella eller näringsmässiga tillstånd som påverkar barns utveckling",
+      "item3": "Om ett barn återhämtar sig väl efter sjukdom eller låg födelsevikt",
+      "p3Before": "Den pediatriska percentilräknaren för längd och vikt är en utgångspunkt för dessa samtal, inte en ersättning för dem. Kliniker plottar resultat på ett",
+      "p3LinkText": "CDC tillväxtdiagram",
+      "p3After": "över flera besök och letar efter konsekvent spårning längs samma percentilband snarare än att fokusera på ett enskilt nummer."
+    },
+    "cta": {
+      "title": "Använd percentilräknaren",
+      "descriptionBefore": "Ange din ålder, längd och vikt för att omedelbart beräkna ditt resultat baserat på",
+      "descriptionStrong": "WHO & CDC",
+      "descriptionAfter": "referensdata.",
+      "feature1": "Spädbarn, småbarn, barn och vuxna",
+      "feature2": "Resultat för längd- och viktpercentil",
+      "feature3": "Tydlig tolkning",
+      "feature4": "Globala referensdatauppsättningar",
+      "buttonText": "Beräkna nu ↑"
+    },
+    "references": {
+      "title": "Vetenskapliga källor",
+      "ref1": "World Health Organization Child Growth Standards. WHO, 2006.",
+      "ref2": "CDC Clinical Growth Charts. Centers for Disease Control and Prevention, 2000 (reviderad 2022).",
+      "ref3": "NHANES: National Health and Nutrition Examination Survey. CDC National Center for Health Statistics."
+    },
+    "faq": [
+      {
+        "q": "Vad är en bra längdpercentil?",
+        "a": "Det finns ingen enskild bra percentil. Det genomsnittliga intervallet på en längdpercentilräknare sträcker sig från 25:e till 75:e percentilen, och de flesta människor faller någonstans inom detta band. Det som är viktigare är om din percentil förblir konsekvent över tid och passar din familjs typiska längdmönster."
+      },
+      {
+        "q": "Hur exakt är en längdpercentilräknare?",
+        "a": "En percentilräknare för längd är lika exakt som de mätningar du anger. Referensdata bakom verktyget kommer från stora, nationellt representativa datamängder från CDC och WHO. Noggrannheten förbättras när du anger ålder i månader snarare än år för barn, och när längden mäts utan skor, stående rakt för äldre barn och liggande platt för spädbarn."
+      },
+      {
+        "q": "Kan vuxna beräkna sin längdpercentil?",
+        "a": "Ja. Percentilräknaren för vuxnas längd jämför din längd med en befolkningsfördelning snarare än ett tillväxtdiagram. Percentilräknaren för vuxna använder NHANES-undersökningsdata för att placera din längd inom fördelningen för personer av samma kön. Percentilräknaren för mäns längd använder mansspecifik data, vilket ger en exakt jämförelse med den vuxna manliga befolkningen."
+      },
+      {
+        "q": "Har pojkar och flickor olika tillväxtpercentiler?",
+        "a": "Ja. Percentilräknaren för flickors längd och percentilräknaren för pojkars längd använder var och en separata CDC-referenskurvor eftersom manliga och kvinnliga tillväxtmönster skiljer sig åt efter tidig barndom. Flickor växer snabbare i tidig tonår och pojkar kommer ikapp senare. Att ange fel kön ger ett betydligt felaktigt resultat."
+      },
+      {
+        "q": "Vad är skillnaden mellan WHO:s och CDC:s tillväxtdiagram?",
+        "a": "WHO Child Growth Standards täcker åldrarna 0 till 2 år och baseras på data från sex länder, utformade som en internationell referens för optimal tillväxt. CDC:s tillväxtdiagram täcker åldrarna 2 till 20 år och är byggda från amerikansk befolkningsdata, vilket gör dem till standardreferensen för klinisk användning i USA. Denna räknare använder WHO-data för spädbarn och CDC-data från 2 års ålder och framåt."
+      }
+    ],
+    "toc": [
+      {
+        "id": "calculate-your-height-and-weight-percentile",
+        "label": "Beräkna din längd- och viktpercentil"
+      },
+      {
+        "id": "what-does-height-and-weight-percentile-mean",
+        "label": "Vad betyder längd- och viktpercentil?"
+      },
+      {
+        "id": "how-the-height-and-weight-percentile-calculator-works",
+        "label": "Hur percentilräknaren för längd och vikt fungerar"
+      },
+      {
+        "id": "height-percentile-calculator-by-age-group",
+        "label": "Längdpercentilräknare efter åldersgrupp",
+        "subItems": [
+          {
+            "id": "height-percentile-calculator-for-babies-and-infants",
+            "label": "Längdpercentilräknare för spädbarn och småbarn"
+          },
+          {
+            "id": "height-percentile-calculator-for-toddlers-and-kids",
+            "label": "Längdpercentilräknare för småbarn och barn"
+          },
+          {
+            "id": "height-percentile-calculator-for-boys-and-girls",
+            "label": "Längdpercentilräknare för pojkar och flickor"
+          },
+          {
+            "id": "height-percentile-calculator-for-adults",
+            "label": "Längdpercentilräknare för vuxna"
+          }
+        ]
+      },
+      {
+        "id": "us-height-percentile-calculator",
+        "label": "Amerikansk längdpercentilräknare"
+      },
+      {
+        "id": "how-to-interpret-height-percentile-result",
+        "label": "Hur du tolkar ditt längdpercentilresultat"
+      },
+      {
+        "id": "example-height-percentile-calculation",
+        "label": "Exempel på längdpercentilberäkning"
+      },
+      {
+        "id": "why-height-percentiles-are-used-in-pediatric-growth-monitoring",
+        "label": "Varför längdpercentiler används vid pediatrisk tillväxtövervakning"
+      },
+      {
+        "id": "try-the-height-and-weight-percentile-calculator",
+        "label": "Prova percentilräknaren för längd och vikt"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Vanliga frågor"
+      },
+      {
+        "id": "references",
+        "label": "Referenser"
+      }
+    ],
+    "tool": {
+      "veryTall": "Mycket lång",
+      "aboveAverage": "Över genomsnittet",
+      "average": "Genomsnittlig",
+      "belowAverage": "Under genomsnittet",
+      "significantlyBelowAverage": "Betydligt under genomsnittet",
+      "heightPercentileResult": "Resultat av längdpercentil",
+      "shareTextLine1": "Mitt längdpercentilresultat:",
+      "shareTextLine2": "{height} cm | Ålder {age} | {gender} | {country}",
+      "shareTextLine3": "Resultat: {percentile}:e percentilen — {label}",
+      "shareTextLine4": "beräknat på heightcomparisoncalculator.com",
+      "heightField": "Längd",
+      "ageField": "Ålder",
+      "genderField": "Kön",
+      "countryField": "Land",
+      "tallerThanText": "Längre än {percentile}% av {gender} i åldern {age} i {country}. Baserat på WHO:s och CDC:s referensdata.",
+      "copyResult": "Kopiera resultat",
+      "copiedConfirmation": "✓ Kopierat!",
+      "closeButton": "Stäng",
+      "footerNote": "heightcomparisoncalculator.com · Endast i informationssyfte",
+      "percentileOrdinalSuffix": ":e",
+      "unitCm": "cm",
+      "unitFtIn": "fot/tum",
+      "heightLabel": "Längd",
+      "heightPlaceholder": "t.ex. 175",
+      "unitCmShort": "cm",
+      "feetPlaceholder": "5",
+      "feetAriaLabel": "Längd i fot",
+      "unitFtShort": "fot",
+      "inchesPlaceholder": "9",
+      "inchesAriaLabel": "Längd i tum",
+      "unitInShort": "tum",
+      "ageYearsLabel": "Ålder (år)",
+      "agePlaceholder": "t.ex. 25",
+      "genderLabel": "Kön",
+      "genderMale": "♂ Man",
+      "genderFemale": "♀ Kvinna",
+      "countryLabel": "Land",
+      "errorInvalidHeight": "Ange en giltig längd (30–280 cm).",
+      "errorInvalidAge": "Ange en giltig ålder (0–100).",
+      "enterYourDetails": "Ange dina uppgifter",
+      "calculatingButton": "Beräknar...",
+      "calculateButton": "Beräkna min percentil →",
+      "yourPercentile": "Din percentil",
+      "heightResultLabel": "Längd",
+      "positionOnCurve": "Position på befolkningskurvan",
+      "percentileLabel": "Percentil",
+      "interpretationText": "Du är längre än {percentile}% av {gender} i åldern {age} i {country}. Detta placerar dig i {label}-intervallet.",
+      "scaleShort": "Kort",
+      "scaleAvg": "Medel",
+      "scaleTall": "Lång",
+      "shareButton": "📤 Dela mitt resultat",
+      "disclaimerLine1": "Endast i informationssyfte. Rådgör med en vårdgivare",
+      "disclaimerLine2": "för klinisk tillväxtbedömning. Baserat på WHO & CDC-data."
+    },
+    "bellCurveIllustration": {
+      "interactiveIllustration": "Interaktiv illustration",
+      "heading": "Längdfördelning per percentil",
+      "instructionBefore": "Håll muspekaren över valfri percentilmarkör för att markera det intervallet. Den",
+      "purpleDot": "lila pricken",
+      "instructionAfter": "visar ett exempelresultat vid {samplePercentile}:e percentilen.",
+      "populationFrequency": "Populationsfrekvens",
+      "xAxisLabel": "Längd (relativt befolkningsgenomsnittet)",
+      "sampleLabel": "Exempel: {samplePercentile}:e percentilen",
+      "sampleSubLabel": "Längre än {samplePercentile}% av jämnåriga",
+      "hoverPrompt": "Håll muspekaren över en percentilmarkör på kurvan för att se vad den betyder.",
+      "ordinalSuffix": ":e",
+      "percentileSuffix": ":e percentilen",
+      "hoveredDescription": "{label}. En person här är längre än <pct>{percentile}%</pct> av personer i samma ålder och kön.",
+      "hideSampleDot": "Dölj exempelprick",
+      "showSampleDot": "Visa exempelprick",
+      "footerNote": "Den 50:e percentilen är medianen. Hälften av befolkningen ligger över, hälften under. Att ligga vid den 5:e eller 95:e percentilen är inte onormalt – det beskriver helt enkelt positionen inom fördelningen. Baserat på WHO:s och CDC:s referensdata.",
+      "label5": "Betydligt under genomsnittet",
+      "label25": "Under genomsnittet",
+      "label50": "Genomsnitt (median)",
+      "label75": "Över genomsnittet",
+      "label95": "Exceptionellt lång"
+    },
+    "whoVsCdc": {
+      "yearsAbbrev": "år",
+      "referenceDataGuide": "Referensdataguide",
+      "heading": "Vilken tillväxtkurva använder denna kalkylator?",
+      "ageRangeSource": "Åldersintervall → datakälla",
+      "switchPoint": "Ålder 2 · Brytpunkt",
+      "birthLabel": "Födelse",
+      "age5": "5 år",
+      "age10": "10 år",
+      "age15": "15 år",
+      "age20": "20 år",
+      "whoTimelineLabel": "WHO:s tillväxtstandarder för barn",
+      "whoTimelineNote": "Födelse till 24 månader · Längd mätt liggande",
+      "whoAges": "Ålder 0–2",
+      "cdcTimelineLabel": "CDC tillväxtdiagram",
+      "cdcTimelineNote": "Ålder 2–20 · Stående längd · Amerikansk befolkningsdata",
+      "cdcAges": "Ålder 2–20",
+      "growthCurvesSideBySide": "Tillväxtkurvor sida vid sida",
+      "whoChartTitle": "WHO-standarder",
+      "whoChartSubtitle": "Födelse till 24 månader (pojkar)",
+      "cdcChartTitle": "CDC tillväxtdiagram",
+      "cdcChartSubtitle": "Ålder 2–20 (pojkar)",
+      "lengthAxisLabel": "Längd (cm)",
+      "heightAxisLabel": "Längd (cm)",
+      "ageAxisLabel": "Ålder (år)",
+      "legendMedian": "50:e (median)",
+      "legend25_75": "25:e / 75:e",
+      "legend5_95": "5:e / 95:e",
+      "bottomNoteStrong": "Varför två källor?",
+      "bottomNoteText": "WHO:s standarder baserades på barn som vuxit upp under optimala förhållanden i sex länder, vilket gör dem till en internationell referens för tidig tillväxt. CDC:s diagram baseras på amerikansk befolkningsdata och är standard i amerikansk klinisk praxis för barn från 2 år och uppåt. Denna kalkylator växlar automatiskt mellan dem baserat på den angivna åldern."
+    },
+    "exampleVisual": {
+      "eyebrow": "Visuellt resultat · Exempelberäkning",
+      "heading": "Ålder 10, Man, 138 cm → 55:e percentilen",
+      "percentileScaleWhere": "Percentilskala — Där {percentile} ligger",
+      "zoneLabelBelow10": "Under 10:e",
+      "zoneLabel10to25": "10:e–25:e",
+      "zoneLabel25to75": "25:e–75:e",
+      "zoneLabel75to90": "75:e–90:e",
+      "zoneLabel90to100": "90:e–100:e",
+      "ordinalSuffix": ":e",
+      "averageRangeLabel": "Genomsnittligt intervall (25:e–75:e)",
+      "childComparisonText": "Detta barn är längre än <strong>{count} av 100</strong> pojkar i åldern {age}. Ligger bekvämt inom det normala tillväxtintervallet.",
+      "positionOnCdcChart": "Position på CDC:s tillväxtdiagram",
+      "cdcChartTitle": "CDC:s tillväxtdiagram — Pojkar (ålder 2–20)",
+      "heightAxisLabel": "Längd (cm)",
+      "ageAxisLabel": "Ålder (år)",
+      "sampleAgeHeight": "Ålder 10 · 138 cm",
+      "samplePercentileLabel": "55:e percentilen",
+      "legend5th": "5:e",
+      "legend25th": "25:e",
+      "legend50th": "50:e",
+      "legendMedian": "50:e (median)",
+      "legend75th": "75:e",
+      "legend95th": "95:e",
+      "legendSample": "Exempel: 138 cm, ålder 10",
+      "footerNote": "Baserat på CDC:s kliniska tillväxtdiagram (2000). Det skuggade gröna bandet representerar det genomsnittliga intervallet (25:e–75:e percentilen). En punkt inom detta band indikerar konsekvent, hälsosam tillväxt."
+    }
+  },
+  "idealBodyWeight": {
+    "intro": {
+      "title": "Kalkylator för ideal kroppsvikt",
+      "description": "<ibw>Ideal kroppsvikt (IBW)</ibw> är en uppskattning av det viktintervall som är associerat med god hälsa för en given längd och kön. Denna kalkylator för ideal kroppsvikt använder tre etablerade kliniska formler: <devine>Devine</devine>-, <robinson>Robinson</robinson>- och <hamwi>Hamwi</hamwi>-metoderna för att ge ett intervall snarare än ett enskilt nummer. Verktyget fungerar för män, kvinnor och pediatriska patienter. Ange din längd och kön för att omedelbart beräkna ideal kroppsvikt.",
+      "disclaimer": "(IBW är en klinisk referens, inte ett kroppsmål. Vikt är en av många hälsomarkörer. Diskutera alltid viktrelaterade hälsofrågor med en kvalificerad läkare.)"
+    },
+    "howToCalculate": {
+      "title": "Hur man beräknar ideal kroppsvikt",
+      "p1": "Alla tre IBW-formlerna delar samma logik. Börja från en basvikt vid exakt 152,4 cm (5 fot) och lägg till en fast mängd per tum längd utöver det. Formlerna skiljer sig åt i sin basvikt och ökning per tum, vilket är anledningen till att de ger något olika resultat för samma person.",
+      "p2": "Ben J. Devine introducerade sin formel 1974 för att hjälpa kliniker att uppskatta läkemedelsdoser baserat på längd och vikt. Den blev den mest citerade formeln för beräkning av ideal kroppsvikt i klinisk praxis.",
+      "stepsTitle": "Så här beräknar du ideal kroppsvikt steg för steg med Devine-metoden:",
+      "step1": "Mät din längd i fot och tum.",
+      "step2": "Dra av 5 fot för att få antalet tum över baslängden.",
+      "step3": "Multiplicera dessa tum med formelns ökning per tum.",
+      "step4": "Lägg till resultatet till formelns basvikt för ditt kön.",
+      "p3": "Kalkylatorn tillämpar alla tre formlerna samtidigt. Du får ett intervall snarare än ett enskilt nummer, vilket är en mer exakt representation av vad beräkning av ideal kroppsvikt kan och inte kan berätta för dig."
+    },
+    "formulas": {
+      "title": "Formler för beräkning av ideal kroppsvikt",
+      "description": "De tre formlerna nedan täcker de flesta kliniska användningsfall. Var och en tillämpar formeln för beräkning av ideal kroppsvikt som en linjär funktion av längden över 152,4 cm (5 fot). Alla härleddes ursprungligen i kilogram.",
+      "tableSexHeader": "Kön",
+      "tableFormulaHeader": "Formel",
+      "maleLabel": "Man",
+      "femaleLabel": "Kvinna",
+      "heightRowLabel": "Längd",
+      "calculationRowLabel": "Beräkning (man)",
+      "devine": {
+        "title": "Devine formula",
+        "p1": "Ben J. Devine publicerade sin formel 1974. Den blev den mest citerade IBW-formeln i klinisk praxis. Ökningen per tum är identisk för män och kvinnor med 2,3 kg, men basvikterna skiljer sig åt mellan könen.",
+        "maleFormula": "50 kg + 2,3 kg per tum över 5 fot",
+        "femaleFormula": "45,5 kg + 2,3 kg per tum över 5 fot",
+        "exampleHeightValue": "175 cm = 5 fot 9 tum",
+        "inchesAboveLabel": "Tum över 5 fot",
+        "inchesAboveValue": "9",
+        "calculationValue": "50 + (2,3 × 9)",
+        "resultLabel": "Devine IBW",
+        "resultValue": "70,7 kg"
+      },
+      "robinson": {
+        "title": "Robinson formula",
+        "p1": "Robinson formula publicerades 1983 som en förfining av Devine-ekvationen. Den höjer den manliga basvikten till 52 kg och sänker ökningen per tum till 1,9 kg, vilket ger en smalare uppskattning för längre män. Den kvinnliga basen stiger till 49 kg med en ökning på 1,7 kg. Robinson tenderar att ge den lägsta IBW av de tre formlerna för långa individer.",
+        "maleFormula": "52 kg + 1,9 kg per tum över 5 fot",
+        "femaleFormula": "49 kg + 1,7 kg per tum över 5 fot",
+        "exampleHeightValue": "175 cm = 5 fot 9 tum",
+        "calculationValue": "52 + (1,9 × 9)",
+        "resultLabel": "Robinson IBW",
+        "resultValue": "69,1 kg"
+      },
+      "hamwi": {
+        "title": "Hamwi formula",
+        "p1": "Hamwi formula är den äldsta av de tre, publicerad 1964. Den använder en högre ökning per tum för män och tenderar att ge de största IBW-uppskattningarna för längre individer. Den är fortfarande vanlig inom dietetik och klinisk näringspraxis.",
+        "maleFormula": "48 kg + 2,7 kg per tum över 5 fot",
+        "femaleFormula": "45,5 kg + 2,2 kg per tum över 5 fot",
+        "exampleHeightValue": "175 cm = 5 fot 9 tum",
+        "calculationValue": "48 + (2,7 × 9)",
+        "resultLabel": "Hamwi IBW",
+        "resultValue": "72,3 kg"
+      }
+    },
+    "women": {
+      "title": "Kalkylator för ideal kroppsvikt för kvinnor",
+      "p1": "Kalkylatorn för idealvikt för kvinnor använder lägre basvikter än de manliga versionerna av samma formler. Detta återspeglar två biologiska realiteter. Kvinnor har en högre andel kroppsfett i förhållande till muskelmassa. Kvinnor har också lägre genomsnittlig bentäthet och muskelmassa än män av samma längd.",
+      "p2": "Devine-formeln sätter den kvinnliga basen till 45,5 kg mot 50 kg för män. Robinson-formeln höjer den kvinnliga basen till 49 kg. Resultatet är en lägre uppskattning av ideal kroppsvikt vid varje längd jämfört med den manliga beräkningen.",
+      "exampleTitle": "Exempel på kvinnlig ideal kroppsvikt vid 165 cm (5 fot 5 tum):",
+      "exampleDevine": "Devine: 57,7 kg (127 lb)",
+      "exampleRobinson": "Robinson: 56,2 kg (124 lb)",
+      "exampleHamwi": "Hamwi: 56,4 kg (124 lb)",
+      "exampleRangeSummary": "Hälsosamt intervall enligt formlerna: cirka 56 till 58 kg",
+      "p3": "Faktorer som kroppsbyggnad, muskelmassa från träning och hormonella variationer påverkar alla vad en hälsosam vikt ser ut för varje enskild kvinna. Ingen av formlerna tar hänsyn till dessa variabler. Resultatet från kalkylatorn för kvinnors idealvikt är ett referensintervall, inte ett mål att uppnå."
+    },
+    "men": {
+      "title": "Kalkylator för ideal kroppsvikt för män",
+      "p1": "Kalkylatorn för ideal kroppsvikt för män ger högre uppskattningar än den kvinnliga versionen vid varje längd. Detta återspeglar den större genomsnittliga muskelmassan och bentätheten i manliga kroppar. Muskler väger mer än fett per volymenhet, så en man och en kvinna med samma längd kan båda vara friska samtidigt som de skiljer sig betydligt i vikt.",
+      "exampleTitle": "Exempel på manlig ideal kroppsvikt vid 178 cm (5 fot 10 tum):",
+      "exampleDevine": "Devine: 73 kg (161 lb)",
+      "exampleRobinson": "Robinson: 71 kg (157 lb)",
+      "exampleHamwi": "Hamwi: 75 kg (165 lb)",
+      "exampleRangeSummary": "Hälsosamt intervall enligt formlerna: cirka 71 till 75 kg",
+      "p2": "Vältränade män som lyfter vikter regelbundet kommer ofta att ligga över sin idealvikt samtidigt som de har låg kroppsfettprocent. I dessa fall är idealvikt en mindre användbar klinisk referens än direkt mätning av kroppssammansättning. Beräkningen av mäns idealvikt ger en användbar utgångspunkt men ersätter inte en fullständig hälsoundersökning."
+    },
+    "pediatrics": {
+      "title": "Kalkylator för ideal kroppsvikt för pediatrik",
+      "p1": "De vuxna formlerna för ideal kroppsvikt gäller inte för barn. Kalkylatorn för ideal kroppsvikt för pediatrik använder istället ålders- och längdbaserade referenser, eftersom barns kroppar fortfarande utvecklas och deras hälsosamma viktintervall förändras kontinuerligt när de växer.",
+      "p2Before": "Den vanligaste metoden för beräkning av ideal kroppsvikt inom pediatrik använder längd för att uppskatta förväntad vikt baserat på tillväxtkurvor. I klinisk praxis är",
+      "cdcLinkText": "CDC:s tillväxtkurvor",
+      "p2Middle": "och",
+      "whoLinkText": "WHO Child Growth Standards",
+      "p2After": "referensstandarderna för bedömning av pediatrisk tillväxt. Ett barns idealvikt tas vanligtvis som den vikt som motsvarar 50:e percentilen för deras längd på lämplig tillväxtkurva.",
+      "p3": "Kalkylatorn växlar automatiskt till denna tillväxtkurvemetod när en ålder under 18 år anges. Resultatet visas som ett viktintervall snarare än en enskild siffra. Vid oro för barns vikt, arbeta alltid med en barnläkare. Tillväxtspårning över flera besök är mer informativt än en enskild mätning."
+    },
+    "adjusted": {
+      "title": "Kalkylator för justerad ideal kroppsvikt",
+      "p1": "Kalkylatorn för justerad ideal kroppsvikt används i kliniska miljöer för patienter vars faktiska vikt är mer än 30 % över deras IBW. Vid den punkten underskattar användning av enbart IBW för läkemedelsdosering den metaboliska aktiviteten, eftersom en del överflödig fettvävnad fortfarande är metaboliskt aktiv. Justerad kroppsvikt korrigerar för detta.",
+      "formulaTitle": "Formel för justerad kroppsvikt:",
+      "formulaText": "Justerad kroppsvikt = IBW + 0,4 × (Faktisk vikt − IBW)",
+      "exampleTitle": "Arbetat exempel – faktisk vikt 100 kg, Devine IBW 70 kg:",
+      "exampleResult": "= 70 + 0,4 × (100 − 70) = 70 + 12 = ",
+      "exampleResultValue": "82 kg",
+      "p2": "Faktorn 0,4 återspeglar den uppskattade metaboliskt aktiva andelen av övervikt. Justerad kroppsvikt används oftast vid dosering av aminoglykosidantibiotika, kemoterapiberäkningar och njurdosjusteringar. Det är inte ett viktmål. Det är ett farmakokinetiskt verktyg för kliniska doseringsbeslut."
+    },
+    "percentIbw": {
+      "title": "Beräkning av procentuell ideal kroppsvikt",
+      "p1": "För att beräkna procentuell ideal kroppsvikt, dividera din faktiska vikt med din IBW och multiplicera med 100. Detta visar hur din nuvarande vikt förhåller sig till uppskattningen i procent.",
+      "formulaText": "Procent IBW = (Faktisk vikt ÷ IBW) × 100",
+      "tableHeaderPercent": "Procent IBW",
+      "tableHeaderStatus": "Viktstatus",
+      "row1Percent": "Under 70%",
+      "row1Status": "Allvarligt underviktig",
+      "row2Percent": "70 till 89%",
+      "row2Status": "Underviktig",
+      "row3Percent": "90 till 110%",
+      "row3Status": "Normalvikt",
+      "row4Percent": "110 till 120%",
+      "row4Status": "Överviktig",
+      "row5Percent": "Över 120%",
+      "row5Status": "Riskområde för fetma",
+      "p2": "Procent IBW används i kliniska näringsbedömningar för att identifiera patienter som behöver näringsintervention. En procentuell ideal kroppsvikt under 70 % är associerad med betydande näringsbrist. Värden över 120 % används som en tröskel vid fetmarelaterade doseringsbeslut."
+    },
+    "healthyRange": {
+      "title": "Hälsosam viktintervall",
+      "p1": "Det hälsosamma viktintervallet ligger runt ditt IBW-resultat, inte vid en enskild punkt. Eftersom de tre formlerna ger något olika siffror för samma person, definierar spridningen mellan det lägsta och högsta resultatet ett praktiskt hälsosamt viktintervall. För de flesta vuxna sträcker sig denna spridning 3 till 5 kg över alla tre formlerna.",
+      "illustrativeTitle": "Illustrativt intervall – man, 175 cm (5 fot 9 tum):",
+      "belowLabel": "Under IBW",
+      "belowValue": "Under 69 kg",
+      "healthyLabel": "Hälsosam (69–73 kg)",
+      "healthyValue": "69–73 kg (hälsosam)",
+      "aboveLabel": "Över IBW",
+      "aboveValue": "73–88 kg",
+      "obesityLabel": "Risk för fetma",
+      "obesityValue": "Över 88 kg"
+    },
+    "vsBmi": {
+      "title": "Ideal kroppsvikt vs BMI",
+      "p1": "Body Mass Index och Ideal Body Weight mäter olika saker och besvarar olika frågor. BMI utvärderar din viktkategori genom att dividera vikt i kilogram med längd i meter i kvadrat. Det returnerar en kategorietikett: undervikt, normalvikt, övervikt eller fetma. Beräkning av ideal kroppsvikt ger däremot en uppskattad målvikt att sträva efter snarare än en kategorietikett.",
+      "tableHeaderMeasure": "Mått",
+      "tableHeaderWhatItDoes": "Vad det gör",
+      "tableHeaderLimitation": "Huvudsaklig begränsning",
+      "row1Measure": "Ideal kroppsvikt",
+      "row1WhatItDoes": "Uppskattar en målvikt baserad på längd och kön",
+      "row1Limitation": "Ignorerar kroppssammansättning, kroppstyp och ålder",
+      "row2Measure": "Body Mass Index",
+      "row2WhatItDoes": "Klassificerar viktstatus med hjälp av vikt och längd",
+      "row2Limitation": "Samma begränsningar, plus justerar inte för könsskillnader i kroppssammansättning",
+      "p2": "Inget av måtten tar hänsyn till hur vikten fördelas mellan muskler, fett och ben. En person med hög muskelmassa kan visa en normal IBW och ett högt BMI. En person med låg muskelmassa kan visa ett normalt BMI och ligga över sin IBW. För en fullständig bild används båda bäst tillsammans med kroppssammansättningsdata från en kliniker.",
+      "scrollButtonText": "Scrolla till toppen och beräkna nu ↑"
+    },
+    "references": {
+      "title": "Källor",
+      "ref1": "Devine BJ (1974). Gentamicin therapy. Drug Intelligence and Clinical Pharmacy.",
+      "ref2": "Robinson JD et al. (1983). Estimation of ideal body weight. American Journal of Hospital Pharmacy.",
+      "ref3": "Hamwi GJ (1964). Changing dietary concepts. In: Diabetes Mellitus: Diagnosis and Treatment. American Diabetes Association.",
+      "ref4": "CDC Growth Charts. Centers for Disease Control and Prevention.",
+      "ref5": "WHO Child Growth Standards. World Health Organization."
+    },
+    "faq": [
+      {
+        "q": "Vad är definitionen av ideal kroppsvikt?",
+        "a": "Ideal kroppsvikt (IBW) är en klinisk uppskattning av det viktintervall som är associerat med lägst risk för kronisk sjukdom och bästa övergripande hälsoresultat för en given längd och kön. Den utvecklades ursprungligen för att standardisera läkemedelsdosering men används nu brett inom hälso- och fitnesssammanhang."
+      },
+      {
+        "q": "Hur exakta är formlerna för beräkning av ideal kroppsvikt?",
+        "a": "De är användbara statistiska uppskattningar men har betydande begränsningar. IBW-formler skiljer inte mellan muskelmassa och kroppsfett. En mycket muskulös atlet kan väga mer än sin \"ideala\" vikt samtidigt som den är extremt frisk. De bör användas som en av många hälsoindikatorer, inte det sista ordet om din hälsostatus."
+      },
+      {
+        "q": "Vad är skillnaden mellan Devine-, Robinson- och Hamwi-formlerna?",
+        "a": "Devine-formeln är den mest använda inom medicinska miljöer. Robinson utvecklade en något smalare modell specifikt för längre individer. Hamwi är en mer traditionell formel som ofta används inom näringsrådgivning. De flesta finner det bästa resultatet genom att titta på det genomsnittliga intervallet som produceras av alla tre."
+      },
+      {
+        "q": "Är beräkning av ideal kroppsvikt bättre än BMI?",
+        "a": "Ingen av dem är perfekt. BMI ger dig en kategori (undervikt, normal, etc.), medan IBW ger dig en specifik målvikt. IBW är ofta mer intuitivt för individer, men liksom BMI kan den inte ta hänsyn till kroppssammansättning (förhållandet mellan muskler och fett)."
+      }
+    ],
+    "toc": [
+      {
+        "id": "ideal-body-weight-calculator",
+        "label": "Kalkylator för ideal kroppsvikt"
+      },
+      {
+        "id": "how-to-calculate-ideal-body-weight",
+        "label": "Hur man beräknar ideal kroppsvikt"
+      },
+      {
+        "id": "ideal-body-weight-calculation-formulas",
+        "label": "Formler för beräkning av ideal kroppsvikt",
+        "subItems": [
+          {
+            "id": "devine-formula",
+            "label": "Devine-formeln"
+          },
+          {
+            "id": "robinson-formula",
+            "label": "Robinson-formeln"
+          },
+          {
+            "id": "hamwi-formula",
+            "label": "Hamwi-formeln"
+          }
+        ]
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-women",
+        "label": "Kalkylator för ideal kroppsvikt för kvinnor"
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-men",
+        "label": "Kalkylator för ideal kroppsvikt för män"
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-pediatrics",
+        "label": "Kalkylator för ideal kroppsvikt för barn"
+      },
+      {
+        "id": "adjusted-ideal-body-weight-calculator",
+        "label": "Justerad kalkylator för ideal kroppsvikt"
+      },
+      {
+        "id": "percent-ideal-body-weight-calculation",
+        "label": "Procentuell beräkning av ideal kroppsvikt"
+      },
+      {
+        "id": "healthy-weight-range",
+        "label": "Hälsosamt viktintervall"
+      },
+      {
+        "id": "ideal-body-weight-vs-bmi",
+        "label": "Ideal kroppsvikt vs BMI"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Vanliga frågor"
+      },
+      {
+        "id": "references",
+        "label": "Referenser"
+      }
+    ],
+    "tool": {
+      "title": "Kalkylator för ideal kroppsvikt",
+      "description": "Använd kalkylatorn för att hitta din idealvikt i kilogram eller pund. Ange din ålder, längd, kön och nuvarande vikt för att se hur mycket du skiljer dig från den uppskattade idealvikten baserat på tre formler.",
+      "unitMetric": "Metrisk (kg / cm)",
+      "unitImperial": "Imperial (fot-tum)",
+      "heightLabel": "Längd",
+      "heightPlaceholder": "t.ex. 175 ",
+      "unitCm": "cm",
+      "feetPlaceholder": "t.ex. 5 ",
+      "feetAriaLabel": "Längd i fot",
+      "unitFt": "fot",
+      "inchesPlaceholder": "t.ex. 5 ",
+      "inchesAriaLabel": "Längd i tum",
+      "unitIn": "in",
+      "sexLabel": "Kön",
+      "sexMale": "Man",
+      "sexFemale": "Kvinna",
+      "currentWeightLabel": "Aktuell vikt (valfritt – låser upp skillnadsavläsning)",
+      "weightPlaceholder": "t.ex. 80",
+      "unitKg": "kg",
+      "invalidInputTitle": "Ogiltig inmatning",
+      "invalidInputText": "Ange en giltig längd och vikt för att beräkna dina resultat.",
+      "ideaBodyWeightResultLabel": "Ideal kroppsvikt",
+      "rangeUnit": "kg (intervall)",
+      "healthyWeightRangeLabel": "Hälsosamt viktintervall",
+      "differenceLabel": "Skillnad från nuvarande",
+      "differenceNone": "—",
+      "differenceAbove": "+{amount} kg över",
+      "differenceBelow": "{amount} kg under",
+      "differenceWithin": "Inom idealintervallet",
+      "devineYear": "Devine (1974)",
+      "robinsonYear": "Robinson (1983)",
+      "hamwiYear": "Hamwi (1964)",
+      "kgLabel": "kg",
+      "badgeFree": "Gratis",
+      "badgeNoAccount": "Inget konto behövs",
+      "badgeResultsInKg": "Resultat i kg",
+      "badgeFormulas": "Baserat på Devine-, Robinson- och Hamwi-formlerna"
+    },
+    "healthyWeightRange": {
+      "intro1": "Din ideala kroppsvikt (IBW) är ett formelbaserat estimat av den vikt som anses lämplig för din längd och ditt kön. De fyra formler som denna kalkylator använder —",
+      "formulaNames": "Devine, Hamwi, Robinson och Miller",
+      "intro1After": "— utvecklades ursprungligen för att standardisera läkemedelsdoser i kliniska miljöer. De var inte utformade som estetiska mål. Varje formel ger ett något annorlunda nummer, och kalkylatorn visar alla fyra så att du kan se var estimaten klusterar.",
+      "intro2": "Ingen av formlerna tar hänsyn till muskelmassa, bentäthet eller kroppsbyggnad. En person med en större kroppsbyggnad eller högre muskelmassa kommer naturligt att ligga över IBW-estimatet utan några hälsoproblem. Behandla resultatet som en allmän referenspunkt, inte ett exakt mål.",
+      "healthyRangeQuestionTitle": "Vad räknas som ett hälsosamt viktintervall?",
+      "healthyRangeTextBefore": "WHO definierar en hälsosam vikt som ett BMI mellan",
+      "bmiRangeValue": "18,5 och 25 kg/m²",
+      "healthyRangeTextMiddle": ". För de flesta vuxna innebär detta ett intervall på ungefär",
+      "windowValue": "14–16 kg",
+      "healthyRangeTextAfter": "runt det genomsnittliga IBW-estimatet. Att ligga inom detta intervall anses vara kliniskt normalt. Formlerna ovan ligger vanligtvis nära mitten av detta intervall.",
+      "underweightLabel": "Undervikt",
+      "healthyBmiRangeLabel": "Hälsosamt BMI-intervall",
+      "overweightLabel": "Övervikt",
+      "bmiUnder185": "BMI < 18.5",
+      "bmiRangeShort": "18.5–25",
+      "bmiOver25": "> 25",
+      "distanceTableIntro": "Tabellen nedan visar hur du läser av avståndet från din nuvarande vikt till den uppskattade idealvikten (IBW):",
+      "distanceHeaderDistance": "Avstånd från uppskattad idealvikt (IBW)",
+      "distanceHeaderMeaning": "Vad det antyder",
+      "distanceRow1Dist": "Inom ±3 kg",
+      "distanceRow1Meaning": "Mycket nära formelns uppskattning. Väl inom normal variation.",
+      "distanceRow2Dist": "3–7 kg över",
+      "distanceRow2Meaning": "Något över uppskattningen. Fortfarande sannolikt inom ett hälsosamt BMI-intervall beroende på längd.",
+      "distanceRow3Dist": "7–15 kg över",
+      "distanceRow3Meaning": "Märkbart över IBW-uppskattningen. Värt att kontrollera BMI och diskutera med en läkare.",
+      "distanceRow4Dist": "Mer än 15 kg över",
+      "distanceRow4Meaning": "Betydligt över IBW. Klinisk granskning rekommenderas.",
+      "distanceRow5Dist": "3–7 kg under",
+      "distanceRow5Meaning": "Något under. Kan fortfarande vara inom ett hälsosamt BMI-intervall. Övervaka om vikten fortsätter att sjunka.",
+      "distanceRow6Dist": "Mer än 7 kg under",
+      "distanceRow6Meaning": "Under den hälsosamma BMI-tröskeln. Rådgör med en vårdgivare.",
+      "referenceTablesLabel": "Referenstabeller",
+      "referenceTablesTitle": "Hälsosam vikt efter längd – män och kvinnor",
+      "referenceTablesDescription": "IBW-uppskattningar från alla fyra formler plus det hälsosamma BMI-viktintervallet (18,5–25 kg/m²) för de vanligaste vuxenlängderna. Växla mellan kg och lbs. Håll muspekaren över en rad för att markera den.",
+      "tabMen": "♂ Män",
+      "tabWomen": "♀ Kvinnor",
+      "healthyBmiRangeWhoLabel": "Hälsosamt BMI-intervall (WHO)",
+      "tableHeightCm": "Längd (cm)",
+      "tableHeightFt": "Längd (fot)",
+      "tableHealthyBmiRange": "Hälsosamt BMI-intervall ({unit})",
+      "sourcesNote": "Källor: Devine BJ (1974). Robinson JD et al. (1983). Miller DR et al. (1983). Hamwi GJ (1964). Hälsosamt BMI-intervall baserat på WHO:s rekommenderade tröskelvärde på 18,5–25 kg/m². Dessa värden är endast referensuppskattningar och utgör inte medicinsk rådgivning."
+    }
+  },
+  "heightDifference": {
+    "intro": {
+      "title": "Höjdskillnadsräknare",
+      "description": "En höjdskillnadsräknare jämför två personers längder och visar skillnaden mellan dem. Ange två längder i centimeter eller fot och tum. Verktyget beräknar omedelbart höjdskillnaden och den procentuella skillnaden. Jämför dig själv med en vän, en partner eller någon annan på några sekunder."
+    },
+    "calculateSection": {
+      "title": "Beräkna Höjdskillnad",
+      "description": "Använd höjdskillnadsräknaren nedan. Ange båda längderna, välj din enhet, och jämförelsen uppdateras live.",
+      "badgeFree": "Gratis",
+      "badgeNoAccount": "Inget konto behövs",
+      "badgeSupportsUnits": "Stöder cm och fot/tum",
+      "badgeUpdatesLive": "Uppdateras live"
+    },
+    "howToCalculate": {
+      "title": "Så här beräknar du höjdskillnad",
+      "p1": "Beräkning av höjdskillnad använder en enda operation: subtrahera den kortare personens längd från den längre personens längd. Höjdskillnadsräknaren identifierar automatiskt vilken person som är längre, så resultatet är alltid ett positivt tal oavsett vilken längd du anger först.",
+      "formulaTitle": "Formel för höjdskillnad:",
+      "formulaText": "Höjdskillnad = Längre längd − Kortare längd",
+      "personALabel": "Person A",
+      "personAValue": "180 cm",
+      "personBLabel": "Person B",
+      "personBValue": "165 cm",
+      "differenceLabel": "Skillnad",
+      "differenceValue": "180 − 165 = 15 cm",
+      "p2": "Subtraktion är den enda operationen som är involverad. Höjdskillnadsräknaren utför detta i samma ögonblick som båda värdena fylls i. Inga extra steg behövs."
+    },
+    "percentage": {
+      "title": "Procentuell höjdskillnad",
+      "p1": "Den procentuella skillnaden lägger till en proportionell dimension till den råa skillnaden. En skillnad på 10 cm mellan två personer som båda är över 180 cm representerar en mycket mindre relativ skillnad än samma 10 cm mellan två personer nära 155 cm. Procentandelen gör skillnaden meningsfull oavsett absolut längd.",
+      "formulaTitle": "Formel för procentuell skillnad:",
+      "formulaText": "Procentuell skillnad = (Höjdskillnad ÷ Längre längd) × 100",
+      "heightDiffLabel": "Höjdskillnad",
+      "heightDiffValue": "15 cm",
+      "tallerHeightLabel": "Längre längd",
+      "tallerHeightValue": "180 cm",
+      "calculationLabel": "Beräkning",
+      "calculationValue": "15 ÷ 180 × 100",
+      "percentDiffLabel": "Procentuell skillnad",
+      "percentDiffValue": "8.3%",
+      "p2": "Detta innebär att Person B är 8,3 % kortare i förhållande till Person A. Kalkylatorn för höjdskillnad ger automatiskt ut denna siffra tillsammans med den absoluta skillnaden. Båda värdena uppdateras live när någon av längderna ändras."
+    },
+    "couple": {
+      "title": "Kalkylator för höjdskillnad mellan par",
+      "p1": "Att jämföra längder mellan romantiska partners är en av de vanligaste användningarna av en höjdskillnadsräknare. Par vill veta hur skillnaden ser ut på foton, hur den jämförs med genomsnittet, eller helt enkelt av nyfikenhet. Verktyget fungerar på samma sätt för alla två personer.",
+      "globalAvgLabel": "Global genomsnittlig skillnad (man-kvinna par)",
+      "globalAvgValue": "12 till 15 cm",
+      "feetInLabel": "I fot och tum",
+      "feetInValue": "ungefär 5 till 6 tum",
+      "p2": "Enkätdata visar att den genomsnittliga höjdskillnaden i man-kvinna par globalt ligger på cirka 12 till 15 cm (ungefär 5 till 6 tum), även om detta varierar beroende på land och individ. Det finns ingen standarddefinition för en normal höjdskillnad mellan par. Siffrorna är bara siffror."
+    },
+    "chartSection": {
+      "title": "Höjdskillnadstabell",
+      "p1": "Tabellen nedan täcker vanliga höjdkombinationer och deras skillnader. Använd den som en snabb referens utan att ange värden i verktyget.",
+      "p2": "Den procentuella skillnaden ökar med den absoluta skillnaden men beror också på den längre längden. En skillnad på 15 cm är proportionellt större när den längre personen är 165 cm än när de är 190 cm."
+    },
+    "visualSection": {
+      "title": "Visuell längdjämförelse",
+      "p1": "En visuell längdjämförelse representerar skillnaden mellan två personer som en proportionell grafik snarare än bara ett nummer. Om en person är 10 % längre, återges deras stapel 10 % högre på skärmen. Skillnaden blir omedelbart läsbar utan att behöva läsa siffror.",
+      "p2": "Detta är särskilt användbart när det råa numret är tvetydigt. En 10 cm skillnad mellan två personer nära 160 cm ser väldigt annorlunda ut än samma skillnad mellan två personer över 185 cm. Höjdskillnadsräknare genererar denna skalade visualisering automatiskt från de värden du anger."
+    },
+    "unitsSection": {
+      "title": "Höjdskillnad i olika enheter",
+      "p1": "Du kan beräkna höjdskillnaden i centimeter eller i fot och tum. Att byta enheter konverterar både indata och utdata samtidigt. Ingen manuell konvertering behövs innan du anger värden.",
+      "tableHeaderPersonA": "Person A",
+      "tableHeaderPersonB": "Person B",
+      "tableHeaderDifferenceCm": "Skillnad (cm)",
+      "tableHeaderDifferenceIn": "Skillnad (tum)"
+    },
+    "cta": {
+      "title": "Prova Höjdskillnadsräknare",
+      "descriptionLine1": "Ange två längder ovan för att omedelbart beräkna höjdskillnaden.",
+      "descriptionLine2": "Den visuella jämförelsen och procentskillnaden uppdateras medan du skriver.",
+      "feature1": "Skillnad och procentskillnad",
+      "feature2": "Proportionell visuell jämförelse",
+      "feature3": "Stöder cm och fot/tum",
+      "feature4": "Gratis, inget konto, vilken enhet som helst",
+      "buttonText": "Scrolla till toppen och jämför nu ↑"
+    },
+    "references": {
+      "title": "Källor",
+      "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016.",
+      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE."
+    },
+    "faq": [
+      {
+        "q": "Vad är en normal höjdskillnad mellan par?",
+        "a": "Det finns ingen fast standard. Undersökningsdata visar att den genomsnittliga skillnaden i manliga-kvinnliga par ligger på cirka 12 till 15 cm (5 till 6 tum) globalt. Kalkylatorn för parhöjdsskillnad visar skillnaden mellan två valfria längder. Vad som räknas som normalt varierar beroende på land, kultur och individuella preferenser."
+      },
+      {
+        "q": "Hur beräknar man höjdskillnad?",
+        "a": "Subtrahera den kortare personens längd från den längre personens längd: Höjdskillnad = Längre längd − Kortare längd. För 180 cm och 165 cm är skillnaden 15 cm. För att få procentandelen, dividera 15 med 180 och multiplicera med 100, vilket ger 8,3 %."
+      },
+      {
+        "q": "Kan en höjdskillnadsräknare visa procentskillnad?",
+        "a": "Ja. Denna kalkylator för höjdskillnad visar både den absoluta skillnaden och procentskillnaden. Procentandelen beräknas i förhållande till den längre personens längd och uppdateras automatiskt när något värde ändras."
+      },
+      {
+        "q": "Vilka enheter kan användas i en höjdskillnadsräknare?",
+        "a": "Denna Höjdskillnadsräknare stöder centimeter och fot/tum. Du kan byta enheter när som helst och både indata och resultatet konverteras automatiskt. Ingen manuell konvertering behövs."
+      }
+    ],
+    "toc": [
+      {
+        "id": "calculate-height-difference",
+        "label": "Beräkna höjdskillnad"
+      },
+      {
+        "id": "how-to-calculate-height-difference",
+        "label": "Hur man beräknar höjdskillnad"
+      },
+      {
+        "id": "height-difference-percentage",
+        "label": "Höjdskillnad i procent"
+      },
+      {
+        "id": "couple-height-difference-calculator",
+        "label": "Kalkylator för parhöjdsskillnad"
+      },
+      {
+        "id": "height-difference-chart",
+        "label": "Diagram över höjdskillnad"
+      },
+      {
+        "id": "visual-height-comparison",
+        "label": "Visuell längdjämförelse"
+      },
+      {
+        "id": "height-difference-in-different-units",
+        "label": "Höjdskillnad i olika enheter"
+      },
+      {
+        "id": "try-the-height-difference-calculator",
+        "label": "Prova Höjdskillnadsräknare"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Vanliga frågor"
+      },
+      {
+        "id": "references",
+        "label": "Källor"
+      }
+    ],
+    "tool": {
+      "unitMetric": "Metrisk (cm)",
+      "unitImperial": "Imperial (fot/tum)",
+      "person1Label": "Person 1",
+      "person2Label": "Person 2",
+      "cmPlaceholder": "Centimeter",
+      "ftPlaceholder": "Fot",
+      "inPlaceholder": "Tum",
+      "unitCm": "cm",
+      "unitFt": "fot",
+      "unitIn": "tum",
+      "heightDifferenceLabel": "Höjdskillnad",
+      "percentDifferenceLabel": "% Skillnad",
+      "isTallerText": "{person} är längre",
+      "tallerPersonLabel": "Längre person",
+      "visualComparisonLabel": "Visuell jämförelse",
+      "enterBothHeightsPrompt": "Ange båda längderna ovan för att se jämförelsen."
+    },
+    "coupleCalc": {
+      "partner1Label": "Partner 1",
+      "partner2Label": "Partner 2",
+      "pctTallerText": "{pct}% längre",
+      "resultSentence": "{p1} ({h1} cm) är <strong>{diff} cm ({pct}%) längre</strong> än {p2} ({h2} cm)"
+    },
+    "chartTable": {
+      "headerPersonA": "Person A",
+      "headerPersonB": "Person B",
+      "headerDifference": "Skillnad",
+      "headerPercentDifference": "% Skillnad"
+    },
+    "visualComp": {
+      "person1Label": "Person 1",
+      "person2Label": "Person 2",
+      "pairButtonText": "{h1} cm vs {h2} cm",
+      "diffCmText": "{diff} cm skillnad",
+      "isTallerText": "{person} är längre"
+    }
+  },
+  "averageHeightByCountry": {
+    "h1": "Medellängd efter land",
+    "intro": {
+      "description": "Medellängden varierar mer än de flesta förväntar sig. Skillnaden mellan världens längsta och kortaste befolkningar är nästan 24 cm för män och 21 cm för kvinnor. Denna sida jämför genomsnittlig mänsklig längd runt om i världen för båda könen, från Nederländerna i toppen till Östtimor i botten, baserat på data från <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> och <wpr>World Population Review</wpr>. Män och kvinnor följer samma breda geografiska mönster, med Nordeuropa i toppen och delar av Syd- och Centralasien i den nedre änden."
+    },
+    "globalTable": {
+      "title": "Medellängd efter land (Global tabell)",
+      "unitToggle": {
+        "metric": "Metrisk (cm)",
+        "imperial": "USA (fot/tum)"
+      },
+      "description": "Tabellen nedan visar genomsnittlig manlig längd per land, genomsnittlig kvinnlig längd och kombinerat genomsnitt över 46 nationer. Klicka på valfri kolumnrubrik för att sortera. Använd sökfältet för att hitta ett specifikt land.",
+      "searchPlaceholder": "Sök länder...",
+      "tableHeaders": {
+        "rank": "Rankning",
+        "country": "Land",
+        "avgMale": "Genomsnitt män",
+        "avgFemale": "Genomsnitt kvinnor"
+      },
+      "noResults": "Inga länder hittades som matchar \"{query}\"",
+      "sourceNote": "Källa: NCD Risk Factor Collaboration (NCD-RisC) / World Population Review. Vuxna i åldern ~19 år."
+    },
+    "common": {
+      "tabMen": "Män",
+      "tabWomen": "Kvinnor",
+      "tabMale": "Man",
+      "tabFemale": "Kvinna"
+    },
+    "tallestCountries": {
+      "title": "Världens längsta länder",
+      "barsLabelMen": "Topp 10 längsta nationer – Genomsnittlig manlig längd (cm)",
+      "barsLabelWomen": "Topp 10 längsta nationer – Genomsnittlig kvinnlig längd (cm)",
+      "captionMen": "Män i Nederländerna är i genomsnitt 183,8 cm, den högsta registrerade nationella medellängden globalt. Åtta av de tio längsta nationerna för män är europeiska.",
+      "captionWomen": "Kvinnor i Nederländerna och Montenegro är i genomsnitt 170,4 cm respektive 170,0 cm – de längsta kvinnliga befolkningarna som registrerats. Lettland och Estland följer tätt efter.",
+      "paragraph1": "Nederländerna har toppat den globala rankningen för manlig längd i årtionden, med män som i genomsnitt är 183,8 cm, strax under 6'1\". Danmark ligger på 181,9 cm, Tyskland på 180,3 cm och Norge på 180,5 cm.",
+      "paragraph2": "Tre faktorer förstärker varandra i denna grupp: generös mejerikonsumtion från tidig barndom, stark offentlig sjukvård som minskar sjukdomar under tillväxtåren, och långsiktigt genetiskt urval i välmående befolkningar.",
+      "paragraph3": "Montenegro och Estland har nyligen gått om många traditionellt långa västeuropeiska nationer, vilket återspeglar snabba förbättringar i levnadsstandarden efter den postsovjetiska perioden."
+    },
+    "shortestCountries": {
+      "title": "Kortaste länder i världen",
+      "barsLabelMen": "10 kortaste nationerna – Medellängd män (cm)",
+      "barsLabelWomen": "10 kortaste nationerna – Medellängd kvinnor (cm)",
+      "captionMen": "Män i Östtimor är i genomsnitt 159,8 cm, den kortaste medellängden för män i någon spårad nation. Sex av de tio kortaste länderna för män ligger i Syd- eller Sydostasien.",
+      "captionWomen": "Kvinnor i Guatemala och Filippinerna är i genomsnitt cirka 149 cm, de lägsta medellängderna för kvinnor i Amerika respektive Sydostasien.",
+      "paragraph1": "De kortaste befolkningarna finns huvudsakligen i Syd- och Sydostasien samt Centralamerika. Östtimor har det lägsta kombinerade genomsnittet globalt, tätt följt av Guatemala och Laos.",
+      "paragraph2": "I Guatemala påverkar kronisk undernäring nästan en tredjedel av barn under fem år, vilket direkt hämmar skelettutvecklingen. Bangladesh och Nepal står inför liknande begränsningar: proteinfattig kost, begränsad tillgång till sjukvård och strukturell fattigdom som begränsar tillväxtpotentialen från födseln.",
+      "paragraph3": "Dessa siffror är inte genetiska tak. De är till stor del markörer för historisk underutveckling, reversibla, som Sydkorea och Kina visade under 1900-talet."
+    },
+    "tallestShortest": {
+      "title": "Längsta och kortaste länder efter medellängd",
+      "tabs": {
+        "tallestVsShortest": "Längsta vs kortaste",
+        "top10Tallest": "Topp 10 längsta",
+        "bottom10Shortest": "Botten 10 kortaste"
+      },
+      "chartTitleTallestVsShortest": "10 länder som spänner över hela det globala längdintervallet – män (blå) och kvinnor (turkos)",
+      "chartTitleTop10": "Topp 10 längsta nationerna – män vs kvinnor",
+      "chartTitleBottom10": "10 kortaste nationerna – män vs kvinnor",
+      "caption": "I alla befolkningar är män längre än kvinnor med 12–15 cm. Denna skillnad är konsekvent oavsett den totala längdnivån, den är nästan identisk i Nederländerna och i Bangladesh.",
+      "paragraph": "Medellängden varierar kraftigt på grund av genetik, kostkvalitet, barndomshälsa och ekonomisk utveckling. Nordeuropeiska befolkningar rankas konsekvent bland de längsta, medan vissa sydasiatiska och centralamerikanska länder visar kortare genomsnitt som formats av historiska näringsbrister."
+    },
+    "averageMale": {
+      "title": "Medellängd för män efter land",
+      "paragraph1": "Medellängden för en man globalt är cirka 171 cm (5'7\"). Denna siffra döljer en stor spridning, från holländska män på 183,8 cm ner till Östtimor på 159,8 cm. Nord- och östeuropeiska män är den längsta gruppen globalt, med ett genomsnitt på 178 till 184 cm. Nordamerikaner och australiensare ligger i intervallet 176 till 179 cm.",
+      "paragraph2": "Japan på 170,8 cm är märkbart kortare än Sydkorea på 175,5 cm: en skillnad som har ökat i takt med att sydkoreansk kost och sjukvård förbättrades snabbare efter den ekonomiska boomen på 1960-talet. Iran på 175,6 cm ligger i mitten av tabellen. Indien på 166,5 cm och Bangladesh på 163 cm ligger i den nedre delen av den asiatiska kohorten. Guatemala på 163,4 cm och Östtimor på 159,8 cm återspeglar de allvarligaste dokumenterade näringsbegränsningarna som registrerats."
+    },
+    "averageFemale": {
+      "title": "Medellängd för kvinnor efter land",
+      "paragraph1": "Medellängden för en kvinna globalt är cirka 159 cm (5'3\"). Kvinnor i Nederländerna och Montenegro, med ett genomsnitt på 170,4 cm respektive 170,0 cm, är de längsta kvinnliga befolkningarna som registrerats. Ryssland på 164,5 cm förekommer konsekvent i globala listor tillsammans med östeuropeiska länder som utgör större delen av topp tio.",
+      "paragraph2": "Sydkoreanska kvinnor på 163,2 cm är märkbart längre än japanska kvinnor på 158,0 cm, en skillnad som har ökat under det senaste halvseklet. Filippinska kvinnor är i genomsnitt 149,6 cm och guatemalanska kvinnor 149,4 cm, det lägsta verifierade kvinnliga genomsnittet i Amerika. Medellängden för kvinnor i Japan var cirka 148 cm på 1950-talet och har sedan dess klättrat med hela tio centimeter, en av de brantaste dokumenterade ökningarna för någon kvinnlig befolkning."
+    },
+    "maleAndFemale": {
+      "title": "Genomsnittlig längd för män och kvinnor",
+      "barsLabelMale": "Genomsnittlig manlig längd (cm)",
+      "barsLabelFemale": "Genomsnittlig kvinnlig längd (cm)",
+      "callout": "I praktiskt taget alla populationer är män 12 till 15 centimeter längre än kvinnor. Denna skillnad är konsekvent över mycket olika absoluta längdintervall; skillnaden i Nederländerna är ungefär densamma som i Bangladesh. Det återspeglar hormonella skillnader under tonåren: testosteron driver en längre tillväxtspurt hos män, medan tidigare östrogenstart hos kvinnor stänger tillväxtplattorna tidigare. Könsskillnaden påverkas inte nämnvärt av näring eller ekonomisk utveckling."
+    },
+    "selectedCountries": {
+      "title": "Medellängd i utvalda länder",
+      "countries": {
+        "netherlands": {
+          "name": "Nederländerna",
+          "paragraph": "Nederländska män har toppat globala rankningar i årtionden. Mejeririka dieter och universell sjukvård driver resultatet."
+        },
+        "unitedKingdom": {
+          "name": "Storbritannien",
+          "paragraph": "Storbritannien ligger i mitten av tabellen i Europa. Längderna varierar beroende på region – norra England och Skottland tenderar att vara något längre i genomsnitt."
+        },
+        "japan": {
+          "name": "Japan",
+          "paragraph": "Japanska längder har ökat kraftigt sedan 1950-talet. Sydkoreanska män på 175,5 cm har sedan dess gått om sina japanska grannar."
+        },
+        "bangladesh": {
+          "name": "Bangladesh",
+          "paragraph": "Höga nivåer av undernäring bland barn har historiskt begränsat tillväxten. Stadsbefolkningen visar blygsamma framsteg under de senaste årtiondena."
+        },
+        "iran": {
+          "name": "Iran",
+          "paragraph": "En av de snabbast dokumenterade ökningarna i Mellanöstern – den genomsnittliga manliga längden har ökat med uppskattningsvis 5 till 6 cm under 40 år."
+        },
+        "canada": {
+          "name": "Kanada",
+          "paragraph": "Kanadas siffror speglar Australiens nära, vilket återspeglar en välmående befolkning med hög inkomst. Tillväxten har planat ut sedan 1990-talet."
+        },
+        "ireland": {
+          "name": "Irland",
+          "paragraph": "Irland ligger i den övre fjärdedelen av de europeiska rankningarna. Längderna har ökat stadigt sedan mitten av 1900-talet."
+        },
+        "sriLanka": {
+          "name": "Sri Lanka",
+          "paragraph": "Stadsbefolkningen i Colombo visar mätbara längdökningar över två generationer. Landsbygden har halkat efter på grund av matosäkerhet."
+        },
+        "southKorea": {
+          "name": "Sydkorea",
+          "paragraph": "En av de största dokumenterade generationslängdökningarna som någonsin registrerats – män ökade med cirka 6 cm över två generationer efter kriget."
+        },
+        "india": {
+          "name": "Indien",
+          "paragraph": "Indiens nationella genomsnitt döljer stora regionala variationer. Män i Punjab är i genomsnitt cirka 172 till 174 cm. Stadsområden visar konsekventa framsteg."
+        },
+        "usa": {
+          "name": "USA",
+          "paragraph": "USA var en gång tredje högst globalt. Det ligger nu runt 47:e plats för män, vilket återspeglar att kostkvaliteten avviker från europeiska motsvarigheter efter 1970-talet."
+        },
+        "denmark": {
+          "name": "Danmark",
+          "paragraph": "Danmark rankas konsekvent bland de fem bästa globalt. Stark offentlig sjukvård och hög mejerikonsumtion från tidig barndom bidrar."
+        }
+      }
+    },
+    "chartForMen": {
+      "title": "Medellängdsdiagram för män",
+      "paragraph": "Diagrammet nedan visar hur manliga längdbenchmarks fördelar sig över stora världsregioner, från Nordeuropa i toppen till Centralamerika i botten. Data på landsnivå varierar inom varje region.",
+      "barsLabel": "Ungefärlig regional medellängd för män (cm)",
+      "caption": "Regionala siffror är viktade medelvärden. Enskilda länder inom varje region kan ligga över eller under det visade intervallet. Källa: NCD-RisC och World Population Review."
+    },
+    "globalAverage": {
+      "title": "Global medellängd",
+      "maleStatLabel": "Global medellängd för män",
+      "femaleStatLabel": "Global medellängd för kvinnor",
+      "paragraph1": "<who>Världshälsoorganisationen</who> och NCD Risk Factor Collaboration anger den globala medellängden för män till cirka 171 cm och den globala medellängden för kvinnor till cirka 159 cm. Dessa viktade siffror är lägre än de flesta västerländska länders genomsnitt eftersom de tar hänsyn till de stora befolkningarna i Syd- och Sydostasien.",
+      "paragraph2": "Den globala siffran har stigit sedan tidigt 1900-tal, med de mest dramatiska ökningarna i Östasien. Sydkorea och Kina har ökat med cirka 5 till 8 cm per generation sedan 1950-talet. Ökningarna i Västeuropa, som började tidigare, har i stort sett planat ut sedan 1980-talet.",
+      "regionMap": {
+        "colourScaleLabel": "Färgskala – medellängd för män per region",
+        "tallestLabel": "180+ cm (längst)",
+        "shortestLabel": "≤162 cm (kortast)",
+        "regions": {
+          "northernEurope": {
+            "name": "Norra Europa",
+            "ex": "Nederländerna, Danmark, Norge"
+          },
+          "easternEurope": {
+            "name": "Östra Europa",
+            "ex": "Serbien, Ukraina, Polen"
+          },
+          "westernEurope": {
+            "name": "Västra Europa",
+            "ex": "Tyskland, Frankrike, Storbritannien"
+          },
+          "northAmericaOceania": {
+            "name": "Nordamerika/Oceanien",
+            "ex": "Kanada, USA, Australien"
+          },
+          "middleEast": {
+            "name": "Mellanöstern",
+            "ex": "Iran, Turkiet"
+          },
+          "eastAsia": {
+            "name": "Östasien",
+            "ex": "Kina, Sydkorea, Japan"
+          },
+          "latinAmerica": {
+            "name": "Latinamerika",
+            "ex": "Brasilien, Mexiko"
+          },
+          "southSeAsia": {
+            "name": "Syd-/Sydostasien",
+            "ex": "Indien, Indonesien, Nepal"
+          },
+          "centralAmerica": {
+            "name": "Centralamerika",
+            "ex": "Guatemala, Honduras"
+          }
+        }
+      }
+    },
+    "extremes": {
+      "tallestMan": {
+        "title": "Världens längsta man",
+        "paragraph": "Robert Wadlow från Alton, Illinois, är fortfarande den längsta personen i dokumenterad mänsklig historia med 272 cm (8'11\"). Hans hypofys producerade okontrollerat tillväxthormon från födseln, och hans längd hade ännu inte nått sin topp när han dog 1940 vid 22 års ålder. Guinness-rekordet för den längsta levande mannen tillhör turkiske Sultan Kösen med 251 cm (8'3\"), vars hypofystumör behandlades kirurgiskt, vilket stoppade ytterligare tillväxt."
+      },
+      "shortestMan": {
+        "title": "Världens kortaste man",
+        "paragraph": "Chandra Bahadur Dangi från Nepal, verifierad av Guinness World Records 2012, var den kortaste vuxna mannen som någonsin dokumenterats med 54,6 cm (1'9\"). Han levde till 75 års ålder och arbetade som bonde och hantverkare. Han mättes för första gången av Guinness när han redan var i sjuttioårsåldern, anmärkningsvärt med tanke på de hälsokomplikationer som ofta är förknippade med allvarliga tillväxtstörningar."
+      },
+      "tallestFemale": {
+        "title": "Världens längsta kvinna",
+        "paragraph": "Zeng Jinlian från Hunan-provinsen, Kina, innehar rekordet för den längsta kvinnan i verifierad medicinsk historia med 246,3 cm (8'1\"). Född 1964 växte hon snabbt på grund av hypofysgigantism och dog vid 17 års ålder 1982. Det nuvarande levande rekordet tillhör turkiska Rumeysa Gelgi med 215,2 cm (7'1\"), en webbutvecklare och funktionshinderförespråkare som innehar flera Guinness-titlar."
+      },
+      "shortestFemale": {
+        "title": "Världens kortaste kvinna",
+        "paragraph": "Jyoti Amge från Nagpur, Indien, har innehaft Guinness världsrekord för den kortaste levande kvinnan sedan 2011 med 62,8 cm (2'1\"). Hennes tillstånd är akondroplasi, den vanligaste formen av dvärgväxt. Hon är också en aktiv Bollywood-skådespelerska som medverkade i den amerikanska TV-serien American Horror Story."
+      },
+      "dataCards": {
+        "tallestManEver": {
+          "label": "Längsta mannen någonsin",
+          "name": "Robert Wadlow",
+          "value": "272 cm",
+          "meta": "8'11\" · USA · d. 1940"
+        },
+        "shortestManEver": {
+          "label": "Kortaste mannen någonsin",
+          "name": "Chandra Bahadur Dangi",
+          "value": "54.6 cm",
+          "meta": "1'9\" · Nepal · d. 2015"
+        },
+        "tallestWomanEver": {
+          "label": "Längsta kvinnan någonsin",
+          "name": "Zeng Jinlian",
+          "value": "246.3 cm",
+          "meta": "8'1\" · Kina · d. 1982"
+        },
+        "shortestLivingWoman": {
+          "label": "Kortaste levande kvinnan",
+          "name": "Jyoti Amge",
+          "value": "62.8 cm",
+          "meta": "2'1\" · Indien"
+        }
+      }
+    },
+    "distribution": {
+      "title": "Människans längdfördelning",
+      "bellCurve": {
+        "globalAvgLabel": "Globalt snitt ≈ {mean} cm",
+        "axisLabel": "Längd (cm) — {label}",
+        "male": {
+          "label": "global manlig befolkning",
+          "pctLabel": "68% av männen ligger inom ±1 standardavvikelse",
+          "band1": "68% av männen — inom ±1σ (≈164–178 cm)",
+          "band2": "95% av männen — inom ±2σ (≈157–185 cm)"
+        },
+        "female": {
+          "label": "global kvinnlig befolkning",
+          "pctLabel": "68% av kvinnorna ligger inom ±1 standardavvikelse",
+          "band1": "68% av kvinnorna — inom ±1σ (≈153–165 cm)",
+          "band2": "95% av kvinnorna — inom ±2σ (≈147–171 cm)"
+        }
+      },
+      "legendNote": "Den globala medellängden för män är cirka 171 cm med en standardavvikelse på 7 cm. En man på 185 cm ligger ungefär två standardavvikelser över medelvärdet, längre än cirka 97,5% av världens manliga befolkning.",
+      "dataSourcesLabel": "Datakällor:",
+      "dataSourcesText": "NCD Risk Factor Collaboration (NCD-RisC), \"A century of trends in adult human height,\" eLife 2016. · World Population Review, Medellängd efter land 2026. · World Health Organization (WHO), Global Health Observatory.",
+      "paragraph1": "Människans längd följer en normalfördelning. När data plottas över en stor befolkning bildar den en nästan perfekt klockkurva, de flesta individer ligger nära medelvärdet, med färre personer vid vardera extrem. Ungefär 68% av männen ligger inom en standardavvikelse från det globala medelvärdet, cirka 164 till 178 cm. Standardavvikelsen för manlig längd globalt är cirka 7 cm. En man på 185 cm ligger ungefär två standardavvikelser över det globala medelvärdet, längre än cirka 97,5% av världens manliga befolkning.",
+      "paragraph2": "För kvinnor är den något mindre, cirka 6 cm.",
+      "tableHeaders": {
+        "minus2sd": "−2 SD",
+        "minus1sd": "−1 SD",
+        "globalAvg": "Globalt snitt",
+        "plus1sd": "+1 SD",
+        "plus2sd": "+2 SD"
+      },
+      "captionMale": "Global manlig längdfördelning · SD ≈ 7 cm",
+      "captionFemale": "Global kvinnlig längdfördelning · SD ≈ 6 cm",
+      "captionSources": "Källor: NCD-RisC"
+    },
+    "whyDiffers": {
+      "title": "Varför medellängden skiljer sig åt mellan länder",
+      "paragraph1": "Längden formas av både genetik och miljö. Genetiken sätter det teoretiska taket, långa föräldrar tenderar att få längre barn, men huruvida ett barn når det taket beror nästan helt på vad som händer under de första två decennierna av livet.",
+      "nutritionParagraph": "<bold>Näring</bold> är den enskilt starkaste miljömässiga faktorn för vuxenlängd. Tillräckligt med protein och mikronäringsämnen under de första 1 000 dagarna av livet är avgörande för skelettutvecklingen. Tillgången till mejeriprodukter och kött under barndomen förutsäger konsekvent nationella längdrankningar.",
+      "healthcareParagraph": "<bold>Tillgång till sjukvård</bold> avgör om barnsjukdomar avleder energi från tillväxt. Länder med hög vaccinationsgrad och låg sjukdomsbörda rankas konsekvent högre.",
+      "economicParagraph": "<bold>Ekonomisk utveckling</bold> ligger till grund för både näring och sjukvård. BNP per capita korrelerar starkt med medellängden eftersom välstånd möjliggör bättre mat, renare vatten och medicinsk vård.",
+      "calloutUS": "USA är det mest talande fallet: 1914 rankades amerikanska män som tredje längst i världen. Idag ligger de runt 47:e globalt, inte för att deras genetik förändrades utan för att kostkvaliteten minskade i förhållande till europeiska motsvarigheter efter 1970-talet."
+    },
+    "toc": [
+      {
+        "id": "average-height-by-country",
+        "label": "Medellängd efter land"
+      },
+      {
+        "id": "tallest-countries-in-the-world",
+        "label": "Världens längsta länder"
+      },
+      {
+        "id": "shortest-countries-in-the-world",
+        "label": "Världens kortaste länder"
+      },
+      {
+        "id": "tallest-and-shortest-countries-by-average-height",
+        "label": "Längsta och kortaste länder efter medellängd"
+      },
+      {
+        "id": "average-male-height-by-country",
+        "label": "Medellängd för män efter land"
+      },
+      {
+        "id": "average-female-height-by-country",
+        "label": "Medellängd för kvinnor efter land"
+      },
+      {
+        "id": "average-height-in-selected-countries",
+        "label": "Medellängd i utvalda länder"
+      },
+      {
+        "id": "average-height-chart-for-men",
+        "label": "Medellängdstabell för män"
+      },
+      {
+        "id": "global-average-height",
+        "label": "Global medellängd"
+      },
+      {
+        "id": "tallest-man-in-the-world",
+        "label": "Världens längsta man"
+      },
+      {
+        "id": "shortest-man-in-the-world",
+        "label": "Världens kortaste man"
+      },
+      {
+        "id": "tallest-female-in-the-world",
+        "label": "Världens längsta kvinna"
+      },
+      {
+        "id": "shortest-female-in-the-world",
+        "label": "Världens kortaste kvinna"
+      },
+      {
+        "id": "human-height-distribution",
+        "label": "Människans längdfördelning"
+      },
+      {
+        "id": "why-average-height-differs-by-country",
+        "label": "Varför medellängden skiljer sig åt mellan länder"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Vanliga frågor"
+      },
+      {
+        "id": "references",
+        "label": "Referenser"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Vad är medellängden för män i världen?",
+        "a": "Den globala medellängden för vuxna män är cirka 171 cm (5'7\"). Denna viktade siffra bygger på data från NCD Risk Factor Collaboration och WHO. Den dras ner av de stora befolkningarna i Syd- och Sydostasien, där medelvärdena ligger mellan 160 och 168 cm. Män i höginkomstländer i Europa är i genomsnitt betydligt längre, ofta 178 till 184 cm."
+      },
+      {
+        "q": "Vad är en medellängd för en kvinna världen över?",
+        "a": "Den globala medellängden för vuxna kvinnor är cirka 159 cm (5'3\"). Kvinnor i Nederländerna och Montenegro är i genomsnitt cirka 170 cm. Kvinnor i Guatemala och Filippinerna är i genomsnitt närmare 149 till 150 cm. De flesta kvinnor i västländer ligger mellan 162 och 168 cm."
+      },
+      {
+        "q": "Vilket land har de längsta människorna?",
+        "a": "Nederländerna innehar toppositionen för både män och kvinnor i de senaste datamängderna. Nederländska män är i genomsnitt 183,8 cm (cirka 6'0\") och nederländska kvinnor är i genomsnitt 170,4 cm (5'7\"). Montenegro och Estland följer tätt. Nederländerna har innehaft denna position i flera decennier, vilket tillskrivs mejeririk kost, stark folkhälsoinfrastruktur och genetiska faktorer i befolkningen."
+      },
+      {
+        "q": "Har den genomsnittliga mänskliga längden ökat över tid?",
+        "a": "Ja, avsevärt. Medellängden har ökat kraftigt under de senaste 150 åren i nästan alla länder, drivet av förbättringar inom näring, sanitet, vaccination och sjukvård. De mest dramatiska senaste framstegen skedde i Östasien: Sydkoreanska män ökade med cirka 6 cm över två generationer efter snabb ekonomisk utveckling. Framstegen i Västeuropa har i stort sett planat ut sedan 1980-talet."
+      },
+      {
+        "q": "Vilket är det kortaste landet i världen efter medellängd?",
+        "a": "Timor-Leste registrerar det lägsta kombinerade medelvärdet globalt, med män i genomsnitt 159,8 cm och kvinnor 152,3 cm. Guatemala och Laos följer tätt. Dessa låga medelvärden återspeglar historiska näringsbegränsningar och begränsad tillgång till sjukvård snarare än genetiska gränser för tillväxtpotential."
+      }
+    ],
+    "references": {
+      "primarySources": {
+        "title": "Primära datakällor",
+        "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016. Vol. 5, e13410.",
+        "ref2": "Rodriguez-Martinez A, Zhou B, Sophiea MK et al. (NCD-RisC). Height and body-mass index trajectories of school-aged children and adolescents from 1985 to 2019 in 200 countries and territories. The Lancet, 2020. Vol. 396, pp. 1511–1524.",
+        "ref3": "World Health Organization. Child Growth Standards — Length/Height-for-Age, Weight-for-Age. WHO Department of Nutrition and Food Safety. Geneva, 2006.",
+        "ref4": "World Health Organization. Global Health Observatory — Nutrition and Body Mass Index Data. WHO Global Health Observatory. Ongoing.",
+        "ref5": "de Onis M, Garza C, Onyango AW, Martorell R (eds). WHO Child Growth Standards. Acta Paediatrica, 2006. Suppl 450:1–101."
+      },
+      "usGovernment": {
+        "title": "USA:s regering — CDC och NIH",
+        "ref1": "Centers for Disease Control and Prevention. CDC Clinical Growth Charts, 2000 (Revised 2022). National Center for Health Statistics.",
+        "ref2": "Kuczmarski RJ, Ogden CL, Guo SS et al. 2000 CDC Growth Charts for the United States: Methods and Development. Vital and Health Statistics. Series 11, No. 246, 2002.",
+        "ref3": "Centers for Disease Control and Prevention — NCHS. National Health and Nutrition Examination Survey (NHANES) — Anthropometric Data. Ongoing survey cycles.",
+        "ref4": "Fryar CD, Gu Q, Ogden CL, Flegal KM. Anthropometric Reference Data for Children and Adults: United States, 2011–2014. Vital and Health Statistics. Series 3, No. 39, August 2016.",
+        "ref5": "National Institutes of Health — National Heart, Lung, and Blood Institute. Classification of Overweight and Obesity by BMI. NIH Publication No. 98-4083, 1998."
+      },
+      "peerReviewed": {
+        "title": "Fackgranskade forskningsartiklar",
+        "ref1": "Devine BJ. Gentamicin therapy. Drug Intelligence and Clinical Pharmacy, 1974. Vol. 8, pp. 650–655. (Original publication of the Devine ideal body weight formula.)",
+        "ref2": "Robinson JD, Lupkiewicz SM, Palenik L, Lopez LM, Ariet M. Determination of ideal body weight for drug dosage calculations. American Journal of Hospital Pharmacy, 1983. Vol. 40, pp. 1016–1019.",
+        "ref3": "Pai MP, Paloucek FP. The origin of the \"ideal\" body weight equations. Annals of Pharmacotherapy, 2000. Vol. 34, No. 9, pp. 1066–1069.",
+        "ref4": "Janmahasatian S, Duffull SB, Ash S, Ward LC, Byrne NM, Green B. Quantification of lean bodyweight. Clinical Pharmacokinetics, 2005. Vol. 44, No. 10, pp. 1051–1065.",
+        "ref5": "Stulp G, Buunk AP, Pollet TV. Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE, 2013. Vol. 8, Issue 2.",
+        "ref6": "Flegal KM, Ogden CL, Wei R, Kuczmarski RL, Johnson CL. Prevalence of obesity in US adults by age and sex. JAMA, 2002. Vol. 288, pp. 1723–1727."
+      },
+      "unBodies": {
+        "title": "Förenta nationerna och internationella organ",
+        "ref1": "UNICEF / WHO / World Bank. Joint Child Malnutrition Estimates — Levels and Trends. Edition 2023.",
+        "ref2": "Food and Agriculture Organization of the United Nations. The State of Food Security and Nutrition in the World 2023. FAO, IFAD, UNICEF, WFP, WHO. Rome, 2023."
+      }
+    }
+  },
+  "metadata": {
+    "aboutTitle": "Om oss - Verktyg för längdjämförelse",
+    "aboutDescription": "Lär dig mer om vårt verktyg för längdjämförelse i sann proportionell skala, kalkylatorer, datakällor och noggrannhetsstandarder.",
+    "privacyTitle": "Integritetspolicy - Verktyg för längdjämförelse",
+    "privacyDescription": "Läs integritetspolicyn för verktyget för längdjämförelse för att lära dig hur vi skyddar din information och hanterar data.",
+    "heightPredictorTitle": "Längdkalkylator: Förutsäg din vuxenlängd",
+    "heightPredictorDescription": "Förutsäg din längd med vår längdprognos. Denna kalkylator för beräknad längd använder beprövade metoder för att förutsäga vuxenlängd.",
+    "heightWeightPercentileTitle": "Percentilräknare för längd och vikt för spädbarn, barn och vuxna",
+    "heightWeightPercentileDescription": "Använd vår percentilräknare för längd och vikt för att mäta tillväxt. Inkluderar percentilräknare för spädbarnslängd och percentilräknare för vuxenlängd.",
+    "idealBodyWeightTitle": "Beräkna ideal kroppsvikt & justerad kroppsviktskalkylator",
+    "idealBodyWeightDescription": "Använd vår kalkylator för ideal kroppsvikt i kg för att beräkna ideal kroppsvikt. Inkluderar justerad kalkylator för ideal kroppsvikt för manliga och kvinnliga viktberäkningar.",
+    "heightDifferenceTitle": "Höjdskillnadsräknare - Beräkna höjdskillnadstabell",
+    "heightDifferenceDescription": "Beräkna höjdskillnad med vår höjdskillnadsräknare. Inkluderar höjdskillnadsräknare för par med en tabell för höjdskillnadskalkylatorn.",
+    "averageHeightByCountryTitle": "Medellängd efter land - Global diagram över mänsklig längd",
+    "averageHeightByCountryDescription": "Lär dig medellängden för en kvinna och man över hela världen och jämför medellängder efter land. Se den genomsnittliga mänskliga längden runt om i världen i ett diagram.",
+    "blogsTitle": "Blogg Verktyg för längdjämförelse",
+    "blogsDescription": "Läs de senaste artiklarna om längd, kroppsproportioner och intressanta jämförelser."
+  },
+  "blogs": {
+    "badge": "Artiklar & insikter",
+    "heading": "Insikter & guider",
+    "subheading": "Utforska guider, forskning och djupdykningar i mänsklig längd, medelvärden, percentiler och intressanta jämförelser från verkligheten.",
+    "articleBadge": "Artikel",
+    "noPostsTitle": "Inga inlägg tillgängliga",
+    "noPostsSubtitle": "Kom tillbaka senare för nytt innehåll.",
+    "unknownAuthor": "Okänd författare"
+  },
+  "blogPost": {
+    "categoryLabel": "Blogginlägg",
+    "writtenBy": "Skrivet av {author}",
+    "unknownAuthor": "Okänd författare",
+    "jumpToSection": "Gå till avsnitt",
+    "fallbackImageAlt": "Bild för blogginlägg",
+    "postNotFound": "Inlägg hittades inte"
+  }
+}

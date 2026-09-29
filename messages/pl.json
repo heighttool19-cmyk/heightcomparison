@@ -1,0 +1,1945 @@
+{
+  "common": {
+    "language": "Język",
+    "english": "Angielski",
+    "german": "Niemiecki",
+    "spanish": "Hiszpański",
+    "french": "Francuski",
+    "portuguese": "Portugalski",
+    "italian": "Włoski",
+    "dutch": "Holenderski",
+    "arabic": "Arabski"
+  },
+  "nav": {
+    "home": "Strona główna",
+    "toolsAndCalculators": "Narzędzia i kalkulatory",
+    "heightPredictor": "Kalkulator przewidywanego wzrostu",
+    "heightWeightPercentileCalculator": "Kalkulator percentyli wzrostu i wagi",
+    "idealBodyWeightCalculator": "Kalkulator idealnej masy ciała",
+    "averageHeightByCountry": "Średni wzrost według kraju",
+    "heightDifferenceCalculator": "Kalkulator różnicy wzrostu",
+    "imageToHeight": "Image to Height",
+    "about": "O nas",
+    "blogs": "Blogi",
+    "brandName": "Height Comparison",
+    "metricCm": "metryczny (cm)",
+    "imperialFtIn": "imperialny (stopy/cale)",
+    "switchTo": "Przełącz na"
+  },
+  "footer": {
+    "brandDescription": "Najbardziej intuicyjny sposób na wizualizację i porównywanie wzrostów obok siebie. Dodaj prawdziwych ludzi, celebrytów, fikcyjne postacie lub dowolny niestandardowy wzrost i zobacz ich razem natychmiast.",
+    "badgeFreeToUse": "Darmowy w użyciu",
+    "badgeNoAccountNeeded": "Konto nie jest wymagane",
+    "badgeMetricImperial": "Metryczny i imperialny",
+    "calculatorsHeading": "Kalkulatory",
+    "companyHeading": "Firma",
+    "heightPredictor": "Kalkulator przewidywanego wzrostu",
+    "heightWeightPercentile": "Kalkulator percentyli wzrostu i wagi",
+    "idealBodyWeight": "Kalkulator idealnej masy ciała",
+    "heightDifference": "Kalkulator różnicy wzrostu",
+    "averageHeightByCountry": "Średni wzrost według kraju",
+    "imageToHeight": "Image to Height",
+    "about": "O nas",
+    "blogs": "Blogi",
+    "privacyPolicy": "Polityka prywatności",
+    "copyright": "© {year} Height Comparison. Wszelkie prawa zastrzeżone. Stworzone z dbałością przez ",
+    "theTeam": "zespół"
+  },
+  "about": {
+    "badge": "O nas",
+    "brandName": "Height Comparison",
+    "heroQuote": "HeightComparison zaczęło się jako poboczny projekt zbudowany wokół jednej prostej obserwacji: liczby wzrostu są prawie bezużyteczne bez kontekstu. Trzeba je zobaczyć. 12 cm różnicy między dwiema osobami o wzroście 165 cm to zupełnie inne doświadczenie niż ta sama 12 cm różnica przy wzroście 185 cm. Proporcje się zmieniają. Wizualna relacja się zmienia. A jednak każde inne narzędzie porównawcze w internecie po prostu odejmuje jedną liczbę od drugiej i uważa to za zakończone.",
+    "builtDifferent": "Stworzyliśmy coś innego.",
+    "whatItDoesTitle": "Co właściwie robi to narzędzie",
+    "whatItDoesParagraphs": [
+      "Wykres porównania wzrostu pobiera Twoje wymiary i renderuje je w prawdziwej skali proporcjonalnej. Każdy słupek jest matematycznie dopasowany do każdego innego słupka na ekranie. Bez zaokrągleń, bez wizualnych skrótów, bez słupków, które wyglądają „wystarczająco podobnie”. Jeśli Osoba A ma 170 cm, a Osoba B ma 198 cm, ta 16,5% różnica jest widoczna dokładnie tak, jak powinna.",
+      "Możesz porównać nieograniczoną liczbę obiektów jednocześnie, co okazuje się przydatne częściej, niż można by się spodziewać. Pięcioosobowa rodzina, skład drużyny sportowej, szereg postaci z anime, osoba stojąca obok wodospadu. Wszystko to na jednym wykresie, wszystko w skali.",
+      "Baza danych celebrytów obejmuje sportowców, aktorów, muzyków i osoby publiczne z różnych regionów, w tym z Bollywood, brytyjskiej, azjatyckiej i amerykańskiej rozrywki. Biblioteka postaci fikcyjnych czerpie z oficjalnych przewodników produkcyjnych i licencjonowanych baz danych dla anime, kreskówek, DC i franczyz fantasy. To nie są szacunki tłumu. Pochodzą one z zapisów opublikowanych przez samych twórców i organizacje.",
+      "Dostępna jest również funkcja przesyłania obrazów, która umieszcza zdjęcie na wykresie w rzeczywistych proporcjach, z dokładnością do 1 do 2 cm. Przydatne, jeśli chcesz wizualizować siebie w odniesieniu do punktu odniesienia bez ręcznego mierzenia."
+    ],
+    "otherCalculatorsTitle": "Inne kalkulatory",
+    "calculators": [
+      {
+        "title": "Kalkulator różnicy wzrostu",
+        "text": "Gdy chcesz poznać dokładną różnicę między dwoma wzrostami w centymetrach, calach i procentach, bez tworzenia pełnego wykresu. Szybszy do ukierunkowanych porównań."
+      },
+      {
+        "title": "Kalkulator przewidywanego wzrostu",
+        "text": "Wykorzystuje wzory Khamis-Roche i Mid-Parental do oszacowania wzrostu dorosłego na podstawie aktualnych pomiarów dziecka i wzrostu rodziców. Są to te same wzory używane w warunkach klinicznych, a nie zgadywanie."
+      },
+      {
+        "title": "Kalkulator percentyli wzrostu i wagi",
+        "text": "Porównuje wzrost i wagę osoby z danymi populacyjnymi WHO i CDC, z wykresami podzielonymi według wieku i płci. Obejmuje zarówno dorosłych, jak i dzieci."
+      },
+      {
+        "title": "Kalkulator idealnej masy ciała",
+        "text": "Uruchamia wzory Devine, Robinson i Hamwi obok siebie, dzięki czemu możesz zobaczyć, gdzie każdy z nich ląduje, zamiast przedstawiać jedną liczbę, jakby była całą odpowiedzią."
+      },
+      {
+        "title": "Średni wzrost według kraju",
+        "text": "Obejmuje 46 krajów z sortowalną tabelą, podziałami regionalnymi, mapą cieplną świata i ekstremami wzrostu. Jest to odniesienie, które zawsze chcieliśmy mieć otwarte w innej zakładce, myśląc o globalnym kontekście wzrostu."
+      },
+      {
+        "title": "Image to Height",
+        "text": "Szacuje wzrost na podstawie zdjęcia. Wbudowany jest również przewodnik po zmienności wzrostu rano, co ma większe znaczenie, niż większość ludzi zdaje sobie sprawę, porównując pomiary wykonane o różnych porach dnia."
+      }
+    ],
+    "noAccountTitle": "Bez konta, bez płatności, bez znaków wodnych",
+    "noAccountParagraphs": [
+      "Ta decyzja została podjęta wcześnie i nie uległa zmianie. Eksport PNG nie ma znaku wodnego. Baza danych celebrytów nie jest za paywallem. Nie ma poziomu subskrypcji, który odblokowuje funkcje. Pełne narzędzie jest bezpłatne.",
+      "To nie jest chwyt marketingowy. Tak po prostu zostało zaprojektowane narzędzie. Dodawanie tarcia poprzez tworzenie konta lub eksporty za paywallem pogorszyłoby narzędzie. Porównywanie wzrostu nie jest aktywnością premium."
+    ],
+    "accuracyTitle": "Uwaga dotycząca dokładności danych",
+    "accuracyParagraphs": [
+      "Sprzeczne zapisy dotyczące wzrostu są powszechne, szczególnie w przypadku celebrytów. Tam, gdzie dane są sprzeczne, normalizujemy do najnowszej zweryfikowanej liczby z wiarygodnego źródła publicznego, a nie do najczęściej powtarzanej. Wzrosty postaci pochodzą z licencjonowanych oficjalnych materiałów, jeśli to możliwe. Wymiary punktów orientacyjnych i obiektów pochodzą z architektonicznych i naukowych źródeł referencyjnych."
+    ],
+    "nothingUserSubmitted": "Nic tutaj nie zostało przesłane przez użytkowników.",
+    "footerQuote": "Wizualizacja kontekstu wzrostu, piksel po pikselu."
+  },
+  "privacy": {
+    "titlePrefix": "Polityka ",
+    "titleSuffix": "prywatności",
+    "subheading": "Pomagamy zrozumieć, jak chronimy Twoje informacje.",
+    "intro": "Niniejsza Polityka prywatności wyjaśnia, jakie informacje gromadzi Height Comparison Calculator, w jaki sposób są one wykorzystywane oraz jakie masz możliwości wyboru. HeightComparison to bezpłatne narzędzie do porównywania wzrostu dostępne pod adresem heightcomparisoncalculator.com. Żadne dane osobowe nie są sprzedawane ani udostępniane stronom trzecim w celach komercyjnych.",
+    "whatWeCollectTitle": "Co zbieramy",
+    "infoYouProvideTitle": "Informacje, które podajesz",
+    "infoYouProvideIntro": "Gdy korzystasz z niektórych funkcji narzędzia, część danych jest tymczasowo przechowywana na naszych serwerach:",
+    "uploadedImagesLabel": "Przesłane obrazy.",
+    "uploadedImagesText": " Jeśli korzystasz z funkcji Image to Height, przesłane zdjęcie jest wysyłane na nasze serwery w celu przetworzenia szacowania wzrostu. Obraz nie jest przechowywany na stałe. Jest przechowywany przez maksymalnie 7 dni, a następnie automatycznie usuwany.",
+    "shareableLinksLabel": "Linki do udostępniania wykresów i stan wykresu.",
+    "shareableLinksText": " Kiedy generujesz link do udostępniania wykresu porównania wzrostu, konfiguracja wykresu (wzrosty, imiona i tematy, które dodałeś) jest przechowywana na naszych serwerach, aby link mógł zostać rozwiązany, gdy ktoś go otworzy. Dane te są przechowywane przez maksymalnie 7 dni, a następnie automatycznie usuwane. Do wygenerowania linku nie jest wymagane konto, a przechowywane dane nie są powiązane z żadnymi danymi osobowymi.",
+    "infoCollectedAutoTitle": "Informacje zbierane automatycznie",
+    "googleAnalyticsLabel": "Google Analytics.",
+    "googleAnalyticsText": " Używamy Google Analytics, aby zrozumieć, w jaki sposób odwiedzający korzystają z witryny. Ta usługa zbiera standardowe dane dotyczące użytkowania, w tym odwiedzone strony, czas spędzony na stronie, ogólny region geograficzny (na poziomie kraju lub miasta), typ przeglądarki i typ urządzenia. Google Analytics używa plików cookie do działania. Sam HeightComparison nie ustawia żadnych własnych plików cookie.",
+    "googleAnalyticsNote": "Więcej informacji na temat sposobu, w jaki Google przetwarza te dane, można znaleźć w Polityce prywatności Google i Warunkach korzystania z Google Analytics.",
+    "serverLogsLabel": "Logi serwera.",
+    "serverLogsText": " Podobnie jak większość serwerów internetowych, nasze mogą automatycznie rejestrować standardowe dane dziennika, w tym adresy IP, odsyłające adresy URL i znaczniki czasu, gdy wysyłasz żądania do witryny. Informacje te są wykorzystywane wyłącznie w celach bezpieczeństwa i operacyjnych.",
+    "whatWeDoNotCollectTitle": "Czego nie zbieramy",
+    "whatWeDoNotCollectIntro": "Aby było jasne, czego ta witryna nie robi:",
+    "whatWeDoNotCollectList": [
+      "Nie zbieramy Twojego imienia i nazwiska, adresu e-mail ani żadnych informacji o koncie. Nie ma kont.",
+      "Nie zbieramy informacji o płatnościach. Narzędzie jest bezpłatne.",
+      "Nie śledzimy wzrostów, które wprowadzasz do narzędzia porównawczego. Dane wejściowe są przetwarzane w Twojej przeglądarce i nie są wysyłane ani przechowywane na naszych serwerach (z wyjątkiem konkretnych przypadków opisanych powyżej).",
+      "Nie jesteśmy powiązani z żadną siecią reklamową. Żadne dane nie są udostępniane sieciom reklamowym, a na tej stronie nie odbywa się żadna reklama behawioralna."
+    ],
+    "howWeUseTitle": "Jak wykorzystujemy dane",
+    "howWeUseIntro": "Opisane powyżej dane są wykorzystywane wyłącznie w następujących celach:",
+    "howWeUseList": [
+      "Przetwarzanie i zwracanie szacunków wzrostu na podstawie obrazu",
+      "Generowanie i rozwiązywanie linków do udostępniania wykresów",
+      "Zrozumienie ogólnych wzorców użytkowania za pośrednictwem Google Analytics, abyśmy mogli ulepszyć narzędzie",
+      "Utrzymywanie bezpieczeństwa serwera i diagnozowanie problemów technicznych"
+    ],
+    "howWeUseFooter": "Nie wykorzystujemy żadnych zebranych danych do tworzenia profili użytkowników, wyświetlania ukierunkowanych reklam ani udostępniania stronom trzecim poza Google Analytics, jak opisano.",
+    "dataRetentionTitle": "Przechowywanie danych",
+    "dataRetentionText": "Przesłane obrazy i dane linków do udostępnianych wykresów są usuwane z naszych serwerów w ciągu 7 dni od utworzenia. Dane dziennika serwera są przechowywane przez standardowe okresy operacyjne zgodne z potrzebami bezpieczeństwa i debugowania.",
+    "yourRightsTitle": "Twoje prawa i wybory",
+    "requestDeletionLabel": "Żądanie usunięcia danych.",
+    "requestDeletionText": " Jeśli korzystałeś z linku do udostępniania lub przesłałeś obraz i chciałbyś, aby powiązane dane zostały usunięte przed automatycznym usunięciem po 7 dniach, możesz skontaktować się z nami pod adresem ",
+    "requestDeletionTextEnd": " a my niezwłocznie je usuniemy.",
+    "optOutGaLabel": "Rezygnacja z Google Analytics.",
+    "optOutGaText": " Możesz zapobiec zbieraniu danych o Twojej wizycie przez Google Analytics, instalując dodatek do przeglądarki blokujący Google Analytics.",
+    "browserControlsLabel": "Kontrolki przeglądarki.",
+    "browserControlsText": " Ponieważ HeightComparison nie ustawia plików cookie stron trzecich, nie ma nic do zarządzania z punktu widzenia preferencji plików cookie po naszej stronie. Wszelkie pliki cookie obecne w Twojej przeglądarce z tej witryny pochodzą z Google Analytics.",
+    "childrensPrivacyTitle": "Prywatność dzieci",
+    "childrensPrivacyText": "HeightComparison nie jest skierowany do dzieci poniżej 13 roku życia. Nie zbieramy świadomie żadnych danych osobowych od dzieci. Jeśli uważasz, że dziecko przesłało dane osobowe za pośrednictwem tej witryny, skontaktuj się z nami pod adresem ",
+    "childrensPrivacyTextEnd": " a my je usuniemy.",
+    "thirdPartyLinksTitle": "Linki stron trzecich",
+    "thirdPartyLinksText": "Witryna może zawierać linki do zewnętrznych stron internetowych. Niniejsza Polityka prywatności dotyczy wyłącznie HeightComparison. Nie ponosimy odpowiedzialności za praktyki prywatności stron trzecich.",
+    "changesToPolicyTitle": "Zmiany w niniejszej polityce",
+    "changesToPolicyText": "Jeśli wprowadzimy istotne zmiany w niniejszej polityce, zaktualizujemy datę „Ostatnia aktualizacja” na górze tej strony. Dalsze korzystanie z witryny po wszelkich zmianach oznacza akceptację zaktualizowanej polityki.",
+    "contactTitle": "Kontakt",
+    "contactIntro": "Jeśli masz pytania dotyczące niniejszej Polityki prywatności lub chcesz zażądać usunięcia danych, skontaktuj się z nami pod adresem:",
+    "emailLabel": "E-mail: ",
+    "trustFooter": "Twoje zaufanie jest dla nas ważne."
+  },
+  "heightPredictor": {
+    "intro": {
+      "title": "Kalkulator przewidywanego wzrostu i wzrostu dorosłych",
+      "description": "Użyj tego kalkulatora wzrostu, aby oszacować przyszły wzrost dzieci, nastolatków i dorosłych na podstawie wieku, genetyki i wzorców wzrostu. Ten kalkulator wykorzystuje metodę Khamis-Roche, jeden z najdokładniejszych dostępnych modeli przewidywania wzrostu. Jeśli Twoje dziecko ma mniej niż cztery lata lub jesteś w ciąży i ciekawi Cię przewidywany wzrost Twojego dziecka, użyj zamiast tego podanego poniżej wzoru na wzrost średni rodzicielski."
+    },
+    "khamisRocheCalculator": {
+      "title": "Kalkulator przewidywanego wzrostu",
+      "badge": "Khamis-Roche",
+      "description": "Natychmiastowe przewidywanie wzrostu za pomocą naukowych modeli wzrostu. Oszacuj przewidywany wzrost na podstawie wieku i rodziców",
+      "unitUs": "USA (stopy/cale)",
+      "unitMetric": "Metryczny (cm)",
+      "childAgeLabel": "Wiek dziecka (lata)",
+      "childAgeAriaLabel": "Wiek dziecka w latach",
+      "genderLabel": "Płeć",
+      "boy": "Chłopiec",
+      "girl": "Dziewczynka",
+      "childHeightLabel": "Obecny wzrost dziecka",
+      "childHeightCmAriaLabel": "Obecny wzrost dziecka w centymetrach",
+      "childHeightFtAriaLabel": "Aktualny wzrost dziecka w stopach",
+      "childHeightInAriaLabel": "Aktualny wzrost dziecka w calach",
+      "childWeightLabel": "Aktualna waga dziecka",
+      "childWeightKgAriaLabel": "Aktualna waga dziecka w kilogramach",
+      "childWeightLbsAriaLabel": "Aktualna waga dziecka w funtach",
+      "motherHeightLabel": "Wzrost matki",
+      "motherHeightCmAriaLabel": "Wzrost matki w centymetrach",
+      "motherHeightFtAriaLabel": "Wzrost matki w stopach",
+      "motherHeightInAriaLabel": "Wzrost matki w calach",
+      "fatherHeightLabel": "Wzrost ojca",
+      "fatherHeightCmAriaLabel": "Wzrost ojca w centymetrach",
+      "fatherHeightFtAriaLabel": "Wzrost ojca w stopach",
+      "fatherHeightInAriaLabel": "Wzrost ojca w calach",
+      "calculate": "Oblicz wzrost",
+      "clear": "Wyczyść",
+      "estimatedAdultHeight": "Szacowany wzrost dorosłego",
+      "targetRange": "Zakres docelowy (±5 cm): {min} : {max} cm",
+      "viewComparisonChart": "Wyświetl wykres porównawczy",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "cale",
+      "kgUnit": "kg",
+      "lbsUnit": "funty"
+    },
+    "midParentalCalculator": {
+      "title": "Tylko wzrost rodziców",
+      "badge": "Metoda Mid-Parental",
+      "description": "Oszacuj przewidywany wzrost, używając tylko wzrostu rodziców. Działa również dla niemowląt, bardzo małych dzieci i nienarodzonych dzieci. Jeśli jesteś w ciąży, wprowadź wzrost obojga rodziców, aby uzyskać szacowany zakres wzrostu dorosłego dziecka.",
+      "unitUs": "USA (stopy/cale)",
+      "unitMetric": "Metryczny (cm)",
+      "motherHeightLabel": "Wzrost matki",
+      "motherHeightCmAriaLabel": "Wzrost matki w centymetrach",
+      "motherHeightFtAriaLabel": "Wzrost matki w stopach",
+      "motherHeightInAriaLabel": "Wzrost matki w calach",
+      "fatherHeightLabel": "Wzrost ojca",
+      "fatherHeightCmAriaLabel": "Wzrost ojca w centymetrach",
+      "fatherHeightFtAriaLabel": "Wzrost ojca w stopach",
+      "fatherHeightInAriaLabel": "Wzrost ojca w calach",
+      "calculateEstimate": "Oblicz szacunek",
+      "estimatedAdultHeightBoys": "Szacowany wzrost dorosłego (chłopcy)",
+      "estimatedAdultHeightGirls": "Szacowany wzrost dorosłego (dziewczęta)",
+      "targetRange": "Zakres docelowy (±5 cm): {min} : {max} cm",
+      "viewComparisonChart": "Wyświetl wykres porównawczy",
+      "cmUnit": "cm",
+      "ftUnit": "stopy",
+      "inUnit": "cale"
+    },
+    "heightConverter": {
+      "title": "Szybki przelicznik wzrostu",
+      "description": "Błyskawicznie przeliczaj centymetry na stopy i cale, stopy i cale na centymetry lub metry na stopy",
+      "centimeters": "Centymetry",
+      "centimetersAriaLabel": "Wzrost w centymetrach",
+      "feetAndInches": "Stopy i cale",
+      "feetAriaLabel": "Wzrost w stopach",
+      "inchesAriaLabel": "Wzrost w calach",
+      "cmUnit": "cm",
+      "ftUnit": "ft",
+      "inUnit": "in"
+    },
+    "howItWorks": {
+      "title": "Jak to działa?",
+      "description": "Kalkulator wzrostu to narzędzie, które łączy aktualne pomiary (wiek, wzrost, waga i wzrost rodziców) i stosuje je do danych dotyczących wzrostu populacji, aby uzyskać prawdopodobny zakres wzrostu.",
+      "step1Strong": "1. Wprowadź pomiary:",
+      "step1Text": "wiek dziecka, aktualny wzrost, wagę oraz wzrost obojga rodziców. Więcej danych wejściowych daje dokładniejsze wyniki.",
+      "step2Strong": "2. Model oblicza:",
+      "step2Text": "kalkulator stosuje wzór wzrostu do danych populacyjnych, dostosowując go do wieku, płci i genetyki.",
+      "step3Strong": "3. Uzyskaj przewidywany zakres wzrostu:",
+      "step3Text": "Wynikiem jest prawdopodobne oszacowanie wzrostu dorosłego, przedstawione jako zakres, a nie jedna dokładna liczba."
+    },
+    "howTallChild": {
+      "title": "Jak wysokie będzie moje dziecko?",
+      "description": "Żadne narzędzie nie jest w stanie przewidzieć przyszłego wzrostu dziecka z całkowitą pewnością. Jednak badania nad wzorcami wzrostu dzieci umożliwiają oszacowanie wzrostu dorosłego z rozsądną dokładnością.",
+      "factorsTitle": "Nowoczesne kalkulatory przewidywania wzrostu analizują trzy kluczowe czynniki:",
+      "geneticsLabel": "Genetyka",
+      "geneticsText": "odpowiedzialna za 60-80% ostatecznego wzrostu.",
+      "currentGrowthLabel": "Obecny wzrost",
+      "currentGrowthText": "Pomiary wieku, wzrostu i wagi precyzują oszacowanie.",
+      "statisticsLabel": "Statystyki",
+      "statisticsText": "Wzorce wzrostu obserwowane w dużych populacjach według wieku i płci.",
+      "closing": "Wynikiem jest szacowany zakres wzrostu dorosłego: użyteczna wskazówka, a nie gwarancja. Wzorce wzrostu dzieci są indywidualne i mogą się znacznie różnić w zależności od zdrowia, odżywiania i czasu dojrzewania."
+    },
+    "teensAdults": {
+      "title": "Jak wysoki będę? Kalkulator dla nastolatków i dorosłych",
+      "description": "Nastolatki pytające „jak wysoki będę” mogą skorzystać z kalkulatora Khamis-Roche. Wprowadź swój obecny wiek, wzrost, wagę oraz wzrost rodziców, aby uzyskać najdokładniejsze oszacowanie.",
+      "teensTitle": "Nastolatki (poniżej 18 lat)",
+      "teensText": "Płytki wzrostowe są nadal otwarte. Kalkulator Khamis-Roche daje najlepsze oszacowanie. Użyj aktualnych pomiarów dla maksymalnej dokładności.",
+      "teensItem1": "Najbardziej wiarygodny w wieku 4-17 lat",
+      "teensItem2": "Dokładność wzrasta w miarę zbliżania się do wzrostu dorosłego",
+      "teensItem3": "Chłopcy często rosną do 18 roku życia; dziewczęta do 15-16 roku życia",
+      "adultsTitle": "Dorośli (18+)",
+      "adultsText": "Płytki wzrostowe zamykają się po okresie dojrzewania. Dla dorosłych przewidywanie wzrostu nie jest już istotne, ale wzór Mid-Parental Height Formula nadal może oszacować, jaki wzrost mogą osiągnąć ich dzieci.",
+      "adultsItem1": "Wzrost dorosłego jest już ustalony",
+      "adultsItem2": "Użyj narzędzia Wzrost Rodziców, aby przewidzieć wzrost dzieci",
+      "adultsItem3": "Użyj konwertera wzrostu do przeliczania jednostek",
+      "limitationLabel": "Ważne ograniczenie:",
+      "limitationText": "Żaden kalkulator wzrostu nie uwzględnia schorzeń, zaburzeń hormonu wzrostu ani przedwczesnego dojrzewania. Jeśli wzrost wydaje się niezwykle szybki lub powolny, skonsultuj się z pediatrą."
+    },
+    "ctaBanner": {
+      "text": "Gotowy, aby poznać przewidywany wzrost? Kalkulator znajduje się na górze tej strony.",
+      "linkText": "Użyj Kalkulatora przewidywanego wzrostu"
+    },
+    "determinants": {
+      "title": "Co decyduje o wzroście?",
+      "description": "Ostateczny wzrost dorosłego człowieka kształtują dwa czynniki: genetyka i środowisko. Zrozumienie obu pomaga ustalić realistyczne oczekiwania dotyczące przewidywania wzrostu.",
+      "geneticsTitle": "Genetyka",
+      "geneticsBefore": "Odpowiada za ",
+      "geneticsStrong1": "60-80%",
+      "geneticsMiddle": " ostatecznego wzrostu. Dzieci wyższych rodziców zazwyczaj są wyższe, ale dzieci bardzo wysokich lub bardzo niskich rodziców często rosną bliżej średniego wzrostu populacji, co jest zjawiskiem zwanym ",
+      "geneticsStrong2": "regresją do średniej.",
+      "nutritionTitle": "Odżywianie i sen",
+      "nutritionBefore": "Pozostałe ",
+      "nutritionStrong": "20-40%",
+      "nutritionAfter": " pochodzi ze środowiska.",
+      "nutritionItem1": "Białko, wapń, witamina D, cynk",
+      "nutritionItem2": "9-11 godzin snu (wiek szkolny)",
+      "nutritionItem3": "8-10 godzin dla nastolatków",
+      "timingTitle": "Czas wzrostu",
+      "timingText": "Wczesne dojrzewanie może tymczasowo skutkować wyższym dzieckiem, ale niższym dorosłym. Późne dojrzewanie często prowadzi do dłuższego okresu wzrostu i większego ostatecznego wzrostu."
+    },
+    "growthCharts": {
+      "title": "Średni wzrost według wieku (siatki centylowe)",
+      "linkText": "Siatki centylowe CDC",
+      "textAfterLink": " śledzą średni wzrost i wagę od urodzenia do wczesnej dorosłości, obejmując chłopców i dziewczęta w wieku od 2 do 18 lat. Pokazują, gdzie dziecko plasuje się na siatce centylowej wzrostu w stosunku do rówieśników.",
+      "percentileBefore": "Linia ",
+      "percentileStrong": "50. centyl",
+      "percentileAfter": " reprezentuje medianę wzrostu dla danego wieku i płci. Zdrowe dzieci zazwyczaj mieszczą się między 3. a 97. centylem.",
+      "note": "Uwaga: Pediatrzy mniej skupiają się na pojedynczym pomiarze, a bardziej na tym, czy dziecko utrzymuje stałą krzywą wzrostu w czasie."
+    },
+    "comparisonTable": {
+      "title": "Kalkulator wzrostu a siatki centylowe",
+      "description": "Różne narzędzia odpowiadają na różne pytania. Skorzystaj z tego porównania, aby zrozumieć, kiedy używać każdej metody.",
+      "headerFactor": "Czynnik",
+      "headerCalculator": "Kalkulator wzrostu",
+      "headerGrowthChart": "Siatka centylowa",
+      "rowPurposeLabel": "Cel",
+      "rowPurposeCalculator": "Przewidywanie przyszłego wzrostu dorosłego",
+      "rowPurposeGrowthChart": "Śledzenie bieżącego wzrostu w porównaniu z rówieśnikami",
+      "rowDataLabel": "Potrzebne dane",
+      "rowDataCalculator": "Wiek, wzrost, waga, wzrost rodziców",
+      "rowDataGrowthChart": "Wiek + aktualny wzrost",
+      "rowBestForLabel": "Najlepsze dla",
+      "rowBestForCalculator": "Rodzice, nastolatki, ciekawość",
+      "rowBestForGrowthChart": "Monitorowanie wzrostu w czasie",
+      "rowDoctorLabel": "Wymaga lekarza",
+      "rowDoctorCalculator": "Nie (użyj online)",
+      "rowDoctorGrowthChart": "Nie (użyj online)",
+      "rowAccuracyLabel": "Typowa dokładność",
+      "rowAccuracyCalculator": "±2-4 cale",
+      "rowAccuracyGrowthChart": "Pokazuje percentyl, nie prognozę",
+      "rowWithoutParentsLabel": "Działa bez rodziców",
+      "rowWithoutParentsCalculator": "Częściowo (mniej dokładnie)",
+      "rowWithoutParentsGrowthChart": "✓ Tak"
+    },
+    "boysGrowth": {
+      "title": "Kiedy chłopcy przestają rosnąć?",
+      "p1Before": "Chłopcy zazwyczaj doświadczają głównego skoku wzrostu podczas ",
+      "p1Strong": "dojrzewania",
+      "p1After": ".",
+      "p2": "Typowy harmonogram wzrostu dla chłopców wygląda następująco:",
+      "item1Before": "wczesne dojrzewanie zaczyna się około ",
+      "item1Strong": "11-12 roku życia",
+      "item2Before": "szybki wzrost następuje między ",
+      "item2Strong": "13 a 15 rokiem życia",
+      "item3Before": "wzrost zwalnia około ",
+      "item3Strong": "16-17 roku życia",
+      "p3Before": "W szczytowym okresie dojrzewania chłopcy mogą rosnąć ",
+      "p3Strong": "7-10 cm rocznie",
+      "p3After": ". Większość chłopców przestaje rosnąć około 18 roku życia, chociaż niewielkie przyrosty mogą trwać do około 20 roku życia."
+    },
+    "girlsGrowth": {
+      "title": "Kiedy dziewczynki przestają rosnąć?",
+      "p1": "Dziewczynki zazwyczaj zaczynają dojrzewać wcześniej niż chłopcy.",
+      "p2": "Typowy harmonogram wzrostu:",
+      "item1Before": "dojrzewanie zaczyna się około ",
+      "item1Strong": "9-10 roku życia",
+      "item2Before": "skok wzrostu następuje między ",
+      "item2Strong": "10 a 14 rokiem życia",
+      "p3Before": "Większość dziewczynek osiąga swój dorosły wzrost między ",
+      "p3Strong": "15 a 16 rokiem życia",
+      "p3After": ". Ponieważ dziewczynki dojrzewają wcześniej, często wydają się wyższe od chłopców w późnym dzieciństwie."
+    },
+    "methods": {
+      "title": "Wyjaśnienie metod przewidywania wzrostu",
+      "subtitle": "Jak przewidzieć wzrost Twojego dziecka",
+      "description": "Naukowcy używają kilku wzorów do oszacowania wzrostu dorosłego. Każda metoda równoważy dokładność z wymaganymi danymi.",
+      "khamisRoche": {
+        "badge": "Najdokładniejsza",
+        "title": "Metoda Khamis-Roche",
+        "p1": "Uważana za najdokładniejszą metodę przewidywania wzrostu, która nie wymaga badania wieku kostnego. Analizuje cztery dane wejściowe: wiek dziecka, wzrost, wagę i średni wzrost obojga rodziców.",
+        "p2": "Opracowana po przestudiowaniu tysięcy wzorców wzrostu dzieci przy użyciu analizy regresji liniowej zastosowanej do danych wzrostu na poziomie populacji. Ponieważ uwzględnia aktualne pomiary ciała, przewyższa formuły oparte wyłącznie na genetyce.",
+        "item1Before": "Dokładność: ",
+        "item1Strong": "±2,1 cala dla chłopców, ±1,7 cala dla dziewcząt",
+        "item2": "Najlepsza dla dzieci powyżej 4 roku życia",
+        "item3": "Najbardziej wiarygodne dostępne przewidywanie niekliniczne",
+        "usedByCalculator": "✓ Używana przez ten kalkulator",
+        "readyText": "Masz przygotowane dane dotyczące wieku, wzrostu, wagi dziecka i wzrostu rodziców?",
+        "linkText": "Oblicz teraz metodą Khamis-Roche"
+      },
+      "midParental": {
+        "badge": "PROSTA",
+        "title": "Kalkulator przewidywanego wzrostu na podstawie rodziców (wzór na wzrost środkowo-rodzicielski)",
+        "p1": "Wzór na wzrost środkowo-rodzicielski to najprostszy sposób na oszacowanie wzrostu dorosłego dziecka, wykorzystujący jedynie wzrost rodziców. Nie wymaga badań medycznych i działa dla każdego wieku, w tym dla niemowląt i nienarodzonych dzieci.",
+        "boysFormulaLabel": "Dla chłopców (jednostki US)",
+        "boysFormula": "(Ojciec + Matka + 5 cali) ÷ 2",
+        "girlsFormulaLabel": "Dla dziewcząt (jednostki US)",
+        "girlsFormula": "(Ojciec + Matka - 5 cali) ÷ 2",
+        "item1": "Działa dla niemowląt i małych dzieci, gdy brak jest aktualnych danych o wzroście",
+        "item2": "Typowa dokładność: w granicach ±4 cali (10 cm) od ostatecznego wzrostu dorosłego",
+        "item3": "Nie uwzględnia aktualnej trajektorii wzrostu. Dla dzieci powyżej 4 roku życia użyj metody Khamis-Roche",
+        "item4": "Może być również używany jako przybliżony kalkulator wzrostu niemowląt lub dla nienarodzonych dzieci",
+        "onlyHaveText": "Masz tylko wzrost rodziców? Użyj powyższego kalkulatora wzrostu środkowo-rodzicielskiego.",
+        "linkText": "Przewiń do góry i oblicz teraz"
+      },
+      "boneAge": {
+        "badge": "KLINICZNA",
+        "title": "Metoda wieku kostnego (zdjęcie rentgenowskie nadgarstka)",
+        "p1": "Lekarze używają zdjęć rentgenowskich lewego nadgarstka do oceny dojrzałości płytek wzrostowych. Płytki wzrostowe to cienkie pasma chrząstki. Ich grubość ujawnia, ile wzrostu pozostało.",
+        "item1": "Najdokładniejsza dostępna metoda przewidywania",
+        "item2": "Stosowana tylko wtedy, gdy lekarze podejrzewają zaburzenia wzrostu",
+        "item3": "Metody oceny: Greulich-Pyle, Tanner-Whitehouse"
+      },
+      "bayleyPinneau": {
+        "badge": "KLINICZNA",
+        "title": "Metoda Bayley-Pinneau",
+        "text": "Łączy dane dotyczące wieku kostnego z tabelami wzrostu dla wieku. Oblicza procent osiągniętego wzrostu dorosłego, aby określić pozostały potencjał wzrostu. Wymaga badania wieku kostnego."
+      },
+      "rocheWainerThissen": {
+        "badge": "KLINICZNA",
+        "title": "Metoda Roche-Wainer-Thissen",
+        "text": "Wykorzystuje wiek kostny, aktualny wzrost, wagę i wzrost rodziców. W niektórych przypadkach poprawia dokładność w porównaniu z metodą Khamis-Roche, ale wymaga klinicznego pomiaru wieku kostnego. Stosowana głównie w warunkach medycznych."
+      }
+    },
+    "canIncrease": {
+      "titlePrefix": "Czy możesz ",
+      "titleHighlight": "zwiększyć wzrost",
+      "description": "Twoje geny w dużej mierze decydują o tym, jak wysoki będziesz. Ale to, jak dobrze jesz, śpisz i pozostajesz aktywny w dzieciństwie, może mieć realny wpływ na to, czy osiągniesz ten potencjał.",
+      "nutritionTitle": "Odżywianie",
+      "nutritionText": "Odpowiednie odżywianie wspiera rozwój kości. Kluczowe składniki odżywcze:",
+      "nutritionItem1": "Białko",
+      "nutritionItem2": "Wapń",
+      "nutritionItem3": "Witamina D",
+      "nutritionItem4": "Cynk",
+      "sleepTitle": "Odpowiednia ilość snu",
+      "sleepText": "Hormon wzrostu osiąga szczyt podczas głębokiego snu.",
+      "sleepItem1": "9-11 godzin dla dzieci w wieku szkolnym",
+      "sleepItem2": "8-10 godzin dla nastolatków",
+      "exerciseTitle": "Regularne ćwiczenia",
+      "exerciseText": "Wspierają siłę kości i ogólny rozwój. Bieganie, skakanie i sport sprzyjają zdrowemu wzrostowi kości.",
+      "warningStrong": "Ważne:",
+      "warningText": "Żadne ćwiczenia, suplementy ani programy rozciągające nie mogą zwiększyć wzrostu po zamknięciu płytek wzrostowych. Prognozy są szacunkowe. Genetyka jest dominującym czynnikiem."
+    },
+    "accuracy": {
+      "titlePrefix": "Jak ",
+      "titleHighlight": "dokładny",
+      "titleSuffix": " jest kalkulator wzrostu?",
+      "description": "Ten kalkulator przewidywanego wzrostu wykorzystuje model wzrostu Khamis-Roche, oparty na długoterminowych badaniach danych dotyczących wzrostu dzieci.",
+      "check1": "Większość przewidywań mieści się w zakresie 5-10 cm (2-4 cale) od ostatecznego wzrostu dorosłego",
+      "check2": "Dokładność jest najwyższa, gdy dziecko ma więcej niż 4 lata",
+      "check3": "Dokładne pomiary wzrostu i wagi znacznie poprawiają wyniki",
+      "check4": "Prawidłowe dane dotyczące wzrostu rodziców są wymagane do uzyskania wiarygodnych wyników",
+      "alert1": "Wyniki to prawdopodobny zakres, a nie dokładna wartość",
+      "alert2": "Nieodpowiednie dla dzieci ze znanymi zaburzeniami wzrostu",
+      "alert3": "Wczesne lub późne dojrzewanie może zmniejszyć dokładność przewidywań",
+      "rangeNotice": "Wynik przedstawia prawdopodobny zakres, a nie dokładną wartość.",
+      "disclaimerStrong": "Zastrzeżenie medyczne:",
+      "disclaimerText": "Ten kalkulator wzrostu służy wyłącznie celom informacyjnym. Nie zastępuje profesjonalnej porady medycznej. Jeśli masz obawy dotyczące wzrostu swojego dziecka, skonsultuj się z wykwalifikowanym pediatrą lub endokrynologiem."
+    },
+    "faq": [
+      {
+        "q": "Jak wysoki będę?",
+        "a": "Twój wzrost w wieku dorosłym zależy przede wszystkim od wzrostu Twoich rodziców i czasu Twojego wzrostu. Skorzystaj z powyższego kalkulatora wzrostu. Wprowadź swój aktualny wiek, wzrost, wagę oraz wzrost rodziców, aby uzyskać przewidywany zakres wzrostu na podstawie modelu wzrostu Khamis-Roche. Jeśli masz już 18 lat lub więcej, Twoje płytki wzrostowe są zamknięte, a Twój wzrost w wieku dorosłym jest ustalony."
+      },
+      {
+        "q": "Jak wysoki będzie mój syn?",
+        "a": "Wprowadź wiek syna, aktualny wzrost, wagę oraz wzrost obojga rodziców do powyższego kalkulatora Khamis-Roche. Chłopcy zazwyczaj przestają rosnąć około 18 roku życia, chociaż niewielkie przyrosty mogą trwać do 20 roku życia. Wzór na wzrost średni rodzicielski może również dać przybliżone oszacowanie: (wzrost ojca + wzrost matki + 5 cali) ÷ 2."
+      },
+      {
+        "q": "Czy kalkulator wzrostu jest dokładny?",
+        "a": "Metoda Khamis-Roche (używana w tym kalkulatorze) jest jednym z najdokładniejszych dostępnych nieklinicznych predyktorów wzrostu. Typowa dokładność wynosi ±2,1 cala dla chłopców i ±1,7 cala dla dziewcząt. Dokładność poprawia się, gdy dziecko ma więcej niż 4 lata, pomiary są precyzyjne, a wzrost rodziców jest prawidłowy. Wyniki zawsze stanowią zakres, a nie gwarantowaną wartość."
+      },
+      {
+        "q": "Czy wzrost rodziców może przewidzieć mój wzrost?",
+        "a": "Tak. Wzrost rodziców jest najsilniejszym pojedynczym predyktorem wzrostu dziecka w wieku dorosłym, odpowiadającym za 60–80% zmienności wzrostu. Wzór na wzrost średni rodzicielski dostarcza przybliżonego oszacowania, wykorzystując tylko te dane. Jednak połączenie wzrostu rodziców z aktualnymi pomiarami dziecka (wiek, wzrost, waga) za pomocą modelu Khamis-Roche daje znacznie dokładniejsze wyniki."
+      },
+      {
+        "q": "Czy mogę przewidzieć wzrost mojego dziecka?",
+        "a": "Dla niemowląt i małych dzieci użyj powyższego kalkulatora wzoru na wzrost średni rodzicielski. Wymaga on jedynie wzrostu matki i ojca. Daje to przybliżony zakres wzrostu. Należy pamiętać, że dokładność jest niższa dla niemowląt niż dla starszych dzieci, ponieważ aktualne dane dotyczące wzrostu nie są uwzględniane."
+      },
+      {
+        "q": "Jaki powinien być wzrost mojego dziecka w jego wieku?",
+        "a": "Skorzystaj z sekcji wykresów wzrostu powyżej, aby zobaczyć średni zakres wzrostu według wieku dla chłopców i dziewcząt. 50. percentyl reprezentuje medianę wzrostu. Zdrowe dzieci zazwyczaj mieszczą się między 3. a 97. percentylem. Jeśli Twoje dziecko konsekwentnie znajduje się powyżej lub poniżej tego zakresu, omów to z pediatrą."
+      },
+      {
+        "q": "Jaka jest najdokładniejsza metoda przewidywania wzrostu?",
+        "a": "Najdokładniejszą metodą ogólnie jest badanie wieku kostnego (rentgen nadgarstka), stosowane klinicznie przez lekarzy. Do przewidywania nieklinicznego, metoda Khamis-Roche jest najdokładniejszą dostępną. Wykorzystuje wiek, wzrost, wagę i wzrost rodziców, osiągając dokładność ±2,1 cala dla chłopców i ±1,7 cala dla dziewcząt. Jest to metoda używana w kalkulatorze na tej stronie."
+      }
+    ],
+    "toc": [
+      {
+        "id": "height-predictor-calculator",
+        "label": "Kalkulator przewidywanego wzrostu"
+      },
+      {
+        "id": "how-it-works",
+        "label": "Jak to działa?"
+      },
+      {
+        "id": "how-tall-will-my-child-be",
+        "label": "Jak wysokie będzie moje dziecko?"
+      },
+      {
+        "id": "how-tall-will-i-be-teens-adults",
+        "label": "Jak wysoki będę (nastolatki i dorośli)"
+      },
+      {
+        "id": "what-determines-height",
+        "label": "Co decyduje o wzroście?"
+      },
+      {
+        "id": "boys-girls-growth-charts",
+        "label": "Wykresy wzrostu chłopców i dziewcząt"
+      },
+      {
+        "id": "calculator-vs-growth-charts",
+        "label": "Kalkulator a wykresy wzrostu"
+      },
+      {
+        "id": "when-do-boys-stop-growing",
+        "label": "Kiedy chłopcy przestają rosnąć?"
+      },
+      {
+        "id": "when-do-girls-stop-growing",
+        "label": "Kiedy dziewczynki przestają rosnąć?"
+      },
+      {
+        "id": "height-prediction-methods",
+        "label": "Metody przewidywania wzrostu"
+      },
+      {
+        "id": "khamis-roche-method",
+        "label": "Metoda Khamis-Roche"
+      },
+      {
+        "id": "based-on-parents",
+        "label": "Na podstawie rodziców"
+      },
+      {
+        "id": "bone-age-method",
+        "label": "Metoda wieku kostnego"
+      },
+      {
+        "id": "bayley-pinneau-method",
+        "label": "Metoda Bayley-Pinneau"
+      },
+      {
+        "id": "roche-wainer-thissen-method",
+        "label": "Metoda Roche-Wainer-Thissen"
+      },
+      {
+        "id": "can-you-increase-height",
+        "label": "Czy można zwiększyć wzrost?"
+      },
+      {
+        "id": "accuracy",
+        "label": "Dokładność przewidywań"
+      },
+      {
+        "id": "faq",
+        "label": "FAQ"
+      },
+      {
+        "id": "related-tools",
+        "label": "Powiązane narzędzia"
+      },
+      {
+        "id": "references",
+        "label": "Referencje"
+      }
+    ],
+    "relatedTools": {
+      "title": "Powiązane narzędzia",
+      "heightComparisonTitle": "Narzędzie do porównywania wzrostu",
+      "heightComparisonText": "Wizualizuj różnice wzrostu między ludźmi, celebrytami i obiektami w proporcjonalnej skali.",
+      "heightComparisonLink": "Porównaj wzrosty",
+      "imageToHeightTitle": "Narzędzie Obraz do wzrostu",
+      "imageToHeightText": "Oszacuj wzrost na podstawie zdjęć, porównując obiekty z znanymi obiektami referencyjnymi lub otoczeniem.",
+      "imageToHeightLink": "Oszacuj na podstawie obrazu",
+      "percentileTitle": "Percentyl wzrostu i wagi",
+      "percentileText": "Sprawdź, gdzie wzrost i waga Twojego dziecka plasują się w populacji, korzystając z danych WHO i CDC.",
+      "percentileLink": "Sprawdź percentyl",
+      "countryTitle": "Średni wzrost według kraju",
+      "countryText": "Globalne dane dotyczące wzrostu dla 46 krajów. Tabela do sortowania, wykresy regionalne i mapa świata.",
+      "countryLink": "Przeglądaj dane",
+      "ibwTitle": "Kalkulator idealnej masy ciała",
+      "ibwText": "Oblicz idealną wagę, korzystając z formuł Devine'a, Robinsona i Hamwi'ego obok siebie.",
+      "ibwLink": "Oblicz idealną masę ciała",
+      "differenceTitle": "Kalkulator różnicy wzrostu",
+      "differenceText": "Oblicz dokładną różnicę między dwoma wzrostami w cm, calach i procentach.",
+      "differenceLink": "Oblicz różnicę"
+    },
+    "heightCharts": {
+      "intro": "Na podstawie danych z siatek centylowych CDC: średni i medianowy wzrost według wieku (2–18 lat): cm",
+      "boysToggle": "👦 Chłopcy",
+      "girlsToggle": "👧 Dziewczęta",
+      "boysLabel": "Chłopcy",
+      "girlsLabel": "Dziewczęta",
+      "chartToggleLine1": "Wykres",
+      "chartToggleLine2": "wzrostu",
+      "tableToggleLine1": "Tabela",
+      "tableToggleLine2": "danych",
+      "chartTitle": "Wykres percentyli wzrostu dla {label} (2–18 lat)",
+      "axisAge": "Wiek (lata)",
+      "axisHeight": "Wzrost (cm)",
+      "tooltipAge": "Wiek {age}",
+      "percentile3": "3. percentyl (niski zakres)",
+      "percentile50": "50. percentyl (średnia/mediana)",
+      "percentile97": "97. percentyl (wysoki zakres)",
+      "sourceNote": "Źródło: CDC Growth Charts : National Center for Health Statistics",
+      "tableTitle": "Średni i medianowy wzrost według wieku (cm)",
+      "tableHeaderAge": "Wiek",
+      "tableHeaderBoysAvgCm": "Średnia chłopców (cm)",
+      "tableHeaderBoysAvgFt": "Średnia chłopców (stopy)",
+      "tableHeaderBoysMedian": "Mediana chłopców",
+      "tableHeaderGirlsAvgCm": "Średnia dziewcząt (cm)",
+      "tableHeaderGirlsAvgFt": "Średnia dziewcząt (stopy)",
+      "tableHeaderGirlsMedian": "Mediana dziewcząt",
+      "ageYrs": "{age} lat",
+      "insightBoysStopLabel": "Chłopcy przestają rosnąć",
+      "insightBoysStopValue": "~18 lat",
+      "insightGirlsStopLabel": "Dziewczęta przestają rosnąć",
+      "insightGirlsStopValue": "~15-16 lat",
+      "insightMaleHeightLabel": "Średni wzrost dorosłego mężczyzny (USA)",
+      "insightMaleHeightValue": "172.2 cm / 5'8\"",
+      "insightFemaleHeightLabel": "Średni wzrost dorosłej kobiety (USA)",
+      "insightFemaleHeightValue": "160.1 cm / 5'3\""
+    },
+    "references": {
+      "title": "Bibliografia naukowa i źródła danych",
+      "ref1": "Centers for Disease Control and Prevention. CDC Growth Charts.",
+      "ref2": "National Institutes of Health. Przegląd wzrostu i rozwoju dziecka.",
+      "ref3": "Silventoinen K. Determinanty zmienności wzrostu ciała dorosłych. Journal of Biosocial Science.",
+      "ref4": "World Health Organization. Child Growth Standards.",
+      "ref5": "National Sleep Foundation. Hormon wzrostu i sen u dzieci.",
+      "ref6": "Khamis HJ, Roche AF. Przewidywanie wzrostu dorosłych bez użycia wieku kostnego. Pediatrics.",
+      "ref7": "Tanner JM. Wzrost w okresie dojrzewania. Blackwell Scientific Publications.",
+      "ref8": "Greulich WW, Pyle SI. Radiographic Atlas of Skeletal Development of the Hand and Wrist.",
+      "ref9": "Tanner JM, Whitehouse RH. Ocena dojrzałości szkieletowej.",
+      "ref10": "Bayley N, Pinneau SR. Tabele do przewidywania wzrostu dorosłych na podstawie wieku kostnego.",
+      "ref11": "Roche AF, Wainer H, Thissen D. Przewidywanie wzrostu dorosłych dla poszczególnych osób."
+    }
+  },
+  "heightWeightPercentile": {
+    "intro": {
+      "title": "Kalkulator percentyli wzrostu i wagi",
+      "description": "Porównaj swój wzrost i wagę z danymi referencyjnymi populacji Światowej Organizacji Zdrowia (<who>WHO</who>) oraz Centrów Kontroli i Zapobiegania Chorobom (<cdc>CDC</cdc>). Narzędzie obejmuje niemowlęta, małe dzieci, dzieci i dorosłych. Wprowadź swój wiek, płeć, wzrost i wagę, aby natychmiast uzyskać swój percentyl wzrostu i percentyl wagi.",
+      "disclaimer": "Wyłącznie w celach informacyjnych. W celu oceny klinicznej wzrostu skonsultuj się z pediatrą lub lekarzem."
+    },
+    "toolSection": {
+      "title": "Oblicz swój percentyl wzrostu i wagi"
+    },
+    "meaning": {
+      "title": "Co oznacza percentyl wzrostu i wagi?",
+      "p1Before": "Percentyl wzrostu pokazuje, jak pomiar jednej osoby wypada w porównaniu z grupą referencyjną w tym samym wieku i tej samej płci. ",
+      "p1Strong": "Światowa Organizacja Zdrowia",
+      "p1After": " definiuje 50. percentyl jako medianę: dokładnie połowa populacji referencyjnej znajduje się powyżej niego, a połowa poniżej.",
+      "p2": "Percentyl nie oznacza procentu maksimum. Dziecko na 90. percentylu wzrostu jest wyższe niż 90 ze 100 dzieci w tym samym wieku i tej samej płci w grupie referencyjnej. Nie mówi to nic o tym, jak wysokie może urosnąć.",
+      "referencePointsTitle": "Dwa punkty odniesienia, które wyjaśniają skalę:",
+      "p50Label": "50. percentyl wzrostu",
+      "p50Value": "= średnia dla danego wieku i płci",
+      "p90Label": "90. percentyl wzrostu",
+      "p90Value": "= wyższy niż 90% rówieśników w tym samym wieku",
+      "p3": "Niski wynik w kalkulatorze percentyli wzrostu nie oznacza, że coś jest nie tak. Wysoki wynik nie sygnalizuje problemu. Ważny jest wzorzec wielu pomiarów w czasie, a nie pojedyncza liczba w izolacji."
+    },
+    "howItWorks": {
+      "title": "Jak działa Kalkulator percentyli wzrostu i wagi",
+      "descriptionBefore": "Kalkulator percentyli wzrostu i wagi mapuje Twoje dane wejściowe do opublikowanych zestawów danych wzrostu z",
+      "cdcLinkText": "CDC",
+      "descriptionMiddle": "i",
+      "whoLinkText": "WHO",
+      "descriptionAfter": "i zwraca rangę percentylową dla wzrostu i wagi oddzielnie. Proces składa się z czterech kroków:",
+      "step1Label": "Krok 1",
+      "step1Text": "Wprowadź wiek, płeć, wzrost i wagę",
+      "step2Label": "Krok 2",
+      "step2Text": "Dopasuj dane wejściowe do referencyjnego zestawu danych CDC lub WHO",
+      "step3Label": "Krok 3",
+      "step3Text": "Oblicz rangę percentylową, używając krzywych dopasowanych do wieku i płci",
+      "step4Label": "Krok 4",
+      "step4Text": "Wyświetl numeryczny percentyl i wynik w prostym języku",
+      "infantsNoteBefore": "Dla dzieci w wieku od 0 do 2 lat narzędzie wykorzystuje",
+      "infantsNoteLinkText": "WHO Child Growth Standards",
+      "infantsNoteAfter": ". Od 2 roku życia przełącza się na wykresy wzrostu CDC, standardowe odniesienie w praktyce klinicznej w USA. Pediatryczny kalkulator percentyli wzrostu i wagi stosuje prawidłowy zestaw danych na podstawie wprowadzonego wieku. Nie jest wymagane ręczne przełączanie."
+    },
+    "byAgeGroup": {
+      "title": "Kalkulator percentyli wzrostu według grupy wiekowej",
+      "description": "Wzorce wzrostu zmieniają się na różnych etapach życia. Narzędzie dostosowuje swoje dane referencyjne w zależności od tego, czy obliczasz dla niemowlęcia, dziecka w wieku szkolnym, czy osoby dorosłej.",
+      "ages0to2Label": "Wiek 0–2",
+      "ages0to2Value": "WHO Child Growth Standards",
+      "ages2to20Label": "Wiek 2–20",
+      "ages2to20Value": "CDC Growth Charts",
+      "adultsLabel": "Dorośli",
+      "adultsValue": "NHANES Population Data",
+      "boysGirlsLabel": "Chłopcy i dziewczęta",
+      "boysGirlsValue": "Krzywe referencyjne specyficzne dla płci",
+      "infants": {
+        "title": "Kalkulator percentyli wzrostu dla niemowląt",
+        "p1Before": "Kalkulator percentyli wzrostu i wagi niemowląt wykorzystuje",
+        "p1Strong": "WHO Growth Standards",
+        "p1After": "dla dzieci w pierwszych dwóch latach życia. WHO stworzyło ten zestaw danych na podstawie danych zebranych w sześciu krajach, aby stworzyć międzynarodowy punkt odniesienia. Kalkulator percentyli wzrostu niemowląt śledzi długość mierzoną w pozycji leżącej, a nie wzrost w pozycji stojącej. Niemowlęta w tym okresie zyskują kilka centymetrów w ciągu jednego miesiąca, więc niewielkie zmiany percentyli między wizytami są normalne.",
+        "p2": "Kalkulator percentyli wzrostu niemowląt dostarcza najbardziej użytecznych informacji, gdy jest używany podczas wielu wizyt kontrolnych, a nie jako jednorazowe sprawdzenie."
+      },
+      "toddlers": {
+        "title": "Kalkulator percentyli wzrostu dla małych dzieci i dzieci",
+        "p1Before": "Od 2. roku życia do okresu dojrzewania, kalkulator percentyli wzrostu i wagi dziecka opiera się na",
+        "p1Strong": "CDC growth chart",
+        "p1After": "danych referencyjnych. Wzrost w tej fazie jest bardziej stabilny niż w okresie niemowlęcym, ale podlega wyraźnym wzorcom specyficznym dla wieku. Kalkulator percentyli wzrostu dziecka uwzględnia wiek w miesiącach, a nie latach, aby wyniki były dokładne dla dzieci, które wypadają między urodzinami.",
+        "p2": "Rodzice często korzystają z kalkulatora percentyli wzrostu i wagi dla dzieci przed corocznymi badaniami kontrolnymi, aby zrozumieć, co oznaczają liczby, zanim spotkają się z pediatrą. Narzędzie nie zastępuje oceny klinicznej."
+      },
+      "boysGirls": {
+        "title": "Kalkulator percentyli wzrostu dla chłopców i dziewcząt",
+        "p1": "Chłopcy i dziewczęta podążają oddzielnymi krzywymi wzrostu, zwłaszcza po 8. roku życia. Dziewczęta zazwyczaj rozpoczynają skok wzrostowy w wieku od 10 do 11 lat. Chłopcy osiągają szczyt wzrostu między 12. a 14. rokiem życia. Kalkulator percentyli wzrostu dla dziewcząt i kalkulator percentyli wzrostu dla chłopców odwołują się do danych specyficznych dla płci z CDC.",
+        "p2": "Wprowadzenie prawidłowej płci jest najważniejszym czynnikiem dla uzyskania dokładnego wyniku. Dziewczynka mierzona według męskiej tabeli wzrostu wykazałaby znacząco inny percentyl niż jej prawidłowy wynik dla płci żeńskiej. Kalkulator automatycznie stosuje odpowiednią krzywą."
+      },
+      "adults": {
+        "title": "Kalkulator percentyli wzrostu dla dorosłych",
+        "p1Before": "Dorośli nie rosną, więc kalkulator percentyli wzrostu dla dorosłych porównuje Twój wzrost z ustaloną dystrybucją populacji, a nie z krzywą wzrostu dostosowaną do wieku. Dane referencyjne dla dorosłych pochodzą z krajowych badań zdrowotnych, w tym z",
+        "p1Strong": "NHANES",
+        "p1After": ". Kalkulator percentyli wzrostu dla dorosłych to proste porównanie populacyjne: jesteś wyższy lub niższy niż dany procent dorosłych tej samej płci.",
+        "p2": "Kalkulator percentyli wzrostu dla dorosłych mężczyzn wykorzystuje rozkłady specyficzne dla mężczyzn, ponieważ rozkłady wzrostu dorosłych mężczyzn i kobiet są odrębne. Wynik na 50. percentylu w amerykańskim kalkulatorze percentyli wzrostu dla dorosłych mężczyzn odpowiada w przybliżeniu 175 cm (5 stóp 9 cali)."
+      }
+    },
+    "usCalculator": {
+      "title": "Kalkulator percentyli wzrostu w USA",
+      "p1Before": "Amerykański kalkulator percentyli wzrostu opiera się na danych dotyczących wzrostu opublikowanych przez",
+      "p1Strong": "Centers for Disease Control and Prevention (CDC)",
+      "p1After": ". Tabele wzrostu CDC obejmują dzieci i młodzież w wieku od 2 do 20 lat i pochodzą z reprezentatywnych danych populacji USA zebranych w wielu cyklach badań.",
+      "p2Before": "Dla dorosłych Amerykanów kalkulator wykorzystuje rozkłady wzrostu z",
+      "p2Strong": "National Health and Nutrition Examination Survey (NHANES)",
+      "p2After": ". NHANES dostarcza populacji referencyjnej dla wszystkich porównań percentyli dorosłych w tym narzędziu."
+    },
+    "interpret": {
+      "title": "Jak interpretować wynik percentyla wzrostu",
+      "description": "Pojedynczy wynik kalkulatora percentyla wzrostu to migawka, a nie diagnoza. Użyj tej tabeli, aby odczytać swój wynik:",
+      "tableHeaderRange": "Zakres percentyla",
+      "tableHeaderInterpretation": "Interpretacja",
+      "tableHeaderSuggests": "Co sugeruje",
+      "row1Range": "90 do 100",
+      "row1Interpretation": "Bardzo wysoki w porównaniu do rówieśników",
+      "row1Suggests": "Znacznie powyżej średniej dla wieku i płci",
+      "row2Range": "75 do 90",
+      "row2Interpretation": "Powyżej średniej",
+      "row2Suggests": "Wyższy niż większość rówieśników",
+      "row3Range": "25 do 75",
+      "row3Interpretation": "Średni zakres wzrostu",
+      "row3Suggests": "Normalny i oczekiwany dla większości ludzi",
+      "row4Range": "10 do 25",
+      "row4Interpretation": "Poniżej średniej",
+      "row4Suggests": "Niższy niż większość, w granicach normalnej zmienności",
+      "row5Range": "Poniżej 10",
+      "row5Interpretation": "Znacząco niższy niż rówieśnicy",
+      "row5Suggests": "Warto omówić z lekarzem",
+      "note": "Warto zwrócić uwagę na spadek poniżej 10. percentyla. Historia wzrostu w rodzinie, waga urodzeniowa i tempo zmian podczas wielu wizyt to czynniki, które klinicysta bierze pod uwagę jako istotne. Spójny trend w tym samym przedziale jest bardziej informatywny niż pojedynczy wynik percentyla."
+    },
+    "example": {
+      "title": "Przykład obliczania percentyla wzrostu",
+      "description": "Oto jak działa kalkulator percentyla wzrostu na prawdziwym przykładzie:",
+      "inputParamsTitle": "Parametry wejściowe",
+      "ageLabel": "Wiek",
+      "ageValue": "10 lat",
+      "sexLabel": "Płeć",
+      "sexValue": "Mężczyzna",
+      "heightLabel": "Wzrost",
+      "heightValue": "138 cm",
+      "calculatedDataTitle": "Obliczone dane",
+      "cdcMedianLabel": "Mediana referencyjna CDC",
+      "cdcMedianValue": "137 cm",
+      "deviationLabel": "Odchylenie",
+      "deviationValue": "+1 cm powyżej",
+      "resultLabel": "Wynik",
+      "resultValue": "55. percentyl",
+      "scaleMin": "0",
+      "scaleQ1": "25",
+      "scaleMid": "50",
+      "scaleQ3": "75",
+      "scaleMax": "100",
+      "resultHeadline": "55.",
+      "resultSubtext": "— średni zakres",
+      "closing": "To dziecko jest o jeden centymetr wyższe niż mediana dla 10-letniego chłopca. Wynik 55 w kalkulatorze percentyla wzrostu umieszcza go w średnim zakresie, powyżej 55 ze 100 rówieśników. Jeśli ten wynik pozostanie w podobnym przedziale podczas następnej wizyty kontrolnej, potwierdza to stały, spójny wzrost wzdłuż normalnej trajektorii."
+    },
+    "whyUsed": {
+      "title": "Dlaczego percentyle wzrostu są używane w monitorowaniu wzrostu dzieci",
+      "p1": "Światowa Organizacja Zdrowia i Centra Kontroli i Zapobiegania Chorobom zalecają śledzenie percentyli wzrostu i wagi podczas wielu wizyt jako podstawową część opieki pediatrycznej. Pojedynczy pomiar pokazuje, gdzie dziecko znajduje się dzisiaj. Seria pomiarów pokazuje, czy rośnie zgodnie z oczekiwaniami.",
+      "p2Intro": "Konsekwentne śledzenie podczas kontroli pomaga zidentyfikować trzy konkretne wzorce:",
+      "item1": "Zahamowanie wzrostu, gdzie percentyl dziecka znacznie spada między wizytami",
+      "item2": "Wczesne oznaki zaburzeń hormonalnych lub żywieniowych, które wpływają na rozwój dziecka",
+      "item3": "Czy dziecko dobrze wraca do zdrowia po chorobie lub niskiej masie urodzeniowej",
+      "p3Before": "Kalkulator percentyli wzrostu i wagi dziecięcej jest punktem wyjścia do tych rozmów, a nie ich zastępstwem. Klinicyści nanoszą wyniki na",
+      "p3LinkText": "wykres wzrostu CDC",
+      "p3After": "podczas wielu wizyt i szukają spójnego śledzenia wzdłuż tego samego pasma percentyli, zamiast skupiać się na jednej liczbie."
+    },
+    "cta": {
+      "title": "Użyj kalkulatora percentyli",
+      "descriptionBefore": "Wprowadź swój wiek, wzrost i wagę, aby natychmiast obliczyć swój wynik na podstawie danych referencyjnych",
+      "descriptionStrong": "WHO i CDC",
+      "descriptionAfter": ".",
+      "feature1": "Niemowlęta, małe dzieci, dzieci i dorośli",
+      "feature2": "Wyniki percentyli wzrostu i wagi",
+      "feature3": "Interpretacja w prostym języku",
+      "feature4": "Globalne zbiory danych referencyjnych",
+      "buttonText": "Oblicz teraz ↑"
+    },
+    "references": {
+      "title": "Źródła naukowe",
+      "ref1": "World Health Organization Child Growth Standards. WHO, 2006.",
+      "ref2": "CDC Clinical Growth Charts. Centers for Disease Control and Prevention, 2000 (zrewidowane 2022).",
+      "ref3": "NHANES: National Health and Nutrition Examination Survey. CDC National Center for Health Statistics."
+    },
+    "faq": [
+      {
+        "q": "Jaki jest dobry percentyl wzrostu?",
+        "a": "Nie ma jednego dobrego percentyla. Średni zakres w kalkulatorze percentyli wzrostu wynosi od 25. do 75. percentyla, a większość ludzi mieści się w tym przedziale. Ważniejsze jest to, czy Twój percentyl pozostaje spójny w czasie i pasuje do typowego wzorca wzrostu Twojej rodziny."
+      },
+      {
+        "q": "Jak dokładny jest kalkulator percentyli wzrostu?",
+        "a": "Kalkulator percentyli wzrostu jest tak dokładny, jak wprowadzone pomiary. Dane referencyjne stojące za narzędziem pochodzą z dużych, reprezentatywnych na poziomie krajowym zbiorów danych z CDC i WHO. Dokładność poprawia się, gdy dla dzieci wprowadzasz wiek w miesiącach, a nie latach, oraz gdy wzrost jest mierzony bez butów, w pozycji stojącej dla starszych dzieci i leżącej płasko dla niemowląt."
+      },
+      {
+        "q": "Czy dorośli mogą obliczyć swój percentyl wzrostu?",
+        "a": "Tak. Kalkulator percentyli wzrostu dla dorosłych porównuje Twój wzrost z rozkładem populacji, a nie z wykresem wzrostu. Kalkulator percentyli wzrostu dla dorosłych wykorzystuje dane z ankiety NHANES, aby umieścić Twój wzrost w rozkładzie dla osób tej samej płci. Kalkulator percentyli wzrostu dla mężczyzn wykorzystuje dane specyficzne dla mężczyzn, zapewniając precyzyjne porównanie z populacją dorosłych mężczyzn."
+      },
+      {
+        "q": "Czy chłopcy i dziewczęta mają różne percentyle wzrostu?",
+        "a": "Tak. Kalkulator percentyli wzrostu dla dziewcząt i kalkulator percentyli wzrostu dla chłopców używają oddzielnych krzywych referencyjnych CDC, ponieważ wzorce wzrostu męskiego i żeńskiego rozchodzą się po wczesnym dzieciństwie. Dziewczęta rosną szybciej we wczesnym okresie dojrzewania, a chłopcy nadrabiają później. Wprowadzenie niewłaściwej płci daje znacząco niedokładny wynik."
+      },
+      {
+        "q": "Jaka jest różnica między wykresami wzrostu WHO a CDC?",
+        "a": "Standardy wzrostu dzieci WHO obejmują wiek od 0 do 2 lat i są oparte na danych z sześciu krajów, zaprojektowane jako międzynarodowy punkt odniesienia dla optymalnego wzrostu. Wykresy wzrostu CDC obejmują wiek od 2 do 20 lat i są zbudowane na podstawie danych populacji USA, co czyni je standardowym punktem odniesienia do użytku klinicznego w Stanach Zjednoczonych. Ten kalkulator wykorzystuje dane WHO dla niemowląt i dane CDC od 2 roku życia."
+      }
+    ],
+    "toc": [
+      {
+        "id": "calculate-your-height-and-weight-percentile",
+        "label": "Oblicz swój percentyl wzrostu i wagi"
+      },
+      {
+        "id": "what-does-height-and-weight-percentile-mean",
+        "label": "Co oznacza percentyl wzrostu i wagi?"
+      },
+      {
+        "id": "how-the-height-and-weight-percentile-calculator-works",
+        "label": "Jak działa kalkulator percentyli wzrostu i wagi"
+      },
+      {
+        "id": "height-percentile-calculator-by-age-group",
+        "label": "Kalkulator percentyli wzrostu według grupy wiekowej",
+        "subItems": [
+          {
+            "id": "height-percentile-calculator-for-babies-and-infants",
+            "label": "Kalkulator percentyli wzrostu dla niemowląt"
+          },
+          {
+            "id": "height-percentile-calculator-for-toddlers-and-kids",
+            "label": "Kalkulator percentyli wzrostu dla małych dzieci i dzieci"
+          },
+          {
+            "id": "height-percentile-calculator-for-boys-and-girls",
+            "label": "Kalkulator percentyli wzrostu dla chłopców i dziewcząt"
+          },
+          {
+            "id": "height-percentile-calculator-for-adults",
+            "label": "Kalkulator percentyli wzrostu dla dorosłych"
+          }
+        ]
+      },
+      {
+        "id": "us-height-percentile-calculator",
+        "label": "Kalkulator percentyli wzrostu w USA"
+      },
+      {
+        "id": "how-to-interpret-height-percentile-result",
+        "label": "Jak interpretować wynik percentyla wzrostu"
+      },
+      {
+        "id": "example-height-percentile-calculation",
+        "label": "Przykład obliczania percentyla wzrostu"
+      },
+      {
+        "id": "why-height-percentiles-are-used-in-pediatric-growth-monitoring",
+        "label": "Dlaczego percentyle wzrostu są używane w monitorowaniu wzrostu dzieci"
+      },
+      {
+        "id": "try-the-height-and-weight-percentile-calculator",
+        "label": "Wypróbuj kalkulator percentyli wzrostu i wagi"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Często zadawane pytania"
+      },
+      {
+        "id": "references",
+        "label": "Źródła"
+      }
+    ],
+    "tool": {
+      "veryTall": "Bardzo wysoki",
+      "aboveAverage": "Powyżej średniej",
+      "average": "Średnia",
+      "belowAverage": "Poniżej średniej",
+      "significantlyBelowAverage": "Znacząco poniżej średniej",
+      "heightPercentileResult": "Wynik percentyla wzrostu",
+      "shareTextLine1": "Mój wynik percentyla wzrostu:",
+      "shareTextLine2": "{height} cm | Wiek {age} | {gender} | {country}",
+      "shareTextLine3": "Wynik: {percentile}. percentyl — {label}",
+      "shareTextLine4": "obliczone na heightcomparisoncalculator.com",
+      "heightField": "Wzrost",
+      "ageField": "Wiek",
+      "genderField": "Płeć",
+      "countryField": "Kraj",
+      "tallerThanText": "Wyższy niż {percentile}% {gender} w wieku {age} lat w {country}. Na podstawie danych referencyjnych WHO i CDC.",
+      "copyResult": "Kopiuj wynik",
+      "copiedConfirmation": "✓ Skopiowano!",
+      "closeButton": "Zamknij",
+      "footerNote": "heightcomparisoncalculator.com · Wyłącznie w celach informacyjnych",
+      "percentileOrdinalSuffix": ".",
+      "unitCm": "cm",
+      "unitFtIn": "stopy/cale",
+      "heightLabel": "Wzrost",
+      "heightPlaceholder": "np. 175",
+      "unitCmShort": "cm",
+      "feetPlaceholder": "5",
+      "feetAriaLabel": "Wzrost w stopach",
+      "unitFtShort": "ft",
+      "inchesPlaceholder": "9",
+      "inchesAriaLabel": "Wzrost w calach",
+      "unitInShort": "in",
+      "ageYearsLabel": "Wiek (lata)",
+      "agePlaceholder": "np. 25",
+      "genderLabel": "Płeć",
+      "genderMale": "♂ Mężczyzna",
+      "genderFemale": "♀ Kobieta",
+      "countryLabel": "Kraj",
+      "errorInvalidHeight": "Wprowadź prawidłowy wzrost (30–280 cm).",
+      "errorInvalidAge": "Wprowadź prawidłowy wiek (0–100).",
+      "enterYourDetails": "Wprowadź swoje dane",
+      "calculatingButton": "Obliczanie...",
+      "calculateButton": "Oblicz mój percentyl →",
+      "yourPercentile": "Twój percentyl",
+      "heightResultLabel": "Wzrost",
+      "positionOnCurve": "Pozycja na krzywej populacji",
+      "percentileLabel": "Percentyl",
+      "interpretationText": "Jesteś wyższy niż {percentile}% {gender} w wieku {age} w {country}. To plasuje Cię w zakresie {label}.",
+      "scaleShort": "Niski",
+      "scaleAvg": "Śr.",
+      "scaleTall": "Wysoki",
+      "shareButton": "📤 Udostępnij mój wynik",
+      "disclaimerLine1": "Wyłącznie w celach informacyjnych. Skonsultuj się z lekarzem",
+      "disclaimerLine2": "w celu klinicznej oceny wzrostu. Na podstawie danych WHO i CDC."
+    },
+    "bellCurveIllustration": {
+      "interactiveIllustration": "Interaktywna ilustracja",
+      "heading": "Rozkład wzrostu według percentyli",
+      "instructionBefore": "Najedź kursorem na dowolny znacznik percentyla, aby podświetlić ten zakres. ",
+      "purpleDot": "Fioletowa kropka",
+      "instructionAfter": "pokazuje przykładowy wynik na {samplePercentile}-tym percentylu.",
+      "populationFrequency": "Częstotliwość występowania w populacji",
+      "xAxisLabel": "Wzrost (w stosunku do średniej populacji)",
+      "sampleLabel": "Próbka: {samplePercentile}. percentyl",
+      "sampleSubLabel": "Wyższy niż {samplePercentile}% rówieśników",
+      "hoverPrompt": "Najedź kursorem na znacznik percentyla na krzywej, aby zobaczyć, co to oznacza.",
+      "ordinalSuffix": ".",
+      "percentileSuffix": ". percentyl",
+      "hoveredDescription": "{label}. Osoba w tym miejscu jest wyższa niż <pct>{percentile}%</pct> osób w tym samym wieku i tej samej płci.",
+      "hideSampleDot": "Ukryj kropkę próbki",
+      "showSampleDot": "Pokaż kropkę próbki",
+      "footerNote": "50. percentyl to mediana. Połowa populacji znajduje się powyżej, połowa poniżej. Znajdowanie się na 5. lub 95. percentylu nie jest nienormalne — po prostu opisuje pozycję w rozkładzie. Na podstawie danych referencyjnych WHO i CDC.",
+      "label5": "Znacząco poniżej średniej",
+      "label25": "Poniżej średniej",
+      "label50": "Średnia (mediana)",
+      "label75": "Powyżej średniej",
+      "label95": "Wyjątkowo wysoki"
+    },
+    "whoVsCdc": {
+      "yearsAbbrev": "l",
+      "referenceDataGuide": "Przewodnik po danych referencyjnych",
+      "heading": "Z jakich siatek centylowych korzysta ten kalkulator?",
+      "ageRangeSource": "Zakres wieku → źródło danych",
+      "switchPoint": "Wiek 2 lata · Punkt przełączania",
+      "birthLabel": "Narodziny",
+      "age5": "5 lat",
+      "age10": "10 lat",
+      "age15": "15 lat",
+      "age20": "20 lat",
+      "whoTimelineLabel": "WHO Child Growth Standards",
+      "whoTimelineNote": "Od urodzenia do 24 miesięcy · Długość mierzona w pozycji leżącej",
+      "whoAges": "Wiek 0–2",
+      "cdcTimelineLabel": "CDC Growth Charts",
+      "cdcTimelineNote": "Wiek 2–20 · Wzrost na stojąco · Dane populacji USA",
+      "cdcAges": "Wiek 2–20",
+      "growthCurvesSideBySide": "Krzywe wzrostu obok siebie",
+      "whoChartTitle": "Standardy WHO",
+      "whoChartSubtitle": "Od urodzenia do 24 miesięcy (chłopcy)",
+      "cdcChartTitle": "CDC Growth Charts",
+      "cdcChartSubtitle": "Wiek 2–20 (chłopcy)",
+      "lengthAxisLabel": "Długość (cm)",
+      "heightAxisLabel": "Wzrost (cm)",
+      "ageAxisLabel": "Wiek (lata)",
+      "legendMedian": "50. (mediana)",
+      "legend25_75": "25. / 75.",
+      "legend5_95": "5. / 95.",
+      "bottomNoteStrong": "Dlaczego dwa źródła?",
+      "bottomNoteText": "Standardy WHO zostały opracowane na podstawie danych dzieci wychowywanych w optymalnych warunkach w sześciu krajach, co czyni je międzynarodowym punktem odniesienia dla wczesnego wzrostu. Wykresy CDC opierają się na danych populacji USA i są standardem w amerykańskiej praktyce klinicznej dla dzieci w wieku 2 lat i starszych. Ten kalkulator automatycznie przełącza się między nimi w zależności od wprowadzonego wieku."
+    },
+    "exampleVisual": {
+      "eyebrow": "Wynik wizualny · Przykładowe obliczenia",
+      "heading": "Wiek 10 lat, płeć męska, 138 cm → 55. percentyl",
+      "percentileScaleWhere": "Skala percentylowa — gdzie znajduje się {percentile}",
+      "zoneLabelBelow10": "Poniżej 10.",
+      "zoneLabel10to25": "10.–25.",
+      "zoneLabel25to75": "25.–75.",
+      "zoneLabel75to90": "75.–90.",
+      "zoneLabel90to100": "90.–100.",
+      "ordinalSuffix": ".",
+      "averageRangeLabel": "Zakres średni (25.–75.)",
+      "childComparisonText": "To dziecko jest wyższe niż <strong>{count} ze 100</strong> chłopców w wieku {age}. Mieści się komfortowo w normalnym zakresie wzrostu.",
+      "positionOnCdcChart": "Pozycja na siatce centylowej CDC",
+      "cdcChartTitle": "Siatka centylowa CDC — chłopcy (wiek 2–20 lat)",
+      "heightAxisLabel": "Wzrost (cm)",
+      "ageAxisLabel": "Wiek (lata)",
+      "sampleAgeHeight": "Wiek 10 · 138 cm",
+      "samplePercentileLabel": "55. percentyl",
+      "legend5th": "5.",
+      "legend25th": "25.",
+      "legend50th": "50.",
+      "legendMedian": "50. (mediana)",
+      "legend75th": "75.",
+      "legend95th": "95.",
+      "legendSample": "Próbka: 138 cm, wiek 10 lat",
+      "footerNote": "Na podstawie klinicznych siatek centylowych CDC (2000). Zacieniony zielony pasek reprezentuje średni zakres (25.–75. percentyl). Kropka w tym zakresie wskazuje na stały, zdrowy wzrost."
+    }
+  },
+  "idealBodyWeight": {
+    "intro": {
+      "title": "Kalkulator idealnej masy ciała",
+      "description": "<ibw>Idealna masa ciała (IBW)</ibw> to szacunkowy zakres wagi związany z dobrym zdrowiem dla danej wysokości i płci. Ten kalkulator idealnej masy ciała stosuje trzy ustalone formuły kliniczne: metody <devine>Devine'a</devine>, <robinson>Robinsona</robinson> i <hamwi>Hamwi</ego>, aby uzyskać zakres, a nie pojedynczą liczbę. Narzędzie działa dla mężczyzn, kobiet i pacjentów pediatrycznych. Wprowadź swój wzrost i płeć, aby natychmiast obliczyć idealną masę ciała.",
+      "disclaimer": "(IBW to odniesienie kliniczne, a nie cel dotyczący ciała. Waga jest jednym z wielu wskaźników zdrowia. Zawsze omawiaj pytania dotyczące zdrowia związane z wagą z wykwalifikowanym lekarzem.)"
+    },
+    "howToCalculate": {
+      "title": "Jak obliczyć idealną masę ciała",
+      "p1": "Wszystkie trzy formuły IBW mają tę samą logikę. Zaczynają od wagi podstawowej przy dokładnie 5 stopach (152,4 cm) i dodają stałą wartość na każdy cal wzrostu powyżej tej wysokości. Formuły różnią się wagą podstawową i przyrostem na cal, dlatego dają nieco inne wyniki dla tej samej osoby.",
+      "p2": "Ben J. Devine wprowadził swoją formułę w 1974 roku, aby pomóc klinicystom oszacować dawki leków na podstawie wzrostu i wagi. Stała się ona najczęściej cytowaną formułą obliczania idealnej masy ciała w praktyce klinicznej.",
+      "stepsTitle": "Oto jak krok po kroku obliczyć idealną masę ciała metodą Devine'a:",
+      "step1": "Zmierz swój wzrost w stopach i calach.",
+      "step2": "Odejmij 5 stóp, aby uzyskać liczbę cali powyżej wysokości podstawowej.",
+      "step3": "Pomnóż te cale przez przyrost na cal formuły.",
+      "step4": "Dodaj wynik do wagi podstawowej formuły dla Twojej płci.",
+      "p3": "Kalkulator stosuje wszystkie trzy formuły jednocześnie. Otrzymujesz zakres, a nie pojedynczą liczbę, co jest dokładniejszym odzwierciedleniem tego, co obliczenia idealnej masy ciała mogą, a czego nie mogą Ci powiedzieć."
+    },
+    "formulas": {
+      "title": "Wzory do obliczania idealnej masy ciała",
+      "description": "Poniższe trzy wzory obejmują większość klinicznych zastosowań. Każdy z nich stosuje wzór do obliczania idealnej masy ciała jako funkcję liniową wzrostu powyżej 5 stóp. Wszystkie zostały pierwotnie wyprowadzone w kilogramach.",
+      "tableSexHeader": "Płeć",
+      "tableFormulaHeader": "Wzór",
+      "maleLabel": "Mężczyzna",
+      "femaleLabel": "Kobieta",
+      "heightRowLabel": "Wzrost",
+      "calculationRowLabel": "Obliczenie (mężczyzna)",
+      "devine": {
+        "title": "Wzór Devine'a",
+        "p1": "Ben J. Devine opublikował swój wzór w 1974 roku. Stał się on najczęściej cytowanym wzorem IBW w praktyce klinicznej. Przyrost na cal jest identyczny dla mężczyzn i kobiet i wynosi 2,3 kg, ale wagi bazowe różnią się w zależności od płci.",
+        "maleFormula": "50 kg + 2,3 kg na każdy cal powyżej 5 stóp",
+        "femaleFormula": "45,5 kg + 2,3 kg na każdy cal powyżej 5 stóp",
+        "exampleHeightValue": "175 cm = 5 stóp 9 cali",
+        "inchesAboveLabel": "Cale powyżej 5 stóp",
+        "inchesAboveValue": "9",
+        "calculationValue": "50 + (2,3 × 9)",
+        "resultLabel": "IBW Devine'a",
+        "resultValue": "70,7 kg"
+      },
+      "robinson": {
+        "title": "Wzór Robinsona",
+        "p1": "Wzór Robinsona został opublikowany w 1983 roku jako udoskonalenie równania Devine'a. Podnosi on wagę bazową dla mężczyzn do 52 kg i obniża przyrost na cal do 1,9 kg, co daje szczuplejsze oszacowanie dla wyższych mężczyzn. Waga bazowa dla kobiet wzrasta do 49 kg z przyrostem 1,7 kg. Robinson zazwyczaj daje najniższe IBW z trzech wzorów dla wysokich osób.",
+        "maleFormula": "52 kg + 1,9 kg na każdy cal powyżej 5 stóp",
+        "femaleFormula": "49 kg + 1,7 kg na każdy cal powyżej 5 stóp",
+        "exampleHeightValue": "175 cm = 5 stóp 9 cali",
+        "calculationValue": "52 + (1,9 × 9)",
+        "resultLabel": "IBW Robinsona",
+        "resultValue": "69,1 kg"
+      },
+      "hamwi": {
+        "title": "Wzór Hamwi",
+        "p1": "Wzór Hamwi jest najstarszym z trzech, opublikowanym w 1964 roku. Wykorzystuje wyższy przyrost na cal dla mężczyzn i zazwyczaj daje największe oszacowania IBW dla wyższych osób. Pozostaje powszechny w praktyce dietetycznej i klinicznej.",
+        "maleFormula": "48 kg + 2,7 kg na każdy cal powyżej 5 stóp",
+        "femaleFormula": "45,5 kg + 2,2 kg na każdy cal powyżej 5 stóp",
+        "exampleHeightValue": "175 cm = 5 stóp 9 cali",
+        "calculationValue": "48 + (2,7 × 9)",
+        "resultLabel": "IBW Hamwi",
+        "resultValue": "72,3 kg"
+      }
+    },
+    "women": {
+      "title": "Kalkulator idealnej masy ciała dla kobiet",
+      "p1": "Kalkulator idealnej wagi dla kobiet stosuje niższe wagi bazowe niż męskie wersje tych samych wzorów. Odzwierciedla to dwie biologiczne rzeczywistości. Kobiety mają wyższy odsetek tkanki tłuszczowej w stosunku do beztłuszczowej masy ciała. Kobiety mają również niższą średnią gęstość kości i masę mięśniową niż mężczyźni o tym samym wzroście.",
+      "p2": "Wzór Devine'a ustala bazę dla kobiet na 45,5 kg w porównaniu do 50 kg dla mężczyzn. Wzór Robinsona podnosi bazę dla kobiet do 49 kg. Rezultatem jest niższe oszacowanie IBW dla każdego wzrostu w porównaniu do obliczeń dla mężczyzn.",
+      "exampleTitle": "Przykład IBW dla kobiet o wzroście 165 cm (5 stóp 5 cali):",
+      "exampleDevine": "Devine: 57,7 kg (127 funtów)",
+      "exampleRobinson": "Robinson: 56,2 kg (124 funty)",
+      "exampleHamwi": "Hamwi: 56,4 kg (124 funty)",
+      "exampleRangeSummary": "Zdrowy zakres według wzorów: około 56 do 58 kg",
+      "p3": "Czynniki takie jak rozmiar sylwetki, masa mięśniowa wynikająca z treningu i zmienność hormonalna wpływają na to, co dla każdej kobiety oznacza zdrową wagę. Żaden z wzorów nie uwzględnia tych zmiennych. Wynik kalkulatora idealnej masy ciała dla kobiet to zakres referencyjny, a nie cel do osiągnięcia."
+    },
+    "men": {
+      "title": "Kalkulator idealnej masy ciała dla mężczyzn",
+      "p1": "Kalkulator idealnej masy ciała dla mężczyzn daje wyższe szacunki niż wersja dla kobiet dla każdego wzrostu. Odzwierciedla to większą średnią masę mięśniową i gęstość kości w męskich ciałach. Mięśnie ważą więcej niż tłuszcz na jednostkę objętości, więc mężczyzna i kobieta o tym samym wzroście mogą być zdrowi, różniąc się znacznie wagą.",
+      "exampleTitle": "Przykład IBW dla mężczyzn o wzroście 178 cm (5 stóp 10 cali):",
+      "exampleDevine": "Devine: 73 kg (161 funtów)",
+      "exampleRobinson": "Robinson: 71 kg (157 funtów)",
+      "exampleHamwi": "Hamwi: 75 kg (165 funtów)",
+      "exampleRangeSummary": "Zdrowy zakres według wzorów: około 71 do 75 kg",
+      "p2": "Mężczyźni intensywnie trenujący, którzy regularnie podnoszą ciężary, często mają wagę powyżej swojego IBW, jednocześnie utrzymując niski poziom tkanki tłuszczowej. W takich przypadkach IBW jest mniej użytecznym odniesieniem klinicznym niż bezpośredni pomiar składu ciała. Obliczenie idealnej masy ciała dla mężczyzn stanowi użyteczny punkt wyjścia, ale nie zastępuje pełnej oceny stanu zdrowia."
+    },
+    "pediatrics": {
+      "title": "Kalkulator idealnej masy ciała dla pediatrii",
+      "p1": "Wzory IBW dla dorosłych nie mają zastosowania do dzieci. Kalkulator idealnej masy ciała dla pediatrii wykorzystuje zamiast tego odniesienia oparte na wieku i wzroście, ponieważ ciała dzieci wciąż się rozwijają, a ich zdrowy zakres wagi zmienia się nieustannie wraz z ich wzrostem.",
+      "p2Before": "Najczęstszą metodą obliczania idealnej masy ciała w pediatrii jest wykorzystanie wzrostu do oszacowania oczekiwanej wagi na podstawie siatek centylowych. W praktyce klinicznej,",
+      "cdcLinkText": "siatki centylowe CDC",
+      "p2Middle": "oraz",
+      "whoLinkText": "Standardy Wzrostu Dzieci WHO",
+      "p2After": "są standardami referencyjnymi do oceny wzrostu dzieci. IBW dziecka jest zazwyczaj przyjmowane jako waga odpowiadająca 50. centylowi dla jego wzrostu na odpowiedniej siatce centylowej.",
+      "p3": "Kalkulator automatycznie przełącza się na tę metodę siatek centylowych, gdy wprowadzony zostanie wiek poniżej 18 lat. Wynik pojawia się jako zakres wagi, a nie pojedyncza liczba. W przypadku obaw dotyczących wagi dziecka zawsze należy skonsultować się z pediatrą. Śledzenie wzrostu podczas wielu wizyt jest bardziej informacyjne niż pojedynczy pomiar."
+    },
+    "adjusted": {
+      "title": "Skorygowany kalkulator idealnej masy ciała",
+      "p1": "Skorygowany kalkulator idealnej masy ciała ma zastosowanie w warunkach klinicznych u pacjentów, których rzeczywista masa ciała przekracza o ponad 30% ich IBW. W tym momencie, samo użycie IBW do dawkowania leków zaniża aktywność metaboliczną, ponieważ część nadmiernej tkanki tłuszczowej jest nadal metabolicznie aktywna. Skorygowana masa ciała koryguje to.",
+      "formulaTitle": "Wzór na skorygowaną masę ciała:",
+      "formulaText": "Skorygowana masa ciała = IBW + 0.4 × (Rzeczywista masa ciała − IBW)",
+      "exampleTitle": "Przykład — rzeczywista masa ciała 100 kg, Devine IBW 70 kg:",
+      "exampleResult": "= 70 + 0.4 × (100 − 70) = 70 + 12 = ",
+      "exampleResultValue": "82 kg",
+      "p2": "Współczynnik 0.4 odzwierciedla szacowaną metabolicznie aktywną proporcję nadmiernej masy ciała. Skorygowana masa ciała jest najczęściej używana w dawkowaniu antybiotyków aminoglikozydowych, obliczeniach chemioterapii i korektach dawkowania nerkowego. Nie jest to docelowa waga. Jest to narzędzie farmakokinetyczne do podejmowania klinicznych decyzji dotyczących dawkowania."
+    },
+    "percentIbw": {
+      "title": "Obliczanie procentowej idealnej masy ciała",
+      "p1": "Aby obliczyć procentową idealną masę ciała, podziel swoją rzeczywistą masę ciała przez IBW i pomnóż przez 100. Pokazuje to, jak Twoja obecna waga ma się do szacowanej wartości w procentach.",
+      "formulaText": "Procent IBW = (Rzeczywista masa ciała ÷ IBW) × 100",
+      "tableHeaderPercent": "Procent IBW",
+      "tableHeaderStatus": "Status wagi",
+      "row1Percent": "Poniżej 70%",
+      "row1Status": "Poważna niedowaga",
+      "row2Percent": "70 do 89%",
+      "row2Status": "Niedowaga",
+      "row3Percent": "90 do 110%",
+      "row3Status": "Normalna waga",
+      "row4Percent": "110 do 120%",
+      "row4Status": "Nadwaga",
+      "row5Percent": "Powyżej 120%",
+      "row5Status": "Zakres ryzyka otyłości",
+      "p2": "Procent IBW jest używany w klinicznych ocenach żywieniowych do oznaczania pacjentów, którzy potrzebują interwencji żywieniowej. Procent idealnej masy ciała poniżej 70% jest związany ze znacznym niedoborem żywieniowym. Wyniki powyżej 120% są używane jako jeden z progów w decyzjach dotyczących dawkowania związanych z otyłością."
+    },
+    "healthyRange": {
+      "title": "Zakres zdrowej wagi",
+      "p1": "Zakres zdrowej wagi oscyluje wokół wyniku Twojej idealnej masy ciała (IBW), a nie w jednym punkcie. Ponieważ trzy wzory dają nieco inne wartości dla tej samej osoby, rozpiętość między najniższym a najwyższym wynikiem określa praktyczny zakres zdrowej wagi. Dla większości dorosłych ta rozpiętość wynosi od 3 do 5 kg we wszystkich trzech wzorach.",
+      "illustrativeTitle": "Zakres ilustracyjny — mężczyzna, 175 cm (5 stóp 9 cali):",
+      "belowLabel": "Poniżej IBW",
+      "belowValue": "Poniżej 69 kg",
+      "healthyLabel": "Zdrowa (69–73 kg)",
+      "healthyValue": "69–73 kg (zdrowa)",
+      "aboveLabel": "Powyżej IBW",
+      "aboveValue": "73–88 kg",
+      "obesityLabel": "Ryzyko otyłości",
+      "obesityValue": "Powyżej 88 kg"
+    },
+    "vsBmi": {
+      "title": "Idealna masa ciała a BMI",
+      "p1": "Wskaźnik masy ciała (BMI) i idealna masa ciała mierzą różne rzeczy i odpowiadają na różne pytania. BMI ocenia kategorię wagi, dzieląc wagę w kilogramach przez wzrost w metrach podniesiony do kwadratu. Zwraca etykietę kategorii: niedowaga, norma, nadwaga lub otyłość. Obliczanie idealnej masy ciała, w przeciwieństwie do tego, podaje szacunkową wagę, do której należy dążyć, a nie etykietę kategorii.",
+      "tableHeaderMeasure": "Miara",
+      "tableHeaderWhatItDoes": "Co mierzy",
+      "tableHeaderLimitation": "Główne ograniczenie",
+      "row1Measure": "Idealna masa ciała",
+      "row1WhatItDoes": "Szacuje docelową wagę na podstawie wzrostu i płci",
+      "row1Limitation": "Ignoruje skład ciała, rozmiar ramy i wiek",
+      "row2Measure": "Wskaźnik masy ciała",
+      "row2WhatItDoes": "Klasyfikuje status wagi za pomocą wagi i wzrostu",
+      "row2Limitation": "Te same ograniczenia, plus nie uwzględnia różnic płciowych w składzie ciała",
+      "p2": "Żadna z tych metryk nie uwzględnia, jak waga jest rozłożona między mięśnie, tłuszcz i kości. Osoba z dużą masą mięśniową może mieć normalne IBW i wysokie BMI. Osoba z niską masą mięśniową może mieć normalne BMI i znajdować się powyżej swojego IBW. Aby uzyskać pełny obraz, najlepiej jest używać obu w połączeniu z danymi o składzie ciała od lekarza.",
+      "scrollButtonText": "Przewiń do góry i oblicz teraz ↑"
+    },
+    "references": {
+      "title": "Źródła",
+      "ref1": "Devine BJ (1974). Gentamicin therapy. Drug Intelligence and Clinical Pharmacy.",
+      "ref2": "Robinson JD et al. (1983). Estimation of ideal body weight. American Journal of Hospital Pharmacy.",
+      "ref3": "Hamwi GJ (1964). Changing dietary concepts. In: Diabetes Mellitus: Diagnosis and Treatment. American Diabetes Association.",
+      "ref4": "CDC Growth Charts. Centers for Disease Control and Prevention.",
+      "ref5": "WHO Child Growth Standards. World Health Organization."
+    },
+    "faq": [
+      {
+        "q": "Jaka jest definicja idealnej masy ciała?",
+        "a": "Idealna Masa Ciała (IMC) to kliniczne oszacowanie zakresu wagi związanego z najniższym ryzykiem chorób przewlekłych i najlepszymi ogólnymi wynikami zdrowotnymi dla danej wysokości i płci. Pierwotnie została opracowana w celu standaryzacji dawkowania leków, ale obecnie jest szeroko stosowana w kontekstach zdrowotnych i fitness."
+      },
+      {
+        "q": "Jak dokładne są wzory do obliczania idealnej masy ciała?",
+        "a": "Są to przydatne szacunki statystyczne, ale mają znaczące ograniczenia. Wzory IMC nie rozróżniają masy mięśniowej od tkanki tłuszczowej. Bardzo umięśniony sportowiec może ważyć więcej niż jego „idealna” waga, będąc jednocześnie niezwykle zdrowym. Powinny być używane jako jeden z wielu wskaźników zdrowia, a nie jako ostateczne słowo na temat Twojego stanu zdrowia."
+      },
+      {
+        "q": "Jaka jest różnica między wzorami Devine, Robinson i Hamwi?",
+        "a": "Wzór Devine jest najczęściej stosowany w środowiskach medycznych. Robinson opracował nieco szczuplejszy model specjalnie dla wyższych osób. Hamwi to bardziej tradycyjny wzór często używany w poradnictwie żywieniowym. Większość ludzi uzyskuje najlepszy wynik, patrząc na średni zakres uzyskany ze wszystkich trzech."
+      },
+      {
+        "q": "Czy obliczanie idealnej masy ciała jest lepsze niż BMI?",
+        "a": "Żadne z nich nie jest idealne. BMI podaje kategorię (niedowaga, norma itp.), podczas gdy IMC podaje konkretną docelową wagę. IMC jest często bardziej intuicyjne dla osób, ale podobnie jak BMI, nie może uwzględniać składu ciała (stosunku mięśni do tłuszczu)."
+      }
+    ],
+    "toc": [
+      {
+        "id": "ideal-body-weight-calculator",
+        "label": "Kalkulator idealnej masy ciała"
+      },
+      {
+        "id": "how-to-calculate-ideal-body-weight",
+        "label": "Jak obliczyć idealną masę ciała"
+      },
+      {
+        "id": "ideal-body-weight-calculation-formulas",
+        "label": "Wzory do obliczania idealnej masy ciała",
+        "subItems": [
+          {
+            "id": "devine-formula",
+            "label": "Wzór Devine"
+          },
+          {
+            "id": "robinson-formula",
+            "label": "Wzór Robinson"
+          },
+          {
+            "id": "hamwi-formula",
+            "label": "Wzór Hamwi"
+          }
+        ]
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-women",
+        "label": "Kalkulator idealnej masy ciała dla kobiet"
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-men",
+        "label": "Kalkulator idealnej masy ciała dla mężczyzn"
+      },
+      {
+        "id": "ideal-body-weight-calculator-for-pediatrics",
+        "label": "Kalkulator idealnej masy ciała dla dzieci"
+      },
+      {
+        "id": "adjusted-ideal-body-weight-calculator",
+        "label": "Skorygowany kalkulator idealnej masy ciała"
+      },
+      {
+        "id": "percent-ideal-body-weight-calculation",
+        "label": "Obliczanie procentowej idealnej masy ciała"
+      },
+      {
+        "id": "healthy-weight-range",
+        "label": "Zakres zdrowej wagi"
+      },
+      {
+        "id": "ideal-body-weight-vs-bmi",
+        "label": "Idealna masa ciała a BMI"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Często zadawane pytania"
+      },
+      {
+        "id": "references",
+        "label": "Źródła"
+      }
+    ],
+    "tool": {
+      "title": "Kalkulator idealnej masy ciała",
+      "description": "Użyj kalkulatora, aby znaleźć swoją idealną masę ciała w kilogramach lub funtach. Wprowadź swój wiek, wzrost, płeć i aktualną wagę, aby zobaczyć, jak bardzo różnisz się od szacowanej idealnej wagi na podstawie trzech wzorów.",
+      "unitMetric": "Metryczny (kg / cm)",
+      "unitImperial": "Imperialny (stopy-cale)",
+      "heightLabel": "Wzrost",
+      "heightPlaceholder": "np. 175 ",
+      "unitCm": "cm",
+      "feetPlaceholder": "np. 5 ",
+      "feetAriaLabel": "Wzrost w stopach",
+      "unitFt": "ft",
+      "inchesPlaceholder": "np. 5 ",
+      "inchesAriaLabel": "Wzrost w calach",
+      "unitIn": "cale",
+      "sexLabel": "Płeć",
+      "sexMale": "Mężczyzna",
+      "sexFemale": "Kobieta",
+      "currentWeightLabel": "Aktualna waga (opcjonalnie — odblokowuje odczyt różnicy)",
+      "weightPlaceholder": "np. 80",
+      "unitKg": "kg",
+      "invalidInputTitle": "Nieprawidłowe dane wejściowe",
+      "invalidInputText": "Wprowadź prawidłowy wzrost i wagę, aby obliczyć wyniki.",
+      "ideaBodyWeightResultLabel": "Idealna masa ciała",
+      "rangeUnit": "kg (zakres)",
+      "healthyWeightRangeLabel": "Zakres zdrowej wagi",
+      "differenceLabel": "Różnica od obecnej",
+      "differenceNone": "—",
+      "differenceAbove": "+{amount} kg powyżej",
+      "differenceBelow": "{amount} kg poniżej",
+      "differenceWithin": "W idealnym zakresie",
+      "devineYear": "Devine (1974)",
+      "robinsonYear": "Robinson (1983)",
+      "hamwiYear": "Hamwi (1964)",
+      "kgLabel": "kg",
+      "badgeFree": "Bezpłatnie",
+      "badgeNoAccount": "Konto nie jest wymagane",
+      "badgeResultsInKg": "Wyniki w kg",
+      "badgeFormulas": "Na podstawie wzorów Devine'a, Robinsona i Hamwi'ego"
+    },
+    "healthyWeightRange": {
+      "intro1": "Twój wynik idealnej masy ciała (IBW) to oparty na wzorach szacunek wagi, która jest uważana za odpowiednią dla Twojego wzrostu i płci. Cztery wzory, których używa ten kalkulator —",
+      "formulaNames": "Devine, Hamwi, Robinson i Miller",
+      "intro1After": "— zostały pierwotnie opracowane w celu standaryzacji dawek leków w warunkach klinicznych. Nie zostały zaprojektowane jako cele estetyczne. Każdy wzór daje nieco inną liczbę, a kalkulator pokazuje wszystkie cztery, abyś mógł zobaczyć, gdzie skupiają się szacunki.",
+      "intro2": "Żaden ze wzorów nie uwzględnia masy mięśniowej, gęstości kości ani rozmiaru ramy ciała. Osoba o większej ramie lub większej masie mięśniowej naturalnie będzie miała wagę powyżej szacowanej IBW bez żadnych obaw zdrowotnych. Traktuj wynik jako ogólny punkt odniesienia, a nie precyzyjny cel.",
+      "healthyRangeQuestionTitle": "Co to jest zdrowy zakres wagi?",
+      "healthyRangeTextBefore": "WHO definiuje zdrową wagę jako BMI między",
+      "bmiRangeValue": "18,5 a 25 kg/m²",
+      "healthyRangeTextMiddle": ". Dla większości dorosłych oznacza to zakres około",
+      "windowValue": "14–16 kg",
+      "healthyRangeTextAfter": "wokół mediany szacowanej IBW. Znalezienie się w tym przedziale jest uważane za klinicznie normalne. Powyższe wzory zazwyczaj mieszczą się w środku tego przedziału.",
+      "underweightLabel": "Niedowaga",
+      "healthyBmiRangeLabel": "Zdrowy zakres BMI",
+      "overweightLabel": "Nadwaga",
+      "bmiUnder185": "BMI < 18.5",
+      "bmiRangeShort": "18.5–25",
+      "bmiOver25": "> 25",
+      "distanceTableIntro": "Poniższa tabela pokazuje, jak odczytać odległość od Twojej obecnej wagi do szacunkowej idealnej masy ciała (IBW):",
+      "distanceHeaderDistance": "Odległość od szacunkowej IBW",
+      "distanceHeaderMeaning": "Co to sugeruje",
+      "distanceRow1Dist": "W granicach ±3 kg",
+      "distanceRow1Meaning": "Bardzo blisko szacunków formuły. W granicach normalnych wahań.",
+      "distanceRow2Dist": "3–7 kg powyżej",
+      "distanceRow2Meaning": "Nieznacznie powyżej szacunków. Nadal prawdopodobnie w zdrowym zakresie BMI, w zależności od wzrostu.",
+      "distanceRow3Dist": "7–15 kg powyżej",
+      "distanceRow3Meaning": "Wyraźnie powyżej szacowanej idealnej masy ciała (IBW). Warto sprawdzić BMI i skonsultować się z lekarzem.",
+      "distanceRow4Dist": "Ponad 15 kg powyżej",
+      "distanceRow4Meaning": "Znacząco powyżej IBW. Zalecana konsultacja kliniczna.",
+      "distanceRow5Dist": "3–7 kg poniżej",
+      "distanceRow5Meaning": "Nieznacznie poniżej. Może nadal mieścić się w zdrowym zakresie BMI. Monitoruj, jeśli waga nadal spada.",
+      "distanceRow6Dist": "Ponad 7 kg poniżej",
+      "distanceRow6Meaning": "Poniżej progu zdrowego BMI. Skonsultuj się z lekarzem.",
+      "referenceTablesLabel": "Tabele referencyjne",
+      "referenceTablesTitle": "Zdrowa waga w zależności od wzrostu — mężczyźni i kobiety",
+      "referenceTablesDescription": "Szacunki IBW ze wszystkich czterech wzorów plus zakres zdrowej wagi BMI (18,5–25 kg/m²) dla najczęstszych wzrostów dorosłych. Przełączaj między kg a funtami. Najedź kursorem na dowolny wiersz, aby go podświetlić.",
+      "tabMen": "♂ Mężczyźni",
+      "tabWomen": "♀ Kobiety",
+      "healthyBmiRangeWhoLabel": "Zakres zdrowego BMI (WHO)",
+      "tableHeightCm": "Wzrost (cm)",
+      "tableHeightFt": "Wzrost (stopy)",
+      "tableHealthyBmiRange": "Zakres zdrowego BMI ({unit})",
+      "sourcesNote": "Źródła: Devine BJ (1974). Robinson JD i in. (1983). Miller DR i in. (1983). Hamwi GJ (1964). Zakres zdrowego BMI oparty na zalecanym przez WHO progu 18,5–25 kg/m². Wartości te są jedynie szacunkami referencyjnymi i nie stanowią porady medycznej."
+    }
+  },
+  "heightDifference": {
+    "intro": {
+      "title": "Kalkulator różnicy wzrostu",
+      "description": "Kalkulator różnicy wzrostu porównuje wzrost dwóch osób i podaje różnicę między nimi. Wprowadź dwa wzrosty w centymetrach lub stopach i calach. Narzędzie natychmiast oblicza różnicę wzrostu i różnicę procentową. Porównaj się z przyjacielem, partnerem lub kimkolwiek innym w ciągu kilku sekund."
+    },
+    "calculateSection": {
+      "title": "Oblicz różnicę wzrostu",
+      "description": "Skorzystaj z poniższego kalkulatora różnicy wzrostu. Wprowadź oba wzrosty, wybierz jednostkę, a porównanie będzie aktualizować się na żywo.",
+      "badgeFree": "Bezpłatnie",
+      "badgeNoAccount": "Nie wymaga konta",
+      "badgeSupportsUnits": "Obsługuje cm i stopy/cale",
+      "badgeUpdatesLive": "Aktualizuje się na żywo"
+    },
+    "howToCalculate": {
+      "title": "Jak obliczyć różnicę wzrostu",
+      "p1": "Obliczanie różnicy wzrostu wykorzystuje jedną operację: odejmij wzrost niższej osoby od wzrostu osoby wyższej. Kalkulator różnicy wzrostu automatycznie identyfikuje, która osoba jest wyższa, więc wynik jest zawsze liczbą dodatnią, niezależnie od tego, który wzrost wprowadzisz jako pierwszy.",
+      "formulaTitle": "Wzór na różnicę wzrostu:",
+      "formulaText": "Różnica wzrostu = Wzrost wyższej osoby − Wzrost niższej osoby",
+      "personALabel": "Osoba A",
+      "personAValue": "180 cm",
+      "personBLabel": "Osoba B",
+      "personBValue": "165 cm",
+      "differenceLabel": "Różnica",
+      "differenceValue": "180 − 165 = 15 cm",
+      "p2": "Odejmowanie to jedyna operacja. Kalkulator różnicy wzrostu wykonuje ją w momencie wprowadzenia obu wartości. Nie są potrzebne żadne dodatkowe kroki."
+    },
+    "percentage": {
+      "title": "Procentowa różnica wzrostu",
+      "p1": "Różnica procentowa dodaje proporcjonalny wymiar do surowej luki. Różnica 10 cm między dwiema osobami, z których obie mają powyżej 180 cm, stanowi znacznie mniejszą względną lukę niż te same 10 cm między dwiema osobami o wzroście około 155 cm. Procent sprawia, że luka jest znacząca niezależnie od bezwzględnego wzrostu.",
+      "formulaTitle": "Wzór na różnicę procentową:",
+      "formulaText": "Różnica procentowa = (Różnica wzrostu ÷ Wyższy wzrost) × 100",
+      "heightDiffLabel": "Różnica wzrostu",
+      "heightDiffValue": "15 cm",
+      "tallerHeightLabel": "Wyższy wzrost",
+      "tallerHeightValue": "180 cm",
+      "calculationLabel": "Obliczenie",
+      "calculationValue": "15 ÷ 180 × 100",
+      "percentDiffLabel": "Różnica procentowa",
+      "percentDiffValue": "8.3%",
+      "p2": "Oznacza to, że Osoba B jest o 8,3% niższa w stosunku do Osoby A. Kalkulator różnicy wzrostu automatycznie podaje tę wartość wraz z bezwzględną luką. Obie wartości aktualizują się na żywo po zmianie któregokolwiek wzrostu."
+    },
+    "couple": {
+      "title": "Kalkulator różnicy wzrostu dla par",
+      "p1": "Porównywanie wzrostu między partnerami romantycznymi jest jednym z najczęstszych zastosowań kalkulatora różnicy wzrostu. Pary chcą wiedzieć, jak wygląda różnica na zdjęciach, jak wypada w porównaniu ze średnią, lub po prostu z ciekawości. Narzędzie działa tak samo dla dowolnych dwóch osób.",
+      "globalAvgLabel": "Średnia globalna różnica (pary męsko-żeńskie)",
+      "globalAvgValue": "12 do 15 cm",
+      "feetInLabel": "W stopach i calach",
+      "feetInValue": "około 5 do 6 cali",
+      "p2": "Dane z badań wskazują, że średnia różnica wzrostu w parach męsko-żeńskich na świecie wynosi około 12 do 15 cm (około 5 do 6 cali), choć różni się to w zależności od kraju i osoby. Nie ma standardowej definicji normalnej różnicy wzrostu w parze. Liczby to tylko liczby."
+    },
+    "chartSection": {
+      "title": "Tabela różnic wzrostu",
+      "p1": "Poniższa tabela przedstawia typowe pary wzrostu i ich różnice. Użyj jej jako szybkiego odniesienia bez wprowadzania wartości do narzędzia.",
+      "p2": "Różnica procentowa rośnie wraz z bezwzględną luką, ale zależy również od wyższego wzrostu. Różnica 15 cm jest proporcjonalnie większa, gdy wyższa osoba ma 165 cm, niż gdy ma 190 cm."
+    },
+    "visualSection": {
+      "title": "Wizualne porównanie wzrostu",
+      "p1": "Wizualne porównanie wzrostu przedstawia różnicę między dwiema osobami jako proporcjonalną grafikę, a nie tylko liczbę. Jeśli jedna osoba jest o 10% wyższa, jej słupek na ekranie jest o 10% wyższy. Różnica staje się natychmiast czytelna bez konieczności odczytywania cyfr.",
+      "p2": "Jest to szczególnie przydatne, gdy surowa liczba jest niejednoznaczna. Różnica 10 cm między dwiema osobami o wzroście około 160 cm wygląda zupełnie inaczej niż ta sama różnica między dwiema osobami o wzroście powyżej 185 cm. Kalkulator różnicy wzrostu automatycznie generuje tę skalowaną wizualizację na podstawie wprowadzonych wartości."
+    },
+    "unitsSection": {
+      "title": "Różnica wzrostu w różnych jednostkach",
+      "p1": "Różnicę wzrostu można obliczyć w centymetrach lub w stopach i calach. Zmiana jednostek jednocześnie konwertuje zarówno dane wejściowe, jak i wyjściowe. Przed wprowadzeniem wartości nie jest potrzebna ręczna konwersja.",
+      "tableHeaderPersonA": "Osoba A",
+      "tableHeaderPersonB": "Osoba B",
+      "tableHeaderDifferenceCm": "Różnica (cm)",
+      "tableHeaderDifferenceIn": "Różnica (cale)"
+    },
+    "cta": {
+      "title": "Wypróbuj Kalkulator różnicy wzrostu",
+      "descriptionLine1": "Wprowadź dwie wysokości powyżej, aby natychmiast obliczyć różnicę wzrostu.",
+      "descriptionLine2": "Wizualne porównanie i procentowa różnica aktualizują się w miarę wpisywania.",
+      "feature1": "Różnica i różnica procentowa",
+      "feature2": "Proporcjonalne porównanie wizualne",
+      "feature3": "Obsługuje cm i stopy/cale",
+      "feature4": "Darmowy, bez konta, na dowolnym urządzeniu",
+      "buttonText": "Przewiń do góry i porównaj teraz ↑"
+    },
+    "references": {
+      "title": "Źródła",
+      "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016.",
+      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE."
+    },
+    "faq": [
+      {
+        "q": "Jaka jest normalna różnica wzrostu między parami?",
+        "a": "Nie ma ustalonego standardu. Dane z badań wskazują, że średnia różnica w parach męsko-żeńskich wynosi około 12 do 15 cm (5 do 6 cali) na całym świecie. Kalkulator różnicy wzrostu par pokazuje różnicę między dowolnymi dwoma wzrostami. To, co uważa się za normalne, różni się w zależności od kraju, kultury i indywidualnych preferencji."
+      },
+      {
+        "q": "Jak obliczyć różnicę wzrostu?",
+        "a": "Odejmij wzrost niższej osoby od wzrostu wyższej osoby: Różnica wzrostu = Wzrost wyższej osoby − Wzrost niższej osoby. Dla 180 cm i 165 cm różnica wynosi 15 cm. Aby uzyskać procent, podziel 15 przez 180 i pomnóż przez 100, co daje 8,3%."
+      },
+      {
+        "q": "Czy kalkulator różnicy wzrostu może pokazać różnicę procentową?",
+        "a": "Tak. Ten kalkulator różnicy wzrostu podaje zarówno bezwzględną różnicę, jak i różnicę procentową. Procent jest obliczany w stosunku do wzrostu wyższej osoby i aktualizuje się automatycznie, gdy zmienia się jedna z wartości."
+      },
+      {
+        "q": "Jakie jednostki można używać w kalkulatorze różnicy wzrostu?",
+        "a": "Ten kalkulator różnicy wzrostu obsługuje centymetry oraz stopy/cale. Możesz w dowolnym momencie zmienić jednostki, a zarówno dane wejściowe, jak i wynik zostaną automatycznie przeliczone. Nie jest potrzebna ręczna konwersja."
+      }
+    ],
+    "toc": [
+      {
+        "id": "calculate-height-difference",
+        "label": "Oblicz różnicę wzrostu"
+      },
+      {
+        "id": "how-to-calculate-height-difference",
+        "label": "Jak obliczyć różnicę wzrostu"
+      },
+      {
+        "id": "height-difference-percentage",
+        "label": "Procentowa różnica wzrostu"
+      },
+      {
+        "id": "couple-height-difference-calculator",
+        "label": "Kalkulator różnicy wzrostu par"
+      },
+      {
+        "id": "height-difference-chart",
+        "label": "Wykres różnicy wzrostu"
+      },
+      {
+        "id": "visual-height-comparison",
+        "label": "Wizualne porównanie wzrostu"
+      },
+      {
+        "id": "height-difference-in-different-units",
+        "label": "Różnica wzrostu w różnych jednostkach"
+      },
+      {
+        "id": "try-the-height-difference-calculator",
+        "label": "Wypróbuj Kalkulator różnicy wzrostu"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Często zadawane pytania"
+      },
+      {
+        "id": "references",
+        "label": "Źródła"
+      }
+    ],
+    "tool": {
+      "unitMetric": "Metryczny (cm)",
+      "unitImperial": "Imperialny (stopy/cale)",
+      "person1Label": "Osoba 1",
+      "person2Label": "Osoba 2",
+      "cmPlaceholder": "Centymetry",
+      "ftPlaceholder": "Stopy",
+      "inPlaceholder": "Cale",
+      "unitCm": "cm",
+      "unitFt": "stopy",
+      "unitIn": "cale",
+      "heightDifferenceLabel": "Różnica wzrostu",
+      "percentDifferenceLabel": "% różnicy",
+      "isTallerText": "{person} jest wyższy",
+      "tallerPersonLabel": "Wyższa osoba",
+      "visualComparisonLabel": "Wizualne porównanie",
+      "enterBothHeightsPrompt": "Wprowadź oba wzrosty powyżej, aby zobaczyć porównanie."
+    },
+    "coupleCalc": {
+      "partner1Label": "Partner 1",
+      "partner2Label": "Partner 2",
+      "pctTallerText": "wyższy o {pct}%",
+      "resultSentence": "{p1} ({h1} cm) jest <strong>o {diff} cm ({pct}%) wyższy</strong> niż {p2} ({h2} cm)"
+    },
+    "chartTable": {
+      "headerPersonA": "Osoba A",
+      "headerPersonB": "Osoba B",
+      "headerDifference": "Różnica",
+      "headerPercentDifference": "% Różnicy"
+    },
+    "visualComp": {
+      "person1Label": "Osoba 1",
+      "person2Label": "Osoba 2",
+      "pairButtonText": "{h1} cm vs {h2} cm",
+      "diffCmText": "{diff} cm różnicy",
+      "isTallerText": "{person} jest wyższy"
+    }
+  },
+  "averageHeightByCountry": {
+    "h1": "Średni wzrost według kraju",
+    "intro": {
+      "description": "Średni wzrost różni się bardziej, niż większość ludzi się spodziewa. Różnica między najwyższą a najniższą populacją na świecie wynosi prawie 24 cm dla mężczyzn i 21 cm dla kobiet. Ta strona porównuje średni wzrost człowieka na całym świecie dla obu płci, od Holandii na szczycie do Timoru Wschodniego u podstawy, opierając się na danych z <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> i <wpr>World Population Review</wpr>. Mężczyźni i kobiety podążają tym samym ogólnym wzorcem geograficznym, z Europą Północną na szczycie i częściami Azji Południowej i Środkowej na dole."
+    },
+    "globalTable": {
+      "title": "Średni wzrost według kraju (tabela globalna)",
+      "unitToggle": {
+        "metric": "Metryczny (cm)",
+        "imperial": "USA (stopy/cale)"
+      },
+      "description": "Poniższa tabela przedstawia średni wzrost mężczyzn według kraju, średni wzrost kobiet oraz łączną średnią dla 46 krajów. Kliknij dowolny nagłówek kolumny, aby posortować. Użyj pola wyszukiwania, aby znaleźć konkretny kraj.",
+      "searchPlaceholder": "Szukaj krajów...",
+      "tableHeaders": {
+        "rank": "Ranking",
+        "country": "Kraj",
+        "avgMale": "Śr. mężczyzn",
+        "avgFemale": "Śr. kobiet"
+      },
+      "noResults": "Nie znaleziono krajów pasujących do „{query}”",
+      "sourceNote": "Źródło: NCD Risk Factor Collaboration (NCD-RisC) / World Population Review. Dorośli w wieku ~19 lat."
+    },
+    "common": {
+      "tabMen": "Mężczyźni",
+      "tabWomen": "Kobiety",
+      "tabMale": "Mężczyzna",
+      "tabFemale": "Kobieta"
+    },
+    "tallestCountries": {
+      "title": "Najwyższe kraje na świecie",
+      "barsLabelMen": "10 najwyższych narodów — średni wzrost mężczyzn (cm)",
+      "barsLabelWomen": "10 najwyższych narodów — średni wzrost kobiet (cm)",
+      "captionMen": "Mężczyźni w Holandii mają średnio 183,8 cm wzrostu, co jest najwyższą odnotowaną średnią krajową na świecie. Osiem z dziesięciu najwyższych narodów dla mężczyzn to kraje europejskie.",
+      "captionWomen": "Kobiety w Holandii i Czarnogórze mają średnio odpowiednio 170,4 cm i 170,0 cm wzrostu — to najwyższe populacje kobiet w historii. Łotwa i Estonia plasują się tuż za nimi.",
+      "paragraph1": "Holandia od dziesięcioleci zajmuje czołowe miejsca w światowych rankingach wzrostu mężczyzn, ze średnią 183,8 cm, czyli nieco poniżej 6'1\". Dania ma 181,9 cm, Niemcy 180,3 cm, a Norwegia 180,5 cm.",
+      "paragraph2": "Trzy czynniki wzajemnie się wzmacniają w tej grupie: obfite spożycie produktów mlecznych od wczesnego dzieciństwa, silna publiczna opieka zdrowotna, która zmniejsza zachorowalność w latach wzrostu, oraz długoterminowa selekcja genetyczna w dobrze odżywionych populacjach.",
+      "paragraph3": "Czarnogóra i Estonia niedawno wyprzedziły wiele tradycyjnie wysokich krajów Europy Zachodniej, co odzwierciedla szybką poprawę standardów życia po okresie postsowieckim."
+    },
+    "shortestCountries": {
+      "title": "Najniższe kraje na świecie",
+      "barsLabelMen": "10 najniższych narodów — średni wzrost mężczyzn (cm)",
+      "barsLabelWomen": "10 najniższych narodów — średni wzrost kobiet (cm)",
+      "captionMen": "Mężczyźni z Timoru Wschodniego mierzą średnio 159,8 cm, co stanowi najniższą średnią męską spośród wszystkich monitorowanych krajów. Sześć z dziesięciu najniższych krajów dla mężczyzn znajduje się w Azji Południowej lub Południowo-Wschodniej.",
+      "captionWomen": "Kobiety z Gwatemali i Filipin mierzą średnio około 149 cm, co stanowi najniższą średnią żeńską odpowiednio w obu Amerykach i Azji Południowo-Wschodniej.",
+      "paragraph1": "Najniższe populacje zamieszkują głównie Azję Południową i Południowo-Wschodnią oraz Amerykę Środkową. Timor Wschodni odnotowuje najniższą łączną średnią na świecie, a tuż za nim plasują się Gwatemala i Laos.",
+      "paragraph2": "W Gwatemali przewlekłe niedożywienie dotyka prawie jedną trzecią dzieci poniżej piątego roku życia, bezpośrednio hamując rozwój szkieletu. Bangladesz i Nepal borykają się z podobnymi ograniczeniami: dieta uboga w białko, ograniczony dostęp do opieki zdrowotnej i strukturalne ubóstwo, które ogranicza potencjał wzrostu od urodzenia.",
+      "paragraph3": "Te liczby nie są genetycznymi sufitami. Są to w dużej mierze wskaźniki historycznego niedorozwoju, odwracalne, jak pokazały Korea Południowa i Chiny w XX wieku."
+    },
+    "tallestShortest": {
+      "title": "Najwyższe i najniższe kraje według średniego wzrostu",
+      "tabs": {
+        "tallestVsShortest": "Najwyższe vs najniższe",
+        "top10Tallest": "10 najwyższych",
+        "bottom10Shortest": "10 najniższych"
+      },
+      "chartTitleTallestVsShortest": "10 krajów obejmujących pełny globalny zakres wzrostu — mężczyźni (niebieski) i kobiety (turkusowy)",
+      "chartTitleTop10": "10 najwyższych narodów — mężczyźni vs kobiety",
+      "chartTitleBottom10": "10 najniższych narodów — mężczyźni vs kobiety",
+      "caption": "We wszystkich populacjach mężczyźni są wyżsi od kobiet o 12–15 cm. Ta różnica utrzymuje się niezależnie od ogólnego poziomu wzrostu, jest prawie identyczna w Holandii i w Bangladeszu.",
+      "paragraph": "Średni wzrost różni się znacznie ze względu na genetykę, jakość diety, zdrowie w dzieciństwie i rozwój gospodarczy. Populacje Europy Północnej konsekwentnie plasują się wśród najwyższych, podczas gdy niektóre kraje Azji Południowej i Ameryki Środkowej wykazują niższe średnie, ukształtowane przez historyczne ograniczenia żywieniowe."
+    },
+    "averageMale": {
+      "title": "Średni wzrost mężczyzn według kraju",
+      "paragraph1": "Średni wzrost mężczyzny na świecie wynosi około 171 cm. Ta liczba maskuje szeroki zakres, od Holendrów mierzących 183,8 cm do Timoru Wschodniego z 159,8 cm. Mężczyźni z Europy Północnej i Wschodniej to najwyższa grupa na świecie, mierząca średnio od 178 do 184 cm. Mieszkańcy Ameryki Północnej i Australii mieszczą się w przedziale od 176 do 179 cm.",
+      "paragraph2": "Japonia z 170,8 cm jest zauważalnie niższa niż Korea Południowa z 175,5 cm: różnica ta pogłębiła się, ponieważ dieta i opieka zdrowotna w Korei Południowej poprawiły się szybciej po boomie gospodarczym w latach 60. Iran z 175,6 cm plasuje się w środku tabeli. Indie z 166,5 cm i Bangladesz z 163 cm znajdują się na dolnym końcu azjatyckiej kohorty. Gwatemala z 163,4 cm i Timor Wschodni z 159,8 cm odzwierciedlają najpoważniejsze udokumentowane ograniczenia żywieniowe w historii."
+    },
+    "averageFemale": {
+      "title": "Średni wzrost kobiet według kraju",
+      "paragraph1": "Średni wzrost kobiety na świecie wynosi około 159 cm. Holenderki i Czarnogórzanki, mierzące średnio odpowiednio 170,4 cm i 170,0 cm, to najwyższe populacje kobiet w historii. Rosja z 164,5 cm konsekwentnie pojawia się na globalnych listach obok krajów Europy Wschodniej, które stanowią większość pierwszej dziesiątki.",
+      "paragraph2": "Kobiety z Korei Południowej z 163,2 cm są zauważalnie wyższe niż Japonki z 158,0 cm, różnica ta wzrosła w ciągu ostatnich pół wieku. Filipinki mierzą średnio 149,6 cm, a Gwatemalki 149,4 cm, co stanowi najniższą zweryfikowaną średnią żeńską w obu Amerykach. Średni wzrost kobiet w Japonii wynosił około 148 cm w latach 50. i od tego czasu wzrósł o pełne dziesięć centymetrów, co jest jednym z najbardziej stromych udokumentowanych wzrostów dla jakiejkolwiek populacji kobiet."
+    },
+    "maleAndFemale": {
+      "title": "Średni wzrost mężczyzn i kobiet",
+      "barsLabelMale": "Średni wzrost mężczyzn (cm)",
+      "barsLabelFemale": "Średni wzrost kobiet (cm)",
+      "callout": "W praktycznie każdej populacji mężczyźni są wyżsi od kobiet o 12 do 15 centymetrów. Ta różnica utrzymuje się niezależnie od bardzo różnych absolutnych zakresów wzrostu; różnica w Holandii jest mniej więcej taka sama jak w Bangladeszu. Odzwierciedla to różnice hormonalne w okresie dojrzewania: testosteron powoduje dłuższy skok wzrostu u mężczyzn, podczas gdy wcześniejsze pojawienie się estrogenu u kobiet szybciej zamyka płytki wzrostowe. Różnica między płciami nie jest znacząco zależna od odżywiania ani rozwoju gospodarczego."
+    },
+    "selectedCountries": {
+      "title": "Średni wzrost w wybranych krajach",
+      "countries": {
+        "netherlands": {
+          "name": "Holandia",
+          "paragraph": "Holenderscy mężczyźni od dziesięcioleci zajmują czołowe miejsca w światowych rankingach. Dieta bogata w nabiał i powszechna opieka zdrowotna przyczyniają się do tego wyniku."
+        },
+        "unitedKingdom": {
+          "name": "Wielka Brytania",
+          "paragraph": "Wielka Brytania zajmuje środkową pozycję w Europie. Wzrost różni się w zależności od regionu – północna Anglia i Szkocja mają tendencję do bycia nieco wyższymi."
+        },
+        "japan": {
+          "name": "Japonia",
+          "paragraph": "Wzrost Japończyków gwałtownie wzrósł od lat 50. XX wieku. Mężczyźni z Korei Południowej, mierzący 175,5 cm, wyprzedzili swoich japońskich sąsiadów."
+        },
+        "bangladesh": {
+          "name": "Bangladesz",
+          "paragraph": "Wysokie wskaźniki niedożywienia dzieci w przeszłości ograniczały wzrost. Populacje miejskie wykazują umiarkowane zyski w ostatnich dziesięcioleciach."
+        },
+        "iran": {
+          "name": "Iran",
+          "paragraph": "Jeden z najszybciej udokumentowanych wzrostów na Bliskim Wschodzie – średni wzrost mężczyzn wzrósł o około 5 do 6 cm w ciągu 40 lat."
+        },
+        "canada": {
+          "name": "Kanada",
+          "paragraph": "Dane Kanady są bardzo zbliżone do danych Australii, odzwierciedlając dobrze odżywioną, zamożną populację. Wzrost ustabilizował się od lat 90. XX wieku."
+        },
+        "ireland": {
+          "name": "Irlandia",
+          "paragraph": "Irlandia znajduje się w górnej ćwiartce europejskich rankingów. Wzrost systematycznie rośnie od połowy XX wieku."
+        },
+        "sriLanka": {
+          "name": "Sri Lanka",
+          "paragraph": "Populacje miejskie w Kolombo wykazują mierzalne zyski wzrostu w ciągu dwóch pokoleń. Obszary wiejskie pozostają w tyle z powodu braku bezpieczeństwa żywnościowego."
+        },
+        "southKorea": {
+          "name": "Korea Południowa",
+          "paragraph": "Jeden z największych udokumentowanych wzrostów pokoleniowych w historii – mężczyźni zyskali około 6 cm w ciągu dwóch pokoleń po wojnie."
+        },
+        "india": {
+          "name": "Indie",
+          "paragraph": "Średnia krajowa Indii maskuje duże różnice regionalne. Mężczyźni w Pendżabie mierzą średnio od 172 do 174 cm. Obszary miejskie wykazują stałe zyski."
+        },
+        "usa": {
+          "name": "USA",
+          "paragraph": "USA były kiedyś trzecim najwyższym krajem na świecie. Obecnie zajmują około 47. miejsca dla mężczyzn, co odzwierciedla różnice w jakości diety w porównaniu z europejskimi odpowiednikami po latach 70. XX wieku."
+        },
+        "denmark": {
+          "name": "Dania",
+          "paragraph": "Dania konsekwentnie plasuje się w pierwszej piątce na świecie. Przyczyniają się do tego silna publiczna opieka zdrowotna i wysokie spożycie nabiału od wczesnego dzieciństwa."
+        }
+      }
+    },
+    "chartForMen": {
+      "title": "Tabela średniego wzrostu dla mężczyzn",
+      "paragraph": "Poniższa tabela przedstawia, jak kształtują się średnie wartości wzrostu mężczyzn w głównych regionach świata, od Europy Północnej na szczycie do Ameryki Środkowej u dołu. Dane na poziomie krajów różnią się w obrębie każdego regionu.",
+      "barsLabel": "Przybliżony regionalny średni wzrost mężczyzn (cm)",
+      "caption": "Dane regionalne są średnimi ważonymi. Poszczególne kraje w każdym regionie mogą znajdować się powyżej lub poniżej przedstawionego zakresu. Źródło: NCD-RisC i World Population Review."
+    },
+    "globalAverage": {
+      "title": "Średni wzrost na świecie",
+      "maleStatLabel": "Średni wzrost mężczyzn na świecie",
+      "femaleStatLabel": "Średni wzrost kobiet na świecie",
+      "paragraph1": "<who>Światowa Organizacja Zdrowia</who> i NCD Risk Factor Collaboration szacują średni wzrost mężczyzn na świecie na około 171 cm, a średni wzrost kobiet na około 159 cm. Te ważone dane są niższe niż średnie dla większości krajów zachodnich, ponieważ uwzględniają duże populacje Azji Południowej i Południowo-Wschodniej.",
+      "paragraph2": "Globalna średnia rośnie od początku XX wieku, z najbardziej znaczącymi wzrostami w Azji Wschodniej. Korea Południowa i Chiny zyskały około 5 do 8 cm na pokolenie od lat 50. XX wieku. Wzrosty w Europie Zachodniej, które rozpoczęły się wcześniej, w dużej mierze ustabilizowały się od lat 80. XX wieku.",
+      "regionMap": {
+        "colourScaleLabel": "Skala kolorów — średni wzrost mężczyzn według regionu",
+        "tallestLabel": "180+ cm (najwyżsi)",
+        "shortestLabel": "≤162 cm (najniżsi)",
+        "regions": {
+          "northernEurope": {
+            "name": "Europa Północna",
+            "ex": "Holandia, Dania, Norwegia"
+          },
+          "easternEurope": {
+            "name": "Europa Wschodnia",
+            "ex": "Serbia, Ukraina, Polska"
+          },
+          "westernEurope": {
+            "name": "Europa Zachodnia",
+            "ex": "Niemcy, Francja, Wielka Brytania"
+          },
+          "northAmericaOceania": {
+            "name": "Ameryka Północna/Oceania",
+            "ex": "Kanada, USA, Australia"
+          },
+          "middleEast": {
+            "name": "Bliski Wschód",
+            "ex": "Iran, Turcja"
+          },
+          "eastAsia": {
+            "name": "Azja Wschodnia",
+            "ex": "Chiny, Korea Południowa, Japonia"
+          },
+          "latinAmerica": {
+            "name": "Ameryka Łacińska",
+            "ex": "Brazylia, Meksyk"
+          },
+          "southSeAsia": {
+            "name": "Azja Południowa/Południowo-Wschodnia",
+            "ex": "Indie, Indonezja, Nepal"
+          },
+          "centralAmerica": {
+            "name": "Ameryka Środkowa",
+            "ex": "Gwatemala, Honduras"
+          }
+        }
+      }
+    },
+    "extremes": {
+      "tallestMan": {
+        "title": "Najwyższy mężczyzna na świecie",
+        "paragraph": "Robert Wadlow z Alton w stanie Illinois pozostaje najwyższą osobą w udokumentowanej historii ludzkości, mierząc 272 cm (8'11\"). Jego przysadka mózgowa produkowała niekontrolowany hormon wzrostu od urodzenia, a jego wzrost nie osiągnął jeszcze szczytu, gdy zmarł w 1940 roku w wieku 22 lat. Rekord Guinnessa dla najwyższego żyjącego mężczyzny należy do Sultana Kösen z Turcji, mierzącego 251 cm (8'3\"), którego guz przysadki mózgowej został usunięty chirurgicznie, co zatrzymało dalszy wzrost."
+      },
+      "shortestMan": {
+        "title": "Najniższy mężczyzna na świecie",
+        "paragraph": "Chandra Bahadur Dangi z Nepalu, zweryfikowany przez Guinness World Records w 2012 roku, był najniższym dorosłym mężczyzną, jaki kiedykolwiek został udokumentowany, mierząc 54,6 cm (1'9\"). Dożył 75 lat, pracując jako rolnik i rzemieślnik. Został zmierzony po raz pierwszy przez Guinnessa, gdy miał już ponad siedemdziesiąt lat, co jest niezwykłe, biorąc pod uwagę komplikacje zdrowotne często związane z poważnymi zaburzeniami wzrostu."
+      },
+      "tallestFemale": {
+        "title": "Najwyższa kobieta na świecie",
+        "paragraph": "Zeng Jinlian z prowincji Hunan w Chinach dzierży rekord najwyższej kobiety w zweryfikowanej historii medycyny, mierząc 246,3 cm (8'1\"). Urodzona w 1964 roku, szybko rosła z powodu gigantyzmu przysadkowego i zmarła w wieku 17 lat w 1982 roku. Obecny żyjący rekord należy do Rumeysy Gelgi z Turcji, mierzącej 215,2 cm (7'1\"), która jest web deweloperką i orędowniczką osób niepełnosprawnych, posiadającą wiele tytułów Guinnessa."
+      },
+      "shortestFemale": {
+        "title": "Najniższa kobieta na świecie",
+        "paragraph": "Jyoti Amge z Nagpur w Indiach dzierży rekord Guinnessa dla najniższej żyjącej kobiety od 2011 roku, mierząc 62,8 cm (2'1\"). Jej stan to achondroplazja, najczęstsza forma karłowatości. Jest również pracującą aktorką Bollywood, która wystąpiła w amerykańskim serialu telewizyjnym American Horror Story."
+      },
+      "dataCards": {
+        "tallestManEver": {
+          "label": "Najwyższy mężczyzna w historii",
+          "name": "Robert Wadlow",
+          "value": "272 cm",
+          "meta": "8'11\" · USA · zm. 1940"
+        },
+        "shortestManEver": {
+          "label": "Najniższy mężczyzna w historii",
+          "name": "Chandra Bahadur Dangi",
+          "value": "54,6 cm",
+          "meta": "1'9\" · Nepal · zm. 2015"
+        },
+        "tallestWomanEver": {
+          "label": "Najwyższa kobieta w historii",
+          "name": "Zeng Jinlian",
+          "value": "246,3 cm",
+          "meta": "8'1\" · Chiny · zm. 1982"
+        },
+        "shortestLivingWoman": {
+          "label": "Najniższa żyjąca kobieta",
+          "name": "Jyoti Amge",
+          "value": "62,8 cm",
+          "meta": "2'1\" · Indie"
+        }
+      }
+    },
+    "distribution": {
+      "title": "Rozkład wzrostu człowieka",
+      "bellCurve": {
+        "globalAvgLabel": "Średnia globalna ≈ {mean} cm",
+        "axisLabel": "Wzrost (cm) — {label}",
+        "male": {
+          "label": "globalna populacja mężczyzn",
+          "pctLabel": "68% mężczyzn mieści się w granicach ±1 odchylenia standardowego",
+          "band1": "68% mężczyzn — w granicach ±1σ (≈164–178 cm)",
+          "band2": "95% mężczyzn — w granicach ±2σ (≈157–185 cm)"
+        },
+        "female": {
+          "label": "globalna populacja kobiet",
+          "pctLabel": "68% kobiet mieści się w granicach ±1 odchylenia standardowego",
+          "band1": "68% kobiet — w granicach ±1σ (≈153–165 cm)",
+          "band2": "95% kobiet — w granicach ±2σ (≈147–171 cm)"
+        }
+      },
+      "legendNote": "Średni wzrost mężczyzn na świecie wynosi około 171 cm z odchyleniem standardowym 7 cm. Mężczyzna o wzroście 185 cm znajduje się mniej więcej dwa odchylenia standardowe powyżej średniej, będąc wyższym niż około 97,5% męskiej populacji świata.",
+      "dataSourcesLabel": "Źródła danych:",
+      "dataSourcesText": "NCD Risk Factor Collaboration (NCD-RisC), „A century of trends in adult human height,” eLife 2016. · World Population Review, Average Height by Country 2026. · World Health Organization (WHO), Global Health Observatory.",
+      "paragraph1": "Wzrost człowieka podlega rozkładowi normalnemu. Po naniesieniu danych na wykres dla dużej populacji, tworzą one niemal idealną krzywą dzwonową, większość osób mieści się blisko średniej, a mniej osób znajduje się na skrajnych wartościach. Około 68% mężczyzn mieści się w granicach jednego odchylenia standardowego od średniej globalnej, czyli około 164 do 178 cm. Odchylenie standardowe dla wzrostu mężczyzn na świecie wynosi około 7 cm. Mężczyzna o wzroście 185 cm znajduje się mniej więcej dwa odchylenia standardowe powyżej średniej globalnej, będąc wyższym niż około 97,5% męskiej populacji świata.",
+      "paragraph2": "Dla kobiet jest ono nieco mniejsze i wynosi około 6 cm.",
+      "tableHeaders": {
+        "minus2sd": "−2 SD",
+        "minus1sd": "−1 SD",
+        "globalAvg": "Średnia globalna",
+        "plus1sd": "+1 SD",
+        "plus2sd": "+2 SD"
+      },
+      "captionMale": "Globalny rozkład wzrostu mężczyzn · SD ≈ 7 cm",
+      "captionFemale": "Globalny rozkład wzrostu kobiet · SD ≈ 6 cm",
+      "captionSources": "Źródła: NCD-RisC"
+    },
+    "whyDiffers": {
+      "title": "Dlaczego średni wzrost różni się w zależności od kraju",
+      "paragraph1": "Wzrost jest kształtowany zarówno przez genetykę, jak i środowisko. Genetyka wyznacza teoretyczny pułap – wysocy rodzice zazwyczaj mają wyższe dzieci, ale to, czy dziecko osiągnie ten pułap, zależy niemal wyłącznie od tego, co dzieje się w ciągu pierwszych dwóch dekad życia.",
+      "nutritionParagraph": "<bold>Odżywianie</bold> jest najsilniejszym środowiskowym czynnikiem determinującym wzrost dorosłego człowieka. Odpowiednia ilość białka i mikroelementów w ciągu pierwszych 1000 dni życia jest kluczowa dla rozwoju układu kostnego. Dostępność produktów mlecznych i mięsa w dzieciństwie konsekwentnie przewiduje krajowe rankingi wzrostu.",
+      "healthcareParagraph": "<bold>Dostęp do opieki zdrowotnej</bold> decyduje o tym, czy choroby wieku dziecięcego odciągają energię od wzrostu. Kraje z wysokim wskaźnikiem szczepień i niskim obciążeniem chorobami konsekwentnie plasują się wyżej w rankingach wzrostu.",
+      "economicParagraph": "<bold>Rozwój gospodarczy</bold> stanowi podstawę zarówno odżywiania, jak i opieki zdrowotnej. PKB na mieszkańca silnie koreluje ze średnim wzrostem, ponieważ bogactwo umożliwia lepsze jedzenie, czystszą wodę i opiekę medyczną.",
+      "calloutUS": "Stany Zjednoczone są najbardziej wymownym studium przypadku: w 1914 roku amerykańscy mężczyźni zajmowali trzecie miejsce na świecie pod względem wzrostu. Dziś plasują się na około 47. miejscu globalnie, nie dlatego, że zmieniła się ich genetyka, ale dlatego, że jakość diety spadła w porównaniu z europejskimi rówieśnikami po latach 70."
+    },
+    "toc": [
+      {
+        "id": "average-height-by-country",
+        "label": "Średni wzrost według kraju"
+      },
+      {
+        "id": "tallest-countries-in-the-world",
+        "label": "Najwyższe kraje na świecie"
+      },
+      {
+        "id": "shortest-countries-in-the-world",
+        "label": "Najniższe kraje na świecie"
+      },
+      {
+        "id": "tallest-and-shortest-countries-by-average-height",
+        "label": "Najwyższe i najniższe kraje według średniego wzrostu"
+      },
+      {
+        "id": "average-male-height-by-country",
+        "label": "Średni wzrost mężczyzn według kraju"
+      },
+      {
+        "id": "average-female-height-by-country",
+        "label": "Średni wzrost kobiet według kraju"
+      },
+      {
+        "id": "average-height-in-selected-countries",
+        "label": "Średni wzrost w wybranych krajach"
+      },
+      {
+        "id": "average-height-chart-for-men",
+        "label": "Tabela średniego wzrostu dla mężczyzn"
+      },
+      {
+        "id": "global-average-height",
+        "label": "Globalny średni wzrost"
+      },
+      {
+        "id": "tallest-man-in-the-world",
+        "label": "Najwyższy mężczyzna na świecie"
+      },
+      {
+        "id": "shortest-man-in-the-world",
+        "label": "Najniższy mężczyzna na świecie"
+      },
+      {
+        "id": "tallest-female-in-the-world",
+        "label": "Najwyższa kobieta na świecie"
+      },
+      {
+        "id": "shortest-female-in-the-world",
+        "label": "Najniższa kobieta na świecie"
+      },
+      {
+        "id": "human-height-distribution",
+        "label": "Rozkład wzrostu człowieka"
+      },
+      {
+        "id": "why-average-height-differs-by-country",
+        "label": "Dlaczego średni wzrost różni się w zależności od kraju"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "label": "Często zadawane pytania"
+      },
+      {
+        "id": "references",
+        "label": "Źródła"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Jaki jest średni wzrost mężczyzn na świecie?",
+        "a": "Globalny średni wzrost dorosłych mężczyzn wynosi około 171 cm (5'7\"). Ta ważona wartość pochodzi z danych NCD Risk Factor Collaboration i WHO. Jest ona niższa ze względu na dużą populację Azji Południowej i Południowo-Wschodniej, gdzie średnie wahają się między 160 a 168 cm. Mężczyźni w krajach europejskich o wysokich dochodach mają znacznie wyższy średni wzrost, często od 178 do 184 cm."
+      },
+      {
+        "q": "Jaki jest średni wzrost kobiet na świecie?",
+        "a": "Globalny średni wzrost dorosłych kobiet wynosi około 159 cm (5'3\"). Kobiety w Holandii i Czarnogórze mają średnio około 170 cm. Kobiety w Gwatemali i na Filipinach mają średnio bliżej 149 do 150 cm. Większość kobiet w krajach zachodnich mieści się w przedziale od 162 do 168 cm."
+      },
+      {
+        "q": "Który kraj ma najwyższych ludzi?",
+        "a": "Holandia zajmuje pierwsze miejsce zarówno dla mężczyzn, jak i kobiet w większości najnowszych zbiorów danych. Holenderscy mężczyźni mają średnio 183,8 cm (około 6'0\"), a Holenderki średnio 170,4 cm (5'7\"). Czarnogóra i Estonia plasują się tuż za nimi. Holandia utrzymuje tę pozycję od kilku dziesięcioleci, co przypisuje się diecie bogatej w produkty mleczne, silnej infrastrukturze zdrowia publicznego i czynnikom genetycznym w populacji."
+      },
+      {
+        "q": "Czy średni wzrost człowieka wzrastał w czasie?",
+        "a": "Tak, znacząco. Średni wzrost gwałtownie wzrósł w ciągu ostatnich 150 lat w prawie każdym kraju, napędzany poprawą odżywiania, warunków sanitarnych, szczepień i opieki zdrowotnej. Najbardziej dramatyczne ostatnie zyski odnotowano w Azji Wschodniej: mężczyźni z Korei Południowej zyskali około 6 cm w ciągu dwóch pokoleń po szybkim rozwoju gospodarczym. Zyski w Europie Zachodniej w dużej mierze ustabilizowały się od lat 80."
+      },
+      {
+        "q": "Jaki jest najniższy kraj na świecie pod względem średniego wzrostu?",
+        "a": "Timor Wschodni odnotowuje najniższą łączną średnią globalnie, z mężczyznami o średnim wzroście 159,8 cm i kobietami 152,3 cm. Gwatemala i Laos plasują się tuż za nimi. Te niskie średnie odzwierciedlają historyczne ograniczenia żywieniowe i ograniczony dostęp do opieki zdrowotnej, a nie genetyczne ograniczenia potencjału wzrostu."
+      }
+    ],
+    "references": {
+      "primarySources": {
+        "title": "Główne źródła danych",
+        "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016. Vol. 5, e13410.",
+        "ref2": "Rodriguez-Martinez A, Zhou B, Sophiea MK et al. (NCD-RisC). Height and body-mass index trajectories of school-aged children and adolescents from 1985 to 2019 in 200 countries and territories. The Lancet, 2020. Vol. 396, pp. 1511–1524.",
+        "ref3": "World Health Organization. Child Growth Standards — Length/Height-for-Age, Weight-for-Age. WHO Department of Nutrition and Food Safety. Geneva, 2006.",
+        "ref4": "World Health Organization. Global Health Observatory — Nutrition and Body Mass Index Data. WHO Global Health Observatory. Ongoing.",
+        "ref5": "de Onis M, Garza C, Onyango AW, Martorell R (eds). WHO Child Growth Standards. Acta Paediatrica, 2006. Suppl 450:1–101."
+      },
+      "usGovernment": {
+        "title": "Rząd USA — CDC i NIH",
+        "ref1": "Centers for Disease Control and Prevention. CDC Clinical Growth Charts, 2000 (Revised 2022). National Center for Health Statistics.",
+        "ref2": "Kuczmarski RJ, Ogden CL, Guo SS et al. 2000 CDC Growth Charts for the United States: Methods and Development. Vital and Health Statistics. Series 11, No. 246, 2002.",
+        "ref3": "Centers for Disease Control and Prevention — NCHS. National Health and Nutrition Examination Survey (NHANES) — Anthropometric Data. Ongoing survey cycles.",
+        "ref4": "Fryar CD, Gu Q, Ogden CL, Flegal KM. Anthropometric Reference Data for Children and Adults: United States, 2011–2014. Vital and Health Statistics. Series 3, No. 39, August 2016.",
+        "ref5": "National Institutes of Health — National Heart, Lung, and Blood Institute. Classification of Overweight and Obesity by BMI. NIH Publication No. 98-4083, 1998."
+      },
+      "peerReviewed": {
+        "title": "Recenzowane artykuły naukowe",
+        "ref1": "Devine BJ. Gentamicin therapy. Drug Intelligence and Clinical Pharmacy, 1974. Vol. 8, pp. 650–655. (Original publication of the Devine ideal body weight formula.)",
+        "ref2": "Robinson JD, Lupkiewicz SM, Palenik L, Lopez LM, Ariet M. Determination of ideal body weight for drug dosage calculations. American Journal of Hospital Pharmacy, 1983. Vol. 40, pp. 1016–1019.",
+        "ref3": "Pai MP, Paloucek FP. The origin of the \"ideal\" body weight equations. Annals of Pharmacotherapy, 2000. Vol. 34, No. 9, pp. 1066–1069.",
+        "ref4": "Janmahasatian S, Duffull SB, Ash S, Ward LC, Byrne NM, Green B. Quantification of lean bodyweight. Clinical Pharmacokinetics, 2005. Vol. 44, No. 10, pp. 1051–1065.",
+        "ref5": "Stulp G, Buunk AP, Pollet TV. Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE, 2013. Vol. 8, Issue 2.",
+        "ref6": "Flegal KM, Ogden CL, Wei R, Kuczmarski RL, Johnson CL. Prevalence of obesity in US adults by age and sex. JAMA, 2002. Vol. 288, pp. 1723–1727."
+      },
+      "unBodies": {
+        "title": "Organizacje Narodów Zjednoczonych i organy międzynarodowe",
+        "ref1": "UNICEF / WHO / World Bank. Joint Child Malnutrition Estimates — Levels and Trends. Edition 2023.",
+        "ref2": "Food and Agriculture Organization of the United Nations. The State of Food Security and Nutrition in the World 2023. FAO, IFAD, UNICEF, WFP, WHO. Rome, 2023."
+      }
+    }
+  },
+  "metadata": {
+    "aboutTitle": "O nas - Narzędzie do porównywania wzrostu",
+    "aboutDescription": "Dowiedz się więcej o naszym narzędziu do porównywania wzrostu w prawdziwej skali proporcjonalnej, kalkulatorach, źródłach danych i standardach dokładności.",
+    "privacyTitle": "Polityka prywatności - Narzędzie do porównywania wzrostu",
+    "privacyDescription": "Zapoznaj się z polityką prywatności narzędzia do porównywania wzrostu, aby dowiedzieć się, jak chronimy Twoje informacje i przetwarzamy dane.",
+    "heightPredictorTitle": "Kalkulator przewidywanego wzrostu: Przewidź swój wzrost w wieku dorosłym",
+    "heightPredictorDescription": "Przewidź swój wzrost za pomocą naszego Kalkulatora przewidywanego wzrostu. Ten kalkulator przewidywanego wzrostu wykorzystuje sprawdzone metody do przewidywania wzrostu w wieku dorosłym.",
+    "heightWeightPercentileTitle": "Kalkulator percentyli wzrostu i wagi dla niemowląt, dzieci i dorosłych",
+    "heightWeightPercentileDescription": "Użyj naszego Kalkulatora percentyli wzrostu i wagi, aby zmierzyć wzrost. Zawiera kalkulator percentyli wzrostu dla niemowląt i kalkulator percentyli wzrostu dla dorosłych.",
+    "idealBodyWeightTitle": "Oblicz idealną masę ciała i skorygowany kalkulator masy ciała",
+    "idealBodyWeightDescription": "Użyj naszego Kalkulatora idealnej wagi w kg, aby obliczyć idealną masę ciała. Zawiera skorygowany kalkulator idealnej masy ciała dla obliczeń wagi mężczyzn i kobiet.",
+    "heightDifferenceTitle": "Kalkulator różnicy wzrostu - Oblicz wykres różnicy wzrostu",
+    "heightDifferenceDescription": "Oblicz różnicę wzrostu za pomocą naszego kalkulatora różnicy wzrostu. Zawiera kalkulator różnicy wzrostu dla par z wykresem różnicy wzrostu.",
+    "averageHeightByCountryTitle": "Średni wzrost według kraju - Globalna tabela wzrostu człowieka",
+    "averageHeightByCountryDescription": "Poznaj średni wzrost kobiet i mężczyzn na całym świecie i porównaj średnie wzrosty według kraju. Zobacz średni wzrost człowieka na całym świecie w jednej tabeli.",
+    "blogsTitle": "Blog Narzędzie do porównywania wzrostu",
+    "blogsDescription": "Przeczytaj najnowsze artykuły dotyczące wzrostu, proporcji ciała i ciekawych porównań."
+  },
+  "blogs": {
+    "badge": "Artykuły i spostrzeżenia",
+    "heading": "Spostrzeżenia i przewodniki",
+    "subheading": "Zapoznaj się z przewodnikami, badaniami i dogłębnymi analizami dotyczącymi wzrostu człowieka, średnich, percentyli i interesujących porównań w świecie rzeczywistym.",
+    "articleBadge": "Artykuł",
+    "noPostsTitle": "Brak dostępnych postów",
+    "noPostsSubtitle": "Sprawdź później, aby zobaczyć nowe treści.",
+    "unknownAuthor": "Nieznany autor"
+  },
+  "blogPost": {
+    "categoryLabel": "Wpis na blogu",
+    "writtenBy": "Napisane przez {author}",
+    "unknownAuthor": "Nieznany autor",
+    "jumpToSection": "Przejdź do sekcji",
+    "fallbackImageAlt": "Obraz wpisu na blogu",
+    "postNotFound": "Nie znaleziono wpisu"
+  }
+}

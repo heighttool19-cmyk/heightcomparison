@@ -1,16 +1,26 @@
-# i18n / German Localization — Migration Status
+# i18n Multilingual Localization — Migration & Architectural Status
 
-Tracking document for the `feature/i18n-german-demo` branch. Purpose: give
+Tracking document for the multilingual expansion across the codebase. Purpose: give
 whoever picks this up next (human or agent) an accurate, at-a-glance view of
-what is fully localized, what is only partially routed, and what hasn't been
-touched at all — so nobody re-does finished work or assumes unfinished work
-is done.
+what is fully localized, what is only partially routed, and what remains — so nobody
+re-does finished work or assumes unfinished work is done.
 
-Last updated: 2026-09-05 (after the `average-height-by-country` page + its
-6 client components migration).
+**Last updated**: 2026-09-29 (after onboarding Swedish `sv` and Polish `pl` to 100% key parity, `/height-predictor` English H1 update, and blog routing completion).
 
-**How to use this file:** before starting work on any page, check its row
-below. Update this file as part of the same change whenever a page's status
+**Supported Locales (10 total)**:
+- `en` (English - default)
+- `de` (German)
+- `es` (Spanish)
+- `fr` (French)
+- `pt` (Portuguese)
+- `nl` (Dutch)
+- `ar` (Arabic - RTL)
+- `it` (Italian)
+- `sv` (Swedish)
+- `pl` (Polish)
+
+**How to use this file:** before starting work on any page or locale, check its row
+below. Update this file as part of the same change whenever status
 changes — this is a live tracker, not a one-time report.
 
 ---
@@ -19,9 +29,9 @@ changes — this is a live tracker, not a one-time report.
 
 | Status | Meaning |
 |---|---|
-| ✅ Done | Routed under `[locale]`, all visible text in `messages/en.json`+`messages/de.json`, completeness gate passed, `npm run build` verified. |
-| 🟡 Routed only | Lives under `src/app/[locale]/...` (so `/de/...` doesn't 404) but its content components still have hardcoded English strings — **not actually multilingual yet**. |
-| ⬜ Not started | Still a flat route under `src/app/...` (no `[locale]` segment at all). Visiting `/de/<route>` currently 404s or falls back to English with no translation path. |
+| ✅ Done | Routed under `[locale]`, all visible text in `messages/{en,de,es,fr,pt,nl,ar,it,sv,pl}.json`, completeness gate passed (100% key parity, 0 missing, 0 extra, 0 empty strings), `npx tsc --noEmit` verified. |
+| 🟡 Routed only | Lives under `src/app/[locale]/...` (so localized URLs don't 404) but its content components still have hardcoded English strings — **not actually multilingual yet**. |
+| ⬜ Not started | Still a flat route under `src/app/...` (no `[locale]` segment at all). Visiting localized route URLs currently 404s or falls back to English with no translation path. |
 
 ---
 
@@ -29,13 +39,17 @@ changes — this is a live tracker, not a one-time report.
 
 | Item | Status | Notes |
 |---|---|---|
-| `src/i18n/routing.ts`, `src/i18n/request.ts` | ✅ Done | `locales: ['en','de']`, `defaultLocale: 'en'`, `localePrefix: 'as-needed'`, `localeDetection: false`. |
+| `src/i18n/config.ts` | ✅ Done | Central DRY source of truth (`SUPPORTED_LOCALES`, `ALL_LOCALE_CODES`, `DEFAULT_LOCALE`, date formatters, direction LTR/RTL, canonical & hreflang helpers). |
+| `src/i18n/routing.ts`, `src/i18n/request.ts` | ✅ Done | `locales: ALL_LOCALE_CODES` (10 languages), `defaultLocale: 'en'`, `localePrefix: 'as-needed'`, `localeDetection: false`. |
+| `src/middleware.ts` | ✅ Done | Regex matcher covers all 10 locales: `'/(de|en|es|fr|pt|nl|ar|it|sv|pl)/:path*'`. |
 | `src/app/layout.tsx` (root) | ✅ Done | No `<Navbar>`/`<Footer>`/`<NextIntlClientProvider>` here — correct per the migration skill. |
-| `src/app/[locale]/layout.tsx` | ✅ Done | Wraps children in `<NextIntlClientProvider>`, renders `<Navbar>`/`<Footer>`. |
+| `src/app/[locale]/layout.tsx` | ✅ Done | Wraps children in `<NextIntlClientProvider>`, sets dynamic `dir="rtl"` / `"ltr"`, renders `<Navbar>`/`<Footer>`. |
 | `src/components/Navbar.tsx` | ✅ Done | Uses `useTranslations('nav')`. |
 | `src/components/layout/Footer.tsx` | ✅ Done | Uses `useTranslations('footer')`. |
-| `src/components/LanguageSwitcher.tsx` | ✅ Done | Generic `getCleanPath`/`getTargetUrl`, no route names hardcoded — needs no per-page changes. |
-| `messages/en.json` / `messages/de.json` namespaces present | `common`, `nav`, `footer`, `about`, `privacy`, `heightPredictor`, `heightWeightPercentile`, `idealBodyWeight`, `heightDifference`, `averageHeightByCountry`, `metadata` | See per-page table below for what's actually inside each. |
+| `src/components/LanguageSwitcher.tsx` | ✅ Done | Generic `getCleanPath`/`getTargetUrl`, dynamically loops through all 10 `SUPPORTED_LOCALES` with flags and native labels. |
+| `messages/*.json` (10 files) | ✅ Done | 13 namespaces (`common`, `nav`, `footer`, `about`, `privacy`, `heightPredictor`, `heightWeightPercentile`, `idealBodyWeight`, `heightDifference`, `averageHeightByCountry`, `metadata`, `blogs`, `blogPost`), 1,184 leaf keys per locale, 100% key parity across all 10 languages. |
+| `docs/semantic-seo-localization/` | ✅ Done | Entity registries in place for all 9 non-English locales (`ar`, `de`, `es`, `fr`, `it`, `nl`, `pl`, `pt`, `sv`), protecting clinically recognized entities, formulas, and brand names. |
+| Sanity Studio Multilingual | ✅ Done | `src/sanity/languages.ts` automatically adapts to `SUPPORTED_LOCALES`; Post schema supports all 9 target languages; Auto-Translate custom action active via `/api/sanity/auto-translate`. |
 
 ---
 
@@ -43,18 +57,19 @@ changes — this is a live tracker, not a one-time report.
 
 | Route | Status | Localized file(s) | Messages namespace | Notes |
 |---|---|---|---|---|
-| `/about` | ✅ Done | `src/app/[locale]/about/page.tsx` | `about` + `metadata.about*` | Reference implementation this whole effort copies. |
-| `/privacy` | ✅ Done | `src/app/[locale]/privacy/page.tsx` | `privacy` + `metadata.privacy*` | Done alongside `about`. |
-| `/height-predictor` | ✅ Done | `src/app/[locale]/height-predictor/page.tsx` + client components below | `heightPredictor` + `metadata.heightPredictor*` | See detailed breakdown below — this was the largest migration so far (363 leaf keys). |
-| `/` (home / height comparison dashboard) | 🟡 Routed only | `src/app/[locale]/page.tsx` exists and renders, but `src/components/HomeContent.tsx` (749 lines, SEO articles/FAQ) and `src/components/DynamicHeightDashboard.tsx` have **no `useTranslations`/`getTranslations` calls at all** — 100% hardcoded English still. | none yet | **Not actually multilingual.** Visiting `/de` renders the localized Navbar/Footer but English page content. This is the biggest remaining gap since it's the primary landing page. |
-| `/average-height-by-country` | ✅ Done | `src/app/[locale]/average-height-by-country/page.tsx` + 6 client components below | `averageHeightByCountry` + `metadata.averageHeightByCountry*` | See detailed breakdown below. |
-| `/height-difference-calculator` | ✅ Done | `src/app/[locale]/height-difference-calculator/page.tsx` + 4 client components below | `heightDifference` + `metadata.heightDifference*` | See detailed breakdown below. |
-| `/height-weight-percentile-calculator` | ✅ Done | `src/app/[locale]/height-weight-percentile-calculator/page.tsx` + 4 client components below | `heightWeightPercentile` + `metadata.heightWeightPercentile*` | See detailed breakdown below. |
-| `/ideal-body-weight-calculator` | ✅ Done | `src/app/[locale]/ideal-body-weight-calculator/page.tsx` + 2 client components below | `idealBodyWeight` + `metadata.idealBodyWeight*` | See detailed breakdown below. |
-| `/image-to-height` | ⬜ Not started | Flat route | none | |
-| `/blog`, `/blogs`, `/blog/[slug]` | ⬜ Not started | Flat routes; content is Sanity-CMS-driven (would also need CMS-side locale strategy, not just `messages/*.json`) | none | Different shape of problem — Sanity content, not static strings. Needs its own design discussion before starting. |
+| `/about` | ✅ Done | `src/app/[locale]/about/page.tsx` | `about` + `metadata.about*` | Fully localized across all 10 locales. |
+| `/privacy` | ✅ Done | `src/app/[locale]/privacy/page.tsx` | `privacy` + `metadata.privacy*` | Fully localized across all 10 locales. |
+| `/height-predictor` | ✅ Done | `src/app/[locale]/height-predictor/page.tsx` + client components below | `heightPredictor` + `metadata.heightPredictor*` | Fully localized across all 10 locales. English H1 updated in `en.json` (`heightPredictor.intro.title`). |
+| `/` (home / height comparison dashboard) | 🟡 Routed only | `src/app/[locale]/page.tsx` exists and renders, but `src/components/HomeContent.tsx` (749 lines, SEO articles/FAQ) and `src/components/DynamicHeightDashboard.tsx` have **no `useTranslations`/`getTranslations` calls at all** — 100% hardcoded English still. | none yet | **Not actually multilingual.** Visiting localized routes renders the localized Navbar/Footer but English page content. Primary remaining landing-page gap. |
+| `/average-height-by-country` | ✅ Done | `src/app/[locale]/average-height-by-country/page.tsx` + 6 client components below | `averageHeightByCountry` + `metadata.averageHeightByCountry*` | Fully localized across all 10 locales. |
+| `/height-difference-calculator` | ✅ Done | `src/app/[locale]/height-difference-calculator/page.tsx` + 4 client components below | `heightDifference` + `metadata.heightDifference*` | Fully localized across all 10 locales. |
+| `/height-weight-percentile-calculator` | ✅ Done | `src/app/[locale]/height-weight-percentile-calculator/page.tsx` + 4 client components below | `heightWeightPercentile` + `metadata.heightWeightPercentile*` | Fully localized across all 10 locales. |
+| `/ideal-body-weight-calculator` | ✅ Done | `src/app/[locale]/ideal-body-weight-calculator/page.tsx` + 2 client components below | `idealBodyWeight` + `metadata.idealBodyWeight*` | Fully localized across all 10 locales. |
+| `/blogs` | ✅ Done | `src/app/[locale]/blogs/page.tsx` | `blogs` + `metadata.blogs*` | Routed under `[locale]`, localized headings, cards, and date formatting (`formatLocalizedDate`). |
+| `/blog/[slug]` | ✅ Done | `src/app/[locale]/blog/[slug]/page.tsx` | `blogPost` | Routed under `[locale]`, localized ToC & labels, fetches localized Sanity post data. |
+| `/image-to-height` | ⬜ Not started | Flat route (`src/app/image-to-height/page.tsx`) | none | Last remaining calculator page to migrate. |
 | `/s/[id]` (share redirect) | ⬜ Not started | Flat route | none | Low priority — redirect-only page, minimal/no user-visible copy. |
-| `/studio/[[...index]]` (Sanity Studio) | ⬜ Not applicable | Flat route | none | Internal CMS admin tool, not a public-facing page — likely out of scope for localization entirely. |
+| `/studio/[[...index]]` (Sanity Studio) | ⬜ Not applicable | Flat route | none | Internal CMS admin tool, not a public-facing page — out of scope for localization. |
 
 ---
 
@@ -167,11 +182,11 @@ original English strings:
 
 ## Known gaps / risks to flag before calling the branch "done"
 
-1. **Home page (`/`) is the biggest remaining gap.** It's the primary landing page and is currently only *routed* under `[locale]`, not actually translated. `HomeContent.tsx` alone is 749 lines.
+1. **Home page (`/`) is the biggest remaining gap.** It's the primary landing page and is currently only *routed* under `[locale]`, not actually translated. `HomeContent.tsx` alone is 749 lines, plus `DynamicHeightDashboard.tsx`.
 2. **`GrowthPlateExplainer.tsx`** is currently dead code on the height-predictor page (commented out) but exists and is wired into `DynamicChildHeightIslands.tsx`. If someone re-enables it without checking this file first, it will ship untranslated.
-3. **One calculator page** (`image-to-height`) is entirely untouched — not even routed under `[locale]` yet. It will need the full `nextjs-i18n-migration` + `semantic-seo-localization` pipeline, similar in scope to what the five completed calculator pages just went through. (`average-height-by-country` was completed 2026-09-05 — see its detailed breakdown above.)
-4. **`FaqAccordion.tsx`'s hardcoded "HELP CENTER" badge and English default `title`/`description` props** — a pre-existing gap (shared component, not introduced by any single page). All four completed calculator pages pass a translated `title`/empty `description`, but the "HELP CENTER" eyebrow badge inside the component itself is still English-only on every locale. Worth fixing in the shared component directly rather than per-page.
-5. **Blog (Sanity CMS)** needs a separate design decision — translating `messages/*.json` strings doesn't address CMS-authored post content. Don't start this without deciding the CMS-side locale strategy first (e.g. Sanity document internationalization plugin vs. duplicate documents per locale).
+3. **One calculator page** (`image-to-height`) is entirely untouched — not even routed under `[locale]` yet. It will need the full `nextjs-i18n-migration` + `semantic-seo-localization` pipeline, similar in scope to what the five completed calculator pages went through.
+4. **`FaqAccordion.tsx`'s hardcoded "HELP CENTER" badge and English default `title`/`description` props** — a pre-existing gap (shared component, not introduced by any single page). All calculator pages pass a translated `title`/empty `description`, but the "HELP CENTER" eyebrow badge inside the component itself is still English-only on every locale. Worth fixing in the shared component directly rather than per-page.
+5. **Sanity CMS Post Translations** — Studio auto-translate endpoint (`/api/sanity/auto-translate`) and Sanity Studio Action are live. Blog posts can be translated into all 9 target languages on-demand directly in Sanity Studio or via batch script.
 6. **JSON-LD schemas are English-only project-wide** — this is a consistent, deliberate choice (not an oversight) following the `about` page's precedent, but worth re-confirming with a human before treating it as permanent policy.
 
 ---
@@ -182,6 +197,6 @@ original English strings:
 2. The one remaining calculator page (`image-to-height`) — same pattern as the five completed calculator pages, mechanical repeat of the established process.
 3. Fix `FaqAccordion.tsx`'s hardcoded "HELP CENTER" badge (affects all locales, all pages using it) — small, isolated fix.
 4. Decide the correct References citations for `/average-height-by-country` (currently cites the wrong papers, see its detailed breakdown above) and fix both `en`/`de` — small, isolated content fix, independent of i18n.
-5. Decide the blog/CMS localization strategy, then migrate `/blog`, `/blogs`, `/blog/[slug]`.
-6. `/s/[id]` — trivial, do whenever convenient.
-7. Revisit whether JSON-LD schemas should get `de` variants (policy decision, not urgent).
+5. `/s/[id]` — trivial, do whenever convenient.
+6. Revisit whether JSON-LD schemas should get localized variants (policy decision, not urgent).
+

@@ -16,6 +16,8 @@
 | `nl` | Dutch | Nederlands | 🇳🇱 | LTR | `nl-NL` | Supported | `messages/nl.json` |
 | `ar` | Arabic | العربية | 🇸🇦 | **RTL** | `ar-SA` | Supported | `messages/ar.json` |
 | `it` | Italian | Italiano | 🇮🇹 | LTR | `it-IT` | Supported | `messages/it.json` |
+| `sv` | Swedish | Svenska | 🇸🇪 | LTR | `sv-SE` | Supported | `messages/sv.json` |
+| `pl` | Polish | Polski | 🇵🇱 | LTR | `pl-PL` | Supported | `messages/pl.json` |
 
 ---
 
@@ -71,7 +73,7 @@ Whenever adding a new language with code `[LOCALE_CODE]` (e.g., `ja`, `hi`, `pl`
 - **File**: [`src/middleware.ts`](file:///d:/COding/InternShip%20Work/E-STUDYPAL/LAUNCHPIT/Height%20Comparison%20%20tool/heightcomparison/src/middleware.ts)
 - **Action**: Add `[LOCALE_CODE]` to the matcher regex:
   ```typescript
-  '/(de|en|es|fr|pt|nl|ar|it|[LOCALE_CODE])/:path*'
+  '/(de|en|es|fr|pt|nl|ar|it|sv|pl|[LOCALE_CODE])/:path*'
   ```
 
 ### Step 3: Seed Translation Dictionary (1 File)

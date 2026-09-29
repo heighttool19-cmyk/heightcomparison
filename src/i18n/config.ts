@@ -23,6 +23,8 @@ export const SUPPORTED_LOCALES: AppLocale[] = [
   { code: 'nl', name: 'Dutch', nativeName: 'Nederlands', flag: '🇳🇱', dateLocale: 'nl-NL', dir: 'ltr' },
   { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦', dateLocale: 'ar-SA', dir: 'rtl' },
   { code: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹', dateLocale: 'it-IT', dir: 'ltr' },
+  { code: 'sv', name: 'Swedish', nativeName: 'Svenska', flag: '🇸🇪', dateLocale: 'sv-SE', dir: 'ltr' },
+  { code: 'pl', name: 'Polish', nativeName: 'Polski', flag: '🇵🇱', dateLocale: 'pl-PL', dir: 'ltr' },
 ];
 
 export const ALL_LOCALE_CODES = SUPPORTED_LOCALES.map((l) => l.code);
