@@ -130,7 +130,35 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                             <p className="text-muted leading-relaxed font-medium">
                                 {t('howTallChild.closing')}
                             </p>
-                        </section><section className="space-y-8 pt-8">
+
+                            <div className="grid md:grid-cols-3 gap-6 pt-2">
+                                <div id="how-tall-will-my-son-be" className="bg-surface border border-border p-6 rounded-2xl border-l-4 border-l-blue-500 shadow-sm scroll-mt-24 space-y-3">
+                                    <h3 className="font-black text-foreground text-base uppercase tracking-tight text-blue-500">
+                                        {t('howTallChild.sonTitle')}
+                                    </h3>
+                                    <p className="text-sm text-muted font-medium leading-relaxed">
+                                        {t('howTallChild.sonText')}
+                                    </p>
+                                </div>
+                                <div id="how-tall-will-my-daughter-be" className="bg-surface border border-border p-6 rounded-2xl border-l-4 border-l-pink-500 shadow-sm scroll-mt-24 space-y-3">
+                                    <h3 className="font-black text-foreground text-base uppercase tracking-tight text-pink-500">
+                                        {t('howTallChild.daughterTitle')}
+                                    </h3>
+                                    <p className="text-sm text-muted font-medium leading-relaxed">
+                                        {t('howTallChild.daughterText')}
+                                    </p>
+                                </div>
+                                <div id="how-tall-will-my-baby-or-toddler-be" className="bg-surface border border-border p-6 rounded-2xl border-l-4 border-l-accent shadow-sm scroll-mt-24 space-y-3">
+                                    <h3 className="font-black text-foreground text-base uppercase tracking-tight text-accent">
+                                        {t('howTallChild.babyTitle')}
+                                    </h3>
+                                    <p className="text-sm text-muted font-medium leading-relaxed">
+                                        {t('howTallChild.babyText')}
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+                        <section className="space-y-8 pt-8">
                             <div className="space-y-4">
                                 <h2 id="how-tall-will-i-be-teens-adults" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
                                     {t('teensAdults.title')}
@@ -289,6 +317,9 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                     <p className="text-muted leading-relaxed font-medium">
                                         {t('growthCharts.percentileBefore')}<strong>{t('growthCharts.percentileStrong')}</strong>{t('growthCharts.percentileAfter')}
                                     </p>
+                                    <p className="text-muted leading-relaxed font-medium">
+                                        {t('growthCharts.expandText')}
+                                    </p>
                                     <div className="flex items-start gap-3 bg-accent/5 p-4 rounded-xl border border-accent/10">
                                         <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 shrink-0" />
                                         <p className="text-sm font-bold text-foreground leading-relaxed italic">
@@ -401,9 +432,6 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
 
                         <section className="space-y-6 pt-8">
                             <h2 id="height-prediction-methods" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">{t('methods.title')}</h2>
-                            <h3 className="text-xl font-black text-foreground mt-2 uppercase tracking-tighter">
-                                {t('methods.subtitle')}
-                            </h3>
                             <p className="text-muted leading-relaxed mb-6 font-medium">
                                 {t('methods.description')}
                             </p>
@@ -417,13 +445,14 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                         <span className="bg-green-100 text-green-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
                                             {t('methods.khamisRoche.badge')}
                                         </span>
-                                        <h4 id="khamis-roche-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                        <h3 id="khamis-roche-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
                                             {t('methods.khamisRoche.title')}
-                                        </h4>
+                                        </h3>
                                     </div>
 
                                     <p className="text-muted leading-relaxed  font-medium">
-                                        {t('methods.khamisRoche.p1')}                                    </p>
+                                        {t('methods.khamisRoche.p1')}
+                                    </p>
                                     <p className="text-muted leading-relaxed mb-6 font-medium">{t('methods.khamisRoche.p2')}</p>
                                     <div className="p-6 bg-accent/5 rounded-2xl border border-accent/20 mb-6">
                                         <ul className="text-foreground text-base space-y-3">
@@ -468,24 +497,44 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                         <span className="bg-green-100 text-green-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
                                             {t('methods.midParental.badge')}
                                         </span>
-                                        <h4 id="based-on-parents" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                        <h3 id="based-on-parents" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
                                             {t('methods.midParental.title')}
-                                        </h4>
+                                        </h3>
                                     </div>
 
-                                    <p className="text-muted leading-relaxed mb-6 font-medium">
+                                    <p className="text-muted leading-relaxed mb-4 font-medium">
                                         {t('methods.midParental.p1')}
                                     </p>
+                                    <p className="text-muted leading-relaxed mb-6 font-medium">
+                                        {t('methods.midParental.formulaExplanation')}
+                                    </p>
 
-                                    <div className="grid sm:grid-cols-2 gap-6 mb-6">
-                                        <div className="bg-bg border border-border p-5 rounded-2xl border-l-4 border-l-blue-500">
-                                            <span className="font-black text-foreground block mb-2 text-xs uppercase tracking-widest text-blue-500">{t('methods.midParental.boysFormulaLabel')}</span>
-                                            <code className="text-foreground text-sm font-black tracking-tight bg-blue-500/10 px-1 py-1 rounded-lg">{t('methods.midParental.boysFormula')}</code>
+                                    <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                                        <div className="bg-bg border border-border p-4 rounded-2xl border-l-4 border-l-blue-500 space-y-1.5">
+                                            <span className="font-black text-foreground block text-xs uppercase tracking-widest text-blue-500">{t('methods.midParental.boysFormulaLabel')}</span>
+                                            <code className="text-foreground text-sm font-black tracking-tight bg-blue-500/10 px-2 py-1 rounded-lg block w-fit">{t('methods.midParental.boysFormula')}</code>
+                                            <p className="text-xs text-muted font-medium">{t('methods.midParental.boysFormulaSub')}</p>
                                         </div>
-                                        <div className="bg-bg border border-border p-5 rounded-2xl border-l-4 border-l-pink-500">
-                                            <span className="font-black text-foreground block mb-2 text-xs uppercase tracking-widest text-pink-500">{t('methods.midParental.girlsFormulaLabel')}</span>
-                                            <code className="text-foreground text-sm font-black tracking-tight bg-pink-500/10 px-1 py-1 rounded-lg">{t('methods.midParental.girlsFormula')}</code>
+                                        <div className="bg-bg border border-border p-4 rounded-2xl border-l-4 border-l-pink-500 space-y-1.5">
+                                            <span className="font-black text-foreground block text-xs uppercase tracking-widest text-pink-500">{t('methods.midParental.girlsFormulaLabel')}</span>
+                                            <code className="text-foreground text-sm font-black tracking-tight bg-pink-500/10 px-2 py-1 rounded-lg block w-fit">{t('methods.midParental.girlsFormula')}</code>
+                                            <p className="text-xs text-muted font-medium">{t('methods.midParental.girlsFormulaSub')}</p>
                                         </div>
+                                        <div className="bg-bg border border-border p-4 rounded-2xl border-l-4 border-l-blue-500 space-y-1.5">
+                                            <span className="font-black text-foreground block text-xs uppercase tracking-widest text-blue-500">{t('methods.midParental.boysFormulaMetricLabel')}</span>
+                                            <code className="text-foreground text-sm font-black tracking-tight bg-blue-500/10 px-2 py-1 rounded-lg block w-fit">{t('methods.midParental.boysFormulaMetric')}</code>
+                                            <p className="text-xs text-muted font-medium">{t('methods.midParental.boysFormulaMetricSub')}</p>
+                                        </div>
+                                        <div className="bg-bg border border-border p-4 rounded-2xl border-l-4 border-l-pink-500 space-y-1.5">
+                                            <span className="font-black text-foreground block text-xs uppercase tracking-widest text-pink-500">{t('methods.midParental.girlsFormulaMetricLabel')}</span>
+                                            <code className="text-foreground text-sm font-black tracking-tight bg-pink-500/10 px-2 py-1 rounded-lg block w-fit">{t('methods.midParental.girlsFormulaMetric')}</code>
+                                            <p className="text-xs text-muted font-medium">{t('methods.midParental.girlsFormulaMetricSub')}</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-accent/5 border border-accent/20 p-5 rounded-2xl mb-6 space-y-2">
+                                        <p className="text-sm text-foreground font-medium leading-relaxed">{t('methods.midParental.exampleText')}</p>
+                                        <p className="text-sm font-black text-accent">{t('methods.midParental.exampleEstimateText')}</p>
                                     </div>
 
                                     <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20 mb-6">
@@ -534,9 +583,9 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                     <span className="bg-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
                                         {t('methods.boneAge.badge')}
                                     </span>
-                                    <h4 id="bone-age-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                    <h3 id="bone-age-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
                                         {t('methods.boneAge.title')}
-                                    </h4>
+                                    </h3>
                                 </div>
 
                                 <p className="text-muted leading-relaxed mb-6 font-medium">
@@ -573,9 +622,9 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                     <span className="bg-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
                                         {t('methods.bayleyPinneau.badge')}
                                     </span>
-                                    <h4 id="bayley-pinneau-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                    <h3 id="bayley-pinneau-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
                                         {t('methods.bayleyPinneau.title')}
-                                    </h4>
+                                    </h3>
                                 </div>
 
                                 <p className="text-muted leading-relaxed font-medium">
@@ -594,9 +643,9 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                     <span className="bg-blue-100 text-blue-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
                                         {t('methods.rocheWainerThissen.badge')}
                                     </span>
-                                    <h4 id="roche-wainer-thissen-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                    <h3 id="roche-wainer-thissen-method" className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
                                         {t('methods.rocheWainerThissen.title')}
-                                    </h4>
+                                    </h3>
                                 </div>
 
                                 <p className="text-muted leading-relaxed font-medium">
@@ -606,7 +655,7 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                         </section>
                         <section id="can-you-increase-height" className="space-y-6">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight mt-8 scroll-mt-24 uppercase">
-                                {t('canIncrease.titlePrefix')}<span className="text-accent">{t('canIncrease.titleHighlight')}</span>?
+                                {t('canIncrease.title')}
                             </h2>
                             <p className="text-muted leading-relaxed font-medium text-[14px]">
                                 {t('canIncrease.description')}
@@ -663,24 +712,69 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                         </section>
 
 
-                        <section className="space-y-4" id="accuracy">
+                        <section className="space-y-6 pt-4" id="accuracy">
                             <h2 className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24 uppercase">
-                                {t('accuracy.titlePrefix')}<span className="text-accent underline decoration-4 underline-offset-4">{t('accuracy.titleHighlight')}</span>{t('accuracy.titleSuffix')}
+                                {t('accuracy.title')}
                             </h2>
 
-                            <p className="text-muted leading-relaxed font-medium">{t('accuracy.description')}</p>
+                            <p className="text-muted leading-relaxed font-medium">
+                                {t('accuracy.description')}
+                            </p>
 
-                            <ul className="space-y-3 text-muted font-medium">
-                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5 mt-1" /> {t('accuracy.check1')}</li>
-                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5 mt-1" /> {t('accuracy.check2')}</li>
-                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5 mt-1" /> {t('accuracy.check3')}</li>
-                                <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-green-500 w-5 h-5 mt-1" /> {t('accuracy.check4')}</li>
-                                <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5 mt-1" /> {t('accuracy.alert1')}</li>
-                                <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5 mt-1" /> {t('accuracy.alert2')}</li>
-                                <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5 mt-1" /> {t('accuracy.alert3')}</li>
-                            </ul>
-                            <div style={{ margin: '16px 0', padding: '12px 16px', background: 'color-mix(in srgb, var(--accent) 5%, transparent)', border: '1px solid color-mix(in srgb, var(--accent) 20%, transparent)', borderRadius: 'var(--radius-sm)', fontSize: '14px', fontWeight: '600', color: 'var(--accent)', textAlign: 'center' }}>
-                                {t('accuracy.rangeNotice')}
+                            <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] space-y-4 shadow-sm">
+                                <h3 className="text-xl font-black text-foreground uppercase tracking-tight">
+                                    {t('accuracy.is100PercentTitle')}
+                                </h3>
+                                <p className="text-muted leading-relaxed font-medium text-sm">
+                                    {t('accuracy.is100PercentText')}
+                                </p>
+                            </div>
+
+                            <div className="space-y-4">
+                                <h3 className="text-xl font-black text-foreground uppercase tracking-tight">
+                                    {t('accuracy.typicalErrorTitle')}
+                                </h3>
+                                <div className="overflow-x-auto rounded-2xl border border-border bg-surface shadow-sm">
+                                    <table className="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr className="bg-accent/5 border-b border-border">
+                                                <th className="p-4 text-xs font-black uppercase tracking-widest text-foreground">{t('accuracy.thMethod')}</th>
+                                                <th className="p-4 text-xs font-black uppercase tracking-widest text-accent">{t('accuracy.thTypicalError')}</th>
+                                                <th className="p-4 text-xs font-black uppercase tracking-widest text-foreground">{t('accuracy.thNeedsBoneAge')}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="text-sm">
+                                            <tr className="border-b border-border hover:bg-accent/[0.02] transition-colors">
+                                                <td className="p-4 font-bold text-foreground">{t('accuracy.methodKhamis')}</td>
+                                                <td className="p-4 text-accent font-black">{t('accuracy.errorKhamis')}</td>
+                                                <td className="p-4 text-muted font-medium">{t('accuracy.boneAgeKhamis')}</td>
+                                            </tr>
+                                            <tr className="border-b border-border hover:bg-accent/[0.02] transition-colors">
+                                                <td className="p-4 font-bold text-foreground">{t('accuracy.methodMidParental')}</td>
+                                                <td className="p-4 text-accent font-black">{t('accuracy.errorMidParental')}</td>
+                                                <td className="p-4 text-muted font-medium">{t('accuracy.boneAgeMidParental')}</td>
+                                            </tr>
+                                            <tr className="hover:bg-accent/[0.02] transition-colors">
+                                                <td className="p-4 font-bold text-foreground">{t('accuracy.methodBoneAge')}</td>
+                                                <td className="p-4 text-accent font-black">{t('accuracy.errorBoneAge')}</td>
+                                                <td className="p-4 text-muted font-medium">{t('accuracy.boneAgeBoneAge')}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] border-l-4 border-l-accent shadow-sm space-y-4">
+                                <h3 className="text-xl font-black text-foreground uppercase tracking-tight">
+                                    {t('accuracy.whyMissesTitle')}
+                                </h3>
+                                <ul className="space-y-3 text-muted font-medium">
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.miss1')}</li>
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.miss2')}</li>
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.miss3')}</li>
+                                    <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5 mt-0.5" /> {t('accuracy.miss4')}</li>
+                                    <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5 mt-0.5" /> {t('accuracy.miss5')}</li>
+                                </ul>
                             </div>
 
                             <div className="text-xs text-muted leading-relaxed font-medium bg-muted/20 p-4 rounded-xl border border-border mt-6">

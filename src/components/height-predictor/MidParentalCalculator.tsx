@@ -62,6 +62,17 @@ export default function MidParentalCalculator() {
         setPredictedParentOnlyGirls({ cm: Math.round(girlsCm), ft: gRes.ft, in: gRes.in, raw: girlsCm, fCm: pFatherCm, mCm: pMotherCm });
     };
 
+    const clearMidParental = () => {
+        setParentMotherHtCm('');
+        setParentMotherHtFt('');
+        setParentMotherHtIn('');
+        setParentFatherHtCm('');
+        setParentFatherHtFt('');
+        setParentFatherHtIn('');
+        setPredictedParentOnlyBoys(null);
+        setPredictedParentOnlyGirls(null);
+    };
+
     return (
         <section className="bg-surface border border-border rounded-3xl p-6 sm:p-10 shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
             <div className="flex flex-col mb-8 gap-4">
@@ -147,7 +158,10 @@ export default function MidParentalCalculator() {
                     )}
                 </div>
             </div>
-            <button onClick={calculateMidParental} className="w-full bg-surface border-2 border-border hover:border-accent hover:bg-accent/5 text-foreground font-black py-3.5 rounded-xl transition-all shadow-sm btn-glow active:scale-95">{t('calculateEstimate')}</button>
+            <div className="flex gap-4">
+                <button onClick={calculateMidParental} className="flex-1 bg-accent hover:bg-accent/90 text-white font-black py-3.5 rounded-xl transition-all shadow-lg btn-glow active:scale-95">{t('calculateEstimate')}</button>
+                <button onClick={clearMidParental} className="px-6 bg-bg border border-border text-muted font-black rounded-xl hover:text-foreground transition-all">{t('clear')}</button>
+            </div>
 
             {predictedParentOnlyBoys && predictedParentOnlyGirls && (
                 <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">

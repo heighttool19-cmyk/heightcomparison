@@ -156,12 +156,12 @@
   "heightPredictor": {
     "intro": {
       "title": "Height Predictor and Adult Height Calculator - [ Height Calculator- Children Height Predictor ]",
-      "description": "Use this height calculator  to estimate the future height of children, teenagers, and adults based on age, genetics, and growth patterns. This calculator uses the Khamis-Roche method, one of the most accurate height prediction models available. If your child is under four, or you are pregnant and curious about your baby's expected height, use the Mid-Parental Height Formula below instead, given below"
+      "description": "Use this height calculator to estimate the future height of children, teenagers, and adults based on age, genetics, and growth patterns. This calculator uses the Khamis-Roche method, one of the most accurate height prediction models available. If your child is under four, or you are pregnant and curious about your baby's expected height, use the Mid-Parental Height Calculator given below"
     },
     "khamisRocheCalculator": {
-      "title": "Height Predictor",
+      "title": "khamis roche method height calculator",
       "badge": "Khamis-Roche",
-      "description": "Instant height prediction using scientific growth models. Estimate predicted height based on age and parents",
+      "description": "Predict your child's adult height with the Khamis-Roche calculator using age, current height, weight, and parents' heights",
       "unitUs": "US (ft/in)",
       "unitMetric": "Metric (cm)",
       "childAgeLabel": "Child's Age (Years)",
@@ -196,9 +196,9 @@
       "lbsUnit": "lbs"
     },
     "midParentalCalculator": {
-      "title": "Parent's Height Only",
-      "badge": "Mid-Parental",
-      "description": "Estimate predicted height using only parents' heights. Works for babies, very young children, and unborn babies too. If you are pregnant, enter both parents' heights to get your child's estimated adult height range.",
+      "title": "Mid parental height calculator",
+      "badge": "parents' height only",
+      "description": "The mid-parental height formula estimates your child's adult height using only both parents' heights. This simple child height predictor based on parents' heights can give you a rough estimate for babies, young children, and even unborn babies.",
       "unitUs": "US (ft/in)",
       "unitMetric": "Metric (cm)",
       "motherHeightLabel": "Mother's Height",
@@ -210,6 +210,7 @@
       "fatherHeightFtAriaLabel": "Father's Height in Feet",
       "fatherHeightInAriaLabel": "Father's Height in Inches",
       "calculateEstimate": "Calculate Estimate",
+      "clear": "Clear",
       "estimatedAdultHeightBoys": "Estimated Adult Height (Boys)",
       "estimatedAdultHeightGirls": "Estimated Adult Height (Girls)",
       "targetRange": "Target Range (±5 cm): {min} : {max} cm",
@@ -250,7 +251,13 @@
       "currentGrowthText": "Age, height, and weight measurements refine the estimate.",
       "statisticsLabel": "Statistics",
       "statisticsText": "Growth patterns observed across large populations by age and sex.",
-      "closing": "The result is an estimated adult height range: a useful guideline, not a guarantee. Children's growth patterns are individual and can vary significantly based on health, nutrition, and timing of puberty."
+      "closing": "The result is an estimated adult height range: a useful guideline, not a guarantee. Children's growth patterns are individual and can vary significantly based on health, nutrition, and timing of puberty.",
+      "sonTitle": "How tall will my son be?",
+      "sonText": "The Khamis-Roche calculator above estimates your son's adult height using his current age, height, weight, and both parents' heights. It gives a more personalized estimate than a formula based on parents' heights alone. Boys typically stop growing around age 18, though some may continue growing a little longer.",
+      "daughterTitle": "How tall will my daughter be?",
+      "daughterText": "The Khamis-Roche calculator above estimates your daughter's adult height using her current age, height, weight, and both parents' heights. It gives a more personalized estimate than a formula based on parents' heights alone. Most girls reach their adult height between ages 15 and 16.",
+      "babyTitle": "How tall will my baby or toddler be?",
+      "babyText": "For baby height predictor, use the mid parental height calculator above. It needs only the mother's and father's heights and gives a rough range. If you are pregnant, enter both parents' heights for an estimate before birth. A common rule of thumb doubles a boy's height at age 2, or a girl's height at 18 months, to estimate adult height."
     },
     "teensAdults": {
       "title": "How Tall Will I Be? Calculator for Teens & Adults",
@@ -263,7 +270,7 @@
       "adultsTitle": "Adults (18+)",
       "adultsText": "Growth plates close after puberty. For adults, height prediction is no longer relevant, but the Mid-Parental Height Formula can still estimate what height their children may reach.",
       "adultsItem1": "Adult height is already determined",
-      "adultsItem2": "Use the Parent's Height tool to predict children's height",
+      "adultsItem2": "Use the mid-parental height calculator to predict child's height",
       "adultsItem3": "Use the height converter for unit conversion",
       "limitationLabel": "Important Limitation:",
       "limitationText": "No height calculator can account for medical conditions, growth hormone disorders, or premature puberty. If growth seems unusually fast or slow, consult a pediatrician."
@@ -297,6 +304,7 @@
       "percentileBefore": "The ",
       "percentileStrong": "50th percentile",
       "percentileAfter": " represents the median height for that age and sex. Healthy children typically fall between the 3rd and 97th percentile.",
+      "expandText": "To see how tall a child should be at a given age, read the 50th percentile line for their sex. If a child stays above or below the 3rd to 97th percentile range, talk to their pediatrician. For an exact percentile, use the height and weight percentile calculator.",
       "note": "Note: Pediatricians focus less on a single measurement and more on whether a child stays on a consistent growth curve over time."
     },
     "comparisonTable": {
@@ -318,7 +326,7 @@
       "rowDoctorCalculator": "No (use online)",
       "rowDoctorGrowthChart": "No (use online)",
       "rowAccuracyLabel": "Typical accuracy",
-      "rowAccuracyCalculator": "±2-4 inches",
+      "rowAccuracyCalculator": "±2.1 in (boys), ±1.7 in (girls) with Khamis-Roche",
       "rowAccuracyGrowthChart": "Shows percentile, not prediction",
       "rowWithoutParentsLabel": "Works without parents",
       "rowWithoutParentsCalculator": "Partial (less accurate)",
@@ -371,12 +379,23 @@
       },
       "midParental": {
         "badge": "SIMPLE",
-        "title": "Height Predictor Based on Parents (Mid-Parental Height Formula)",
-        "p1": "The Mid-Parental Height Formula is the simplest way to estimate a child's adult height using only the parents' heights. It requires no medical testing and works for any age, including babies and unborn children.",
-        "boysFormulaLabel": "For Boys (US Units)",
+        "title": "Mid parental height formula",
+        "p1": "The child height predictor based on parents estimates a child's adult height using only the mother's and father's heights. This simple method works for children of any age, including babies and unborn children, but it does not account for the child's current growth.",
+        "formulaExplanation": "The mid-parental formula averages both parents' heights, then adds or subtracts a fixed amount. For calculating child height by mid parental height formula, add the mother’s and father’s heights, add 13 cm for boys or subtract 13 cm for girls, then divide by two. For heights measured in inches, use 5 inches instead of 13 cm.",
+        "boysFormulaLabel": "BOYS, US UNITS",
         "boysFormula": "(Father + Mother + 5 in) ÷ 2",
-        "girlsFormulaLabel": "For Girls (US Units)",
+        "boysFormulaSub": "The same result: the parents' average plus 2.5 in.",
+        "girlsFormulaLabel": "GIRLS, US UNITS",
         "girlsFormula": "(Father + Mother - 5 in) ÷ 2",
+        "girlsFormulaSub": "The same result: the parents' average minus 2.5 in.",
+        "boysFormulaMetricLabel": "BOYS, METRIC",
+        "boysFormulaMetric": "(Father + Mother + 13 cm) ÷ 2",
+        "boysFormulaMetricSub": "The parents' average plus 6.5 cm.",
+        "girlsFormulaMetricLabel": "GIRLS, METRIC",
+        "girlsFormulaMetric": "(Father + Mother - 13 cm) ÷ 2",
+        "girlsFormulaMetricSub": "The parents' average minus 6.5 cm.",
+        "exampleText": "Example: A father who is 71 in (5'11\") and a mother who is 65 in (5'5\") give an estimate of 70.5 in (5'10.5\") for a boy and 65.5 in (5'5.5\") for a girl. In metric, a 180 cm father and a 165 cm mother give 179 cm for a boy and 166 cm for a girl.",
+        "exampleEstimateText": "The estimate lands within 4 inches (10 cm) of final adult height. For the boy above, that is 66.5 to 74.5 inches.",
         "item1": "Works for babies and young children when no current growth data is available",
         "item2": "Typical accuracy: within ±4 inches (10 cm) of final adult height",
         "item3": "Does not account for current growth trajectory. Use Khamis-Roche for children over 4",
@@ -404,8 +423,7 @@
       }
     },
     "canIncrease": {
-      "titlePrefix": "Can You ",
-      "titleHighlight": "Increase Height",
+      "title": "How can you increase height",
       "description": "Your genes largely decide how tall you'll be. But how well you eat, sleep, and stay active during childhood can make a real difference in whether you reach that potential.",
       "nutritionTitle": "Nutrition",
       "nutritionText": "Adequate nutrition supports bone development. Key nutrients:",
@@ -423,29 +441,36 @@
       "warningText": "No exercise, supplement, or stretching program can increase height once growth plates close. Predictions are estimates. Genetics is the dominant factor."
     },
     "accuracy": {
-      "titlePrefix": "How ",
-      "titleHighlight": "Accurate",
-      "titleSuffix": " Is a Height Calculator?",
-      "description": "This height predictor uses the Khamis-Roche growth model, trained on long-term studies of child growth data.",
-      "check1": "Most predictions fall within 5-10 cm (2-4 inches) of final adult height",
-      "check2": "Accuracy is highest when the child is older than 4 years",
-      "check3": "Accurate height and weight measurements improve results significantly",
-      "check4": "Correct parent height data is required for reliable output",
-      "alert1": "Results are a likely range, not an exact value",
-      "alert2": "Not suitable for children with known growth disorders",
-      "alert3": "Early or late puberty can reduce prediction accuracy",
-      "rangeNotice": "The result represents a likely range rather than an exact value.",
+      "title": "How accurate is this height calculator?",
+      "description": "This height calculator uses the Khamis-Roche growth model, trained on long-term studies of child growth data. Its margin of error is ±2.1 inches for boys and ±1.7 inches for girls.",
+      "is100PercentTitle": "Is any height predictor 100% accurate?",
+      "is100PercentText": "No. Every height predictor returns a likely range, not an exact value. Khamis-Roche is the most accurate method that needs no bone age test. A wrist X-ray for bone age is more accurate, and doctors order it when they suspect a growth disorder.",
+      "typicalErrorTitle": "Typical error by method",
+      "thMethod": "METHOD",
+      "thTypicalError": "TYPICAL ERROR",
+      "thNeedsBoneAge": "NEEDS A BONE AGE X-RAY",
+      "methodKhamis": "Khamis-Roche",
+      "errorKhamis": "±2.1 in for boys, ±1.7 in for girls",
+      "boneAgeKhamis": "No",
+      "methodMidParental": "Mid-parental formula",
+      "errorMidParental": "Within 4 in (10 cm)",
+      "boneAgeMidParental": "No",
+      "methodBoneAge": "Bone age methods",
+      "errorBoneAge": "Most accurate method available",
+      "boneAgeBoneAge": "Yes",
+      "whyMissesTitle": "Why a prediction misses",
+      "miss1": "Accuracy is highest when the child is older than 4 years",
+      "miss2": "Accurate height and weight measurements improve results significantly",
+      "miss3": "Correct parent height data is required for reliable output",
+      "miss4": "Early or late puberty can reduce prediction accuracy",
+      "miss5": "Not suitable for children with known growth disorders",
       "disclaimerStrong": "Medical disclaimer:",
       "disclaimerText": "This height calculator is for informational purposes only. It is not a substitute for professional medical advice. If you have concerns about your child's growth, consult a qualified pediatrician or endocrinologist."
     },
     "faq": [
       {
-        "q": "How tall will I be?",
+        "q": "How tall you will be",
         "a": "Your adult height depends primarily on your parents' heights and your growth timing. Use the height calculator above. Enter your current age, height, weight, and your parents' heights to get a predicted height range based on the Khamis-Roche growth model. If you are already 18 or older, your growth plates have closed and your adult height is set."
-      },
-      {
-        "q": "How tall will my son be?",
-        "a": "Enter your son's age, current height, weight, and both parents' heights into the Khamis-Roche calculator above. Boys typically stop growing around age 18, though small increases may continue until 20. The Mid-Parental Height Formula can also give a rough estimate: (Father's height + Mother's height + 5 inches) ÷ 2."
       },
       {
         "q": "Is a height calculator accurate?",
@@ -458,10 +483,6 @@
       {
         "q": "Can I predict my baby's height?",
         "a": "For babies and infants, use the Mid-Parental Height Formula calculator above. It requires only the mother's and father's heights. This gives a rough estimated height range. Note that accuracy is lower for babies than for older children, since current growth data is not factored in."
-      },
-      {
-        "q": "How tall should my child be at their age?",
-        "a": "Use the growth chart section above to see the average height range by age for boys and girls. The 50th percentile represents the median height. Healthy children typically fall between the 3rd and 97th percentile. If your child is consistently above or below this range, discuss it with their pediatrician."
       },
       {
         "q": "What is the most accurate height prediction method?",
@@ -481,6 +502,18 @@
         "id": "how-tall-will-my-child-be",
         "label": "How Tall Will My Child Be?",
         "subItems": [
+          {
+            "id": "how-tall-will-my-son-be",
+            "label": "How tall will my son be?"
+          },
+          {
+            "id": "how-tall-will-my-daughter-be",
+            "label": "How tall will my daughter be?"
+          },
+          {
+            "id": "how-tall-will-my-baby-or-toddler-be",
+            "label": "How tall will my baby or toddler be?"
+          },
           {
             "id": "how-tall-will-i-be-teens-adults",
             "label": "How Tall Will I Be (Teens & Adults)"
@@ -517,7 +550,7 @@
           },
           {
             "id": "based-on-parents",
-            "label": "Based on Parents"
+            "label": "Mid parental height formula"
           }
         ]
       },
@@ -537,11 +570,11 @@
       },
       {
         "id": "can-you-increase-height",
-        "label": "Can You Increase Height?"
+        "label": "How Can You Increase Height"
       },
       {
         "id": "accuracy",
-        "label": "Prediction Accuracy"
+        "label": "How Accurate Is This Height Calculator?"
       },
       {
         "id": "faq",
@@ -1919,7 +1952,7 @@
     "privacyTitle": "Privacy Policy - Height Comparison Tool",
     "privacyDescription": "Read the Height Comparison Tool privacy policy to learn how we protect your information and handle data.",
     "heightPredictorTitle": "Height Calculator: Predict Your Adult Height",
-    "heightPredictorDescription": "Predict your height with our Height Predictor Calculator. This Projected height calculator uses proven methods to predict adult height.",
+    "heightPredictorDescription": "Expected adult height calculator to predict child height from two methods: Khamis Roche calculator and mid parental height calculator.",
     "heightWeightPercentileTitle": "Height and Weight Percentile Calculator for Babies, Kids & Adults",
     "heightWeightPercentileDescription": "Use our Height and Weight Percentile Calculator to measure growth. Includes baby height percentile calculator and height percentile adults calculator",
     "idealBodyWeightTitle": "Calculate Ideal Body Weight & Adjusted body weight calculator",
