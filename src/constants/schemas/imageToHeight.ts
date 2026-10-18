@@ -7,34 +7,34 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
 
         {
             "@type": "WebSite",
-            "@id": "heightcomparisoncalculator.com/#website",
-            "url": "heightcomparisoncalculator.com",
+            "@id": "https://heightcomparisoncalculator.com/#website",
+            "url": "https://heightcomparisoncalculator.com",
             "name": "Height Comparison",
             "publisher": {
                 "@type": "Organization",
-                "@id": "heightcomparisoncalculator.com/#organization"
+                "@id": "https://heightcomparisoncalculator.com/#organization"
             }
         },
 
         {
             "@type": "WebPage",
-            "@id": "heightcomparisoncalculator.com/measure-height-from-photo#webpage",
-            "url": "heightcomparisoncalculator.com/measure-height-from-photo",
+            "@id": "https://heightcomparisoncalculator.com/image-to-height#webpage",
+            "url": "https://heightcomparisoncalculator.com/image-to-height",
             "name": "Measure Your Height From a Photo",
-            "description": "Upload a photo with a door or known object and measure height in centimeters and feet and inches with 1–2 cm accuracy.",
+            "description": "Upload a photo with a door, A4 paper, or credit card to measure your height in centimeters and feet and inches without a measuring tape.",
             "inLanguage": "en",
             "isPartOf": {
-                "@id": "heightcomparisoncalculator.com/#website"
+                "@id": "https://heightcomparisoncalculator.com/#website"
             },
             "mainEntity": {
-                "@id": "heightcomparisoncalculator.com/measure-height-from-photo#tool"
+                "@id": "https://heightcomparisoncalculator.com/image-to-height#tool"
             },
             "breadcrumb": {
-                "@id": "heightcomparisoncalculator.com/measure-height-from-photo#breadcrumb"
+                "@id": "https://heightcomparisoncalculator.com/image-to-height#breadcrumb"
             },
             "hasPart": [
-                { "@id": "heightcomparisoncalculator.com/measure-height-from-photo#faq" },
-                { "@id": "heightcomparisoncalculator.com/measure-height-from-photo#howto" }
+                { "@id": "https://heightcomparisoncalculator.com/image-to-height#faq" },
+                { "@id": "https://heightcomparisoncalculator.com/image-to-height#howto" }
             ],
             "mentions": [
                 {
@@ -70,12 +70,12 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
                 "SoftwareApplication",
                 "WebApplication"
             ],
-            "@id": "heightcomparisoncalculator.com/measure-height-from-photo#tool",
+            "@id": "https://heightcomparisoncalculator.com/image-to-height#tool",
             "name": "Height Measurement From Photo Tool",
-            "url": "heightcomparisoncalculator.com/measure-height-from-photo",
+            "url": "https://heightcomparisoncalculator.com/image-to-height",
             "mainEntityOfPage": {
                 "@type": "WebPage",
-                "@id": "heightcomparisoncalculator.com/measure-height-from-photo#webpage"
+                "@id": "https://heightcomparisoncalculator.com/image-to-height#webpage"
             },
             "applicationCategory": "UtilitiesApplication",
             "applicationSubCategory": "Measurement Tool",
@@ -94,21 +94,21 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
                 "@type": "UseAction",
                 "target": {
                     "@type": "EntryPoint",
-                    "urlTemplate": "heightcomparisoncalculator.com/measure-height-from-photo"
+                    "urlTemplate": "https://heightcomparisoncalculator.com/image-to-height"
                 }
             }
         },
 
         {
             "@type": "FAQPage",
-            "@id": "heightcomparisoncalculator.com/measure-height-from-photo#faq",
+            "@id": "https://heightcomparisoncalculator.com/image-to-height#faq",
             "mainEntity": [
                 {
                     "@type": "Question",
                     "name": "How accurate is height measurement from a photo?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "With a straight-on photo and a reliable reference object, results are usually accurate within 1 to 2 centimeters."
+                        "text": "Results land within 1 to 2 centimeters with a straight-on photo and a reliable reference object. In empirical testing, a level phone at waist height measured true height exactly."
                     }
                 },
                 {
@@ -116,7 +116,15 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
                     "name": "What object works best for calibration?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "A standard interior door around 203 centimeters tall is the most reliable reference. Credit cards and A4 paper can also be used."
+                        "text": "An A4 sheet (29.7 cm) or credit card (8.56 cm) works anywhere because international standards fix both sizes. A standard interior door at 203 cm is the easiest choice for full-body photos."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Is my photo uploaded or stored?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "No. The tool runs entirely in your browser, and your photo never leaves your device."
                     }
                 },
                 {
@@ -140,7 +148,7 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
 
         {
             "@type": "HowTo",
-            "@id": "heightcomparisoncalculator.com/measure-height-from-photo#howto",
+            "@id": "https://heightcomparisoncalculator.com/image-to-height#howto",
             "name": "How to Measure Your Height From a Photo",
             "description": "Step-by-step guide to measuring height using a photo and a known reference object.",
             "totalTime": "PT1M",
@@ -152,12 +160,17 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
                 {
                     "@type": "HowToStep",
                     "name": "Upload your photo",
-                    "text": "Upload a photo that clearly shows the full body from head to toe."
+                    "text": "Upload a photo that clearly shows the full body from head to toe with a reference object."
                 },
                 {
                     "@type": "HowToStep",
-                    "name": "Select a reference object",
-                    "text": "Choose an object in the photo with a known size such as a door or credit card."
+                    "name": "Crop and confirm",
+                    "text": "Trim edges so the person and reference object fill the frame cleanly."
+                },
+                {
+                    "@type": "HowToStep",
+                    "name": "Select a reference object and pick size",
+                    "text": "Choose an object in the photo with a known size such as a door, A4 paper, or credit card."
                 },
                 {
                     "@type": "HowToStep",
@@ -166,31 +179,30 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
                 },
                 {
                     "@type": "HowToStep",
-                    "name": "Read your height result",
-                    "text": "The tool calculates height and displays it in centimeters and feet and inches."
+                    "name": "Read your height result and save",
+                    "text": "The tool calculates height in centimeters and feet and inches, ready to compare on the chart."
                 }
             ]
         },
 
         {
             "@type": "BreadcrumbList",
-            "@id": "heightcomparisoncalculator.com/measure-height-from-photo#breadcrumb",
+            "@id": "https://heightcomparisoncalculator.com/image-to-height#breadcrumb",
             "itemListElement": [
                 {
                     "@type": "ListItem",
                     "position": 1,
                     "name": "Home",
-                    "item": "heightcomparisoncalculator.com/"
+                    "item": "https://heightcomparisoncalculator.com/"
                 },
                 {
                     "@type": "ListItem",
                     "position": 2,
                     "name": "Measure Height From Photo",
-                    "item": "heightcomparisoncalculator.com/measure-height-from-photo"
+                    "item": "https://heightcomparisoncalculator.com/image-to-height"
                 }
             ]
         }
 
     ]
-}
-
+};
