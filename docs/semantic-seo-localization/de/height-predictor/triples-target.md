@@ -38,10 +38,15 @@ uses/analyzes/applies-to; "predicts" for predicts/estimates/calculates;
 | 30 | HeightCharts-Daten | is based on | CDC-Wachstumskurvendaten | 85 | "Basierend auf CDC-Wachstumskurvendaten..." |
 | 31 | HeightCharts-Quelle | is | CDC Growth Charts / National Center for Health Statistics | 82 | Entity names kept verbatim in both chart and table view footers. |
 | 32 | 50. Perzentile-Linie | represents | Durchschnitt/Median | 76 | Matches source; reused in tooltip and legend. |
-| 33 | Jungen | stop growing | ~18 J. (Kennzahlen-Karte) | 80 | Matches source. |
-| 34 | Mädchen | stop growing | ~15–16 J. (Kennzahlen-Karte) | 80 | Matches source. |
-| 35 | Durchschnittsgröße erwachsener Männer (USA) | is | 172.2 cm / 5'8" | 78 | Numeric literal kept byte-identical to source (see formatting note below). |
-| 36 | Durchschnittsgröße erwachsener Frauen (USA) | is | 160.1 cm / 5'3" | 78 | Numeric literal kept byte-identical to source. |
+| 33 | Jungen | stop growing | ~16–18 J. (Kennzahlen-Karte) | 80 | Matches source. |
+| 34 | Mädchen | stop growing | ~14–15 J. (Kennzahlen-Karte) | 80 | Matches source. |
+| 35 | Durchschnittsgröße erwachsener Männer (USA 20+ NHANES) | is | 175 cm / 5'9" | 78 | Numeric literal kept byte-identical to source. |
+| 36 | Durchschnittsgröße erwachsener Frauen (USA 20+ NHANES) | is | 161.3 cm / 5'3.5" | 78 | Numeric literal kept byte-identical to source. |
+| 37 | Mayo Clinic | publishes / validates | 2-Jahres-Verdopplungsregel neben Mid-Parental-Methode | 85 | Preserved in howTallChild and methods cards. |
+| 38 | Khamis-Roche-Fehlerspanne | is within | 5,3 cm (2,1 Zoll) für Jungen und 4,3 cm (1,7 Zoll) für Mädchen bei 9 von 10 Kindern | 90 | Preserved in intro, comparisonTable, accuracy, and FAQ. |
+| 39 | Mid-Parental erwarteter Bereich | is | innerhalb von ca. ±10 cm (4 Zoll) der Erwachsenengröße | 85 | Preserved in midParental, workedExample, and methods. |
+| 40 | Größenprognose ohne Elterngrößen | is | von Rechnern nicht unterstützt; erfordert Perzentilenkurven oder Knochenalter-Röntgen | 80 | Preserved in teensAdults and comparisonTable. |
+| 41 | 100%ige Genauigkeit | is | mit keinem Rechner oder klinischem Verfahren möglich | 85 | Preserved in accuracy and FAQ. |
 
 ## Deliberate deviations (flagged, not meaning loss)
 - Triples #10 ("Boys stop growing around 18") and #11 ("Girls reach adult

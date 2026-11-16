@@ -156,12 +156,13 @@
   "heightPredictor": {
     "intro": {
       "title": "Predictor de estatura: calcule la altura adulta final",
-      "description": "Utilice este predictor de estatura para estimar la altura futura de niños, adolescentes y jóvenes a partir de su edad actual, genética parental y patrones de crecimiento. Esta herramienta emplea el método de Khamis-Roche, uno de los modelos de predicción de estatura sin radiografías más precisos de la medicina pediátrica. Si su hijo es menor de cuatro años o está esperando un bebé, utilice la fórmula de estatura media parental que encontrará más abajo."
+      "description": "Utilice esta calculadora de estatura para estimar la altura futura de niños, adolescentes y adultos según la edad, la genética y los patrones de crecimiento. Utiliza el método Khamis-Roche, que predice la estatura adulta para edades de 4 a 17,5 años a partir de la edad, la estatura, el peso y la estatura de ambos padres. En el estudio original, 9 de cada 10 predicciones se situaron dentro de 5,3 cm (2,1 pulgadas) para niños y 4,3 cm (1,7 pulgadas) para niñas. Para un niño menor de 4 años o un bebé no nacido, utilice la calculadora basada solo en los padres a continuación.",
+      "lastUpdated": "Última actualización: Noviembre de 2026"
     },
     "khamisRocheCalculator": {
       "title": "Predictor de estatura Khamis-Roche",
       "badge": "Recomendado (de 4 a 17 años)",
-      "description": "El método Khamis-Roche es el algoritmo clínico de predicción de estatura infantil más contrastado que no requiere radiografías de edad ósea. Desarrollado por el Dr. Harry Khamis y el Dr. Alex Roche en Wright State University.",
+      "description": "Predicción instantánea de estatura mediante modelos científicos de crecimiento. Ingrese edad, sexo, estatura, peso y la estatura de ambos padres. Válido para edades de 4 a 17,5 años.",
       "unitUs": "EE. UU. (pies/pulg, lbs)",
       "unitMetric": "Métrico (cm, kg)",
       "childAgeLabel": "Edad actual del niño/a",
@@ -196,9 +197,9 @@
       "lbsUnit": "lbs"
     },
     "midParentalCalculator": {
-      "title": "Calculadora de estatura media parental (Fórmula de Tanner)",
+      "title": "Calculadora de estatura basada en la estatura de los padres",
       "badge": "Apta para bebés y niños menores de 4 años",
-      "description": "La fórmula de Tanner estima el potencial genético de estatura del niño calculando el promedio de la altura de los padres ajustado por sexo biológico.",
+      "description": "Estime la estatura prevista utilizando únicamente la estatura de los padres. Funciona para bebés, niños muy pequeños e incluso antes de nacer. Si está embarazada, ingrese la estatura de ambos padres para conocer el rango estimado de altura adulta. Utiliza la fórmula mid-parental, que generalmente se ubica dentro de 10 cm (4 pulgadas) de la estatura adulta.",
       "unitUs": "EE. UU. (pies/pulg)",
       "unitMetric": "Métrico (cm)",
       "motherHeightLabel": "Estatura de la madre",
@@ -216,7 +217,8 @@
       "viewComparisonChart": "Ver gráfico de comparación",
       "cmUnit": "cm",
       "ftUnit": "pies",
-      "inUnit": "pulg"
+      "inUnit": "pulg",
+      "clear": "Borrar"
     },
     "heightConverter": {
       "title": "Conversor rápido de estatura",
@@ -231,7 +233,7 @@
       "inUnit": "pulg"
     },
     "howItWorks": {
-      "title": "¿Cómo funciona el predictor de estatura?",
+      "title": "¿Cómo funciona?",
       "description": "Esta calculadora integra datos biométricos de referencia para proporcionar estimaciones fundamentadas en la ciencia pediátrica:",
       "step1Strong": "1. Factores antropométricos clave: ",
       "step1Text": "Se recopilan la estatura actual, el peso, la edad exacta y la estatura biológica de ambos progenitores.",
@@ -245,28 +247,46 @@
       "description": "Predecir la estatura adulta de un hijo es una de las mayores curiosidades de los padres y una valiosa herramienta de seguimiento en pediatría preventiva.",
       "factorsTitle": "Factores determinantes principales:",
       "geneticsLabel": "Herencia genética (60–80%):",
-      "geneticsText": "La altura de los padres proporciona el molde biológico de base.",
+      "geneticsText": "las variantes genéticas heredadas explican aproximadamente el 80% de las diferencias de estatura entre las personas.",
       "currentGrowthLabel": "Velocidad de crecimiento actual:",
       "currentGrowthText": "El canal percentilar que el niño mantiene durante la infancia.",
       "statisticsLabel": "Modelos estadísticos comprobados:",
       "statisticsText": "Fórmulas matemáticas validadas en miles de cohortes de niños sanos.",
-      "closing": "Nuestra calculadora combina estos tres pilares para ofrecerle la previsión más sólida disponible sin necesidad de acudir al hospital."
+      "closing": "Nuestra calculadora combina estos tres pilares para ofrecerle la previsión más sólida disponible sin necesidad de acudir al hospital.",
+      "workedExampleTitle": "Ejemplo práctico: predecir la estatura a partir de la estatura de los padres",
+      "workedExampleIntro": "Un padre que mide 180 cm (5'11\") y una madre que mide 165 cm (5'5\") suman 345 cm (136 pulgadas).",
+      "workedExampleSon": "Hijo: (345 + 13) ÷ 2 = 179 cm. En unidades de EE. UU.: (136 + 5) ÷ 2 = 70,5 pulgadas, aprox. 5'10,5\".",
+      "workedExampleDaughter": "Hija: (345 − 13) ÷ 2 = 166 cm. En unidades de EE. UU.: (136 − 5) ÷ 2 = 65,5 pulgadas, aprox. 5'5,5\".",
+      "workedExampleRange": "Rango esperado: alrededor de 10 cm (4 pulgadas) hacia arriba o hacia abajo, es decir, aprox. 169 a 189 cm (5'6,5\" a 6'2,5\") para el hijo.",
+      "workedExampleClosing": "Para un niño de 4 años o más, la calculadora Khamis-Roche reduce este rango al incluir también la estatura y el peso actuales del niño.",
+      "age2RuleTitle": "Verificación rápida para niños pequeños: la regla de los 2 años",
+      "age2RuleText": "Duplique la estatura de un niño a los 2 años, o la de una niña a los 18 meses, para obtener una estimación aproximada de adulto. Un niño que mide 87,6 cm (34,5 pulgadas) en su segundo cumpleaños apunta a unos 175 cm (5'9\", 69 pulgadas) de adulto. Mayo Clinic incluye esta regla junto con la fórmula mid-parental.",
+      "sonTitle": "¿Cuánto medirá mi hijo?",
+      "sonText": "La calculadora Khamis-Roche de arriba estima la estatura adulta de su hijo utilizando su edad, estatura y peso actuales y la estatura de ambos padres. Ofrece una estimación más personalizada que una fórmula basada solo en los padres. La mayoría de los niños dejan de crecer alrededor de los 16-18 años.",
+      "daughterTitle": "¿Cuánto medirá mi hija?",
+      "daughterText": "La calculadora Khamis-Roche de arriba estima la estatura adulta de su hija utilizando su edad, estatura y peso actuales y la estatura de ambos padres. La mayoría de las niñas alcanzan su estatura adulta entre los 14 y 15 años.",
+      "babyTitle": "¿Cuánto medirá mi bebé o niño pequeño?",
+      "babyText": "Para predecir la estatura de un bebé, use la calculadora mid-parental de arriba. Solo necesita la estatura de la madre y del padre. Una regla común duplica la estatura de un niño a los 2 años o de una niña a los 18 meses."
     },
     "teensAdults": {
       "title": "Predicción para adolescentes y adultos jóvenes",
-      "description": "¿Todavía puedo crecer más? Esta es una de las preguntas más frecuentes durante la adolescencia tardía.",
+      "description": "Los adolescentes que se preguntan «cuánto voy a medir» pueden utilizar la calculadora Khamis-Roche. Ingrese su edad actual, estatura, peso y la estatura de sus padres para obtener la estimación más precisa.",
       "teensTitle": "En adolescentes (13 a 18 años):",
       "teensText": "El crecimiento depende directamente de si los cartílagos epifisarios (placas de crecimiento) han comenzado o no a fusionarse.",
-      "teensItem1": "Las chicas suelen completar su crecimiento entre los 15 y 16 años (unos 2 a 3 años después de la menarquia).",
+      "teensItem1": "Válido para edades de 4 a 17,5 años",
       "teensItem2": "Los chicos continúan creciendo con frecuencia hasta los 18 o incluso 20 años.",
-      "teensItem3": "La nutrición óptima y el sueño profundo favorecen el aprovechamiento del último remanente de crecimiento.",
+      "teensItem3": "La mayoría de los niños dejan de crecer entre los 16 y 18 años; las niñas hacia los 14 o 15",
       "adultsTitle": "En adultos (mayores de 20 años):",
       "adultsText": "Una vez finalizada la pubertad y fusionadas las placas epifisarias, el crecimiento esquelético longitudinal se detiene de forma definitiva.",
       "adultsItem1": "No existen ejercicios ni dietas capaces de alargar los huesos largos una vez cerradas las epífisis.",
-      "adultsItem2": "Mejorar la postura, fortalecer el core y descomprimir la columna vertebral puede recuperar entre 1 y 3 cm de altura funcional.",
+      "adultsItem2": "Utilice la herramienta de estatura de los padres para predecir la estatura de los hijos",
       "adultsItem3": "La estatura humana suele reducirse de forma natural entre 1 y 2 cm al final del día debido a la compresión de los discos intervertebrales por la gravedad.",
       "limitationLabel": "Aviso médico importante:",
-      "limitationText": "Cualquier producto, pastilla o suplemento comercial que prometa aumentar la estatura en adultos cerrados es médicamente falso y potencialmente perjudicial."
+      "limitationText": "Cualquier producto, pastilla o suplemento comercial que prometa aumentar la estatura en adultos cerrados es médicamente falso y potencialmente perjudicial.",
+      "noParentsTitle": "¿Qué pasa si no conoces la estatura de tus padres?",
+      "noParentsP1": "Ambas calculadoras de esta página necesitan la estatura de ambos padres, por lo que ninguna puede ofrecer una predicción sin ellos. Aún puede realizar un seguimiento de su crecimiento: mídase cada 6 meses y verifique su percentil en una tabla de crecimiento, lo que muestra si sigue su curva habitual. Si le preocupa su crecimiento, un médico puede solicitar una radiografía de edad ósea, el método de predicción más preciso.",
+      "noParentsCheckPercentile": "Compruebe su percentil con la",
+      "noParentsLinkText": "calculadora de percentiles de estatura y peso"
     },
     "ctaBanner": {
       "text": "¿Desea comparar la estatura de dos personas o personajes lado a lado con siluetas humanas interactivas?",
@@ -276,17 +296,17 @@
       "title": "¿Qué factores determinan la estatura de una persona?",
       "description": "La estatura adulta final es el resultado de una compleja interacción entre factores genéticos y condiciones ambientales durante el desarrollo:",
       "geneticsTitle": "1. Factores genéticos (80%):",
-      "geneticsBefore": "Los estudios con gemelos idénticos demuestran que entre el ",
-      "geneticsStrong1": "60% y el 80%",
-      "geneticsMiddle": " de la variación en la estatura humana se debe a factores hereditarios poligénicos. Se han identificado más de ",
+      "geneticsBefore": "Las variantes de ADN heredadas explican aproximadamente el ",
+      "geneticsStrong1": "80%",
+      "geneticsMiddle": " de las diferencias de estatura entre las personas (MedlinePlus). Los padres altos tienden a tener hijos altos, aunque se aplica la regresión a la media: los padres muy altos o bajos suelen tener hijos más cercanos al ",
       "geneticsStrong2": "700 variantes genéticas",
       "nutritionTitle": "2. Nutrición y alimentación (15%):",
-      "nutritionBefore": "La ingesta continuada de proteínas de alto valor biológico, calcio, zinc y vitamina D permite alcanzar el techo genético.",
-      "nutritionStrong": "La desnutrición infantil",
-      "nutritionAfter": " es el principal freno ambiental al desarrollo esquelético.",
+      "nutritionBefore": "El ",
+      "nutritionStrong": "20% restante aprox.",
+      "nutritionAfter": " proviene del entorno. La hormona del crecimiento se libera principalmente durante el sueño profundo.",
       "nutritionItem1": "Calcio y vitamina D: indispensables para la mineralización de la matriz ósea.",
-      "nutritionItem2": "Proteínas de calidad: aportan los aminoácidos requeridos para la síntesis de colágeno y hormona del crecimiento.",
-      "nutritionItem3": "Zinc y micronutrientes: regulan la replicación celular y la función del factor de crecimiento similar a la insulina tipo 1 (IGF-1).",
+      "nutritionItem2": "9–12 hrs de sueño (edades 6–12)",
+      "nutritionItem3": "8–10 hrs para adolescentes",
       "timingTitle": "3. Sueño, hormonas y salud general (5%):",
       "timingText": "La hormona del crecimiento (GH) se segrega principalmente en pulsos nocturnos durante las fases de sueño profundo (ondas lentas). Un sueño regular y la práctica habitual de actividad física estimulan su liberación natural."
     },
@@ -297,7 +317,8 @@
       "percentileBefore": "Mientras que una tabla de percentiles indica ",
       "percentileStrong": "dónde se ubica un menor hoy",
       "percentileAfter": " en relación a su cohorte poblacional, un predictor de estatura estima ",
-      "note": "la altura adulta final probable integrando el componente genético de ambos padres."
+      "note": "la altura adulta final probable integrando el componente genético de ambos padres.",
+      "expandText": "Haga clic en las vistas de gráfico y tabla a continuación para explorar las curvas completas de percentiles."
     },
     "comparisonTable": {
       "title": "Comparativa: Predictor de estatura frente a tablas de percentiles",
@@ -318,10 +339,10 @@
       "rowDoctorCalculator": "Asesoramiento sobre potencial genético y maduración",
       "rowDoctorGrowthChart": "Herramienta obligatoria de control en cada revisión",
       "rowAccuracyLabel": "Margen de precisión",
-      "rowAccuracyCalculator": "Aproximadamente ±3 a 5 cm en el 90% de los casos",
+      "rowAccuracyCalculator": "9 de cada 10 dentro de 2,1 in (niños) o 1,7 in (niñas) con Khamis-Roche; aprox. 4 in solo con padres",
       "rowAccuracyGrowthChart": "Percentil descriptivo exacto para la fecha",
       "rowWithoutParentsLabel": "¿Funciona sin padres?",
-      "rowWithoutParentsCalculator": "No (o con fórmulas simplificadas menos precisas)",
+      "rowWithoutParentsCalculator": "No, se necesita la estatura de ambos padres",
       "rowWithoutParentsGrowthChart": "Sí, no requiere datos de los progenitores"
     },
     "boysGrowth": {
@@ -330,27 +351,27 @@
       "p1Strong": "estirón puberal más tardío e intenso",
       "p1After": " que el de las niñas.",
       "p2": "Fases habituales del crecimiento masculino:",
-      "item1Before": "Infancia temprana (0 a 3 años): ",
-      "item1Strong": "Crecimiento extraordinariamente veloz guiado por la nutrición.",
-      "item2Before": "Etapa escolar (4 a 11 años): ",
-      "item2Strong": "Ritmo sostenido y regular de 5 a 6 cm anuales.",
-      "item3Before": "Estirón puberal (12 a 16 años): ",
-      "item3Strong": "Aceleración notable con picos de velocidad de crecimiento de hasta 8 a 12 cm en un solo año.",
-      "p3Before": "El cierre epifisario en los chicos suele completarse entre los ",
-      "p3Strong": "17 y 19 años",
-      "p3After": ", momento en que se alcanza la talla adulta definitiva."
+      "item1Before": "Comienzo de la pubertad: ",
+      "item1Strong": "generalmente entre los 9 y 14 años",
+      "item2Before": "Crecimiento rápido: ",
+      "item2Strong": "entre los 12 y 15 años",
+      "item3Before": "Desaceleración: ",
+      "item3Strong": "poco después del estirón",
+      "p3Before": "Durante el pico de la pubertad, los niños pueden crecer de 7 a 10 cm (3–4 pulgadas) al año. ",
+      "p3Strong": "La mayoría de los niños dejan de crecer entre los 16 y 18 años. ",
+      "p3After": "Quienes maduran más tarde pueden sumar un poco más después."
     },
     "girlsGrowth": {
       "title": "Cronología del crecimiento en las niñas",
       "p1": "En las niñas, el estirón puberal comienza aproximadamente dos años antes que en los varones, habitualmente entre los 10 y 11 años.",
       "p2": "Fases clave del crecimiento femenino:",
-      "item1Before": "Inicio puberal (9 a 11 años): ",
-      "item1Strong": "Aceleración rápida de la velocidad de crecimiento.",
-      "item2Before": "Pico de crecimiento (11 a 12 años): ",
-      "item2Strong": "Fase de máxima ganancia estatural (unos 7 a 9 cm anuales).",
-      "p3Before": "Tras la menarquia (primera menstruación), el ritmo de crecimiento se desacelera de manera progresiva debido a los estrógenos, ganándose típicamente entre 5 y 7 cm adicionales antes del cierre completo hacia los ",
-      "p3Strong": "15 a 16 años",
-      "p3After": "."
+      "item1Before": "Comienzo de la pubertad: ",
+      "item1Strong": "generalmente entre los 8 y 13 años",
+      "item2Before": "Estirón de crecimiento: ",
+      "item2Strong": "entre los 10 y 14 años",
+      "p3Before": "Estatura adulta: ",
+      "p3Strong": "la mayoría de las niñas alcanzan la estatura adulta alrededor de los 14 o 15 años, ",
+      "p3After": "creciendo de 2,5 a 5 cm (1 a 2 pulgadas) más después de su primer período."
     },
     "methods": {
       "title": "Métodos de predicción de estatura explicados",
@@ -362,8 +383,8 @@
         "p1": "Publicado en la prestigiosa revista Pediatrics por el Dr. Harry Khamis y el Dr. Alex Roche a partir del histórico estudio Fels Longitudinal Study.",
         "p2": "Es el estándar de oro en predicción sin necesidad de pruebas de imagen:",
         "item1Before": "Precisión clínica comprobada: ",
-        "item1Strong": "Margen de error de ±3 a 5 cm en niños de 4 a 17 años con maduración normal.",
-        "item2": "No invasivo: prescinde por completo de radiografías de muñeca o exposición a radiación.",
+        "item1Strong": "±2,1 pulgadas para niños, ±1,7 pulgadas para niñas (9 de cada 10 predicciones; la mitad dentro de unas 0,9 y 0,7 pulgadas)",
+        "item2": "Validado para edades de 4 a 17,5 años",
         "item3": "Incorpora edad cronológica, estatura del menor, peso corporal y la estatura biológica de ambos padres.",
         "usedByCalculator": "Es el método que alimenta nuestra calculadora principal.",
         "readyText": "¿Desea calcular la estatura con Khamis-Roche?",
@@ -382,7 +403,19 @@
         "item3": "Ofrece un rango genético objetivo con una horquilla de ±5 cm (±2 pulgadas).",
         "item4": "No tiene en cuenta el ritmo real de crecimiento del niño ni su complexión física.",
         "onlyHaveText": "¿Conoce la estatura de los padres pero no la del niño?",
-        "linkText": "Usar la calculadora de estatura media parental ↑"
+        "linkText": "Usar la calculadora de estatura media parental ↑",
+        "formulaExplanation": "La fórmula mid-parental es la forma más sencilla de estimar la estatura adulta de un niño utilizando únicamente la estatura de los padres. No requiere pruebas médicas y funciona a cualquier edad, incluidos bebés y niños no nacidos.",
+        "boysFormulaSub": "Métrico: (Padre + Madre + 13 cm) ÷ 2",
+        "girlsFormulaSub": "Métrico: (Padre + Madre - 13 cm) ÷ 2",
+        "boysFormulaMetricLabel": "Para niños (Métrico)",
+        "boysFormulaMetric": "(Padre + Madre + 13 cm) ÷ 2",
+        "boysFormulaMetricSub": "Cálculo en centímetros",
+        "girlsFormulaMetricLabel": "Para niñas (Métrico)",
+        "girlsFormulaMetric": "(Padre + Madre - 13 cm) ÷ 2",
+        "girlsFormulaMetricSub": "Cálculo en centímetros",
+        "exampleText": "Ejemplo: Padre 180 cm + Madre 165 cm = 345 cm. Niño: (345 + 13) ÷ 2 = 179 cm. Niña: (345 - 13) ÷ 2 = 166 cm.",
+        "exampleEstimateText": "Rango estimado previsto: ±10 cm (4 pulgadas)",
+        "workedExamplePointer": "Vea el ejemplo práctico en «¿Cuánto medirá mi hijo/a?»"
       },
       "boneAge": {
         "badge": "Método hospitalario especializado",
@@ -401,11 +434,14 @@
         "badge": "Modelo biométrico avanzado",
         "title": "Método de Roche-Wainer-Thissen (RWT)",
         "text": "Fórmula multivariante desarrollada en 1975 que calcula la estatura adulta combinando edad cronológica, estatura, peso, altura parental y la edad ósea estimada por el método de Greulich-Pyle."
+      },
+      "age2Rule": {
+        "badge": "REGLA PRÁCTICA",
+        "title": "Regla de duplicación a los 2 años",
+        "text": "Duplica la estatura de un niño a los 2 años, o la de una niña a los 18 meses. No requiere calculadora ni estatura de los padres, pero ignora la genética, por lo que debe tomarse como una estimación aproximada para niños pequeños."
       }
     },
     "canIncrease": {
-      "titlePrefix": "¿Se puede ",
-      "titleHighlight": "aumentar la estatura",
       "description": "Durante la infancia y adolescencia, antes del cierre de los cartílagos epifisarios, los hábitos de vida pueden maximizar el potencial genético:",
       "nutritionTitle": "1. Nutrición adecuada y equilibrada",
       "nutritionText": "Una alimentación balanceada garantiza la disponibilidad de nutrientes para el tejido óseo en desarrollo:",
@@ -420,114 +456,180 @@
       "exerciseTitle": "3. Actividad física regular y postura",
       "exerciseText": "Los deportes de bajo impacto, natación, estiramientos y ejercicios de suspensión ayudan a mantener la columna alineada y estimulan el remodelado óseo.",
       "warningStrong": "Advertencia médica:",
-      "warningText": "Desconfíe por completo de supuestos tratamientos milagro, aparatos o suplementos que aseguran hacer crecer a adultos. Una vez selladas las placas epifisarias, el alargamiento óseo natural es biológicamente imposible."
+      "warningText": "Desconfíe por completo de supuestos tratamientos milagro, aparatos o suplementos que aseguran hacer crecer a adultos. Una vez selladas las placas epifisarias, el alargamiento óseo natural es biológicamente imposible.",
+      "title": "¿Se puede aumentar la estatura?"
     },
     "accuracy": {
-      "titlePrefix": "¿Qué tan ",
-      "titleHighlight": "preciso",
-      "titleSuffix": " es el predictor de estatura?",
       "description": "Los estudios de validación demuestran un excelente rendimiento clínico en poblaciones con desarrollo normal:",
-      "check1": "En el 90% de los niños sanos, el método Khamis-Roche predice la estatura adulta final dentro de un margen de ±3 a 5 cm.",
-      "check2": "La precisión aumenta a medida que el menor se acerca a la pubertad (mayor certeza a los 10–12 años que a los 4 años).",
-      "check3": "Los maduradores promedio obtienen las estimaciones más exactas.",
-      "check4": "La fiabilidad disminuye en casos de maduración extremadamente temprana o tardía sin confirmación por edad ósea radiológica.",
-      "alert1": "Enfermedades crónicas, tratamientos prolongados con corticoides o desnutrición severa pueden alterar la trayectoria prevista.",
-      "alert2": "Las fórmulas asumen que ambos progenitores biológicos completaron su crecimiento sin trastornos del desarrollo que hayan mermado su estatura.",
-      "alert3": "No sustituye el diagnóstico ni el criterio de un especialista en endocrinología pediátrica.",
-      "rangeNotice": "Por ello, nuestro predictor siempre proporciona un rango objetivo probable además de la cifra puntual.",
       "disclaimerStrong": "Nota de responsabilidad médica: ",
-      "disclaimerText": "Esta herramienta se proporciona con propósitos informativos y educativos. Para cualquier evaluación clínica o sospecha de patología del crecimiento, consulte con su pediatra de confianza."
+      "disclaimerText": "Esta herramienta se proporciona con propósitos informativos y educativos. Para cualquier evaluación clínica o sospecha de patología del crecimiento, consulte con su pediatra de confianza.",
+      "title": "¿Qué tan precisa es una calculadora de estatura?",
+      "is100PercentTitle": "¿Existe algún predictor de estatura 100% exacto?",
+      "is100PercentText": "No. Cada predictor de estatura proporciona un rango probable, ya que los genes, el momento de la pubertad y la salud influyen en el resultado. Khamis-Roche es el método no radiológico más preciso, con 9 de cada 10 predicciones dentro de 2,1 pulgadas para niños y 1,7 pulgadas para niñas. Una radiografía de edad ósea es más precisa y los médicos la solicitan ante sospechas de trastornos de crecimiento.",
+      "typicalErrorTitle": "Errores típicos según el método de predicción",
+      "thMethod": "Método",
+      "thTypicalError": "Error típico",
+      "thNeedsBoneAge": "¿Requiere edad ósea?",
+      "methodKhamis": "Método Khamis-Roche",
+      "errorKhamis": "±5,3 cm (niños) / ±4,3 cm (niñas)",
+      "boneAgeKhamis": "No",
+      "methodMidParental": "Fórmula Mid-Parental",
+      "errorMidParental": "±10 cm (4 pulgadas)",
+      "boneAgeMidParental": "No",
+      "methodBoneAge": "Radiografía de edad ósea (Greulich-Pyle / TW)",
+      "errorBoneAge": "±2,5 cm (máxima precisión)",
+      "boneAgeBoneAge": "Sí (clínico)",
+      "whyMissesTitle": "Por qué los predictores de estatura pueden variar",
+      "miss1": "9 de cada 10 predicciones se sitúan dentro de 5,3 cm (2,1 pulgadas) para niños y 4,3 cm (1,7 pulgadas) para niñas",
+      "miss2": "La fórmula basada solo en los padres es menos precisa: normalmente dentro de 10 cm (4 pulgadas)",
+      "miss3": "La precisión es mayor cuando el niño es mayor de 4 años",
+      "miss4": "Las mediciones precisas de estatura y peso mejoran significativamente los resultados",
+      "miss5": "Se requieren datos exactos de la estatura de los padres para obtener resultados fiables"
     },
     "faq": [
       {
-        "q": "¿Qué tan preciso es el predictor de estatura Khamis-Roche?",
-        "a": "El método Khamis-Roche tiene una precisión comprobada de aproximadamente ±3 a 5 cm (±1,5 a 2 pulgadas) en el 90% de los niños sanos entre 4 y 17 años. Es el modelo sin radiografías más avalado por la literatura pediátrica internacional."
+        "q": "¿Cuánto mediré?",
+        "a": "Su estatura adulta depende principalmente de la estatura de sus padres y del momento de su desarrollo. Utilice la calculadora de estatura anterior ingresando su edad actual, estatura, peso y la estatura de sus padres para obtener un rango previsto según el modelo Khamis-Roche. Si ya tiene 18 años o más, sus placas de crecimiento se han cerrado y su estatura adulta está definida."
       },
       {
-        "q": "¿A qué edad dejan de crecer los niños y las niñas?",
-        "a": "Las niñas suelen detener su crecimiento entre los 15 y 16 años, habitualmente dos o tres años después de su primera menstruación. Los varones continúan creciendo más tiempo, cesando generalmente entre los 18 y 20 años al cerrarse sus cartílagos epifisarios."
+        "q": "¿Cuánto medirá mi hijo?",
+        "a": "Ingrese la edad de su hijo, su estatura y peso actuales y la estatura de ambos padres en la calculadora Khamis-Roche arriba. La mayoría de los niños dejan de crecer entre los 16 y 18 años. La fórmula mid-parental también puede brindar una estimación aproximada: (Estatura del padre + Estatura de la madre + 13 cm o 5 pulgadas) ÷ 2."
       },
       {
-        "q": "¿Por qué un hijo puede ser mucho más alto o más bajo que sus padres?",
-        "a": "La estatura es un rasgo genético poligénico influido por cientos de genes heredados de ambos linajes familiares (incluidos abuelos y tíos). Además, factores ambientales como una mejor nutrición generacional y hábitos de sueño pueden permitir que un hijo supere la altura de sus progenitores."
+        "q": "¿Es precisa una calculadora de estatura?",
+        "a": "El método Khamis-Roche (utilizado en esta calculadora) es uno de los predictores de estatura no clínicos más precisos disponibles. En el estudio original, 9 de cada 10 predicciones se ubicaron dentro de 2,1 pulgadas para niños y 1,7 pulgadas para niñas. La precisión mejora cuando el niño es mayor de 4 años, las medidas son exactas y la estatura de los padres es correcta. Los resultados siempre son un rango, no un valor garantizado."
       },
       {
-        "q": "¿Qué es la fórmula de estatura media parental (Tanner)?",
-        "a": "Es una fórmula matemática que calcula el potencial genético de un menor promediando las alturas de ambos padres y sumando 6,5 cm para varones o restando 6,5 cm para mujeres. Es especialmente útil para bebés y niños menores de 4 años."
+        "q": "¿Existe algún predictor de estatura 100% exacto?",
+        "a": "No. Cada predictor de estatura proporciona un rango probable, ya que los genes, el momento de la pubertad y la salud influyen en el resultado. Khamis-Roche es el método sin rayos X más preciso, con 9 de cada 10 predicciones dentro de 2,1 pulgadas para niños y 1,7 pulgadas para niñas. Una radiografía de edad ósea es más precisa y los médicos la solicitan ante sospechas de trastornos de crecimiento."
       },
       {
-        "q": "¿Se puede aumentar la estatura después de los 18 o 20 años?",
-        "a": "No de forma natural en los huesos. Una vez que las placas de crecimiento se osifican y sellan al final de la pubertad, los huesos largos no pueden seguir alargándose. Mejorar la postura y fortalecer los músculos de la columna vertebral puede optimizar la altura funcional entre 1 y 2 cm."
+        "q": "¿Puede la estatura de los padres predecir mi estatura?",
+        "a": "Sí. Los genes heredados explican aproximadamente el 80% de las diferencias de estatura entre personas, y la estatura de los padres es el mejor indicador cotidiano de esos genes. La fórmula mid-parental proporciona una estimación aproximada utilizando solo estos datos. Sin embargo, combinar la estatura de los padres con las medidas actuales del niño (edad, estatura, peso) a través del modelo Khamis-Roche produce resultados significativamente más precisos."
       },
       {
-        "q": "¿Influye el sueño en el crecimiento de los niños?",
-        "a": "Sí, de manera fundamental. La hormona del crecimiento humana (GH) se secreta en pulsos continuos durante las fases de sueño profundo (fases 3 y 4 del sueño NREM). Un descanso insuficiente o interrumpido puede comprometer la velocidad de crecimiento infantil."
+        "q": "¿Puedo predecir la estatura de mi bebé?",
+        "a": "Para bebés y niños pequeños, use la calculadora de fórmula mid-parental arriba. Solo requiere la estatura de la madre y del padre, lo que proporciona un rango aproximado. Tenga en cuenta que la precisión es menor en bebés que en niños mayores al no contar con datos de crecimiento actual. Una vez que su hijo cumpla 2 años, la regla de duplicación a los 2 años ofrece una segunda comprobación rápida."
       },
       {
-        "q": "¿Cuándo se debe acudir al pediatra o endocrinólogo infantil?",
-        "a": "Se recomienda consultar a un especialista si el niño crece a un ritmo inferior a 4 o 5 cm al año en la etapa escolar, si se sitúa sistemáticamente por debajo del percentil 3 de las tablas de crecimiento o si presenta signos de pubertad muy precoz (antes de los 8 años en niñas o 9 en niños)."
+        "q": "¿Cuánto debería medir mi hijo a su edad?",
+        "a": "Consulte la sección de tablas de crecimiento arriba para ver el rango de estatura promedio por edad para niños y niñas. El percentil 50 representa la mediana. Los niños saludables suelen ubicarse entre el percentil 3 y 97. Si su hijo se encuentra constantemente por encima o por debajo de este rango, consúltelo con su pediatra."
+      },
+      {
+        "q": "¿Cuál es el método de predicción de estatura más preciso?",
+        "a": "El método más preciso en general es la prueba de edad ósea (radiografía de muñeca), utilizada clínicamente por médicos. Para predicciones no clínicas, el método Khamis-Roche es el más exacto disponible: utiliza edad, estatura, peso y estatura de los padres, con 9 de cada 10 predicciones dentro de 2,1 pulgadas para niños y 1,7 pulgadas para niñas. Este es el método utilizado en esta calculadora."
       }
     ],
     "toc": [
       {
-        "id": "height-predictor",
-        "label": "Predictor de estatura Khamis-Roche"
-      },
-      {
-        "id": "mid-parental-calculator",
-        "label": "Calculadora de estatura media parental"
-      },
-      {
-        "id": "height-converter",
-        "label": "Conversor de estatura"
+        "id": "height-predictor-calculator",
+        "label": "Calculadora de predicción de estatura"
       },
       {
         "id": "how-it-works",
-        "label": "¿Cómo funciona el predictor?"
+        "label": "¿Cómo funciona?"
       },
       {
-        "id": "how-tall-child",
-        "label": "¿Cuánto medirá mi hijo/a?"
+        "id": "how-tall-will-my-child-be",
+        "label": "¿Cuánto medirá mi hijo/a?",
+        "subItems": [
+          {
+            "id": "how-tall-will-my-son-be",
+            "label": "¿Cuánto medirá mi hijo?"
+          },
+          {
+            "id": "how-tall-will-my-daughter-be",
+            "label": "¿Cuánto medirá mi hija?"
+          },
+          {
+            "id": "how-tall-will-my-baby-or-toddler-be",
+            "label": "¿Cuánto medirá mi bebé o niño pequeño?"
+          },
+          {
+            "id": "how-tall-will-i-be-teens-adults",
+            "label": "¿Cuánto mediré? (Adolescentes y adultos)"
+          },
+          {
+            "id": "worked-example",
+            "label": "Ejemplo práctico: predecir la estatura a partir de la estatura de los padres"
+          },
+          {
+            "id": "age-2-rule",
+            "label": "Verificación rápida para niños pequeños: la regla de los 2 años"
+          }
+        ]
       },
       {
-        "id": "teens-adults",
-        "label": "Adolescentes y adultos jóvenes"
+        "id": "what-determines-height",
+        "label": "¿Qué determina la estatura?"
       },
       {
-        "id": "determinants",
-        "label": "Factores que determinan la estatura"
+        "id": "boys-girls-growth-charts",
+        "label": "Tablas de crecimiento para niños y niñas"
       },
       {
-        "id": "growth-charts",
-        "label": "Tablas de crecimiento vs. calculadoras"
+        "id": "calculator-vs-growth-charts",
+        "label": "Calculadora vs. Tablas de crecimiento"
       },
       {
-        "id": "boys-growth",
-        "label": "Crecimiento en niños"
+        "id": "when-do-boys-stop-growing",
+        "label": "¿Cuándo dejan de crecer los niños?"
       },
       {
-        "id": "girls-growth",
-        "label": "Crecimiento en niñas"
+        "id": "when-do-girls-stop-growing",
+        "label": "¿Cuándo dejan de crecer las niñas?"
       },
       {
-        "id": "methods",
-        "label": "Métodos de predicción explicados"
+        "id": "height-prediction-methods",
+        "label": "Métodos de predicción de estatura explicados",
+        "subItems": [
+          {
+            "id": "khamis-roche-method",
+            "label": "Método Khamis-Roche"
+          },
+          {
+            "id": "based-on-parents",
+            "label": "Calculadora de estatura basada en los padres"
+          },
+          {
+            "id": "age-2-doubling-rule",
+            "label": "Regla de duplicación a los 2 años"
+          }
+        ]
       },
       {
-        "id": "can-increase",
+        "id": "bone-age-method",
+        "label": "Método de edad ósea",
+        "subItems": [
+          {
+            "id": "bayley-pinneau-method",
+            "label": "Método Bayley-Pinneau"
+          },
+          {
+            "id": "roche-wainer-thissen-method",
+            "label": "Método Roche-Wainer-Thissen"
+          }
+        ]
+      },
+      {
+        "id": "can-you-increase-height",
         "label": "¿Se puede aumentar la estatura?"
       },
       {
         "id": "accuracy",
-        "label": "Precisión y limitaciones"
+        "label": "¿Qué tan precisa es una calculadora de estatura?"
       },
       {
         "id": "faq",
-        "label": "Preguntas frecuentes"
+        "label": "Preguntas frecuentes (FAQ)"
+      },
+      {
+        "id": "related-tools",
+        "label": "Herramientas relacionadas"
       },
       {
         "id": "references",
-        "label": "Fuentes y referencias científicas"
+        "label": "Bibliografía científica y fuentes"
       }
     ],
     "relatedTools": {
@@ -579,13 +681,14 @@
       "tableHeaderGirlsMedian": "Mediana Niñas",
       "ageYrs": "{age} años",
       "insightBoysStopLabel": "Los varones completan su crecimiento:",
-      "insightBoysStopValue": "Aprox. a los 18–20 años",
+      "insightBoysStopValue": "~16–18 años",
       "insightGirlsStopLabel": "Las mujeres completan su crecimiento:",
-      "insightGirlsStopValue": "Aprox. a los 15–16 años",
+      "insightGirlsStopValue": "~14–15 años",
       "insightMaleHeightLabel": "Estatura promedio masculina adulta:",
-      "insightMaleHeightValue": "176 cm (5 pies 9,3 pulg)",
+      "insightMaleHeightValue": "175 cm / 5'9\"",
       "insightFemaleHeightLabel": "Estatura promedio femenina adulta:",
-      "insightFemaleHeightValue": "163 cm (5 pies 4,2 pulg)"
+      "insightFemaleHeightValue": "161,3 cm / 5'3,5\"",
+      "sourceNhanes": "Fuente: CDC National Center for Health Statistics, adultos de 20 años y más, NHANES agosto 2021 a agosto 2023."
     },
     "references": {
       "title": "Fuentes y referencias científicas",
@@ -599,7 +702,12 @@
       "ref8": "World Health Organization. WHO Child Growth Standards. Acta Paediatrica, 2006. Suppl 450:1–101.",
       "ref9": "Wood AR et al. Defining the role of common variation in the genomic and biological architecture of adult human height. Nature Genetics, 2014. Vol. 46, pp. 1173–1186.",
       "ref10": "Yengo L et al. A saturated map of common genetic variants associated with human height. Nature, 2022. Vol. 610, pp. 704–712.",
-      "ref11": "Rogol AD, Clark PA, Roemmich JN. Growth and pubertal development in children and adolescents: effects of diet and physical activity. American Journal of Clinical Nutrition, 2000. Vol. 72, pp. 521S–528S."
+      "ref11": "Rogol AD, Clark PA, Roemmich JN. Growth and pubertal development in children and adolescents: effects of diet and physical activity. American Journal of Clinical Nutrition, 2000. Vol. 72, pp. 521S–528S.",
+      "ref12": "Mayo Clinic Staff. Child growth: Can you predict adult height? Mayo Clinic, 2025.",
+      "ref13": "Cross-sectional analysis of maturity status and Khamis-Roche prediction error. PMC6603099.",
+      "ref14": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age: the Khamis-Roche method. Pediatrics. 1994;94(4):504-507.",
+      "ref15": "CDC National Center for Health Statistics. Body Measurements (FastStats).",
+      "ref16": "Paruthi S, et al. Recommended amount of sleep for pediatric populations. J Clin Sleep Med. 2016."
     }
   },
   "heightWeightPercentile": {

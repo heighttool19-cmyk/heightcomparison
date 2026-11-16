@@ -5,7 +5,7 @@ whoever picks this up next (human or agent) an accurate, at-a-glance view of
 what is fully localized, what is only partially routed, and what remains — so nobody
 re-does finished work or assumes unfinished work is done.
 
-**Last updated**: 2026-09-29 (after onboarding Swedish `sv` and Polish `pl` to 100% key parity, `/height-predictor` English H1 update, and blog routing completion).
+**Last updated**: 2026-11-06 (after completing `/height-predictor` November 2026 content refresh with word-for-word fidelity to specification and 100% key parity across all 10 locales: `en`, `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`).
 
 **Supported Locales (10 total)**:
 - `en` (English - default)
@@ -59,7 +59,7 @@ changes — this is a live tracker, not a one-time report.
 |---|---|---|---|---|
 | `/about` | ✅ Done | `src/app/[locale]/about/page.tsx` | `about` + `metadata.about*` | Fully localized across all 10 locales. |
 | `/privacy` | ✅ Done | `src/app/[locale]/privacy/page.tsx` | `privacy` + `metadata.privacy*` | Fully localized across all 10 locales. |
-| `/height-predictor` | ✅ Done | `src/app/[locale]/height-predictor/page.tsx` + client components below | `heightPredictor` + `metadata.heightPredictor*` | Fully localized across all 10 locales. English H1 updated in `en.json` (`heightPredictor.intro.title`). |
+| `/height-predictor` | ✅ Done | `src/app/[locale]/height-predictor/page.tsx` + client components below | `heightPredictor` + `metadata.heightPredictor*` | Fully localized across all 10 locales. November 2026 content refresh completed with 100% key parity (361 leaf keys) and 0 missing/extra across `en`, `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`. |
 | `/` (home / height comparison dashboard) | 🟡 Routed only | `src/app/[locale]/page.tsx` exists and renders, but `src/components/HomeContent.tsx` (749 lines, SEO articles/FAQ) and `src/components/DynamicHeightDashboard.tsx` have **no `useTranslations`/`getTranslations` calls at all** — 100% hardcoded English still. | none yet | **Not actually multilingual.** Visiting localized routes renders the localized Navbar/Footer but English page content. Primary remaining landing-page gap. |
 | `/average-height-by-country` | ✅ Done | `src/app/[locale]/average-height-by-country/page.tsx` + 6 client components below | `averageHeightByCountry` + `metadata.averageHeightByCountry*` | Fully localized across all 10 locales. |
 | `/height-difference-calculator` | ✅ Done | `src/app/[locale]/height-difference-calculator/page.tsx` + 4 client components below | `heightDifference` + `metadata.heightDifference*` | Fully localized across all 10 locales. |

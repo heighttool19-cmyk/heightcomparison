@@ -52,6 +52,9 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                         <h1 id="height-predictor-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 text-left uppercase">
                             {t('intro.title')}
                         </h1>
+                        <p className="text-sm text-muted font-medium">
+                            {t('intro.lastUpdated')}
+                        </p>
                         <p className="text-muted leading-relaxed text-lg max-w-3xl text-left font-medium">
                             {t('intro.description')}
                         </p>
@@ -131,29 +134,30 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                 {t('howTallChild.closing')}
                             </p>
 
-                            <div className="grid md:grid-cols-3 gap-6 pt-2">
-                                <div id="how-tall-will-my-son-be" className="bg-surface border border-border p-6 rounded-2xl border-l-4 border-l-blue-500 shadow-sm scroll-mt-24 space-y-3">
-                                    <h3 className="font-black text-foreground text-base uppercase tracking-tight text-blue-500">
-                                        {t('howTallChild.sonTitle')}
+                            <div className="space-y-6 pt-2">
+                                <div id="worked-example" className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] border-l-4 border-l-accent shadow-sm scroll-mt-24 space-y-4">
+                                    <h3 className="font-black text-foreground text-lg uppercase tracking-tight">
+                                        {t('howTallChild.workedExampleTitle')}
                                     </h3>
                                     <p className="text-sm text-muted font-medium leading-relaxed">
-                                        {t('howTallChild.sonText')}
+                                        {t('howTallChild.workedExampleIntro')}
+                                    </p>
+                                    <ul className="space-y-2 text-muted font-medium text-sm list-disc pl-5">
+                                        <li>{t('howTallChild.workedExampleSon')}</li>
+                                        <li>{t('howTallChild.workedExampleDaughter')}</li>
+                                        <li>{t('howTallChild.workedExampleRange')}</li>
+                                    </ul>
+                                    <p className="text-sm text-muted font-medium leading-relaxed">
+                                        {t('howTallChild.workedExampleClosing')}
                                     </p>
                                 </div>
-                                <div id="how-tall-will-my-daughter-be" className="bg-surface border border-border p-6 rounded-2xl border-l-4 border-l-pink-500 shadow-sm scroll-mt-24 space-y-3">
-                                    <h3 className="font-black text-foreground text-base uppercase tracking-tight text-pink-500">
-                                        {t('howTallChild.daughterTitle')}
+
+                                <div id="age-2-rule" className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] border-l-4 border-l-accent shadow-sm scroll-mt-24 space-y-3">
+                                    <h3 className="font-black text-foreground text-lg uppercase tracking-tight">
+                                        {t('howTallChild.age2RuleTitle')}
                                     </h3>
                                     <p className="text-sm text-muted font-medium leading-relaxed">
-                                        {t('howTallChild.daughterText')}
-                                    </p>
-                                </div>
-                                <div id="how-tall-will-my-baby-or-toddler-be" className="bg-surface border border-border p-6 rounded-2xl border-l-4 border-l-accent shadow-sm scroll-mt-24 space-y-3">
-                                    <h3 className="font-black text-foreground text-base uppercase tracking-tight text-accent">
-                                        {t('howTallChild.babyTitle')}
-                                    </h3>
-                                    <p className="text-sm text-muted font-medium leading-relaxed">
-                                        {t('howTallChild.babyText')}
+                                        {t('howTallChild.age2RuleText')}
                                     </p>
                                 </div>
                             </div>
@@ -216,6 +220,23 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                             {t('teensAdults.adultsItem3')}
                                         </li>
                                     </ul>
+                                </div>
+
+                                {/* NO PARENTS HEIGHT CARD */}
+                                <div id="no-parents-height" className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] border-l-4 border-l-accent shadow-sm scroll-mt-24 space-y-3 md:col-span-2">
+                                    <h3 className="text-xl font-black text-foreground uppercase tracking-tight">
+                                        {t('teensAdults.noParentsTitle')}
+                                    </h3>
+                                    <p className="text-sm text-muted font-medium leading-relaxed">
+                                        {t('teensAdults.noParentsP1')}
+                                    </p>
+                                    <p className="text-sm text-muted font-medium leading-relaxed">
+                                        {t('teensAdults.noParentsCheckPercentile')}{' '}
+                                        <Link href="/height-weight-percentile-calculator" className="text-accent font-black hover:underline">
+                                            {t('teensAdults.noParentsLinkText')}
+                                        </Link>
+                                        .
+                                    </p>
                                 </div>
                             </div>
 
@@ -535,6 +556,11 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                     <div className="bg-accent/5 border border-accent/20 p-5 rounded-2xl mb-6 space-y-2">
                                         <p className="text-sm text-foreground font-medium leading-relaxed">{t('methods.midParental.exampleText')}</p>
                                         <p className="text-sm font-black text-accent">{t('methods.midParental.exampleEstimateText')}</p>
+                                        <p className="text-sm font-bold text-accent pt-1">
+                                            <Link href="#worked-example" className="hover:underline">
+                                                {t('methods.midParental.workedExamplePointer')}
+                                            </Link>
+                                        </p>
                                     </div>
 
                                     <div className="p-4 bg-accent/5 rounded-2xl border border-accent/20 mb-6">
@@ -569,6 +595,24 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                             <ArrowUpCircle size={35} /> {t('methods.midParental.linkText')}
                                         </Link>
                                     </div>
+                                </div>
+
+                                {/* AGE-2 DOUBLING RULE */}
+                                <div id="age-2-doubling-rule" className="bg-surface border border-border p-6 md:p-10 rounded-[2.5rem] relative overflow-hidden group hover:border-accent/30 transition-all shadow-sm">
+                                    <div className="absolute top-0 left-0 w-2 h-full bg-accent/20 group-hover:bg-accent transition-all" />
+
+                                    <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-4">
+                                        <span className="bg-amber-100 text-amber-700 text-[10px] font-black px-2.5 py-1 rounded-md uppercase tracking-wider w-fit">
+                                            {t('methods.age2Rule.badge')}
+                                        </span>
+                                        <h3 className="text-2xl font-black text-foreground uppercase tracking-tighter scroll-mt-24">
+                                            {t('methods.age2Rule.title')}
+                                        </h3>
+                                    </div>
+
+                                    <p className="text-muted leading-relaxed font-medium">
+                                        {t('methods.age2Rule.text')}
+                                    </p>
                                 </div>
                             </div>
                         </section>
@@ -879,6 +923,11 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                             <li>{t('references.ref9')}</li>
                             <li>{t('references.ref10')}</li>
                             <li>{t('references.ref11')}</li>
+                            <li>{t('references.ref12')} <br /><a href="https://www.mayoclinic.org/healthy-lifestyle/childrens-health/expert-answers/child-growth/faq-20057990" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">mayoclinic.org</a></li>
+                            <li>{t('references.ref13')} <br /><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6603099/" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">pmc.ncbi.nlm.nih.gov</a></li>
+                            <li>{t('references.ref14')} <br /><a href="https://pubmed.ncbi.nlm.nih.gov/7936860/" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">pubmed.ncbi.nlm.nih.gov/7936860</a></li>
+                            <li>{t('references.ref15')} <br /><a href="https://www.cdc.gov/nchs/fastats/body-measurements.htm" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">cdc.gov</a></li>
+                            <li>{t('references.ref16')} <br /><a href="https://jcsm.aasm.org/doi/10.5664/jcsm.5866" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">jcsm.aasm.org</a></li>
                         </ul>
                     </div>
                 </div>

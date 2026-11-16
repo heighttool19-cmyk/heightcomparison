@@ -18,6 +18,13 @@ if (!process.env.OPENROUTER_API_KEY && fs.existsSync('.env')) {
 const API_KEY = process.env.OPENROUTER_API_KEY || '';
 
 const LOCALE_NAMES = {
+  de: { name: 'German', nativeName: 'Deutsch' },
+  es: { name: 'Spanish', nativeName: 'Español' },
+  fr: { name: 'French', nativeName: 'Français' },
+  pt: { name: 'Portuguese', nativeName: 'Português' },
+  nl: { name: 'Dutch', nativeName: 'Nederlands' },
+  ar: { name: 'Arabic', nativeName: 'العربية' },
+  it: { name: 'Italian', nativeName: 'Italiano' },
   sv: { name: 'Swedish', nativeName: 'Svenska' },
   pl: { name: 'Polish', nativeName: 'Polski' }
 };

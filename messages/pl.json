@@ -156,12 +156,13 @@
   "heightPredictor": {
     "intro": {
       "title": "Kalkulator przewidywanego wzrostu i wzrostu dorosłych",
-      "description": "Użyj tego kalkulatora wzrostu, aby oszacować przyszły wzrost dzieci, nastolatków i dorosłych na podstawie wieku, genetyki i wzorców wzrostu. Ten kalkulator wykorzystuje metodę Khamis-Roche, jeden z najdokładniejszych dostępnych modeli przewidywania wzrostu. Jeśli Twoje dziecko ma mniej niż cztery lata lub jesteś w ciąży i ciekawi Cię przewidywany wzrost Twojego dziecka, użyj zamiast tego podanego poniżej wzoru na wzrost średni rodzicielski."
+      "description": "Użyj tego kalkulatora wzrostu, aby oszacować przyszły wzrost dzieci, nastolatków i dorosłych na podstawie wieku, genetyki i wzorców wzrastania. Narzędzie wykorzystuje metodę Khamisa-Roche'a, która przewiduje wzrost w wieku dorosłym od 4 do 17,5 roku życia na podstawie wieku, wzrostu, masy ciała i wzrostu obojga rodziców. W badaniu pierwotnym 9 na 10 prognoz mieściło się w granicach 5,3 cm (2,1 cala) dla chłopców i 4,3 cm (1,7 cala) dla dziewcząt. W przypadku dzieci poniżej 4 lat lub nienarodzonych dzieci skorzystaj z poniższego kalkulatora opartego wyłącznie na wzroście rodziców.",
+      "lastUpdated": "Ostatnia aktualizacja: listopad 2026"
     },
     "khamisRocheCalculator": {
       "title": "Kalkulator przewidywanego wzrostu",
       "badge": "Khamis-Roche",
-      "description": "Natychmiastowe przewidywanie wzrostu za pomocą naukowych modeli wzrostu. Oszacuj przewidywany wzrost na podstawie wieku i rodziców",
+      "description": "Błyskawiczne przewidywanie wzrostu na podstawie naukowych modeli wzrastania. Wprowadź wiek, płeć, wzrost, wagę i wzrost obojga rodziców. Działa w wieku od 4 do 17,5 lat.",
       "unitUs": "USA (stopy/cale)",
       "unitMetric": "Metryczny (cm)",
       "childAgeLabel": "Wiek dziecka (lata)",
@@ -196,9 +197,9 @@
       "lbsUnit": "funty"
     },
     "midParentalCalculator": {
-      "title": "Tylko wzrost rodziców",
+      "title": "Kalkulator wzrostu na podstawie wzrostu rodziców",
       "badge": "Metoda Mid-Parental",
-      "description": "Oszacuj przewidywany wzrost, używając tylko wzrostu rodziców. Działa również dla niemowląt, bardzo małych dzieci i nienarodzonych dzieci. Jeśli jesteś w ciąży, wprowadź wzrost obojga rodziców, aby uzyskać szacowany zakres wzrostu dorosłego dziecka.",
+      "description": "Oszacuj przewidywany wzrost, korzystając wyłącznie ze wzrostu rodziców. Odpowiedni dla niemowląt, małych dzieci i dzieci nienarodzonych. Kobiety w ciąży mogą wprowadzić wzrost obojga rodziców, aby sprawdzić prognozowany przedział wzrostu docelowego. Wykorzystuje formułę mid-parental, która zazwyczaj mieści się w granicach 10 cm (4 cali) od wzrostu ostatecznego.",
       "unitUs": "USA (stopy/cale)",
       "unitMetric": "Metryczny (cm)",
       "motherHeightLabel": "Wzrost matki",
@@ -216,7 +217,8 @@
       "viewComparisonChart": "Wyświetl wykres porównawczy",
       "cmUnit": "cm",
       "ftUnit": "stopy",
-      "inUnit": "cale"
+      "inUnit": "cale",
+      "clear": "Wyczyść"
     },
     "heightConverter": {
       "title": "Szybki przelicznik wzrostu",
@@ -245,28 +247,46 @@
       "description": "Żadne narzędzie nie jest w stanie przewidzieć przyszłego wzrostu dziecka z całkowitą pewnością. Jednak badania nad wzorcami wzrostu dzieci umożliwiają oszacowanie wzrostu dorosłego z rozsądną dokładnością.",
       "factorsTitle": "Nowoczesne kalkulatory przewidywania wzrostu analizują trzy kluczowe czynniki:",
       "geneticsLabel": "Genetyka",
-      "geneticsText": "odpowiedzialna za 60-80% ostatecznego wzrostu.",
+      "geneticsText": "odziedziczone warianty genetyczne odpowiadają za około 80% różnic wzrostu między ludźmi.",
       "currentGrowthLabel": "Obecny wzrost",
       "currentGrowthText": "Pomiary wieku, wzrostu i wagi precyzują oszacowanie.",
       "statisticsLabel": "Statystyki",
       "statisticsText": "Wzorce wzrostu obserwowane w dużych populacjach według wieku i płci.",
-      "closing": "Wynikiem jest szacowany zakres wzrostu dorosłego: użyteczna wskazówka, a nie gwarancja. Wzorce wzrostu dzieci są indywidualne i mogą się znacznie różnić w zależności od zdrowia, odżywiania i czasu dojrzewania."
+      "closing": "Wynikiem jest szacowany zakres wzrostu dorosłego: użyteczna wskazówka, a nie gwarancja. Wzorce wzrostu dzieci są indywidualne i mogą się znacznie różnić w zależności od zdrowia, odżywiania i czasu dojrzewania.",
+      "sonTitle": "Jak wysoki będzie mój syn?",
+      "sonText": "Powyższy kalkulator Khamisa-Roche'a szacuje ostateczny wzrost Twojego syna na podstawie aktualnego wieku, wzrostu, wagi i wzrostu rodziców. Większość chłopców przestaje rosnąć między 16. a 18. rokiem życia.",
+      "daughterTitle": "Jak wysoka będzie moja córka?",
+      "daughterText": "Powyższy kalkulator Khamisa-Roche'a szacuje ostateczny wzrost Twojej córki na podstawie aktualnych pomiarów i wzrostu rodziców. Większość dziewcząt osiąga ostateczny wzrost między 14. a 15. rokiem życia.",
+      "babyTitle": "Jak wysokie będzie moje niemowlę lub małe dziecko?",
+      "babyText": "Dla niemowląt użyj powyższego kalkulatora wzrostu rodziców. Potrzebny jest tylko wzrost matki i ojca. Popularna reguła podwaja wzrost chłopca w wieku 2 lat lub dziewczynki w wieku 18 miesięcy.",
+      "workedExampleTitle": "Praktyczny przykład: obliczanie wzrostu ze wzrostu rodziców",
+      "workedExampleIntro": "Ojciec o wzroście 180 cm (5'11\") i matka o wzroście 165 cm (5'5\") dają łącznie 345 cm (136 cali).",
+      "workedExampleSon": "Syn: (345 + 13) ÷ 2 = 179 cm. W jednostkach USA: (136 + 5) ÷ 2 = 70,5 cala, ok. 5'10,5\".",
+      "workedExampleDaughter": "Córka: (345 − 13) ÷ 2 = 166 cm. W jednostkach USA: (136 − 5) ÷ 2 = 65,5 cala, ok. 5'5,5\".",
+      "workedExampleRange": "Oczekiwany przedział: około 10 cm (4 cale) w obie strony, tj. ok. 169–189 cm (5'6,5\"–6'2,5\") dla syna.",
+      "workedExampleClosing": "U dzieci powyżej 4. roku życia kalkulator Khamisa-Roche'a zawęża ten przedział, biorąc pod uwagę aktualny wzrost i wagę dziecka.",
+      "age2RuleTitle": "Szybki test dla maluchów: reguła 2 lat",
+      "age2RuleText": "Podwój wzrost chłopca w wieku 2 lat lub dziewczynki w wieku 18 miesięcy, aby uzyskać przybliżony wzrost dorosły. Chłopiec mierzący 87,6 cm (34,5 cala) na drugie urodziny ma szansę osiągnąć około 175 cm (5'9\", 69 cali) jako dorosły. Mayo Clinic wymienia tę regułę obok metody mid-parental."
     },
     "teensAdults": {
       "title": "Jak wysoki będę? Kalkulator dla nastolatków i dorosłych",
-      "description": "Nastolatki pytające „jak wysoki będę” mogą skorzystać z kalkulatora Khamis-Roche. Wprowadź swój obecny wiek, wzrost, wagę oraz wzrost rodziców, aby uzyskać najdokładniejsze oszacowanie.",
+      "description": "Nastolatki pytające «jak wysoki będę» mogą skorzystać z kalkulatora Khamisa-Roche'a. Wprowadź aktualny wiek, wzrost, wagę i wzrost rodziców, aby uzyskać najdokładniejszą prognozę.",
       "teensTitle": "Nastolatki (poniżej 18 lat)",
       "teensText": "Płytki wzrostowe są nadal otwarte. Kalkulator Khamis-Roche daje najlepsze oszacowanie. Użyj aktualnych pomiarów dla maksymalnej dokładności.",
-      "teensItem1": "Najbardziej wiarygodny w wieku 4-17 lat",
+      "teensItem1": "Działa w wieku od 4 do 17,5 lat",
       "teensItem2": "Dokładność wzrasta w miarę zbliżania się do wzrostu dorosłego",
-      "teensItem3": "Chłopcy często rosną do 18 roku życia; dziewczęta do 15-16 roku życia",
+      "teensItem3": "Większość chłopców przestaje rosnąć między 16. a 18. rokiem życia; większość dziewcząt do 14. lub 15. roku życia",
       "adultsTitle": "Dorośli (18+)",
       "adultsText": "Płytki wzrostowe zamykają się po okresie dojrzewania. Dla dorosłych przewidywanie wzrostu nie jest już istotne, ale wzór Mid-Parental Height Formula nadal może oszacować, jaki wzrost mogą osiągnąć ich dzieci.",
       "adultsItem1": "Wzrost dorosłego jest już ustalony",
-      "adultsItem2": "Użyj narzędzia Wzrost Rodziców, aby przewidzieć wzrost dzieci",
+      "adultsItem2": "Użyj narzędzia wzrostu rodziców, aby prognozować wzrost dzieci",
       "adultsItem3": "Użyj konwertera wzrostu do przeliczania jednostek",
       "limitationLabel": "Ważne ograniczenie:",
-      "limitationText": "Żaden kalkulator wzrostu nie uwzględnia schorzeń, zaburzeń hormonu wzrostu ani przedwczesnego dojrzewania. Jeśli wzrost wydaje się niezwykle szybki lub powolny, skonsultuj się z pediatrą."
+      "limitationText": "Żaden kalkulator wzrostu nie uwzględnia schorzeń, zaburzeń hormonu wzrostu ani przedwczesnego dojrzewania. Jeśli wzrost wydaje się niezwykle szybki lub powolny, skonsultuj się z pediatrą.",
+      "noParentsTitle": "Co jeśli nie znasz wzrostu swoich rodziców?",
+      "noParentsP1": "Oba kalkulatory na tej stronie wymagają danych o wzroście obojga rodziców i nie mogą wygenerować prognozy bez tych informacji. Wciąż możesz monitorować swój rozwój: mierz się co 6 miesięcy i sprawdzaj swój percentyl na siatce centylowej. Jeśli martwisz się o swój wzrost, lekarz może zlecić badanie RTG wieku kostnego.",
+      "noParentsCheckPercentile": "Sprawdź swój percentyl za pomocą",
+      "noParentsLinkText": "kalkulatora percentyli wzrostu i wagi"
     },
     "ctaBanner": {
       "text": "Gotowy, aby poznać przewidywany wzrost? Kalkulator znajduje się na górze tej strony.",
@@ -276,17 +296,17 @@
       "title": "Co decyduje o wzroście?",
       "description": "Ostateczny wzrost dorosłego człowieka kształtują dwa czynniki: genetyka i środowisko. Zrozumienie obu pomaga ustalić realistyczne oczekiwania dotyczące przewidywania wzrostu.",
       "geneticsTitle": "Genetyka",
-      "geneticsBefore": "Odpowiada za ",
-      "geneticsStrong1": "60-80%",
-      "geneticsMiddle": " ostatecznego wzrostu. Dzieci wyższych rodziców zazwyczaj są wyższe, ale dzieci bardzo wysokich lub bardzo niskich rodziców często rosną bliżej średniego wzrostu populacji, co jest zjawiskiem zwanym ",
-      "geneticsStrong2": "regresją do średniej.",
+      "geneticsBefore": "Odziedziczone warianty DNA odpowiadają za około ",
+      "geneticsStrong1": "80%",
+      "geneticsMiddle": " różnic wzrostu między ludźmi (MedlinePlus). Wysocy rodzice zazwyczaj mają wysokie dzieci, chociaż występuje regresja do średniej: bardzo wysocy lub niscy rodzice często mają potomstwo o wzroście bliższym ",
+      "geneticsStrong2": "średniej.",
       "nutritionTitle": "Odżywianie i sen",
       "nutritionBefore": "Pozostałe ",
-      "nutritionStrong": "20-40%",
-      "nutritionAfter": " pochodzi ze środowiska.",
+      "nutritionStrong": "~20%",
+      "nutritionAfter": " wynika ze środowiska. Hormon wzrostu jest wydzielany głównie podczas snu głębokiego.",
       "nutritionItem1": "Białko, wapń, witamina D, cynk",
-      "nutritionItem2": "9-11 godzin snu (wiek szkolny)",
-      "nutritionItem3": "8-10 godzin dla nastolatków",
+      "nutritionItem2": "9–12 godzin snu (wiek 6–12 lat)",
+      "nutritionItem3": "8–10 godzin dla nastolatków",
       "timingTitle": "Czas wzrostu",
       "timingText": "Wczesne dojrzewanie może tymczasowo skutkować wyższym dzieckiem, ale niższym dorosłym. Późne dojrzewanie często prowadzi do dłuższego okresu wzrostu i większego ostatecznego wzrostu."
     },
@@ -297,7 +317,8 @@
       "percentileBefore": "Linia ",
       "percentileStrong": "50. centyl",
       "percentileAfter": " reprezentuje medianę wzrostu dla danego wieku i płci. Zdrowe dzieci zazwyczaj mieszczą się między 3. a 97. centylem.",
-      "note": "Uwaga: Pediatrzy mniej skupiają się na pojedynczym pomiarze, a bardziej na tym, czy dziecko utrzymuje stałą krzywą wzrostu w czasie."
+      "note": "Uwaga: Pediatrzy mniej skupiają się na pojedynczym pomiarze, a bardziej na tym, czy dziecko utrzymuje stałą krzywą wzrostu w czasie.",
+      "expandText": "Kliknij widoki wykresów i tabel poniżej, aby przeanalizować pełne siatki centylowe."
     },
     "comparisonTable": {
       "title": "Kalkulator wzrostu a siatki centylowe",
@@ -318,10 +339,10 @@
       "rowDoctorCalculator": "Nie (użyj online)",
       "rowDoctorGrowthChart": "Nie (użyj online)",
       "rowAccuracyLabel": "Typowa dokładność",
-      "rowAccuracyCalculator": "±2-4 cale",
+      "rowAccuracyCalculator": "9 na 10 w granicach 2,1 cala (chłopcy) lub 1,7 cala (dziewczęta) z Khamis-Roche; ok. 4 cale z samych rodziców",
       "rowAccuracyGrowthChart": "Pokazuje percentyl, nie prognozę",
       "rowWithoutParentsLabel": "Działa bez rodziców",
-      "rowWithoutParentsCalculator": "Częściowo (mniej dokładnie)",
+      "rowWithoutParentsCalculator": "Nie, wymagany jest wzrost obojga rodziców",
       "rowWithoutParentsGrowthChart": "✓ Tak"
     },
     "boysGrowth": {
@@ -330,30 +351,30 @@
       "p1Strong": "dojrzewania",
       "p1After": ".",
       "p2": "Typowy harmonogram wzrostu dla chłopców wygląda następująco:",
-      "item1Before": "wczesne dojrzewanie zaczyna się około ",
-      "item1Strong": "11-12 roku życia",
-      "item2Before": "szybki wzrost następuje między ",
-      "item2Strong": "13 a 15 rokiem życia",
-      "item3Before": "wzrost zwalnia około ",
-      "item3Strong": "16-17 roku życia",
-      "p3Before": "W szczytowym okresie dojrzewania chłopcy mogą rosnąć ",
-      "p3Strong": "7-10 cm rocznie",
-      "p3After": ". Większość chłopców przestaje rosnąć około 18 roku życia, chociaż niewielkie przyrosty mogą trwać do około 20 roku życia."
+      "item1Before": "Początek dojrzewania: ",
+      "item1Strong": "zazwyczaj między 9. a 14. rokiem życia",
+      "item2Before": "Skok pokwitaniowy: ",
+      "item2Strong": "między 12. a 15. rokiem życia",
+      "item3Before": "Spowolnienie: ",
+      "item3Strong": "krótko po skoku wzrostowym",
+      "p3Before": "W szczytowym momencie skoku pokwitaniowego chłopcy mogą rosnąć od 7 do 10 cm (3–4 cale) rocznie. ",
+      "p3Strong": "Większość chłopców kończy wzrastanie między 16. a 18. rokiem życia. ",
+      "p3After": "Osoby dojrzewające później mogą rosnąć jeszcze nieco dłużej."
     },
     "girlsGrowth": {
       "title": "Kiedy dziewczynki przestają rosnąć?",
       "p1": "Dziewczynki zazwyczaj zaczynają dojrzewać wcześniej niż chłopcy.",
       "p2": "Typowy harmonogram wzrostu:",
-      "item1Before": "dojrzewanie zaczyna się około ",
-      "item1Strong": "9-10 roku życia",
-      "item2Before": "skok wzrostu następuje między ",
-      "item2Strong": "10 a 14 rokiem życia",
-      "p3Before": "Większość dziewczynek osiąga swój dorosły wzrost między ",
-      "p3Strong": "15 a 16 rokiem życia",
-      "p3After": ". Ponieważ dziewczynki dojrzewają wcześniej, często wydają się wyższe od chłopców w późnym dzieciństwie."
+      "item1Before": "Początek dojrzewania: ",
+      "item1Strong": "zazwyczaj między 8. a 13. rokiem życia",
+      "item2Before": "Skok pokwitaniowy: ",
+      "item2Strong": "między 10. a 14. rokiem życia",
+      "p3Before": "Wzrost ostateczny: ",
+      "p3Strong": "większość dziewcząt osiąga wzrost dorosły w wieku około 14 lub 15 lat, ",
+      "p3After": "rosnąc zazwyczaj 2,5–5 cm (1–2 cale) po pierwszej miesiączce."
     },
     "methods": {
-      "title": "Wyjaśnienie metod przewidywania wzrostu",
+      "title": "Wyjaśnienie metod prognozowania wzrostu",
       "subtitle": "Jak przewidzieć wzrost Twojego dziecka",
       "description": "Naukowcy używają kilku wzorów do oszacowania wzrostu dorosłego. Każda metoda równoważy dokładność z wymaganymi danymi.",
       "khamisRoche": {
@@ -362,8 +383,8 @@
         "p1": "Uważana za najdokładniejszą metodę przewidywania wzrostu, która nie wymaga badania wieku kostnego. Analizuje cztery dane wejściowe: wiek dziecka, wzrost, wagę i średni wzrost obojga rodziców.",
         "p2": "Opracowana po przestudiowaniu tysięcy wzorców wzrostu dzieci przy użyciu analizy regresji liniowej zastosowanej do danych wzrostu na poziomie populacji. Ponieważ uwzględnia aktualne pomiary ciała, przewyższa formuły oparte wyłącznie na genetyce.",
         "item1Before": "Dokładność: ",
-        "item1Strong": "±2,1 cala dla chłopców, ±1,7 cala dla dziewcząt",
-        "item2": "Najlepsza dla dzieci powyżej 4 roku życia",
+        "item1Strong": "±2,1 cala dla chłopców, ±1,7 cala dla dziewcząt (9 na 10 prognoz; połowa w granicach ok. 0,9 i 0,7 cala)",
+        "item2": "Zwalidowane dla wieku od 4 do 17,5 lat",
         "item3": "Najbardziej wiarygodne dostępne przewidywanie niekliniczne",
         "usedByCalculator": "✓ Używana przez ten kalkulator",
         "readyText": "Masz przygotowane dane dotyczące wieku, wzrostu, wagi dziecka i wzrostu rodziców?",
@@ -382,7 +403,19 @@
         "item3": "Nie uwzględnia aktualnej trajektorii wzrostu. Dla dzieci powyżej 4 roku życia użyj metody Khamis-Roche",
         "item4": "Może być również używany jako przybliżony kalkulator wzrostu niemowląt lub dla nienarodzonych dzieci",
         "onlyHaveText": "Masz tylko wzrost rodziców? Użyj powyższego kalkulatora wzrostu środkowo-rodzicielskiego.",
-        "linkText": "Przewiń do góry i oblicz teraz"
+        "linkText": "Przewiń do góry i oblicz teraz",
+        "formulaExplanation": "Formuła mid-parental to najprostszy sposób na oszacowanie ostatecznego wzrostu dziecka przy użyciu wyłącznie wzrostu rodziców. Nie wymaga badań klinicznych i sprawdza się w każdym wieku, w tym u niemowląt i nienarodzonych dzieci.",
+        "boysFormulaSub": "Metryczny: (Ojciec + Matka + 13 cm) ÷ 2",
+        "girlsFormulaSub": "Metryczny: (Ojciec + Matka - 13 cm) ÷ 2",
+        "boysFormulaMetricLabel": "Dla chłopców (Metryczny)",
+        "boysFormulaMetric": "(Ojciec + Matka + 13 cm) ÷ 2",
+        "boysFormulaMetricSub": "Obliczenia w centymetrach",
+        "girlsFormulaMetricLabel": "Dla dziewcząt (Metryczny)",
+        "girlsFormulaMetric": "(Ojciec + Matka - 13 cm) ÷ 2",
+        "girlsFormulaMetricSub": "Obliczenia w centymetrach",
+        "exampleText": "Przykład: Ojciec 180 cm + Matka 165 cm = 345 cm. Chłopiec: (345 + 13) ÷ 2 = 179 cm. Dziewczynka: (345 - 13) ÷ 2 = 166 cm.",
+        "exampleEstimateText": "Szacowany przedział oczekiwany: ±10 cm (4 cale)",
+        "workedExamplePointer": "Zobacz praktyczny przykład w sekcji «Jak wysokie będzie moje dziecko?»"
       },
       "boneAge": {
         "badge": "KLINICZNA",
@@ -401,11 +434,14 @@
         "badge": "KLINICZNA",
         "title": "Metoda Roche-Wainer-Thissen",
         "text": "Wykorzystuje wiek kostny, aktualny wzrost, wagę i wzrost rodziców. W niektórych przypadkach poprawia dokładność w porównaniu z metodą Khamis-Roche, ale wymaga klinicznego pomiaru wieku kostnego. Stosowana głównie w warunkach medycznych."
+      },
+      "age2Rule": {
+        "badge": "REGUŁA PRAKTYCZNA",
+        "title": "Reguła podwajania w wieku 2 lat",
+        "text": "Podwaja wzrost chłopca w wieku 2 lat lub dziewczynki w wieku 18 miesięcy. Nie wymaga kalkulatora ani wzrostu rodziców, ale nie uwzględnia uwarunkowań genetycznych i stanowi jedynie szacunek orientacyjny."
       }
     },
     "canIncrease": {
-      "titlePrefix": "Czy możesz ",
-      "titleHighlight": "zwiększyć wzrost",
       "description": "Twoje geny w dużej mierze decydują o tym, jak wysoki będziesz. Ale to, jak dobrze jesz, śpisz i pozostajesz aktywny w dzieciństwie, może mieć realny wpływ na to, czy osiągniesz ten potencjał.",
       "nutritionTitle": "Odżywianie",
       "nutritionText": "Odpowiednie odżywianie wspiera rozwój kości. Kluczowe składniki odżywcze:",
@@ -420,70 +456,108 @@
       "exerciseTitle": "Regularne ćwiczenia",
       "exerciseText": "Wspierają siłę kości i ogólny rozwój. Bieganie, skakanie i sport sprzyjają zdrowemu wzrostowi kości.",
       "warningStrong": "Ważne:",
-      "warningText": "Żadne ćwiczenia, suplementy ani programy rozciągające nie mogą zwiększyć wzrostu po zamknięciu płytek wzrostowych. Prognozy są szacunkowe. Genetyka jest dominującym czynnikiem."
+      "warningText": "Żadne ćwiczenia, suplementy ani programy rozciągające nie mogą zwiększyć wzrostu po zamknięciu płytek wzrostowych. Prognozy są szacunkowe. Genetyka jest dominującym czynnikiem.",
+      "title": "Czy można zwiększyć swój wzrost?"
     },
     "accuracy": {
-      "titlePrefix": "Jak ",
-      "titleHighlight": "dokładny",
-      "titleSuffix": " jest kalkulator wzrostu?",
       "description": "Ten kalkulator przewidywanego wzrostu wykorzystuje model wzrostu Khamis-Roche, oparty na długoterminowych badaniach danych dotyczących wzrostu dzieci.",
-      "check1": "Większość przewidywań mieści się w zakresie 5-10 cm (2-4 cale) od ostatecznego wzrostu dorosłego",
-      "check2": "Dokładność jest najwyższa, gdy dziecko ma więcej niż 4 lata",
-      "check3": "Dokładne pomiary wzrostu i wagi znacznie poprawiają wyniki",
-      "check4": "Prawidłowe dane dotyczące wzrostu rodziców są wymagane do uzyskania wiarygodnych wyników",
-      "alert1": "Wyniki to prawdopodobny zakres, a nie dokładna wartość",
-      "alert2": "Nieodpowiednie dla dzieci ze znanymi zaburzeniami wzrostu",
-      "alert3": "Wczesne lub późne dojrzewanie może zmniejszyć dokładność przewidywań",
-      "rangeNotice": "Wynik przedstawia prawdopodobny zakres, a nie dokładną wartość.",
       "disclaimerStrong": "Zastrzeżenie medyczne:",
-      "disclaimerText": "Ten kalkulator wzrostu służy wyłącznie celom informacyjnym. Nie zastępuje profesjonalnej porady medycznej. Jeśli masz obawy dotyczące wzrostu swojego dziecka, skonsultuj się z wykwalifikowanym pediatrą lub endokrynologiem."
+      "disclaimerText": "Ten kalkulator wzrostu służy wyłącznie celom informacyjnym. Nie zastępuje profesjonalnej porady medycznej. Jeśli masz obawy dotyczące wzrostu swojego dziecka, skonsultuj się z wykwalifikowanym pediatrą lub endokrynologiem.",
+      "title": "Jak dokładny jest kalkulator wzrostu?",
+      "is100PercentTitle": "Czy istnieje kalkulator wzrostu o 100% dokładności?",
+      "is100PercentText": "Nie. Każda metoda wskazuje prawdopodobny przedział, ponieważ geny, tempo dojrzewania i zdrowie wpływają na wynik. Metoda Khamisa-Roche'a jest najdokładniejszą metodą bez badań RTG (9 na 10 prognoz w granicach 2,1 cala dla chłopców i 1,7 cala dla dziewcząt). RTG wieku kostnego jest dokładniejsze i jest zlecane przez pediatrów w razie podejrzeń zaburzeń wzrastania.",
+      "typicalErrorTitle": "Typowy błąd według metody prognozowania",
+      "thMethod": "Metoda",
+      "thTypicalError": "Typowy błąd",
+      "thNeedsBoneAge": "Wymaga wieku kostnego?",
+      "methodKhamis": "Metoda Khamisa-Roche'a",
+      "errorKhamis": "±5,3 cm (chłopcy) / ±4,3 cm (dziewczęta)",
+      "boneAgeKhamis": "Nie",
+      "methodMidParental": "Formuła Mid-Parental",
+      "errorMidParental": "±10 cm (4 cale)",
+      "boneAgeMidParental": "Nie",
+      "methodBoneAge": "RTG wieku kostnego (Greulich-Pyle / TW)",
+      "errorBoneAge": "±2,5 cm (najwyższa dokładność)",
+      "boneAgeBoneAge": "Tak (kliniczna)",
+      "whyMissesTitle": "Dlaczego prognozy mogą się różnić",
+      "miss1": "9 na 10 prognoz mieści się w granicach 5,3 cm (2,1 cala) dla chłopców i 4,3 cm (1,7 cala) dla dziewcząt",
+      "miss2": "Wzór oparty tylko na rodzicach jest mniej dokładny: zazwyczaj do 10 cm (4 cale)",
+      "miss3": "Dokładność rośnie, gdy dziecko ma więcej niż 4 lata",
+      "miss4": "Dokładne pomiary wzrostu i wagi wyraźnie poprawiają wiarygodność wyników",
+      "miss5": "Rzetelne dane o wzroście obojga rodziców są konieczne do wiarygodnej prognozy"
     },
     "faq": [
       {
         "q": "Jak wysoki będę?",
-        "a": "Twój wzrost w wieku dorosłym zależy przede wszystkim od wzrostu Twoich rodziców i czasu Twojego wzrostu. Skorzystaj z powyższego kalkulatora wzrostu. Wprowadź swój aktualny wiek, wzrost, wagę oraz wzrost rodziców, aby uzyskać przewidywany zakres wzrostu na podstawie modelu wzrostu Khamis-Roche. Jeśli masz już 18 lat lub więcej, Twoje płytki wzrostowe są zamknięte, a Twój wzrost w wieku dorosłym jest ustalony."
+        "a": "Twój dorosły wzrost zależy głównie od wzrostu rodziców oraz tempa rozwoju biologicznego. Skorzystaj z kalkulatora powyżej, wprowadzając wiek, wzrost, wagę i wzrost rodziców, aby uzyskać prognozowany przedział według metody Khamisa-Roche'a. Jeśli masz 18 lat lub więcej, Twoje nasady kości uległy zrośnięciu i proces wzrastania został zakończony."
       },
       {
-        "q": "Jak wysoki będzie mój syn?",
-        "a": "Wprowadź wiek syna, aktualny wzrost, wagę oraz wzrost obojga rodziców do powyższego kalkulatora Khamis-Roche. Chłopcy zazwyczaj przestają rosnąć około 18 roku życia, chociaż niewielkie przyrosty mogą trwać do 20 roku życia. Wzór na wzrost średni rodzicielski może również dać przybliżone oszacowanie: (wzrost ojca + wzrost matki + 5 cali) ÷ 2."
+        "q": "Jak wysokie będzie moje dziecko?",
+        "a": "Wprowadź aktualny wiek, wzrost i wagę dziecka oraz wzrost obojga rodziców do powyższego kalkulatora Khamisa-Roche'a. Większość chłopców przestaje rosnąć między 16. a 18. rokiem życia; dziewczęta w wieku około 14–15 lat. Formuła mid-parental również zapewnia szybką kalkulację: (Wzrost ojca + Wzrost matki ± 13 cm) ÷ 2."
       },
       {
         "q": "Czy kalkulator wzrostu jest dokładny?",
-        "a": "Metoda Khamis-Roche (używana w tym kalkulatorze) jest jednym z najdokładniejszych dostępnych nieklinicznych predyktorów wzrostu. Typowa dokładność wynosi ±2,1 cala dla chłopców i ±1,7 cala dla dziewcząt. Dokładność poprawia się, gdy dziecko ma więcej niż 4 lata, pomiary są precyzyjne, a wzrost rodziców jest prawidłowy. Wyniki zawsze stanowią zakres, a nie gwarantowaną wartość."
+        "a": "Metoda Khamisa-Roche'a (stosowana w tym kalkulatorze) należy do najdokładniejszych nieinwazyjnych metod. W oryginalnym badaniu 9 na 10 prognoz mieściło się w przedziale 2,1 cala dla chłopców i 1,7 cala dla dziewcząt. Dokładność rośnie po ukończeniu 4 lat przy starannych pomiarach. Wyniki odzwierciedlają przedział prawdopodobieństwa, a nie gwarancję."
       },
       {
-        "q": "Czy wzrost rodziców może przewidzieć mój wzrost?",
-        "a": "Tak. Wzrost rodziców jest najsilniejszym pojedynczym predyktorem wzrostu dziecka w wieku dorosłym, odpowiadającym za 60–80% zmienności wzrostu. Wzór na wzrost średni rodzicielski dostarcza przybliżonego oszacowania, wykorzystując tylko te dane. Jednak połączenie wzrostu rodziców z aktualnymi pomiarami dziecka (wiek, wzrost, waga) za pomocą modelu Khamis-Roche daje znacznie dokładniejsze wyniki."
+        "q": "Czy istnieje kalkulator wzrostu dokładny w 100%?",
+        "a": "Nie. Każdy algorytm wskazuje przedział prawdopodobny, ponieważ genetyka, dojrzewanie i odżywianie modyfikują proces wzrastania. Khamis-Roche to najdokładniejsza metoda nieradiologiczna (9 na 10 prognoz z błędem poniżej 2,1 cala dla chłopców i 1,7 cala dla dziewcząt). Badanie RTG wieku kostnego jest najdokładniejsze i jest stosowane przez lekarzy."
       },
       {
-        "q": "Czy mogę przewidzieć wzrost mojego dziecka?",
-        "a": "Dla niemowląt i małych dzieci użyj powyższego kalkulatora wzoru na wzrost średni rodzicielski. Wymaga on jedynie wzrostu matki i ojca. Daje to przybliżony zakres wzrostu. Należy pamiętać, że dokładność jest niższa dla niemowląt niż dla starszych dzieci, ponieważ aktualne dane dotyczące wzrostu nie są uwzględniane."
+        "q": "Czy wzrost rodziców pozwala przewidzieć mój wzrost?",
+        "a": "Tak. Odziedziczone geny odpowiadają za około 80% różnic we wzroście, a wzrost rodziców stanowi najsilniejszy pojedynczy wskaźnik. Formuła mid-parental daje dobry punkt wyjścia. Jednak połączenie wzrostu rodziców z bieżącymi wymiarami dziecka w modelu Khamisa-Roche'a przynosi znacznie dokładniejsze wyniki."
       },
       {
-        "q": "Jaki powinien być wzrost mojego dziecka w jego wieku?",
-        "a": "Skorzystaj z sekcji wykresów wzrostu powyżej, aby zobaczyć średni zakres wzrostu według wieku dla chłopców i dziewcząt. 50. percentyl reprezentuje medianę wzrostu. Zdrowe dzieci zazwyczaj mieszczą się między 3. a 97. percentylem. Jeśli Twoje dziecko konsekwentnie znajduje się powyżej lub poniżej tego zakresu, omów to z pediatrą."
+        "q": "Czy mogę przewidzieć wzrost mojego niemowlęcia?",
+        "a": "W przypadku niemowląt i maluchów zaleca się kalkulator oparty na formule mid-parental powyżej. Wymaga on jedynie wzrostu matki i ojca. Pamiętaj, że dla niemowląt prognoza jest szacunkiem ogólnym z braku danych o dynamice wzrostu. Po ukończeniu 2 lat reguła 2 lat stanowi wartościową drugą weryfikację."
+      },
+      {
+        "q": "Jaki wzrost powinno mieć moje dziecko w swoim wieku?",
+        "a": "Sprawdź powyższe siatki centylowe, aby zapoznać się ze średnim przedziałem wzrostu w poszczególnych przedziałach wiekowych. 50. centyl wyznacza medianę. Zdrowe dzieci mieszczą się w normie między 3. a 97. centylem. W razie utrzymujących się odchyleń skonsultuj się z pediatrą."
       },
       {
         "q": "Jaka jest najdokładniejsza metoda przewidywania wzrostu?",
-        "a": "Najdokładniejszą metodą ogólnie jest badanie wieku kostnego (rentgen nadgarstka), stosowane klinicznie przez lekarzy. Do przewidywania nieklinicznego, metoda Khamis-Roche jest najdokładniejszą dostępną. Wykorzystuje wiek, wzrost, wagę i wzrost rodziców, osiągając dokładność ±2,1 cala dla chłopców i ±1,7 cala dla dziewcząt. Jest to metoda używana w kalkulatorze na tej stronie."
+        "a": "W medycynie złotym standardem jest ocena wieku kostnego (RTG nadgarstka). Do użytku nieklinicznego najdokładniejsza pozostaje metoda Khamisa-Roche'a: uwzględnia wiek, wzrost, wagę i wzrost rodziców, a 9 na 10 prognoz mieści się w granicach 2,1 cala (chłopcy) i 1,7 cala (dziewczęta)."
       }
     ],
     "toc": [
       {
         "id": "height-predictor-calculator",
-        "label": "Kalkulator przewidywanego wzrostu"
+        "label": "Kalkulator Przewidywania Wzrostu"
       },
       {
         "id": "how-it-works",
-        "label": "Jak to działa?"
+        "label": "Jak to Działa?"
       },
       {
         "id": "how-tall-will-my-child-be",
-        "label": "Jak wysokie będzie moje dziecko?"
-      },
-      {
-        "id": "how-tall-will-i-be-teens-adults",
-        "label": "Jak wysoki będę (nastolatki i dorośli)"
+        "label": "Jak wysokie będzie moje dziecko?",
+        "subItems": [
+          {
+            "id": "how-tall-will-my-son-be",
+            "label": "Jak wysoki będzie mój syn?"
+          },
+          {
+            "id": "how-tall-will-my-daughter-be",
+            "label": "Jak wysoka będzie moja córka?"
+          },
+          {
+            "id": "how-tall-will-my-baby-or-toddler-be",
+            "label": "Jak wysokie będzie moje niemowlę lub małe dziecko?"
+          },
+          {
+            "id": "how-tall-will-i-be-teens-adults",
+            "label": "Jak wysoki będę? (Nastolatki i dorośli)"
+          },
+          {
+            "id": "worked-example",
+            "label": "Praktyczny przykład: obliczanie wzrostu ze wzrostu rodziców"
+          },
+          {
+            "id": "age-2-rule",
+            "label": "Szybki test dla maluchów: reguła 2 lat"
+          }
+        ]
       },
       {
         "id": "what-determines-height",
@@ -491,11 +565,11 @@
       },
       {
         "id": "boys-girls-growth-charts",
-        "label": "Wykresy wzrostu chłopców i dziewcząt"
+        "label": "Siatki centylowe dla chłopców i dziewcząt"
       },
       {
         "id": "calculator-vs-growth-charts",
-        "label": "Kalkulator a wykresy wzrostu"
+        "label": "Kalkulator vs Siatki centylowe"
       },
       {
         "id": "when-do-boys-stop-growing",
@@ -503,51 +577,59 @@
       },
       {
         "id": "when-do-girls-stop-growing",
-        "label": "Kiedy dziewczynki przestają rosnąć?"
+        "label": "Kiedy dziewczęta przestają rosnąć?"
       },
       {
         "id": "height-prediction-methods",
-        "label": "Metody przewidywania wzrostu"
-      },
-      {
-        "id": "khamis-roche-method",
-        "label": "Metoda Khamis-Roche"
-      },
-      {
-        "id": "based-on-parents",
-        "label": "Na podstawie rodziców"
+        "label": "Wyjaśnienie metod prognozowania wzrostu",
+        "subItems": [
+          {
+            "id": "khamis-roche-method",
+            "label": "Metoda Khamisa-Roche'a"
+          },
+          {
+            "id": "based-on-parents",
+            "label": "Kalkulator na podstawie wzrostu rodziców"
+          },
+          {
+            "id": "age-2-doubling-rule",
+            "label": "Reguła podwajania w wieku 2 lat"
+          }
+        ]
       },
       {
         "id": "bone-age-method",
-        "label": "Metoda wieku kostnego"
-      },
-      {
-        "id": "bayley-pinneau-method",
-        "label": "Metoda Bayley-Pinneau"
-      },
-      {
-        "id": "roche-wainer-thissen-method",
-        "label": "Metoda Roche-Wainer-Thissen"
+        "label": "Metoda Wieku Kostnego",
+        "subItems": [
+          {
+            "id": "bayley-pinneau-method",
+            "label": "Metoda Bayley-Pinneau"
+          },
+          {
+            "id": "roche-wainer-thissen-method",
+            "label": "Metoda Roche-Wainer-Thissen"
+          }
+        ]
       },
       {
         "id": "can-you-increase-height",
-        "label": "Czy można zwiększyć wzrost?"
+        "label": "Czy można zwiększyć swój wzrost?"
       },
       {
         "id": "accuracy",
-        "label": "Dokładność przewidywań"
+        "label": "Jak dokładny jest kalkulator wzrostu?"
       },
       {
         "id": "faq",
-        "label": "FAQ"
+        "label": "Często Zadawane Pytania (FAQ)"
       },
       {
         "id": "related-tools",
-        "label": "Powiązane narzędzia"
+        "label": "Powiązane Narzędzia"
       },
       {
         "id": "references",
-        "label": "Referencje"
+        "label": "Bibliografia Naukowa i Źródła"
       }
     ],
     "relatedTools": {
@@ -599,13 +681,14 @@
       "tableHeaderGirlsMedian": "Mediana dziewcząt",
       "ageYrs": "{age} lat",
       "insightBoysStopLabel": "Chłopcy przestają rosnąć",
-      "insightBoysStopValue": "~18 lat",
+      "insightBoysStopValue": "~16–18 lat",
       "insightGirlsStopLabel": "Dziewczęta przestają rosnąć",
-      "insightGirlsStopValue": "~15-16 lat",
+      "insightGirlsStopValue": "~14–15 lat",
       "insightMaleHeightLabel": "Średni wzrost dorosłego mężczyzny (USA)",
-      "insightMaleHeightValue": "172.2 cm / 5'8\"",
+      "insightMaleHeightValue": "175 cm / 5'9\"",
       "insightFemaleHeightLabel": "Średni wzrost dorosłej kobiety (USA)",
-      "insightFemaleHeightValue": "160.1 cm / 5'3\""
+      "insightFemaleHeightValue": "161,3 cm / 5'3,5\"",
+      "sourceNhanes": "Źródło: CDC National Center for Health Statistics, dorośli w wieku 20 lat i starsi, NHANES od sierpnia 2021 do sierpnia 2023."
     },
     "references": {
       "title": "Bibliografia naukowa i źródła danych",
@@ -619,7 +702,12 @@
       "ref8": "Greulich WW, Pyle SI. Radiographic Atlas of Skeletal Development of the Hand and Wrist.",
       "ref9": "Tanner JM, Whitehouse RH. Ocena dojrzałości szkieletowej.",
       "ref10": "Bayley N, Pinneau SR. Tabele do przewidywania wzrostu dorosłych na podstawie wieku kostnego.",
-      "ref11": "Roche AF, Wainer H, Thissen D. Przewidywanie wzrostu dorosłych dla poszczególnych osób."
+      "ref11": "Roche AF, Wainer H, Thissen D. Przewidywanie wzrostu dorosłych dla poszczególnych osób.",
+      "ref12": "Mayo Clinic Staff. Child growth: Can you predict adult height? Mayo Clinic, 2025.",
+      "ref13": "Cross-sectional analysis of maturity status and Khamis-Roche prediction error. PMC6603099.",
+      "ref14": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age: the Khamis-Roche method. Pediatrics. 1994;94(4):504-507.",
+      "ref15": "CDC National Center for Health Statistics. Body Measurements (FastStats).",
+      "ref16": "Paruthi S, et al. Recommended amount of sleep for pediatric populations. J Clin Sleep Med. 2016."
     }
   },
   "heightWeightPercentile": {

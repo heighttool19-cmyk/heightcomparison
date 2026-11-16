@@ -65,7 +65,12 @@ to `predicts`. "requires" / "needs" normalized to `requires`.
 | 30 | HeightCharts data | is based on | CDC growth chart data | 85 | Headline data-provenance claim for the chart component. |
 | 31 | HeightCharts source | is | CDC Growth Charts / National Center for Health Statistics | 82 | Repeated attribution line under both the chart and table views. |
 | 32 | 50th percentile line | represents | Average/Median height | 76 | Legend/line-name claim, reused in tooltip. |
-| 33 | Boys | stop growing | ~18 yrs (insight card) | 80 | Restates the boysGrowth timeline fact as a quick-glance stat. |
-| 34 | Girls | stop growing | ~15-16 yrs (insight card) | 80 | Restates the girlsGrowth timeline fact as a quick-glance stat. |
-| 35 | Average adult male height (US) | is | 172.2 cm / 5'8" | 78 | Quantified reference value, matches boysData's age-18 p50. |
-| 36 | Average adult female height (US) | is | 160.1 cm / 5'3" | 78 | Quantified reference value, matches girlsData's age-18 p50. |
+| 33 | Boys | stop growing | ~16–18 yrs (insight card) | 80 | Restates the boysGrowth timeline fact as a quick-glance stat (updated Nov 2026). |
+| 34 | Girls | stop growing | ~14–15 yrs (insight card) | 80 | Restates the girlsGrowth timeline fact as a quick-glance stat (updated Nov 2026). |
+| 35 | Average adult male height (US 20+ NHANES) | is | 175 cm / 5'9" | 78 | Quantified reference value from NHANES Aug 2021–Aug 2023. |
+| 36 | Average adult female height (US 20+ NHANES) | is | 161.3 cm / 5'3.5" | 78 | Quantified reference value from NHANES Aug 2021–Aug 2023. |
+| 37 | Mayo Clinic | publishes / validates | Age-2 doubling rule alongside mid-parental method | 85 | Factual citation of Mayo Clinic guideline. |
+| 38 | Khamis-Roche prediction error | is within | 5.3 cm (2.1 in) for boys and 4.3 cm (1.7 in) for girls for 90% of children | 90 | Quantified scientific accuracy claim from Wright State University study. |
+| 39 | Mid-Parental expected range | is | within ±10 cm (4 inches) of adult height | 85 | Factual range claim for mid-parental method. |
+| 40 | Height prediction without parental heights | is | not supported by calculators; requires growth curve tracking or bone age X-ray | 80 | Guidance for users without parental measurements. |
+| 41 | Adult height 100% accuracy | is | not possible with any non-invasive or clinical tool | 85 | Absolute-claim negation across accuracy and FAQ sections. |

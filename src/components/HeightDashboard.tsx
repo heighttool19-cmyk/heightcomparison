@@ -15,6 +15,7 @@ import Ruler from './Ruler';
 import Sidebar from './Sidebar';
 import { usePersonStore } from '../store';
 import LZString from 'lz-string';
+import { heightGap, ftIn } from '../lib/height';
 
 interface HeightDashboardProps {
     readOnly?: boolean;
@@ -153,14 +154,27 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
 
     const [activePersonMenuId, setActivePersonMenuId] = useState<string | null>(null);
     const [shareStatus, setShareStatus] = useState<'idle' | 'generating' | 'copied' | 'error'>('idle');
+    const [referencePersonId, setReferencePersonId] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (persons.length === 0) {
+            setReferencePersonId(null);
+        } else if (!referencePersonId || !persons.some(p => p.id === referencePersonId)) {
+            setReferencePersonId(persons[0].id);
+        }
+    }, [persons, referencePersonId]);
+
+    const refPerson = useMemo(() => {
+        return persons.find(p => p.id === referencePersonId) || persons[0] || null;
+    }, [persons, referencePersonId]);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const chartScrollRef = useRef<HTMLDivElement>(null);
     const autoScaleRef = useRef<() => void>(() => { });
 
-    const triggerToast = useCallback((msg: string) => {
+    const triggerToast = useCallback((msg: string, duration = 2500) => {
         setToastMessage(msg); setShowToast(true);
-        setTimeout(() => setShowToast(false), 2500);
+        setTimeout(() => setShowToast(false), duration);
     }, []);
 
     useEffect(() => { setZoomInput(Math.round(zoom * 100)); }, [zoom]);
@@ -244,8 +258,25 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         });
         ro.observe(el);
         const rect = el.getBoundingClientRect();
-        if (rect.width > 0) { lastW = rect.width; lastH = rect.height; setVpWidth(rect.width); setVpHeight(rect.height); }
-        return () => ro.disconnect();
+        if (rect.width > 0) {
+            lastW = rect.width;
+            lastH = rect.height;
+            setVpWidth(rect.width);
+            setVpHeight(rect.height);
+            const mob = window.innerWidth < 768;
+            setIsMobile(mob);
+            if (!mob) setIsMobileDrawerOpen(false);
+        }
+        const onWinResize = () => {
+            const mob = window.innerWidth < 768;
+            setIsMobile(mob);
+            if (!mob) setIsMobileDrawerOpen(false);
+        };
+        window.addEventListener('resize', onWinResize);
+        return () => {
+            ro.disconnect();
+            window.removeEventListener('resize', onWinResize);
+        };
     }, []);
 
     // ── Wheel / Pinch zoom ───────────────────────────────────────────────────
@@ -312,8 +343,69 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         if (persons.length === 0 || finalScale === 0) return vpHeight || 600;
         const maxBarPx = Math.max(...persons.map(p => p.heightCm * finalScale));
         const headExtra = maxBarPx * HEAD_RATIO;
-        return Math.max(vpHeight || 600, maxBarPx + headExtra + TOP_PAD + 20);
+        const chipExtra = persons.length >= 3 ? (persons.length >= 5 ? 56 : 36) : 0;
+        return Math.max(vpHeight || 600, maxBarPx + headExtra + TOP_PAD + 20 + chipExtra);
     }, [persons, finalScale, vpHeight]);
+
+    // ─────────────────────────────────────────────────────────────────────────
+    // PAIR INFO & PADDING (Mode 1: Two Figures)
+    // ─────────────────────────────────────────────────────────────────────────
+    const pairInfo = useMemo(() => {
+        if (persons.length !== 2) return null;
+        const p1 = persons[0];
+        const p2 = persons[1];
+        const gap = heightGap(p1.heightCm, p2.heightCm);
+        if (p1.heightCm === p2.heightCm) {
+            return {
+                isSameHeight: true,
+                p1,
+                p2,
+                taller: p1,
+                shorter: p2,
+                isTallerOnRight: false,
+                yShorter: p1.heightCm * finalScale,
+                yTaller: p1.heightCm * finalScale,
+                bracketHeight: 12,
+                gap,
+            };
+        }
+        const taller = p1.heightCm > p2.heightCm ? p1 : p2;
+        const shorter = p1.heightCm > p2.heightCm ? p2 : p1;
+        const isTallerOnRight = p2.id === taller.id;
+        const yShorter = shorter.heightCm * finalScale;
+        const yTaller = taller.heightCm * finalScale;
+        const bracketHeight = Math.max(12, yTaller - yShorter);
+        return {
+            isSameHeight: false,
+            p1,
+            p2,
+            taller,
+            shorter,
+            isTallerOnRight,
+            yShorter,
+            yTaller,
+            bracketHeight,
+            gap,
+        };
+    }, [persons, finalScale]);
+
+    const containerPaddingStyle = useMemo(() => {
+        if (isMobile) {
+            return { paddingLeft: '16px', paddingRight: '16px' };
+        }
+        if (persons.length >= 3) {
+            return { paddingLeft: '120px', paddingRight: '120px' };
+        }
+        if (pairInfo) {
+            if (pairInfo.isSameHeight) {
+                return { paddingLeft: '60px', paddingRight: '60px' };
+            }
+            return pairInfo.isTallerOnRight
+                ? { paddingLeft: '60px', paddingRight: '240px' }
+                : { paddingLeft: '240px', paddingRight: '60px' };
+        }
+        return { paddingLeft: '40px', paddingRight: '40px' };
+    }, [persons.length, pairInfo, isMobile]);
 
     // ─────────────────────────────────────────────────────────────────────────
     // AUTO-SCALE
@@ -328,6 +420,15 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
         const rulerW = isMobile ? 40 : 56;
         const availW = vpWidth - rulerW;
 
+        const padLeft = isMobile
+            ? 16
+            : (persons.length >= 3 ? 120 : (persons.length === 2 && persons[0].heightCm > persons[1].heightCm ? 240 : 60));
+        const padRight = isMobile
+            ? 16
+            : (persons.length >= 3 ? 120 : (persons.length === 2 && persons[1].heightCm > persons[0].heightCm ? 240 : 60));
+
+        const usableW = Math.max(100, availW - (padLeft + padRight));
+
         // Total content width at zoom=1 (baseScale, not finalScale)
         const totalW = persons.reduce((sum, p) => {
             const barH = p.heightCm * baseScale;
@@ -338,7 +439,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
 
         if (totalW <= 0) return;
 
-        const hZoom = (availW * 0.90) / (totalW);
+        const hZoom = (usableW * 0.95) / (totalW);
         // Clamp: auto never zooms IN beyond 1.0
         const safeZoom = Math.max(MIN_ZOOM, Math.min(MAX_AUTO_ZOOM, hZoom));
 
@@ -442,12 +543,12 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
 
             await navigator.clipboard.writeText(url);
             setShareStatus('copied');
-            triggerToast('Share link copied!');
-            setTimeout(() => setShareStatus('idle'), 3000);
+            triggerToast('Link copied. Links stay active for 7 days.', 5000);
+            setTimeout(() => setShareStatus('idle'), 5000);
         } catch (error) {
             console.error('Share failed:', error);
             setShareStatus('error');
-            triggerToast('Failed to copy link');
+            triggerToast('Failed to copy link', 3000);
             setTimeout(() => setShareStatus('idle'), 3000);
         }
     }, [unitSystem, zoom, persons, triggerToast, shareStatus]);
@@ -680,23 +781,38 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         <Trash2 size={16} className="text-[var(--toolbar-foreground)] group-hover:text-red-300 shrink-0" />
                                         <span className="hidden xl:inline whitespace-nowrap text-xs">Clear All</span>
                                     </button>
-                                    <button
-                                        onClick={handleShare}
-                                        disabled={shareStatus !== 'idle'}
-                                        aria-label="Share height comparison"
-                                        className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-xl ${shareStatus === 'copied' ? 'text-black bg-white/40' : shareStatus === 'error' ? 'text-red-950 bg-red-500/20' : 'text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover'}`}
-                                    >
-                                        {shareStatus === 'generating' ? (
-                                            <div className="w-4 h-4 border-2 border-zinc-950 border-t-transparent rounded-full animate-spin" />
-                                        ) : shareStatus === 'copied' ? (
-                                            <Check size={16} />
-                                        ) : (
-                                            <LinkIcon size={16} className={`group-hover:text-zinc-950 shrink-0 ${shareStatus === 'error' ? 'text-red-950' : 'text-[var(--toolbar-foreground)]'}`} />
+                                    <div className="relative inline-flex">
+                                        <button
+                                            onClick={handleShare}
+                                            disabled={shareStatus !== 'idle'}
+                                            aria-label="Share height comparison"
+                                            className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-xl ${shareStatus === 'copied' ? 'text-black bg-white/40' : shareStatus === 'error' ? 'text-red-950 bg-red-500/20' : 'text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover'}`}
+                                        >
+                                            {shareStatus === 'generating' ? (
+                                                <div className="w-4 h-4 border-2 border-zinc-950 border-t-transparent rounded-full animate-spin" />
+                                            ) : shareStatus === 'copied' ? (
+                                                <Check size={16} />
+                                            ) : (
+                                                <LinkIcon size={16} className={`group-hover:text-zinc-950 shrink-0 ${shareStatus === 'error' ? 'text-red-950' : 'text-[var(--toolbar-foreground)]'}`} />
+                                            )}
+                                            <span className="hidden xl:inline whitespace-nowrap text-xs">
+                                                {shareStatus === 'generating' ? 'Generating...' : shareStatus === 'copied' ? 'Copied!' : shareStatus === 'error' ? 'Error' : 'Share'}
+                                            </span>
+                                        </button>
+                                        {/* Ticket T9: Share Notice Tooltip directly below Share button */}
+                                        {shareStatus === 'copied' && (
+                                            <motion.div
+                                                role="status"
+                                                aria-live="polite"
+                                                initial={{ opacity: 0, y: -6, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, scale: 0.95 }}
+                                                className="absolute top-[calc(100%+8px)] right-0 z-50 w-[240px] sm:w-[260px] bg-[#111113] text-[#e4e4e7] border border-[#3f3f46] rounded-xl p-2.5 text-xs shadow-2xl pointer-events-none"
+                                            >
+                                                <b className="text-[#86efac] mr-1 font-bold">Link copied.</b> Links stay active for 7 days.
+                                            </motion.div>
                                         )}
-                                        <span className="hidden xl:inline whitespace-nowrap text-xs">
-                                            {shareStatus === 'generating' ? 'Generating...' : shareStatus === 'copied' ? 'Copied!' : shareStatus === 'error' ? 'Error' : 'Share'}
-                                        </span>
-                                    </button>
+                                    </div>
                                     <button
                                         onClick={handleDownloadPNG}
                                         disabled={isCapturing}
@@ -765,7 +881,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                 </div>
 
                                 {/* Grid lines + person bars */}
-                                <div className="relative flex-1 h-full flex items-end justify-center min-w-max">
+                                <div className="relative flex-1 h-full flex items-end justify-center min-w-0 w-full">
                                     <Ruler
                                         mode="lines"
                                         scale={finalScale}
@@ -775,14 +891,19 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                     />
 
                                     <AnimatePresence mode="popLayout" initial={false}>
-                                        <div className={`flex flex-nowrap items-end justify-center h-full ${isMobile ? 'w-full' : 'w-max'}`}>
-                                            {persons.map(person => {
+                                        <div
+                                            className="flex flex-nowrap items-end justify-center h-full w-full"
+                                            style={{ ...containerPaddingStyle, minWidth: '100%', margin: '0 auto' }}
+                                        >
+                                            {persons.map((person, idx) => {
                                                 const gap = getGap(person);
+                                                const isTallerFigureInPair = pairInfo && !pairInfo.isSameHeight && person.id === pairInfo.taller?.id;
+
                                                 return (
                                                     <motion.div
                                                         key={person.id}
                                                         layout
-                                                        className="h-full flex items-end shrink-0"
+                                                        className="h-full flex items-end shrink-0 relative"
                                                         style={{
                                                             marginLeft: `${gap / 3}px`,
                                                             marginRight: `${gap / 3}px`,
@@ -791,22 +912,157 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                                     >
                                                         <PersonBar
                                                             person={person}
+                                                            index={idx}
                                                             scale={finalScale}
                                                             zoom={zoom}
                                                             readOnly={readOnly}
                                                             canvasHeight={vpHeight}
                                                             personCount={persons.length}
+                                                            referencePerson={refPerson}
+                                                            onSelectReference={setReferencePersonId}
                                                             isActiveMenu={activePersonMenuId === person.id}
                                                             onSetActiveMenu={(active: boolean) => setActivePersonMenuId(active ? person.id : null)}
                                                             onEditRequest={!readOnly ? handleEditRequest : undefined}
                                                             onRemove={!readOnly ? handleRemovePerson : undefined}
                                                             onHeightChange={!readOnly ? (val) => handleUpdatePersonHeight(person.id, val) : undefined}
                                                         />
+
+                                                        {/* Ticket T2: Yellow Bracket and Desktop Gap Badge attached cleanly to taller figure */}
+                                                        {isTallerFigureInPair && pairInfo && (
+                                                            <>
+                                                                {/* Desktop Yellow Bracket [ */}
+                                                                <div
+                                                                    className="hidden sm:block absolute z-30 pointer-events-none"
+                                                                    style={{
+                                                                        bottom: `${pairInfo.yShorter}px`,
+                                                                        height: `${pairInfo.bracketHeight}px`,
+                                                                        ...(pairInfo.isTallerOnRight
+                                                                            ? {
+                                                                                left: 'calc(100% + 14px)',
+                                                                                width: '12px',
+                                                                                borderLeft: '3px solid #FFE94D',
+                                                                                borderRadius: '2px',
+                                                                            }
+                                                                            : {
+                                                                                right: 'calc(100% + 14px)',
+                                                                                width: '12px',
+                                                                                borderRight: '3px solid #FFE94D',
+                                                                                borderRadius: '2px',
+                                                                            }),
+                                                                    }}
+                                                                >
+                                                                    {/* Top tick */}
+                                                                    <div
+                                                                        style={{
+                                                                            position: 'absolute',
+                                                                            top: 0,
+                                                                            ...(pairInfo.isTallerOnRight ? { left: '-3px' } : { right: '-3px' }),
+                                                                            width: '11px',
+                                                                            borderTop: '3px solid #FFE94D',
+                                                                        }}
+                                                                    />
+                                                                    {/* Bottom tick */}
+                                                                    <div
+                                                                        style={{
+                                                                            position: 'absolute',
+                                                                            bottom: 0,
+                                                                            ...(pairInfo.isTallerOnRight ? { left: '-3px' } : { right: '-3px' }),
+                                                                            width: '11px',
+                                                                            borderTop: '3px solid #FFE94D',
+                                                                        }}
+                                                                    />
+                                                                </div>
+
+                                                                {/* Desktop Gap Badge */}
+                                                                <div
+                                                                    role="status"
+                                                                    aria-live="polite"
+                                                                    className="hidden sm:flex absolute z-30 bg-[#111113] border-2 border-[#22c55e] rounded-[14px] p-2.5 sm:p-3 text-[#e4e4e7] flex-col gap-1 shadow-2xl min-w-[190px] max-w-[280px] pointer-events-auto"
+                                                                    style={{
+                                                                        bottom: `${Math.max(10, pairInfo.yShorter - 35)}px`,
+                                                                        ...(pairInfo.isTallerOnRight
+                                                                            ? { left: 'calc(100% + 36px)' }
+                                                                            : { right: 'calc(100% + 36px)' }),
+                                                                    }}
+                                                                >
+                                                                    <b className="font-black text-[14px] sm:text-[15px] leading-tight text-white font-sans">
+                                                                        {unitSystem === 'metric'
+                                                                            ? `${pairInfo.gap.gapCm} cm (${pairInfo.gap.gapIn} in) gap`
+                                                                            : `${pairInfo.gap.gapIn} in (${pairInfo.gap.gapCm} cm) gap`}
+                                                                    </b>
+                                                                    <div className="flex items-center gap-2 text-xs text-[#e4e4e7] font-medium font-sans">
+                                                                        <span
+                                                                            className="w-2.5 h-2.5 rounded-full shrink-0"
+                                                                            style={{ backgroundColor: pairInfo.taller.color || '#22c55e' }}
+                                                                        />
+                                                                        <span>{pairInfo.taller.name} is {pairInfo.gap.tallerPct}% taller</span>
+                                                                    </div>
+                                                                    <div className="flex items-center gap-2 text-xs text-[#e4e4e7] font-medium font-sans">
+                                                                        <span
+                                                                            className="w-2.5 h-2.5 rounded-full shrink-0"
+                                                                            style={{ backgroundColor: pairInfo.shorter.color || '#f97316' }}
+                                                                        />
+                                                                        <span>{pairInfo.shorter.name} is {pairInfo.gap.shorterPct}% shorter</span>
+                                                                    </div>
+                                                                </div>
+                                                            </>
+                                                        )}
                                                     </motion.div>
                                                 );
                                             })}
                                         </div>
                                     </AnimatePresence>
+
+                                    {/* Ticket T2: Mode 2 Reference line across full canvas (3 or more figures) */}
+                                    {persons.length >= 3 && refPerson && (
+                                        <div
+                                            className="absolute left-0 right-0 border-t-2 border-dashed border-[#fdba74]/85 pointer-events-none z-20"
+                                            style={{ bottom: `${refPerson.heightCm * finalScale}px` }}
+                                        >
+                                            <span
+                                                className="hidden sm:inline-block absolute left-1.5 sm:left-2 -translate-y-full mb-1 font-black text-[10px] sm:text-[10.5px] uppercase tracking-wider text-[#fdba74] bg-[#111113]/90 px-1.5 py-0.5 rounded shadow pointer-events-none font-sans whitespace-nowrap"
+                                            >
+                                                REF · {refPerson.name.toUpperCase()} {unitSystem === 'metric' ? `${refPerson.heightCm} cm` : ftIn(refPerson.heightCm)}
+                                            </span>
+                                        </div>
+                                    )}
+
+                                    {/* Ticket T2: Mode 1 Two-figure Dashed Guide & Mobile Gap Badge */}
+                                    {pairInfo && !pairInfo.isSameHeight && (
+                                        <>
+                                            {/* Dashed horizontal guide line at shorter figure's height */}
+                                            <div
+                                                className="absolute left-0 right-0 border-t-2 border-dashed border-zinc-400/40 pointer-events-none z-15"
+                                                style={{ bottom: `${pairInfo.yShorter}px` }}
+                                            />
+
+                                            {/* Mobile Gap Badge (pinned to top-right on screens < 640px) */}
+                                            <div
+                                                role="status"
+                                                aria-live="polite"
+                                                className="sm:hidden absolute top-4 right-4 z-30 bg-[#111113] border-2 border-[#22c55e] rounded-2xl p-2.5 shadow-xl max-w-[220px] text-xs pointer-events-auto text-[#e4e4e7]"
+                                            >
+                                                <div className="font-black text-xs text-white mb-0.5">
+                                                    {unitSystem === 'metric' ? `${pairInfo.gap.gapCm} cm (${pairInfo.gap.gapIn} in) gap` : `${pairInfo.gap.gapIn} in (${pairInfo.gap.gapCm} cm) gap`}
+                                                </div>
+                                                <div className="text-[11px] text-[#e4e4e7] font-medium leading-tight">
+                                                    {pairInfo.taller.name} is {pairInfo.gap.tallerPct}% taller than {pairInfo.shorter.name} ({pairInfo.gap.shorterPct}% shorter).
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
+
+                                    {/* Ticket T2: Mode 1 Two-figure Same Height Badge */}
+                                    {pairInfo && pairInfo.isSameHeight && (
+                                        <div
+                                            role="status"
+                                            aria-live="polite"
+                                            className="absolute top-4 right-4 z-30 bg-[#111113] border-2 border-emerald-500 rounded-2xl p-3 shadow-xl max-w-xs text-xs pointer-events-auto text-[#e4e4e7]"
+                                        >
+                                            <div className="font-black text-sm text-white">Same height</div>
+                                            <div className="text-muted font-medium mt-0.5">{pairInfo.p1.name} and {pairInfo.p2.name} are both {unitSystem === 'imperial' ? ftIn(pairInfo.p1.heightCm) : `${pairInfo.p1.heightCm} cm`}.</div>
+                                        </div>
+                                    )}
                                 </div>
 
                                 {persons.length === 0 && (
@@ -851,6 +1107,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         onEditSave={handleEditSave} onEditUpdate={handleEditUpdate}
                                         onEditCancel={handleEditCancel} onAddEntityExport={handleDownloadPNG}
                                         isCapturing={isCapturing} highlight={highlightYourList}
+                                        referencePersonId={referencePersonId}
+                                        onSelectReference={setReferencePersonId}
                                     />
                                 </div>
                             </motion.div>
@@ -871,7 +1129,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
             <AnimatePresence>
                 {
                     showToast && (
-                        <motion.div initial={{ opacity: 0, y: 50, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.9 }} className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-surface border border-border text-foreground px-4 py-2 rounded-full shadow-2xl flex items-center gap-3 z-50 pointer-events-none">
+                        <motion.div role="status" aria-live="polite" initial={{ opacity: 0, y: 50, scale: 0.9 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.9 }} className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-surface border border-border text-foreground px-4 py-2 rounded-full shadow-2xl flex items-center gap-3 z-50 pointer-events-none">
                             <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                             <span className="text-sm font-bold">{toastMessage}</span>
                             <Check size={16} className="text-accent" />
@@ -926,6 +1184,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                             editingPerson={persons.find(p => p.id === editingPersonId)}
                                             onEditSave={p => { handleEditSave(p); setIsMobileDrawerOpen(false); }}
                                             onEditCancel={handleEditCancel} highlight={highlightYourList}
+                                            referencePersonId={referencePersonId}
+                                            onSelectReference={setReferencePersonId}
                                         />
                                     </div>
                                 </motion.div>

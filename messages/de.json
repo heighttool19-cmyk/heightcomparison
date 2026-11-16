@@ -156,12 +156,13 @@
   "heightPredictor": {
     "intro": {
       "title": "Größenrechner: Erwachsenengröße vorhersagen",
-      "description": "Nutzen Sie diesen Größenrechner, um die zukünftige Körpergröße von Kindern, Teenagern und Erwachsenen anhand von Alter, Genetik und Wachstumsmustern zu schätzen. Dieser Rechner verwendet die Khamis-Roche-Methode, eines der genauesten verfügbaren Größenvorhersage-Modelle. Ist Ihr Kind unter vier Jahre alt, oder sind Sie schwanger und neugierig auf die erwartete Größe Ihres Babys, nutzen Sie stattdessen die unten stehende Mid-Parental Height Formula."
+      "description": "Nutzen Sie diesen Größenrechner, um die zukünftige Körpergröße von Kindern, Teenagern und Erwachsenen anhand von Alter, Genetik und Wachstumsmustern zu schätzen. Er verwendet die Khamis-Roche-Methode, die die Erwachsenengröße für das Alter von 4 bis 17,5 Jahren aus Alter, Größe, Gewicht und der Größe beider Eltern vorhersagt. In der Originalstudie lagen 9 von 10 Vorhersagen innerhalb von 5,3 cm (2,1 Zoll) bei Jungen und 4,3 cm (1,7 Zoll) bei Mädchen. Für ein Kind unter 4 Jahren oder ein noch ungeborenes Baby verwenden Sie den nachstehenden Nur-Eltern-Rechner.",
+      "lastUpdated": "Zuletzt aktualisiert: November 2026"
     },
     "khamisRocheCalculator": {
       "title": "Größenwachstums-Rechner",
       "badge": "Khamis-Roche",
-      "description": "Sofortige Größenvorhersage mit wissenschaftlichen Wachstumsmodellen. Schätzen Sie die voraussichtliche Körpergröße anhand von Alter und Elterngröße",
+      "description": "Sofortige Größenvorhersage anhand wissenschaftlicher Wachstumsmodelle. Geben Sie Alter, Geschlecht, Größe, Gewicht und die Größe beider Eltern ein. Geeignet für ein Alter von 4 bis 17,5 Jahren.",
       "unitUs": "US (ft/in)",
       "unitMetric": "Metrisch (cm)",
       "childAgeLabel": "Alter des Kindes (Jahre)",
@@ -196,9 +197,9 @@
       "lbsUnit": "lbs"
     },
     "midParentalCalculator": {
-      "title": "Nur Elterngröße",
+      "title": "Größenrechner basierend auf der Elterngröße",
       "badge": "Mid-Parental",
-      "description": "Schätzen Sie die voraussichtliche Körpergröße allein anhand der Elterngröße. Funktioniert auch für Babys, sehr kleine Kinder und ungeborene Babys. Wenn Sie schwanger sind, geben Sie die Größe beider Elternteile ein, um den geschätzten Erwachsenengrößenbereich Ihres Kindes zu erhalten.",
+      "description": "Schätzen Sie die vorhergesagte Größe nur anhand der Größe der Eltern. Funktioniert auch für Babys, Kleinkinder und ungeborene Kinder. Wenn Sie schwanger sind, geben Sie die Größe beider Eltern ein, um den geschätzten Größenbereich Ihres Kindes als Erwachsener zu erhalten. Dies nutzt die Mid-Parental-Formel, die in der Regel innerhalb von 10 cm (4 Zoll) der Erwachsenengröße liegt.",
       "unitUs": "US (ft/in)",
       "unitMetric": "Metrisch (cm)",
       "motherHeightLabel": "Größe der Mutter",
@@ -216,7 +217,8 @@
       "viewComparisonChart": "Vergleichsdiagramm ansehen",
       "cmUnit": "cm",
       "ftUnit": "ft",
-      "inUnit": "in"
+      "inUnit": "in",
+      "clear": "Zurücksetzen"
     },
     "heightConverter": {
       "title": "Schneller Größen-Umrechner",
@@ -231,7 +233,7 @@
       "inUnit": "in"
     },
     "howItWorks": {
-      "title": "Wie funktioniert es?",
+      "title": "Wie funktioniert das?",
       "description": "Ein Größenrechner ist ein Tool, das aktuelle Messwerte (Alter, Größe, Gewicht und Elterngröße) mit Wachstumsdaten der Bevölkerung kombiniert, um einen wahrscheinlichen Größenbereich zu ermitteln.",
       "step1Strong": "1. Messwerte eingeben:",
       "step1Text": "Alter des Kindes, aktuelle Größe, Gewicht und die Größe beider Elternteile. Je mehr Angaben, desto genauer das Ergebnis.",
@@ -245,28 +247,46 @@
       "description": "Kein Tool kann die zukünftige Größe eines Kindes mit absoluter Sicherheit vorhersagen. Forschung zu kindlichen Wachstumsmustern ermöglicht jedoch eine Schätzung der Erwachsenengröße mit angemessener Genauigkeit.",
       "factorsTitle": "Moderne Größenvorhersage-Rechner analysieren drei zentrale Faktoren:",
       "geneticsLabel": "Genetik",
-      "geneticsText": "verantwortlich für 60–80 % der endgültigen Körpergröße.",
+      "geneticsText": "ererbte Genvarianten erklären etwa 80 % der Größenunterschiede zwischen Menschen.",
       "currentGrowthLabel": "Aktuelles Wachstum",
       "currentGrowthText": "Alter-, Größen- und Gewichtsmessungen verfeinern die Schätzung.",
       "statisticsLabel": "Statistik",
       "statisticsText": "Wachstumsmuster, die in großen Bevölkerungsgruppen nach Alter und Geschlecht beobachtet wurden.",
-      "closing": "Das Ergebnis ist ein geschätzter Erwachsenengrößenbereich: eine nützliche Orientierung, keine Garantie. Wachstumsmuster sind individuell und können je nach Gesundheit, Ernährung und Zeitpunkt der Pubertät erheblich variieren."
+      "closing": "Das Ergebnis ist ein geschätzter Erwachsenengrößenbereich: eine nützliche Orientierung, keine Garantie. Wachstumsmuster sind individuell und können je nach Gesundheit, Ernährung und Zeitpunkt der Pubertät erheblich variieren.",
+      "workedExampleTitle": "Rechenbeispiel: Vorhersage der Größe aus der Elterngröße",
+      "workedExampleIntro": "Ein Vater mit 180 cm (5'11\") und eine Mutter mit 165 cm (5'5\") ergeben zusammen 345 cm (136 Zoll).",
+      "workedExampleSon": "Sohn: (136 + 5) ÷ 2 = 70,5 Zoll, etwa 5'10,5\". In metrischen Einheiten: (345 + 13) ÷ 2 = 179 cm.",
+      "workedExampleDaughter": "Tochter: (136 − 5) ÷ 2 = 65,5 Zoll, etwa 5'5,5\". In metrischen Einheiten: (345 − 13) ÷ 2 = 166 cm.",
+      "workedExampleRange": "Erwarteter Bereich: etwa 10 cm (4 Zoll) nach oben und unten, also ungefähr 169 bis 189 cm (5'6,5\" bis 6'2,5\") für den Sohn.",
+      "workedExampleClosing": "Für ein Kind ab 4 Jahren grenzt der Khamis-Roche-Rechner diesen Bereich ein, da er auch die aktuelle Größe und das Gewicht des Kindes einbezieht.",
+      "age2RuleTitle": "Schnell-Check für Kleinkinder: Die 2-Jahres-Verdopplungsregel",
+      "age2RuleText": "Verdoppeln Sie die Größe eines Jungen im Alter von 2 Jahren oder die eines Mädchens mit 18 Monaten für eine grobe Schätzung der Erwachsenengröße. Ein Junge, der an seinem zweiten Geburtstag 87,6 cm (34,5 Zoll) misst, deutet auf etwa 175 cm (5'9\", 69 Zoll) als Erwachsener hin. Die Mayo Clinic führt diese Regel neben der Mid-Parental-Formel auf.",
+      "sonTitle": "Wie groß wird mein Sohn?",
+      "sonText": "Der obige Khamis-Roche-Rechner schätzt die Erwachsenengröße Ihres Sohnes anhand seines aktuellen Alters, seiner Größe, seines Gewichts und der Größe beider Elternteile. Er liefert eine präzisere Schätzung als eine reine Elternformel. Die meisten Jungen hören zwischen 16 und 18 Jahren auf zu wachsen.",
+      "daughterTitle": "Wie groß wird meine Tochter?",
+      "daughterText": "Der obige Khamis-Roche-Rechner schätzt die Erwachsenengröße Ihrer Tochter anhand ihres aktuellen Alters, ihrer Größe, ihres Gewichts und der Größe beider Elternteile. Er liefert eine präzisere Schätzung als eine reine Elternformel. Die meisten Mädchen erreichen ihre Erwachsenengröße mit etwa 14 oder 15 Jahren.",
+      "babyTitle": "Wie groß wird mein Baby oder Kleinkind?",
+      "babyText": "Nutzen Sie für Babys den Rechner für die mittlere Elternhöhe oben. Er benötigt nur die Größe von Mutter und Vater und liefert eine grobe Spanne. Wenn Sie schwanger sind, geben Sie beide Elterngrößen für eine Schätzung vor der Geburt ein. Eine bewährte Faustregel verdoppelt die Größe eines Jungen mit 2 Jahren oder eines Mädchens mit 18 Monaten."
     },
     "teensAdults": {
       "title": "Wie groß werde ich? Rechner für Teenager & Erwachsene",
-      "description": "Teenager, die sich fragen „Wie groß werde ich?“, können den Khamis-Roche-Rechner nutzen. Geben Sie Ihr aktuelles Alter, Ihre Größe, Ihr Gewicht und die Größe Ihrer Eltern ein, um die genaueste Schätzung zu erhalten.",
+      "description": "Jugendliche, die sich fragen „Wie groß werde ich?“, können den Khamis-Roche-Rechner nutzen. Geben Sie Ihr aktuelles Alter, Ihre Größe, Ihr Gewicht und die Größe Ihrer Eltern ein, um die genaueste Schätzung zu erhalten.",
       "teensTitle": "Teenager (unter 18)",
       "teensText": "Die Wachstumsfugen sind noch offen. Der Khamis-Roche-Rechner liefert die beste Schätzung. Verwenden Sie aktuelle Messwerte für maximale Genauigkeit.",
-      "teensItem1": "Am zuverlässigsten zwischen 4 und 17 Jahren",
+      "teensItem1": "Funktioniert von 4 bis 17,5 Jahren",
       "teensItem2": "Die Genauigkeit steigt, je näher man der Erwachsenengröße kommt",
-      "teensItem3": "Jungen wachsen oft bis 18, Mädchen bis 15–16",
+      "teensItem3": "Die meisten Jungen wachsen bis 16–18 Jahre; die meisten Mädchen bis 14 oder 15",
       "adultsTitle": "Erwachsene (18+)",
       "adultsText": "Nach der Pubertät schließen sich die Wachstumsfugen. Für Erwachsene ist eine Größenvorhersage nicht mehr relevant, aber die Mid-Parental Height Formula kann weiterhin abschätzen, welche Größe ihre Kinder erreichen könnten.",
       "adultsItem1": "Die Erwachsenengröße steht bereits fest",
-      "adultsItem2": "Nutzen Sie das Elterngröße-Tool, um die Größe der Kinder vorherzusagen",
+      "adultsItem2": "Nutzen Sie das Elterngröße-Tool, um die Größe Ihrer Kinder vorherzusagen",
       "adultsItem3": "Nutzen Sie den Größen-Umrechner zur Einheitenumrechnung",
       "limitationLabel": "Wichtige Einschränkung:",
-      "limitationText": "Kein Größenrechner kann medizinische Erkrankungen, Wachstumshormonstörungen oder eine vorzeitige Pubertät berücksichtigen. Wirkt das Wachstum ungewöhnlich schnell oder langsam, konsultieren Sie einen Kinderarzt."
+      "limitationText": "Kein Größenrechner kann medizinische Erkrankungen, Wachstumshormonstörungen oder eine vorzeitige Pubertät berücksichtigen. Wirkt das Wachstum ungewöhnlich schnell oder langsam, konsultieren Sie einen Kinderarzt.",
+      "noParentsTitle": "Was tun, wenn Sie die Größe Ihrer Eltern nicht kennen?",
+      "noParentsP1": "Beide Rechner auf dieser Seite benötigen die Größe beider Elternteile, daher kann ohne sie keine Vorhersage getroffen werden. Sie können Ihr Wachstum dennoch verfolgen: Messen Sie sich alle 6 Monate und prüfen Sie Ihr Perzentil auf einer Wachstumskurve, die zeigt, ob Sie Ihrer normalen Kurve folgen. Wenn Sie sich Sorgen um Ihr Wachstum machen, kann ein Arzt ein Knochenalter-Röntgenbild anordnen, die genaueste Vorhersagemethode.",
+      "noParentsCheckPercentile": "Überprüfen Sie Ihr Perzentil mit dem",
+      "noParentsLinkText": "Größen- und Gewichtsperzentilen-Rechner"
     },
     "ctaBanner": {
       "text": "Bereit für Ihre Größenvorhersage? Der Rechner befindet sich oben auf dieser Seite.",
@@ -276,16 +296,16 @@
       "title": "Was bestimmt die Körpergröße?",
       "description": "Die endgültige Erwachsenengröße eines Kindes wird von zwei Faktoren geprägt: Genetik und Umwelt. Beide zu verstehen hilft, realistische Erwartungen an die Größenvorhersage zu stellen.",
       "geneticsTitle": "Genetik",
-      "geneticsBefore": "Verantwortlich für ",
-      "geneticsStrong1": "60–80 %",
-      "geneticsMiddle": " der endgültigen Körpergröße. Kinder größerer Eltern sind tendenziell größer, doch Kinder sehr großer oder sehr kleiner Eltern wachsen oft näher an die durchschnittliche Bevölkerungsgröße heran – ein Phänomen, das man ",
+      "geneticsBefore": "Ererbte DNA-Varianten erklären etwa ",
+      "geneticsStrong1": "80 %",
+      "geneticsMiddle": " der Größenunterschiede zwischen Menschen (MedlinePlus). Große Eltern haben tendenziell große Kinder, wobei die Regression zum Mittelwert gilt – sehr große oder kleine Eltern haben oft Kinder, die näher am ",
       "geneticsStrong2": "Regression zur Mitte nennt.",
       "nutritionTitle": "Ernährung & Schlaf",
-      "nutritionBefore": "Die restlichen ",
-      "nutritionStrong": "20–40 %",
-      "nutritionAfter": " stammen aus der Umwelt.",
+      "nutritionBefore": "Die verbleibenden ",
+      "nutritionStrong": "etwa 20 %",
+      "nutritionAfter": " stammen aus der Umwelt. Wachstumshormone werden hauptsächlich im Tiefschlaf ausgeschüttet.",
       "nutritionItem1": "Protein, Kalzium, Vitamin D, Zink",
-      "nutritionItem2": "9–11 Std. Schlaf (Schulkinder)",
+      "nutritionItem2": "9–12 Std. Schlaf (6–12 Jahre)",
       "nutritionItem3": "8–10 Std. für Teenager",
       "timingTitle": "Wachstumszeitpunkt",
       "timingText": "Eine frühe Pubertät kann vorübergehend zu einem größeren Kind, aber einem kleineren Erwachsenen führen. Eine späte Pubertät führt oft zu einem längeren Wachstumsfenster und einer größeren Endgröße."
@@ -297,7 +317,8 @@
       "percentileBefore": "Die ",
       "percentileStrong": "50. Perzentile",
       "percentileAfter": " steht für die mittlere Körpergröße für dieses Alter und Geschlecht. Gesunde Kinder liegen typischerweise zwischen der 3. und 97. Perzentile.",
-      "note": "Hinweis: Kinderärzte achten weniger auf eine einzelne Messung als darauf, ob ein Kind über die Zeit auf einer konstanten Wachstumskurve bleibt."
+      "note": "Hinweis: Kinderärzte achten weniger auf eine einzelne Messung als darauf, ob ein Kind über die Zeit auf einer konstanten Wachstumskurve bleibt.",
+      "expandText": "Klicken Sie unten auf die Diagramm- und Tabellenansichten, um die vollständigen Perzentilkurven zu erkunden."
     },
     "comparisonTable": {
       "title": "Größenrechner vs. Wachstumskurven",
@@ -318,10 +339,10 @@
       "rowDoctorCalculator": "Nein (online nutzbar)",
       "rowDoctorGrowthChart": "Nein (online nutzbar)",
       "rowAccuracyLabel": "Typische Genauigkeit",
-      "rowAccuracyCalculator": "±2–4 Zoll",
+      "rowAccuracyCalculator": "9 von 10 innerhalb von 2,1 Zoll (Jungen) oder 1,7 Zoll (Mädchen) mit Khamis-Roche; ca. 4 Zoll nur mit Eltern",
       "rowAccuracyGrowthChart": "Zeigt Perzentile, keine Vorhersage",
       "rowWithoutParentsLabel": "Funktioniert ohne Elterndaten",
-      "rowWithoutParentsCalculator": "Teilweise (weniger genau)",
+      "rowWithoutParentsCalculator": "Nein, die Größe beider Eltern wird benötigt",
       "rowWithoutParentsGrowthChart": "✓ Ja"
     },
     "boysGrowth": {
@@ -330,30 +351,30 @@
       "p1Strong": "Pubertät",
       "p1After": ".",
       "p2": "Der typische Wachstumsverlauf bei Jungen sieht so aus:",
-      "item1Before": "die frühe Pubertät beginnt etwa im ",
-      "item1Strong": "Alter von 11–12 Jahren",
-      "item2Before": "starkes Wachstum tritt auf zwischen ",
-      "item2Strong": "13 und 15 Jahren",
-      "item3Before": "das Wachstum verlangsamt sich etwa im Alter von ",
-      "item3Strong": "16–17",
-      "p3Before": "Während der Hauptpubertät können Jungen ",
-      "p3Strong": "3–4 Zoll pro Jahr",
-      "p3After": " wachsen. Die meisten Jungen hören etwa mit 18 Jahren auf zu wachsen, kleine Zuwächse können jedoch bis etwa 20 anhalten."
+      "item1Before": "Beginn der Pubertät: ",
+      "item1Strong": "normalerweise zwischen 9 und 14 Jahren",
+      "item2Before": "Schnelles Wachstum: ",
+      "item2Strong": "zwischen 12 und 15 Jahren",
+      "item3Before": "Wachstumsverlangsamung: ",
+      "item3Strong": "bald nach dem Wachstumsschub",
+      "p3Before": "Während des Pubertätshöhepunkts können Jungen 7–10 cm (3–4 Zoll) pro Jahr wachsen. ",
+      "p3Strong": "Die meisten Jungen hören zwischen 16 und 18 Jahren auf zu wachsen. ",
+      "p3After": "Spätentwickler können danach noch etwas zulegen."
     },
     "girlsGrowth": {
       "title": "Wann hören Mädchen auf zu wachsen?",
       "p1": "Mädchen beginnen die Pubertät in der Regel früher als Jungen.",
       "p2": "Typischer Wachstumsverlauf:",
-      "item1Before": "die Pubertät beginnt etwa im ",
-      "item1Strong": "Alter von 9–10 Jahren",
-      "item2Before": "der Wachstumsschub tritt auf zwischen ",
-      "item2Strong": "10 und 14 Jahren",
-      "p3Before": "Die meisten Mädchen erreichen ihre Erwachsenengröße zwischen ",
-      "p3Strong": "15 und 16 Jahren",
-      "p3After": ". Da Mädchen die Pubertät früher erleben, wirken sie in der späten Kindheit oft größer als Jungen."
+      "item1Before": "Beginn der Pubertät: ",
+      "item1Strong": "normalerweise zwischen 8 und 13 Jahren",
+      "item2Before": "Wachstumsschub: ",
+      "item2Strong": "zwischen 10 und 14 Jahren",
+      "p3Before": "Erwachsenengröße: ",
+      "p3Strong": "Die meisten Mädchen erreichen ihre Erwachsenengröße mit etwa 14 oder 15 Jahren, ",
+      "p3After": "und wachsen nach ihrer ersten Periode noch 1 bis 2 Zoll (2,5 bis 5 cm)."
     },
     "methods": {
-      "title": "Größenvorhersage-Methoden erklärt",
+      "title": "Methoden zur Größenvorhersage erklärt",
       "subtitle": "So sagen Sie die Größe Ihres Kindes voraus",
       "description": "Forscher verwenden mehrere Formeln, um die Erwachsenengröße zu schätzen. Jede Methode wägt Genauigkeit gegen den erforderlichen Datenaufwand ab.",
       "khamisRoche": {
@@ -362,8 +383,8 @@
         "p1": "Gilt als die genaueste Größenvorhersage-Methode ohne Knochenalter-Test. Analysiert vier Eingaben: Alter, Größe und Gewicht des Kindes sowie die durchschnittliche Größe beider Elternteile.",
         "p2": "Entwickelt nach der Untersuchung der Wachstumsmuster tausender Kinder mittels linearer Regressionsanalyse auf Bevölkerungswachstumsdaten. Da sie aktuelle Körpermessungen einbezieht, übertrifft sie rein genetische Formeln.",
         "item1Before": "Genauigkeit: ",
-        "item1Strong": "±2,1 Zoll bei Jungen, ±1,7 Zoll bei Mädchen",
-        "item2": "Am besten geeignet für Kinder über 4 Jahre",
+        "item1Strong": "±2,1 Zoll bei Jungen, ±1,7 Zoll bei Mädchen (9 von 10 Vorhersagen; die Hälfte liegt innerhalb von ca. 0,9 Zoll und 0,7 Zoll)",
+        "item2": "Validiert für das Alter von 4 bis 17,5 Jahren",
         "item3": "Zuverlässigste verfügbare nicht-klinische Vorhersage",
         "usedByCalculator": "✓ Wird von diesem Rechner verwendet",
         "readyText": "Haben Sie Alter, Größe und Gewicht Ihres Kindes sowie die Größe der Eltern parat?",
@@ -382,7 +403,19 @@
         "item3": "Berücksichtigt nicht den aktuellen Wachstumsverlauf. Nutzen Sie Khamis-Roche für Kinder über 4 Jahre",
         "item4": "Kann auch als grober Baby-Größenrechner oder für ungeborene Kinder verwendet werden",
         "onlyHaveText": "Haben Sie nur die Größe der Eltern? Nutzen Sie den Mid-Parental-Height-Formula-Rechner oben.",
-        "linkText": "Nach oben scrollen und jetzt berechnen"
+        "linkText": "Nach oben scrollen und jetzt berechnen",
+        "formulaExplanation": "Die Mid-Parental Height Formula ist die einfachste Methode, um die Erwachsenengröße eines Kindes ausschließlich anhand der Elterngröße zu schätzen. Sie erfordert keine medizinischen Tests und funktioniert für jedes Alter, einschließlich Babys und ungeborener Kinder.",
+        "boysFormulaSub": "Metrisch: (Vater + Mutter + 13 cm) ÷ 2",
+        "girlsFormulaSub": "Metrisch: (Vater + Mutter - 13 cm) ÷ 2",
+        "boysFormulaMetricLabel": "Für Jungen (Metrisch)",
+        "boysFormulaMetric": "(Vater + Mutter + 13 cm) ÷ 2",
+        "boysFormulaMetricSub": "Berechnung in Zentimetern",
+        "girlsFormulaMetricLabel": "Für Mädchen (Metrisch)",
+        "girlsFormulaMetric": "(Vater + Mutter - 13 cm) ÷ 2",
+        "girlsFormulaMetricSub": "Berechnung in Zentimetern",
+        "exampleText": "Beispiel: Vater 180 cm + Mutter 165 cm = 345 cm. Für einen Jungen: (345 + 13) ÷ 2 = 179 cm. Für ein Mädchen: (345 - 13) ÷ 2 = 166 cm.",
+        "exampleEstimateText": "Geschätzter Zielbereich: ±10 cm (4 Zoll)",
+        "workedExamplePointer": "Siehe das Rechenbeispiel unter „Wie groß wird mein Kind?“"
       },
       "boneAge": {
         "badge": "KLINISCH",
@@ -401,11 +434,14 @@
         "badge": "KLINISCH",
         "title": "Roche-Wainer-Thissen-Methode",
         "text": "Nutzt Knochenalter, aktuelle Größe, Gewicht und Elterngröße. Verbessert die Genauigkeit in manchen Fällen gegenüber Khamis-Roche, erfordert jedoch eine klinische Knochenaltermessung. Wird vor allem im medizinischen Bereich eingesetzt."
+      },
+      "age2Rule": {
+        "badge": "FAUSTREGEL",
+        "title": "2-Jahres-Verdopplungsregel",
+        "text": "Verdoppelt die Größe eines Jungen im Alter von 2 Jahren oder die eines Mädchens mit 18 Monaten. Erfordert keinen Rechner und keine Elterngröße, ignoriert jedoch die Genetik – daher als grober Check für Kleinkinder zu betrachten."
       }
     },
     "canIncrease": {
-      "titlePrefix": "Kannst du deine ",
-      "titleHighlight": "Körpergröße noch steigern",
       "description": "Deine Gene bestimmen größtenteils, wie groß du wirst. Aber wie gut du dich in der Kindheit ernährst, schläfst und bewegst, kann einen echten Unterschied machen, ob du dieses Potenzial erreichst.",
       "nutritionTitle": "Ernährung",
       "nutritionText": "Ausreichende Ernährung unterstützt die Knochenentwicklung. Wichtige Nährstoffe:",
@@ -420,70 +456,106 @@
       "exerciseTitle": "Regelmäßige Bewegung",
       "exerciseText": "Unterstützt die Knochenstärke und die allgemeine Entwicklung. Laufen, Springen und Sport fördern ein gesundes Knochenwachstum.",
       "warningStrong": "Wichtig:",
-      "warningText": "Kein Training, Nahrungsergänzungsmittel oder Dehnprogramm kann die Körpergröße erhöhen, sobald die Wachstumsfugen geschlossen sind. Vorhersagen sind Schätzungen. Genetik ist der entscheidende Faktor."
+      "warningText": "Kein Training, Nahrungsergänzungsmittel oder Dehnprogramm kann die Körpergröße erhöhen, sobald die Wachstumsfugen geschlossen sind. Vorhersagen sind Schätzungen. Genetik ist der entscheidende Faktor.",
+      "title": "Kann man das Längenwachstum steigern?"
     },
     "accuracy": {
-      "titlePrefix": "Wie ",
-      "titleHighlight": "genau",
-      "titleSuffix": " ist ein Größenrechner?",
       "description": "Dieser Größenwachstums-Rechner nutzt das Khamis-Roche-Wachstumsmodell, das auf Langzeitstudien zu kindlichen Wachstumsdaten basiert.",
-      "check1": "Die meisten Vorhersagen liegen innerhalb von 5–10 cm (2–4 Zoll) der endgültigen Erwachsenengröße",
-      "check2": "Die Genauigkeit ist am höchsten, wenn das Kind älter als 4 Jahre ist",
-      "check3": "Genaue Größen- und Gewichtsmessungen verbessern die Ergebnisse erheblich",
-      "check4": "Korrekte Angaben zur Elterngröße sind für zuverlässige Ergebnisse erforderlich",
-      "alert1": "Ergebnisse sind ein wahrscheinlicher Bereich, kein exakter Wert",
-      "alert2": "Nicht geeignet für Kinder mit bekannten Wachstumsstörungen",
-      "alert3": "Eine frühe oder späte Pubertät kann die Vorhersagegenauigkeit verringern",
-      "rangeNotice": "Das Ergebnis stellt einen wahrscheinlichen Bereich dar, keinen exakten Wert.",
       "disclaimerStrong": "Medizinischer Haftungsausschluss:",
-      "disclaimerText": "Dieser Größenrechner dient nur zu Informationszwecken. Er ersetzt keine professionelle medizinische Beratung. Bei Bedenken zum Wachstum Ihres Kindes wenden Sie sich an einen qualifizierten Kinderarzt oder Endokrinologen."
+      "disclaimerText": "Dieser Größenrechner dient nur zu Informationszwecken. Er ersetzt keine professionelle medizinische Beratung. Bei Bedenken zum Wachstum Ihres Kindes wenden Sie sich an einen qualifizierten Kinderarzt oder Endokrinologen.",
+      "title": "Wie genau ist ein Größenrechner?",
+      "is100PercentTitle": "Ist ein Größenrechner zu 100 % genau?",
+      "is100PercentText": "Nein. Jede Größenvorhersage liefert einen wahrscheinlichen Bereich, da Gene, Pubertätszeitpunkt und Gesundheit das Ergebnis beeinflussen. Khamis-Roche ist die genaueste Methode ohne Röntgenaufnahme, bei der 9 von 10 Vorhersagen innerhalb von 2,1 Zoll bei Jungen und 1,7 Zoll bei Mädchen liegen. Ein Knochenalter-Röntgenbild ist genauer und wird von Ärzten bei Verdacht auf Wachstumsstörungen angeordnet.",
+      "typicalErrorTitle": "Typische Fehler nach Vorhersagemethode",
+      "thMethod": "Methode",
+      "thTypicalError": "Typischer Fehler",
+      "thNeedsBoneAge": "Benötigt Knochenalter?",
+      "methodKhamis": "Khamis-Roche-Methode",
+      "errorKhamis": "±5,3 cm (Jungen) / ±4,3 cm (Mädchen)",
+      "boneAgeKhamis": "Nein",
+      "methodMidParental": "Mid-Parental-Formel",
+      "errorMidParental": "±10 cm (4 Zoll)",
+      "boneAgeMidParental": "Nein",
+      "methodBoneAge": "Knochenalter-Röntgen (Greulich-Pyle / TW)",
+      "errorBoneAge": "±2,5 cm (höchste Präzision)",
+      "boneAgeBoneAge": "Ja (klinisch)",
+      "whyMissesTitle": "Warum Größenvorhersagen abweichen können",
+      "miss1": "9 von 10 Vorhersagen liegen innerhalb von 5,3 cm (2,1 Zoll) der endgültigen Erwachsenengröße bei Jungen und 4,3 cm (1,7 Zoll) bei Mädchen",
+      "miss2": "Die Nur-Eltern-Formel ist ungenauer: meist innerhalb von 10 cm (4 Zoll)",
+      "miss3": "Die Genauigkeit ist am höchsten, wenn das Kind älter als 4 Jahre ist",
+      "miss4": "Genaue Größen- und Gewichtsmessungen verbessern die Ergebnisse erheblich",
+      "miss5": "Richtige Angaben zur Elterngröße sind für verlässliche Ergebnisse erforderlich"
     },
     "faq": [
       {
         "q": "Wie groß werde ich?",
-        "a": "Ihre Erwachsenengröße hängt vor allem von der Größe Ihrer Eltern und dem Zeitpunkt Ihres Wachstums ab. Nutzen Sie den Größenrechner oben. Geben Sie Ihr aktuelles Alter, Ihre Größe, Ihr Gewicht und die Größe Ihrer Eltern ein, um anhand des Khamis-Roche-Wachstumsmodells einen vorhergesagten Größenbereich zu erhalten. Sind Sie bereits 18 Jahre oder älter, sind Ihre Wachstumsfugen geschlossen und Ihre Erwachsenengröße steht fest."
+        "a": "Ihre Erwachsenengröße hängt hauptsächlich von der Größe Ihrer Eltern und Ihrem Wachstumsverlauf ab. Nutzen Sie den obigen Größenrechner. Geben Sie Ihr aktuelles Alter, Ihre Größe, Ihr Gewicht und die Größe Ihrer Eltern ein, um eine vorhergesagte Größenspanne basierend auf dem Khamis-Roche-Wachstumsmodell zu erhalten. Wenn Sie bereits 18 Jahre oder älter sind, haben sich Ihre Wachstumsfugen geschlossen und Ihre Erwachsenengröße steht fest."
       },
       {
         "q": "Wie groß wird mein Sohn?",
-        "a": "Geben Sie das Alter, die aktuelle Größe, das Gewicht Ihres Sohnes sowie die Größe beider Elternteile in den Khamis-Roche-Rechner oben ein. Jungen hören meist mit etwa 18 Jahren auf zu wachsen, kleine Zuwächse können jedoch bis 20 anhalten. Die Mid-Parental Height Formula kann ebenfalls eine grobe Schätzung liefern: (Größe des Vaters + Größe der Mutter + 5 Zoll) ÷ 2."
+        "a": "Geben Sie Alter, aktuelle Größe, Gewicht und die Größe beider Elternteile Ihres Sohnes in den obigen Khamis-Roche-Rechner ein. Die meisten Jungen hören zwischen 16 und 18 Jahren auf zu wachsen. Die Mid-Parental Height Formula bietet ebenfalls eine grobe Schätzung: (Größe des Vaters + Größe der Mutter + 13 cm bzw. 5 Zoll) ÷ 2."
       },
       {
         "q": "Ist ein Größenrechner genau?",
-        "a": "Die Khamis-Roche-Methode (in diesem Rechner verwendet) ist einer der genauesten verfügbaren nicht-klinischen Größenprädiktoren. Die typische Genauigkeit liegt bei ±2,1 Zoll für Jungen und ±1,7 Zoll für Mädchen. Die Genauigkeit steigt, wenn das Kind älter als 4 Jahre ist, die Messwerte präzise sind und die Elterngröße korrekt angegeben wurde. Ergebnisse sind immer ein Bereich, kein garantierter Wert."
+        "a": "Die Khamis-Roche-Methode (die in diesem Rechner verwendet wird) ist einer der genauesten nicht-klinischen Größenprädiktoren überhaupt. In der Originalstudie lagen 9 von 10 Vorhersagen innerhalb von 2,1 Zoll (5,3 cm) bei Jungen und 1,7 Zoll (4,3 cm) bei Mädchen. Die Genauigkeit steigt, wenn das Kind älter als 4 Jahre ist, die Messungen präzise sind und die Angaben zur Elterngröße korrekt sind. Die Ergebnisse stellen immer einen Bereich dar, keinen garantierten Wert."
+      },
+      {
+        "q": "Ist ein Größenrechner zu 100 % genau?",
+        "a": "Nein. Jede Größenvorhersage liefert einen wahrscheinlichen Bereich, da Gene, Pubertätszeitpunkt und Gesundheit das Ergebnis beeinflussen. Khamis-Roche ist die genaueste Methode ohne Röntgenaufnahme, bei der 9 von 10 Vorhersagen innerhalb von 2,1 Zoll bei Jungen und 1,7 Zoll bei Mädchen liegen. Ein Knochenalter-Röntgenbild ist genauer und wird von Ärzten bei Verdacht auf Wachstumsstörungen angeordnet."
       },
       {
         "q": "Kann die Größe der Eltern meine Größe vorhersagen?",
-        "a": "Ja. Die Größe der Eltern ist der stärkste einzelne Prädiktor für die Erwachsenengröße eines Kindes und macht 60–80 % der Größenvariation aus. Die Mid-Parental Height Formula liefert eine grobe Schätzung allein anhand dieser Daten. Die Kombination der Elterngröße mit den aktuellen Messwerten des Kindes (Alter, Größe, Gewicht) über das Khamis-Roche-Modell liefert jedoch deutlich genauere Ergebnisse."
+        "a": "Ja. Ererbte Gene erklären etwa 80 % der Größenunterschiede zwischen Menschen, und die Größe der Eltern ist der beste alltägliche Maßstab für diese Gene. Die Mid-Parental-Formel liefert eine grobe Schätzung allein anhand dieser Daten. Die Kombination der Elterngröße mit den aktuellen Körpermaßen des Kindes (Alter, Größe, Gewicht) über das Khamis-Roche-Modell führt jedoch zu deutlich genaueren Ergebnissen."
       },
       {
         "q": "Kann ich die Größe meines Babys vorhersagen?",
-        "a": "Nutzen Sie für Babys und Kleinkinder den Mid-Parental-Height-Formula-Rechner oben. Er benötigt nur die Größe von Mutter und Vater. Das ergibt einen groben geschätzten Größenbereich. Beachten Sie, dass die Genauigkeit bei Babys geringer ist als bei älteren Kindern, da keine aktuellen Wachstumsdaten einfließen."
+        "a": "Verwenden Sie für Babys und Kleinkinder den obigen Rechner für die mittlere Elternhöhe. Er benötigt lediglich die Größe von Mutter und Vater. Dies liefert eine grobe Schätzung der Größenreichweite. Beachten Sie, dass die Genauigkeit bei Babys geringer ist als bei älteren Kindern, da noch keine aktuellen Wachstumsdaten einfließen. Sobald Ihr Kind 2 Jahre alt wird, bietet die 2-Jahres-Verdopplungsregel einen zweiten schnellen Check."
       },
       {
         "q": "Wie groß sollte mein Kind in seinem Alter sein?",
-        "a": "Nutzen Sie den Wachstumskurven-Abschnitt oben, um den durchschnittlichen Größenbereich nach Alter für Jungen und Mädchen zu sehen. Die 50. Perzentile steht für die mittlere Körpergröße. Gesunde Kinder liegen typischerweise zwischen der 3. und 97. Perzentile. Liegt Ihr Kind dauerhaft über oder unter diesem Bereich, besprechen Sie dies mit dem Kinderarzt."
+        "a": "Nutzen Sie den obigen Bereich mit den Wachstumskurven, um den durchschnittlichen Größenbereich nach Alter für Jungen und Mädchen einzusehen. Die 50. Perzentile stellt die mittlere Körpergröße dar. Gesunde Kinder liegen typischerweise zwischen der 3. und 97. Perzentile. Wenn Ihr Kind dauerhaft über oder unter diesem Bereich liegt, besprechen Sie dies mit Ihrem Kinderarzt."
       },
       {
         "q": "Was ist die genaueste Methode zur Größenvorhersage?",
-        "a": "Die insgesamt genaueste Methode ist der klinische Knochenalter-Test (Handgelenk-Röntgen), der von Ärzten eingesetzt wird. Für nicht-klinische Vorhersagen ist die Khamis-Roche-Methode die genaueste verfügbare Methode. Sie nutzt Alter, Größe, Gewicht und Elterngröße und erreicht eine Genauigkeit von ±2,1 Zoll bei Jungen und ±1,7 Zoll bei Mädchen. Dies ist die Methode, die der Rechner auf dieser Seite verwendet."
+        "a": "Die insgesamt genaueste Methode ist die Knochenalterbestimmung (Handgelenksröntgen), die von Ärzten klinisch angewandt wird. Für die nicht-klinische Vorhersage ist die Khamis-Roche-Methode die präziseste verfügbare Methode. Sie nutzt Alter, Größe, Gewicht und Elterngröße, wobei 9 von 10 Vorhersagen innerhalb von 2,1 Zoll (5,3 cm) bei Jungen und 1,7 Zoll (4,3 cm) bei Mädchen liegen. Dies ist die Methode, die im Rechner auf dieser Seite zum Einsatz kommt."
       }
     ],
     "toc": [
       {
         "id": "height-predictor-calculator",
-        "label": "Größenwachstums-Rechner"
+        "label": "Größenrechner für Kinder und Erwachsene"
       },
       {
         "id": "how-it-works",
-        "label": "Wie funktioniert es?"
+        "label": "Wie funktioniert das?"
       },
       {
         "id": "how-tall-will-my-child-be",
         "label": "Wie groß wird mein Kind?",
         "subItems": [
           {
+            "id": "how-tall-will-my-son-be",
+            "label": "Wie groß wird mein Sohn?"
+          },
+          {
+            "id": "how-tall-will-my-daughter-be",
+            "label": "Wie groß wird meine Tochter?"
+          },
+          {
+            "id": "how-tall-will-my-baby-or-toddler-be",
+            "label": "Wie groß wird mein Baby oder Kleinkind?"
+          },
+          {
             "id": "how-tall-will-i-be-teens-adults",
-            "label": "Wie groß werde ich (Teenager & Erwachsene)"
+            "label": "Wie groß werde ich? (Jugendliche & Erwachsene)"
+          },
+          {
+            "id": "worked-example",
+            "label": "Rechenbeispiel: Vorhersage der Größe aus der Elterngröße"
+          },
+          {
+            "id": "age-2-rule",
+            "label": "Schnell-Check für Kleinkinder: Die 2-Jahres-Verdopplungsregel"
           }
         ]
       },
@@ -497,7 +569,7 @@
       },
       {
         "id": "calculator-vs-growth-charts",
-        "label": "Rechner vs. Wachstumskurven"
+        "label": "Größenrechner vs. Wachstumskurven"
       },
       {
         "id": "when-do-boys-stop-growing",
@@ -509,7 +581,7 @@
       },
       {
         "id": "height-prediction-methods",
-        "label": "Größenvorhersage-Methoden",
+        "label": "Methoden zur Größenvorhersage erklärt",
         "subItems": [
           {
             "id": "khamis-roche-method",
@@ -517,13 +589,17 @@
           },
           {
             "id": "based-on-parents",
-            "label": "Anhand der Eltern"
+            "label": "Größenrechner basierend auf der Elterngröße"
+          },
+          {
+            "id": "age-2-doubling-rule",
+            "label": "2-Jahres-Verdopplungsregel"
           }
         ]
       },
       {
         "id": "bone-age-method",
-        "label": "Knochenalter-Methode",
+        "label": "Knochenaltermethode",
         "subItems": [
           {
             "id": "bayley-pinneau-method",
@@ -537,15 +613,15 @@
       },
       {
         "id": "can-you-increase-height",
-        "label": "Kannst du deine Körpergröße noch steigern?"
+        "label": "Kann man das Längenwachstum steigern?"
       },
       {
         "id": "accuracy",
-        "label": "Vorhersagegenauigkeit"
+        "label": "Wie genau ist ein Größenrechner?"
       },
       {
         "id": "faq",
-        "label": "FAQ"
+        "label": "Häufig gestellte Fragen (FAQ)"
       },
       {
         "id": "related-tools",
@@ -553,7 +629,7 @@
       },
       {
         "id": "references",
-        "label": "Quellen"
+        "label": "Quellen & Literatur"
       }
     ],
     "relatedTools": {
@@ -605,13 +681,14 @@
       "tableHeaderGirlsMedian": "Mädchen Median",
       "ageYrs": "{age} J.",
       "insightBoysStopLabel": "Jungen wachsen fertig",
-      "insightBoysStopValue": "~18 J.",
+      "insightBoysStopValue": "~16–18 Jahre",
       "insightGirlsStopLabel": "Mädchen wachsen fertig",
-      "insightGirlsStopValue": "~15–16 J.",
+      "insightGirlsStopValue": "~14–15 Jahre",
       "insightMaleHeightLabel": "Durchschnittsgröße erwachsener Männer (USA)",
-      "insightMaleHeightValue": "172.2 cm / 5'8\"",
+      "insightMaleHeightValue": "175 cm / 5'9\"",
       "insightFemaleHeightLabel": "Durchschnittsgröße erwachsener Frauen (USA)",
-      "insightFemaleHeightValue": "160.1 cm / 5'3\""
+      "insightFemaleHeightValue": "161,3 cm / 5'3,5\"",
+      "sourceNhanes": "Quelle: CDC National Center for Health Statistics, Erwachsene ab 20 Jahren, NHANES August 2021 bis August 2023."
     },
     "references": {
       "title": "Wissenschaftliche Bibliografie & Datenquellen",
@@ -625,7 +702,12 @@
       "ref8": "Greulich WW, Pyle SI. Radiographic Atlas of Skeletal Development of the Hand and Wrist.",
       "ref9": "Tanner JM, Whitehouse RH. Assessment of Skeletal Maturity.",
       "ref10": "Bayley N, Pinneau SR. Tables for predicting adult height from skeletal age.",
-      "ref11": "Roche AF, Wainer H, Thissen D. Predicting adult stature for individuals."
+      "ref11": "Roche AF, Wainer H, Thissen D. Predicting adult stature for individuals.",
+      "ref12": "Mayo Clinic Staff. Child growth: Can you predict adult height? Mayo Clinic, 2025.",
+      "ref13": "Cross-sectional analysis of maturity status and Khamis-Roche prediction error. PMC6603099.",
+      "ref14": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age: the Khamis-Roche method. Pediatrics. 1994;94(4):504-507.",
+      "ref15": "CDC National Center for Health Statistics. Body Measurements (FastStats).",
+      "ref16": "Paruthi S, et al. Recommended amount of sleep for pediatric populations. J Clin Sleep Med. 2016."
     }
   },
   "heightWeightPercentile": {

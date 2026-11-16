@@ -31,8 +31,27 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      noimageindex: true,
     },
+  },
+  openGraph: {
+    type: "website",
+    url: "https://heightcomparisoncalculator.com/",
+    title: "Height Comparison Chart - Person Height, Character Height & More",
+    description: "Use Height Comparison Tool to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
+    images: [
+      {
+        url: "/height-comparison-chart-example.png",
+        width: 1200,
+        height: 630,
+        alt: "Height comparison chart of a 5'7\" and a 6'1\" person side by side",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Height Comparison Chart - Person Height, Character Height & More",
+    description: "Use Height Comparison Tool to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
+    images: ["/height-comparison-chart-example.png"],
   },
   verification: {
     google: [
@@ -45,8 +64,6 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   themeColor: "#3B82F6",
 };
 

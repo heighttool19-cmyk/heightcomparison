@@ -6,6 +6,7 @@ import { Edit2, Trash2 } from 'lucide-react';
 import { Person } from '../types';
 import { useUnitStore } from '../store';
 import { FEMALE_AVATARS, MALE_AVATARS } from '../constants/avatars';
+import { heightGap } from '../lib/height';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SIZING  (must stay in sync with HeightDashboard constants)
@@ -42,12 +43,17 @@ interface PersonBarProps {
     onSetActiveMenu?: (active: boolean) => void;
     index?: number;
     personCount?: number;
+    referencePerson?: Person | null;
+    onSelectReference?: (id: string) => void;
 }
 
 const PersonBar: React.FC<PersonBarProps> = React.memo(({
     person, scale, zoom, onEditRequest, onRemove,
     readOnly, canvasHeight, isActiveMenu, onSetActiveMenu,
+    index = 0,
     personCount = 0,
+    referencePerson,
+    onSelectReference,
 }) => {
     const { unitSystem } = useUnitStore();
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -228,6 +234,9 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
                 }}
                 onClick={e => {
                     e.stopPropagation();
+                    if (personCount >= 3 && onSelectReference) {
+                        onSelectReference(person.id);
+                    }
                     if (window.innerWidth < 768) {
                         onSetActiveMenu ? onSetActiveMenu(!isActiveMenu) : setIsMenuOpen(m => !m);
                     } else if (onEditRequest) {
@@ -249,6 +258,87 @@ const PersonBar: React.FC<PersonBarProps> = React.memo(({
                             overflow: 'visible',
                         }}
                     >
+                        {/* Ticket T2: Mode 2 Adaptive Micro-Chip in Reference Mode (3+ figures) */}
+                        {personCount >= 3 && referencePerson && (() => {
+                            const isRef = person.id === referencePerson.id;
+                            const isMicro = effectiveW < 42;
+                            const isCompact = effectiveW < 65;
+
+                            // Subtle 4px micro-offset for odd figures when tightly packed
+                            const isOdd = (index ?? 0) % 2 === 1;
+                            const chipMargin = (effectiveW < 45 && isOdd) ? 'mb-2' : 'mb-1 sm:mb-1.5';
+
+                            const chipClasses = isMicro
+                                ? "px-1 py-0.5 rounded-[4px] border shadow-sm leading-none"
+                                : isCompact
+                                    ? "px-1.5 py-0.5 rounded-[6px] border shadow-md leading-tight"
+                                    : "px-2.5 py-0.5 rounded-[9px] border sm:border-[1.5px] shadow-md leading-tight";
+
+                            if (isRef) {
+                                if (isMicro) return null;
+                                return (
+                                    <span
+                                        className={`hidden sm:inline-flex ${chipMargin} ${chipClasses} bg-[#fdba74] border-[#fdba74] text-[#431407] font-black text-[9px] sm:text-[11px] whitespace-nowrap transition-all`}
+                                    >
+                                        {isCompact ? 'Ref' : 'Reference'}
+                                    </span>
+                                );
+                            }
+
+                            const sameText = (isMicro || effectiveW < 55) ? '±0' : 'Same height';
+                            const gap = heightGap(person.heightCm, referencePerson.heightCm);
+
+                            if (person.heightCm > referencePerson.heightCm) {
+                                const diffStr = isMicro
+                                    ? (unitSystem === 'metric' ? `+${gap.gapCm}` : `+${gap.gapIn}"`)
+                                    : (unitSystem === 'metric' ? `+${gap.gapCm} cm` : `+${gap.gapIn} in`);
+
+                                return (
+                                    <span
+                                        className={`${chipMargin} ${chipClasses} bg-[#052e16] border-[#22c55e] text-[#86efac] flex flex-col items-center whitespace-nowrap transition-all`}
+                                    >
+                                        <b className={`font-black font-sans ${isMicro ? 'text-[8.5px]' : isCompact ? 'text-[9.5px]' : 'text-[12px]'}`}>
+                                            {diffStr}
+                                        </b>
+                                        {!isCompact && (
+                                            <small className="hidden sm:inline text-[9.5px] sm:text-[10px] font-bold opacity-90 leading-tight font-sans">
+                                                {gap.tallerPct}% taller
+                                            </small>
+                                        )}
+                                    </span>
+                                );
+                            }
+
+                            if (person.heightCm < referencePerson.heightCm) {
+                                const diffStr = isMicro
+                                    ? (unitSystem === 'metric' ? `−${gap.gapCm}` : `−${gap.gapIn}"`)
+                                    : (unitSystem === 'metric' ? `−${gap.gapCm} cm` : `−${gap.gapIn} in`);
+
+                                return (
+                                    <span
+                                        className={`${chipMargin} ${chipClasses} bg-[#431407] border-[#f97316] text-[#fdba74] flex flex-col items-center whitespace-nowrap transition-all`}
+                                    >
+                                        <b className={`font-black font-sans ${isMicro ? 'text-[8.5px]' : isCompact ? 'text-[9.5px]' : 'text-[12px]'}`}>
+                                            {diffStr}
+                                        </b>
+                                        {!isCompact && (
+                                            <small className="hidden sm:inline text-[9.5px] sm:text-[10px] font-bold opacity-90 leading-tight font-sans">
+                                                {gap.shorterPct}% shorter
+                                            </small>
+                                        )}
+                                    </span>
+                                );
+                            }
+
+                            return (
+                                <span
+                                    className={`${chipMargin} ${chipClasses} bg-[#27272a] border-[#52525b] text-[#e4e4e7] font-bold ${isMicro ? 'text-[8.5px]' : isCompact ? 'text-[9px]' : 'text-[11px]'} whitespace-nowrap transition-all`}
+                                >
+                                    {sameText}
+                                </span>
+                            );
+                        })()}
+
                         <span
                             className="font-black uppercase leading-none text-center w-full overflow-hidden   whitespace-nowrap drop-shadow-md"
                             style={{ fontSize: `${fontSize}px` }}

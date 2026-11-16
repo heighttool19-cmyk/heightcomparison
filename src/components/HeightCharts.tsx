@@ -373,6 +373,10 @@ export default function HeightCharts() {
                         ))}
                     </div>
 
+                    <p className="text-center text-[10px] sm:text-xs text-muted uppercase tracking-wider font-bold mt-4" style={{ fontFamily: GEORGIA }}>
+                        {t('sourceNhanes')}
+                    </p>
+
                 </div>
             </div>
         </div>

@@ -154,12 +154,13 @@
   "heightPredictor": {
     "intro": {
       "title": "Lengtevoorspeller: Bereken Jouw Volwassen Lengte",
-      "description": "Gebruik deze lengtevoorspeller om de toekomstige lengte van kinderen, tieners en jongeren te schatten op basis van huidige leeftijd, ouderlijke genetica en groeipatronen. Deze tool past de Khamis-Roche methode toe, een van de meest nauwkeurige voorspellingsmodellen zonder röntgenfoto's in de kindergeneeskunde. Als uw kind jonger is dan 4 jaar of als u een baby verwacht, gebruik dan de Mid-Parental formule hieronder."
+      "description": "Gebruik deze lengtevoorspeller om de toekomstige lengte van kinderen, tieners en volwassenen te schatten op basis van leeftijd, genetica en groeipatronen. De tool gebruikt de Khamis-Roche-methode, die de volwassen lengte van 4 tot 17,5 jaar voorspelt aan de hand van leeftijd, lengte, gewicht en de lengte van beide ouders. In de oorspronkelijke studie viel 9 van de 10 voorspellingen binnen 5,3 cm (2,1 inch) voor jongens en 4,3 cm (1,7 inch) voor meisjes. Voor kinderen jonger dan 4 jaar of ongeboren baby's kunt u de onderstaande calculator op basis van ouders gebruiken.",
+      "lastUpdated": "Laatst bijgewerkt: november 2026"
     },
     "khamisRocheCalculator": {
       "title": "Khamis-Roche Lengtecalculator",
       "badge": "Meest Nauwkeurig (Leeftijd 4–17)",
-      "description": "Schat de volwassen lengte met behulp van de huidige leeftijd, geslacht, lengte, gewicht en de lengte van beide biologische ouders. Geen röntgenonderzoek nodig.",
+      "description": "Directe lengtevoorspelling met behulp van wetenschappelijke groeimodellen. Voer leeftijd, geslacht, lengte, gewicht en de lengte van beide ouders in. Werkt van 4 tot 17,5 jaar.",
       "unitUs": "VS (ft/in, lbs)",
       "unitMetric": "Metrisch (cm, kg)",
       "childAgeLabel": "Leeftijd Kind (jaren)",
@@ -194,9 +195,9 @@
       "lbsUnit": "lbs"
     },
     "midParentalCalculator": {
-      "title": "Mid-Parental Lengtecalculator",
+      "title": "Lengtecalculator op basis van lengte van ouders",
       "badge": "Voor Alle Leeftijden (en Verwachte Baby's)",
-      "description": "Berekent het genetische groeipotentieel uitsluitend op basis van de lengtes van beide biologische ouders.",
+      "description": "Schat de verwachte lengte met alleen de lengte van de ouders. Geschikt voor baby's, peuters en ongeboren baby's. Als u zwanger bent, voert u de lengte van beide ouders in om het geschatte volwassen lengtebereik te zien. Maakt gebruik van de mid-parentale formule, die doorgaans binnen 10 cm (4 inch) van de volwassen lengte blijft.",
       "unitUs": "VS (ft/in)",
       "unitMetric": "Metrisch (cm)",
       "motherHeightLabel": "Lengte Biologische Moeder",
@@ -214,7 +215,8 @@
       "viewComparisonChart": "Bekijk Vergelijkingsgrafiek",
       "cmUnit": "cm",
       "ftUnit": "ft",
-      "inUnit": "in"
+      "inUnit": "in",
+      "clear": "Wissen"
     },
     "heightConverter": {
       "title": "Snelle Lengteconverter",
@@ -229,7 +231,7 @@
       "inUnit": "in"
     },
     "howItWorks": {
-      "title": "Hoe Werkt de Lengtevoorspeller",
+      "title": "Hoe werkt het?",
       "description": "Onze voorspeller combineert wetenschappelijk gevalideerde biometrische modellen voor een hoge betrouwbaarheid:",
       "step1Strong": "1. Antropometrische Invoer: ",
       "step1Text": "Leeftijd, geslacht, huidige lengte en gewicht bepalen het individuele ontwikkelingstempo.",
@@ -243,28 +245,46 @@
       "description": "Dit is een van de meest gestelde vragen aan artsen. De uiteindelijke lengte hangt af van drie hoofdfactoren:",
       "factorsTitle": "Bepalende Factoren:",
       "geneticsLabel": "Genetische Aanleg:",
-      "geneticsText": "Ongeveer 60% tot 80% van de volwassen lengte wordt bepaald door erfelijke genen van de ouders.",
+      "geneticsText": "overgeërfde genetische varianten verklaren ongeveer 80% van de lengteverschillen tussen mensen.",
       "currentGrowthLabel": "Huidige Groeisnelheid:",
       "currentGrowthText": "Het stabiele percentielkanaal dat een kind tijdens de jeugd volgt, toont het biologische ritme.",
       "statisticsLabel": "Statistische Modellen:",
       "statisticsText": "Formules zoals Khamis-Roche en Mid-Parental verfijnen de schatting op basis van grootschalige populatiestudies.",
-      "closing": "Hoewel geen enkel model garanties biedt, leveren deze berekeningen de best mogelijke wetenschappelijke benadering zonder röntgenonderzoek."
+      "closing": "Hoewel geen enkel model garanties biedt, leveren deze berekeningen de best mogelijke wetenschappelijke benadering zonder röntgenonderzoek.",
+      "workedExampleTitle": "Rekenvoorbeeld: lengte voorspellen op basis van lengte van ouders",
+      "workedExampleIntro": "Een vader van 180 cm (5'11\") en een moeder van 165 cm (5'5\") tellen samen op tot 345 cm (136 inch).",
+      "workedExampleSon": "Zoon: (345 + 13) ÷ 2 = 179 cm. In Amerikaanse eenheden: (136 + 5) ÷ 2 = 70,5 inch, ca. 5'10,5\".",
+      "workedExampleDaughter": "Dochter: (345 − 13) ÷ 2 = 166 cm. In Amerikaanse eenheden: (136 − 5) ÷ 2 = 65,5 inch, ca. 5'5,5\".",
+      "workedExampleRange": "Verwacht bereik: ongeveer 10 cm (4 inch) speling aan weerszijden, d.w.z. ca. 169 tot 189 cm (5'6,5\" tot 6'2,5\") voor de zoon.",
+      "workedExampleClosing": "Voor kinderen vanaf 4 jaar versmalt de Khamis-Roche-calculator dit bereik door ook de huidige lengte en het gewicht van het kind mee te nemen.",
+      "age2RuleTitle": "Snelle controle voor peuters: de 2-jarigenregel",
+      "age2RuleText": "Verdubbel de lengte van een jongen op 2-jarige leeftijd, of van een meisje op 18 maanden, voor een ruwe schatting van de volwassen lengte. Een jongen die 87,6 cm (34,5 inch) meet op zijn tweede verjaardag wijst op ongeveer 175 cm (5'9\", 69 inch) als volwassene. De Mayo Clinic vermeldt deze regel naast de mid-parentale formule.",
+      "sonTitle": "Hoe lang wordt mijn zoon?",
+      "sonText": "De bovenstaande Khamis-Roche-calculator schat de volwassen lengte van uw zoon met behulp van huidige leeftijd, lengte, gewicht en lengte van de ouders. De meeste jongens stoppen met groeien tussen 16 en 18 jaar.",
+      "daughterTitle": "Hoe lang wordt mijn dochter?",
+      "daughterText": "De bovenstaande Khamis-Roche-calculator schat de volwassen lengte van uw dochter op basis van huidige metingen en de lengte van de ouders. De meeste meisjes bereiken hun volwassen lengte tussen 14 en 15 jaar.",
+      "babyTitle": "Hoe lang wordt mijn baby of peuter?",
+      "babyText": "Gebruik voor baby's de bovenstaande calculator op basis van de ouders. Alleen de lengte van moeder en vader is nodig. Een veelgebruikte vuistregel verdubbelt de lengte van een jongen op 2 jaar of een meisje op 18 maanden."
     },
     "teensAdults": {
       "title": "Lengtevoorspelling voor Tieners en Volwassenen",
-      "description": "De resterende groeiruimte hangt direct af van de staat van de groeischijven:",
+      "description": "Tieners die zich afvragen «hoe lang word ik» kunnen de Khamis-Roche-calculator gebruiken. Voer huidige leeftijd, lengte, gewicht en lengte van de ouders in voor de nauwkeurigste schatting.",
       "teensTitle": "Tieners (13 tot 18 jaar):",
       "teensText": "Tijdens de puberteit vindt de laatste groeispurt plaats:",
-      "teensItem1": "Meisjes: De groei vertraagt aanzienlijk na de menarche en stopt meestal rond 15–16 jaar.",
+      "teensItem1": "Werkt van 4 tot 17,5 jaar",
       "teensItem2": "Jongens: De groeispurt begint later en groei kan doorgaan tot 18–19 jaar.",
-      "teensItem3": "Het sluiten van de epifysaire groeischijven markeert het definitieve einde van de lengtegroei.",
+      "teensItem3": "De meeste jongens stoppen met groeien tussen 16 en 18 jaar; de meeste meisjes rond 14 of 15 jaar",
       "adultsTitle": "Volwassenen (18+ jaar):",
       "adultsText": "Zodra de groeischijven eenmaal verbeend zijn:",
       "adultsItem1": "Kunnen de lange beenderen niet meer op natuurlijke wijze langer worden.",
-      "adultsItem2": "Verschillen van 1–2 cm tussen ochtend en avond ontstaan door druk op de tussenwervelschijven.",
+      "adultsItem2": "Gebruik de ouderlengtetool om de lengte van kinderen te voorspellen",
       "adultsItem3": "Gerichte houdingsoefeningen en versterking van de rugspieren kunnen de staande houding optimaliseren.",
       "limitationLabel": "Belangrijke Opmerking:",
-      "limitationText": "Geen enkel supplement of trainingsprogramma kan gesloten groeischijven opnieuw openen."
+      "limitationText": "Geen enkel supplement of trainingsprogramma kan gesloten groeischijven opnieuw openen.",
+      "noParentsTitle": "Wat als je de lengte van je ouders niet weet?",
+      "noParentsP1": "Beide calculators op deze pagina hebben de lengte van beide ouders nodig en kunnen zonder deze gegevens geen voorspelling genereren. U kunt uw groei nog steeds volgen: meet uzelf elke 6 maanden en bekijk uw percentiel op een groeicurve. Als u zich zorgen maakt over uw groei, kan een arts een röntgenfoto van de skeletleeftijd laten maken.",
+      "noParentsCheckPercentile": "Controleer uw percentiel met de",
+      "noParentsLinkText": "lengte- en gewichtspercentielcalculator"
     },
     "ctaBanner": {
       "text": "Wilt u zien hoe de lengte van uw kind zich verhoudt tot anderen?",
@@ -274,17 +294,17 @@
       "title": "Wat Bepaalt de Lengte van een Persoon?",
       "description": "De menselijke lengte is een samenspel van genetica en ondersteunende omgevingsfactoren:",
       "geneticsTitle": "1. Genetica (60%–80%)",
-      "geneticsBefore": "Tweelingonderzoek toont aan dat ",
-      "geneticsStrong1": "honderden genvarianten",
-      "geneticsMiddle": " de botgroei reguleren. Kinderen van lange ouders zijn meestal lang, hoewel ",
-      "geneticsStrong2": "regressie naar het gemiddelde",
+      "geneticsBefore": "Overgeërfde DNA-varianten verklaren ongeveer ",
+      "geneticsStrong1": "80%",
+      "geneticsMiddle": " van de lengteverschillen tussen mensen (MedlinePlus). Lange ouders krijgen doorgaans lange kinderen, al geldt regressie naar het gemiddelde: zeer lange of korte ouders krijgen vaak kinderen die dichter bij het ",
+      "geneticsStrong2": "gemiddelde liggen.",
       "nutritionTitle": "2. Voeding en Gezondheid",
-      "nutritionBefore": "Voeding in de eerste levensjaren en tijdens de puberteit is de belangrijkste omgevingsfactor:",
-      "nutritionStrong": "Essentiële Voedingsstoffen: ",
-      "nutritionAfter": "Volwaardige eiwitten, calcium, zink, ijzer en vitamine D zijn onmisbaar voor de botaanmaak.",
+      "nutritionBefore": "De ",
+      "nutritionStrong": "resterende ~20%",
+      "nutritionAfter": " is afkomstig uit de omgeving. Groeihormoon wordt voornamelijk afgegeven tijdens diepe slaap.",
       "nutritionItem1": "Eiwitten: Bouwstenen voor botmatrix en spierweefsel.",
-      "nutritionItem2": "Calcium & Vitamine D: Cruciaal voor sterke botmineralisatie.",
-      "nutritionItem3": "Zink: Belangrijke cofactor voor celdeling en groeihormoonsignalen.",
+      "nutritionItem2": "9–12 uur slaap (leeftijd 6–12)",
+      "nutritionItem3": "8–10 uur voor tieners",
       "timingTitle": "3. Slaap en Groeihormoon (GH)",
       "timingText": "Het grootste deel van het menselijk groeihormoon (GH) wordt door de hypofyse afgegeven tijdens diepe slaapfasen (N3). Chronisch slaaptekort kan het groeipotentieel belemmeren."
     },
@@ -295,7 +315,8 @@
       "percentileBefore": "Door het volgen van een ",
       "percentileStrong": "stabiel percentielkanaal",
       "percentileAfter": " kunnen kinderartsen tijdig aandoeningen zoals coeliakie, groeihormoongerelateerde tekorten of schildklierproblemen ontdekken.",
-      "note": "Een constante groei langs een percentiel (of dat nu de 20e of 80e lijn is) duidt op een gezonde ontwikkeling."
+      "note": "Een constante groei langs een percentiel (of dat nu de 20e of 80e lijn is) duidt op een gezonde ontwikkeling.",
+      "expandText": "Klik op de grafiek- en tabelweergaven hieronder om de volledige percentielcurven te verkennen."
     },
     "comparisonTable": {
       "title": "Vergelijking: Lengtecalculator vs Groeicurves",
@@ -316,42 +337,42 @@
       "rowDoctorCalculator": "Erfelijkheidsadvies en prognose",
       "rowDoctorGrowthChart": "Opsporen van groeistoornissen en screening",
       "rowAccuracyLabel": "Nauwkeurigheid",
-      "rowAccuracyCalculator": "±2 tot 5 cm bij de meeste gezonde kinderen",
+      "rowAccuracyCalculator": "9 van de 10 binnen 2,1 in (jongens) of 1,7 in (meisjes) met Khamis-Roche; ca. 4 in met alleen ouders",
       "rowAccuracyGrowthChart": "Exacte weergave van het huidige percentiel",
       "rowWithoutParentsLabel": "Zonder Lengte Ouders?",
-      "rowWithoutParentsCalculator": "Khamis-Roche kan niet betrouwbaar worden toegepast",
+      "rowWithoutParentsCalculator": "Nee, de lengte van beide ouders is vereist",
       "rowWithoutParentsGrowthChart": "Werkt uitstekend enkel met leeftijd en lengte"
     },
     "boysGrowth": {
-      "title": "Groeipatronen bij Jongens",
+      "title": "Groeistappen voor jongens: 0 tot 20 jaar",
       "p1Before": "Jongens volgen een ander tijdschema dan meisjes. Jongens beginnen hun ",
       "p1Strong": "puberteitsgroeispurt (piek groeisnelheid)",
       "p1After": " later, meestal tussen 12 en 15 jaar.",
       "p2": "Tijdens de piekgroei kunnen jongens 8 tot 12 cm in één enkel jaar groeien.",
-      "item1Before": "Start Puberteit: ",
-      "item1Strong": "Gemiddeld rond 11–12 jaar.",
-      "item2Before": "Piekgroeisnelheid: ",
-      "item2Strong": "Gemiddeld tussen 13,5 en 14 jaar.",
-      "item3Before": "Einde Groei: ",
-      "item3Strong": "Tussen 17 en 19 jaar bij het merendeel van de jongens.",
-      "p3Before": "Dankzij deze twee extra jaren groei vóór de puberteit worden mannen gemiddeld ",
-      "p3Strong": "ongeveer 13 cm langer",
-      "p3After": " dan vrouwen in dezelfde bevolking."
+      "item1Before": "Begin van de puberteit: ",
+      "item1Strong": "doorgaans tussen 9 en 14 jaar",
+      "item2Before": "Groeispurt: ",
+      "item2Strong": "tussen 12 en 15 jaar",
+      "item3Before": "Groeivertraging: ",
+      "item3Strong": "kort na de groeispurt",
+      "p3Before": "Tijdens de groeispurt in de puberteit kunnen jongens 7 tot 10 cm (3–4 inch) per jaar groeien. ",
+      "p3Strong": "De meeste jongens stoppen met groeien tussen 16 en 18 jaar. ",
+      "p3After": "Laatbloeiers kunnen daarna soms nog iets doorgroeien."
     },
     "girlsGrowth": {
-      "title": "Groeipatronen bij Meisjes",
+      "title": "Groeistappen voor meisjes: 0 tot 20 jaar",
       "p1": "Bij meisjes begint de puberteitsgroeispurt ongeveer twee jaar eerder dan bij jongens, gewoonlijk tussen 9 en 11 jaar.",
       "p2": "De piekgroei vindt doorgaans plaats tussen 11 en 12 jaar, voorafgaand aan de eerste menstruatie (menarche).",
-      "item1Before": "Groeipiek Meisjes: ",
-      "item1Strong": "Ongeveer 7 tot 9 cm per jaar vóór de menarche.",
-      "item2Before": "Na de Menarche: ",
-      "item2Strong": "De groei vertraagt snel; meisjes groeien doorgaans nog slechts 3 tot 7 cm in totaal.",
-      "p3Before": "De groeischijven bij meisjes sluiten doorgaans rond de leeftijd van ",
-      "p3Strong": "15 tot 16 jaar",
-      "p3After": "."
+      "item1Before": "Begin van de puberteit: ",
+      "item1Strong": "doorgaans tussen 8 en 13 jaar",
+      "item2Before": "Groeispurt: ",
+      "item2Strong": "tussen 10 en 14 jaar",
+      "p3Before": "Volwassen lengte: ",
+      "p3Strong": "de meeste meisjes bereiken hun uiteindelijke lengte rond 14 of 15 jaar, ",
+      "p3After": "en groeien na hun eerste menstruatie doorgaans nog 2,5 tot 5 cm (1–2 inch)."
     },
     "methods": {
-      "title": "Wetenschappelijke Voorspellingsmethoden",
+      "title": "Methoden voor lengtevoorspelling uitgelegd",
       "subtitle": "Hoe Onderzoekers de Lengte van Kinderen Schatten",
       "description": "In de geneeskunde zijn verschillende formules ontwikkeld om volwassen lengte te berekenen:",
       "khamisRoche": {
@@ -360,8 +381,8 @@
         "p1": "Ontwikkeld door Dr. Harry Khamis en Dr. Alex Roche in het gerenommeerde Fels Longitudinal Study. Berekent de voorspelling aan de hand van leeftijd, geslacht, huidige lengte, gewicht en de gemiddelde lengte van beide ouders.",
         "p2": "Onderzoek bewijst dat deze methode even nauwkeurig is als röntgenmethoden bij gezonde kinderen.",
         "item1Before": "Leeftijdsgroep: ",
-        "item1Strong": "Kinderen van 4 tot 17 jaar.",
-        "item2": "Geen straling of medische scans nodig.",
+        "item1Strong": "±2,1 inch voor jongens, ±1,7 inch voor meisjes (9 van de 10 voorspellingen; de helft binnen ca. 0,9 en 0,7 inch)",
+        "item2": "Gevalideerd voor leeftijden van 4 tot 17,5 jaar",
         "item3": "Foutmarge van slechts ±2,5 tot 5 cm in de meeste gevallen.",
         "usedByCalculator": "Dit is de primaire methode in onze calculator.",
         "readyText": "Klaar om de lengte van uw kind te berekenen?",
@@ -380,7 +401,19 @@
         "item3": "Biedt een genetisch doelbereik van ±5 cm (±2 inches).",
         "item4": "Ideaal voor baby's en kinderen onder de 4 jaar.",
         "onlyHaveText": "Heeft u alleen de lengte van de ouders?",
-        "linkText": "Bereken met Mid-Parental Formule"
+        "linkText": "Bereken met Mid-Parental Formule",
+        "formulaExplanation": "De mid-parentale formule is de eenvoudigste manier om de volwassen lengte van een kind te schatten met uitsluitend de lengte van de ouders. Er zijn geen medische tests voor nodig en het werkt voor elke leeftijd, inclusief baby's en ongeboren kinderen.",
+        "boysFormulaSub": "Metrisch: (Vader + Moeder + 13 cm) ÷ 2",
+        "girlsFormulaSub": "Metrisch: (Vader + Moeder - 13 cm) ÷ 2",
+        "boysFormulaMetricLabel": "Voor jongens (Metrisch)",
+        "boysFormulaMetric": "(Vader + Moeder + 13 cm) ÷ 2",
+        "boysFormulaMetricSub": "Berekening in centimeters",
+        "girlsFormulaMetricLabel": "Voor meisjes (Metrisch)",
+        "girlsFormulaMetric": "(Vader + Moeder - 13 cm) ÷ 2",
+        "girlsFormulaMetricSub": "Berekening in centimeters",
+        "exampleText": "Voorbeeld: Vader 180 cm + Moeder 165 cm = 345 cm. Jongen: (345 + 13) ÷ 2 = 179 cm. Meisje: (345 - 13) ÷ 2 = 166 cm.",
+        "exampleEstimateText": "Geschat verwacht bereik: ±10 cm (4 inch)",
+        "workedExamplePointer": "Zie het rekenvoorbeeld onder «Hoe lang wordt mijn kind?»"
       },
       "boneAge": {
         "badge": "Klinisch Röntgenonderzoek",
@@ -399,11 +432,14 @@
         "badge": "Multivariaat Model",
         "title": "Roche-Wainer-Thissen Methode (RWT)",
         "text": "Geavanceerd model dat botleeftijd, gewicht en ouderlengte combineert voor betrouwbare prognoses in specialistische klinieken."
+      },
+      "age2Rule": {
+        "badge": "VUISTREGEL",
+        "title": "2-jarigenregel",
+        "text": "Verdubbel de lengte van een jongen op 2 jaar of een meisje op 18 maanden. Vereist geen calculator of ouderlengte, maar houdt geen rekening met genetica en dient als ruwe schatting voor peuters."
       }
     },
     "canIncrease": {
-      "titlePrefix": "Hoe U het ",
-      "titleHighlight": "Groeipotentieel Maximaliseert",
       "description": "Hoewel genetica de bovengrens bepaalt, zorgen gezonde leefgewoonten ervoor dat een kind zijn volledige potentieel kan benutten:",
       "nutritionTitle": "1. Volwaardige en Gevarieerde Voeding",
       "nutritionText": "De voeding moet voldoende bouwstoffen leveren voor gezonde celdeling en botaanmaak:",
@@ -418,114 +454,180 @@
       "exerciseTitle": "3. Lichaamsbeweging en Sport",
       "exerciseText": "Regelmatige beweging met matige belasting stimuleert de botdichtheid en versterkt de houdingsspieren.",
       "warningStrong": "Pas Op voor Misleiding: ",
-      "warningText": "Geloof geen wonderpillen op internet die beweren volwassenen langer te maken. Er bestaan geen wetenschappelijk bewezen middelen om gesloten groeischijven opnieuw te laten groeien."
+      "warningText": "Geloof geen wonderpillen op internet die beweren volwassenen langer te maken. Er bestaan geen wetenschappelijk bewezen middelen om gesloten groeischijven opnieuw te laten groeien.",
+      "title": "Kun je je lengte vergroten?"
     },
     "accuracy": {
-      "titlePrefix": "Nauwkeurigheid en ",
-      "titleHighlight": "Beperkingen",
-      "titleSuffix": " van Voorspellingen",
       "description": "Houd bij het interpreteren rekening met deze methodologische kenmerken:",
-      "check1": "Khamis-Roche heeft een typische foutmarge van ±2,5 tot 5 cm.",
-      "check2": "De Mid-Parental formule kent een bandbreedte van ±5 cm.",
-      "check3": "De nauwkeurigheid neemt toe naarmate het kind ouder wordt.",
-      "check4": "Vroeg- of laatrijpe kinderen kunnen tijdelijk afwijken van de voorspelling voordat ze convergeren.",
-      "alert1": "Geen vervanging voor medisch onderzoek bij groeiproblemen.",
-      "alert2": "Gaat uit van gezonde voeding en afwezigheid van chronische ziekten.",
-      "alert3": "Vereist nauwkeurige recente metingen van lengte en gewicht.",
-      "rangeNotice": "Beschouw de uitkomst altijd als een waarschijnlijkheidsbereik en niet als een star getal.",
       "disclaimerStrong": "Medische Disclaimer: ",
-      "disclaimerText": "Deze calculator dient uitsluitend voor informatieve doeleinden. Raadpleeg bij vragen over de groei van uw kind altijd een kinderarts."
+      "disclaimerText": "Deze calculator dient uitsluitend voor informatieve doeleinden. Raadpleeg bij vragen over de groei van uw kind altijd een kinderarts.",
+      "title": "Hoe nauwkeurig is een lengtevoorspeller?",
+      "is100PercentTitle": "Bestaat er een lengtevoorspeller die 100% nauwkeurig is?",
+      "is100PercentText": "Nee. Elke voorspeller geeft een waarschijnlijk bereik, omdat genetica, puberteitstiming en gezondheid het resultaat beïnvloeden. Khamis-Roche is de nauwkeurigste niet-invasieve methode, waarbij 9 van de 10 voorspellingen binnen 2,1 inch voor jongens en 1,7 inch voor meisjes vallen. Een röntgenfoto van de skeletleeftijd is nauwkeuriger en wordt door artsen aangevraagd bij vermoeden van groeistoornissen.",
+      "typicalErrorTitle": "Typische foutmarge per voorspellingsmethode",
+      "thMethod": "Methode",
+      "thTypicalError": "Typische fout",
+      "thNeedsBoneAge": "Skeletleeftijd vereist?",
+      "methodKhamis": "Khamis-Roche-methode",
+      "errorKhamis": "±5,3 cm (jongens) / ±4,3 cm (meisjes)",
+      "boneAgeKhamis": "Nee",
+      "methodMidParental": "Mid-parentale formule",
+      "errorMidParental": "±10 cm (4 inch)",
+      "boneAgeMidParental": "Nee",
+      "methodBoneAge": "Röntgenfoto skeletleeftijd (Greulich-Pyle / TW)",
+      "errorBoneAge": "±2,5 cm (hoogste nauwkeurigheid)",
+      "boneAgeBoneAge": "Ja (klinisch)",
+      "whyMissesTitle": "Waarom voorspellingen kunnen afwijken",
+      "miss1": "9 van de 10 voorspellingen vallen binnen 5,3 cm (2,1 in) voor jongens en 4,3 cm (1,7 in) voor meisjes",
+      "miss2": "De formule op basis van ouders is minder nauwkeurig: meestal binnen 10 cm (4 in)",
+      "miss3": "De nauwkeurigheid is het grootst wanneer het kind ouder is dan 4 jaar",
+      "miss4": "Nauwkeurige lengte- en gewichtsmetingen verbeteren de betrouwbaarheid van de uitkomst",
+      "miss5": "Correcte lengtegegevens van beide ouders zijn noodzakelijk voor een betrouwbare schatting"
     },
     "faq": [
       {
-        "q": "Is de Khamis-Roche methode betrouwbaar?",
-        "a": "Ja, het wordt in de wetenschappelijke literatuur algemeen erkend als de meest betrouwbare voorspellingsmethode zonder röntgenstraling, met een typische marge van 2 tot 5 cm voor gezonde kinderen."
+        "q": "Hoe lang word ik?",
+        "a": "Je volwassen lengte hangt voornamelijk af van de lengte van je ouders en je groeitempo. Gebruik de bovenstaande calculator en voer je huidige leeftijd, lengte, gewicht en de lengte van je ouders in voor een voorspeld bereik volgens het Khamis-Roche-model. Ben je 18 jaar of ouder, dan zijn je groeischijven gesloten en is je lengte definitief."
       },
       {
-        "q": "Kan ik de lengte van mijn kind voorspellen vóór de geboorte?",
-        "a": "Ja, met de Mid-Parental formule kan het verwachte genetische doelbereik worden berekend op basis van de lengte van beide biologische ouders."
+        "q": "Hoe lang wordt mijn kind?",
+        "a": "Voer de huidige leeftijd, lengte en het gewicht van je kind samen met de lengte van beide ouders in de bovenstaande Khamis-Roche-calculator in. De meeste jongens stoppen met groeien tussen 16 en 18 jaar; meisjes rond 14 of 15 jaar. De mid-parentale formule biedt eveneens een goede schatting: (Lengte vader + Lengte moeder ± 13 cm) ÷ 2."
       },
       {
-        "q": "Vanaf welke leeftijd is een lengtevoorspelling betrouwbaar?",
-        "a": "De Khamis-Roche methode is gevalideerd vanaf 4 jaar. Tussen 0 en 4 jaar bieden de Mid-Parental methode en de WHO-groeicurves de beste indicaties."
+        "q": "Is een lengtevoorspeller nauwkeurig?",
+        "a": "De Khamis-Roche-methode (gebruikt in deze calculator) is een van de nauwkeurigste niet-invasieve voorspellers. In de oorspronkelijke studie viel 9 van de 10 voorspellingen binnen 2,1 inch voor jongens en 1,7 inch voor meisjes. De nauwkeurigheid neemt toe na 4-jarige leeftijd bij nauwkeurige metingen. Resultaten vertegenwoordigen een waarschijnlijk bereik, geen absolute garantie."
       },
       {
-        "q": "Kan een volwassene nog langer worden?",
-        "a": "Nee. Zodra de groeischijven gesloten zijn (meestal tussen 16 en 20 jaar), is natuurlijke botgroei in de lengte niet meer mogelijk."
+        "q": "Bestaat er een lengtevoorspeller die 100% nauwkeurig is?",
+        "a": "Nee. Elke voorspeller geeft een waarschijnlijk bereik, omdat genetica, puberteit en voeding de uitkomst beïnvloeden. Khamis-Roche is de nauwkeurigste methode zonder röntgenfoto (9 op 10 binnen 2,1 in voor jongens en 1,7 in voor meisjes). Een röntgenfoto van de skeletleeftijd is het meest nauwkeurig en wordt gebruikt door kinderartsen bij groeiproblemen."
       },
       {
-        "q": "Waarom is slaap zo belangrijk voor de groei?",
-        "a": "Meer dan de helft van het dagelijkse groeihormoon wordt tijdens de diepe slaapfasen uitgescheiden door de hypofyse. Voldoende slaap is daarom essentieel."
+        "q": "Kan de lengte van ouders mijn lengte voorspellen?",
+        "a": "Ja. Overgeërfde genen verklaren ongeveer 80% van de lengteverschillen tussen mensen, en de lengte van de ouders is de sterkste indicator. De mid-parentale formule geeft een goede eerste schatting. Het combineren van de lengte van de ouders met de huidige metingen van het kind via de Khamis-Roche-methode levert echter veel nauwkeurigere resultaten op."
       },
       {
-        "q": "Waarom zijn jongens gemiddeld langer dan meisjes?",
-        "a": "Jongens genieten van twee extra jaren groei vóór de puberteit en hebben tijdens de puberteit een iets intensievere groeispurt."
+        "q": "Kan ik de lengte van mijn baby voorspellen?",
+        "a": "Voor baby's en peuters gebruikt u de bovenstaande mid-parentale formulecalculator. Deze vereist alleen de lengte van beide ouders. Houd er rekening mee dat de voorspelling bij baby's een ruwere schatting is omdat actuele groeigegevens ontbreken. Zodra het kind 2 jaar is, biedt de 2-jarigenregel een handige tweede controle."
       },
       {
-        "q": "Belemmert krachttraining de groei van kinderen?",
-        "a": "Nee, dat is een mythe. Onder professionele begeleiding met passende gewichten versterkt krachttraining juist de botten. Alleen ongecontroleerde zware blessures aan groeischijven vormen een risico."
+        "q": "Welke lengte hoort mijn kind op deze leeftijd te hebben?",
+        "a": "Bekijk de groeicurvesectie hierboven om het gemiddelde lengtebereik per leeftijd voor jongens en meisjes te zien. Het 50e percentiel geeft de mediaan weer. Gezonde kinderen bevinden zich doorgaans tussen het 3e en 97e percentiel. Raadpleeg bij aanhoudende afwijkingen een kinderarts."
+      },
+      {
+        "q": "Wat is de meest nauwkeurige methode om lengte te voorspellen?",
+        "a": "Klinisch gezien is de skeletleeftijdsbepaling (röntgenfoto van de pols) de gouden standaard. Voor niet-medische toepassingen is de Khamis-Roche-methode het meest betrouwbaar: deze gebruikt leeftijd, lengte, gewicht en ouderlengte, waarbij 9 van de 10 voorspellingen binnen 2,1 inch (jongens) en 1,7 inch (meisjes) blijven."
       }
     ],
     "toc": [
       {
-        "id": "khamis-roche-calculator",
-        "label": "Khamis-Roche Calculator"
+        "id": "height-predictor-calculator",
+        "label": "Lengtevoorspeller Calculator"
       },
       {
-        "id": "mid-parental-calculator",
-        "label": "Mid-Parental Calculator"
-      },
-      {
-        "id": "height-converter",
-        "label": "Snelle Lengteconverter"
-      },
-      {
-        "id": "how-the-height-predictor-works",
-        "label": "Hoe Werkt de Lengtevoorspeller"
+        "id": "how-it-works",
+        "label": "Hoe werkt het?"
       },
       {
         "id": "how-tall-will-my-child-be",
-        "label": "Hoe Lang Wordt Mijn Kind?"
+        "label": "Hoe lang wordt mijn kind?",
+        "subItems": [
+          {
+            "id": "how-tall-will-my-son-be",
+            "label": "Hoe lang wordt mijn zoon?"
+          },
+          {
+            "id": "how-tall-will-my-daughter-be",
+            "label": "Hoe lang wordt mijn dochter?"
+          },
+          {
+            "id": "how-tall-will-my-baby-or-toddler-be",
+            "label": "Hoe lang wordt mijn baby of peuter?"
+          },
+          {
+            "id": "how-tall-will-i-be-teens-adults",
+            "label": "Hoe lang word ik? (Tieners en volwassenen)"
+          },
+          {
+            "id": "worked-example",
+            "label": "Rekenvoorbeeld: lengte voorspellen op basis van lengte van ouders"
+          },
+          {
+            "id": "age-2-rule",
+            "label": "Snelle controle voor peuters: de 2-jarigenregel"
+          }
+        ]
       },
       {
-        "id": "can-teens-and-adults-still-grow",
-        "label": "Kunnen Tieners Nog Groeien?"
+        "id": "what-determines-height",
+        "label": "Wat bepaalt de lengte?"
       },
       {
-        "id": "what-determines-a-persons-height",
-        "label": "Wat Bepaalt de Lengte?"
+        "id": "boys-girls-growth-charts",
+        "label": "Groeicurves voor jongens en meisjes"
       },
       {
-        "id": "growth-charts-and-pediatric-tracking",
-        "label": "Groeicurves en Pediatrie"
-      },
-      {
-        "id": "height-calculator-vs-growth-charts",
+        "id": "calculator-vs-growth-charts",
         "label": "Calculator vs Groeicurves"
       },
       {
-        "id": "growth-patterns-in-boys",
-        "label": "Groeipatronen bij Jongens"
+        "id": "when-do-boys-stop-growing",
+        "label": "Wanneer stoppen jongens met groeien?"
       },
       {
-        "id": "growth-patterns-in-girls",
-        "label": "Groeipatronen bij Meisjes"
+        "id": "when-do-girls-stop-growing",
+        "label": "Wanneer stoppen meisjes met groeien?"
       },
       {
-        "id": "scientific-height-prediction-methods",
-        "label": "Wetenschappelijke Methoden"
+        "id": "height-prediction-methods",
+        "label": "Methoden voor lengtevoorspelling uitgelegd",
+        "subItems": [
+          {
+            "id": "khamis-roche-method",
+            "label": "Khamis-Roche-methode"
+          },
+          {
+            "id": "based-on-parents",
+            "label": "Calculator op basis van ouders"
+          },
+          {
+            "id": "age-2-doubling-rule",
+            "label": "2-jarigenregel"
+          }
+        ]
       },
       {
-        "id": "can-you-increase-your-growth-potential",
-        "label": "Groeipotentieel Maximaliseren"
+        "id": "bone-age-method",
+        "label": "Skeletleeftijdsmethode",
+        "subItems": [
+          {
+            "id": "bayley-pinneau-method",
+            "label": "Bayley-Pinneau-methode"
+          },
+          {
+            "id": "roche-wainer-thissen-method",
+            "label": "Roche-Wainer-Thissen-methode"
+          }
+        ]
       },
       {
-        "id": "prediction-accuracy-and-limitations",
-        "label": "Nauwkeurigheid en Limieten"
+        "id": "can-you-increase-height",
+        "label": "Kun je je lengte vergroten?"
       },
       {
-        "id": "frequently-asked-questions",
-        "label": "Veelgestelde Vragen"
+        "id": "accuracy",
+        "label": "Hoe nauwkeurig is een lengtevoorspeller?"
+      },
+      {
+        "id": "faq",
+        "label": "Veelgestelde vragen (FAQ)"
+      },
+      {
+        "id": "related-tools",
+        "label": "Gerelateerde tools"
+      },
+      {
+        "id": "references",
+        "label": "Wetenschappelijke referenties en bronnen"
       }
     ],
     "relatedTools": {
@@ -577,13 +679,14 @@
       "tableHeaderGirlsMedian": "Mediaan Meisjes",
       "ageYrs": "{age} jaar",
       "insightBoysStopLabel": "Einde Groei Jongens:",
-      "insightBoysStopValue": "Tussen 17 en 19 jaar",
+      "insightBoysStopValue": "~16–18 jr",
       "insightGirlsStopLabel": "Einde Groei Meisjes:",
-      "insightGirlsStopValue": "Tussen 15 en 16 jaar",
+      "insightGirlsStopValue": "~14–15 jr",
       "insightMaleHeightLabel": "Volwassen Mediaan Mannen (CDC):",
-      "insightMaleHeightValue": "176,5 cm (5'9,5\")",
+      "insightMaleHeightValue": "175 cm / 5'9\"",
       "insightFemaleHeightLabel": "Volwassen Mediaan Vrouwen (CDC):",
-      "insightFemaleHeightValue": "163,2 cm (5'4,3\")"
+      "insightFemaleHeightValue": "161,3 cm / 5'3,5\"",
+      "sourceNhanes": "Bron: CDC National Center for Health Statistics, volwassenen van 20 jaar en ouder, NHANES aug 2021 tot aug 2023."
     },
     "references": {
       "title": "Wetenschappelijke Bronnen & Referenties",
@@ -597,7 +700,12 @@
       "ref8": "Tanner JM, Whitehouse RH, Cameron N, Marshall WA, Healy MJR, Goldstein H. Assessment of Skeletal Maturity and Prediction of Adult Height (TW2 Method). 2nd ed. London: Academic Press; 1983.",
       "ref9": "Wood DL, Hermida R, et al. Circadian rhythm of growth hormone secretion in children. J Clin Endocrinol Metab. 1999;84(1):123-128.",
       "ref10": "Silventoinen K. Determinants of variation in adult body height. J Biosoc Sci. 2003;35(2):263-285.",
-      "ref11": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife. 2016;5:e13410."
+      "ref11": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife. 2016;5:e13410.",
+      "ref12": "Mayo Clinic Staff. Child growth: Can you predict adult height? Mayo Clinic, 2025.",
+      "ref13": "Cross-sectional analysis of maturity status and Khamis-Roche prediction error. PMC6603099.",
+      "ref14": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age: the Khamis-Roche method. Pediatrics. 1994;94(4):504-507.",
+      "ref15": "CDC National Center for Health Statistics. Body Measurements (FastStats).",
+      "ref16": "Paruthi S, et al. Recommended amount of sleep for pediatric populations. J Clin Sleep Med. 2016."
     }
   },
   "heightWeightPercentile": {

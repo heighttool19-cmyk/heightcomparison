@@ -386,6 +386,15 @@
       "localized_form": null,
       "first_seen_page": "average-height-by-country",
       "added_at": "2026-09-29"
+    },
+    {
+      "canonical_name": "Mayo Clinic",
+      "entity_type": "Organization",
+      "description": "Nonprofit American academic medical center, cited as an authoritative medical reference for the age-2 doubling rule and mid-parental height formula on the height predictor page.",
+      "translate": false,
+      "localized_form": null,
+      "first_seen_page": "height-predictor",
+      "added_at": "2026-11-05"
     }
   ]
 }

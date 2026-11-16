@@ -150,12 +150,13 @@
   "heightPredictor": {
     "intro": {
       "title": "Prédicteur de taille : estimez la taille adulte finale",
-      "description": "Utilisez ce prédicteur de taille pour estimer la taille future des enfants, adolescents et jeunes adultes à partir de leur âge actuel, de la génétique parentale et de leur rythme de développement. Ce calculateur applique la méthode de Khamis-Roche, l'un des modèles prédictifs sans radiographie les plus précis de la médecine pédiatrique. Si votre enfant a moins de quatre ans ou si vous êtes enceinte, utilisez plutôt la formule de la taille cible parentale ci-dessous."
+      "description": "Utilisez ce calculateur de taille pour estimer la taille future des enfants, adolescents et adultes en fonction de l'âge, de la génétique et des schémas de croissance. Il utilise la méthode Khamis-Roche, qui prédit la taille adulte pour les enfants de 4 à 17,5 ans à partir de l'âge, de la taille, du poids et de la taille des deux parents. Dans l'étude originale, 9 prédictions sur 10 se situaient à moins de 5,3 cm (2,1 pouces) pour les garçons et 4,3 cm (1,7 pouce) pour les filles. Pour un enfant de moins de 4 ans ou un bébé à naître, utilisez le calculateur basé uniquement sur les parents ci-dessous.",
+      "lastUpdated": "Dernière mise à jour : Novembre 2026"
     },
     "khamisRocheCalculator": {
       "title": "Prédicteur de taille Khamis-Roche",
       "badge": "Recommandé (de 4 à 17 ans)",
-      "description": "La méthode Khamis-Roche est l'algorithme médical de prédiction de stature le plus éprouvé sans radiographie d'âge osseux. Conçu par le Dr Harry Khamis et le Dr Alex Roche à l'université Wright State.",
+      "description": "Prédiction instantanée de la taille à l'aide de modèles de croissance scientifiques. Entrez l'âge, le sexe, la taille, le poids et la taille des deux parents. Fonctionne de 4 à 17,5 ans.",
       "unitUs": "US (pi/po, lb)",
       "unitMetric": "Métrique (cm, kg)",
       "childAgeLabel": "Âge actuel de l'enfant",
@@ -190,9 +191,9 @@
       "lbsUnit": "lb"
     },
     "midParentalCalculator": {
-      "title": "Calculateur de taille cible parentale (Méthode de Tanner)",
+      "title": "Calculateur de taille basé sur la taille des parents",
       "badge": "Adapté aux nourrissons et enfants de moins de 4 ans",
-      "description": "La formule de Tanner estime le potentiel génétique de l'enfant en calculant la moyenne ajustée de la taille de ses deux parents biologiques.",
+      "description": "Estimez la taille prévue en utilisant uniquement la taille des parents. Fonctionne pour les bébés, les très jeunes enfants et les fœtus. Si vous êtes enceinte, indiquez la taille des deux parents pour obtenir la fourchette estimée de taille adulte de votre enfant. Utilise la formule mid-parentale, qui se situe généralement à moins de 10 cm (4 pouces) de la taille adulte.",
       "unitUs": "US (pi/po)",
       "unitMetric": "Métrique (cm)",
       "motherHeightLabel": "Taille de la mère",
@@ -210,7 +211,8 @@
       "viewComparisonChart": "Voir le graphique comparatif",
       "cmUnit": "cm",
       "ftUnit": "pi",
-      "inUnit": "po"
+      "inUnit": "po",
+      "clear": "Effacer"
     },
     "heightConverter": {
       "title": "Convertisseur rapide de taille",
@@ -225,7 +227,7 @@
       "inUnit": "po"
     },
     "howItWorks": {
-      "title": "Comment fonctionne le prédicteur de taille ?",
+      "title": "Comment ça fonctionne ?",
       "description": "Le calculateur croise des données biométriques clés pour générer des prévisions fondées sur la science de la croissance :",
       "step1Strong": "1. Collecte des mesures essentielles : ",
       "step1Text": "L'âge précis, le sexe, la taille, le poids actuel de l'enfant et la taille des deux parents.",
@@ -239,28 +241,46 @@
       "description": "Anticiper la stature finale d'un enfant est une interrogation légitime des parents et un indicateur précieux du suivi médical pédiatrique.",
       "factorsTitle": "Facteurs déterminants majeurs :",
       "geneticsLabel": "Hérédité génétique (60–80 %) :",
-      "geneticsText": "La stature des parents fournit le gabarit de départ.",
+      "geneticsText": "les variants génétiques hérités expliquent environ 80 % des différences de taille entre les individus.",
       "currentGrowthLabel": "Rythme de croissance actuel :",
       "currentGrowthText": "La trajectoire centile suivie régulièrement par l'enfant.",
       "statisticsLabel": "Modèles statistiques reconnus :",
       "statisticsText": "Algorithmes validés sur des milliers de cohortes d'enfants suivis jusqu'à l'âge adulte.",
-      "closing": "Notre outil combine ces trois éléments pour offrir l'estimation la plus solide sans recourir à des examens radiologiques."
+      "closing": "Notre outil combine ces trois éléments pour offrir l'estimation la plus solide sans recourir à des examens radiologiques.",
+      "workedExampleTitle": "Exemple concret : prédire la taille à partir de la taille des parents",
+      "workedExampleIntro": "Un père mesurant 180 cm (5'11\") et une mère mesurant 165 cm (5'5\") totalisent 345 cm (136 pouces).",
+      "workedExampleSon": "Fils : (345 + 13) ÷ 2 = 179 cm. En unités impériales : (136 + 5) ÷ 2 = 70,5 pouces, environ 5'10,5\".",
+      "workedExampleDaughter": "Fille : (345 − 13) ÷ 2 = 166 cm. En unités impériales : (136 − 5) ÷ 2 = 65,5 pouces, environ 5'5,5\".",
+      "workedExampleRange": "Plage attendue : environ 10 cm (4 pouces) de chaque côté, soit environ 169 à 189 cm (5'6,5\" à 6'2,5\") pour le fils.",
+      "workedExampleClosing": "Pour un enfant de 4 ans ou plus, le calculateur Khamis-Roche resserre cette plage car il prend également en compte la taille et le poids actuels de l'enfant.",
+      "age2RuleTitle": "Vérification rapide pour les tout-petits : la règle des 2 ans",
+      "age2RuleText": "Doublez la taille d'un garçon à l'âge de 2 ans, ou d'une fille à 18 mois, pour une estimation approximative de la taille adulte. Un garçon mesurant 87,6 cm (34,5 pouces) à son deuxième anniversaire atteindra environ 175 cm (5'9\", 69 pouces) à l'âge adulte. La Mayo Clinic cite cette règle aux côtés de la formule mid-parentale.",
+      "sonTitle": "Quelle sera la taille de mon fils ?",
+      "sonText": "Le calculateur Khamis-Roche ci-dessus estime la taille adulte de votre fils à partir de son âge, sa taille et son poids actuels, et de la taille de ses deux parents. La plupart des garçons s'arrêtent de grandir entre 16 et 18 ans.",
+      "daughterTitle": "Quelle sera la taille de ma fille ?",
+      "daughterText": "Le calculateur Khamis-Roche ci-dessus estime la taille adulte de votre fille à partir de ses mesures actuelles et de la taille de ses parents. La plupart des filles atteignent leur taille adulte entre 14 et 15 ans.",
+      "babyTitle": "Quelle sera la taille de mon bébé ou jeune enfant ?",
+      "babyText": "Pour les bébés, utilisez le calculateur de taille des parents ci-dessus. Il ne nécessite que la taille du père et de la mère. Une règle courante double la taille d'un garçon à 2 ans ou d'une fille à 18 mois."
     },
     "teensAdults": {
       "title": "Prédiction pour adolescents et adultes",
-      "description": "Vais-je encore grandir ? C'est une question courante à la fin de l'adolescence.",
+      "description": "Les adolescents qui se demandent « quelle sera ma taille » peuvent utiliser le calculateur Khamis-Roche. Entrez votre âge actuel, votre taille, votre poids et la taille de vos parents pour l'estimation la plus précise.",
       "teensTitle": "Chez les adolescents (13 à 18 ans) :",
       "teensText": "La poursuite de la croissance dépend de l'état d'ossification des cartilages de conjugaison (plaques de croissance).",
-      "teensItem1": "Les filles terminent généralement leur croissance vers 15 ou 16 ans (environ 2 à 3 ans après l'apparition des règles).",
+      "teensItem1": "Fonctionne de 4 à 17,5 ans",
       "teensItem2": "Les garçons continuent fréquemment de grandir jusqu'à 18 ou 20 ans.",
-      "teensItem3": "Une alimentation saine et un sommeil réparateur permettent de valoriser le potentiel de croissance restant.",
+      "teensItem3": "La plupart des garçons cessent de grandir entre 16 et 18 ans ; les filles vers 14 ou 15 ans",
       "adultsTitle": "Chez les adultes (plus de 20 ans) :",
       "adultsText": "Une fois la puberté achevée et les cartilages de croissance soudés, l'allongement osseux s'interrompt de manière irréversible.",
       "adultsItem1": "Aucun exercice ni complément alimentaire ne peut allonger les os longs après fusion des cartilages.",
-      "adultsItem2": "Améliorer sa posture et décompresser la colonne vertébrale peut faire gagner 1 à 3 cm de maintien fonctionnel.",
+      "adultsItem2": "Utilisez l'outil Taille des parents pour prédire la taille des enfants",
       "adultsItem3": "La stature diminue naturellement de 1 à 2 cm au cours de la journée en raison du tassement gravitationnel des disques intervertébraux.",
       "limitationLabel": "Avertissement médical :",
-      "limitationText": "Les pilules ou programmes commerciaux prétendant faire grandir des adultes sont sans fondement scientifique et potentiellement dangereux."
+      "limitationText": "Les pilules ou programmes commerciaux prétendant faire grandir des adultes sont sans fondement scientifique et potentiellement dangereux.",
+      "noParentsTitle": "Que faire si vous ne connaissez pas la taille de vos parents ?",
+      "noParentsP1": "Les deux calculateurs de cette page nécessitent la taille des deux parents et ne peuvent donc pas fournir de prédiction sans ces données. Vous pouvez toutefois suivre votre croissance : mesurez-vous tous les 6 mois et vérifiez votre percentile sur une courbe de croissance. En cas d'inquiétude, un médecin peut prescrire une radiographie de l'âge osseux, méthode la plus précise.",
+      "noParentsCheckPercentile": "Vérifiez votre percentile avec le",
+      "noParentsLinkText": "calculateur de percentile de taille et poids"
     },
     "ctaBanner": {
       "text": "Souhaitez-vous comparer la taille de deux personnes ou de célébrités à l'échelle réelle ?",
@@ -270,17 +290,17 @@
       "title": "Quels facteurs déterminent la taille d'une personne ?",
       "description": "La stature adulte finale dépend de l'interaction complexe entre génétique et facteurs environnementaux durant la jeunesse :",
       "geneticsTitle": "1. Le patrimoine génétique (environ 80 %) :",
-      "geneticsBefore": "Les études sur les jumeaux indiquent que ",
-      "geneticsStrong1": "60 % à 80 %",
-      "geneticsMiddle": " de la variabilité de la taille s'explique par l'hérédité polygénique. Plus de ",
-      "geneticsStrong2": "700 variants génétiques",
+      "geneticsBefore": "Les variants génétiques hérités expliquent environ ",
+      "geneticsStrong1": "80 %",
+      "geneticsMiddle": " des différences de taille entre individus (MedlinePlus). Les parents grands ont tendance à avoir des enfants grands, bien que la régression vers la moyenne s'applique — les parents très grands ou petits ont souvent des enfants plus proches de la ",
+      "geneticsStrong2": "moyenne.",
       "nutritionTitle": "2. La nutrition et l'alimentation (environ 15 %) :",
-      "nutritionBefore": "Un apport continu en protéines de qualité, calcium, zinc et vitamine D permet d'atteindre son plein potentiel biologique.",
-      "nutritionStrong": "La sous-nutrition infantile",
-      "nutritionAfter": " constitue le premier frein environnemental au développement du squelette.",
+      "nutritionBefore": "Les ",
+      "nutritionStrong": "20 % restants environ",
+      "nutritionAfter": " proviennent de l'environnement. L'hormone de croissance est principalement sécrétée durant le sommeil profond.",
       "nutritionItem1": "Calcium et vitamine D : essentiels à la minéralisation de la trame osseuse.",
-      "nutritionItem2": "Protéines nobles : apportent les acides aminés requis pour la synthèse collagénique et hormonale.",
-      "nutritionItem3": "Zinc et oligo-éléments : soutiennent la division cellulaire et la synthèse de l'IGF-1.",
+      "nutritionItem2": "9–12 h de sommeil (6–12 ans)",
+      "nutritionItem3": "8–10 h pour les adolescents",
       "timingTitle": "3. Le sommeil et la régulation hormonale (environ 5 %) :",
       "timingText": "L'hormone de croissance (GH) est sécrétée principalement par vagues nocturnes au cours du sommeil profond à ondes lentes. Un repos suffisant et une activité physique régulière stimulent sa libération."
     },
@@ -291,7 +311,8 @@
       "percentileBefore": "Alors qu'une courbe de percentiles montre ",
       "percentileStrong": "où se situe l'enfant aujourd'hui",
       "percentileAfter": " par rapport à sa classe d'âge, un prédicteur de taille calcule ",
-      "note": "la taille adulte finale attendue en intégrant la taille des deux parents."
+      "note": "la taille adulte finale attendue en intégrant la taille des deux parents.",
+      "expandText": "Cliquez sur les vues graphique et tableau ci-dessous pour explorer les courbes complètes de percentiles."
     },
     "comparisonTable": {
       "title": "Comparatif : Prédicteur de taille vs Courbes de croissance",
@@ -312,10 +333,10 @@
       "rowDoctorCalculator": "Conseil et projection du potentiel de croissance",
       "rowDoctorGrowthChart": "Contrôle obligatoire à chaque examen de suivi",
       "rowAccuracyLabel": "Précision prédictive",
-      "rowAccuracyCalculator": "Environ ±3 à 5 cm dans 90 % des cas",
+      "rowAccuracyCalculator": "9 sur 10 dans les 2,1 po (garçons) ou 1,7 po (filles) avec Khamis-Roche ; env. 4 po avec parents seuls",
       "rowAccuracyGrowthChart": "Mesure descriptive exacte à date",
       "rowWithoutParentsLabel": "Fonctionne sans les parents ?",
-      "rowWithoutParentsCalculator": "Non (ou avec formules simplifiées moins précises)",
+      "rowWithoutParentsCalculator": "Non, la taille des deux parents est requise",
       "rowWithoutParentsGrowthChart": "Oui, sans informations parentales"
     },
     "boysGrowth": {
@@ -324,30 +345,30 @@
       "p1Strong": "poussée pubertaire plus tardive et intense",
       "p1After": " que celle des filles.",
       "p2": "Grandes étapes de la croissance masculine :",
-      "item1Before": "Petite enfance (0 à 3 ans) : ",
-      "item1Strong": "Croissance très rapide régie par l'alimentation.",
-      "item2Before": "Âge scolaire (4 à 11 ans) : ",
-      "item2Strong": "Allongement continu d'environ 5 à 6 cm par an.",
-      "item3Before": "Pic pubertaire (12 à 16 ans) : ",
-      "item3Strong": "Forte poussée atteignant jusqu'à 8 à 12 cm en une seule année.",
-      "p3Before": "La soudure des cartilages chez les garçons se termine en général entre ",
-      "p3Strong": "17 et 19 ans",
-      "p3After": ", marquant l'acquisition de la taille adulte définitive."
+      "item1Before": "Début de la puberté : ",
+      "item1Strong": "généralement entre 9 et 14 ans",
+      "item2Before": "Croissance rapide : ",
+      "item2Strong": "entre 12 et 15 ans",
+      "item3Before": "Ralentissement : ",
+      "item3Strong": "peu après la poussée de croissance",
+      "p3Before": "Pendant le pic pubertaire, les garçons peuvent grandir de 7 à 10 cm (3–4 pouces) par an. ",
+      "p3Strong": "La plupart des garçons s'arrêtent de grandir entre 16 et 18 ans. ",
+      "p3After": "Les personnes à puberté tardive peuvent encore prendre un peu après."
     },
     "girlsGrowth": {
       "title": "Chronologie de la croissance chez les filles",
       "p1": "Chez les filles, la poussée de croissance débute environ deux ans plus tôt que chez les garçons, généralement entre 10 et 11 ans.",
       "p2": "Étapes clés du développement féminin :",
-      "item1Before": "Début pubertaire (9 à 11 ans) : ",
-      "item1Strong": "Accélération sensible de la vitesse de croissance.",
-      "item2Before": "Pic de croissance (11 à 12 ans) : ",
-      "item2Strong": "Gain maximal de stature (environ 7 à 9 cm par an).",
-      "p3Before": "Après les premières règles (ménarche), la croissance ralentit sous l'effet des œstrogènes. Les filles gagnent encore environ 5 à 7 cm avant l'arrêt complet vers ",
-      "p3Strong": "15 à 16 ans",
-      "p3After": "."
+      "item1Before": "Début de la puberté : ",
+      "item1Strong": "généralement entre 8 et 13 ans",
+      "item2Before": "Poussée de croissance : ",
+      "item2Strong": "entre 10 et 14 ans",
+      "p3Before": "Taille adulte : ",
+      "p3Strong": "la plupart des filles atteignent leur taille adulte vers 14 ou 15 ans, ",
+      "p3After": "grandissant encore de 2,5 à 5 cm (1 à 2 pouces) après leurs premières règles."
     },
     "methods": {
-      "title": "Méthodes de prédiction de taille expliquées",
+      "title": "Méthodes de prédiction de la taille expliquées",
       "subtitle": "Comment les professionnels estiment-ils la stature future ?",
       "description": "La recherche biomédicale a conçu différents modèles, chacun équilibrant simplicité d'application et précision des résultats :",
       "khamisRoche": {
@@ -356,8 +377,8 @@
         "p1": "Publiée dans Pediatrics par le Dr Harry Khamis et le Dr Alex Roche à partir des données de la cohorte Fels.",
         "p2": "Elle s'impose comme la méthode de référence sans imagerie médicale :",
         "item1Before": "Excellente précision : ",
-        "item1Strong": "Marge d'erreur de ±3 à 5 cm chez 90 % des enfants de 4 à 17 ans.",
-        "item2": "Totalement non invasive : ne requiert aucune radiographie du poignet.",
+        "item1Strong": "±2,1 pouces pour les garçons, ±1,7 pouce pour les filles (9 prédictions sur 10 ; la moitié à moins de 0,9 et 0,7 pouce)",
+        "item2": "Validé pour les 4 à 17,5 ans",
         "item3": "Intègre l'âge, la taille de l'enfant, son poids et la taille des deux parents biologiques.",
         "usedByCalculator": "Cette méthode est au cœur de notre calculateur principal.",
         "readyText": "Envie d'estimer la taille avec Khamis-Roche ?",
@@ -376,7 +397,19 @@
         "item3": "Donne un intervalle cible avec une marge de ±5 cm (±2 pouces).",
         "item4": "Ne prend pas en compte le rythme propre de croissance de l'enfant.",
         "onlyHaveText": "Vous connaissez la taille des parents mais pas celle de l'enfant ?",
-        "linkText": "Utiliser la formule de taille cible parentale ↑"
+        "linkText": "Utiliser la formule de taille cible parentale ↑",
+        "formulaExplanation": "La formule mid-parentale est le moyen le plus simple d'estimer la taille adulte d'un enfant en utilisant uniquement la taille des parents. Elle ne nécessite aucun examen médical et fonctionne à tout âge, y compris pour les bébés et les enfants à naître.",
+        "boysFormulaSub": "Métrique : (Père + Mère + 13 cm) ÷ 2",
+        "girlsFormulaSub": "Métrique : (Père + Mère - 13 cm) ÷ 2",
+        "boysFormulaMetricLabel": "Pour garçons (Métrique)",
+        "boysFormulaMetric": "(Père + Mère + 13 cm) ÷ 2",
+        "boysFormulaMetricSub": "Calcul en centimètres",
+        "girlsFormulaMetricLabel": "Pour filles (Métrique)",
+        "girlsFormulaMetric": "(Père + Mère - 13 cm) ÷ 2",
+        "girlsFormulaMetricSub": "Calcul en centimètres",
+        "exampleText": "Exemple : Père 180 cm + Mère 165 cm = 345 cm. Garçon : (345 + 13) ÷ 2 = 179 cm. Fille : (345 - 13) ÷ 2 = 166 cm.",
+        "exampleEstimateText": "Fourchette cible estimée : ±10 cm (4 pouces)",
+        "workedExamplePointer": "Consultez l'exemple concret dans « Quelle sera la taille de mon enfant ? »"
       },
       "boneAge": {
         "badge": "Méthode hospitalière spécialisée",
@@ -395,11 +428,14 @@
         "badge": "Modèle multivarié avancé",
         "title": "Méthode de Roche-Wainer-Thissen (RWT)",
         "text": "Équation développée en 1975 combinant l'âge chronologique, la taille, le poids, la stature des parents et l'âge osseux pour une projection statistique affinée."
+      },
+      "age2Rule": {
+        "badge": "RÈGLE EMPIRIQUE",
+        "title": "Règle du doublement à 2 ans",
+        "text": "Double la taille d'un garçon à 2 ans ou d'une fille à 18 mois. Ne nécessite aucun calculateur ni taille des parents, mais ignore la génétique : à considérer comme une estimation approximative pour les tout-petits."
       }
     },
     "canIncrease": {
-      "titlePrefix": "Peut-on ",
-      "titleHighlight": "favoriser la croissance en taille",
       "description": "Durant l'enfance et l'adolescence, tant que les cartilages sont actifs, un mode de vie sain permet de maximiser le potentiel génétique :",
       "nutritionTitle": "1. Une alimentation riche et équilibrée",
       "nutritionText": "Les apports nutritionnels fournissent les matériaux indispensables à la formation osseuse :",
@@ -414,114 +450,180 @@
       "exerciseTitle": "3. Activité physique et bonne posture",
       "exerciseText": "La natation, les sports de ballon et les étirements stimulent le remodelage osseux et favorisent un bon maintien postural.",
       "warningStrong": "Mise en garde importante :",
-      "warningText": "Méfiez-vous des produits ou méthodes commerciales prétendant faire grandir des adultes. Une fois les cartilages fermés, la croissance osseuse est médicalement terminée."
+      "warningText": "Méfiez-vous des produits ou méthodes commerciales prétendant faire grandir des adultes. Une fois les cartilages fermés, la croissance osseuse est médicalement terminée.",
+      "title": "Peut-on augmenter sa taille ?"
     },
     "accuracy": {
-      "titlePrefix": "Quelle est la ",
-      "titleHighlight": "précision",
-      "titleSuffix": " du prédicteur de taille ?",
       "description": "Les études de validation confirment une excellente performance chez les enfants au développement typique :",
-      "check1": "Chez 90 % des enfants sains, le modèle Khamis-Roche prédit la taille finale à ±3 à 5 cm près.",
-      "check2": "La précision s'affine à mesure que l'enfant approche de la puberté (fiabilité plus forte à 10–12 ans qu'à 4 ans).",
-      "check3": "Les enfants à maturation pubertaire moyenne obtiennent les prévisions les plus exactes.",
-      "check4": "En cas d'avance ou de retard pubertaire très marqué, la précision est moindre sans radiographie d'âge osseux.",
-      "alert1": "Certaines affections chroniques ou la prise prolongée de corticoïdes peuvent modifier la courbe.",
-      "alert2": "Les modèles supposent que les deux parents ont grandi sans anomalies de développement.",
-      "alert3": "Ce calculateur ne remplace pas l'avis d'un pédiatre ou endocrinologue.",
-      "rangeNotice": "C'est pourquoi notre outil indique systématiquement une fourchette cible en complément de l'estimation centrale.",
       "disclaimerStrong": "Avertissement médical : ",
-      "disclaimerText": "Cet outil est mis à disposition dans un but éducatif et indicatif. Pour tout diagnostic médical, adressez-vous à un professionnel de santé qualifié."
+      "disclaimerText": "Cet outil est mis à disposition dans un but éducatif et indicatif. Pour tout diagnostic médical, adressez-vous à un professionnel de santé qualifié.",
+      "title": "Quelle est la précision d'un calculateur de taille ?",
+      "is100PercentTitle": "Existe-t-il un prédicteur de taille précis à 100 % ?",
+      "is100PercentText": "Non. Chaque outil fournit une fourchette probable, car les gènes, la puberté et la santé influencent le résultat. Khamis-Roche est la méthode non radiologique la plus précise, avec 9 prédictions sur 10 dans les 2,1 pouces pour les garçons et 1,7 pouce pour les filles. Une radiographie d'âge osseux est plus précise et prescrite par les médecins en cas de suspicion de trouble de croissance.",
+      "typicalErrorTitle": "Erreurs types selon la méthode de prédiction",
+      "thMethod": "Méthode",
+      "thTypicalError": "Erreur type",
+      "thNeedsBoneAge": "Âge osseux requis ?",
+      "methodKhamis": "Méthode Khamis-Roche",
+      "errorKhamis": "±5,3 cm (garçons) / ±4,3 cm (filles)",
+      "boneAgeKhamis": "Non",
+      "methodMidParental": "Formule Mid-Parentale",
+      "errorMidParental": "±10 cm (4 pouces)",
+      "boneAgeMidParental": "Non",
+      "methodBoneAge": "Radiographie de l'âge osseux (Greulich-Pyle / TW)",
+      "errorBoneAge": "±2,5 cm (précision maximale)",
+      "boneAgeBoneAge": "Oui (clinique)",
+      "whyMissesTitle": "Pourquoi les prédictions peuvent varier",
+      "miss1": "9 prédictions sur 10 se situent à moins de 5,3 cm (2,1 po) pour les garçons et 4,3 cm (1,7 po) pour les filles",
+      "miss2": "La formule basée uniquement sur les parents est moins précise : généralement à moins de 10 cm (4 po)",
+      "miss3": "La précision est maximale lorsque l'enfant a plus de 4 ans",
+      "miss4": "Des mesures précises de taille et de poids améliorent nettement les résultats",
+      "miss5": "Des données exactes sur la taille des parents sont indispensables pour un résultat fiable"
     },
     "faq": [
       {
-        "q": "Quelle est la précision du prédicteur Khamis-Roche ?",
-        "a": "La méthode Khamis-Roche affiche une précision éprouvée d'environ ±3 à 5 cm (±1,5 à 2 pouces) chez 90 % des enfants sains âgés de 4 à 17 ans. C'est le modèle sans radiographie le plus fiable reconnu par la recherche médicale."
+        "q": "Quelle sera ma taille ?",
+        "a": "Votre taille adulte dépend principalement de la taille de vos parents et de votre rythme de croissance. Utilisez le calculateur ci-dessus en entrant votre âge, taille, poids et la taille de vos parents pour obtenir une fourchette basée sur le modèle Khamis-Roche. Si vous avez 18 ans ou plus, vos cartilages de conjugaison sont soudés et votre taille est fixée."
       },
       {
-        "q": "À quel âge s'arrête la croissance chez les filles et les garçons ?",
-        "a": "Les filles arrêtent le plus souvent de grandir entre 15 et 16 ans, généralement deux à trois ans après leurs premières règles. Les garçons continuent souvent jusqu'à 18 ou 20 ans lors de la fermeture définitive des cartilages de croissance."
+        "q": "Quelle sera la taille de mon fils ?",
+        "a": "Entrez l'âge, la taille et le poids actuels de votre fils, ainsi que la taille des deux parents dans le calculateur Khamis-Roche ci-dessus. La plupart des garçons cessent de grandir entre 16 et 18 ans. La formule mid-parentale offre également une estimation approximative : (Taille père + Taille mère + 13 cm ou 5 pouces) ÷ 2."
       },
       {
-        "q": "Pourquoi un enfant peut-il être beaucoup plus grand que ses parents ?",
-        "a": "La taille est un caractère polygénique complexe hérité de l'ensemble de l'arbre généalogique. De plus, une alimentation moderne enrichie en protéines et un meilleur suivi sanitaire permettent souvent aux enfants de dépasser la taille de leurs parents."
+        "q": "Un calculateur de taille est-il précis ?",
+        "a": "La méthode Khamis-Roche (utilisée dans ce calculateur) est l'un des prédicteurs non cliniques les plus précis disponibles. Dans l'étude originale, 9 prédictions sur 10 se situaient à moins de 2,1 pouces pour les garçons et 1,7 pouce pour les filles. La précision augmente au-delà de 4 ans avec des mesures exactes. Les résultats indiquent toujours une fourchette, pas une certitude absolue."
       },
       {
-        "q": "Qu'est-ce que la formule de taille cible parentale de Tanner ?",
-        "a": "C'est une formule clinique classique qui estime le potentiel génétique en calculant la moyenne de la taille des deux parents, à laquelle on ajoute 6,5 cm pour un garçon ou dont on retranche 6,5 cm pour une fille. Elle est très pratique pour les enfants de moins de 4 ans."
+        "q": "Existe-t-il un prédicteur de taille précis à 100 % ?",
+        "a": "Non. Chaque prédicteur donne une fourchette probable, car les gènes, la puberté et la santé influencent le résultat. Khamis-Roche est la méthode sans radiographie la plus précise (9 sur 10 dans les 2,1 po pour les garçons et 1,7 po pour les filles). Une radiographie de l'âge osseux est plus précise et prescrite par les médecins en cas de suspicion d'anomalie."
       },
       {
-        "q": "Peut-on grandir après 18 ou 20 ans ?",
-        "a": "Non au niveau de la structure osseuse. Dès lors que les cartilages se sont soudés, les os longs ne peuvent plus s'allonger. Toutefois, travailler sa posture et muscler le dos peut faire gagner 1 à 2 cm d'amplitude fonctionnelle."
+        "q": "La taille des parents permet-elle de prédire ma taille ?",
+        "a": "Oui. Les gènes hérités expliquent environ 80 % des écarts de taille entre individus, et la taille des parents en est le meilleur indicateur pratique. La formule mid-parentale fournit une estimation approximative avec ces seules données. Combiner la taille des parents avec les mesures actuelles de l'enfant (âge, taille, poids) via le modèle Khamis-Roche donne des résultats nettement plus précis."
       },
       {
-        "q": "Le sommeil joue-t-il un rôle dans la croissance ?",
-        "a": "Oui, un rôle prépondérant. L'hormone de croissance est sécrétée en majorité par pulsations régulières durant le sommeil profond. Un sommeil insuffisant ou perturbé peut freiner le développement statutaire de l'enfant."
+        "q": "Puis-je prédire la taille de mon bébé ?",
+        "a": "Pour les nourrissons et bébés, utilisez le calculateur de formule mid-parentale ci-dessus. Il ne nécessite que la taille de la mère et du père. Notez que la précision est moindre pour les bébés car aucune donnée de croissance actuelle n'est encore prise en compte. Dès l'âge de 2 ans, la règle du doublement offre une seconde vérification rapide."
       },
       {
-        "q": "Quand convient-il de consulter un pédiatre ou endocrinologue ?",
-        "a": "Il est recommandé de consulter si l'enfant grandit de moins de 4 à 5 cm par an en âge scolaire, si sa courbe stagne sous le 3e percentile ou si des signes de puberté précoce apparaissent (avant 8 ans chez la fille ou 9 ans chez le garçon)."
+        "q": "Quelle taille mon enfant devrait-il mesurer à son âge ?",
+        "a": "Consultez la section des courbes de croissance ci-dessus pour observer la taille moyenne selon l'âge pour les garçons et les filles. Le 50e percentile correspond à la médiane. Les enfants en bonne santé se situent habituellement entre le 3e et le 97e percentile. Si votre enfant s'écarte durablement de cette plage, consultez son pédiatre."
+      },
+      {
+        "q": "Quelle est la méthode de prédiction de taille la plus précise ?",
+        "a": "La méthode globale la plus précise est la détermination de l'âge osseux (radiographie du poignet), utilisée en clinique par les médecins. Pour une prédiction non clinique, la méthode Khamis-Roche est la plus précise : elle s'appuie sur l'âge, la taille, le poids et la taille parentale, avec 9 prédictions sur 10 dans les 2,1 pouces (garçons) et 1,7 pouce (filles)."
       }
     ],
     "toc": [
       {
-        "id": "height-predictor",
-        "label": "Prédicteur de taille Khamis-Roche"
-      },
-      {
-        "id": "mid-parental-calculator",
-        "label": "Taille cible parentale (Tanner)"
-      },
-      {
-        "id": "height-converter",
-        "label": "Convertisseur de taille"
+        "id": "height-predictor-calculator",
+        "label": "Calculateur de prédiction de taille"
       },
       {
         "id": "how-it-works",
-        "label": "Fonctionnement du prédicteur"
+        "label": "Comment ça fonctionne ?"
       },
       {
-        "id": "how-tall-child",
-        "label": "Quelle sera sa taille adulte ?"
+        "id": "how-tall-will-my-child-be",
+        "label": "Quelle sera la taille de mon enfant ?",
+        "subItems": [
+          {
+            "id": "how-tall-will-my-son-be",
+            "label": "Quelle sera la taille de mon fils ?"
+          },
+          {
+            "id": "how-tall-will-my-daughter-be",
+            "label": "Quelle sera la taille de ma fille ?"
+          },
+          {
+            "id": "how-tall-will-my-baby-or-toddler-be",
+            "label": "Quelle sera la taille de mon bébé ou jeune enfant ?"
+          },
+          {
+            "id": "how-tall-will-i-be-teens-adults",
+            "label": "Quelle sera ma taille ? (Ados & Adultes)"
+          },
+          {
+            "id": "worked-example",
+            "label": "Exemple concret : prédire la taille à partir de la taille des parents"
+          },
+          {
+            "id": "age-2-rule",
+            "label": "Vérification rapide pour les tout-petits : la règle des 2 ans"
+          }
+        ]
       },
       {
-        "id": "teens-adults",
-        "label": "Adolescents et adultes"
+        "id": "what-determines-height",
+        "label": "Qu'est-ce qui détermine la taille ?"
       },
       {
-        "id": "determinants",
-        "label": "Facteurs de la taille"
+        "id": "boys-girls-growth-charts",
+        "label": "Courbes de croissance garçons et filles"
       },
       {
-        "id": "growth-charts",
-        "label": "Courbes de croissance vs calculateurs"
+        "id": "calculator-vs-growth-charts",
+        "label": "Calculateur vs Courbes de croissance"
       },
       {
-        "id": "boys-growth",
-        "label": "Croissance des garçons"
+        "id": "when-do-boys-stop-growing",
+        "label": "Quand les garçons cessent-ils de grandir ?"
       },
       {
-        "id": "girls-growth",
-        "label": "Croissance des filles"
+        "id": "when-do-girls-stop-growing",
+        "label": "Quand les filles cessent-elles de grandir ?"
       },
       {
-        "id": "methods",
-        "label": "Méthodes médicales expliquées"
+        "id": "height-prediction-methods",
+        "label": "Méthodes de prédiction de la taille expliquées",
+        "subItems": [
+          {
+            "id": "khamis-roche-method",
+            "label": "Méthode Khamis-Roche"
+          },
+          {
+            "id": "based-on-parents",
+            "label": "Calculateur de taille basé sur les parents"
+          },
+          {
+            "id": "age-2-doubling-rule",
+            "label": "Règle du doublement à 2 ans"
+          }
+        ]
       },
       {
-        "id": "can-increase",
-        "label": "Favoriser la croissance"
+        "id": "bone-age-method",
+        "label": "Méthode de l'âge osseux",
+        "subItems": [
+          {
+            "id": "bayley-pinneau-method",
+            "label": "Méthode Bayley-Pinneau"
+          },
+          {
+            "id": "roche-wainer-thissen-method",
+            "label": "Méthode Roche-Wainer-Thissen"
+          }
+        ]
+      },
+      {
+        "id": "can-you-increase-height",
+        "label": "Peut-on augmenter sa taille ?"
       },
       {
         "id": "accuracy",
-        "label": "Précision et limites"
+        "label": "Quelle est la précision d'un calculateur de taille ?"
       },
       {
         "id": "faq",
-        "label": "Questions fréquentes"
+        "label": "Foire aux questions (FAQ)"
+      },
+      {
+        "id": "related-tools",
+        "label": "Outils connexes"
       },
       {
         "id": "references",
-        "label": "Sources et références"
+        "label": "Bibliographie scientifique & sources"
       }
     ],
     "relatedTools": {
@@ -573,13 +675,14 @@
       "tableHeaderGirlsMedian": "Médiane Filles",
       "ageYrs": "{age} ans",
       "insightBoysStopLabel": "Fin de croissance chez les garçons :",
-      "insightBoysStopValue": "Vers 18–20 ans",
+      "insightBoysStopValue": "~16–18 ans",
       "insightGirlsStopLabel": "Fin de croissance chez les filles :",
-      "insightGirlsStopValue": "Vers 15–16 ans",
+      "insightGirlsStopValue": "~14–15 ans",
       "insightMaleHeightLabel": "Taille moyenne d'un homme adulte :",
-      "insightMaleHeightValue": "176 cm (5 pi 9,3 po)",
+      "insightMaleHeightValue": "175 cm / 5'9\"",
       "insightFemaleHeightLabel": "Taille moyenne d'une femme adulte :",
-      "insightFemaleHeightValue": "163 cm (5 pi 4,2 po)"
+      "insightFemaleHeightValue": "161,3 cm / 5'3,5\"",
+      "sourceNhanes": "Source : CDC National Center for Health Statistics, adultes de 20 ans et plus, NHANES août 2021 à août 2023."
     },
     "references": {
       "title": "Sources et références scientifiques",
@@ -593,7 +696,12 @@
       "ref8": "World Health Organization. WHO Child Growth Standards. Acta Paediatrica, 2006. Suppl 450:1–101.",
       "ref9": "Wood AR et al. Defining the role of common variation in the genomic and biological architecture of adult human height. Nature Genetics, 2014. Vol. 46, pp. 1173–1186.",
       "ref10": "Yengo L et al. A saturated map of common genetic variants associated with human height. Nature, 2022. Vol. 610, pp. 704–712.",
-      "ref11": "Rogol AD, Clark PA, Roemmich JN. Growth and pubertal development in children and adolescents: effects of diet and physical activity. American Journal of Clinical Nutrition, 2000. Vol. 72, pp. 521S–528S."
+      "ref11": "Rogol AD, Clark PA, Roemmich JN. Growth and pubertal development in children and adolescents: effects of diet and physical activity. American Journal of Clinical Nutrition, 2000. Vol. 72, pp. 521S–528S.",
+      "ref12": "Mayo Clinic Staff. Child growth: Can you predict adult height? Mayo Clinic, 2025.",
+      "ref13": "Cross-sectional analysis of maturity status and Khamis-Roche prediction error. PMC6603099.",
+      "ref14": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age: the Khamis-Roche method. Pediatrics. 1994;94(4):504-507.",
+      "ref15": "CDC National Center for Health Statistics. Body Measurements (FastStats).",
+      "ref16": "Paruthi S, et al. Recommended amount of sleep for pediatric populations. J Clin Sleep Med. 2016."
     }
   },
   "heightWeightPercentile": {

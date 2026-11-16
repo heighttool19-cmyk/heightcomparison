@@ -18,6 +18,20 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion', 'recharts'],
   },
+  async redirects() {
+    return [
+      {
+        source: '/height-difference',
+        destination: '/height-difference-calculator',
+        permanent: true,
+      },
+      {
+        source: '/height-weight-percentile',
+        destination: '/height-weight-percentile-calculator',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

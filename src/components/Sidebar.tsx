@@ -18,9 +18,9 @@ import QuickAddPresets from './QuickAddPresets';
 import EditPersonForm from './EditPersonForm';
 
 const AddImageForm = dynamic(() => import('./AddImageForm'), { loading: () => <LoadingPanel /> });
-const CelebritiesPanel = dynamic(() => import('./CelebritiesPanel'), { loading: () => <LoadingPanel /> });
-const FictionalPanel = dynamic(() => import('./FictionalPanel').then(mod => mod.FictionalPanel), { loading: () => <LoadingPanel /> });
-const EntitiesPanel = dynamic(() => import('./EntitiesPanel'), { loading: () => <LoadingPanel /> });
+const CelebritiesPanel = dynamic(() => import('./CelebritiesPanel').then(mod => mod.CelebritiesPanel || mod.default), { loading: () => <LoadingPanel /> });
+const FictionalPanel = dynamic(() => import('./FictionalPanel').then(mod => mod.FictionalPanel || mod.default), { loading: () => <LoadingPanel /> });
+const EntitiesPanel = dynamic(() => import('./EntitiesPanel').then(mod => mod.EntitiesPanel || mod.default), { loading: () => <LoadingPanel /> });
 
 interface SidebarProps {
     persons: Person[];
@@ -40,9 +40,11 @@ interface SidebarProps {
     onEditRequest?: (id: string) => void;
     onReorder?: (id: string, direction: 'up' | 'down') => void;
     highlight?: boolean;
+    referencePersonId?: string | null;
+    onSelectReference?: (id: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAdd, onAddEntity, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditUpdate, onEditCancel, onAddEntityExport, isCapturing, onEditRequest, onReorder, highlight }) => {
+const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAdd, onAddEntity, onRemove, scale, zoom, activePanel = 'ADD_PERSON', editingPerson, onEditSave, onEditUpdate, onEditCancel, onAddEntityExport, isCapturing, onEditRequest, onReorder, highlight, referencePersonId, onSelectReference }) => {
     return (
         <aside className="w-full h-full flex flex-col bg-transparent">
             {/* ... component content ... */}
@@ -64,6 +66,8 @@ const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAd
                                 onEdit={onEditRequest}
                                 onReorder={onReorder}
                                 highlight={highlight}
+                                referencePersonId={referencePersonId}
+                                onSelectReference={onSelectReference}
                             />
                             <QuickAddPresets onAdd={onAdd} scale={scale} zoom={zoom} />
                         </motion.div>
@@ -125,6 +129,8 @@ const Sidebar: React.FC<SidebarProps> = React.memo(({ persons, personCount, onAd
                                 onEdit={onEditRequest}
                                 onReorder={onReorder}
                                 highlight={highlight}
+                                referencePersonId={referencePersonId}
+                                onSelectReference={onSelectReference}
                             />
                         </motion.div>
                     )}

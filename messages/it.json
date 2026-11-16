@@ -154,12 +154,13 @@
   "heightPredictor": {
     "intro": {
       "title": "Previsore di Altezza: Calcola la Tua Altezza Finale da Adulto",
-      "description": "Utilizza questo calcolatore per stimare l'altezza futura di bambini, adolescenti e ragazzi a partire dall'età attuale, dalla genetica dei genitori e dai ritmi di accrescimento. Questo strumento impiega il metodo Khamis-Roche, uno dei modelli di previsione dell'altezza senza radiografia più accurati della medicina pediatrica. Se tuo figlio ha meno di quattro anni o stai aspettando un bambino, usa la formula dell'altezza media genitoriale più in basso."
+      "description": "Usa questo calcolatore di altezza per stimare la statura futura di bambini, adolescenti e adulti in base a età, genetica e schemi di crescita. Utilizza il metodo Khamis-Roche, che prevede l'altezza adulta dai 4 ai 17,5 anni a partire da età, altezza, peso e altezza di entrambi i genitori. Nello studio originale, 9 previsioni su 10 rientravano entro 5,3 cm (2,1 pollici) per i maschi e 4,3 cm (1,7 pollici) per le femmine. Per bambini di età inferiore a 4 anni o nascituri, usa il calcolatore basato sui genitori di seguito.",
+      "lastUpdated": "Ultimo aggiornamento: Novembre 2026"
     },
     "khamisRocheCalculator": {
       "title": "Calcolatore di Altezza Khamis-Roche",
       "badge": "Più Accurato (Età 4–17)",
-      "description": "Stima l'altezza da adulto utilizzando età attuale, sesso, altezza, peso e la statura di entrambi i genitori biologici. Non richiede radiografie dell'età ossea.",
+      "description": "Previsione istantanea dell'altezza mediante modelli scientifici di crescita. Inserisci età, sesso, altezza, peso e altezza di entrambi i genitori. Valido dai 4 ai 17,5 anni.",
       "unitUs": "USA (piedi/pollici, lbs)",
       "unitMetric": "Metrico (cm, kg)",
       "childAgeLabel": "Età del Bambino (anni)",
@@ -194,9 +195,9 @@
       "lbsUnit": "lbs"
     },
     "midParentalCalculator": {
-      "title": "Calcolatore dell'Altezza Media Genitoriale",
+      "title": "Calcolatore di altezza basato sull'altezza dei genitori",
       "badge": "Per Tutte le Età (e Futuri Neonati)",
-      "description": "Calcola il potenziale genetico bersaglio basandosi esclusivamente sulle stature dei genitori biologici.",
+      "description": "Stima l'altezza prevista utilizzando unicamente l'altezza dei genitori. Ideale per neonati, bambini piccoli e nascituri. Se sei in dolce attesa, inserisci l'altezza di entrambi i genitori per ottenere l'intervallo stimato di altezza da adulti. Utilizza la formula mid-parental, che generalmente si avvicina entro 10 cm (4 pollici) all'altezza definitiva.",
       "unitUs": "USA (piedi/pol)",
       "unitMetric": "Metrico (cm)",
       "motherHeightLabel": "Altezza della Madre Biologica",
@@ -214,7 +215,8 @@
       "viewComparisonChart": "Visualizza Grafico di Confronto",
       "cmUnit": "cm",
       "ftUnit": "ft",
-      "inUnit": "in"
+      "inUnit": "in",
+      "clear": "Cancella"
     },
     "heightConverter": {
       "title": "Convertitore Rapido di Statura",
@@ -229,7 +231,7 @@
       "inUnit": "in"
     },
     "howItWorks": {
-      "title": "Come Funziona il Previsore di Altezza",
+      "title": "Come funziona?",
       "description": "Il nostro strumento combina modelli biometrici validati scientificamente per offrire stime di altezza adulta ad alta affidabilità:",
       "step1Strong": "1. Dati Antropometrici del Bambino: ",
       "step1Text": "Età, sesso, altezza attuale e peso recente forniscono la velocità individuale di sviluppo.",
@@ -243,28 +245,46 @@
       "description": "È una delle domande più ricorrenti tra genitori e pediatri. L'altezza finale dipende dall'azione congiunta di tre fattori determinanti:",
       "factorsTitle": "Fattori Determinanti:",
       "geneticsLabel": "Genetica Ereditaria:",
-      "geneticsText": "Circa il 60%–80% della statura finale è determinata dalle varianti genetiche trasmesse dai genitori biologici.",
+      "geneticsText": "le varianti genetiche ereditate spiegano circa l'80% delle differenze di altezza tra gli individui.",
       "currentGrowthLabel": "Velocità di Crescita Attuale:",
       "currentGrowthText": "Il canale percentile seguito con regolarità durante l'infanzia riflette la traiettoria biologica individuale.",
       "statisticsLabel": "Modelli Matematici:",
       "statisticsText": "Algoritmi scientifici come Khamis-Roche e Mid-Parental affinano la stima sulla base di ampie coorti di popolazione.",
-      "closing": "Pur non potendo prevedere il futuro al millimetro, questi calcoli offrono la migliore approssimazione scientifica possibile senza esami radiologici invasivi."
+      "closing": "Pur non potendo prevedere il futuro al millimetro, questi calcoli offrono la migliore approssimazione scientifica possibile senza esami radiologici invasivi.",
+      "sonTitle": "Quanto diventerà alto mio figlio?",
+      "sonText": "Il calcolatore Khamis-Roche sopra stima l'altezza adulta di tuo figlio a partire da età, altezza, peso attuali e altezza dei genitori. La maggior parte dei ragazzi smette di crescere tra i 16 e i 18 anni.",
+      "daughterTitle": "Quanto diventerà alta mia figlia?",
+      "daughterText": "Il calcolatore Khamis-Roche sopra stima l'altezza da adulta di tua figlia in base alle misurazioni attuali e all'altezza dei genitori. La maggior parte delle ragazze raggiunge l'altezza definitiva tra i 14 e i 15 anni.",
+      "babyTitle": "Quanto diventerà alto il mio neonato o bambino piccolo?",
+      "babyText": "Per neonati e bimbi molto piccoli, usa il calcolatore basato sull'altezza dei genitori. Sono necessarie solo le altezze di mamma e papà. Una diffusa regola empirica raddoppia l'altezza di un maschio a 2 anni o di una femmina a 18 mesi.",
+      "workedExampleTitle": "Esempio pratico: calcolare l'altezza dall'altezza dei genitori",
+      "workedExampleIntro": "Un padre di 180 cm (5'11\") e una madre di 165 cm (5'5\") sommano 345 cm (136 pollici).",
+      "workedExampleSon": "Figlio maschio: (345 + 13) ÷ 2 = 179 cm. Nelle unità USA: (136 + 5) ÷ 2 = 70,5 pollici, circa 5'10,5\".",
+      "workedExampleDaughter": "Figlia femmina: (345 − 13) ÷ 2 = 166 cm. Nelle unità USA: (136 − 5) ÷ 2 = 65,5 pollici, circa 5'5,5\".",
+      "workedExampleRange": "Intervallo previsto: circa 10 cm (4 pollici) in più o in meno, ovvero circa 169-189 cm (5'6,5\" - 6'2,5\") per il figlio.",
+      "workedExampleClosing": "Per i bambini dai 4 anni in su, il calcolatore Khamis-Roche restringe questo intervallo prendendo in considerazione anche l'altezza e il peso attuali del bambino.",
+      "age2RuleTitle": "Verifica rapida per i più piccoli: la regola dei 2 anni",
+      "age2RuleText": "Raddoppia l'altezza di un maschio a 2 anni o di una femmina a 18 mesi per ottenere una stima approssimativa da adulto. Un bambino che misura 87,6 cm (34,5 pollici) al suo secondo compleanno indica circa 175 cm (5'9\", 69 pollici) da adulto. La Mayo Clinic cita questa regola insieme alla formula mid-parental."
     },
     "teensAdults": {
       "title": "Previsione di Statura per Adolescenti e Adulti",
-      "description": "Le possibilità di ulteriore accrescimento dipendono direttamente dal grado di maturazione scheletrica:",
+      "description": "Gli adolescenti che si chiedono «quanto diventerò alto» possono usare il calcolatore Khamis-Roche. Inserisci età, altezza e peso correnti e altezza dei genitori per la stima più precisa.",
       "teensTitle": "Adolescenti (13–18 anni):",
       "teensText": "Durante l'adolescenza si manifesta l'ultimo scatto puberale:",
-      "teensItem1": "Ragazze: La crescita rallenta fortemente dopo il menarca, terminando in genere intorno ai 15–16 anni.",
+      "teensItem1": "Valido dai 4 ai 17,5 anni",
       "teensItem2": "Ragazzi: Lo scatto puberale si protrae più a lungo, con aumenti di statura possibili fino a 18–19 anni.",
-      "teensItem3": "La saldatura delle cartilagini epifisarie ossee segna la conclusione definitiva della crescita longitudinale.",
+      "teensItem3": "La maggior parte dei maschi smette di crescere tra i 16 e i 18 anni; la maggior parte delle femmine entro i 14-15",
       "adultsTitle": "Adulti (18+ anni):",
       "adultsText": "Una volta ossificate le cartilagini di coniugazione epifisarie:",
       "adultsItem1": "Le ossa lunghe non possono più aumentare di lunghezza in modo naturale.",
-      "adultsItem2": "Le variazioni di 1–2 cm osservabili tra mattina e sera sono dovute alla compressione elastica dei dischi intervertebrali.",
+      "adultsItem2": "Usa lo strumento Altezza dei Genitori per prevedere la statura dei figli",
       "adultsItem3": "Esercizi posturali mirati e potenziamento del corsetto muscolare possono ottimizzare la postura eretta e la statura percepita.",
       "limitationLabel": "Nota Importante:",
-      "limitationText": "Nessun integratore, dieta o esercizio può riaprire cartilagini ossee ormai saldate."
+      "limitationText": "Nessun integratore, dieta o esercizio può riaprire cartilagini ossee ormai saldate.",
+      "noParentsTitle": "Cosa fare se non conosci l'altezza dei tuoi genitori?",
+      "noParentsP1": "Entrambi i calcolatori di questa pagina richiedono l'altezza di entrambi i genitori e non possono fornire stime senza questi dati. Puoi comunque monitorare la tua crescita: misurati ogni 6 mesi e verifica il tuo percentile su una curva di crescita. Se hai dubbi sul tuo sviluppo, un medico può prescrivere una radiografia dell'età ossea.",
+      "noParentsCheckPercentile": "Verifica il tuo percentile con il",
+      "noParentsLinkText": "calcolatore del percentile di altezza e peso"
     },
     "ctaBanner": {
       "text": "Vuoi visualizzare come si confronta l'altezza di tuo figlio rispetto ad altre persone?",
@@ -274,17 +294,17 @@
       "title": "Cosa Determina la Statura di una Persona?",
       "description": "La statura finale di un individuo è il risultato di un equilibrio tra predisposizione genetica e fattori ambientali favorevoli:",
       "geneticsTitle": "1. Genetica (60%–80%)",
-      "geneticsBefore": "Gli studi sui gemelli dimostrano che ",
-      "geneticsStrong1": "centinaia di varianti geniche",
-      "geneticsMiddle": " controllano l'attività delle cartilagini di accrescimento. Figli di genitori alti hanno un'alta probabilità di essere alti, sebbene ",
-      "geneticsStrong2": "la regressione verso la media",
+      "geneticsBefore": "Le varianti del DNA ereditate determinano circa l'",
+      "geneticsStrong1": "80%",
+      "geneticsMiddle": " delle differenze di altezza tra le persone (MedlinePlus). Genitori alti tendono ad avere figli alti, sebbene operi la regressione verso la media: genitori molto alti o molto bassi hanno spesso figli con altezze più vicine alla ",
+      "geneticsStrong2": "media.",
       "nutritionTitle": "2. Nutrizione e Salute Infantile",
-      "nutritionBefore": "La qualità dell'alimentazione nei primi anni di vita e nella pubertà è il fattore ambientale principale:",
-      "nutritionStrong": "Nutrienti Fondamentali: ",
-      "nutritionAfter": "Proteine complete, calcio, zinco, ferro e vitamina D sono indispensabili per la formazione e l'allungamento della matrice ossea.",
+      "nutritionBefore": "Il ",
+      "nutritionStrong": "restante ~20%",
+      "nutritionAfter": " dipende dall'ambiente. L'ormone della crescita viene secreto principalmente durante il sonno profondo.",
       "nutritionItem1": "Proteine: Forniscono aminoacidi essenziali per tessuti e cartilagini.",
-      "nutritionItem2": "Calcio e Vitamina D: Garantiscono una mineralizzazione ottimale dello scheletro.",
-      "nutritionItem3": "Zinco: Cofattore essenziale per la sintesi cellulare e la proliferazione ormonale.",
+      "nutritionItem2": "9–12 ore di sonno (età 6–12)",
+      "nutritionItem3": "8–10 ore per gli adolescenti",
       "timingTitle": "3. Sonno e Ormone della Crescita (GH)",
       "timingText": "La maggior parte dell'ormone della crescita (GH) viene secreta dalla ghiandola ipofisi durante le fasi di sonno profondo a onde lente (fase N3). La carenza cronica di riposo notturno può compromettere il pieno potenziale staturale."
     },
@@ -295,7 +315,8 @@
       "percentileBefore": "Seguendo un canale di ",
       "percentileStrong": "percentile stabile",
       "percentileAfter": " nei controlli periodici, il medico può intercettare tempestivamente celiachia, deficit di GH o disfunzioni tiroidee prima che causino ritardi permanenti.",
-      "note": "Una crescita costante lungo un canale di percentile (che sia il 25º o l'85º) è segno di pieno benessere biologico."
+      "note": "Una crescita costante lungo un canale di percentile (che sia il 25º o l'85º) è segno di pieno benessere biologico.",
+      "expandText": "Fai clic sulle viste a grafico e tabella qui sotto per esplorare le curve percentili complete."
     },
     "comparisonTable": {
       "title": "Confronto: Calcolatore di Altezza vs Curve di Crescita",
@@ -316,10 +337,10 @@
       "rowDoctorCalculator": "Consulenza genetica e orientamento prognostico",
       "rowDoctorGrowthChart": "Diagnosi di anomalie della crescita e screening",
       "rowAccuracyLabel": "Accuratezza Tipica",
-      "rowAccuracyCalculator": "±2–5 cm nella maggioranza dei bambini sani",
+      "rowAccuracyCalculator": "9 su 10 entro 2,1 pollici (maschi) o 1,7 pollici (femmine) con Khamis-Roche; circa 4 pollici solo con genitori",
       "rowAccuracyGrowthChart": "Posizionamento percentile istantaneo esatto",
       "rowWithoutParentsLabel": "Senza Altezza dei Genitori?",
-      "rowWithoutParentsCalculator": "Non è possibile applicare Khamis-Roche con rigore",
+      "rowWithoutParentsCalculator": "No, è richiesta l'altezza di entrambi i genitori",
       "rowWithoutParentsGrowthChart": "Funziona perfettamente solo con età e statura"
     },
     "boysGrowth": {
@@ -328,30 +349,30 @@
       "p1Strong": "scatto di crescita puberale (picco di velocità di accrescimento)",
       "p1After": " più tardi rispetto alle ragazze, solitamente tra i 12 e i 15 anni.",
       "p2": "Durante l'anno di picco puberale, i ragazzi possono crescere tra gli 8 e i 12 cm in soli dodici mesi.",
-      "item1Before": "Inizio Pubertà: ",
-      "item1Strong": "Generalmente intorno agli 11–12 anni.",
-      "item2Before": "Picco di Velocità Statuale: ",
-      "item2Strong": "In media tra i 13,5 e i 14 anni.",
-      "item3Before": "Completamento Accrescimento: ",
-      "item3Strong": "Tra i 17 e i 19 anni nella grande maggioranza dei casi.",
-      "p3Before": "Grazie a questi due anni supplementari di crescita pre-puberale, gli uomini sono in media ",
-      "p3Strong": "circa 13 cm più alti",
-      "p3After": " delle donne nella stessa popolazione."
+      "item1Before": "Inizio pubertà: ",
+      "item1Strong": "in genere tra 9 e 14 anni",
+      "item2Before": "Scatto di crescita (spurt): ",
+      "item2Strong": "tra 12 e 15 anni",
+      "item3Before": "Rallentamento: ",
+      "item3Strong": "subito dopo il picco di crescita",
+      "p3Before": "Durante il picco puberale, i maschi possono crescere dai 7 ai 10 cm (3–4 pollici) all'anno. ",
+      "p3Strong": "La maggior parte dei maschi smette di crescere tra i 16 e i 18 anni. ",
+      "p3After": "Chi matura più tardi può guadagnare ancora qualcosa in seguito."
     },
     "girlsGrowth": {
       "title": "Modelli di Crescita nelle Ragazze",
       "p1": "Nelle ragazze l'accelerazione della crescita puberale si manifesta circa due anni prima rispetto ai maschi, iniziando in genere tra i 9 e gli 11 anni.",
       "p2": "Il picco di crescita femminile si verifica solitamente tra gli 11 e i 12 anni, prima della comparsa della prima mestruazione (menarca).",
-      "item1Before": "Picco Statuale Femminile: ",
-      "item1Strong": "Circa 7–9 cm all'anno nella fase precedente il menarca.",
-      "item2Before": "Fase Post-Menarca: ",
-      "item2Strong": "La crescita rallenta notevolmente: la maggior parte delle ragazze cresce in totale solo altri 3–7 cm dopo il menarca.",
-      "p3Before": "La completa fusione epifisaria nelle ragazze avviene solitamente tra i ",
-      "p3Strong": "15 e i 16 anni di età",
-      "p3After": "."
+      "item1Before": "Inizio pubertà: ",
+      "item1Strong": "in genere tra 8 e 13 anni",
+      "item2Before": "Scatto di crescita: ",
+      "item2Strong": "tra 10 e 14 anni",
+      "p3Before": "Altezza adulta: ",
+      "p3Strong": "la maggior parte delle femmine raggiunge la statura definitiva verso i 14 o 15 anni, ",
+      "p3After": "crescendo di altri 2,5-5 cm (1–2 pollici) dopo il primo menarca."
     },
     "methods": {
-      "title": "Metodi Scientifici di Previsione della Statura",
+      "title": "Metodi di previsione dell'altezza spiegati",
       "subtitle": "Come i Ricercatori Stimano l'Altezza dei Bambini",
       "description": "La comunità scientifica ha sviluppato diversi modelli matematici per calcolare il potenziale di crescita umano:",
       "khamisRoche": {
@@ -360,8 +381,8 @@
         "p1": "Sviluppato dal Dr. Harry Khamis e dal Dr. Alex Roche nell'ambito del celebre Fels Longitudinal Study, calcola l'altezza stimata impiegando età, sesso, statura attuale, peso e altezza media di entrambi i genitori.",
         "p2": "È stato dimostrato essere accurato quanto i metodi radiologici della mano e del polso nei bambini sani.",
         "item1Before": "Fascia di Età: ",
-        "item1Strong": "Bambini e ragazzi dai 4 ai 17 anni.",
-        "item2": "Non richiede radiazioni o visite radiologiche complesse.",
+        "item1Strong": "±2,1 pollici per i maschi, ±1,7 pollici per le femmine (9 su 10 stime; metà entro ~0,9 e 0,7 pollici)",
+        "item2": "Validato per età da 4 a 17,5 anni",
         "item3": "Margine di errore tipico di circa ±2,5–5 cm nella maggior parte dei soggetti.",
         "usedByCalculator": "È il metodo cardine utilizzato dal nostro calcolatore principale.",
         "readyText": "Vuoi calcolare la previsione per tuo figlio?",
@@ -380,7 +401,19 @@
         "item3": "Fornisce una finestra bersaglio genetica con margine di ±5 cm (±2 pollici).",
         "item4": "Adatto a neonati e bambini con meno di 4 anni.",
         "onlyHaveText": "Conosci solo l'altezza dei genitori?",
-        "linkText": "Calcola con l'Altezza Media Genitoriale"
+        "linkText": "Calcola con l'Altezza Media Genitoriale",
+        "formulaExplanation": "La formula mid-parental è il metodo più semplice per stimare l'altezza adulta di un bambino usando solo l'altezza dei genitori. Non richiede test clinici e funziona a qualsiasi età, inclusi neonati e nascituri.",
+        "boysFormulaSub": "Metrico: (Padre + Madre + 13 cm) ÷ 2",
+        "girlsFormulaSub": "Metrico: (Padre + Madre - 13 cm) ÷ 2",
+        "boysFormulaMetricLabel": "Per i maschi (Metrico)",
+        "boysFormulaMetric": "(Padre + Madre + 13 cm) ÷ 2",
+        "boysFormulaMetricSub": "Calcolo in centimetri",
+        "girlsFormulaMetricLabel": "Per le femmine (Metrico)",
+        "girlsFormulaMetric": "(Padre + Madre - 13 cm) ÷ 2",
+        "girlsFormulaMetricSub": "Calcolo in centimetri",
+        "exampleText": "Esempio: Padre 180 cm + Madre 165 cm = 345 cm. Maschio: (345 + 13) ÷ 2 = 179 cm. Femmina: (345 - 13) ÷ 2 = 166 cm.",
+        "exampleEstimateText": "Intervallo previsto stimato: ±10 cm (4 pollici)",
+        "workedExamplePointer": "Vedi l'esempio pratico nella sezione «Quanto diventerà alto mio figlio?»"
       },
       "boneAge": {
         "badge": "Clinico Radiografico",
@@ -399,11 +432,14 @@
         "badge": "Modello Multivariato",
         "title": "Metodo Roche-Wainer-Thissen (RWT)",
         "text": "Algoritmo avanzato che combina età ossea, peso corporeo e altezza dei genitori per formulare previsioni staturali ad elevata sensibilità statistica."
+      },
+      "age2Rule": {
+        "badge": "REGOLA PRATICA",
+        "title": "Regola del raddoppio a 2 anni",
+        "text": "Raddoppia l'altezza di un maschio a 2 anni o di una femmina a 18 mesi. Non richiede calcolatore né altezza dei genitori, ma non tiene conto della genetica e va intesa come stima approssimativa per bambini piccoli."
       }
     },
     "canIncrease": {
-      "titlePrefix": "Come Massimizzare il ",
-      "titleHighlight": "Potenziale di Crescita",
       "description": "Benché la genetica stabilisca il limite massimo raggiungibile, abitudini corrette assicurano che il bambino esprima appieno il proprio potenziale:",
       "nutritionTitle": "1. Nutrizione Equilibrata e Ricca di Micronutrienti",
       "nutritionText": "La dieta deve apportare elementi strutturali essenziali per sostenere la moltiplicazione cellulare delle cartilagini:",
@@ -418,114 +454,180 @@
       "exerciseTitle": "3. Attività Fisica e Movimento Regolare",
       "exerciseText": "Lo sport e le attività ad impatto moderato favoriscono la densità minerale ossea e rafforzano la postura vertebrale.",
       "warningStrong": "Attenzione alle False Promesse: ",
-      "warningText": "Diffida da pillole o integratori miracolosi venduti online che promettono di far crescere gli adulti. Non esistono farmaci comprovati capaci di allungare ossa le cui cartilagini siano già completamente saldate."
+      "warningText": "Diffida da pillole o integratori miracolosi venduti online che promettono di far crescere gli adulti. Non esistono farmaci comprovati capaci di allungare ossa le cui cartilagini siano già completamente saldate.",
+      "title": "È possibile aumentare l'altezza?"
     },
     "accuracy": {
-      "titlePrefix": "Accuratezza e ",
-      "titleHighlight": "Limiti",
-      "titleSuffix": " delle Previsioni",
       "description": "Per interpretare correttamente i risultati, tieni presenti queste caratteristiche metodologiche:",
-      "check1": "Khamis-Roche ha un margine di errore medio di circa ±2,5–5 cm.",
-      "check2": "La formula Mid-Parental offre un intervallo di probabilità tipico di ±5 cm.",
-      "check3": "L'accuratezza cresce sensibilmente man mano che il bambino si avvicina alla pubertà.",
-      "check4": "Bambini con maturazione precoce o tardiva possono discostarsi provvisoriamente dalla stima prima di convergere verso la loro statura finale.",
-      "alert1": "Non sostituisce in alcun modo una visita medica in caso di sospetti disturbi della crescita.",
-      "alert2": "Presuppone nutrizione infantile adeguata e assenza di patologie croniche gravi.",
-      "alert3": "Richiede misurazioni precise e aggiornate di altezza e peso.",
-      "rangeNotice": "Considera sempre il valore come un intervallo di confidenza probabilistico e non come un numero fisso immutabile.",
       "disclaimerStrong": "Avvertenza Sanitaria: ",
-      "disclaimerText": "Questo calcolatore ha finalità puramente informative ed educative. In caso di dubbi sulla crescita o sullo sviluppo di tuo figlio, consulta un pediatra o un endocrinologo infantile."
+      "disclaimerText": "Questo calcolatore ha finalità puramente informative ed educative. In caso di dubbi sulla crescita o sullo sviluppo di tuo figlio, consulta un pediatra o un endocrinologo infantile.",
+      "title": "Quanto è preciso un calcolatore di altezza?",
+      "is100PercentTitle": "Esiste un calcolatore di altezza accurato al 100%?",
+      "is100PercentText": "No. Ogni calcolatore fornisce un intervallo probabile, poiché genetica, tempi della pubertà e stato di salute influiscono sul risultato finale. Khamis-Roche è il metodo non radiologico più accurato, con 9 previsioni su 10 entro 2,1 pollici per i maschi e 1,7 pollici per le femmine. Una radiografia dell'età ossea è più accurata e viene prescritta dai medici in caso di sospette anomalie di accrescimento.",
+      "typicalErrorTitle": "Errore tipico per metodo di previsione",
+      "thMethod": "Metodo",
+      "thTypicalError": "Errore tipico",
+      "thNeedsBoneAge": "Richiede età ossea?",
+      "methodKhamis": "Metodo Khamis-Roche",
+      "errorKhamis": "±5,3 cm (maschi) / ±4,3 cm (femmine)",
+      "boneAgeKhamis": "No",
+      "methodMidParental": "Formula Mid-Parental",
+      "errorMidParental": "±10 cm (4 pollici)",
+      "boneAgeMidParental": "No",
+      "methodBoneAge": "Radiografia dell'età ossea (Greulich-Pyle / TW)",
+      "errorBoneAge": "±2,5 cm (massima accuratezza)",
+      "boneAgeBoneAge": "Sì (clinico)",
+      "whyMissesTitle": "Perché le previsioni possono variare",
+      "miss1": "9 previsioni su 10 rientrano entro 5,3 cm (2,1 pollici) per i maschi e 4,3 cm (1,7 pollici) per le femmine",
+      "miss2": "La formula basata solo sui genitori è meno precisa: generalmente entro 10 cm (4 pollici)",
+      "miss3": "La precisione aumenta dopo i 4 anni di età del bambino",
+      "miss4": "Misurazioni accurate di altezza e peso migliorano sensibilmente i risultati",
+      "miss5": "Dati precisi sull'altezza di entrambi i genitori sono necessari per una stima attendibile"
     },
     "faq": [
       {
-        "q": "Il metodo Khamis-Roche è attendibile?",
-        "a": "Sì, è ampiamente riconosciuto come il metodo senza radiazioni più accurato della letteratura scientifica, con un margine di errore tipico compreso tra 2 e 5 cm per la quasi totalità dei bambini sani."
+        "q": "Quanto diventerò alto?",
+        "a": "La tua altezza da adulto dipende principalmente dall'altezza dei tuoi genitori e dai tuoi ritmi di accrescimento. Usa il calcolatore sopra indicando età, altezza, peso e altezza dei genitori per ottenere una stima secondo il modello Khamis-Roche. Se hai già 18 anni o più, le placche di crescita si sono saldate e la tua statura è definitiva."
       },
       {
-        "q": "Posso stimare l'altezza di mio figlio prima che nasca?",
-        "a": "Sì, la formula dell'Altezza Media Genitoriale (Mid-Parental) consente di calcolare la finestra bersaglio genetica futura impiegando solo le altezze di entrambi i genitori biologici."
+        "q": "Quanto diventerà alto mio figlio?",
+        "a": "Inserisci l'età attuale, l'altezza, il peso di tuo figlio e l'altezza di entrambi i genitori nel calcolatore Khamis-Roche qui sopra. La maggior parte dei ragazzi smette di crescere tra i 16 e i 18 anni; le ragazze tra i 14 e i 15 anni. Anche la formula mid-parental offre una stima rapida: (Altezza padre + Altezza madre ± 13 cm) ÷ 2."
       },
       {
-        "q": "A che età la previsione di altezza diventa affidabile?",
-        "a": "Il metodo Khamis-Roche è validato a partire dai 4 anni di età. Da 0 a 4 anni, la formula Mid-Parental e le tabelle di crescita OMS offrono le indicazioni migliori."
+        "q": "Un calcolatore di altezza è preciso?",
+        "a": "Il metodo Khamis-Roche (utilizzato in questo strumento) è tra i predittori non invasivi più accurati. Nello studio originale, 9 previsioni su 10 rientravano entro 2,1 pollici per i maschi e 1,7 pollici per le femmine. L'accuratezza aumenta dopo i 4 anni con misurazioni scrupolose. I risultati rappresentano un intervallo probabile, non una certezza assoluta."
       },
       {
-        "q": "Un adulto può ancora crescere in altezza?",
-        "a": "No. Dopo la chiusura completa delle cartilagini epifisarie ossee (di norma tra i 16 e i 20 anni), non è più possibile alcun allungamento scheletrico naturale."
+        "q": "Esiste un calcolatore di altezza accurato al 100%?",
+        "a": "No. Ogni strumento fornisce una fascia probabile, poiché genetica, pubertà e fattori nutrizionali incidono sullo sviluppo. Khamis-Roche è il metodo senza raggi X più accurato (9 su 10 entro 2,1 pollici per i ragazzi e 1,7 pollici per le ragazze). Una radiografia dell'età ossea è la più precisa ed è riservata ai medici per valutare disturbi dello sviluppo."
       },
       {
-        "q": "Come incide il sonno sulla statura finale?",
-        "a": "Oltre metà dell'ormone della crescita quotidiano viene rilasciata durante il sonno profondo notturno a onde lente, rendendo un riposo regolare un fattore di crescita essenziale."
+        "q": "L'altezza dei genitori può prevedere la mia altezza?",
+        "a": "Sì. I geni ereditati determinano circa l'80% delle differenze di altezza e la statura dei genitori è il miglior parametro di riferimento. La formula mid-parental fornisce una buona stima preliminare. Combinare l'altezza dei genitori con le misure attuali del bambino mediante il modello Khamis-Roche garantisce tuttavia una precisione nettamente superiore."
       },
       {
-        "q": "Perché i ragazzi sono generalmente più alti delle ragazze?",
-        "a": "I maschi beneficiano di circa due anni aggiuntivi di accrescimento pre-puberale prima dello scatto puberale e presentano un picco di crescita leggermente più marcato."
+        "q": "Posso prevedere l'altezza del mio bambino piccolo o neonato?",
+        "a": "Per neonati e bimbi molto piccoli, usa il calcolatore basato sulla formula mid-parental sopra. Richiede unicamente la statura di mamma e papà. Ricorda che per i neonati la stima ha un margine più ampio in assenza di dati di crescita attuali. Al compimento dei 2 anni, la regola del raddoppio a 2 anni fornisce un utile secondo riscontro."
       },
       {
-        "q": "Sollevare pesi blocca la crescita dei bambini?",
-        "a": "No, è un falso mito. Esercizi adeguati e supervisionati rinforzano le ossa e la postura. Il rischio sussiste solo in caso di traumi acuti alle cartilagini provocati da carichi eccessivi e scorretti senza supervisione."
+        "q": "Quanto dovrebbe essere alto mio figlio alla sua età?",
+        "a": "Consulta la sezione dei grafici di crescita sopra per vedere l'intervallo medio di altezza per età per ragazzi e ragazze. Il 50° percentile rappresenta la mediana. I bambini sani si collocano generalmente tra il 3° e il 97° percentile. In caso di scostamenti persistenti, consulta il pediatra."
+      },
+      {
+        "q": "Qual è il metodo di previsione dell'altezza più accurato?",
+        "a": "A livello medico, il metodo più accurato è la valutazione dell'età ossea (radiografia del polso). Per le applicazioni non cliniche, il metodo Khamis-Roche è il più affidabile: usa età, altezza, peso e statura genitoriale, con 9 previsioni su 10 comprese entro 2,1 pollici (maschi) e 1,7 pollici (femmine)."
       }
     ],
     "toc": [
       {
-        "id": "khamis-roche-calculator",
-        "label": "Calcolatore Khamis-Roche"
+        "id": "height-predictor-calculator",
+        "label": "Calcolatore di Previsione Altezza"
       },
       {
-        "id": "mid-parental-calculator",
-        "label": "Calcolatore Altezza Media Genitoriale"
-      },
-      {
-        "id": "height-converter",
-        "label": "Convertitore Rapido di Statura"
-      },
-      {
-        "id": "how-the-height-predictor-works",
-        "label": "Come Funziona il Previsore"
+        "id": "how-it-works",
+        "label": "Come Funziona?"
       },
       {
         "id": "how-tall-will-my-child-be",
-        "label": "Quanto Diventerà Alto Mio Figlio?"
+        "label": "Quanto diventerà alto mio figlio?",
+        "subItems": [
+          {
+            "id": "how-tall-will-my-son-be",
+            "label": "Quanto diventerà alto mio figlio?"
+          },
+          {
+            "id": "how-tall-will-my-daughter-be",
+            "label": "Quanto diventerà alta mia figlia?"
+          },
+          {
+            "id": "how-tall-will-my-baby-or-toddler-be",
+            "label": "Quanto diventerà alto il mio neonato o bambino piccolo?"
+          },
+          {
+            "id": "how-tall-will-i-be-teens-adults",
+            "label": "Quanto diventerò alto? (Adolescenti e Adulti)"
+          },
+          {
+            "id": "worked-example",
+            "label": "Esempio pratico: calcolare l'altezza dall'altezza dei genitori"
+          },
+          {
+            "id": "age-2-rule",
+            "label": "Verifica rapida per i più piccoli: la regola dei 2 anni"
+          }
+        ]
       },
       {
-        "id": "can-teens-and-adults-still-grow",
-        "label": "Adolescenti e Adulti Possono Crescere?"
+        "id": "what-determines-height",
+        "label": "Cosa determina l'altezza?"
       },
       {
-        "id": "what-determines-a-persons-height",
-        "label": "Cosa Determina la Statura?"
+        "id": "boys-girls-growth-charts",
+        "label": "Curve di crescita per maschi e femmine"
       },
       {
-        "id": "growth-charts-and-pediatric-tracking",
-        "label": "Curve di Crescita e Pediatria"
-      },
-      {
-        "id": "height-calculator-vs-growth-charts",
+        "id": "calculator-vs-growth-charts",
         "label": "Calcolatore vs Curve di Crescita"
       },
       {
-        "id": "growth-patterns-in-boys",
-        "label": "Modelli di Crescita nei Ragazzi"
+        "id": "when-do-boys-stop-growing",
+        "label": "Quando smettono di crescere i maschi?"
       },
       {
-        "id": "growth-patterns-in-girls",
-        "label": "Modelli di Crescita nelle Ragazze"
+        "id": "when-do-girls-stop-growing",
+        "label": "Quando smettono di crescere le femmine?"
       },
       {
-        "id": "scientific-height-prediction-methods",
-        "label": "Metodi Scientifici di Previsione"
+        "id": "height-prediction-methods",
+        "label": "Metodi di Previsione dell'Altezza Spiegati",
+        "subItems": [
+          {
+            "id": "khamis-roche-method",
+            "label": "Metodo Khamis-Roche"
+          },
+          {
+            "id": "based-on-parents",
+            "label": "Calcolatore basato sull'altezza dei genitori"
+          },
+          {
+            "id": "age-2-doubling-rule",
+            "label": "Regola del raddoppio a 2 anni"
+          }
+        ]
       },
       {
-        "id": "can-you-increase-your-growth-potential",
-        "label": "Massimizzare il Potenziale di Crescita"
+        "id": "bone-age-method",
+        "label": "Metodo dell'Età Ossea",
+        "subItems": [
+          {
+            "id": "bayley-pinneau-method",
+            "label": "Metodo Bayley-Pinneau"
+          },
+          {
+            "id": "roche-wainer-thissen-method",
+            "label": "Metodo Roche-Wainer-Thissen"
+          }
+        ]
       },
       {
-        "id": "prediction-accuracy-and-limitations",
-        "label": "Accuratezza e Limiti"
+        "id": "can-you-increase-height",
+        "label": "È possibile aumentare l'altezza?"
       },
       {
-        "id": "frequently-asked-questions",
-        "label": "Domande Frequenti"
+        "id": "accuracy",
+        "label": "Quanto è preciso un calcolatore di altezza?"
+      },
+      {
+        "id": "faq",
+        "label": "Domande Frequenti (FAQ)"
+      },
+      {
+        "id": "related-tools",
+        "label": "Strumenti Correlati"
+      },
+      {
+        "id": "references",
+        "label": "Bibliografia Scientifica e Fonti"
       }
     ],
     "relatedTools": {
@@ -577,13 +679,14 @@
       "tableHeaderGirlsMedian": "Mediana Femminile",
       "ageYrs": "{age} anni",
       "insightBoysStopLabel": "Termine Accrescimento Ragazzi:",
-      "insightBoysStopValue": "Tra i 17 e i 19 anni",
+      "insightBoysStopValue": "~16–18 anni",
       "insightGirlsStopLabel": "Termine Accrescimento Ragazze:",
-      "insightGirlsStopValue": "Tra i 15 e i 16 anni",
+      "insightGirlsStopValue": "~14–15 anni",
       "insightMaleHeightLabel": "Mediana Maschile Adulta (CDC):",
-      "insightMaleHeightValue": "176,5 cm (5'9,5\")",
+      "insightMaleHeightValue": "175 cm / 5'9\"",
       "insightFemaleHeightLabel": "Mediana Femminile Adulta (CDC):",
-      "insightFemaleHeightValue": "163,2 cm (5'4,3\")"
+      "insightFemaleHeightValue": "161,3 cm / 5'3,5\"",
+      "sourceNhanes": "Fonte: CDC National Center for Health Statistics, adulti dai 20 anni in su, NHANES ago 2021 ad ago 2023."
     },
     "references": {
       "title": "Fonti e Riferimenti Scientifici",
@@ -597,7 +700,12 @@
       "ref8": "Tanner JM, Whitehouse RH, Cameron N, Marshall WA, Healy MJR, Goldstein H. Assessment of Skeletal Maturity and Prediction of Adult Height (TW2 Method). 2nd ed. London: Academic Press; 1983.",
       "ref9": "Wood DL, Hermida R, et al. Circadian rhythm of growth hormone secretion in children. J Clin Endocrinol Metab. 1999;84(1):123-128.",
       "ref10": "Silventoinen K. Determinants of variation in adult body height. J Biosoc Sci. 2003;35(2):263-285.",
-      "ref11": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife. 2016;5:e13410."
+      "ref11": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife. 2016;5:e13410.",
+      "ref12": "Mayo Clinic Staff. Child growth: Can you predict adult height? Mayo Clinic, 2025.",
+      "ref13": "Cross-sectional analysis of maturity status and Khamis-Roche prediction error. PMC6603099.",
+      "ref14": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age: the Khamis-Roche method. Pediatrics. 1994;94(4):504-507.",
+      "ref15": "CDC National Center for Health Statistics. Body Measurements (FastStats).",
+      "ref16": "Paruthi S, et al. Recommended amount of sleep for pediatric populations. J Clin Sleep Med. 2016."
     }
   },
   "heightWeightPercentile": {

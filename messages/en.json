@@ -156,12 +156,13 @@
   "heightPredictor": {
     "intro": {
       "title": "Height Predictor and Adult Height Calculator - [ Height Calculator- Children Height Predictor ]",
-      "description": "Use this height calculator to estimate the future height of children, teenagers, and adults based on age, genetics, and growth patterns. This calculator uses the Khamis-Roche method, one of the most accurate height prediction models available. If your child is under four, or you are pregnant and curious about your baby's expected height, use the Mid-Parental Height Calculator given below"
+      "description": "Use this height calculator to estimate the future height of children, teenagers, and adults based on age, genetics, and growth patterns. It uses the Khamis-Roche method, which predicts adult height for ages 4 to 17.5 from age, height, weight and both parents' heights. In the original study, 9 in 10 predictions landed within 2.1 inches (5.3 cm) for boys and 1.7 inches (4.3 cm) for girls. For a child under 4, or a baby not yet born, use the parents-only calculator below.",
+      "lastUpdated": "Last updated: November 2026"
     },
     "khamisRocheCalculator": {
       "title": "khamis roche method height calculator",
       "badge": "Khamis-Roche",
-      "description": "Predict your child's adult height with the Khamis-Roche calculator using age, current height, weight, and parents' heights",
+      "description": "Instant height prediction using scientific growth models. Enter age, sex, height, weight and both parents' heights. Works for ages 4 to 17.5.",
       "unitUs": "US (ft/in)",
       "unitMetric": "Metric (cm)",
       "childAgeLabel": "Child's Age (Years)",
@@ -196,9 +197,9 @@
       "lbsUnit": "lbs"
     },
     "midParentalCalculator": {
-      "title": "Mid parental height calculator",
+      "title": "Height Calculator Based on Parents' Heights",
       "badge": "parents' height only",
-      "description": "The mid-parental height formula estimates your child's adult height using only both parents' heights. This simple child height predictor based on parents' heights can give you a rough estimate for babies, young children, and even unborn babies.",
+      "description": "Estimate predicted height using only parents' heights. Works for babies, very young children, and unborn babies too. If you are pregnant, enter both parents' heights to get your child's estimated adult height range. This uses the mid-parental formula, which usually lands within 4 inches (10 cm) of adult height.",
       "unitUs": "US (ft/in)",
       "unitMetric": "Metric (cm)",
       "motherHeightLabel": "Mother's Height",
@@ -232,7 +233,7 @@
       "inUnit": "in"
     },
     "howItWorks": {
-      "title": "How Does it Work?",
+      "title": "How Does It Work?",
       "description": "A height calculator is a tool that combines current measurements (age, height, weight, and parental heights) and applies them to population growth data to produce a likely height range.",
       "step1Strong": "1. Enter measurements:",
       "step1Text": "child's age, current height, weight, and both parents' heights. More inputs produce more accurate results.",
@@ -246,7 +247,7 @@
       "description": "No tool can predict a child's future height with complete certainty. However, research on child growth patterns makes it possible to estimate adult height with reasonable accuracy.",
       "factorsTitle": "Modern height prediction calculators analyze three key factors:",
       "geneticsLabel": "Genetics",
-      "geneticsText": "responsible for 60-80% of final height.",
+      "geneticsText": "inherited variants explain about 80% of height differences between people.",
       "currentGrowthLabel": "Current Growth",
       "currentGrowthText": "Age, height, and weight measurements refine the estimate.",
       "statisticsLabel": "Statistics",
@@ -257,23 +258,35 @@
       "daughterTitle": "How tall will my daughter be?",
       "daughterText": "The Khamis-Roche calculator above estimates your daughter's adult height using her current age, height, weight, and both parents' heights. It gives a more personalized estimate than a formula based on parents' heights alone. Most girls reach their adult height between ages 15 and 16.",
       "babyTitle": "How tall will my baby or toddler be?",
-      "babyText": "For baby height predictor, use the mid parental height calculator above. It needs only the mother's and father's heights and gives a rough range. If you are pregnant, enter both parents' heights for an estimate before birth. A common rule of thumb doubles a boy's height at age 2, or a girl's height at 18 months, to estimate adult height."
+      "babyText": "For baby height predictor, use the mid parental height calculator above. It needs only the mother's and father's heights and gives a rough range. If you are pregnant, enter both parents' heights for an estimate before birth. A common rule of thumb doubles a boy's height at age 2, or a girl's height at 18 months, to estimate adult height.",
+      "workedExampleTitle": "Worked example: predicting height from parents' heights",
+      "workedExampleIntro": "A father who is 5'11\" (180 cm) and a mother who is 5'5\" (165 cm) add up to 136 inches (345 cm).",
+      "workedExampleSon": "Son: (136 + 5) ÷ 2 = 70.5 inches, about 5'10.5\". In metric, (345 + 13) ÷ 2 = 179 cm.",
+      "workedExampleDaughter": "Daughter: (136 − 5) ÷ 2 = 65.5 inches, about 5'5.5\". In metric, (345 − 13) ÷ 2 = 166 cm.",
+      "workedExampleRange": "Expected range: about 4 inches either side, so roughly 5'6.5\" to 6'2.5\" for the son.",
+      "workedExampleClosing": "For a child aged 4 or older, the Khamis-Roche calculator narrows that range because it also uses the child's current height and weight.",
+      "age2RuleTitle": "Quick check for toddlers: the age-2 rule",
+      "age2RuleText": "Double a boy's height at age 2, or a girl's height at 18 months, for a rough adult estimate. A boy who measures 34.5 inches (87.6 cm) on his second birthday points to about 69 inches (5'9\", 175 cm) as an adult. Mayo Clinic lists this rule alongside the mid-parental formula."
     },
     "teensAdults": {
       "title": "How Tall Will I Be? Calculator for Teens & Adults",
-      "description": "Teens asking \"how tall will I be\" can use the  Khamis roche calculator. Enter your current age, height, weight, and your parents' heights for the most accurate estimate.",
+      "description": "Teens asking \"how tall will I be\" can use the Khamis-Roche calculator. Enter your current age, height, weight, and your parents' heights for the most accurate estimate.",
       "teensTitle": "Teens (Under 18)",
       "teensText": "Growth plates are still open. The Khamis-Roche calculator gives the best estimate. Use current measurements for maximum accuracy.",
-      "teensItem1": "Most reliable between ages 4-17",
+      "teensItem1": "Works from age 4 to 17.5",
       "teensItem2": "Accuracy improves as you get closer to adult height",
-      "teensItem3": "Boys often grow until 18; girls until 15-16",
+      "teensItem3": "Most boys stop growing between 16 and 18; most girls by 14 or 15",
       "adultsTitle": "Adults (18+)",
       "adultsText": "Growth plates close after puberty. For adults, height prediction is no longer relevant, but the Mid-Parental Height Formula can still estimate what height their children may reach.",
       "adultsItem1": "Adult height is already determined",
-      "adultsItem2": "Use the mid-parental height calculator to predict child's height",
+      "adultsItem2": "Use the Parent's Height tool to predict children's height",
       "adultsItem3": "Use the height converter for unit conversion",
       "limitationLabel": "Important Limitation:",
-      "limitationText": "No height calculator can account for medical conditions, growth hormone disorders, or premature puberty. If growth seems unusually fast or slow, consult a pediatrician."
+      "limitationText": "No height calculator can account for medical conditions, growth hormone disorders, or premature puberty. If growth seems unusually fast or slow, consult a pediatrician.",
+      "noParentsTitle": "What if you don't know your parents' heights?",
+      "noParentsP1": "Both calculators on this page need both parents' heights, so neither can give a prediction without them. You can still track your growth: measure yourself every 6 months and check your percentile on a growth chart, which shows whether you are following your usual curve. If you are worried about your growth, a doctor can order a bone age X-ray, the most accurate prediction method.",
+      "noParentsCheckPercentile": "Check your percentile with the",
+      "noParentsLinkText": "height and weight percentile calculator"
     },
     "ctaBanner": {
       "text": "Ready to get your height prediction? The calculator is at the top of this page.",
@@ -283,16 +296,16 @@
       "title": "What Determines Height?",
       "description": "A child's final adult height is shaped by two factors: genetics and environment. Understanding both helps set realistic expectations for height prediction.",
       "geneticsTitle": "Genetics",
-      "geneticsBefore": "Accounts for ",
-      "geneticsStrong1": "60-80%",
-      "geneticsMiddle": " of final height. Children of taller parents tend to be taller, but children of very tall or very short parents often grow closer to the average population height, a phenomenon called ",
+      "geneticsBefore": "Inherited DNA variants explain about ",
+      "geneticsStrong1": "80%",
+      "geneticsMiddle": " of height differences between people (MedlinePlus). Tall parents tend to have tall children, though regression toward the mean applies — meaning very tall or short parents often have children closer to the ",
       "geneticsStrong2": "regression toward the mean.",
       "nutritionTitle": "Nutrition & Sleep",
-      "nutritionBefore": "Remaining ",
-      "nutritionStrong": "20-40%",
-      "nutritionAfter": " comes from environment.",
+      "nutritionBefore": "The remaining ",
+      "nutritionStrong": "20% or so",
+      "nutritionAfter": " comes from environment. Growth hormone is primarily released during deep sleep.",
       "nutritionItem1": "Protein, Calcium, Vitamin D, Zinc",
-      "nutritionItem2": "9-11 hrs sleep (School-age)",
+      "nutritionItem2": "9-12 hrs sleep (ages 6-12)",
       "nutritionItem3": "8-10 hrs for teenagers",
       "timingTitle": "Growth Timing",
       "timingText": "Early puberty may produce a taller child temporarily but a shorter adult. Late puberty often results in a longer growth window and greater final height."
@@ -326,10 +339,10 @@
       "rowDoctorCalculator": "No (use online)",
       "rowDoctorGrowthChart": "No (use online)",
       "rowAccuracyLabel": "Typical accuracy",
-      "rowAccuracyCalculator": "±2.1 in (boys), ±1.7 in (girls) with Khamis-Roche",
+      "rowAccuracyCalculator": "9 in 10 within 2.1 in (boys) or 1.7 in (girls) with Khamis-Roche; about 4 in with parents only",
       "rowAccuracyGrowthChart": "Shows percentile, not prediction",
       "rowWithoutParentsLabel": "Works without parents",
-      "rowWithoutParentsCalculator": "Partial (less accurate)",
+      "rowWithoutParentsCalculator": "No, both parents' heights are needed",
       "rowWithoutParentsGrowthChart": "✓ Yes"
     },
     "boysGrowth": {
@@ -338,30 +351,30 @@
       "p1Strong": "puberty",
       "p1After": ".",
       "p2": "The typical growth timeline for boys looks like this:",
-      "item1Before": "early puberty begins around ",
-      "item1Strong": "age 11-12",
-      "item2Before": "rapid growth occurs between ",
-      "item2Strong": "ages 13 and 15",
-      "item3Before": "growth slows around ",
-      "item3Strong": "16-17",
-      "p3Before": "During peak puberty, boys can grow ",
-      "p3Strong": "3-4 inches per year",
-      "p3After": ". Most boys stop growing around age 18, although small increases may continue until around age 20."
+      "item1Before": "Puberty begins: ",
+      "item1Strong": "usually between ages 9 and 14",
+      "item2Before": "Rapid growth occurs: ",
+      "item2Strong": "between ages 12 and 15",
+      "item3Before": "Growth slows: ",
+      "item3Strong": "soon after the spurt",
+      "p3Before": "During peak puberty, boys can grow 3-4 inches per year. ",
+      "p3Strong": "Most boys stop growing between 16 and 18. ",
+      "p3After": "Late developers may still add a little after that."
     },
     "girlsGrowth": {
       "title": "When Do Girls Stop Growing?",
       "p1": "Girls generally begin puberty earlier than boys.",
       "p2": "Typical growth timeline:",
-      "item1Before": "puberty begins around ",
-      "item1Strong": "age 9-10",
-      "item2Before": "growth spurt occurs between ",
-      "item2Strong": "ages 10 and 14",
-      "p3Before": "Most girls reach their adult height between ",
-      "p3Strong": "15 and 16 years old",
-      "p3After": ". Because girls experience puberty earlier, they often appear taller than boys during late childhood."
+      "item1Before": "Puberty begins: ",
+      "item1Strong": "usually between ages 8 and 13",
+      "item2Before": "Growth spurt occurs: ",
+      "item2Strong": "between ages 10 and 14",
+      "p3Before": "Adult height: ",
+      "p3Strong": "most girls reach adult height by about 14 or 15, ",
+      "p3After": "growing 1 to 2 more inches after their first period."
     },
     "methods": {
-      "title": "Height prediction methods Explained",
+      "title": "Height Prediction Methods Explained",
       "subtitle": "How to Predict Your Child's Height",
       "description": "Researchers use several formulas to estimate adult height. Each method balances accuracy against the data it requires.",
       "khamisRoche": {
@@ -370,8 +383,8 @@
         "p1": "Considered the most accurate height prediction method that does not require bone age testing. Analyzes four inputs: child's age, height, weight, and average height of both parents.",
         "p2": "Developed after studying thousands of children's growth patterns using linear regression analysis applied to population-level growth data. Because it includes current body measurements, it outperforms genetics-only formulas.",
         "item1Before": "Accuracy: ",
-        "item1Strong": "±2.1 inches for boys, ±1.7 inches for girls",
-        "item2": "Best for children older than 4 years",
+        "item1Strong": "±2.1 inches for boys, ±1.7 inches for girls (9 in 10 predictions; half fall within about 0.9 in and 0.7 in)",
+        "item2": "Validated for ages 4 to 17.5",
         "item3": "Most reliable non-clinical prediction available",
         "usedByCalculator": "✓ Used by this calculator",
         "readyText": "Have your child's age, height, weight, and parents' heights ready?",
@@ -388,10 +401,10 @@
         "girlsFormulaLabel": "GIRLS, US UNITS",
         "girlsFormula": "(Father + Mother - 5 in) ÷ 2",
         "girlsFormulaSub": "The same result: the parents' average minus 2.5 in.",
-        "boysFormulaMetricLabel": "BOYS, METRIC",
+        "boysFormulaMetricLabel": "For Boys (Metric)",
         "boysFormulaMetric": "(Father + Mother + 13 cm) ÷ 2",
         "boysFormulaMetricSub": "The parents' average plus 6.5 cm.",
-        "girlsFormulaMetricLabel": "GIRLS, METRIC",
+        "girlsFormulaMetricLabel": "For Girls (Metric)",
         "girlsFormulaMetric": "(Father + Mother - 13 cm) ÷ 2",
         "girlsFormulaMetricSub": "The parents' average minus 6.5 cm.",
         "exampleText": "Example: A father who is 71 in (5'11\") and a mother who is 65 in (5'5\") give an estimate of 70.5 in (5'10.5\") for a boy and 65.5 in (5'5.5\") for a girl. In metric, a 180 cm father and a 165 cm mother give 179 cm for a boy and 166 cm for a girl.",
@@ -401,7 +414,8 @@
         "item3": "Does not account for current growth trajectory. Use Khamis-Roche for children over 4",
         "item4": "Can also be used as a rough baby height calculator or for unborn children",
         "onlyHaveText": "Only have parents' heights? Use the Mid-Parental Height Formula calculator above.",
-        "linkText": "Scroll to top and calculate now"
+        "linkText": "Scroll to top and calculate now",
+        "workedExamplePointer": "See the worked example under \"How Tall Will My Child Be?\""
       },
       "boneAge": {
         "badge": "CLINICAL",
@@ -420,6 +434,11 @@
         "badge": "CLINICAL",
         "title": "Roche-Wainer-Thissen Method",
         "text": "Uses bone age, current height, weight, and parental heights. Improves accuracy in some cases over Khamis-Roche but requires clinical bone age measurement. Primarily used in medical settings."
+      },
+      "age2Rule": {
+        "badge": "RULE OF THUMB",
+        "title": "Age-2 Doubling Rule",
+        "text": "Doubles a boy's height at age 2, or a girl's height at 18 months. It needs no calculator and no parents' heights, but it ignores genetics, so treat it as a rough check for toddlers."
       }
     },
     "canIncrease": {
@@ -459,8 +478,8 @@
       "errorBoneAge": "Most accurate method available",
       "boneAgeBoneAge": "Yes",
       "whyMissesTitle": "Why a prediction misses",
-      "miss1": "Accuracy is highest when the child is older than 4 years",
-      "miss2": "Accurate height and weight measurements improve results significantly",
+      "miss1": "9 in 10 predictions fall within 5.3 cm (2.1 in) of final adult height for boys and 4.3 cm (1.7 in) for girls",
+      "miss2": "The parents-only formula is less precise: usually within 10 cm (4 in)",
       "miss3": "Correct parent height data is required for reliable output",
       "miss4": "Early or late puberty can reduce prediction accuracy",
       "miss5": "Not suitable for children with known growth disorders",
@@ -469,24 +488,36 @@
     },
     "faq": [
       {
-        "q": "How tall you will be",
+        "q": "How tall will I be?",
         "a": "Your adult height depends primarily on your parents' heights and your growth timing. Use the height calculator above. Enter your current age, height, weight, and your parents' heights to get a predicted height range based on the Khamis-Roche growth model. If you are already 18 or older, your growth plates have closed and your adult height is set."
       },
       {
+        "q": "How tall will my son be?",
+        "a": "Enter your son's age, current height, weight, and both parents' heights into the Khamis-Roche calculator above. Most boys stop growing between 16 and 18. The Mid-Parental Height Formula can also give a rough estimate: (Father's height + Mother's height + 5 inches) ÷ 2."
+      },
+      {
         "q": "Is a height calculator accurate?",
-        "a": "The Khamis-Roche method (used in this calculator) is one of the most accurate non-clinical height predictors available. Typical accuracy is within ±2.1 inches for boys and ±1.7 inches for girls. Accuracy improves when the child is older than 4, measurements are precise, and parent heights are correct. Results are always a range, not a guaranteed value."
+        "a": "The Khamis-Roche method (used in this calculator) is one of the most accurate non-clinical height predictors available. In the original study, 9 in 10 predictions fell within 2.1 inches for boys and 1.7 inches for girls. Accuracy improves when the child is older than 4, measurements are precise, and parent heights are correct. Results are always a range, not a guaranteed value."
+      },
+      {
+        "q": "Is any height predictor 100% accurate?",
+        "a": "No. Every height predictor gives a likely range, because genes, puberty timing and health all shift the outcome. Khamis-Roche is the most accurate method without an X-ray, with 9 in 10 predictions within 2.1 inches for boys and 1.7 inches for girls. A bone age X-ray is more accurate, and doctors order one when they suspect a growth disorder."
       },
       {
         "q": "Can parents' height predict my height?",
-        "a": "Yes. Parents' heights are the single strongest predictor of a child's adult height, accounting for 60–80% of height variation. The Mid-Parental Height Formula provides a rough estimate using only this data. However, combining parent heights with the child's current measurements (age, height, weight) through the Khamis-Roche model produces significantly more accurate results."
+        "a": "Yes. Inherited genes explain about 80% of height differences between people, and parents' heights are the best everyday measure of those genes. The Mid-Parental Height Formula provides a rough estimate using only this data. However, combining parent heights with the child's current measurements (age, height, weight) through the Khamis-Roche model produces significantly more accurate results."
       },
       {
         "q": "Can I predict my baby's height?",
-        "a": "For babies and infants, use the Mid-Parental Height Formula calculator above. It requires only the mother's and father's heights. This gives a rough estimated height range. Note that accuracy is lower for babies than for older children, since current growth data is not factored in."
+        "a": "For babies and infants, use the Mid-Parental Height Formula calculator above. It requires only the mother's and father's heights. This gives a rough estimated height range. Note that accuracy is lower for babies than for older children, since current growth data is not factored in. Once your child turns 2, the age-2 doubling rule gives a second quick check."
+      },
+      {
+        "q": "How tall should my child be at their age?",
+        "a": "Use the growth chart section above to see the average height range by age for boys and girls. The 50th percentile represents the median height. Healthy children typically fall between the 3rd and 97th percentile. If your child is consistently above or below this range, discuss it with their pediatrician."
       },
       {
         "q": "What is the most accurate height prediction method?",
-        "a": "The most accurate method overall is bone age testing (wrist X-ray), used clinically by doctors. For non-clinical prediction, the Khamis-Roche method is the most accurate available. It uses age, height, weight, and parent heights, achieving ±2.1 inches accuracy for boys and ±1.7 inches for girls. This is the method used in the calculator on this page."
+        "a": "The most accurate method overall is bone age testing (wrist X-ray), used clinically by doctors. For non-clinical prediction, the Khamis-Roche method is the most accurate available. It uses age, height, weight, and parent heights, with 9 in 10 predictions within 2.1 inches for boys and 1.7 inches for girls. This is the method used in the calculator on this page."
       }
     ],
     "toc": [
@@ -496,7 +527,7 @@
       },
       {
         "id": "how-it-works",
-        "label": "How Does it Work?"
+        "label": "How Does It Work?"
       },
       {
         "id": "how-tall-will-my-child-be",
@@ -517,6 +548,14 @@
           {
             "id": "how-tall-will-i-be-teens-adults",
             "label": "How Tall Will I Be (Teens & Adults)"
+          },
+          {
+            "id": "worked-example",
+            "label": "Worked example: predicting height from parents' heights"
+          },
+          {
+            "id": "age-2-rule",
+            "label": "Quick check for toddlers: the age-2 rule"
           }
         ]
       },
@@ -542,7 +581,7 @@
       },
       {
         "id": "height-prediction-methods",
-        "label": "Height Prediction Methods",
+        "label": "Height Prediction Methods Explained",
         "subItems": [
           {
             "id": "khamis-roche-method",
@@ -550,7 +589,11 @@
           },
           {
             "id": "based-on-parents",
-            "label": "Mid parental height formula"
+            "label": "Height Calculator Based on Parents' Heights"
+          },
+          {
+            "id": "age-2-doubling-rule",
+            "label": "Age-2 Doubling Rule"
           }
         ]
       },
@@ -638,13 +681,14 @@
       "tableHeaderGirlsMedian": "Girls Median",
       "ageYrs": "{age} yrs",
       "insightBoysStopLabel": "Boys stop growing",
-      "insightBoysStopValue": "~18 yrs",
+      "insightBoysStopValue": "~16-18 yrs",
       "insightGirlsStopLabel": "Girls stop growing",
-      "insightGirlsStopValue": "~15-16 yrs",
+      "insightGirlsStopValue": "~14-15 yrs",
       "insightMaleHeightLabel": "Average adult male height (US)",
-      "insightMaleHeightValue": "172.2 cm / 5'8\"",
+      "insightMaleHeightValue": "175 cm / 5'9\"",
       "insightFemaleHeightLabel": "Average adult female height (US)",
-      "insightFemaleHeightValue": "160.1 cm / 5'3\""
+      "insightFemaleHeightValue": "161.3 cm / 5'3.5\"",
+      "sourceNhanes": "Source: CDC National Center for Health Statistics, adults 20 and over, NHANES August 2021 to August 2023."
     },
     "references": {
       "title": "Scientific Bibliography & Data Sources",
@@ -658,7 +702,12 @@
       "ref8": "Greulich WW, Pyle SI. Radiographic Atlas of Skeletal Development of the Hand and Wrist.",
       "ref9": "Tanner JM, Whitehouse RH. Assessment of Skeletal Maturity.",
       "ref10": "Bayley N, Pinneau SR. Tables for predicting adult height from skeletal age.",
-      "ref11": "Roche AF, Wainer H, Thissen D. Predicting adult stature for individuals."
+      "ref11": "Roche AF, Wainer H, Thissen D. Predicting adult stature for individuals.",
+      "ref12": "Mayo Clinic Staff. Child growth: Can you predict adult height? Mayo Clinic, 2025.",
+      "ref13": "Cross-sectional analysis of maturity status and Khamis-Roche prediction error. PMC6603099.",
+      "ref14": "Khamis HJ, Roche AF. Predicting adult stature without using skeletal age: the Khamis-Roche method. Pediatrics. 1994;94(4):504-507.",
+      "ref15": "CDC National Center for Health Statistics. Body Measurements (FastStats).",
+      "ref16": "Paruthi S, et al. Recommended amount of sleep for pediatric populations. J Clin Sleep Med. 2016."
     }
   },
   "heightWeightPercentile": {

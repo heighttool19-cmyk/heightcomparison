@@ -69,6 +69,7 @@ const Footer = () => {
                         <p className="text-xs font-semibold uppercase tracking-widest text-foreground mb-4">{t('companyHeading')}</p>
                         <ul className="flex flex-col gap-2.5">
                             <FooterLink href={getLocalizedHref('/about')}>{t('about')}</FooterLink>
+                            <FooterLink href={getLocalizedHref('/contact')}>Contact</FooterLink>
                             <FooterLink href={getLocalizedHref('/blogs')}>{t('blogs')}</FooterLink>
                             <FooterLink href={getLocalizedHref('/privacy')}>{t('privacyPolicy')}</FooterLink>
                         </ul>
@@ -80,7 +81,7 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 flex-wrap">
                     <p className="text-[13px] text-muted">
                         {t('copyright', { year: new Date().getFullYear().toString() })}
-                        <Link href={getLocalizedHref('/')} className="text-accent hover:underline">{t('theTeam')}</Link>.
+                        <Link href={getLocalizedHref('/about')} className="text-accent hover:underline">{t('theTeam')}</Link>.
                     </p>
                     <div className="flex gap-3">
                         <SocialButton title="Twitter / X">

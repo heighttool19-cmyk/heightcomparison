@@ -50,10 +50,15 @@ missing/extra/empty).
 | 30 | HeightCharts data based on CDC growth chart data | 30 | Exact match. |
 | 31 | HeightCharts source is CDC Growth Charts / NCHS | 31 | Entity names preserved verbatim in both occurrences (chart view + table view footers). |
 | 32 | 50th percentile line represents Average/Median | 32 | Exact match. |
-| 33 | Boys stop growing ~18 yrs (insight card) | 33 | Number preserved. |
-| 34 | Girls stop growing ~15-16 yrs (insight card) | 34 | Number preserved. |
-| 35 | Average adult male height 172.2cm/5'8" | 35 | Numeric literal preserved byte-identical (deliberate, see `triples-target.md`). |
-| 36 | Average adult female height 160.1cm/5'3" | 36 | Numeric literal preserved byte-identical. |
+| 33 | Boys stop growing ~16–18 yrs (insight card) | 33 | Number preserved (updated Nov 2026). |
+| 34 | Girls stop growing ~14–15 yrs (insight card) | 34 | Number preserved (updated Nov 2026). |
+| 35 | Average adult male height 175cm/5'9" (NHANES) | 35 | Numeric literal preserved byte-identical. |
+| 36 | Average adult female height 161.3cm/5'3.5" (NHANES) | 36 | Numeric literal preserved byte-identical. |
+| 37 | Mayo Clinic publishes / validates age-2 rule | 37 | Preserved verbatim. |
+| 38 | Khamis-Roche error within 5.3cm (boys) / 4.3cm (girls) for 9/10 | 38 | Preserved verbatim across all sections. |
+| 39 | Mid-Parental expected range within ±10cm (4 in) | 39 | Preserved verbatim. |
+| 40 | Height prediction without parental heights not supported | 40 | Preserved verbatim in guidance. |
+| 41 | 100% height prediction accuracy impossible | 41 | Preserved verbatim. |
 
 ### Weakened (0)
 None.
