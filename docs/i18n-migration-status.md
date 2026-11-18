@@ -5,7 +5,7 @@ whoever picks this up next (human or agent) an accurate, at-a-glance view of
 what is fully localized, what is only partially routed, and what remains — so nobody
 re-does finished work or assumes unfinished work is done.
 
-**Last updated**: 2026-11-06 (after completing `/height-predictor` November 2026 content refresh with word-for-word fidelity to specification and 100% key parity across all 10 locales: `en`, `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`).
+**Last updated**: 2026-11-19 (after completing `/height-difference-calculator` content refresh with integrated proportional gap SVG, Stulp et al. couple distribution table, and 100% key parity across all 10 locales: `en`, `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`).
 
 **Supported Locales (10 total)**:
 - `en` (English - default)
@@ -62,7 +62,7 @@ changes — this is a live tracker, not a one-time report.
 | `/height-predictor` | ✅ Done | `src/app/[locale]/height-predictor/page.tsx` + client components below | `heightPredictor` + `metadata.heightPredictor*` | Fully localized across all 10 locales. November 2026 content refresh completed with 100% key parity (361 leaf keys) and 0 missing/extra across `en`, `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`. |
 | `/` (home / height comparison dashboard) | 🟡 Routed only | `src/app/[locale]/page.tsx` exists and renders, but `src/components/HomeContent.tsx` (749 lines, SEO articles/FAQ) and `src/components/DynamicHeightDashboard.tsx` have **no `useTranslations`/`getTranslations` calls at all** — 100% hardcoded English still. | none yet | **Not actually multilingual.** Visiting localized routes renders the localized Navbar/Footer but English page content. Primary remaining landing-page gap. |
 | `/average-height-by-country` | ✅ Done | `src/app/[locale]/average-height-by-country/page.tsx` + 6 client components below | `averageHeightByCountry` + `metadata.averageHeightByCountry*` | Fully localized across all 10 locales. |
-| `/height-difference-calculator` | ✅ Done | `src/app/[locale]/height-difference-calculator/page.tsx` + 4 client components below | `heightDifference` + `metadata.heightDifference*` | Fully localized across all 10 locales. |
+| `/height-difference-calculator` | ✅ Done | `src/app/[locale]/height-difference-calculator/page.tsx` + 3 client components below | `heightDifference` + `metadata.heightDifference*` | Fully localized across all 10 locales. Refreshed with November 2026 design spec: integrated proportional SVG gap visualizer, Stulp et al. (2013) UK couple cohort distribution table & dynamic band tracker, duo percentage comparison cards, and 100% key parity (0 missing, 0 extra, 0 empty) across `en`, `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`. |
 | `/height-weight-percentile-calculator` | ✅ Done | `src/app/[locale]/height-weight-percentile-calculator/page.tsx` + 4 client components below | `heightWeightPercentile` + `metadata.heightWeightPercentile*` | Fully localized across all 10 locales. |
 | `/ideal-body-weight-calculator` | ✅ Done | `src/app/[locale]/ideal-body-weight-calculator/page.tsx` + 2 client components below | `idealBodyWeight` + `metadata.idealBodyWeight*` | Fully localized across all 10 locales. |
 | `/blogs` | ✅ Done | `src/app/[locale]/blogs/page.tsx` | `blogs` + `metadata.blogs*` | Routed under `[locale]`, localized headings, cards, and date formatting (`formatLocalizedDate`). |

@@ -1428,11 +1428,7 @@
     },
     "calculateSection": {
       "title": "Beräkna Höjdskillnad",
-      "description": "Använd höjdskillnadsräknaren nedan. Ange båda längderna, välj din enhet, och jämförelsen uppdateras live.",
-      "badgeFree": "Gratis",
-      "badgeNoAccount": "Inget konto behövs",
-      "badgeSupportsUnits": "Stöder cm och fot/tum",
-      "badgeUpdatesLive": "Uppdateras live"
+      "description": "Använd höjdskillnadsräknaren nedan. Ange båda längderna, välj din enhet, och jämförelsen uppdateras live."
     },
     "howToCalculate": {
       "title": "Så här beräknar du höjdskillnad",
@@ -1473,10 +1469,6 @@
     "couple": {
       "title": "Kalkylator för höjdskillnad mellan par",
       "p1": "Att jämföra längder mellan romantiska partners är en av de vanligaste användningarna av en höjdskillnadsräknare. Par vill veta hur skillnaden ser ut på foton, hur den jämförs med genomsnittet, eller helt enkelt av nyfikenhet. Verktyget fungerar på samma sätt för alla två personer.",
-      "globalAvgLabel": "Global genomsnittlig skillnad (man-kvinna par)",
-      "globalAvgValue": "12 till 15 cm",
-      "feetInLabel": "I fot och tum",
-      "feetInValue": "ungefär 5 till 6 tum",
       "p2": "Enkätdata visar att den genomsnittliga höjdskillnaden i man-kvinna par globalt ligger på cirka 12 till 15 cm (ungefär 5 till 6 tum), även om detta varierar beroende på land och individ. Det finns ingen standarddefinition för en normal höjdskillnad mellan par. Siffrorna är bara siffror.",
       "statAvgGapLabel": "Average gap, UK couples",
       "statAvgGapValue": "14.1 cm",
@@ -1511,18 +1503,9 @@
       "calloutLink": "Height Comparison Calculator",
       "calloutSuffix": "."
     },
-    "visualSection": {
-      "title": "Visuell längdjämförelse",
-      "p1": "En visuell längdjämförelse representerar skillnaden mellan två personer som en proportionell grafik snarare än bara ett nummer. Om en person är 10 % längre, återges deras stapel 10 % högre på skärmen. Skillnaden blir omedelbart läsbar utan att behöva läsa siffror.",
-      "p2": "Detta är särskilt användbart när det råa numret är tvetydigt. En 10 cm skillnad mellan två personer nära 160 cm ser väldigt annorlunda ut än samma skillnad mellan två personer över 185 cm. Höjdskillnadsräknare genererar denna skalade visualisering automatiskt från de värden du anger."
-    },
     "unitsSection": {
       "title": "Höjdskillnad i olika enheter",
       "p1": "Du kan beräkna höjdskillnaden i centimeter eller i fot och tum. Att byta enheter konverterar både indata och utdata samtidigt. Ingen manuell konvertering behövs innan du anger värden.",
-      "tableHeaderPersonA": "Person A",
-      "tableHeaderPersonB": "Person B",
-      "tableHeaderDifferenceCm": "Skillnad (cm)",
-      "tableHeaderDifferenceIn": "Skillnad (tum)",
       "subheadFtIn": "Height difference in feet and inches",
       "table1HeaderPersonA": "Person A",
       "table1HeaderPersonB": "Person B",
@@ -1618,17 +1601,9 @@
       "person1Label": "Person 1",
       "person2Label": "Person 2",
       "cmPlaceholder": "Centimeter",
-      "ftPlaceholder": "Fot",
-      "inPlaceholder": "Tum",
-      "unitCm": "cm",
-      "unitFt": "fot",
-      "unitIn": "tum",
       "heightDifferenceLabel": "Höjdskillnad",
       "percentDifferenceLabel": "% Skillnad",
-      "isTallerText": "{person} är längre",
       "tallerPersonLabel": "Längre person",
-      "visualComparisonLabel": "Visuell jämförelse",
-      "enterBothHeightsPrompt": "Ange båda längderna ovan för att se jämförelsen.",
       "cardHeaderTitle": "Enter two heights",
       "cardHeaderSub": "Results update as you type",
       "swapButtonLabel": "Swap Person 1 and Person 2",
@@ -1649,8 +1624,6 @@
     "coupleCalc": {
       "partner1Label": "Partner 1",
       "partner2Label": "Partner 2",
-      "pctTallerText": "{pct}% längre",
-      "resultSentence": "{p1} ({h1} cm) är <strong>{diff} cm ({pct}%) längre</strong> än {p2} ({h2} cm)",
       "chipsLabel": "Example couples",
       "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
       "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
@@ -1668,13 +1641,6 @@
       "headerPersonB": "Person B",
       "headerDifference": "Skillnad",
       "headerPercentDifference": "% Skillnad"
-    },
-    "visualComp": {
-      "person1Label": "Person 1",
-      "person2Label": "Person 2",
-      "pairButtonText": "{h1} cm vs {h2} cm",
-      "diffCmText": "{diff} cm skillnad",
-      "isTallerText": "{person} är längre"
     }
   },
   "averageHeightByCountry": {

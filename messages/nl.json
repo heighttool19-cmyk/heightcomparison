@@ -1394,11 +1394,7 @@
     },
     "calculateSection": {
       "title": "Bereken Hoogteverschil",
-      "description": "Voer hieronder twee lengtes in om direct het exacte verschil te berekenen. Schakel op elk moment tussen metrische en imperiale eenheden.",
-      "badgeFree": "100% Gratis",
-      "badgeNoAccount": "Geen Account Nodig",
-      "badgeSupportsUnits": "Ondersteunt cm en ft/in",
-      "badgeUpdatesLive": "Live Bijgewerkt"
+      "description": "Voer hieronder twee lengtes in om direct het exacte verschil te berekenen. Schakel op elk moment tussen metrische en imperiale eenheden."
     },
     "howToCalculate": {
       "title": "Hoe Bereken je het Hoogteverschil",
@@ -1439,10 +1435,6 @@
     "couple": {
       "title": "Hoogteverschil Calculator voor Koppels",
       "p1": "Het lengteverschil tussen koppels is een veelbesproken onderwerp in relaties. Wereldwijd zijn mannen gemiddeld ongeveer 12 tot 15 cm langer dan vrouwen binnen dezelfde populatie.",
-      "globalAvgLabel": "Wereldwijd Gemiddeld Koppelverschil:",
-      "globalAvgValue": "~12–15 cm",
-      "feetInLabel": "In Voet en Inches:",
-      "feetInValue": "~4,7–5,9 in",
       "p2": "Onderzoek toont aan dat relaties met een gematigd lengteverschil (tussen 5 en 15 cm) wereldwijd het meest voorkomen. Gebruik onze interactieve calculator om het verschil tussen partners te bekijken.",
       "statAvgGapLabel": "Average gap, UK couples",
       "statAvgGapValue": "14.1 cm",
@@ -1477,18 +1469,9 @@
       "calloutLink": "Height Comparison Calculator",
       "calloutSuffix": "."
     },
-    "visualSection": {
-      "title": "Visuele Lengtevergelijking",
-      "p1": "Cijfers zijn nuttig, maar een visuele lengtevergelijking maakt het verschil direct tastbaar. Een verschil van 10 cm oogt heel anders bij mensen van verschillende lengtes.",
-      "p2": "Kies vooraf ingestelde paren hieronder of voer aangepaste lengtes in om het verschil op schaal te zien."
-    },
     "unitsSection": {
       "title": "Hoogteverschil in Verschillende Eenheden",
       "p1": "Het omrekenen tussen metrische en imperiale eenheden leidt vaak tot verwarring. De onderstaande tabel biedt directe omrekeningen van veelvoorkomende lengtes en verschillen.",
-      "tableHeaderPersonA": "Persoon A",
-      "tableHeaderPersonB": "Persoon B",
-      "tableHeaderDifferenceCm": "Verschil (cm)",
-      "tableHeaderDifferenceIn": "Verschil (in)",
       "subheadFtIn": "Height difference in feet and inches",
       "table1HeaderPersonA": "Person A",
       "table1HeaderPersonB": "Person B",
@@ -1584,17 +1567,9 @@
       "person1Label": "Persoon 1",
       "person2Label": "Persoon 2",
       "cmPlaceholder": "cm",
-      "ftPlaceholder": "ft",
-      "inPlaceholder": "in",
-      "unitCm": "cm",
-      "unitFt": "ft",
-      "unitIn": "in",
       "heightDifferenceLabel": "Hoogteverschil",
       "percentDifferenceLabel": "Percentageverschil",
-      "isTallerText": "{person} is langer",
       "tallerPersonLabel": "Langste Persoon",
-      "visualComparisonLabel": "Visuele Vergelijking",
-      "enterBothHeightsPrompt": "Voer beide lengtes in om het verschil te berekenen",
       "cardHeaderTitle": "Enter two heights",
       "cardHeaderSub": "Results update as you type",
       "swapButtonLabel": "Swap Person 1 and Person 2",
@@ -1615,8 +1590,6 @@
     "coupleCalc": {
       "partner1Label": "Partner 1",
       "partner2Label": "Partner 2",
-      "pctTallerText": "{pct}% langer",
-      "resultSentence": "{p1} ({h1} cm) is <strong>{diff} cm ({pct}%) langer</strong> dan {p2} ({h2} cm)",
       "chipsLabel": "Example couples",
       "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
       "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
@@ -1634,13 +1607,6 @@
       "headerPersonB": "Persoon B",
       "headerDifference": "Verschil",
       "headerPercentDifference": "Percentageverschil"
-    },
-    "visualComp": {
-      "person1Label": "Persoon 1",
-      "person2Label": "Persoon 2",
-      "pairButtonText": "{h1} cm vs {h2} cm",
-      "diffCmText": "{diff} cm verschil",
-      "isTallerText": "{person} is langer"
     }
   },
   "averageHeightByCountry": {

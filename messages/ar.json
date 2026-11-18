@@ -1428,11 +1428,7 @@
     },
     "calculateSection": {
       "title": "حساب فرق الطول",
-      "description": "استخدم حاسبة فرق الطول أدناه. أدخل الطولين، واختر وحدة القياس، وسيتم تحديث المقارنة مباشرة.",
-      "badgeFree": "مجاني",
-      "badgeNoAccount": "لا يلزم إنشاء حساب",
-      "badgeSupportsUnits": "يدعم سم وقدم/بوصة",
-      "badgeUpdatesLive": "تحديث فوري ومباشر"
+      "description": "استخدم حاسبة فرق الطول أدناه. أدخل الطولين، واختر وحدة القياس، وسيتم تحديث المقارنة مباشرة."
     },
     "howToCalculate": {
       "title": "كيفية حساب فرق الطول",
@@ -1473,10 +1469,6 @@
     "couple": {
       "title": "حاسبة فرق الطول بين الزوجين",
       "p1": "تعد مقارنة الطول بين الشركاء والأزواج من أكثر استخدامات حاسبة فرق الطول شيوعًا؛ حيث يرغب الأزواج في معرفة كيف يبدو الفارق في الصور، أو كيف يُقارن بالمتوسط، أو ببساطة بدافع الفضول. وتعمل الأداة بنفس الطريقة لأي شخصين.",
-      "globalAvgLabel": "المتوسط العالمي للفارق (أزواج رجال ونساء)",
-      "globalAvgValue": "من 12 إلى 15 سم",
-      "feetInLabel": "بالأقدام والبوصات",
-      "feetInValue": "حوالي 5 إلى 6 بوصات",
       "p2": "تشير بيانات المسوح الإحصائية إلى أن متوسط فرق الطول بين الأزواج (رجل وامرأة) على مستوى العالم يتراوح بين 12 إلى 15 سم تقريبًا (حوالي 5 إلى 6 بوصات)، على الرغم من أن هذا يختلف حسب الدولة والأفراد. ولا يوجد معيار محدد لما يُعتبر فارقًا طبيعيًا بين الزوجين؛ فالأرقام مجرد أرقام.",
       "statAvgGapLabel": "Average gap, UK couples",
       "statAvgGapValue": "14.1 cm",
@@ -1511,18 +1503,9 @@
       "calloutLink": "Height Comparison Calculator",
       "calloutSuffix": "."
     },
-    "visualSection": {
-      "title": "المقارنة البصرية للطول",
-      "p1": "تعرض المقارنة البصرية للطول الفارق بين شخصين كرسم بياني تناسبي بدلاً من مجرد أرقام مجردة. فإذا كان أحد الشخصين أطول بنسبة 10%، يظهر شريطه أطول بنسبة 10% على الشاشة، مما يجعل الفرق واضحًا ومفهومًا على الفور دون الحاجة لقراءة الأرقام.",
-      "p2": "تفيد هذه الميزة بشكل خاص عندما يكون الرقم المجرد غير كافٍ للتخيل؛ ففارق 10 سم بين شخصين بطول حوالي 160 سم يبدو مختلفًا تمامًا عن نفس الفارق بين شخصين بطول يزيد عن 185 سم. وتقوم حاسبة فرق الطول بإنشاء هذا الرسم التناسبي تلقائيًا من القيم المدخلة."
-    },
     "unitsSection": {
       "title": "فرق الطول بوحدات مختلفة",
       "p1": "يمكنك حساب فرق الطول بالسنتيمتر أو بالأقدام والبوصات. يؤدي تبديل الوحدات إلى تحويل كل من المدخلات والنتائج في آن واحد دون الحاجة لأي تحويل يدوي قبل إدخال القيم.",
-      "tableHeaderPersonA": "الشخص (أ)",
-      "tableHeaderPersonB": "الشخص (ب)",
-      "tableHeaderDifferenceCm": "الفارق (سم)",
-      "tableHeaderDifferenceIn": "الفارق (بوصة)",
       "subheadFtIn": "Height difference in feet and inches",
       "table1HeaderPersonA": "Person A",
       "table1HeaderPersonB": "Person B",
@@ -1618,17 +1601,9 @@
       "person1Label": "الشخص 1",
       "person2Label": "الشخص 2",
       "cmPlaceholder": "سنتيمتر",
-      "ftPlaceholder": "قدم",
-      "inPlaceholder": "بوصة",
-      "unitCm": "سم",
-      "unitFt": "قدم",
-      "unitIn": "بوصة",
       "heightDifferenceLabel": "فرق الطول",
       "percentDifferenceLabel": "% الفرق",
-      "isTallerText": "{person} هو الأطول",
       "tallerPersonLabel": "الشخص الأطول",
-      "visualComparisonLabel": "المقارنة البصرية",
-      "enterBothHeightsPrompt": "أدخل كلا الطولين أعلاه لرؤية المقارنة.",
       "cardHeaderTitle": "Enter two heights",
       "cardHeaderSub": "Results update as you type",
       "swapButtonLabel": "Swap Person 1 and Person 2",
@@ -1649,8 +1624,6 @@
     "coupleCalc": {
       "partner1Label": "الشريك 1",
       "partner2Label": "الشريك 2",
-      "pctTallerText": "أطول بنسبة {pct}%",
-      "resultSentence": "{p1} ({h1} سم) <strong>أطول بمقدار {diff} سم ({pct}%)</strong> من {p2} ({h2} سم)",
       "chipsLabel": "Example couples",
       "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
       "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
@@ -1668,13 +1641,6 @@
       "headerPersonB": "الشخص (ب)",
       "headerDifference": "الفارق",
       "headerPercentDifference": "% الفرق"
-    },
-    "visualComp": {
-      "person1Label": "الشخص 1",
-      "person2Label": "الشخص 2",
-      "pairButtonText": "{h1} سم مقابل {h2} سم",
-      "diffCmText": "فارق {diff} سم",
-      "isTallerText": "{person} هو الأطول"
     }
   },
   "averageHeightByCountry": {

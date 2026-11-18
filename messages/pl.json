@@ -1428,11 +1428,7 @@
     },
     "calculateSection": {
       "title": "Oblicz różnicę wzrostu",
-      "description": "Skorzystaj z poniższego kalkulatora różnicy wzrostu. Wprowadź oba wzrosty, wybierz jednostkę, a porównanie będzie aktualizować się na żywo.",
-      "badgeFree": "Bezpłatnie",
-      "badgeNoAccount": "Nie wymaga konta",
-      "badgeSupportsUnits": "Obsługuje cm i stopy/cale",
-      "badgeUpdatesLive": "Aktualizuje się na żywo"
+      "description": "Skorzystaj z poniższego kalkulatora różnicy wzrostu. Wprowadź oba wzrosty, wybierz jednostkę, a porównanie będzie aktualizować się na żywo."
     },
     "howToCalculate": {
       "title": "Jak obliczyć różnicę wzrostu",
@@ -1473,10 +1469,6 @@
     "couple": {
       "title": "Kalkulator różnicy wzrostu dla par",
       "p1": "Porównywanie wzrostu między partnerami romantycznymi jest jednym z najczęstszych zastosowań kalkulatora różnicy wzrostu. Pary chcą wiedzieć, jak wygląda różnica na zdjęciach, jak wypada w porównaniu ze średnią, lub po prostu z ciekawości. Narzędzie działa tak samo dla dowolnych dwóch osób.",
-      "globalAvgLabel": "Średnia globalna różnica (pary męsko-żeńskie)",
-      "globalAvgValue": "12 do 15 cm",
-      "feetInLabel": "W stopach i calach",
-      "feetInValue": "około 5 do 6 cali",
       "p2": "Dane z badań wskazują, że średnia różnica wzrostu w parach męsko-żeńskich na świecie wynosi około 12 do 15 cm (około 5 do 6 cali), choć różni się to w zależności od kraju i osoby. Nie ma standardowej definicji normalnej różnicy wzrostu w parze. Liczby to tylko liczby.",
       "statAvgGapLabel": "Average gap, UK couples",
       "statAvgGapValue": "14.1 cm",
@@ -1511,18 +1503,9 @@
       "calloutLink": "Height Comparison Calculator",
       "calloutSuffix": "."
     },
-    "visualSection": {
-      "title": "Wizualne porównanie wzrostu",
-      "p1": "Wizualne porównanie wzrostu przedstawia różnicę między dwiema osobami jako proporcjonalną grafikę, a nie tylko liczbę. Jeśli jedna osoba jest o 10% wyższa, jej słupek na ekranie jest o 10% wyższy. Różnica staje się natychmiast czytelna bez konieczności odczytywania cyfr.",
-      "p2": "Jest to szczególnie przydatne, gdy surowa liczba jest niejednoznaczna. Różnica 10 cm między dwiema osobami o wzroście około 160 cm wygląda zupełnie inaczej niż ta sama różnica między dwiema osobami o wzroście powyżej 185 cm. Kalkulator różnicy wzrostu automatycznie generuje tę skalowaną wizualizację na podstawie wprowadzonych wartości."
-    },
     "unitsSection": {
       "title": "Różnica wzrostu w różnych jednostkach",
       "p1": "Różnicę wzrostu można obliczyć w centymetrach lub w stopach i calach. Zmiana jednostek jednocześnie konwertuje zarówno dane wejściowe, jak i wyjściowe. Przed wprowadzeniem wartości nie jest potrzebna ręczna konwersja.",
-      "tableHeaderPersonA": "Osoba A",
-      "tableHeaderPersonB": "Osoba B",
-      "tableHeaderDifferenceCm": "Różnica (cm)",
-      "tableHeaderDifferenceIn": "Różnica (cale)",
       "subheadFtIn": "Height difference in feet and inches",
       "table1HeaderPersonA": "Person A",
       "table1HeaderPersonB": "Person B",
@@ -1618,17 +1601,9 @@
       "person1Label": "Osoba 1",
       "person2Label": "Osoba 2",
       "cmPlaceholder": "Centymetry",
-      "ftPlaceholder": "Stopy",
-      "inPlaceholder": "Cale",
-      "unitCm": "cm",
-      "unitFt": "stopy",
-      "unitIn": "cale",
       "heightDifferenceLabel": "Różnica wzrostu",
       "percentDifferenceLabel": "% różnicy",
-      "isTallerText": "{person} jest wyższy",
       "tallerPersonLabel": "Wyższa osoba",
-      "visualComparisonLabel": "Wizualne porównanie",
-      "enterBothHeightsPrompt": "Wprowadź oba wzrosty powyżej, aby zobaczyć porównanie.",
       "cardHeaderTitle": "Enter two heights",
       "cardHeaderSub": "Results update as you type",
       "swapButtonLabel": "Swap Person 1 and Person 2",
@@ -1649,8 +1624,6 @@
     "coupleCalc": {
       "partner1Label": "Partner 1",
       "partner2Label": "Partner 2",
-      "pctTallerText": "wyższy o {pct}%",
-      "resultSentence": "{p1} ({h1} cm) jest <strong>o {diff} cm ({pct}%) wyższy</strong> niż {p2} ({h2} cm)",
       "chipsLabel": "Example couples",
       "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
       "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
@@ -1668,13 +1641,6 @@
       "headerPersonB": "Osoba B",
       "headerDifference": "Różnica",
       "headerPercentDifference": "% Różnicy"
-    },
-    "visualComp": {
-      "person1Label": "Osoba 1",
-      "person2Label": "Osoba 2",
-      "pairButtonText": "{h1} cm vs {h2} cm",
-      "diffCmText": "{diff} cm różnicy",
-      "isTallerText": "{person} jest wyższy"
     }
   },
   "averageHeightByCountry": {

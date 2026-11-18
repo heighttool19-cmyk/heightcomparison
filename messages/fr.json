@@ -1404,11 +1404,7 @@
     },
     "calculateSection": {
       "title": "Calculer la différence de taille",
-      "description": "Utilisez le calculateur pour voir la différence de taille exacte entre deux personnes en centimètres et en pieds/pouces, ainsi que l'écart en pourcentage et un aperçu visuel côte à côte.",
-      "badgeFree": "Gratuit",
-      "badgeNoAccount": "Sans inscription",
-      "badgeSupportsUnits": "Métrique & Impérial",
-      "badgeUpdatesLive": "Mise à jour en direct"
+      "description": "Utilisez le calculateur pour voir la différence de taille exacte entre deux personnes en centimètres et en pieds/pouces, ainsi que l'écart en pourcentage et un aperçu visuel côte à côte."
     },
     "howToCalculate": {
       "title": "Comment calculer la différence de taille",
@@ -1449,10 +1445,6 @@
     "couple": {
       "title": "Différence de taille dans les couples",
       "p1": "Dans les couples hétérosexuels à l'échelle mondiale, l'homme est plus grand que la femme dans environ 92 % des cas. Cet écart s'explique directement par le dimorphisme sexuel biologique : les hommes mesurent en moyenne 12 à 15 cm de plus que les femmes dans quasiment toutes les populations.",
-      "globalAvgLabel": "Écart moyen mondial dans les couples",
-      "globalAvgValue": "≈ 12 à 14 cm",
-      "feetInLabel": "En mesures impériales",
-      "feetInValue": "≈ 4,7 à 5,5 pouces",
       "p2": "Des études en psychologie évolutionniste ont montré qu'une majorité d'hommes et de femmes préfèrent les configurations où l'homme est plus grand, bien que les variations individuelles soient très nombreuses et parfaitement naturelles.",
       "statAvgGapLabel": "Average gap, UK couples",
       "statAvgGapValue": "14.1 cm",
@@ -1487,18 +1479,9 @@
       "calloutLink": "Height Comparison Calculator",
       "calloutSuffix": "."
     },
-    "visualSection": {
-      "title": "Visualiser la différence de taille côte à côte",
-      "p1": "Les chiffres seuls ne suffisent pas toujours à se représenter l'impact visuel d'un écart de taille. Une différence de 10 cm apparaît plus prononcée sur des personnes de petite stature que sur des personnes de grande taille.",
-      "p2": "Notre moteur de rendu graphique génère des silhouettes vectorielles à l'échelle pour visualiser immédiatement le rapport de proportion réel entre deux personnes."
-    },
     "unitsSection": {
       "title": "Tableau de conversion métrique et impérial",
       "p1": "Ce tableau récapitule les correspondances entre les unités métriques (cm) et impériales (pieds/pouces) pour les comparaisons les plus fréquentes :",
-      "tableHeaderPersonA": "Taille A",
-      "tableHeaderPersonB": "Taille B",
-      "tableHeaderDifferenceCm": "Écart (cm)",
-      "tableHeaderDifferenceIn": "Écart (pouces)",
       "subheadFtIn": "Height difference in feet and inches",
       "table1HeaderPersonA": "Person A",
       "table1HeaderPersonB": "Person B",
@@ -1594,17 +1577,9 @@
       "person1Label": "Personne 1",
       "person2Label": "Personne 2",
       "cmPlaceholder": "ex. 180",
-      "ftPlaceholder": "ex. 5",
-      "inPlaceholder": "ex. 11",
-      "unitCm": "cm",
-      "unitFt": "pi",
-      "unitIn": "po",
       "heightDifferenceLabel": "Différence de taille",
       "percentDifferenceLabel": "Écart en pourcentage",
-      "isTallerText": "{person} est plus grand",
       "tallerPersonLabel": "Personne la plus grande",
-      "visualComparisonLabel": "Comparaison visuelle",
-      "enterBothHeightsPrompt": "Entrez les deux tailles pour afficher la comparaison",
       "cardHeaderTitle": "Enter two heights",
       "cardHeaderSub": "Results update as you type",
       "swapButtonLabel": "Swap Person 1 and Person 2",
@@ -1625,8 +1600,6 @@
     "coupleCalc": {
       "partner1Label": "Partenaire 1",
       "partner2Label": "Partenaire 2",
-      "pctTallerText": "{pct}% de différence",
-      "resultSentence": "{p1} ({h1} cm) est <strong>plus grand de {diff} cm ({pct}%)</strong> que {p2} ({h2} cm)",
       "chipsLabel": "Example couples",
       "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
       "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
@@ -1644,13 +1617,6 @@
       "headerPersonB": "Personne B",
       "headerDifference": "Différence",
       "headerPercentDifference": "Différence (%)"
-    },
-    "visualComp": {
-      "person1Label": "Personne 1",
-      "person2Label": "Personne 2",
-      "pairButtonText": "{h1} cm vs {h2} cm",
-      "diffCmText": "{diff} cm d'écart",
-      "isTallerText": "{person} est plus grand"
     }
   },
   "averageHeightByCountry": {

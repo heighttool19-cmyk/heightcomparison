@@ -1394,11 +1394,7 @@
     },
     "calculateSection": {
       "title": "Calcola la Differenza di Altezza",
-      "description": "Inserisci due altezze qui sotto per calcolare all'istante la differenza esatta. Passa dal sistema metrico a quello imperiale in qualsiasi momento.",
-      "badgeFree": "100% Gratuito",
-      "badgeNoAccount": "Nessun Account Richiesto",
-      "badgeSupportsUnits": "Supporta cm e piedi/pollici",
-      "badgeUpdatesLive": "Aggiornamento in Tempo Reale"
+      "description": "Inserisci due altezze qui sotto per calcolare all'istante la differenza esatta. Passa dal sistema metrico a quello imperiale in qualsiasi momento."
     },
     "howToCalculate": {
       "title": "Come Calcolare la Differenza di Altezza",
@@ -1439,10 +1435,6 @@
     "couple": {
       "title": "Calcolatore Differenza di Altezza per Coppie",
       "p1": "La differenza di altezza tra partner è uno degli argomenti più cercati nelle relazioni. A livello globale, gli uomini sono in media circa 12–15 cm più alti delle donne nella stessa popolazione.",
-      "globalAvgLabel": "Differenza Media Globale di Coppia:",
-      "globalAvgValue": "~12–15 cm",
-      "feetInLabel": "In Piedi e Pollici:",
-      "feetInValue": "~4,7–5,9 pollici",
       "p2": "La maggior parte delle ricerche mostra che le coppie con un divario di altezza moderato (tra 5 e 15 cm) sono le più diffuse al mondo. Usa il nostro strumento interattivo per esplorare la differenza di altezza nella coppia.",
       "statAvgGapLabel": "Average gap, UK couples",
       "statAvgGapValue": "14.1 cm",
@@ -1477,18 +1469,9 @@
       "calloutLink": "Height Comparison Calculator",
       "calloutSuffix": "."
     },
-    "visualSection": {
-      "title": "Confronto Visivo di Altezza",
-      "p1": "Guardare i numeri è utile, ma visualizzare il confronto rende il divario immediatamente percepibile. Una differenza di 10 cm appare diversa su persone di stature differenti.",
-      "p2": "Seleziona le coppie preimpostate qui sotto o inserisci altezze personalizzate per vedere la differenza disegnata in scala proporzionale esatta."
-    },
     "unitsSection": {
       "title": "Differenza di Altezza in Unità Diverse",
       "p1": "La conversione tra unità metriche e imperiali genera spesso confusione. La tabella sottostante fornisce conversioni dirette delle stature e delle rispettive differenze.",
-      "tableHeaderPersonA": "Persona A",
-      "tableHeaderPersonB": "Persona B",
-      "tableHeaderDifferenceCm": "Differenza (cm)",
-      "tableHeaderDifferenceIn": "Differenza (pol)",
       "subheadFtIn": "Height difference in feet and inches",
       "table1HeaderPersonA": "Person A",
       "table1HeaderPersonB": "Person B",
@@ -1584,17 +1567,9 @@
       "person1Label": "Persona 1",
       "person2Label": "Persona 2",
       "cmPlaceholder": "cm",
-      "ftPlaceholder": "piedi",
-      "inPlaceholder": "pol",
-      "unitCm": "cm",
-      "unitFt": "ft",
-      "unitIn": "in",
       "heightDifferenceLabel": "Differenza di Altezza",
       "percentDifferenceLabel": "Differenza Percentuale",
-      "isTallerText": "{person} è più alto",
       "tallerPersonLabel": "Persona Più Alta",
-      "visualComparisonLabel": "Confronto Visivo",
-      "enterBothHeightsPrompt": "Inserisci entrambe le altezze per calcolare la differenza",
       "cardHeaderTitle": "Enter two heights",
       "cardHeaderSub": "Results update as you type",
       "swapButtonLabel": "Swap Person 1 and Person 2",
@@ -1615,8 +1590,6 @@
     "coupleCalc": {
       "partner1Label": "Partner 1",
       "partner2Label": "Partner 2",
-      "pctTallerText": "{pct}% più alto(a)",
-      "resultSentence": "{p1} ({h1} cm) è <strong>più alto di {diff} cm ({pct}%)</strong> rispetto a {p2} ({h2} cm)",
       "chipsLabel": "Example couples",
       "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
       "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
@@ -1634,13 +1607,6 @@
       "headerPersonB": "Persona B",
       "headerDifference": "Differenza",
       "headerPercentDifference": "Differenza Percentuale"
-    },
-    "visualComp": {
-      "person1Label": "Persona 1",
-      "person2Label": "Persona 2",
-      "pairButtonText": "{h1} cm vs {h2} cm",
-      "diffCmText": "{diff} cm di differenza",
-      "isTallerText": "{person} è più alto"
     }
   },
   "averageHeightByCountry": {
