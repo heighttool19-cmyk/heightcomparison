@@ -1,9 +1,25 @@
 import React from 'react';
+import { getTranslations } from 'next-intl/server';
 import HomeContent from '@/components/HomeContent';
 import { DynamicHeightDashboard } from '@/components/DynamicHeightDashboard';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
 import JsonLd from '@/components/common/JsonLd';
 import { HOME_SCHEMA } from '@/constants/schemas/home';
+import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'metadata' });
+
+  return {
+    title: t('homeTitle'),
+    description: t('homeDescription'),
+    alternates: {
+      canonical: getCanonicalUrl('/', locale),
+      languages: getAlternateLanguages('/'),
+    }
+  };
+}
 
 export default function LocalizedHome() {
   return (
