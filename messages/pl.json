@@ -1420,7 +1420,11 @@
   "heightDifference": {
     "intro": {
       "title": "Kalkulator różnicy wzrostu",
-      "description": "Kalkulator różnicy wzrostu porównuje wzrost dwóch osób i podaje różnicę między nimi. Wprowadź dwa wzrosty w centymetrach lub stopach i calach. Narzędzie natychmiast oblicza różnicę wzrostu i różnicę procentową. Porównaj się z przyjacielem, partnerem lub kimkolwiek innym w ciągu kilku sekund."
+      "description": "Kalkulator różnicy wzrostu porównuje wzrost dwóch osób i podaje różnicę między nimi. Wprowadź dwa wzrosty w centymetrach lub stopach i calach. Narzędzie natychmiast oblicza różnicę wzrostu i różnicę procentową. Porównaj się z przyjacielem, partnerem lub kimkolwiek innym w ciągu kilku sekund.",
+      "heroCtaButton": "Calculate height difference",
+      "heroBadgeFree": "Free",
+      "heroBadgeNoSignup": "No signup",
+      "heroBadgeUnits": "cm or ft/in"
     },
     "calculateSection": {
       "title": "Oblicz różnicę wzrostu",
@@ -1456,7 +1460,15 @@
       "calculationValue": "15 ÷ 180 × 100",
       "percentDiffLabel": "Różnica procentowa",
       "percentDiffValue": "8.3%",
-      "p2": "Oznacza to, że Osoba B jest o 8,3% niższa w stosunku do Osoby A. Kalkulator różnicy wzrostu automatycznie podaje tę wartość wraz z bezwzględną luką. Obie wartości aktualizują się na żywo po zmianie któregokolwiek wzrostu."
+      "p2": "Oznacza to, że Osoba B jest o 8,3% niższa w stosunku do Osoby A. Kalkulator różnicy wzrostu automatycznie podaje tę wartość wraz z bezwzględną luką. Obie wartości aktualizują się na żywo po zmianie któregokolwiek wzrostu.",
+      "p3": "The base you divide by changes the number. This calculator divides by the taller height, so it reports how much shorter Person B is. To find how much taller Person A is, divide by the shorter height: 15 ÷ 165 × 100 = 9.1%. Both figures describe the same 15 cm gap.",
+      "duoShorterLabel": "Percent shorter (this calculator)",
+      "duoShorterValue": "8.3%",
+      "duoShorterEq": "15 ÷ 180 × 100",
+      "duoTallerLabel": "Percent taller",
+      "duoTallerValue": "9.1%",
+      "duoTallerEq": "15 ÷ 165 × 100",
+      "p4": "The same gap in cm becomes a smaller percentage as heights rise. A 10 cm gap equals 6.3% when the taller person is 160 cm and 5.3% when the taller person is 190 cm."
     },
     "couple": {
       "title": "Kalkulator różnicy wzrostu dla par",
@@ -1465,12 +1477,39 @@
       "globalAvgValue": "12 do 15 cm",
       "feetInLabel": "W stopach i calach",
       "feetInValue": "około 5 do 6 cali",
-      "p2": "Dane z badań wskazują, że średnia różnica wzrostu w parach męsko-żeńskich na świecie wynosi około 12 do 15 cm (około 5 do 6 cali), choć różni się to w zależności od kraju i osoby. Nie ma standardowej definicji normalnej różnicy wzrostu w parze. Liczby to tylko liczby."
+      "p2": "Dane z badań wskazują, że średnia różnica wzrostu w parach męsko-żeńskich na świecie wynosi około 12 do 15 cm (około 5 do 6 cali), choć różni się to w zależności od kraju i osoby. Nie ma standardowej definicji normalnej różnicy wzrostu w parze. Liczby to tylko liczby.",
+      "statAvgGapLabel": "Average gap, UK couples",
+      "statAvgGapValue": "14.1 cm",
+      "statAvgGapSub": "5.6 in",
+      "statAvgGapSampleSize": "12,502 couples",
+      "statManTallerLabel": "Man taller",
+      "statManTallerValue": "92.5%",
+      "statManTallerSub": "of couples in the same study",
+      "distTableCaption": "Share of UK couples by height gap",
+      "tableHeaderGap": "Man taller by",
+      "tableHeaderShare": "Share of UK couples",
+      "tableHeaderBar": "Bar",
+      "bandWomanTaller": "Woman taller",
+      "band0to5": "0 to 5 cm",
+      "band5to10": "5 to 10 cm",
+      "band10to15": "10 to 15 cm",
+      "band15to20": "15 to 20 cm",
+      "band20to25": "20 to 25 cm",
+      "band25to30": "25 to 30 cm",
+      "bandOver30": "Over 30 cm",
+      "tableSource": "Source: Stulp et al. (2013), parents in the UK Millennium Cohort Study.",
+      "p3": "Gaps of 10 to 20 cm covered about 42% of these couples. Preferences differ by sex. In a separate study, women reported the most satisfaction when their partner was 21 cm taller, and men when they were 8 cm taller. These figures describe common gaps. They do not define a correct one.",
+      "coupleCardChipsLabel": "Example couples",
+      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
+      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples."
     },
     "chartSection": {
       "title": "Tabela różnic wzrostu",
       "p1": "Poniższa tabela przedstawia typowe pary wzrostu i ich różnice. Użyj jej jako szybkiego odniesienia bez wprowadzania wartości do narzędzia.",
-      "p2": "Różnica procentowa rośnie wraz z bezwzględną luką, ale zależy również od wyższego wzrostu. Różnica 15 cm jest proporcjonalnie większa, gdy wyższa osoba ma 165 cm, niż gdy ma 190 cm."
+      "p2": "Różnica procentowa rośnie wraz z bezwzględną luką, ale zależy również od wyższego wzrostu. Różnica 15 cm jest proporcjonalnie większa, gdy wyższa osoba ma 165 cm, niż gdy ma 190 cm.",
+      "calloutPrefix": "To chart three or more people side by side, use the ",
+      "calloutLink": "Height Comparison Calculator",
+      "calloutSuffix": "."
     },
     "visualSection": {
       "title": "Wizualne porównanie wzrostu",
@@ -1483,7 +1522,18 @@
       "tableHeaderPersonA": "Osoba A",
       "tableHeaderPersonB": "Osoba B",
       "tableHeaderDifferenceCm": "Różnica (cm)",
-      "tableHeaderDifferenceIn": "Różnica (cale)"
+      "tableHeaderDifferenceIn": "Różnica (cale)",
+      "subheadFtIn": "Height difference in feet and inches",
+      "table1HeaderPersonA": "Person A",
+      "table1HeaderPersonB": "Person B",
+      "table1HeaderDiffIn": "Difference (in)",
+      "table1HeaderDiffCm": "Difference (cm)",
+      "table1HeaderPercent": "% Difference",
+      "subheadCm": "Height difference in centimeters",
+      "table2HeaderDiffCm": "Height difference (cm)",
+      "table2HeaderInInches": "In inches",
+      "table2HeaderExamplePair": "Example pair",
+      "table2HeaderPercent": "% Difference"
     },
     "cta": {
       "title": "Wypróbuj Kalkulator różnicy wzrostu",
@@ -1498,66 +1548,68 @@
     "references": {
       "title": "Źródła",
       "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016.",
-      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE."
+      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE.",
+      "ref1Url": "https://doi.org/10.1371/journal.pone.0054186",
+      "ref2Url": "https://tvpollet.github.io/pdfs/Stulp_et_al_2013_PAID.pdf"
     },
     "faq": [
       {
-        "q": "Jaka jest normalna różnica wzrostu między parami?",
-        "a": "Nie ma ustalonego standardu. Dane z badań wskazują, że średnia różnica w parach męsko-żeńskich wynosi około 12 do 15 cm (5 do 6 cali) na całym świecie. Kalkulator różnicy wzrostu par pokazuje różnicę między dowolnymi dwoma wzrostami. To, co uważa się za normalne, różni się w zależności od kraju, kultury i indywidualnych preferencji."
+        "q": "What is a normal height difference between couples?",
+        "a": "No single gap is normal. In a study of 12,502 UK couples, the man was 14.1 cm (5.6 in) taller on average. Gaps of 10 to 20 cm covered about 42% of couples. The couple height difference calculator shows the gap for any two heights."
       },
       {
-        "q": "Jak obliczyć różnicę wzrostu?",
-        "a": "Odejmij wzrost niższej osoby od wzrostu wyższej osoby: Różnica wzrostu = Wzrost wyższej osoby − Wzrost niższej osoby. Dla 180 cm i 165 cm różnica wynosi 15 cm. Aby uzyskać procent, podziel 15 przez 180 i pomnóż przez 100, co daje 8,3%."
+        "q": "How do you calculate height difference?",
+        "a": "Subtract the shorter height from the taller height: Height Difference = Taller Height − Shorter Height. For 180 cm and 165 cm, the difference is 15 cm. Divide 15 by 180 and multiply by 100 to get the percentage difference of 8.3%."
       },
       {
-        "q": "Czy kalkulator różnicy wzrostu może pokazać różnicę procentową?",
-        "a": "Tak. Ten kalkulator różnicy wzrostu podaje zarówno bezwzględną różnicę, jak i różnicę procentową. Procent jest obliczany w stosunku do wzrostu wyższej osoby i aktualizuje się automatycznie, gdy zmienia się jedna z wartości."
+        "q": "Can a height difference calculator show percentage difference?",
+        "a": "Yes. This difference in height calculator shows the gap in cm or inches and the percentage difference. It divides the gap by the taller person's height and updates both values when either height changes."
       },
       {
-        "q": "Jakie jednostki można używać w kalkulatorze różnicy wzrostu?",
-        "a": "Ten kalkulator różnicy wzrostu obsługuje centymetry oraz stopy/cale. Możesz w dowolnym momencie zmienić jednostki, a zarówno dane wejściowe, jak i wynik zostaną automatycznie przeliczone. Nie jest potrzebna ręczna konwersja."
+        "q": "Is \"percent taller\" the same as \"percent shorter\"?",
+        "a": "No. Percent shorter divides the gap by the taller height. Percent taller divides it by the shorter height. For 180 cm and 165 cm, Person B is 8.3% shorter and Person A is 9.1% taller."
+      },
+      {
+        "q": "What units can be used in a height difference calculator?",
+        "a": "This height difference calculator accepts centimeters and feet and inches. Switching units converts both inputs and the result at once."
       }
     ],
     "toc": [
       {
         "id": "calculate-height-difference",
-        "label": "Oblicz różnicę wzrostu"
+        "label": "Calculate Height Difference"
       },
       {
         "id": "how-to-calculate-height-difference",
-        "label": "Jak obliczyć różnicę wzrostu"
+        "label": "How to Calculate Height Difference"
       },
       {
         "id": "height-difference-percentage",
-        "label": "Procentowa różnica wzrostu"
+        "label": "Height Difference Percentage"
       },
       {
         "id": "couple-height-difference-calculator",
-        "label": "Kalkulator różnicy wzrostu par"
+        "label": "Couple Height Difference Calculator"
       },
       {
         "id": "height-difference-chart",
-        "label": "Wykres różnicy wzrostu"
-      },
-      {
-        "id": "visual-height-comparison",
-        "label": "Wizualne porównanie wzrostu"
+        "label": "Height Difference Chart"
       },
       {
         "id": "height-difference-in-different-units",
-        "label": "Różnica wzrostu w różnych jednostkach"
+        "label": "Height Difference in Different Units"
       },
       {
         "id": "try-the-height-difference-calculator",
-        "label": "Wypróbuj Kalkulator różnicy wzrostu"
+        "label": "Try the Height Difference Calculator"
       },
       {
         "id": "frequently-asked-questions",
-        "label": "Często zadawane pytania"
+        "label": "Frequently Asked Questions"
       },
       {
         "id": "references",
-        "label": "Źródła"
+        "label": "References"
       }
     ],
     "tool": {
@@ -1576,13 +1628,40 @@
       "isTallerText": "{person} jest wyższy",
       "tallerPersonLabel": "Wyższa osoba",
       "visualComparisonLabel": "Wizualne porównanie",
-      "enterBothHeightsPrompt": "Wprowadź oba wzrosty powyżej, aby zobaczyć porównanie."
+      "enterBothHeightsPrompt": "Wprowadź oba wzrosty powyżej, aby zobaczyć porównanie.",
+      "cardHeaderTitle": "Enter two heights",
+      "cardHeaderSub": "Results update as you type",
+      "swapButtonLabel": "Swap Person 1 and Person 2",
+      "swapButtonTitle": "Swap heights",
+      "cmPlaceholder2": "e.g. 165",
+      "ftLabel": "FT",
+      "inLabel": "IN",
+      "hintText": "Type a height in each box. Use the toggle above to switch to feet and inches.",
+      "gapGraphicLabel": "Height gap",
+      "badgeFree": "Free",
+      "badgeNoAccount": "No account needed",
+      "badgeSupportsUnits": "Supports cm and ft/in",
+      "badgeUpdatesLive": "Updates live",
+      "noDifferenceText": "No difference",
+      "personShorterText": "{person} is {pct}% shorter",
+      "sameHeightText": "Same height"
     },
     "coupleCalc": {
       "partner1Label": "Partner 1",
       "partner2Label": "Partner 2",
       "pctTallerText": "wyższy o {pct}%",
-      "resultSentence": "{p1} ({h1} cm) jest <strong>o {diff} cm ({pct}%) wyższy</strong> niż {p2} ({h2} cm)"
+      "resultSentence": "{p1} ({h1} cm) jest <strong>o {diff} cm ({pct}%) wyższy</strong> niż {p2} ({h2} cm)",
+      "chipsLabel": "Example couples",
+      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
+      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
+      "bandWomanTaller": "woman taller",
+      "band0to5": "0 to 5 cm",
+      "band5to10": "5 to 10 cm",
+      "band10to15": "10 to 15 cm",
+      "band15to20": "15 to 20 cm",
+      "band20to25": "20 to 25 cm",
+      "band25to30": "25 to 30 cm",
+      "bandOver30": "over 30 cm"
     },
     "chartTable": {
       "headerPersonA": "Osoba A",

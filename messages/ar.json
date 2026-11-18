@@ -1420,7 +1420,11 @@
   "heightDifference": {
     "intro": {
       "title": "حاسبة فرق الطول",
-      "description": "تقارن حاسبة فرق الطول بين قامتي شخصين وتعرض الفارق الدقيق بينهما. أدخل الطولين بالسنتيمتر أو بالأقدام والبوصات؛ وستحسب الأداة فارق الطول وفارق النسبة المئوية على الفور. قارن نفسك بصديقك أو شريكك أو أي شخص آخر في ثوانٍ."
+      "description": "تقارن حاسبة فرق الطول بين قامتي شخصين وتعرض الفارق الدقيق بينهما. أدخل الطولين بالسنتيمتر أو بالأقدام والبوصات؛ وستحسب الأداة فارق الطول وفارق النسبة المئوية على الفور. قارن نفسك بصديقك أو شريكك أو أي شخص آخر في ثوانٍ.",
+      "heroCtaButton": "Calculate height difference",
+      "heroBadgeFree": "Free",
+      "heroBadgeNoSignup": "No signup",
+      "heroBadgeUnits": "cm or ft/in"
     },
     "calculateSection": {
       "title": "حساب فرق الطول",
@@ -1456,7 +1460,15 @@
       "calculationValue": "15 ÷ 180 × 100",
       "percentDiffLabel": "فرق النسبة المئوية",
       "percentDiffValue": "8.3%",
-      "p2": "يعني هذا أن الشخص (ب) أقصر بنسبة 8.3% مقارنة بالشخص (أ). تعرض حاسبة فرق الطول هذا الرقم تلقائيًا بجانب الفارق المطلق، ويتم تحديث القيمتين مباشرة عند تغيير أي طول."
+      "p2": "يعني هذا أن الشخص (ب) أقصر بنسبة 8.3% مقارنة بالشخص (أ). تعرض حاسبة فرق الطول هذا الرقم تلقائيًا بجانب الفارق المطلق، ويتم تحديث القيمتين مباشرة عند تغيير أي طول.",
+      "p3": "The base you divide by changes the number. This calculator divides by the taller height, so it reports how much shorter Person B is. To find how much taller Person A is, divide by the shorter height: 15 ÷ 165 × 100 = 9.1%. Both figures describe the same 15 cm gap.",
+      "duoShorterLabel": "Percent shorter (this calculator)",
+      "duoShorterValue": "8.3%",
+      "duoShorterEq": "15 ÷ 180 × 100",
+      "duoTallerLabel": "Percent taller",
+      "duoTallerValue": "9.1%",
+      "duoTallerEq": "15 ÷ 165 × 100",
+      "p4": "The same gap in cm becomes a smaller percentage as heights rise. A 10 cm gap equals 6.3% when the taller person is 160 cm and 5.3% when the taller person is 190 cm."
     },
     "couple": {
       "title": "حاسبة فرق الطول بين الزوجين",
@@ -1465,12 +1477,39 @@
       "globalAvgValue": "من 12 إلى 15 سم",
       "feetInLabel": "بالأقدام والبوصات",
       "feetInValue": "حوالي 5 إلى 6 بوصات",
-      "p2": "تشير بيانات المسوح الإحصائية إلى أن متوسط فرق الطول بين الأزواج (رجل وامرأة) على مستوى العالم يتراوح بين 12 إلى 15 سم تقريبًا (حوالي 5 إلى 6 بوصات)، على الرغم من أن هذا يختلف حسب الدولة والأفراد. ولا يوجد معيار محدد لما يُعتبر فارقًا طبيعيًا بين الزوجين؛ فالأرقام مجرد أرقام."
+      "p2": "تشير بيانات المسوح الإحصائية إلى أن متوسط فرق الطول بين الأزواج (رجل وامرأة) على مستوى العالم يتراوح بين 12 إلى 15 سم تقريبًا (حوالي 5 إلى 6 بوصات)، على الرغم من أن هذا يختلف حسب الدولة والأفراد. ولا يوجد معيار محدد لما يُعتبر فارقًا طبيعيًا بين الزوجين؛ فالأرقام مجرد أرقام.",
+      "statAvgGapLabel": "Average gap, UK couples",
+      "statAvgGapValue": "14.1 cm",
+      "statAvgGapSub": "5.6 in",
+      "statAvgGapSampleSize": "12,502 couples",
+      "statManTallerLabel": "Man taller",
+      "statManTallerValue": "92.5%",
+      "statManTallerSub": "of couples in the same study",
+      "distTableCaption": "Share of UK couples by height gap",
+      "tableHeaderGap": "Man taller by",
+      "tableHeaderShare": "Share of UK couples",
+      "tableHeaderBar": "Bar",
+      "bandWomanTaller": "Woman taller",
+      "band0to5": "0 to 5 cm",
+      "band5to10": "5 to 10 cm",
+      "band10to15": "10 to 15 cm",
+      "band15to20": "15 to 20 cm",
+      "band20to25": "20 to 25 cm",
+      "band25to30": "25 to 30 cm",
+      "bandOver30": "Over 30 cm",
+      "tableSource": "Source: Stulp et al. (2013), parents in the UK Millennium Cohort Study.",
+      "p3": "Gaps of 10 to 20 cm covered about 42% of these couples. Preferences differ by sex. In a separate study, women reported the most satisfaction when their partner was 21 cm taller, and men when they were 8 cm taller. These figures describe common gaps. They do not define a correct one.",
+      "coupleCardChipsLabel": "Example couples",
+      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
+      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples."
     },
     "chartSection": {
       "title": "مخطط فرق الطول",
       "p1": "يغطي المخطط أدناه أزواج الأطوال الشائعة والفروق بينها، ويمكنك استخدامه كمرجع سريع دون الحاجة لإدخال قيم في الأداة.",
-      "p2": "تزداد النسبة المئوية للفرق مع زيادة الفارق المطلق، ولكنها تعتمد أيضًا على طول الشخص الأطول؛ ففارق 15 سم يكون أكبر نسبيًا عندما يكون طول الشخص الأطول 165 سم مقارنة بما إذا كان طوله 190 سم."
+      "p2": "تزداد النسبة المئوية للفرق مع زيادة الفارق المطلق، ولكنها تعتمد أيضًا على طول الشخص الأطول؛ ففارق 15 سم يكون أكبر نسبيًا عندما يكون طول الشخص الأطول 165 سم مقارنة بما إذا كان طوله 190 سم.",
+      "calloutPrefix": "To chart three or more people side by side, use the ",
+      "calloutLink": "Height Comparison Calculator",
+      "calloutSuffix": "."
     },
     "visualSection": {
       "title": "المقارنة البصرية للطول",
@@ -1483,7 +1522,18 @@
       "tableHeaderPersonA": "الشخص (أ)",
       "tableHeaderPersonB": "الشخص (ب)",
       "tableHeaderDifferenceCm": "الفارق (سم)",
-      "tableHeaderDifferenceIn": "الفارق (بوصة)"
+      "tableHeaderDifferenceIn": "الفارق (بوصة)",
+      "subheadFtIn": "Height difference in feet and inches",
+      "table1HeaderPersonA": "Person A",
+      "table1HeaderPersonB": "Person B",
+      "table1HeaderDiffIn": "Difference (in)",
+      "table1HeaderDiffCm": "Difference (cm)",
+      "table1HeaderPercent": "% Difference",
+      "subheadCm": "Height difference in centimeters",
+      "table2HeaderDiffCm": "Height difference (cm)",
+      "table2HeaderInInches": "In inches",
+      "table2HeaderExamplePair": "Example pair",
+      "table2HeaderPercent": "% Difference"
     },
     "cta": {
       "title": "جرب حاسبة فرق الطول الآن",
@@ -1498,66 +1548,68 @@
     "references": {
       "title": "المراجع والمصادر",
       "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016.",
-      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE."
+      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE.",
+      "ref1Url": "https://doi.org/10.1371/journal.pone.0054186",
+      "ref2Url": "https://tvpollet.github.io/pdfs/Stulp_et_al_2013_PAID.pdf"
     },
     "faq": [
       {
-        "q": "ما هو فرق الطول الطبيعي بين الزوجين؟",
-        "a": "لا يوجد معيار قياسي ثابت. تشير بيانات المسوح الإحصائية إلى أن متوسط الفارق بين الأزواج (رجال ونساء) يبلغ حوالي 12 إلى 15 سم (5 إلى 6 بوصات) عالميًا. تعرض حاسبة فرق الطول الفجوة بين أي طولين، وما يعتبر طبيعيًا يختلف حسب الدولة والثقافة والتفضيلات الشخصية."
+        "q": "What is a normal height difference between couples?",
+        "a": "No single gap is normal. In a study of 12,502 UK couples, the man was 14.1 cm (5.6 in) taller on average. Gaps of 10 to 20 cm covered about 42% of couples. The couple height difference calculator shows the gap for any two heights."
       },
       {
-        "q": "كيف تحسب فرق الطول؟",
-        "a": "اطرح طول الشخص الأقصر من طول الشخص الأطول: فرق الطول = طول الشخص الأطول − طول الشخص الأقصر. بالنسبة لطول 180 سم و165 سم، يكون الفرق 15 سم. وللحصول على النسبة المئوية، اقسم 15 على 180 واضرب في 100، فتكون النتيجة 8.3%."
+        "q": "How do you calculate height difference?",
+        "a": "Subtract the shorter height from the taller height: Height Difference = Taller Height − Shorter Height. For 180 cm and 165 cm, the difference is 15 cm. Divide 15 by 180 and multiply by 100 to get the percentage difference of 8.3%."
       },
       {
-        "q": "هل يمكن لحاسبة فرق الطول إظهار النسبة المئوية للفرق؟",
-        "a": "نعم، تعرض حاسبة فرق الطول كلاً من الفارق الإجمالي بالسنتيمتر ونسبة الفرق المئوية. وتُحسب النسبة المئوية بالرجوع إلى طول الشخص الأطول ويتم تحديثها تلقائيًا عند تغيير أي من القيم."
+        "q": "Can a height difference calculator show percentage difference?",
+        "a": "Yes. This difference in height calculator shows the gap in cm or inches and the percentage difference. It divides the gap by the taller person's height and updates both values when either height changes."
       },
       {
-        "q": "ما هي الوحدات التي يمكن استخدامها في حاسبة فرق الطول؟",
-        "a": "تدعم الحاسبة كلاً من السنتيمتر والأقدام/البوصات. يمكنك التبديل بين الوحدات في أي وقت وسيتم تحويل المدخلات والنتائج تلقائيًا دون الحاجة لأي حساب يدوي."
+        "q": "Is \"percent taller\" the same as \"percent shorter\"?",
+        "a": "No. Percent shorter divides the gap by the taller height. Percent taller divides it by the shorter height. For 180 cm and 165 cm, Person B is 8.3% shorter and Person A is 9.1% taller."
+      },
+      {
+        "q": "What units can be used in a height difference calculator?",
+        "a": "This height difference calculator accepts centimeters and feet and inches. Switching units converts both inputs and the result at once."
       }
     ],
     "toc": [
       {
         "id": "calculate-height-difference",
-        "label": "حساب فرق الطول"
+        "label": "Calculate Height Difference"
       },
       {
         "id": "how-to-calculate-height-difference",
-        "label": "كيفية حساب فرق الطول"
+        "label": "How to Calculate Height Difference"
       },
       {
         "id": "height-difference-percentage",
-        "label": "النسبة المئوية لفرق الطول"
+        "label": "Height Difference Percentage"
       },
       {
         "id": "couple-height-difference-calculator",
-        "label": "حاسبة فرق الطول بين الزوجين"
+        "label": "Couple Height Difference Calculator"
       },
       {
         "id": "height-difference-chart",
-        "label": "مخطط فرق الطول"
-      },
-      {
-        "id": "visual-height-comparison",
-        "label": "المقارنة البصرية للطول"
+        "label": "Height Difference Chart"
       },
       {
         "id": "height-difference-in-different-units",
-        "label": "فرق الطول بوحدات مختلفة"
+        "label": "Height Difference in Different Units"
       },
       {
         "id": "try-the-height-difference-calculator",
-        "label": "جرب حاسبة فرق الطول"
+        "label": "Try the Height Difference Calculator"
       },
       {
         "id": "frequently-asked-questions",
-        "label": "الأسئلة الشائعة"
+        "label": "Frequently Asked Questions"
       },
       {
         "id": "references",
-        "label": "المراجع"
+        "label": "References"
       }
     ],
     "tool": {
@@ -1576,13 +1628,40 @@
       "isTallerText": "{person} هو الأطول",
       "tallerPersonLabel": "الشخص الأطول",
       "visualComparisonLabel": "المقارنة البصرية",
-      "enterBothHeightsPrompt": "أدخل كلا الطولين أعلاه لرؤية المقارنة."
+      "enterBothHeightsPrompt": "أدخل كلا الطولين أعلاه لرؤية المقارنة.",
+      "cardHeaderTitle": "Enter two heights",
+      "cardHeaderSub": "Results update as you type",
+      "swapButtonLabel": "Swap Person 1 and Person 2",
+      "swapButtonTitle": "Swap heights",
+      "cmPlaceholder2": "e.g. 165",
+      "ftLabel": "FT",
+      "inLabel": "IN",
+      "hintText": "Type a height in each box. Use the toggle above to switch to feet and inches.",
+      "gapGraphicLabel": "Height gap",
+      "badgeFree": "Free",
+      "badgeNoAccount": "No account needed",
+      "badgeSupportsUnits": "Supports cm and ft/in",
+      "badgeUpdatesLive": "Updates live",
+      "noDifferenceText": "No difference",
+      "personShorterText": "{person} is {pct}% shorter",
+      "sameHeightText": "Same height"
     },
     "coupleCalc": {
       "partner1Label": "الشريك 1",
       "partner2Label": "الشريك 2",
       "pctTallerText": "أطول بنسبة {pct}%",
-      "resultSentence": "{p1} ({h1} سم) <strong>أطول بمقدار {diff} سم ({pct}%)</strong> من {p2} ({h2} سم)"
+      "resultSentence": "{p1} ({h1} سم) <strong>أطول بمقدار {diff} سم ({pct}%)</strong> من {p2} ({h2} سم)",
+      "chipsLabel": "Example couples",
+      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
+      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
+      "bandWomanTaller": "woman taller",
+      "band0to5": "0 to 5 cm",
+      "band5to10": "5 to 10 cm",
+      "band10to15": "10 to 15 cm",
+      "band15to20": "15 to 20 cm",
+      "band20to25": "20 to 25 cm",
+      "band25to30": "25 to 30 cm",
+      "bandOver30": "over 30 cm"
     },
     "chartTable": {
       "headerPersonA": "الشخص (أ)",

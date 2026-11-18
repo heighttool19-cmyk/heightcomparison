@@ -1420,20 +1420,20 @@
   "heightDifference": {
     "intro": {
       "title": "Height Difference Calculator",
-      "description": "A height difference calculator compares two people's heights and returns the gap between them. Enter two heights in centimeters or feet and inches. The tool calculates the height difference and the percentage difference instantly. Compare yourself with a friend, a partner, or anyone else in seconds."
+      "description": "The Height Difference Calculator subtracts the shorter of two heights from the taller one and shows the gap in centimeters and inches. It also shows the percentage difference and names the taller person. Enter heights in cm or feet and inches. The calculator is free, needs no account, and updates as you type.",
+      "heroCtaButton": "Calculate height difference",
+      "heroBadgeFree": "Free",
+      "heroBadgeNoSignup": "No signup",
+      "heroBadgeUnits": "cm or ft/in"
     },
     "calculateSection": {
       "title": "Calculate Height Difference",
-      "description": "Use the difference in height calculator below. Enter both heights, choose your unit, and the comparison updates live.",
-      "badgeFree": "Free",
-      "badgeNoAccount": "No account needed",
-      "badgeSupportsUnits": "Supports cm and ft/in",
-      "badgeUpdatesLive": "Updates live"
+      "description": "Enter a height for Person 1 and Person 2, then choose Metric (cm) or Imperial (ft/in). The difference in height calculator shows the gap, the percentage difference and the taller person below the inputs. It takes two heights at a time and works on any device. It uses the values you enter and does not adjust for shoes or posture."
     },
     "howToCalculate": {
       "title": "How to Calculate Height Difference",
-      "p1": "Height difference calculation uses a single operation: subtract the shorter person's height from the taller person's height. The difference in height calculator identifies which person is taller automatically, so the result is always a positive number regardless of which height you enter first.",
-      "formulaTitle": "Height difference formula:",
+      "p1": "Height difference equals the taller height minus the shorter height. The difference in height calculator finds the taller person first, so the result is always a positive number. The order you enter the two heights does not change the answer.",
+      "formulaTitle": "Height difference formula",
       "formulaText": "Height Difference = Taller Height − Shorter Height",
       "personALabel": "Person A",
       "personAValue": "180 cm",
@@ -1441,12 +1441,12 @@
       "personBValue": "165 cm",
       "differenceLabel": "Difference",
       "differenceValue": "180 − 165 = 15 cm",
-      "p2": "Subtraction is the only operation involved. The height difference calculator runs this the moment both values are filled in. No extra steps are needed."
+      "p2": "Feet and inches follow the same rule after one step. Convert both heights to inches, then subtract. 5'10\" equals 70 inches and 5'3\" equals 63 inches, so the height difference is 7 inches (17.8 cm)."
     },
     "percentage": {
       "title": "Height Difference Percentage",
-      "p1": "The percentage difference adds a proportional dimension to the raw gap. A 10 cm difference between two people both above 180 cm represents a much smaller relative gap than the same 10 cm between two people near 155 cm. The percentage makes the gap meaningful regardless of absolute height.",
-      "formulaTitle": "Percentage difference formula:",
+      "p1": "Percentage difference expresses the height gap as a share of the taller person's height. A raw gap in cm tells you the distance. The percentage tells you how large that distance is relative to the people involved.",
+      "formulaTitle": "Percentage difference formula",
       "formulaText": "Percentage Difference = (Height Difference ÷ Taller Height) × 100",
       "heightDiffLabel": "Height difference",
       "heightDiffValue": "15 cm",
@@ -1456,66 +1456,98 @@
       "calculationValue": "15 ÷ 180 × 100",
       "percentDiffLabel": "Percentage difference",
       "percentDiffValue": "8.3%",
-      "p2": "This means Person B is 8.3% shorter relative to Person A. The difference in height calculator outputs this figure automatically alongside the absolute gap. Both values update live when either height changes."
+      "p2": "Person B is 8.3% shorter than Person A. The height difference calculator shows this figure next to the gap in cm. Both values update when either height changes.",
+      "p3": "The base you divide by changes the number. This calculator divides by the taller height, so it reports how much shorter Person B is. To find how much taller Person A is, divide by the shorter height: 15 ÷ 165 × 100 = 9.1%. Both figures describe the same 15 cm gap.",
+      "duoShorterLabel": "Percent shorter (this calculator)",
+      "duoShorterValue": "8.3%",
+      "duoShorterEq": "15 ÷ 180 × 100",
+      "duoTallerLabel": "Percent taller",
+      "duoTallerValue": "9.1%",
+      "duoTallerEq": "15 ÷ 165 × 100",
+      "p4": "The same gap in cm becomes a smaller percentage as heights rise. A 10 cm gap equals 6.3% when the taller person is 160 cm and 5.3% when the taller person is 190 cm."
     },
     "couple": {
       "title": "Couple Height Difference Calculator",
-      "p1": "Comparing heights between romantic partners is one of the most common uses of a height difference calculator. Couples want to know how the gap looks in photos, how it compares to the average, or simply out of curiosity. The tool works the same way for any two people.",
-      "globalAvgLabel": "Global average gap (male-female couples)",
-      "globalAvgValue": "12 to 15 cm",
-      "feetInLabel": "In feet and inches",
-      "feetInValue": "roughly 5 to 6 in",
-      "p2": "Survey data places the average height difference in male-female couples globally at around 12 to 15 cm (roughly 5 to 6 inches), though this varies by country and individual. There is no standard definition of a normal couple height difference. The numbers are just numbers."
+      "p1": "A couple height difference calculator measures the height gap between two partners. Couples use it to see how their gap sits against real couple data. The tool works the same way for any two people.",
+      "statAvgGapLabel": "Average gap, UK couples",
+      "statAvgGapValue": "14.1 cm",
+      "statAvgGapSub": "5.6 in",
+      "statAvgGapSampleSize": "12,502 couples",
+      "statManTallerLabel": "Man taller",
+      "statManTallerValue": "92.5%",
+      "statManTallerSub": "of couples in the same study",
+      "p2": "A UK study of 12,502 couples found the man was taller in 92.5% of pairs. The average gap was 14.1 cm (5.6 in). Couples where the woman was taller, or where the man was over 25 cm taller, appeared less often than random pairing predicts.",
+      "distTableCaption": "Share of UK couples by height gap",
+      "tableHeaderGap": "Man taller by",
+      "tableHeaderShare": "Share of UK couples",
+      "tableHeaderBar": "Bar",
+      "bandWomanTaller": "Woman taller",
+      "band0to5": "0 to 5 cm",
+      "band5to10": "5 to 10 cm",
+      "band10to15": "10 to 15 cm",
+      "band15to20": "15 to 20 cm",
+      "band20to25": "20 to 25 cm",
+      "band25to30": "25 to 30 cm",
+      "bandOver30": "Over 30 cm",
+      "tableSource": "Source: Stulp et al. (2013), parents in the UK Millennium Cohort Study.",
+      "p3": "Gaps of 10 to 20 cm covered about 42% of these couples. Preferences differ by sex. In a separate study, women reported the most satisfaction when their partner was 21 cm taller, and men when they were 8 cm taller. These figures describe common gaps. They do not define a correct one.",
+      "coupleCardChipsLabel": "Example couples",
+      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
+      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples."
     },
     "chartSection": {
       "title": "Height Difference Chart",
-      "p1": "The chart below covers common height pairings and their differences. Use it as a quick reference without entering values into the tool.",
-      "p2": "The percentage difference grows with the absolute gap but also depends on the taller height. A 15 cm gap is proportionally larger when the taller person stands at 165 cm than when they stand at 190 cm."
-    },
-    "visualSection": {
-      "title": "Visual Height Comparison",
-      "p1": "A visual height comparison represents the gap between two people as a proportional graphic rather than a number alone. If one person is 10% taller, their bar renders 10% taller on screen. The difference becomes immediately legible without reading figures.",
-      "p2": "This is especially useful when the raw number is ambiguous. A 10 cm gap between two people near 160 cm looks very different from the same gap between two people above 185 cm. The height difference calculator generates this scaled visual automatically from the values you enter."
+      "p1": "The height difference chart lists common pairings with the gap in cm and the percentage difference. Use it as a quick reference without entering values.",
+      "p2": "The percentage difference grows with the gap and shrinks as the taller height rises. A 15 cm gap equals 8.3% when the taller person is 180 cm and 7.9% when the taller person is 190 cm.",
+      "calloutPrefix": "To chart three or more people side by side, use the ",
+      "calloutLink": "Height Comparison Calculator",
+      "calloutSuffix": "."
     },
     "unitsSection": {
       "title": "Height Difference in Different Units",
-      "p1": "You can calculate height difference in centimeters or in feet and inches. Switching units converts both inputs and the output simultaneously. No manual conversion is needed before entering values.",
-      "tableHeaderPersonA": "Person A",
-      "tableHeaderPersonB": "Person B",
-      "tableHeaderDifferenceCm": "Difference (cm)",
-      "tableHeaderDifferenceIn": "Difference (in)"
+      "p1": "You can calculate height difference in centimeters or in feet and inches. Switching units converts both inputs and the result at once, so you never convert by hand.",
+      "subheadFtIn": "Height difference in feet and inches",
+      "table1HeaderPersonA": "Person A",
+      "table1HeaderPersonB": "Person B",
+      "table1HeaderDiffIn": "Difference (in)",
+      "table1HeaderDiffCm": "Difference (cm)",
+      "table1HeaderPercent": "% Difference",
+      "subheadCm": "Height difference in centimeters",
+      "table2HeaderDiffCm": "Height difference (cm)",
+      "table2HeaderInInches": "In inches",
+      "table2HeaderExamplePair": "Example pair",
+      "table2HeaderPercent": "% Difference"
     },
     "cta": {
       "title": "Try the Height Difference Calculator",
       "descriptionLine1": "Enter two heights above to calculate height difference instantly.",
-      "descriptionLine2": "The visual comparison and percentage difference update as you type.",
-      "feature1": "Difference and percentage difference",
-      "feature2": "Proportional visual comparison",
+      "descriptionLine2": "The gap graphic and the percentage difference update as you type.",
+      "feature1": "Difference in cm and inches, plus percentage difference",
+      "feature2": "Proportional gap graphic",
       "feature3": "Supports cm and ft/in",
       "feature4": "Free, no account, any device",
-      "buttonText": "Scroll to top and compare now ↑"
-    },
-    "references": {
-      "title": "Sources",
-      "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016.",
-      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE."
+      "buttonText": "Scroll to top and calculate now ↑"
     },
     "faq": [
       {
         "q": "What is a normal height difference between couples?",
-        "a": "There is no fixed standard. Survey data places the average gap in male-female couples at around 12 to 15 cm (5 to 6 inches) globally. The couple height difference calculator shows the gap between any two heights. What counts as normal varies by country, culture, and individual preference."
+        "a": "No single gap is normal. In a study of 12,502 UK couples, the man was 14.1 cm (5.6 in) taller on average. Gaps of 10 to 20 cm covered about 42% of couples. The couple height difference calculator shows the gap for any two heights."
       },
       {
         "q": "How do you calculate height difference?",
-        "a": "Subtract the shorter person's height from the taller person's height: Height Difference = Taller Height − Shorter Height. For 180 cm and 165 cm, the difference is 15 cm. To get the percentage, divide 15 by 180 and multiply by 100, giving 8.3%."
+        "a": "Subtract the shorter height from the taller height: Height Difference = Taller Height − Shorter Height. For 180 cm and 165 cm, the difference is 15 cm. Divide 15 by 180 and multiply by 100 to get the percentage difference of 8.3%."
       },
       {
         "q": "Can a height difference calculator show percentage difference?",
-        "a": "Yes. This difference in height calculator outputs both the absolute gap and the percentage difference. The percentage is calculated relative to the taller person's height and updates automatically when either value changes."
+        "a": "Yes. This difference in height calculator shows the gap in cm or inches and the percentage difference. It divides the gap by the taller person's height and updates both values when either height changes."
+      },
+      {
+        "q": "Is \"percent taller\" the same as \"percent shorter\"?",
+        "a": "No. Percent shorter divides the gap by the taller height. Percent taller divides it by the shorter height. For 180 cm and 165 cm, Person B is 8.3% shorter and Person A is 9.1% taller."
       },
       {
         "q": "What units can be used in a height difference calculator?",
-        "a": "This height difference calculator supports centimeters and feet/inches. You can switch units at any time and both inputs and the result convert automatically. No manual conversion is needed."
+        "a": "This height difference calculator accepts centimeters and feet and inches. Switching units converts both inputs and the result at once."
       }
     ],
     "toc": [
@@ -1540,10 +1572,6 @@
         "label": "Height Difference Chart"
       },
       {
-        "id": "visual-height-comparison",
-        "label": "Visual Height Comparison"
-      },
-      {
         "id": "height-difference-in-different-units",
         "label": "Height Difference in Different Units"
       },
@@ -1560,42 +1588,59 @@
         "label": "References"
       }
     ],
+    "references": {
+      "title": "Sources",
+      "ref1": "Stulp G, Buunk AP, Pollet TV, Nettle D, Verhulst S (2013). Are Human Mating Preferences with Respect to Height Reflected in Actual Pairings? PLOS ONE 8(1): e54186.",
+      "ref1Url": "https://doi.org/10.1371/journal.pone.0054186",
+      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Women want taller men more than men want shorter women. Personality and Individual Differences.",
+      "ref2Url": "https://tvpollet.github.io/pdfs/Stulp_et_al_2013_PAID.pdf"
+    },
     "tool": {
+      "cardHeaderTitle": "Enter two heights",
+      "cardHeaderSub": "Results update as you type",
       "unitMetric": "Metric (cm)",
       "unitImperial": "Imperial (ft/in)",
       "person1Label": "Person 1",
       "person2Label": "Person 2",
-      "cmPlaceholder": "Centimetres",
-      "ftPlaceholder": "Feet",
-      "inPlaceholder": "Inches",
-      "unitCm": "cm",
-      "unitFt": "ft",
-      "unitIn": "in",
-      "heightDifferenceLabel": "Height Difference",
+      "swapButtonLabel": "Swap Person 1 and Person 2",
+      "swapButtonTitle": "Swap heights",
+      "cmPlaceholder": "e.g. 180",
+      "cmPlaceholder2": "e.g. 165",
+      "ftLabel": "FT",
+      "inLabel": "IN",
+      "hintText": "Type a height in each box. Use the toggle above to switch to feet and inches.",
+      "heightDifferenceLabel": "Height difference",
       "percentDifferenceLabel": "% Difference",
-      "isTallerText": "{person} is taller",
-      "tallerPersonLabel": "Taller Person",
-      "visualComparisonLabel": "Visual Comparison",
-      "enterBothHeightsPrompt": "Enter both heights above to see the comparison."
+      "tallerPersonLabel": "Taller person",
+      "gapGraphicLabel": "Height gap",
+      "badgeFree": "Free",
+      "badgeNoAccount": "No account needed",
+      "badgeSupportsUnits": "Supports cm and ft/in",
+      "badgeUpdatesLive": "Updates live",
+      "noDifferenceText": "No difference",
+      "personShorterText": "{person} is {pct}% shorter",
+      "sameHeightText": "Same height"
     },
     "coupleCalc": {
+      "chipsLabel": "Example couples",
       "partner1Label": "Partner 1",
       "partner2Label": "Partner 2",
-      "pctTallerText": "{pct}% taller",
-      "resultSentence": "{p1} ({h1} cm) is <strong>{diff} cm ({pct}%) taller</strong> than {p2} ({h2} cm)"
+      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
+      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
+      "bandWomanTaller": "woman taller",
+      "band0to5": "0 to 5 cm",
+      "band5to10": "5 to 10 cm",
+      "band10to15": "10 to 15 cm",
+      "band15to20": "15 to 20 cm",
+      "band20to25": "20 to 25 cm",
+      "band25to30": "25 to 30 cm",
+      "bandOver30": "over 30 cm"
     },
     "chartTable": {
       "headerPersonA": "Person A",
       "headerPersonB": "Person B",
       "headerDifference": "Difference",
       "headerPercentDifference": "% Difference"
-    },
-    "visualComp": {
-      "person1Label": "Person 1",
-      "person2Label": "Person 2",
-      "pairButtonText": "{h1} cm vs {h2} cm",
-      "diffCmText": "{diff} cm difference",
-      "isTallerText": "{person} is taller"
     }
   },
   "averageHeightByCountry": {

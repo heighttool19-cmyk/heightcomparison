@@ -1,106 +1,247 @@
 'use client';
 
-import React, { useState } from "react";
-import { useTranslations } from "next-intl";
-import { useThemeStore } from "@/store";
+import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
-const BLUE = "#1A56DB", PINK = "#DB2777";
+const PRESETS = [
+    { a: 183, b: 165 },
+    { a: 178, b: 163 },
+    { a: 175, b: 160 }
+];
 
-function cmToFtIn(cm: number) {
-    const totalIn = cm / 2.54;
-    const ft = Math.floor(totalIn / 12);
-    const inches = Math.round(totalIn % 12);
-    return `${ft}'${inches}"`;
+const BANDS = [
+    { min: -999, max: 0, key: 'bandWomanTaller', share: '4.0%', pctNum: 4, width: '18.8%' },
+    { min: 0, max: 5, key: 'band0to5', share: '8.5%', pctNum: 8.5, width: '39.9%' },
+    { min: 5, max: 10, key: 'band5to10', share: '16.3%', pctNum: 16.3, width: '76.5%' },
+    { min: 10, max: 15, key: 'band10to15', share: '21.3%', pctNum: 21.3, width: '100%' },
+    { min: 15, max: 20, key: 'band15to20', share: '20.7%', pctNum: 20.7, width: '97.2%' },
+    { min: 20, max: 25, key: 'band20to25', share: '15.3%', pctNum: 15.3, width: '71.8%' },
+    { min: 25, max: 30, key: 'band25to30', share: '8.8%', pctNum: 8.8, width: '41.3%' },
+    { min: 30, max: 999, key: 'bandOver30', share: '5.1%', pctNum: 5.1, width: '23.9%' }
+];
+
+function round1(n: number): number {
+    return Math.round(n * 10) / 10;
 }
 
-function Silhouette({ heightPx, color, label, heightLabel }: { heightPx: number, color: string, label: string, heightLabel: string }) {
-    const w = 38, scale = heightPx / 120;
-    return (
-        <div className="flex flex-col items-center gap-1.5">
-            <p style={{ color }} className="m-0 text-[11px] font-bold text-center">{label}</p>
-            <svg width={w} height={heightPx} viewBox={`0 0 38 120`} className="block overflow-visible">
-                <g transform={`scale(1,${scale}) translate(0,${120 * (1 - scale) / scale})`}>
-                    <circle cx="19" cy="10" r="8" fill={color} opacity="0.85" />
-                    <rect x="10" y="19" width="18" height="40" rx="5" fill={color} opacity="0.85" />
-                    <rect x="2" y="21" width="8" height="28" rx="4" fill={color} opacity="0.7" />
-                    <rect x="28" y="21" width="8" height="28" rx="4" fill={color} opacity="0.7" />
-                    <rect x="10" y="57" width="8" height="40" rx="4" fill={color} opacity="0.85" />
-                    <rect x="20" y="57" width="8" height="40" rx="4" fill={color} opacity="0.85" />
-                </g>
-            </svg>
-            <p style={{ color }} className="m-0 text-xs font-black whitespace-pre-line text-center">{heightLabel}</p>
-        </div>
-    );
+function fmt(n: number): string {
+    const r = round1(n);
+    return r % 1 === 0 ? String(r) : r.toFixed(1);
 }
 
 export default function CoupleHeightDifferenceCalculator() {
-    const t = useTranslations('heightDifference.coupleCalc');
-    const { theme } = useThemeStore();
-    const isDark = theme === 'dark';
+    const tCouple = useTranslations('heightDifference.couple');
+    const tCalc = useTranslations('heightDifference.coupleCalc');
 
-    const partner1Label = t('partner1Label');
-    const partner2Label = t('partner2Label');
+    const [presetIndex, setPresetIndex] = useState(0);
+    const active = PRESETS[presetIndex];
 
-    const EXAMPLES = [
-        { p1: partner1Label, h1: 183, p2: partner2Label, h2: 165 },
-        { p1: partner1Label, h1: 178, p2: partner2Label, h2: 163 },
-        { p1: partner1Label, h1: 175, p2: partner2Label, h2: 160 },
-    ];
+    const a = active.a;
+    const b = active.b;
+    const gap = a - b;
+    const pct = ((gap / a) * 100).toFixed(1);
 
-    const [idx, setIdx] = useState(0);
-    const ex = EXAMPLES[idx];
-    const diff = ex.h1 - ex.h2;
-    const pct = ((diff / ex.h1) * 100).toFixed(1);
-    const maxPx = 110, minPx = Math.round((ex.h2 / ex.h1) * maxPx);
+    // Find the matching UK band
+    const activeBand = BANDS.find((band) => gap >= band.min && gap < band.max) || BANDS[4];
 
-    // Responsive gradient adapting to dark mode
-    const backgroundGradient = isDark
-        ? "linear-gradient(135deg, rgba(219,39,119,0.1) 0%, rgba(26,86,219,0.1) 100%)"
-        : "linear-gradient(135deg, #FDF4FF 0%, #EBF5FF 100%)";
+    // SVG figure math
+    const floor = 205;
+    const maxPx = 170;
+    const tallest = Math.max(a, b);
+
+    const renderFigure = (hVal: number, cx: number, color: string, label: string) => {
+        const px = (maxPx * hVal) / tallest;
+        const top = floor - px;
+        const s = px / 170;
+        const headR = 13 * s;
+        const bodyW = 30 * s;
+        const bodyH = 62 * s;
+        const legH = px - headR * 2 - bodyH - 6 * s;
+
+        return (
+            <g key={label} aria-hidden="true">
+                <circle cx={cx} cy={top + headR} r={headR} fill={color} />
+                <rect x={cx - bodyW / 2} y={top + headR * 2 + 3 * s} width={bodyW} height={bodyH} rx={7 * s} fill={color} />
+                <rect x={cx - bodyW / 2 - 9 * s} y={top + headR * 2 + 6 * s} width={7 * s} height={bodyH * 0.8} rx={3.5 * s} fill={color} opacity="0.75" />
+                <rect x={cx + bodyW / 2 + 2 * s} y={top + headR * 2 + 6 * s} width={7 * s} height={bodyH * 0.8} rx={3.5 * s} fill={color} opacity="0.75" />
+                <rect x={cx - bodyW / 2 + 2 * s} y={floor - legH} width={11 * s} height={legH} rx={4 * s} fill={color} />
+                <rect x={cx + bodyW / 2 - 13 * s} y={floor - legH} width={11 * s} height={legH} rx={4 * s} fill={color} />
+                <text x={cx} y={top - 8} textAnchor="middle" fontSize="12" fontWeight="700" fill={color}>
+                    {label}
+                </text>
+                <text x={cx} y={floor + 18} textAnchor="middle" fontSize="12" fontWeight="700" className="fill-foreground font-mono">
+                    {hVal} cm
+                </text>
+            </g>
+        );
+    };
+
+    const topA = floor - (maxPx * a) / tallest;
+    const topB = floor - (maxPx * b) / tallest;
+    const y1 = Math.min(topA, topB);
+    const y2 = Math.max(topA, topB);
+
+    const articleWord = /^(8|11|18)/.test(fmt(gap)) ? 'An' : 'A';
 
     return (
-        <div style={{ fontFamily: "Georgia, serif" }} className="w-full">
-            {/* Preset selector */}
-            <div className="flex flex-wrap gap-2 mb-5">
-                {EXAMPLES.map((e, i) => (
-                    <button
-                        key={i}
-                        onClick={() => setIdx(i)}
-                        className={`px-4 py-1.5 rounded-full text-[11.5px] font-black cursor-pointer transition-colors border-2 ${i === idx ? 'bg-[#DB2777] text-white border-[#DB2777]' : 'bg-surface text-muted border-border hover:text-foreground'}`}
-                    >
-                        {e.h1} cm / {e.h2} cm
-                    </button>
-                ))}
-            </div>
-
-            <div style={{ background: backgroundGradient }} className="rounded-2xl p-6 border border-border shadow-sm">
-                <div className="flex items-end justify-center gap-6 sm:gap-10">
-                    <Silhouette heightPx={maxPx} color={PINK} label={ex.p1} heightLabel={`${ex.h1} cm\n${cmToFtIn(ex.h1)}`} />
-
-                    <div className="flex flex-col items-center justify-center pb-6" style={{ height: maxPx }}>
-                        <div className="w-[1.5px] flex-1 bg-pink-600 opacity-40" />
-                        <div className="bg-surface border border-pink-600/30 rounded-lg px-3 py-1.5 shadow-sm my-1">
-                            <p className="m-0 text-[13px] font-black text-pink-600 text-center">{diff} cm</p>
-                            <p className="m-0 text-[10px] text-muted text-center font-sans mt-0.5">{t('pctTallerText', { pct })}</p>
-                        </div>
-                        <div className="w-[1.5px] flex-1 bg-pink-600 opacity-40" />
+        <div className="space-y-6 w-full">
+            {/* Stats Row */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-surface border border-border rounded-2xl p-5 text-center shadow-sm">
+                    <div className="text-[11px] font-black uppercase tracking-wider text-muted">
+                        {tCouple('statAvgGapLabel')}
                     </div>
-
-                    <Silhouette heightPx={minPx} color={BLUE} label={ex.p2} heightLabel={`${ex.h2} cm\n${cmToFtIn(ex.h2)}`} />
+                    <div className="text-3xl font-black text-foreground mt-1 font-mono">
+                        {tCouple('statAvgGapValue')}{' '}
+                        <span className="text-base text-accent font-bold">
+                            {tCouple('statAvgGapSub')}
+                        </span>
+                    </div>
+                    <div className="text-xs text-muted font-medium mt-1">
+                        {tCouple('statAvgGapSampleSize')}
+                    </div>
                 </div>
 
-                <p className="m-0 mt-5 text-xs text-foreground text-center leading-[1.6]">
-                    {t.rich('resultSentence', {
-                        p1: ex.p1,
-                        h1: ex.h1,
-                        p2: ex.p2,
-                        h2: ex.h2,
-                        diff,
-                        pct,
-                        strong: (chunks) => <strong className="font-black text-pink-600">{chunks}</strong>,
-                    })}
-                </p>
+                <div className="bg-surface border border-border rounded-2xl p-5 text-center shadow-sm">
+                    <div className="text-[11px] font-black uppercase tracking-wider text-muted">
+                        {tCouple('statManTallerLabel')}
+                    </div>
+                    <div className="text-3xl font-black text-accent mt-1 font-mono">
+                        {tCouple('statManTallerValue')}
+                    </div>
+                    <div className="text-xs text-muted font-medium mt-1">
+                        {tCouple('statManTallerSub')}
+                    </div>
+                </div>
             </div>
+
+            {/* Distribution Table */}
+            <div className="overflow-x-auto border border-border rounded-2xl bg-surface shadow-sm">
+                <table className="w-full text-sm text-left">
+                    <caption className="sr-only">{tCouple('distTableCaption')}</caption>
+                    <thead className="bg-bg border-b border-border text-foreground font-bold">
+                        <tr>
+                            <th className="px-5 py-3.5 uppercase tracking-widest text-[11px]">
+                                {tCouple('tableHeaderGap')}
+                            </th>
+                            <th className="px-5 py-3.5 uppercase tracking-widest text-[11px]">
+                                {tCouple('tableHeaderShare')}
+                            </th>
+                            <th className="px-5 py-3.5 uppercase tracking-widest text-[11px] w-[50%]">
+                                <span className="sr-only">{tCouple('tableHeaderBar')}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border/50">
+                        {BANDS.map((bRow) => {
+                            const isHit = activeBand.key === bRow.key;
+                            return (
+                                <tr
+                                    key={bRow.key}
+                                    className={`transition-colors ${
+                                        isHit
+                                            ? 'bg-pink-50 dark:bg-pink-950/40 font-bold'
+                                            : 'hover:bg-bg/40'
+                                    }`}
+                                >
+                                    <td className={`px-5 py-3 ${isHit ? 'text-pink-600 dark:text-pink-400 font-extrabold' : 'text-foreground font-medium'}`}>
+                                        {tCouple(bRow.key)}
+                                    </td>
+                                    <td className={`px-5 py-3 font-mono ${isHit ? 'text-pink-600 dark:text-pink-400 font-extrabold' : 'text-muted'}`}>
+                                        {bRow.share}
+                                    </td>
+                                    <td className="px-5 py-3">
+                                        <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                            <div
+                                                className={`h-full rounded-full transition-all duration-300 ${
+                                                    isHit ? 'bg-pink-600 dark:bg-pink-500' : 'bg-blue-300 dark:bg-blue-700'
+                                                }`}
+                                                style={{ width: bRow.width }}
+                                            />
+                                        </div>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
+            </div>
+            <p className="text-xs text-muted font-medium m-0">
+                {tCouple('tableSource')}
+            </p>
+
+            {/* Couple Visualization Card */}
+            <div className="bg-gradient-to-b from-surface to-pink-50/20 dark:to-pink-950/10 border border-border rounded-2xl p-6 shadow-sm space-y-4">
+                {/* Preset Chips */}
+                <div className="flex flex-wrap items-center gap-2" role="group" aria-label={tCouple('coupleCardChipsLabel')}>
+                    {PRESETS.map((p, idx) => (
+                        <button
+                            key={idx}
+                            type="button"
+                            onClick={() => setPresetIndex(idx)}
+                            aria-pressed={presetIndex === idx}
+                            className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${
+                                presetIndex === idx
+                                    ? 'bg-pink-600 text-white border-pink-600 shadow-md'
+                                    : 'bg-surface text-foreground border-border hover:border-pink-300'
+                            }`}
+                        >
+                            {p.a} cm / {p.b} cm
+                        </button>
+                    ))}
+                </div>
+
+                {/* SVG */}
+                <svg
+                    viewBox="0 0 420 230"
+                    role="img"
+                    aria-label="Scaled figures for the selected couple"
+                    className="w-full max-w-[420px] h-auto mx-auto block"
+                >
+                    <line x1="40" y1={floor} x2="380" y2={floor} stroke="currentColor" className="text-border" strokeWidth="2" />
+                    {renderFigure(a, 130, '#db2777', tCalc('partner1Label'))}
+                    {renderFigure(b, 290, '#2563eb', tCalc('partner2Label'))}
+
+                    {/* Gap Bracket */}
+                    {y2 - y1 > 1 && (
+                        <g>
+                            <line x1="210" y1={y1} x2="210" y2={y2} stroke="currentColor" className="text-foreground" strokeWidth="1.5" />
+                            <line x1="204" y1={y1} x2="216" y2={y1} stroke="currentColor" className="text-foreground" strokeWidth="1.5" />
+                            <line x1="204" y1={y2} x2="216" y2={y2} stroke="currentColor" className="text-foreground" strokeWidth="1.5" />
+                            <line x1="150" y1={y1} x2="210" y2={y1} stroke="currentColor" className="text-muted" strokeDasharray="3 4" strokeWidth="1" />
+                        </g>
+                    )}
+
+                    {/* Pill */}
+                    <g>
+                        <rect x="176" y={y2 + 8} width="68" height="34" rx="17" className="fill-surface stroke-border" strokeWidth="1" />
+                        <text x="210" y={y2 + 23} textAnchor="middle" fontSize="12" fontWeight="800" className="fill-foreground font-mono">
+                            {gap} cm
+                        </text>
+                        <text x="210" y={y2 + 36} textAnchor="middle" fontSize="10" className="fill-muted font-bold font-mono">
+                            {pct}%
+                        </text>
+                    </g>
+                </svg>
+
+                {/* Dynamic Sentence */}
+                <p
+                    className="text-center text-sm text-foreground leading-relaxed m-0 font-medium"
+                    dangerouslySetInnerHTML={{
+                        __html: tCouple('coupleLine', { h1: a, h2: b, gap, pct })
+                    }}
+                />
+            </div>
+
+            {/* Dynamic Band Context */}
+            <p className="text-sm text-muted leading-relaxed font-medium m-0">
+                {tCouple('coupleBandText', {
+                    article: articleWord,
+                    gap,
+                    band: tCouple(activeBand.key),
+                    share: Math.round(activeBand.pctNum)
+                })}
+            </p>
         </div>
     );
 }

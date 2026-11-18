@@ -1,190 +1,172 @@
-import { BASE_URL, ORGANIZATION_SCHEMA } from '../schemas';
-
-export const HEIGHT_DIFFERENCE_SCHEMA =
-{
-    "@context": "https://schema.org",
-    "@graph": [
-
-        {
-            "@type": "WebSite",
-            "@id": "heightcomparisoncalculator.com/#website",
-            "url": "heightcomparisoncalculator.com",
-            "name": "Height Comparison",
-            "publisher": {
-                "@type": "Organization",
-                "@id": "heightcomparisoncalculator.com/#organization"
-            }
-        },
-
-        {
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#webpage",
-            "@type": "WebPage",
-            "name": "Height Difference Calculator",
-            "url": "heightcomparisoncalculator.com/height-difference-calculator",
-            "inLanguage": "en",
-            "isPartOf": {
-                "@id": "heightcomparisoncalculator.com/#website"
-            },
-            "mainEntity": {
-                "@id": "heightcomparisoncalculator.com/height-difference-calculator#height-difference-calculator"
-            },
-            "about": [
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#human-height" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#height-difference" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#percentage-difference" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#visual-height-comparison" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#height-difference-chart" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#couple-height-difference" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#height-difference-formula" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#percentage-difference-formula" }
-            ]
-        },
-
-        {
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#height-difference-calculator",
-            "@type": [
-                "SoftwareApplication",
-                "WebApplication"
-            ],
-            "name": "Height Difference Calculator",
-            "alternateName": [
-                "Difference in Height Calculator"
-            ],
-            "url": "heightcomparisoncalculator.com/height-difference-calculator",
-            "inLanguage": "en",
-            "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": "heightcomparisoncalculator.com/height-difference-calculator#webpage"
-            },
-            "applicationCategory": "UtilityApplication",
-            "operatingSystem": "Web",
-            "isAccessibleForFree": true,
-            "description": "A web-based calculator that compares two heights and returns the absolute height difference, percentage difference, and visual height comparison.",
-            "featureList": [
-                "Calculates absolute height difference",
-                "Calculates percentage difference",
-                "Shows visual height comparison",
-                "Supports couple height comparison",
-                "Supports centimeters and feet/inches",
-                "Updates results instantly"
-            ],
-            "potentialAction": {
-                "@type": "UseAction",
-                "target": {
-                    "@type": "EntryPoint",
-                    "urlTemplate": "heightcomparisoncalculator.com/height-difference-calculator"
-                }
-            },
-            "about": [
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#height-difference" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#percentage-difference" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#visual-height-comparison" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#height-difference-chart" },
-                { "@id": "heightcomparisoncalculator.com/height-difference-calculator#couple-height-difference" }
-            ]
-        },
-
-        {
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#human-height",
-            "@type": "DefinedTerm",
-            "name": "Human Height",
-            "sameAs": "https://en.wikipedia.org/wiki/Human_height"
-        },
-
-        {
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#height-difference",
-            "@type": "DefinedTerm",
-            "name": "Height Difference",
-            "description": "The absolute gap between two heights calculated by subtracting the shorter height from the taller height."
-        },
-
-        {
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#percentage-difference",
-            "@type": "DefinedTerm",
-            "name": "Percentage Difference",
-            "description": "The proportional gap between two heights expressed as a percentage relative to the taller height."
-        },
-
-        {
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#visual-height-comparison",
-            "@type": "DefinedTerm",
-            "name": "Visual Height Comparison",
-            "description": "A proportional visual representation of the height gap between two people."
-        },
-
-        {
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#height-difference-chart",
-            "@type": "DefinedTerm",
-            "name": "Height Difference Chart",
-            "description": "A reference chart showing example height pairings with their absolute and percentage differences."
-        },
-
-        {
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#couple-height-difference",
-            "@type": "DefinedTerm",
-            "name": "Couple Height Difference",
-            "description": "The height gap between romantic partners often compared visually and numerically."
-        },
-
-        {
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#height-difference-formula",
-            "@type": "DefinedTerm",
-            "name": "Height Difference Formula",
-            "description": "Height Difference = Taller Height − Shorter Height",
-            "sameAs": "https://en.wikipedia.org/wiki/Subtraction"
-        },
-
-        {
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#percentage-difference-formula",
-            "@type": "DefinedTerm",
-            "name": "Percentage Difference Formula",
-            "description": "Percentage Difference = (Height Difference ÷ Taller Height) × 100",
-            "sameAs": "https://en.wikipedia.org/wiki/Percentage_difference"
-        },
-
-        {
-            "@type": "FAQPage",
-            "@id": "heightcomparisoncalculator.com/height-difference-calculator#faq",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "@id": "heightcomparisoncalculator.com/height-difference-calculator#what-is-a-normal-height-difference-between-couples",
-                    "name": "What is a normal height difference between couples?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "There is no fixed standard. Survey data places the average gap in male-female couples at around 12 to 15 cm or roughly 5 to 6 inches globally. What counts as normal varies by country, culture, and individual preference."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "@id": "heightcomparisoncalculator.com/height-difference-calculator#how-do-you-calculate-height-difference",
-                    "name": "How do you calculate height difference?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Subtract the shorter person's height from the taller person's height. The formula is Height Difference = Taller Height minus Shorter Height. To calculate percentage difference divide the height difference by the taller height and multiply by 100."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "@id": "heightcomparisoncalculator.com/height-difference-calculator#can-a-height-difference-calculator-show-percentage-difference",
-                    "name": "Can a height difference calculator show percentage difference?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes. A height difference calculator can show both the absolute gap and the percentage difference. The percentage is calculated relative to the taller person's height."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "@id": "heightcomparisoncalculator.com/height-difference-calculator#what-units-can-be-used-in-a-height-difference-calculator",
-                    "name": "What units can be used in a height difference calculator?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "A height difference calculator can use centimeters or feet and inches. Many tools support switching units automatically without requiring manual conversion."
-                    }
-                }
-            ]
+export const HEIGHT_DIFFERENCE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://heightcomparisoncalculator.com/#organization",
+      "name": "Height Comparison Calculator",
+      "url": "https://heightcomparisoncalculator.com/",
+      "logo": "https://heightcomparisoncalculator.com/logo.png"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://heightcomparisoncalculator.com/#website",
+      "url": "https://heightcomparisoncalculator.com/",
+      "name": "Height Comparison Calculator",
+      "publisher": { "@id": "https://heightcomparisoncalculator.com/#organization" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#webpage",
+      "url": "https://heightcomparisoncalculator.com/height-difference-calculator",
+      "name": "Height Difference Calculator",
+      "inLanguage": "en",
+      "isPartOf": { "@id": "https://heightcomparisoncalculator.com/#website" },
+      "mainEntity": { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#height-difference-calculator" },
+      "about": [
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#human-height" },
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#height-difference" },
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#percentage-difference" },
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#height-difference-chart" },
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#couple-height-difference" },
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#height-difference-formula" },
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#percentage-difference-formula" }
+      ],
+      "citation": [
+        "https://doi.org/10.1371/journal.pone.0054186",
+        "https://tvpollet.github.io/pdfs/Stulp_et_al_2013_PAID.pdf"
+      ]
+    },
+    {
+      "@type": ["SoftwareApplication", "WebApplication"],
+      "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#height-difference-calculator",
+      "name": "Height Difference Calculator",
+      "alternateName": [
+        "Difference in Height Calculator",
+        "Couple Height Difference Calculator"
+      ],
+      "url": "https://heightcomparisoncalculator.com/height-difference-calculator",
+      "inLanguage": "en",
+      "mainEntityOfPage": { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#webpage" },
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "browserRequirements": "Requires a web browser",
+      "isAccessibleForFree": true,
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://heightcomparisoncalculator.com/#organization" },
+      "description": "A free web calculator that subtracts the shorter of two heights from the taller one and shows the gap in centimeters and inches, the percentage difference, and the taller person.",
+      "featureList": [
+        "The calculator subtracts the shorter height from the taller height to find the height difference.",
+        "The calculator shows the height difference in centimeters and inches.",
+        "The calculator divides the gap by the taller height to show the percentage difference.",
+        "The calculator names the taller person.",
+        "The calculator accepts heights in centimeters or feet and inches.",
+        "Switching units converts both inputs and the result at once.",
+        "The results update as you type.",
+        "The calculator is free and needs no account."
+      ],
+      "potentialAction": {
+        "@type": "UseAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://heightcomparisoncalculator.com/height-difference-calculator"
         }
-
-    ]
-}
-
+      },
+      "about": [
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#height-difference" },
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#percentage-difference" },
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#height-difference-chart" },
+        { "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#couple-height-difference" }
+      ]
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#human-height",
+      "name": "Human Height",
+      "sameAs": "https://en.wikipedia.org/wiki/Human_height"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#height-difference",
+      "name": "Height Difference",
+      "description": "The gap between two heights, found by subtracting the shorter height from the taller height."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#percentage-difference",
+      "name": "Percentage Difference",
+      "description": "The height gap expressed as a percentage of the taller person's height."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#height-difference-chart",
+      "name": "Height Difference Chart",
+      "description": "A reference table that lists common height pairings with their gap in cm and their percentage difference."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#couple-height-difference",
+      "name": "Couple Height Difference",
+      "description": "The height gap between two partners, measured in centimeters or inches."
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#height-difference-formula",
+      "name": "Height Difference Formula",
+      "description": "Height Difference = Taller Height − Shorter Height",
+      "sameAs": "https://en.wikipedia.org/wiki/Subtraction"
+    },
+    {
+      "@type": "DefinedTerm",
+      "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#percentage-difference-formula",
+      "name": "Percentage Difference Formula",
+      "description": "Percentage Difference = (Height Difference ÷ Taller Height) × 100"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://heightcomparisoncalculator.com/height-difference-calculator#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a normal height difference between couples?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No single gap is normal. In a study of 12,502 UK couples, the man was 14.1 cm (5.6 in) taller on average. Gaps of 10 to 20 cm covered about 42% of couples. The couple height difference calculator shows the gap for any two heights."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you calculate height difference?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Subtract the shorter height from the taller height: Height Difference = Taller Height − Shorter Height. For 180 cm and 165 cm, the difference is 15 cm. Divide 15 by 180 and multiply by 100 to get the percentage difference of 8.3%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can a height difference calculator show percentage difference?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. This difference in height calculator shows the gap in cm or inches and the percentage difference. It divides the gap by the taller person's height and updates both values when either height changes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is \"percent taller\" the same as \"percent shorter\"?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Percent shorter divides the gap by the taller height. Percent taller divides it by the shorter height. For 180 cm and 165 cm, Person B is 8.3% shorter and Person A is 9.1% taller."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What units can be used in a height difference calculator?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This height difference calculator accepts centimeters and feet and inches. Switching units converts both inputs and the result at once."
+          }
+        }
+      ]
+    }
+  ]
+};

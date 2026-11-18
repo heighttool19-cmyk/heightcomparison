@@ -1420,33 +1420,33 @@
   "heightDifference": {
     "intro": {
       "title": "Höhendifferenz-Rechner",
-      "description": "Ein Höhendifferenz-Rechner vergleicht die Körpergrößen zweier Personen und ermittelt den Unterschied zwischen ihnen. Geben Sie zwei Körpergrößen in Zentimetern oder in Fuß und Zoll ein. Das Tool berechnet den Größenunterschied und den prozentualen Unterschied sofort. Vergleichen Sie sich in Sekunden mit einem Freund, einem Partner oder jeder anderen Person."
+      "description": "Der Höhendifferenz-Rechner zieht die kleinere von zwei Körpergrößen von der größeren ab und zeigt den Unterschied in Zentimetern und Zoll. Er berechnet zudem die prozentuale Differenz und nennt die größere Person. Geben Sie Körpergrößen in cm oder Fuß und Zoll ein. Der Rechner ist kostenlos, erfordert keine Registrierung und aktualisiert die Ergebnisse live bei der Eingabe.",
+      "heroCtaButton": "Größenunterschied berechnen",
+      "heroBadgeFree": "Kostenlos",
+      "heroBadgeNoSignup": "Ohne Registrierung",
+      "heroBadgeUnits": "cm oder ft/in"
     },
     "calculateSection": {
       "title": "Größenunterschied berechnen",
-      "description": "Nutzen Sie den unten stehenden Größenunterschied-Rechner. Geben Sie beide Körpergrößen ein, wählen Sie Ihre Einheit, und der Vergleich aktualisiert sich live.",
-      "badgeFree": "Kostenlos",
-      "badgeNoAccount": "Kein Konto erforderlich",
-      "badgeSupportsUnits": "Unterstützt cm und ft/in",
-      "badgeUpdatesLive": "Aktualisiert live"
+      "description": "Geben Sie eine Körpergröße für Person 1 und Person 2 ein und wählen Sie Metrisch (cm) oder Imperial (ft/in). Der Rechner für den Größenunterschied zeigt die Differenz, die prozentuale Abweichung und die größere Person direkt unter den Eingabefeldern an. Er vergleicht zwei Körpergrößen gleichzeitig und funktioniert auf jedem Gerät, ohne Korrekturen für Schuhe oder Haltung vorzunehmen."
     },
     "howToCalculate": {
       "title": "Wie man den Größenunterschied berechnet",
-      "p1": "Die Berechnung des Größenunterschieds verwendet eine einzige Operation: Ziehen Sie die Körpergröße der kleineren Person von der Körpergröße der größeren Person ab. Der Höhendifferenz-Rechner erkennt automatisch, welche Person größer ist, sodass das Ergebnis unabhängig davon, welche Größe Sie zuerst eingeben, immer eine positive Zahl ist.",
-      "formulaTitle": "Formel für den Größenunterschied:",
+      "p1": "Der Größenunterschied ergibt sich aus der größeren Körpergröße abzüglich der kleineren Körpergröße. Der Rechner ermittelt automatisch die größere Person, sodass das Ergebnis immer ein positiver Wert ist – unabhängig davon, welche Größe Sie zuerst eingeben.",
+      "formulaTitle": "Formel für den Größenunterschied",
       "formulaText": "Größenunterschied = Größere Körpergröße − Kleinere Körpergröße",
       "personALabel": "Person A",
       "personAValue": "180 cm",
       "personBLabel": "Person B",
       "personBValue": "165 cm",
-      "differenceLabel": "Unterschied",
+      "differenceLabel": "Differenz",
       "differenceValue": "180 − 165 = 15 cm",
-      "p2": "Subtraktion ist die einzige beteiligte Operation. Der Höhendifferenz-Rechner führt diese aus, sobald beide Werte eingegeben sind. Es sind keine zusätzlichen Schritte erforderlich."
+      "p2": "Für Fuß und Zoll gilt dasselbe Prinzip: Rechnen Sie beide Körpergrößen zuerst in Zoll um und subtrahieren Sie dann. 5'10\" entspricht 70 Zoll und 5'3\" entspricht 63 Zoll, was einem Unterschied von 7 Zoll (17,8 cm) entspricht."
     },
     "percentage": {
       "title": "Prozentualer Größenunterschied",
-      "p1": "Der prozentuale Unterschied fügt der reinen Differenz eine proportionale Dimension hinzu. Ein Unterschied von 10 cm zwischen zwei Personen, die beide über 180 cm groß sind, stellt eine deutlich kleinere relative Differenz dar als dieselben 10 cm zwischen zwei Personen um die 155 cm. Der Prozentsatz macht den Unterschied unabhängig von der absoluten Körpergröße aussagekräftig.",
-      "formulaTitle": "Formel für den prozentualen Unterschied:",
+      "p1": "Der prozentuale Unterschied drückt den Größenunterschied als Anteil an der Körpergröße der größeren Person aus. Der absolute Wert in cm beziffert die Distanz, während der Prozentsatz veranschaulicht, wie groß dieser Abstand im Verhältnis zu den beteiligten Personen ist.",
+      "formulaTitle": "Formel für den prozentualen Unterschied",
       "formulaText": "Prozentualer Unterschied = (Größenunterschied ÷ Größere Körpergröße) × 100",
       "heightDiffLabel": "Größenunterschied",
       "heightDiffValue": "15 cm",
@@ -1456,66 +1456,98 @@
       "calculationValue": "15 ÷ 180 × 100",
       "percentDiffLabel": "Prozentualer Unterschied",
       "percentDiffValue": "8,3 %",
-      "p2": "Das bedeutet, Person B ist relativ zu Person A um 8,3 % kleiner. Der Höhendifferenz-Rechner gibt diesen Wert automatisch zusammen mit der absoluten Differenz aus. Beide Werte aktualisieren sich live, sobald sich eine der Körpergrößen ändert."
+      "p2": "Person B ist demnach um 8,3 % kleiner als Person A. Der Rechner gibt diesen Prozentwert direkt neben der Differenz in Zentimetern aus und aktualisiert beide Werte bei jeder Änderung.",
+      "p3": "Die gewählte Bezugsgröße bestimmt das mathematische Ergebnis: Teilt man durch die größere Person, erfährt man, wie viel kleiner Person B ist (8,3 %). Teilt man hingegen durch die kleinere Person, ergibt sich, um wie viel größer Person A ist: 15 ÷ 165 × 100 = 9,1 %. Beide Werte beschreiben exakt denselben Abstand von 15 cm.",
+      "duoShorterLabel": "Prozent kleiner (dieser Rechner)",
+      "duoShorterValue": "8,3 %",
+      "duoShorterEq": "15 ÷ 180 × 100",
+      "duoTallerLabel": "Prozent größer",
+      "duoTallerValue": "9,1 %",
+      "duoTallerEq": "15 ÷ 165 × 100",
+      "p4": "Mit zunehmender Körpergröße sinkt der prozentuale Anteil derselben Differenz: Ein Abstand von 10 cm macht bei einer größeren Person von 160 cm noch 6,3 % aus, bei 190 cm jedoch nur noch 5,3 %."
     },
     "couple": {
       "title": "Paar-Größenunterschied-Rechner",
-      "p1": "Der Vergleich der Körpergrößen zwischen romantischen Partnern ist eine der häufigsten Anwendungen eines Höhendifferenz-Rechners. Paare möchten wissen, wie der Unterschied auf Fotos wirkt, wie er sich zum Durchschnitt verhält, oder einfach aus Neugier. Das Tool funktioniert für zwei beliebige Personen auf dieselbe Weise.",
-      "globalAvgLabel": "Globaler Durchschnittsunterschied (Mann-Frau-Paare)",
-      "globalAvgValue": "12 bis 15 cm",
-      "feetInLabel": "In Fuß und Zoll",
-      "feetInValue": "etwa 5 bis 6 Zoll",
-      "p2": "Umfragedaten setzen den durchschnittlichen Größenunterschied bei Mann-Frau-Paaren weltweit bei etwa 12 bis 15 cm (etwa 5 bis 6 Zoll) an, wobei dies je nach Land und Person variiert. Es gibt keine Standarddefinition für einen normalen Größenunterschied bei Paaren. Die Zahlen sind einfach nur Zahlen."
+      "p1": "Der Vergleich der Körpergrößen von Partnern zählt zu den häufigsten Anwendungsbereichen eines Größenrechners. Paare nutzen ihn, um ihren Abstand mit echten Beziehungsdaten abzugleichen oder die optische Wirkung in Fotos einzuschätzen. Das Tool funktioniert für zwei beliebige Personen gleichermaßen.",
+      "statAvgGapLabel": "Durchschnittlicher Unterschied (UK-Paare)",
+      "statAvgGapValue": "14,1 cm",
+      "statAvgGapSub": "5,6 Zoll",
+      "statAvgGapSampleSize": "12.502 Paare",
+      "statManTallerLabel": "Mann größer",
+      "statManTallerValue": "92,5 %",
+      "statManTallerSub": "der Paare in derselben Studie",
+      "p2": "Eine britische Studie mit 12.502 Paaren ergab, dass der Mann bei 92,5 % der Paare größer war. Der mittlere Unterschied lag bei 14,1 cm (5,6 Zoll). Paare, bei denen die Frau größer war oder der Mann über 25 cm Vorsprung hatte, traten seltener auf, als es ein rein zufälliges Matching erwarten ließe.",
+      "distTableCaption": "Anteil britischer Paare nach Größenunterschied",
+      "tableHeaderGap": "Mann größer um",
+      "tableHeaderShare": "Anteil der Paare",
+      "tableHeaderBar": "Verteilung",
+      "bandWomanTaller": "Frau größer",
+      "band0to5": "0 bis 5 cm",
+      "band5to10": "5 bis 10 cm",
+      "band10to15": "10 bis 15 cm",
+      "band15to20": "15 bis 20 cm",
+      "band20to25": "20 bis 25 cm",
+      "band25to30": "25 bis 30 cm",
+      "bandOver30": "Über 30 cm",
+      "tableSource": "Quelle: Stulp et al. (2013), Millennium Cohort Study (UK).",
+      "p3": "Etwa 42 % aller untersuchten Paare wiesen einen Abstand zwischen 10 und 20 cm auf. Hinsichtlich der Präferenzen gaben Frauen in weiteren Untersuchungen an, mit einem um ca. 21 cm größeren Partner am zufriedensten zu sein, während Männer eine um ca. 8 cm kleinere Partnerin bevorzugten. Dies sind deskriptive Häufigkeiten, keine vorgeschriebenen Normen.",
+      "coupleCardChipsLabel": "Beispielpaare",
+      "coupleLine": "Partner 1 ({h1} cm) ist <strong>{gap} cm größer</strong> als Partner 2 ({h2} cm). Der Unterschied entspricht {pct} % der Körpergröße von Partner 1.",
+      "coupleBandText": "Ein Unterschied von {gap} cm fällt in die Gruppe \"{band}\", die rund {share} % der untersuchten Paare ausmacht."
     },
     "chartSection": {
-      "title": "Höhendifferenz-Tabelle",
-      "p1": "Die folgende Tabelle deckt gängige Größenpaarungen und deren Unterschiede ab. Nutzen Sie sie als schnelle Referenz, ohne Werte in das Tool einzugeben.",
-      "p2": "Der prozentuale Unterschied wächst mit der absoluten Differenz, hängt aber auch von der größeren Körpergröße ab. Ein Unterschied von 15 cm fällt proportional größer aus, wenn die größere Person 165 cm misst, als wenn sie 190 cm misst."
-    },
-    "visualSection": {
-      "title": "Visueller Größenvergleich",
-      "p1": "Ein visueller Größenvergleich stellt den Unterschied zwischen zwei Personen als proportionale Grafik statt nur als Zahl dar. Ist eine Person 10 % größer, wird ihr Balken auf dem Bildschirm 10 % höher dargestellt. Der Unterschied wird sofort erkennbar, ohne Zahlen lesen zu müssen.",
-      "p2": "Das ist besonders nützlich, wenn die reine Zahl mehrdeutig ist. Ein Unterschied von 10 cm zwischen zwei Personen um die 160 cm wirkt ganz anders als derselbe Unterschied zwischen zwei Personen über 185 cm. Der Höhendifferenz-Rechner erzeugt diese skalierte Visualisierung automatisch aus den eingegebenen Werten."
+      "title": "Größenunterschied-Tabelle",
+      "p1": "Die folgende Tabelle führt gängige Körpergrößenpaare mit ihrem absoluten Unterschied in cm und dem relativen Prozentsatz auf – ideal als schnelle Referenz ohne manuelle Eingabe.",
+      "p2": "Der prozentuale Unterschied wächst mit der absoluten Spanne, verringert sich jedoch, je größer die Bezugsperson ist: Ein Unterschied von 15 cm entspricht bei einer größeren Person von 180 cm 8,3 %, bei 190 cm jedoch nur 7,9 %.",
+      "calloutPrefix": "Möchten Sie drei oder mehr Personen direkt vergleichen? Nutzen Sie unseren ",
+      "calloutLink": "Körpergrößen-Vergleichsrechner",
+      "calloutSuffix": "."
     },
     "unitsSection": {
       "title": "Größenunterschied in verschiedenen Einheiten",
-      "p1": "Sie können den Größenunterschied in Zentimetern oder in Fuß und Zoll berechnen. Der Wechsel der Einheit rechnet Eingaben und Ergebnis gleichzeitig um. Vor der Eingabe ist keine manuelle Umrechnung nötig.",
-      "tableHeaderPersonA": "Person A",
-      "tableHeaderPersonB": "Person B",
-      "tableHeaderDifferenceCm": "Unterschied (cm)",
-      "tableHeaderDifferenceIn": "Unterschied (Zoll)"
+      "p1": "Sie können die Differenz in Zentimetern oder in Fuß und Zoll berechnen. Durch den Einheitenwechsel werden Eingabewerte und Resultate automatisch synchronisiert.",
+      "subheadFtIn": "Größenunterschied in Fuß und Zoll",
+      "table1HeaderPersonA": "Person A",
+      "table1HeaderPersonB": "Person B",
+      "table1HeaderDiffIn": "Unterschied (in)",
+      "table1HeaderDiffCm": "Unterschied (cm)",
+      "table1HeaderPercent": "% Differenz",
+      "subheadCm": "Größenunterschied in Zentimetern",
+      "table2HeaderDiffCm": "Größenunterschied (cm)",
+      "table2HeaderInInches": "In Zoll",
+      "table2HeaderExamplePair": "Beispielpaar",
+      "table2HeaderPercent": "% Differenz"
     },
     "cta": {
       "title": "Testen Sie den Höhendifferenz-Rechner",
-      "descriptionLine1": "Geben Sie oben zwei Körpergrößen ein, um den Größenunterschied sofort zu berechnen.",
-      "descriptionLine2": "Der visuelle Vergleich und der prozentuale Unterschied aktualisieren sich, während Sie tippen.",
-      "feature1": "Unterschied und prozentualer Unterschied",
-      "feature2": "Proportionaler visueller Vergleich",
+      "descriptionLine1": "Geben Sie oben zwei Körpergrößen ein, um den Unterschied sofort zu berechnen.",
+      "descriptionLine2": "Die proportionale Grafik und die Prozentdifferenz aktualisieren sich live bei der Eingabe.",
+      "feature1": "Differenz in cm und Zoll plus prozentuale Abweichung",
+      "feature2": "Proportionale Vergleichsgrafik",
       "feature3": "Unterstützt cm und ft/in",
-      "feature4": "Kostenlos, kein Konto nötig, jedes Gerät",
-      "buttonText": "Nach oben scrollen und jetzt vergleichen ↑"
-    },
-    "references": {
-      "title": "Quellen",
-      "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016.",
-      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE."
+      "feature4": "Kostenlos, ohne Konto, auf jedem Gerät",
+      "buttonText": "Nach oben scrollen und jetzt berechnen ↑"
     },
     "faq": [
       {
         "q": "Was ist ein normaler Größenunterschied zwischen Paaren?",
-        "a": "Es gibt keinen festen Standard. Umfragedaten setzen den durchschnittlichen Unterschied bei Mann-Frau-Paaren weltweit bei etwa 12 bis 15 cm (5 bis 6 Zoll) an. Der Paar-Größenunterschied-Rechner zeigt den Unterschied zwischen zwei beliebigen Körpergrößen. Was als normal gilt, variiert je nach Land, Kultur und persönlicher Vorliebe."
+        "a": "Es gibt keinen festen Standardwert. In einer groß angelegten britischen Studie mit 12.502 Paaren war der Mann im Durchschnitt 14,1 cm (5,6 Zoll) größer. Rund 42 % der Paare wiesen einen Abstand zwischen 10 und 20 cm auf. Der Paar-Rechner visualisiert jede beliebige Kombination."
       },
       {
         "q": "Wie berechnet man den Größenunterschied?",
-        "a": "Ziehen Sie die Körpergröße der kleineren Person von der Körpergröße der größeren Person ab: Größenunterschied = Größere Körpergröße − Kleinere Körpergröße. Bei 180 cm und 165 cm beträgt der Unterschied 15 cm. Um den Prozentsatz zu erhalten, teilen Sie 15 durch 180 und multiplizieren mit 100, was 8,3 % ergibt."
+        "a": "Subtrahieren Sie die kleinere von der größeren Körpergröße: Unterschied = Größere Person − Kleinere Person. Bei 180 cm und 165 cm beträgt die Differenz 15 cm. Für den Prozentsatz teilt man 15 durch 180 und multipliziert mit 100 (8,3 %)."
       },
       {
-        "q": "Kann ein Höhendifferenz-Rechner den prozentualen Unterschied anzeigen?",
-        "a": "Ja. Dieser Höhendifferenz-Rechner gibt sowohl die absolute Differenz als auch den prozentualen Unterschied aus. Der Prozentsatz wird relativ zur Körpergröße der größeren Person berechnet und aktualisiert sich automatisch, sobald sich einer der Werte ändert."
+        "q": "Zeigt der Rechner auch die prozentuale Differenz an?",
+        "a": "Ja. Der Rechner gibt sowohl die Spanne in cm/Zoll als auch den prozentualen Unterschied bezogen auf die größere Person an und aktualisiert beide Angaben in Echtzeit."
       },
       {
-        "q": "Welche Einheiten können in einem Höhendifferenz-Rechner verwendet werden?",
-        "a": "Dieser Höhendifferenz-Rechner unterstützt Zentimeter und Fuß/Zoll. Sie können die Einheit jederzeit wechseln, und sowohl die Eingaben als auch das Ergebnis rechnen sich automatisch um. Eine manuelle Umrechnung ist nicht erforderlich."
+        "q": "Ist \"Prozent größer\" identisch mit \"Prozent kleiner\"?",
+        "a": "Nein. \"Prozent kleiner\" teilt die Differenz durch die größere Körpergröße (15 ÷ 180 = 8,3 %). \"Prozent größer\" teilt durch die kleinere Körpergröße (15 ÷ 165 = 9,1 %). Beide Zahlen beschreiben denselben Abstand von 15 cm."
+      },
+      {
+        "q": "Welche Maßeinheiten können verwendet werden?",
+        "a": "Der Rechner verarbeitet Zentimeter sowie Fuß und Zoll. Ein Umschalten der Einheit rechnet sowohl die Eingaben als auch die Ausgabe nahtlos um."
       }
     ],
     "toc": [
@@ -1537,11 +1569,7 @@
       },
       {
         "id": "height-difference-chart",
-        "label": "Höhendifferenz-Tabelle"
-      },
-      {
-        "id": "visual-height-comparison",
-        "label": "Visueller Größenvergleich"
+        "label": "Größenunterschied-Tabelle"
       },
       {
         "id": "height-difference-in-different-units",
@@ -1549,7 +1577,7 @@
       },
       {
         "id": "try-the-height-difference-calculator",
-        "label": "Testen Sie den Höhendifferenz-Rechner"
+        "label": "Höhendifferenz-Rechner testen"
       },
       {
         "id": "frequently-asked-questions",
@@ -1560,42 +1588,59 @@
         "label": "Quellen"
       }
     ],
+    "references": {
+      "title": "Quellen",
+      "ref1": "Stulp G, Buunk AP, Pollet TV, Nettle D, Verhulst S (2013). Are Human Mating Preferences with Respect to Height Reflected in Actual Pairings? PLOS ONE 8(1): e54186.",
+      "ref1Url": "https://doi.org/10.1371/journal.pone.0054186",
+      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Women want taller men more than men want shorter women. Personality and Individual Differences.",
+      "ref2Url": "https://tvpollet.github.io/pdfs/Stulp_et_al_2013_PAID.pdf"
+    },
     "tool": {
+      "cardHeaderTitle": "Zwei Körpergrößen eingeben",
+      "cardHeaderSub": "Ergebnisse aktualisieren sich live",
       "unitMetric": "Metrisch (cm)",
       "unitImperial": "Imperial (ft/in)",
       "person1Label": "Person 1",
       "person2Label": "Person 2",
-      "cmPlaceholder": "Zentimeter",
-      "ftPlaceholder": "Fuß",
-      "inPlaceholder": "Zoll",
-      "unitCm": "cm",
-      "unitFt": "ft",
-      "unitIn": "in",
+      "swapButtonLabel": "Person 1 und Person 2 tauschen",
+      "swapButtonTitle": "Größen tauschen",
+      "cmPlaceholder": "z. B. 180",
+      "cmPlaceholder2": "z. B. 165",
+      "ftLabel": "FT",
+      "inLabel": "IN",
+      "hintText": "Geben Sie in jedes Feld eine Körpergröße ein. Nutzen Sie den Schalter oben für Fuß und Zoll.",
       "heightDifferenceLabel": "Größenunterschied",
-      "percentDifferenceLabel": "% Unterschied",
-      "isTallerText": "{person} ist größer",
+      "percentDifferenceLabel": "% Differenz",
       "tallerPersonLabel": "Größere Person",
-      "visualComparisonLabel": "Visueller Vergleich",
-      "enterBothHeightsPrompt": "Geben Sie oben beide Körpergrößen ein, um den Vergleich zu sehen."
+      "gapGraphicLabel": "Höhenabstand",
+      "badgeFree": "Kostenlos",
+      "badgeNoAccount": "Ohne Registrierung",
+      "badgeSupportsUnits": "Unterstützt cm und ft/in",
+      "badgeUpdatesLive": "Live-Aktualisierung",
+      "noDifferenceText": "Kein Unterschied",
+      "personShorterText": "{person} ist um {pct} % kleiner",
+      "sameHeightText": "Gleiche Größe"
     },
     "coupleCalc": {
+      "chipsLabel": "Beispielpaare",
       "partner1Label": "Partner 1",
       "partner2Label": "Partner 2",
-      "pctTallerText": "{pct} % größer",
-      "resultSentence": "{p1} ({h1} cm) ist <strong>{diff} cm ({pct} %) größer</strong> als {p2} ({h2} cm)"
+      "coupleLine": "Partner 1 ({h1} cm) ist <strong>{gap} cm größer</strong> als Partner 2 ({h2} cm). Der Unterschied entspricht {pct} % der Körpergröße von Partner 1.",
+      "coupleBandText": "Ein Unterschied von {gap} cm fällt in die Gruppe \"{band}\", die rund {share} % der untersuchten Paare ausmacht.",
+      "bandWomanTaller": "Frau größer",
+      "band0to5": "0 bis 5 cm",
+      "band5to10": "5 bis 10 cm",
+      "band10to15": "10 bis 15 cm",
+      "band15to20": "15 bis 20 cm",
+      "band20to25": "20 bis 25 cm",
+      "band25to30": "25 bis 30 cm",
+      "bandOver30": "über 30 cm"
     },
     "chartTable": {
       "headerPersonA": "Person A",
       "headerPersonB": "Person B",
-      "headerDifference": "Unterschied",
-      "headerPercentDifference": "% Unterschied"
-    },
-    "visualComp": {
-      "person1Label": "Person 1",
-      "person2Label": "Person 2",
-      "pairButtonText": "{h1} cm vs {h2} cm",
-      "diffCmText": "{diff} cm Unterschied",
-      "isTallerText": "{person} ist größer"
+      "headerDifference": "Differenz",
+      "headerPercentDifference": "% Differenz"
     }
   },
   "averageHeightByCountry": {

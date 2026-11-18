@@ -1420,7 +1420,11 @@
   "heightDifference": {
     "intro": {
       "title": "Höjdskillnadsräknare",
-      "description": "En höjdskillnadsräknare jämför två personers längder och visar skillnaden mellan dem. Ange två längder i centimeter eller fot och tum. Verktyget beräknar omedelbart höjdskillnaden och den procentuella skillnaden. Jämför dig själv med en vän, en partner eller någon annan på några sekunder."
+      "description": "En höjdskillnadsräknare jämför två personers längder och visar skillnaden mellan dem. Ange två längder i centimeter eller fot och tum. Verktyget beräknar omedelbart höjdskillnaden och den procentuella skillnaden. Jämför dig själv med en vän, en partner eller någon annan på några sekunder.",
+      "heroCtaButton": "Calculate height difference",
+      "heroBadgeFree": "Free",
+      "heroBadgeNoSignup": "No signup",
+      "heroBadgeUnits": "cm or ft/in"
     },
     "calculateSection": {
       "title": "Beräkna Höjdskillnad",
@@ -1456,7 +1460,15 @@
       "calculationValue": "15 ÷ 180 × 100",
       "percentDiffLabel": "Procentuell skillnad",
       "percentDiffValue": "8.3%",
-      "p2": "Detta innebär att Person B är 8,3 % kortare i förhållande till Person A. Kalkylatorn för höjdskillnad ger automatiskt ut denna siffra tillsammans med den absoluta skillnaden. Båda värdena uppdateras live när någon av längderna ändras."
+      "p2": "Detta innebär att Person B är 8,3 % kortare i förhållande till Person A. Kalkylatorn för höjdskillnad ger automatiskt ut denna siffra tillsammans med den absoluta skillnaden. Båda värdena uppdateras live när någon av längderna ändras.",
+      "p3": "The base you divide by changes the number. This calculator divides by the taller height, so it reports how much shorter Person B is. To find how much taller Person A is, divide by the shorter height: 15 ÷ 165 × 100 = 9.1%. Both figures describe the same 15 cm gap.",
+      "duoShorterLabel": "Percent shorter (this calculator)",
+      "duoShorterValue": "8.3%",
+      "duoShorterEq": "15 ÷ 180 × 100",
+      "duoTallerLabel": "Percent taller",
+      "duoTallerValue": "9.1%",
+      "duoTallerEq": "15 ÷ 165 × 100",
+      "p4": "The same gap in cm becomes a smaller percentage as heights rise. A 10 cm gap equals 6.3% when the taller person is 160 cm and 5.3% when the taller person is 190 cm."
     },
     "couple": {
       "title": "Kalkylator för höjdskillnad mellan par",
@@ -1465,12 +1477,39 @@
       "globalAvgValue": "12 till 15 cm",
       "feetInLabel": "I fot och tum",
       "feetInValue": "ungefär 5 till 6 tum",
-      "p2": "Enkätdata visar att den genomsnittliga höjdskillnaden i man-kvinna par globalt ligger på cirka 12 till 15 cm (ungefär 5 till 6 tum), även om detta varierar beroende på land och individ. Det finns ingen standarddefinition för en normal höjdskillnad mellan par. Siffrorna är bara siffror."
+      "p2": "Enkätdata visar att den genomsnittliga höjdskillnaden i man-kvinna par globalt ligger på cirka 12 till 15 cm (ungefär 5 till 6 tum), även om detta varierar beroende på land och individ. Det finns ingen standarddefinition för en normal höjdskillnad mellan par. Siffrorna är bara siffror.",
+      "statAvgGapLabel": "Average gap, UK couples",
+      "statAvgGapValue": "14.1 cm",
+      "statAvgGapSub": "5.6 in",
+      "statAvgGapSampleSize": "12,502 couples",
+      "statManTallerLabel": "Man taller",
+      "statManTallerValue": "92.5%",
+      "statManTallerSub": "of couples in the same study",
+      "distTableCaption": "Share of UK couples by height gap",
+      "tableHeaderGap": "Man taller by",
+      "tableHeaderShare": "Share of UK couples",
+      "tableHeaderBar": "Bar",
+      "bandWomanTaller": "Woman taller",
+      "band0to5": "0 to 5 cm",
+      "band5to10": "5 to 10 cm",
+      "band10to15": "10 to 15 cm",
+      "band15to20": "15 to 20 cm",
+      "band20to25": "20 to 25 cm",
+      "band25to30": "25 to 30 cm",
+      "bandOver30": "Over 30 cm",
+      "tableSource": "Source: Stulp et al. (2013), parents in the UK Millennium Cohort Study.",
+      "p3": "Gaps of 10 to 20 cm covered about 42% of these couples. Preferences differ by sex. In a separate study, women reported the most satisfaction when their partner was 21 cm taller, and men when they were 8 cm taller. These figures describe common gaps. They do not define a correct one.",
+      "coupleCardChipsLabel": "Example couples",
+      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
+      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples."
     },
     "chartSection": {
       "title": "Höjdskillnadstabell",
       "p1": "Tabellen nedan täcker vanliga höjdkombinationer och deras skillnader. Använd den som en snabb referens utan att ange värden i verktyget.",
-      "p2": "Den procentuella skillnaden ökar med den absoluta skillnaden men beror också på den längre längden. En skillnad på 15 cm är proportionellt större när den längre personen är 165 cm än när de är 190 cm."
+      "p2": "Den procentuella skillnaden ökar med den absoluta skillnaden men beror också på den längre längden. En skillnad på 15 cm är proportionellt större när den längre personen är 165 cm än när de är 190 cm.",
+      "calloutPrefix": "To chart three or more people side by side, use the ",
+      "calloutLink": "Height Comparison Calculator",
+      "calloutSuffix": "."
     },
     "visualSection": {
       "title": "Visuell längdjämförelse",
@@ -1483,7 +1522,18 @@
       "tableHeaderPersonA": "Person A",
       "tableHeaderPersonB": "Person B",
       "tableHeaderDifferenceCm": "Skillnad (cm)",
-      "tableHeaderDifferenceIn": "Skillnad (tum)"
+      "tableHeaderDifferenceIn": "Skillnad (tum)",
+      "subheadFtIn": "Height difference in feet and inches",
+      "table1HeaderPersonA": "Person A",
+      "table1HeaderPersonB": "Person B",
+      "table1HeaderDiffIn": "Difference (in)",
+      "table1HeaderDiffCm": "Difference (cm)",
+      "table1HeaderPercent": "% Difference",
+      "subheadCm": "Height difference in centimeters",
+      "table2HeaderDiffCm": "Height difference (cm)",
+      "table2HeaderInInches": "In inches",
+      "table2HeaderExamplePair": "Example pair",
+      "table2HeaderPercent": "% Difference"
     },
     "cta": {
       "title": "Prova Höjdskillnadsräknare",
@@ -1498,66 +1548,68 @@
     "references": {
       "title": "Källor",
       "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016.",
-      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE."
+      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE.",
+      "ref1Url": "https://doi.org/10.1371/journal.pone.0054186",
+      "ref2Url": "https://tvpollet.github.io/pdfs/Stulp_et_al_2013_PAID.pdf"
     },
     "faq": [
       {
-        "q": "Vad är en normal höjdskillnad mellan par?",
-        "a": "Det finns ingen fast standard. Undersökningsdata visar att den genomsnittliga skillnaden i manliga-kvinnliga par ligger på cirka 12 till 15 cm (5 till 6 tum) globalt. Kalkylatorn för parhöjdsskillnad visar skillnaden mellan två valfria längder. Vad som räknas som normalt varierar beroende på land, kultur och individuella preferenser."
+        "q": "What is a normal height difference between couples?",
+        "a": "No single gap is normal. In a study of 12,502 UK couples, the man was 14.1 cm (5.6 in) taller on average. Gaps of 10 to 20 cm covered about 42% of couples. The couple height difference calculator shows the gap for any two heights."
       },
       {
-        "q": "Hur beräknar man höjdskillnad?",
-        "a": "Subtrahera den kortare personens längd från den längre personens längd: Höjdskillnad = Längre längd − Kortare längd. För 180 cm och 165 cm är skillnaden 15 cm. För att få procentandelen, dividera 15 med 180 och multiplicera med 100, vilket ger 8,3 %."
+        "q": "How do you calculate height difference?",
+        "a": "Subtract the shorter height from the taller height: Height Difference = Taller Height − Shorter Height. For 180 cm and 165 cm, the difference is 15 cm. Divide 15 by 180 and multiply by 100 to get the percentage difference of 8.3%."
       },
       {
-        "q": "Kan en höjdskillnadsräknare visa procentskillnad?",
-        "a": "Ja. Denna kalkylator för höjdskillnad visar både den absoluta skillnaden och procentskillnaden. Procentandelen beräknas i förhållande till den längre personens längd och uppdateras automatiskt när något värde ändras."
+        "q": "Can a height difference calculator show percentage difference?",
+        "a": "Yes. This difference in height calculator shows the gap in cm or inches and the percentage difference. It divides the gap by the taller person's height and updates both values when either height changes."
       },
       {
-        "q": "Vilka enheter kan användas i en höjdskillnadsräknare?",
-        "a": "Denna Höjdskillnadsräknare stöder centimeter och fot/tum. Du kan byta enheter när som helst och både indata och resultatet konverteras automatiskt. Ingen manuell konvertering behövs."
+        "q": "Is \"percent taller\" the same as \"percent shorter\"?",
+        "a": "No. Percent shorter divides the gap by the taller height. Percent taller divides it by the shorter height. For 180 cm and 165 cm, Person B is 8.3% shorter and Person A is 9.1% taller."
+      },
+      {
+        "q": "What units can be used in a height difference calculator?",
+        "a": "This height difference calculator accepts centimeters and feet and inches. Switching units converts both inputs and the result at once."
       }
     ],
     "toc": [
       {
         "id": "calculate-height-difference",
-        "label": "Beräkna höjdskillnad"
+        "label": "Calculate Height Difference"
       },
       {
         "id": "how-to-calculate-height-difference",
-        "label": "Hur man beräknar höjdskillnad"
+        "label": "How to Calculate Height Difference"
       },
       {
         "id": "height-difference-percentage",
-        "label": "Höjdskillnad i procent"
+        "label": "Height Difference Percentage"
       },
       {
         "id": "couple-height-difference-calculator",
-        "label": "Kalkylator för parhöjdsskillnad"
+        "label": "Couple Height Difference Calculator"
       },
       {
         "id": "height-difference-chart",
-        "label": "Diagram över höjdskillnad"
-      },
-      {
-        "id": "visual-height-comparison",
-        "label": "Visuell längdjämförelse"
+        "label": "Height Difference Chart"
       },
       {
         "id": "height-difference-in-different-units",
-        "label": "Höjdskillnad i olika enheter"
+        "label": "Height Difference in Different Units"
       },
       {
         "id": "try-the-height-difference-calculator",
-        "label": "Prova Höjdskillnadsräknare"
+        "label": "Try the Height Difference Calculator"
       },
       {
         "id": "frequently-asked-questions",
-        "label": "Vanliga frågor"
+        "label": "Frequently Asked Questions"
       },
       {
         "id": "references",
-        "label": "Källor"
+        "label": "References"
       }
     ],
     "tool": {
@@ -1576,13 +1628,40 @@
       "isTallerText": "{person} är längre",
       "tallerPersonLabel": "Längre person",
       "visualComparisonLabel": "Visuell jämförelse",
-      "enterBothHeightsPrompt": "Ange båda längderna ovan för att se jämförelsen."
+      "enterBothHeightsPrompt": "Ange båda längderna ovan för att se jämförelsen.",
+      "cardHeaderTitle": "Enter two heights",
+      "cardHeaderSub": "Results update as you type",
+      "swapButtonLabel": "Swap Person 1 and Person 2",
+      "swapButtonTitle": "Swap heights",
+      "cmPlaceholder2": "e.g. 165",
+      "ftLabel": "FT",
+      "inLabel": "IN",
+      "hintText": "Type a height in each box. Use the toggle above to switch to feet and inches.",
+      "gapGraphicLabel": "Height gap",
+      "badgeFree": "Free",
+      "badgeNoAccount": "No account needed",
+      "badgeSupportsUnits": "Supports cm and ft/in",
+      "badgeUpdatesLive": "Updates live",
+      "noDifferenceText": "No difference",
+      "personShorterText": "{person} is {pct}% shorter",
+      "sameHeightText": "Same height"
     },
     "coupleCalc": {
       "partner1Label": "Partner 1",
       "partner2Label": "Partner 2",
       "pctTallerText": "{pct}% längre",
-      "resultSentence": "{p1} ({h1} cm) är <strong>{diff} cm ({pct}%) längre</strong> än {p2} ({h2} cm)"
+      "resultSentence": "{p1} ({h1} cm) är <strong>{diff} cm ({pct}%) längre</strong> än {p2} ({h2} cm)",
+      "chipsLabel": "Example couples",
+      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
+      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
+      "bandWomanTaller": "woman taller",
+      "band0to5": "0 to 5 cm",
+      "band5to10": "5 to 10 cm",
+      "band10to15": "10 to 15 cm",
+      "band15to20": "15 to 20 cm",
+      "band20to25": "20 to 25 cm",
+      "band25to30": "25 to 30 cm",
+      "bandOver30": "over 30 cm"
     },
     "chartTable": {
       "headerPersonA": "Person A",
