@@ -233,8 +233,13 @@ All 10 supported locales (`en`, `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, 
 3. ✅ **Translated Height Difference copy (`heightDifference`)** across all 10 locales, updating tool controls, couple statistics, percentage calculations, units tables, and FAQs into native copy.
 4. ✅ **Validated Completeness**: Automated test script `node scripts/validate_completeness.js <locale>` confirmed 1,450/1,450 keys (100% PASS) across `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`.
 5. ✅ **Verified TypeScript & Production Build**: `npx tsc --noEmit` passed with 0 errors; `npm run build` compiled all static and dynamic localized routes cleanly.
-4. **`GrowthPlateExplainer.tsx`** remains commented-out dead code on the height-predictor page; if ever uncommented, extract and localize.
-5. **`/s/[id]`** is a flat redirect route with minimal text.
-6. **JSON-LD schemas** remain English-only project-wide (consistent architectural policy).
+6. ✅ **Design System & Palette Compliance for Height Difference Page**:
+   - Replaced all hardcoded hex colors (`#2563eb`, `#0d9488`, `#059669`, `#db2777`) with theme design system tokens from `globals.css` (`bg-bg`, `bg-surface`, `border-border`, `text-accent`, `bg-accent`, `text-foreground`, `text-muted`).
+   - Enforced strict typography: `font-sans` for layout and copy; `font-mono` for all numeric calculations, measurements, units, percentages, and comparison charts.
+   - Added responsive semantic contrast for comparison pairs: Person 1 / Partner 1 (`text-blue-600 dark:text-blue-400`) and Person 2 / Partner 2 (`text-emerald-600 dark:text-emerald-400`), ensuring high contrast in both light and dark themes.
+   - Fixed inches rounding overflow edge case in imperial label formatter (`gapInLabel`).
+7. **`GrowthPlateExplainer.tsx`** remains commented-out dead code on the height-predictor page; if ever uncommented, extract and localize.
+8. **`/s/[id]`** is a flat redirect route with minimal text.
+9. **JSON-LD schemas** remain English-only project-wide (consistent architectural policy).
 
 
