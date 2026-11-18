@@ -4,6 +4,8 @@ import React from 'react';
 import { Sparkles, Activity, Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { QUICK_ADD_PRESETS, Person, uid } from '../types';
+import { useUnitStore } from '../store';
+import { ftIn } from '../lib/height';
 
 interface QuickAddPresetsProps {
     onAdd: (person: Person) => void;
@@ -12,6 +14,7 @@ interface QuickAddPresetsProps {
 }
 
 const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom }) => {
+    const { unitSystem } = useUnitStore();
     const handlePresetClick = (preset: typeof QUICK_ADD_PRESETS[0]) => {
         onAdd({
             id: uid(),
@@ -57,7 +60,14 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
                             </span>
                             <div className="flex items-center gap-2">
                                 <span className="text-[10px] font-mono font-black text-foreground/50 uppercase">
-                                    {preset.heightCm >= 1000 ? `${(preset.heightCm / 100).toFixed(1)}m` : `${preset.heightCm}cm`}
+                                    {(() => {
+                                        const isTall = preset.heightCm >= 1000;
+                                        const metricStr = isTall ? `${Math.round(preset.heightCm / 100).toLocaleString()} m` : `${preset.heightCm} cm`;
+                                        const imperialStr = isTall ? `${Math.round(preset.heightCm * 0.0328084).toLocaleString()} ft` : ftIn(preset.heightCm);
+                                        return unitSystem === 'imperial'
+                                            ? `${imperialStr} · ${metricStr}`
+                                            : `${metricStr} · ${imperialStr}`;
+                                    })()}
                                 </span>
                                 <Plus size={12} className="text-accent opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
