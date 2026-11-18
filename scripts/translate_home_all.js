@@ -303,3 +303,4 @@ locales.forEach(loc => {
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2) + '\n', 'utf8');
   console.log(`Updated messages/${loc}.json with home namespace!`);
 });
+

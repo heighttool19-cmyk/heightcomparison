@@ -342,3 +342,4 @@ en.imageToHeight = {
 
 fs.writeFileSync(enPath, JSON.stringify(en, null, 2) + '\n', 'utf8');
 console.log('Successfully updated messages/en.json with imageToHeight namespace!');
+
