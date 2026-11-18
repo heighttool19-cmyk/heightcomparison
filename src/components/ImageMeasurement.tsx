@@ -11,8 +11,10 @@ import { SaveToChartModal } from './ImageMeasurementCom/components/SaveToChartMo
 import { motion, AnimatePresence } from 'framer-motion';
 import { Ruler, ChevronRight, XCircle, Check } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { useTranslations } from 'next-intl';
 
 export const ImageMeasurement: React.FC = () => {
+    const t = useTranslations('imageToHeight.tool');
     const {
         canvasRef,
         wrapperRef,
@@ -90,12 +92,12 @@ export const ImageMeasurement: React.FC = () => {
                                 </div>
                                 <div className="flex-1 min-w-0">
                                     <span className="text-[9px] font-black uppercase tracking-[0.15em] text-accent/80 block mb-0.5">
-                                        {mode === 'calibrating' ? 'Step 1: Calibration' : 'Step 2: Measure Person'}
+                                        {mode === 'calibrating' ? t('step1Calibration') : t('step2Measure')}
                                     </span>
                                     <span className="text-xs font-bold text-foreground s">
                                         {mode === 'calibrating'
-                                            ? firstPoint ? 'Tap the other end to finish' : 'Draw calibration line of reference object by tapping on screen'
-                                            : firstPoint ? 'Tap the other end to finish' : ' Click "Auto Scan" below or manually draw a line from head to toe'}
+                                            ? firstPoint ? t('tapOtherEnd') : t('drawCalibLine')
+                                            : firstPoint ? t('tapOtherEnd') : t('drawMeasLine')}
                                     </span>
                                 </div>
                             </div>
@@ -107,7 +109,7 @@ export const ImageMeasurement: React.FC = () => {
                                         className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-red-500/20 bg-red-500/5 text-red-500 hover:bg-red-500 hover:text-white transition-all text-xs font-black uppercase tracking-widest"
                                     >
                                         <XCircle size={14} />
-                                        <span>Cancel</span>
+                                        <span>{t('cancel')}</span>
                                     </button>
                                 )}
 
@@ -117,7 +119,7 @@ export const ImageMeasurement: React.FC = () => {
                                         className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 rounded-xl bg-accent text-white shadow-lg shadow-accent/20 hover:bg-accent-secondary active:scale-95 transition-all text-xs font-black uppercase tracking-widest"
                                     >
                                         <Check className="w-3.5 h-3.5" strokeWidth={3} />
-                                        <span>Done</span>
+                                        <span>{t('done')}</span>
                                     </button>
                                 )}
                             </div>

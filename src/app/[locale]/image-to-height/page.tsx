@@ -1,4 +1,5 @@
 import React from 'react';
+import { getTranslations } from 'next-intl/server';
 import {
     Plus,
     Monitor,
@@ -10,34 +11,89 @@ import {
     Lock,
     ShieldCheck,
     Check,
-    HelpCircle,
-    ArrowRight,
     Sparkles,
-    ChevronRight,
-    AlertCircle,
-    Layers,
     Crop,
-    Save,
-    Maximize2
+    Save
 } from 'lucide-react';
 import { ImageMeasurement } from '@/components/ImageMeasurement';
 import Link from 'next/link';
 import FaqAccordion from '@/components/FaqAccordion';
-import {
-    IMAGE_TO_HEIGHT_FAQ,
-    REFERENCE_OBJECTS,
-    ACCURACY_TEST_ROWS,
-    WHAT_YOU_CAN_MEASURE,
-    NO_TAPE_METHODS,
-    CLINICAL_MEASUREMENT_STEPS,
-    MEASUREMENT_ERROR_CAUSES,
-    IMAGE_MEASUREMENT_STEPS,
-    ACCURACY_TIPS
-} from '@/constants/imageToHeight';
 import JsonLd from '@/components/common/JsonLd';
 import { IMAGE_TO_HEIGHT_SCHEMA } from '@/constants/schemas/imageToHeight';
+import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
 
-export default function ImageToHeightPage() {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'metadata' });
+
+    return {
+        title: t('imageToHeightTitle'),
+        description: t('imageToHeightDescription'),
+        alternates: {
+            canonical: getCanonicalUrl('/image-to-height', locale),
+            languages: getAlternateLanguages('/image-to-height'),
+        }
+    };
+}
+
+interface StepItem {
+    step: string;
+    title: string;
+    desc: string;
+}
+
+interface MeasureItem {
+    title: string;
+    desc: string;
+    linkLabel?: string;
+    linkHref?: string;
+    isWide?: boolean;
+}
+
+interface ReferenceRow {
+    object: string;
+    size: string;
+    standard: string;
+    bestFor: string;
+    isStandard?: boolean;
+}
+
+interface AccuracyRow {
+    setup: string;
+    trueHeight: string;
+    measured: string;
+    error: string;
+    isExact?: boolean;
+}
+
+interface TipItem {
+    title: string;
+    desc: string;
+}
+
+interface MethodItem {
+    id: string;
+    title: string;
+    tags: string[];
+    desc: string;
+    isWide?: boolean;
+}
+
+interface ErrorCause {
+    title: string;
+    desc: string;
+}
+
+interface FaqItem {
+    id: string;
+    q: string;
+    a: string;
+}
+
+export default async function ImageToHeightPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'imageToHeight' });
+
     const stepIcons = [
         <Camera key="1" size={20} />,
         <Crop key="2" size={20} />,
@@ -45,6 +101,16 @@ export default function ImageToHeightPage() {
         <Smartphone key="4" size={20} />,
         <Save key="5" size={20} />
     ];
+
+    const steps = t.raw('howItWorks.steps') as StepItem[];
+    const measureItems = t.raw('whatYouCanMeasure.items') as MeasureItem[];
+    const referenceRows = t.raw('referenceObjects.rows') as ReferenceRow[];
+    const benchmarkRows = t.raw('accuracy.benchmarkRows') as AccuracyRow[];
+    const tips = t.raw('accuracy.tips') as TipItem[];
+    const methods = t.raw('noTapeMethods.methods') as MethodItem[];
+    const clinicalSteps = t.raw('clinicMethod.steps') as string[];
+    const errorCauses = t.raw('clinicMethod.errorCauses') as ErrorCause[];
+    const faqItems = t.raw('faq.items') as FaqItem[];
 
     return (
         <div className="flex-1 bg-canvas p-2 py-8 md:p-8 transform-gpu">
@@ -73,30 +139,30 @@ export default function ImageToHeightPage() {
                         {/* 1. Hero & Overview Section */}
                         <div className="space-y-6">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-black uppercase tracking-widest">
-                                <Sparkles size={14} /> Image to Height
+                                <Sparkles size={14} /> {t('hero.eyebrow')}
                             </div>
 
                             <h1 className="text-2xl md:text-[40px] font-black text-foreground leading-[1.1] tracking-tighter uppercase px-3 py-4 bg-accent/5 rounded-2xl border-l-8 border-l-accent">
-                                Measure Your Height From a Photo. <span className="text-accent">No Tape Measure Needed.</span>
+                                {t('hero.title')}<span className="text-accent">{t('hero.titleAccent')}</span>
                             </h1>
 
                             <p className="text-muted leading-relaxed text-base md:text-lg max-w-3xl mt-6 font-bold tracking-[0.01em] opacity-90 px-2">
-                                Upload a full-body photo with a door, an A4 sheet, or a credit card in the frame. Mark the reference object and enter its real size, then draw a line from the floor to the top of the head. Get your height in centimeters and in feet and inches. Results land within 1 to 2 centimeters. Free, no sign-up, works on any device.
+                                {t('hero.description')}
                             </p>
 
                             {/* Trust Badges */}
                             <div className="flex flex-wrap gap-2.5 pt-2 px-2">
                                 <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface border border-border text-xs font-bold text-foreground shadow-xs">
-                                    <CheckCircle2 size={14} className="text-accent" /> Free to use
+                                    <CheckCircle2 size={14} className="text-accent" /> {t('hero.badgeFree')}
                                 </span>
                                 <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface border border-border text-xs font-bold text-foreground shadow-xs">
-                                    <CheckCircle2 size={14} className="text-accent" /> No account needed
+                                    <CheckCircle2 size={14} className="text-accent" /> {t('hero.badgeNoAccount')}
                                 </span>
                                 <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface border border-border text-xs font-bold text-foreground shadow-xs">
-                                    <Lock size={14} className="text-green-600 dark:text-green-400" /> Photo stays on your device
+                                    <Lock size={14} className="text-green-600 dark:text-green-400" /> {t('hero.badgePrivate')}
                                 </span>
                                 <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface border border-border text-xs font-bold text-foreground shadow-xs">
-                                    <CheckCircle2 size={14} className="text-accent" /> Results in cm and ft/in
+                                    <CheckCircle2 size={14} className="text-accent" /> {t('hero.badgeUnits')}
                                 </span>
                             </div>
 
@@ -106,30 +172,30 @@ export default function ImageToHeightPage() {
                                     href="#image-measurement-tool"
                                     className="bg-accent text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-xs hover:scale-[1.03] transition-all shadow-xl shadow-accent/20 flex items-center gap-2 active:scale-95"
                                 >
-                                    <Monitor size={16} /> Upload Your Photo and Measure Now
+                                    <Monitor size={16} /> {t('hero.ctaUpload')}
                                 </Link>
                                 <p className="text-[11px] text-muted font-black flex items-center gap-1.5 ml-2 uppercase tracking-wider">
-                                    <ShieldCheck size={14} className="text-accent" /> Accurate to 1–2 cm. 100% private. Runs in browser.
+                                    <ShieldCheck size={14} className="text-accent" /> {t('hero.accuracyNotice')}
                                 </p>
                             </div>
 
                             {/* Photo Prep Guidelines Card */}
                             <div className="bg-surface border border-border rounded-2xl p-5 md:p-6 shadow-sm mt-6">
                                 <h3 className="text-sm font-black text-foreground uppercase tracking-wider mb-3 flex items-center gap-2">
-                                    <Check size={16} className="text-accent" /> Check 3 Things Before Taking Your Photo:
+                                    <Check size={16} className="text-accent" /> {t('hero.prepTitle')}
                                 </h3>
                                 <div className="grid sm:grid-cols-3 gap-3 text-xs md:text-sm font-bold text-muted">
                                     <div className="p-3 rounded-xl bg-accent/5 border border-border/50 flex items-start gap-2.5">
                                         <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0 text-xs font-black">1</div>
-                                        <span>Full body in frame, head to toe with floor visible.</span>
+                                        <span>{t('hero.prep1')}</span>
                                     </div>
                                     <div className="p-3 rounded-xl bg-accent/5 border border-border/50 flex items-start gap-2.5">
                                         <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0 text-xs font-black">2</div>
-                                        <span>Stand against the same wall as the reference object.</span>
+                                        <span>{t('hero.prep2')}</span>
                                     </div>
                                     <div className="p-3 rounded-xl bg-accent/5 border border-border/50 flex items-start gap-2.5">
                                         <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center text-accent shrink-0 text-xs font-black">3</div>
-                                        <span>Phone upright and level, at about waist height.</span>
+                                        <span>{t('hero.prep3')}</span>
                                     </div>
                                 </div>
                             </div>
@@ -139,24 +205,24 @@ export default function ImageToHeightPage() {
                         <div className="space-y-8 w-full">
                             <div>
                                 <span className="text-[11px] font-black uppercase tracking-widest text-accent block mb-1">
-                                    Five Taps, One Photo
+                                    {t('howItWorks.eyebrow')}
                                 </span>
                                 <h2 className="text-xl md:text-3xl font-black text-foreground tracking-tighter uppercase">
-                                    How the Image Height Tool Works: Step by Step
+                                    {t('howItWorks.title')}
                                 </h2>
                                 <p className="text-muted leading-relaxed font-medium mt-2 max-w-2xl">
-                                    A photo holds its own scale when one object of known size sits in the frame. Tell the tool how long that object is, and it can measure anyone or anything standing beside it.
+                                    {t('howItWorks.description')}
                                 </p>
                             </div>
 
                             <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                                {IMAGE_MEASUREMENT_STEPS.map((step, idx) => (
+                                {steps.map((step, idx) => (
                                     <div key={idx} className="bg-surface border border-border p-5 rounded-2xl hover:border-accent/40 transition-all hover:translate-y-[-2px] group flex flex-col shadow-sm">
                                         <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-all mb-4">
                                             {stepIcons[idx]}
                                         </div>
                                         <p className="text-[12px] font-black uppercase text-accent mb-1 tracking-widest">
-                                            Step {step.step}
+                                            {t('howItWorks.stepPrefix')} {step.step}
                                         </p>
                                         <h3 className="text-sm font-black text-foreground mb-2 leading-snug uppercase tracking-tight">
                                             {step.title}
@@ -173,21 +239,21 @@ export default function ImageToHeightPage() {
                         <div className="space-y-6">
                             <div>
                                 <span className="text-[11px] font-black uppercase tracking-widest text-accent block mb-1">
-                                    Beyond Your Own Height
+                                    {t('whatYouCanMeasure.eyebrow')}
                                 </span>
                                 <h2 className="text-xl md:text-3xl font-black text-foreground tracking-tighter uppercase">
-                                    What You Can Measure from a Photo
+                                    {t('whatYouCanMeasure.title')}
                                 </h2>
                                 <p className="text-muted leading-relaxed font-medium mt-2 max-w-2xl">
-                                    Anything works if a reference of known size stands at the exact same distance from the camera.
+                                    {t('whatYouCanMeasure.description')}
                                 </p>
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-4">
-                                {WHAT_YOU_CAN_MEASURE.map((item, idx) => (
+                                {measureItems.map((item, idx) => (
                                     <div
                                         key={idx}
-                                        className={`bg-surface border border-border rounded-2xl p-6 shadow-sm flex flex-col justify-between ${item.isWide ? 'md:col-span-2' : ''}`}
+                                        className={`bg-surface border border-border rounded-2xl p-6 shadow-sm flex flex-col justify-between ${idx === 4 ? 'md:col-span-2' : ''}`}
                                     >
                                         <div>
                                             <h3 className="text-base font-black text-foreground uppercase tracking-wide mb-2">
@@ -195,11 +261,10 @@ export default function ImageToHeightPage() {
                                             </h3>
                                             <p className="text-sm text-muted leading-relaxed font-medium">
                                                 {item.desc}
-                                                {item.linkHref && (
+                                                {idx === 1 && (
                                                     <>
-                                                        {' '}
-                                                        <Link href={item.linkHref} className="text-accent underline hover:opacity-80 font-bold">
-                                                            {item.linkLabel}
+                                                        <Link href="/height-predictor" className="text-accent underline hover:opacity-80 font-bold">
+                                                            {item.linkLabel || 'predicted adult height'}
                                                         </Link>
                                                         .
                                                     </>
@@ -213,20 +278,20 @@ export default function ImageToHeightPage() {
                             {/* Why Photo instead of AR App */}
                             <div className="bg-accent/5 border border-accent/20 rounded-2xl p-6">
                                 <h3 className="text-sm font-black text-foreground uppercase tracking-wide mb-3 flex items-center gap-2">
-                                    <Info size={16} className="text-accent" /> Why Use a Photo Instead of an AR Measurement App?
+                                    <Info size={16} className="text-accent" /> {t('whatYouCanMeasure.whyArTitle')}
                                 </h3>
                                 <ul className="space-y-2 text-xs md:text-sm text-muted font-medium">
                                     <li className="flex items-start gap-2">
                                         <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
-                                        <span><strong>Measures past moments:</strong> AR apps only measure what is in front of you right now. A photo allows you to measure historic pictures, past milestones, and archive shots.</span>
+                                        <span><strong>{t('whatYouCanMeasure.why1Bold')}</strong>{t('whatYouCanMeasure.why1Desc')}</span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
-                                        <span><strong>Zero installation:</strong> Runs natively in any modern browser on iOS, Android, Mac, or PC with no apps to download or subscriptions.</span>
+                                        <span><strong>{t('whatYouCanMeasure.why2Bold')}</strong>{t('whatYouCanMeasure.why2Desc')}</span>
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <CheckCircle2 size={14} className="text-accent shrink-0 mt-0.5" />
-                                        <span><strong>Complete device privacy:</strong> Your photo stays securely inside your browser's local sandbox and is never uploaded to any remote server.</span>
+                                        <span><strong>{t('whatYouCanMeasure.why3Bold')}</strong>{t('whatYouCanMeasure.why3Desc')}</span>
                                     </li>
                                 </ul>
                             </div>
@@ -236,13 +301,13 @@ export default function ImageToHeightPage() {
                         <div className="space-y-6">
                             <div>
                                 <span className="text-[11px] font-black uppercase tracking-widest text-accent block mb-1">
-                                    Calibration Reference
+                                    {t('referenceObjects.eyebrow')}
                                 </span>
                                 <h2 className="text-xl md:text-3xl font-black text-foreground tracking-tighter uppercase">
-                                    Which Reference Object to Use for Calibration
+                                    {t('referenceObjects.title')}
                                 </h2>
                                 <p className="text-muted leading-relaxed font-medium mt-2 max-w-2xl">
-                                    The more certain you are of the reference size, the more you can trust the result. Standardized objects guarantee repeatable accuracy.
+                                    {t('referenceObjects.description')}
                                 </p>
                             </div>
 
@@ -250,14 +315,14 @@ export default function ImageToHeightPage() {
                                 <table className="w-full text-left border-collapse text-sm">
                                     <thead>
                                         <tr className="bg-accent/5 border-b border-border text-[11px] font-mono uppercase tracking-wider text-muted">
-                                            <th className="p-4 font-bold">Object</th>
-                                            <th className="p-4 font-bold">Size to enter</th>
-                                            <th className="p-4 font-bold">Standard dimension?</th>
-                                            <th className="p-4 font-bold">Best for</th>
+                                            <th className="p-4 font-bold">{t('referenceObjects.thObject')}</th>
+                                            <th className="p-4 font-bold">{t('referenceObjects.thSize')}</th>
+                                            <th className="p-4 font-bold">{t('referenceObjects.thStandard')}</th>
+                                            <th className="p-4 font-bold">{t('referenceObjects.thBestFor')}</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-border">
-                                        {REFERENCE_OBJECTS.map((ref, idx) => (
+                                        {referenceRows.map((ref, idx) => (
                                             <tr key={idx} className="hover:bg-accent/[0.02] transition-colors">
                                                 <td className="p-4 font-black text-foreground uppercase tracking-tight">
                                                     {ref.object}
@@ -266,7 +331,7 @@ export default function ImageToHeightPage() {
                                                     {ref.size}
                                                 </td>
                                                 <td className="p-4">
-                                                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold ${ref.isStandard ? 'bg-green-500/10 text-green-600 dark:text-green-400' : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'}`}>
+                                                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-bold ${idx < 2 ? 'bg-green-500/10 text-green-600 dark:text-green-400' : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'}`}>
                                                         {ref.standard}
                                                     </span>
                                                 </td>
@@ -284,13 +349,13 @@ export default function ImageToHeightPage() {
                         <div className="space-y-8">
                             <div>
                                 <span className="text-[11px] font-black uppercase tracking-widest text-accent block mb-1">
-                                    Empirical Accuracy Testing
+                                    {t('accuracy.eyebrow')}
                                 </span>
                                 <h2 className="text-xl md:text-3xl font-black text-foreground tracking-tighter uppercase">
-                                    How to Get an Accurate Result from a Photo
+                                    {t('accuracy.title')}
                                 </h2>
                                 <p className="text-muted leading-relaxed font-medium mt-2 max-w-3xl">
-                                    Two habits cause most of the error: standing in front of the reference and tilting the phone. Camera height on its own does not matter. Keep the phone upright and level, and stand against the same wall as the reference.
+                                    {t('accuracy.description')}
                                 </p>
                             </div>
 
@@ -298,31 +363,31 @@ export default function ImageToHeightPage() {
                             <div className="grid md:grid-cols-3 gap-4">
                                 <div className="bg-surface border border-border p-5 rounded-2xl flex flex-col gap-2">
                                     <div className="flex items-center justify-between">
-                                        <h3 className="text-sm font-black text-foreground uppercase">Low, Tilted Up</h3>
-                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400">Reads taller</span>
+                                        <h3 className="text-sm font-black text-foreground uppercase">{t('accuracy.tiltLowTitle')}</h3>
+                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400">{t('accuracy.tiltLowBadge')}</span>
                                     </div>
                                     <p className="text-xs text-muted leading-relaxed font-medium">
-                                        The top of the scene sits farther from the lens and shrinks, so the door looks short next to the person (+2.4 to +4.5 cm error).
+                                        {t('accuracy.tiltLowDesc')}
                                     </p>
                                 </div>
 
                                 <div className="bg-surface border-2 border-green-500/30 p-5 rounded-2xl flex flex-col gap-2 shadow-sm">
                                     <div className="flex items-center justify-between">
-                                        <h3 className="text-sm font-black text-foreground uppercase">Level, at Waist Height</h3>
-                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-green-500/10 text-green-600 dark:text-green-400">Closest result</span>
+                                        <h3 className="text-sm font-black text-foreground uppercase">{t('accuracy.tiltLevelTitle')}</h3>
+                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-green-500/10 text-green-600 dark:text-green-400">{t('accuracy.tiltLevelBadge')}</span>
                                     </div>
                                     <p className="text-xs text-muted leading-relaxed font-medium">
-                                        The phone faces the wall square on, so the reference and the person maintain their true geometric proportions (0.0 cm error).
+                                        {t('accuracy.tiltLevelDesc')}
                                     </p>
                                 </div>
 
                                 <div className="bg-surface border border-border p-5 rounded-2xl flex flex-col gap-2">
                                     <div className="flex items-center justify-between">
-                                        <h3 className="text-sm font-black text-foreground uppercase">High, Tilted Down</h3>
-                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400">Reads shorter</span>
+                                        <h3 className="text-sm font-black text-foreground uppercase">{t('accuracy.tiltHighTitle')}</h3>
+                                        <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400">{t('accuracy.tiltHighBadge')}</span>
                                     </div>
                                     <p className="text-xs text-muted leading-relaxed font-medium">
-                                        The floor sits farther from the lens and shrinks, so the door looks tall next to the person (−2.8 to −5.9 cm error).
+                                        {t('accuracy.tiltHighDesc')}
                                     </p>
                                 </div>
                             </div>
@@ -330,23 +395,23 @@ export default function ImageToHeightPage() {
                             {/* Accuracy Test Table */}
                             <div className="space-y-3">
                                 <h3 className="text-sm font-black text-foreground uppercase tracking-wider">
-                                    Our Controlled Accuracy Benchmark (14 Rendered Scenes)
+                                    {t('accuracy.tableTitle')}
                                 </h3>
                                 <p className="text-xs text-muted leading-relaxed font-medium">
-                                    We evaluated 14 calibrated scenes with known heights taken from 3.5 meters away to isolate camera geometry from manual tap variations.
+                                    {t('accuracy.tableDesc')}
                                 </p>
                                 <div className="overflow-x-auto border border-border rounded-2xl bg-surface shadow-sm">
                                     <table className="w-full text-left border-collapse text-xs md:text-sm">
                                         <thead>
                                             <tr className="bg-accent/5 border-b border-border text-[11px] font-mono uppercase tracking-wider text-muted">
-                                                <th className="p-3 md:p-4 font-bold">Photo Setup</th>
-                                                <th className="p-3 md:p-4 font-bold whitespace-nowrap">True Height</th>
-                                                <th className="p-3 md:p-4 font-bold whitespace-nowrap">Measured</th>
-                                                <th className="p-3 md:p-4 font-bold whitespace-nowrap">Error</th>
+                                                <th className="p-3 md:p-4 font-bold">{t('accuracy.thSetup')}</th>
+                                                <th className="p-3 md:p-4 font-bold whitespace-nowrap">{t('accuracy.thTrueHeight')}</th>
+                                                <th className="p-3 md:p-4 font-bold whitespace-nowrap">{t('accuracy.thMeasured')}</th>
+                                                <th className="p-3 md:p-4 font-bold whitespace-nowrap">{t('accuracy.thError')}</th>
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-border">
-                                            {ACCURACY_TEST_ROWS.map((row, idx) => (
+                                            {benchmarkRows.map((row, idx) => (
                                                 <tr key={idx} className="hover:bg-accent/[0.02] transition-colors">
                                                     <td className="p-3 md:p-4 font-medium text-foreground">
                                                         {row.setup}
@@ -358,7 +423,7 @@ export default function ImageToHeightPage() {
                                                         {row.measured}
                                                     </td>
                                                     <td className="p-3 md:p-4 font-mono font-bold whitespace-nowrap">
-                                                        <span className={`inline-flex px-2 py-0.5 rounded text-xs ${row.isExact ? 'bg-green-500/10 text-green-600 dark:text-green-400 font-black' : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'}`}>
+                                                        <span className={`inline-flex px-2 py-0.5 rounded text-xs ${idx < 2 ? 'bg-green-500/10 text-green-600 dark:text-green-400 font-black' : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'}`}>
                                                             {row.error}
                                                         </span>
                                                     </td>
@@ -368,13 +433,13 @@ export default function ImageToHeightPage() {
                                     </table>
                                 </div>
                                 <p className="text-xs text-muted leading-relaxed font-medium pt-1">
-                                    <strong>Pixel Sensitivity:</strong> Tapping adds its own error, and small references magnify it. On a phone screen, missing one end of the reference by a single screen pixel moves a 172 cm result by about 1 cm with a door, 7 cm with an A4 sheet, and 23 cm with a card. Use the biggest reference in the photo, and zoom in before tapping.
+                                    <strong>{t('accuracy.pixelSensitivityBold')}</strong>{t('accuracy.pixelSensitivityDesc')}
                                 </p>
                             </div>
 
                             {/* 4 Practical Tips Grid */}
                             <div className="grid md:grid-cols-2 gap-4">
-                                {ACCURACY_TIPS.map((tip, idx) => (
+                                {tips.map((tip, idx) => (
                                     <div key={idx} className="bg-surface border border-border p-5 rounded-2xl flex gap-3.5 items-start">
                                         <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent shrink-0 mt-0.5">
                                             <Plus size={16} />
@@ -396,21 +461,21 @@ export default function ImageToHeightPage() {
                         <div className="space-y-6">
                             <div>
                                 <span className="text-[11px] font-black uppercase tracking-widest text-accent block mb-1">
-                                    Alternative Methods
+                                    {t('noTapeMethods.eyebrow')}
                                 </span>
                                 <h2 className="text-xl md:text-3xl font-black text-foreground tracking-tighter uppercase">
-                                    How to Measure Your Height Without a Measuring Tape
+                                    {t('noTapeMethods.title')}
                                 </h2>
                                 <p className="text-muted leading-relaxed font-medium mt-2 max-w-2xl">
-                                    Five methods work reliably when no tape measure is available. Each uses an object of known size to establish scale.
+                                    {t('noTapeMethods.description')}
                                 </p>
                             </div>
 
                             <div className="grid md:grid-cols-2 gap-4">
-                                {NO_TAPE_METHODS.map((method, idx) => (
+                                {methods.map((method, idx) => (
                                     <div
                                         key={idx}
-                                        className={`bg-surface border border-border rounded-2xl p-6 shadow-sm flex flex-col justify-between ${method.isWide ? 'md:col-span-2' : ''}`}
+                                        className={`bg-surface border border-border rounded-2xl p-6 shadow-sm flex flex-col justify-between ${idx === 0 ? 'md:col-span-2' : ''}`}
                                     >
                                         <div>
                                             <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
@@ -434,7 +499,7 @@ export default function ImageToHeightPage() {
                             </div>
 
                             <p className="text-xs text-muted leading-relaxed font-medium">
-                                Each method gets you close, and none is exact. Confirming the precise number still needs a calibrated reference at some point, unless you use a calibrated photo.
+                                {t('noTapeMethods.footer')}
                             </p>
                         </div>
 
@@ -442,19 +507,19 @@ export default function ImageToHeightPage() {
                         <div className="space-y-6">
                             <div>
                                 <span className="text-[11px] font-black uppercase tracking-widest text-accent block mb-1">
-                                    Clinical Standard
+                                    {t('clinicMethod.eyebrow')}
                                 </span>
                                 <h2 className="text-xl md:text-3xl font-black text-foreground tracking-tighter uppercase">
-                                    How to Measure Height Accurately: The Clinic Method
+                                    {t('clinicMethod.title')}
                                 </h2>
                                 <p className="text-muted leading-relaxed font-medium mt-2 max-w-2xl">
-                                    Adapted from clinical stadiometer protocols (CDC guidelines) to ensure maximum physical accuracy at home.
+                                    {t('clinicMethod.description')}
                                 </p>
                             </div>
 
                             <div className="bg-surface border border-border rounded-2xl p-6 md:p-8 shadow-sm space-y-4">
                                 <ol className="space-y-3">
-                                    {CLINICAL_MEASUREMENT_STEPS.map((step, idx) => (
+                                    {clinicalSteps.map((step, idx) => (
                                         <li key={idx} className="flex items-start gap-3 text-xs md:text-sm text-muted font-medium">
                                             <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-accent text-xs font-black shrink-0 mt-0.5">
                                                 {idx + 1}
@@ -468,10 +533,10 @@ export default function ImageToHeightPage() {
                             {/* Why Measuring Yourself Goes Wrong */}
                             <div className="space-y-4">
                                 <h3 className="text-sm font-black text-foreground uppercase tracking-wider">
-                                    Why Measuring Yourself Alone Goes Wrong
+                                    {t('clinicMethod.whyAloneTitle')}
                                 </h3>
                                 <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-3">
-                                    {MEASUREMENT_ERROR_CAUSES.map((err, idx) => (
+                                    {errorCauses.map((err, idx) => (
                                         <div key={idx} className="bg-surface border border-border rounded-xl p-4">
                                             <h4 className="text-xs font-black text-foreground uppercase mb-1">
                                                 {err.title}
@@ -483,14 +548,18 @@ export default function ImageToHeightPage() {
                                     ))}
                                 </div>
                                 <p className="text-xs text-muted leading-relaxed font-medium">
-                                    Doing it alone makes everything worse. Standing straight, balancing a hardback on your head, marking a wall, and measuring the mark all at once is physically awkward. A photo with a reference object removes the need for a second person entirely.
+                                    {t('clinicMethod.whyAloneFooter')}
                                 </p>
                             </div>
                         </div>
 
                         {/* 8. Frequently Asked Questions */}
                         <div id="frequently-asked-questions" className="scroll-mt-24">
-                            <FaqAccordion items={IMAGE_TO_HEIGHT_FAQ} />
+                            <FaqAccordion
+                                items={faqItems}
+                                title={t('faq.title')}
+                                badge={t('faq.badge')}
+                            />
                         </div>
 
                     </div>
