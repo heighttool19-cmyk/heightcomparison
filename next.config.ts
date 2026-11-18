@@ -1,8 +1,23 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   output: 'standalone',
   serverExternalPackages: ['mongoose', 'mongodb', 'bson', 'kdf'],
+  webpack(config, { isServer }) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'motion/react': path.resolve(__dirname, 'node_modules/motion/dist/cjs/react.js'),
+    };
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        react: path.resolve(__dirname, 'node_modules/react'),
+        'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+      };
+    }
+    return config;
+  },
   images: {
     remotePatterns: [
       {
