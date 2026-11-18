@@ -1420,227 +1420,227 @@
   "heightDifference": {
     "intro": {
       "title": "حاسبة فرق الطول",
-      "description": "تقارن حاسبة فرق الطول بين قامتي شخصين وتعرض الفارق الدقيق بينهما. أدخل الطولين بالسنتيمتر أو بالأقدام والبوصات؛ وستحسب الأداة فارق الطول وفارق النسبة المئوية على الفور. قارن نفسك بصديقك أو شريكك أو أي شخص آخر في ثوانٍ.",
-      "heroCtaButton": "Calculate height difference",
-      "heroBadgeFree": "Free",
-      "heroBadgeNoSignup": "No signup",
-      "heroBadgeUnits": "cm or ft/in"
+      "description": "تطرح حاسبة فرق الطول القامة الأقصر من القامة الأطول وتعرض الفارق بالسنتيمتر والبوصة. كما تبين النسبة المئوية وتحدد الشخص الأطول. أدخل الأطوال بالسنتيمتر أو بالأقدام والبوصات. الأداة مجانية، ولا تتطلب حساباً، وتتحدث نتائجها مباشرة أثناء الكتابة.",
+      "heroCtaButton": "احسب فرق الطول الآن",
+      "heroBadgeFree": "مجاني وبدون حدود",
+      "heroBadgeNoSignup": "بدون تسجيل",
+      "heroBadgeUnits": "متري وإمبراطوري"
     },
     "calculateSection": {
-      "title": "حساب فرق الطول",
-      "description": "استخدم حاسبة فرق الطول أدناه. أدخل الطولين، واختر وحدة القياس، وسيتم تحديث المقارنة مباشرة."
+      "title": "حساب فارق الطول",
+      "description": "أدخل طول الشخص 1 والشخص 2، ثم اختر النظام المتري (سم) أو الإمبراطوري (قدم/بوصة). تعرض الحاسبة الفارق، والنسبة المئوية، والشخص الأطول أسفل الحقول مباشرة. تقارن بين طولين في وقت واحد وتعمل على أي جهاز."
     },
     "howToCalculate": {
-      "title": "كيفية حساب فرق الطول",
-      "p1": "يعتمد حساب فرق الطول على عملية حسابية واحدة: طرح طول الشخص الأقصر من طول الشخص الأطول. تحدد حاسبة فرق الطول تلقائيًا من هو الأطول، وبالتالي تكون النتيجة دائمًا رقمًا موجبًا بغض النظر عن الطول الذي تدخله أولاً.",
-      "formulaTitle": "معادلة فرق الطول:",
-      "formulaText": "فرق الطول = طول الشخص الأطول − طول الشخص الأقصر",
-      "personALabel": "الشخص (أ)",
+      "title": "كيفية حساب فارق الطول",
+      "p1": "يساوي فرق الطول قامة الشخص الأطول مطروحاً منها قامة الشخص الأقصر. تتعرف الحاسبة تلقائياً على الشخص الأطول أولاً، لذا تكون النتيجة دائماً رقماً موجباً. ترتيب إدخال الطولين لا يغير النتيجة.",
+      "formulaTitle": "معادلة فرق الطول",
+      "formulaText": "فرق الطول = الطول الأكبر − الطول الأصغر",
+      "personALabel": "أليكس",
       "personAValue": "180 سم",
-      "personBLabel": "الشخص (ب)",
+      "personBLabel": "بن",
       "personBValue": "165 سم",
       "differenceLabel": "الفارق",
       "differenceValue": "180 − 165 = 15 سم",
-      "p2": "الطرح هو العملية الوحيدة المطلوبة. تقوم حاسبة فرق الطول بحساب هذا الفارق فور إدخال القيمتين، دون الحاجة إلى أي خطوات إضافية."
+      "p2": "ينطبق نفس المبدأ على الأقدام والبوصات بعد خطوة بسيطة: حوّل كلا القياسين إلى بوصات ثم اطرح. 5 أقدام و10 بوصات تساوي 70 بوصة، و5 أقدام و3 بوصات تساوي 63 بوصة، فيكون الفارق 7 بوصات (17.8 سم)."
     },
     "percentage": {
-      "title": "النسبة المئوية لفرق الطول",
-      "p1": "يضيف فرق النسبة المئوية بعدًا تناسبيًا إلى الفارق الإجمالي. فالفارق البالغ 10 سم بين شخصين يتجاوز طول كل منهما 180 سم يمثل فجوة نسبية أصغر بكثير من نفس الفارق البالغ 10 سم بين شخصين يقترب طولهما من 155 سم. تجعل النسبة المئوية الفارق ذا دلالة بغض النظر عن الطول المطلق.",
-      "formulaTitle": "معادلة النسبة المئوية للفرق:",
-      "formulaText": "النسبة المئوية للفرق = (فرق الطول ÷ طول الشخص الأطول) × 100",
+      "title": "النسبة المئوية لفارق الطول",
+      "p1": "تعبر النسبة المئوية عن فارق الطول كحصة نسبية من قامة الشخص الأطول. يوضح الفارق بالسنتيمتر المسافة المجردة، بينما تبين النسبة المئوية حجم هذا الفارق بالنسبة للشخصين.",
+      "formulaTitle": "معادلة النسبة المئوية للفرق",
+      "formulaText": "النسبة المئوية = (فرق الطول ÷ الطول الأكبر) × 100",
       "heightDiffLabel": "فرق الطول",
       "heightDiffValue": "15 سم",
-      "tallerHeightLabel": "طول الشخص الأطول",
+      "tallerHeightLabel": "الطول الأكبر",
       "tallerHeightValue": "180 سم",
       "calculationLabel": "طريقة الحساب",
-      "calculationValue": "15 ÷ 180 × 100",
-      "percentDiffLabel": "فرق النسبة المئوية",
+      "calculationValue": "(15 ÷ 180) × 100",
+      "percentDiffLabel": "النسبة المئوية للفرق",
       "percentDiffValue": "8.3%",
-      "p2": "يعني هذا أن الشخص (ب) أقصر بنسبة 8.3% مقارنة بالشخص (أ). تعرض حاسبة فرق الطول هذا الرقم تلقائيًا بجانب الفارق المطلق، ويتم تحديث القيمتين مباشرة عند تغيير أي طول.",
-      "p3": "The base you divide by changes the number. This calculator divides by the taller height, so it reports how much shorter Person B is. To find how much taller Person A is, divide by the shorter height: 15 ÷ 165 × 100 = 9.1%. Both figures describe the same 15 cm gap.",
-      "duoShorterLabel": "Percent shorter (this calculator)",
-      "duoShorterValue": "8.3%",
-      "duoShorterEq": "15 ÷ 180 × 100",
-      "duoTallerLabel": "Percent taller",
-      "duoTallerValue": "9.1%",
-      "duoTallerEq": "15 ÷ 165 × 100",
-      "p4": "The same gap in cm becomes a smaller percentage as heights rise. A 10 cm gap equals 6.3% when the taller person is 160 cm and 5.3% when the taller person is 190 cm."
+      "p2": "الشخص (ب) أقصر بنسبة 8.3% من الشخص (أ). تعرض الحاسبة هذا الرقم بجوار الفارق بالسنتيمتر، وتتحدث القيمتان فوراً عند تغيير أي طول.",
+      "p3": "تتغير النتيجة باختلاف القيمة التي تقسم عليها في المقام. تقسم هذه الحاسبة على طول الشخص الأكبر لتوضح كم ينقص الشخص (ب). ولمعرفة نسبة زيادة الشخص (أ)، نقسم على طول الشخص الأقصر: 15 ÷ 165 × 100 = 9.1%. كلا الرقمين يصفان نفس الفارق البالغ 15 سم.",
+      "duoShorterLabel": "مقارنة بالشخص الأقصر",
+      "duoShorterValue": "أطول بنسبة 9.1%",
+      "duoShorterEq": "(15 ÷ 165) × 100 = 9.09%",
+      "duoTallerLabel": "مقارنة بالشخص الأطول",
+      "duoTallerValue": "أقصر بنسبة 8.3%",
+      "duoTallerEq": "(15 ÷ 180) × 100 = 8.33%",
+      "p4": "يشكل نفس الفارق بالسنتيمتر نسبة مئوية أصغر كلما زادت قامة الشخصين. ففارق 10 سم يعادل 6.3% عندما يكون الشخص الأطول 160 سم، لكنه يعادل 5.3% فقط عندما يكون طوله 190 سم."
     },
     "couple": {
-      "title": "حاسبة فرق الطول بين الزوجين",
-      "p1": "تعد مقارنة الطول بين الشركاء والأزواج من أكثر استخدامات حاسبة فرق الطول شيوعًا؛ حيث يرغب الأزواج في معرفة كيف يبدو الفارق في الصور، أو كيف يُقارن بالمتوسط، أو ببساطة بدافع الفضول. وتعمل الأداة بنفس الطريقة لأي شخصين.",
-      "p2": "تشير بيانات المسوح الإحصائية إلى أن متوسط فرق الطول بين الأزواج (رجل وامرأة) على مستوى العالم يتراوح بين 12 إلى 15 سم تقريبًا (حوالي 5 إلى 6 بوصات)، على الرغم من أن هذا يختلف حسب الدولة والأفراد. ولا يوجد معيار محدد لما يُعتبر فارقًا طبيعيًا بين الزوجين؛ فالأرقام مجرد أرقام.",
-      "statAvgGapLabel": "Average gap, UK couples",
-      "statAvgGapValue": "14.1 cm",
-      "statAvgGapSub": "5.6 in",
-      "statAvgGapSampleSize": "12,502 couples",
-      "statManTallerLabel": "Man taller",
+      "title": "حاسبة فارق الطول بين الزوجين والشريكين",
+      "p1": "تقيس حاسبة الأزواج فارق الطول بين الشريكين. يستخدمها الشركاء لمعرفة موقع فارق الطول بينهما مقارنة بالإحصاءات السكانية الواقعية.",
+      "statAvgGapLabel": "متوسط الفارق، الأزواج في بريطانيا",
+      "statAvgGapValue": "14.1 سم",
+      "statAvgGapSub": "5.6 بوصة",
+      "statAvgGapSampleSize": "12,502 زوجاً",
+      "statManTallerLabel": "الرجل أطول",
       "statManTallerValue": "92.5%",
-      "statManTallerSub": "of couples in the same study",
-      "distTableCaption": "Share of UK couples by height gap",
-      "tableHeaderGap": "Man taller by",
-      "tableHeaderShare": "Share of UK couples",
-      "tableHeaderBar": "Bar",
-      "bandWomanTaller": "Woman taller",
-      "band0to5": "0 to 5 cm",
-      "band5to10": "5 to 10 cm",
-      "band10to15": "10 to 15 cm",
-      "band15to20": "15 to 20 cm",
-      "band20to25": "20 to 25 cm",
-      "band25to30": "25 to 30 cm",
-      "bandOver30": "Over 30 cm",
-      "tableSource": "Source: Stulp et al. (2013), parents in the UK Millennium Cohort Study.",
-      "p3": "Gaps of 10 to 20 cm covered about 42% of these couples. Preferences differ by sex. In a separate study, women reported the most satisfaction when their partner was 21 cm taller, and men when they were 8 cm taller. These figures describe common gaps. They do not define a correct one.",
-      "coupleCardChipsLabel": "Example couples",
-      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
-      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples."
+      "statManTallerSub": "من الأزواج في الدراسة",
+      "p2": "أظهرت دراسة بريطانية شملت 12,502 زوجاً أن الرجل كان أطول في 92.5% من الحالات. وكان متوسط الفارق 14.1 سم (5.6 بوصة). وظهرت الحالات التي تكون فيها المرأة أطول أو التي يزيد فيها فارق طول الرجل عن 25 سم بنسبة أقل مما تفترضه الصدفة العشوائية.",
+      "distTableCaption": "توزيع الأزواج حسب فارق الطول",
+      "tableHeaderGap": "مقدار زيادة طول الرجل",
+      "tableHeaderShare": "نسبة الأزواج",
+      "tableHeaderBar": "المخطط",
+      "bandWomanTaller": "المرأة أطول",
+      "band0to5": "0 إلى 5 سم",
+      "band5to10": "5 إلى 10 سم",
+      "band10to15": "10 إلى 15 سم",
+      "band15to20": "15 إلى 20 سم",
+      "band20to25": "20 إلى 25 سم",
+      "band25to30": "25 إلى 30 سم",
+      "bandOver30": "أكثر من 30 سم",
+      "tableSource": "المصدر: ستولب وزملاؤه (2013)، دراسة الألفية البريطانية.",
+      "p3": "الفروق بين 10 و20 سم شملت نحو 42% من الأزواج المشاركين في الدراسة.",
+      "coupleCardChipsLabel": "أزواج كمثال",
+      "coupleLine": "الشريك 1 ({h1} سم) <strong>أطول بمقدار {gap} سم</strong> من الشريك 2 ({h2} سم). يعادل الفارق {pct}% من طول الشريك 1.",
+      "coupleBandText": "يقع فارق {gap} سم ضمن فئة \"{band}\"، والتي تمثل نحو {share}% من الأزواج في الدراسة."
     },
     "chartSection": {
-      "title": "مخطط فرق الطول",
-      "p1": "يغطي المخطط أدناه أزواج الأطوال الشائعة والفروق بينها، ويمكنك استخدامه كمرجع سريع دون الحاجة لإدخال قيم في الأداة.",
-      "p2": "تزداد النسبة المئوية للفرق مع زيادة الفارق المطلق، ولكنها تعتمد أيضًا على طول الشخص الأطول؛ ففارق 15 سم يكون أكبر نسبيًا عندما يكون طول الشخص الأطول 165 سم مقارنة بما إذا كان طوله 190 سم.",
-      "calloutPrefix": "To chart three or more people side by side, use the ",
-      "calloutLink": "Height Comparison Calculator",
-      "calloutSuffix": "."
+      "title": "جدول مقارنة فروق الطول",
+      "p1": "يعرض جدولنا توليفات الطول الشائعة، والفارق بالسنتيمتر والبوصة، ونسبة التفاوت النسبي.",
+      "p2": "استخدمه للتحقق السريع من الفروق بين الأصدقاء أو أفراد الأسرة أو الشركاء.",
+      "calloutPrefix": "هل ترغب في مقارنة ثلاثة أشخاص أو أكثر جنباً إلى جنب برسم بياني؟ جرب ",
+      "calloutLink": "حاسبة مقارنة الطول",
+      "calloutSuffix": " التي تدعم حتى أكثر من عشر شخصيات في وقت واحد."
     },
     "unitsSection": {
       "title": "فرق الطول بوحدات مختلفة",
-      "p1": "يمكنك حساب فرق الطول بالسنتيمتر أو بالأقدام والبوصات. يؤدي تبديل الوحدات إلى تحويل كل من المدخلات والنتائج في آن واحد دون الحاجة لأي تحويل يدوي قبل إدخال القيم.",
-      "subheadFtIn": "Height difference in feet and inches",
-      "table1HeaderPersonA": "Person A",
-      "table1HeaderPersonB": "Person B",
-      "table1HeaderDiffIn": "Difference (in)",
-      "table1HeaderDiffCm": "Difference (cm)",
-      "table1HeaderPercent": "% Difference",
-      "subheadCm": "Height difference in centimeters",
-      "table2HeaderDiffCm": "Height difference (cm)",
-      "table2HeaderInInches": "In inches",
-      "table2HeaderExamplePair": "Example pair",
-      "table2HeaderPercent": "% Difference"
+      "p1": "تدعم الحاسبة كلاً من النظامين المتري والإمبراطوري. إليك كيف تبدو الفروق الشائعة في كلا النظامين.",
+      "subheadFtIn": "فارق الطول بالأقدام والبوصات",
+      "table1HeaderPersonA": "الشخص أ",
+      "table1HeaderPersonB": "الشخص ب",
+      "table1HeaderDiffIn": "الفارق (بوصة)",
+      "table1HeaderDiffCm": "الفارق (سم)",
+      "table1HeaderPercent": "% الفارق",
+      "subheadCm": "فارق الطول بالسنتيمتر",
+      "table2HeaderDiffCm": "فارق الطول (سم)",
+      "table2HeaderInInches": "بالبوصة",
+      "table2HeaderExamplePair": "مثال",
+      "table2HeaderPercent": "% الفارق"
     },
     "cta": {
-      "title": "جرب حاسبة فرق الطول الآن",
-      "descriptionLine1": "أدخل طولين أعلاه لحساب فرق الطول فورًا.",
-      "descriptionLine2": "يتم تحديث المقارنة البصرية وفرق النسبة المئوية أثناء الكتابة.",
-      "feature1": "الفارق المطلق وفرق النسبة المئوية",
-      "feature2": "مقارنة بصرية نسبية حقيقية",
-      "feature3": "يدعم وحدات سم وقدم/بوصة",
-      "feature4": "مجاني وبدون حساب وعلى أي جهاز",
-      "buttonText": "اصعد لأعلى وقارن الآن ↑"
-    },
-    "references": {
-      "title": "المراجع والمصادر",
-      "ref1": "NCD Risk Factor Collaboration (NCD-RisC). A century of trends in adult human height. eLife, 2016.",
-      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Human height is positively related to interpersonal dominance in dyadic interactions. PLOS ONE.",
-      "ref1Url": "https://doi.org/10.1371/journal.pone.0054186",
-      "ref2Url": "https://tvpollet.github.io/pdfs/Stulp_et_al_2013_PAID.pdf"
+      "title": "جاهز لتجربة حاسبة فرق الطول؟",
+      "descriptionLine1": "أدخل طولين واكتشف الفارق بالسنتيمتر والبوصة، والنسبة المئوية، وتصنيف الأزواج فوراً.",
+      "descriptionLine2": "الأداة مجانية 100%، وتعمل في جميع المتصفحات، ولا تتطلب إنشاء حساب.",
+      "feature1": "حساب فوري في الوقت الفعلي",
+      "feature2": "نسبة مئوية ورسم بياني للشريط",
+      "feature3": "دعم السنتيمتر والأقدام/البوصات",
+      "feature4": "مجاني بالكامل بدون تسجيل",
+      "buttonText": "اصعد للأعلى واحسب الآن ↑"
     },
     "faq": [
       {
-        "q": "What is a normal height difference between couples?",
-        "a": "No single gap is normal. In a study of 12,502 UK couples, the man was 14.1 cm (5.6 in) taller on average. Gaps of 10 to 20 cm covered about 42% of couples. The couple height difference calculator shows the gap for any two heights."
+        "q": "ما هو الفارق الطبيعي في الطول بين الأزواج؟",
+        "a": "لا يوجد فارق قياسي ثابت. في دراسة بريطانية كبيرة شملت 12,502 زوجاً، كان الرجل في المتوسط أطول بـ 14.1 سم (5.6 بوصة). وشكلت الفروق بين 10 و20 سم نحو 42% من الحالات. تتيح لك حاسبة الأزواج تمثيل أي توليفة ترغب بها."
       },
       {
-        "q": "How do you calculate height difference?",
-        "a": "Subtract the shorter height from the taller height: Height Difference = Taller Height − Shorter Height. For 180 cm and 165 cm, the difference is 15 cm. Divide 15 by 180 and multiply by 100 to get the percentage difference of 8.3%."
+        "q": "كيف تحسب فرق الطول؟",
+        "a": "اطرح الطول الأصغر من الطول الأكبر: فرق الطول = الطول الأكبر − الطول الأصغر. بالنسبة لطول 180 سم و165 سم، يكون الفارق 15 سم. ولحساب النسبة المئوية، اقسم 15 على 180 واضرب في 100 (8.3%)."
       },
       {
-        "q": "Can a height difference calculator show percentage difference?",
-        "a": "Yes. This difference in height calculator shows the gap in cm or inches and the percentage difference. It divides the gap by the taller person's height and updates both values when either height changes."
+        "q": "هل تعرض الحاسبة فرق الطول بالنسبة المئوية؟",
+        "a": "نعم. توضح الحاسبة الفارق بالسنتيمتر والبوصة إلى جانب النسبة المئوية مقارنة بالشخص الأطول، وتتحدث القيم في الوقت الفعلي."
       },
       {
-        "q": "Is \"percent taller\" the same as \"percent shorter\"?",
-        "a": "No. Percent shorter divides the gap by the taller height. Percent taller divides it by the shorter height. For 180 cm and 165 cm, Person B is 8.3% shorter and Person A is 9.1% taller."
+        "q": "هل نسبة \"أطول بـ\" هي نفسها نسبة \"أقصر بـ\"؟",
+        "a": "لا. نسبة \"أقصر بـ\" تقسم الفارق على الطول الأكبر (15 ÷ 180 = 8.3%). بينما نسبة \"أطول بـ\" تقسم الفارق على الطول الأصغر (15 ÷ 165 = 9.1%). يصف الرقمان نفس الفارق البالغ 15 سم."
       },
       {
-        "q": "What units can be used in a height difference calculator?",
-        "a": "This height difference calculator accepts centimeters and feet and inches. Switching units converts both inputs and the result at once."
+        "q": "ما هي وحدات القياس المدعومة؟",
+        "a": "تقبل الحاسبة السنتيمتر وكذلك الأقدام والبوصات. يؤدي تبديل الوحدة إلى تحويل المدخلات والنتيجة في آن واحد."
       }
     ],
     "toc": [
       {
         "id": "calculate-height-difference",
-        "label": "Calculate Height Difference"
+        "label": "حساب فارق الطول"
       },
       {
         "id": "how-to-calculate-height-difference",
-        "label": "How to Calculate Height Difference"
+        "label": "طريقة حساب فارق الطول"
       },
       {
         "id": "height-difference-percentage",
-        "label": "Height Difference Percentage"
+        "label": "النسبة المئوية لفارق الطول"
       },
       {
         "id": "couple-height-difference-calculator",
-        "label": "Couple Height Difference Calculator"
+        "label": "حاسبة فارق الطول للأزواج"
       },
       {
         "id": "height-difference-chart",
-        "label": "Height Difference Chart"
+        "label": "جدول مقارنة فروق الطول"
       },
       {
         "id": "height-difference-in-different-units",
-        "label": "Height Difference in Different Units"
+        "label": "فارق الطول بوحدات مختلفة"
       },
       {
         "id": "try-the-height-difference-calculator",
-        "label": "Try the Height Difference Calculator"
+        "label": "تجربة حاسبة فرق الطول"
       },
       {
         "id": "frequently-asked-questions",
-        "label": "Frequently Asked Questions"
+        "label": "الأسئلة الشائعة"
       },
       {
         "id": "references",
-        "label": "References"
+        "label": "المصادر"
       }
     ],
+    "references": {
+      "title": "المصادر",
+      "ref1": "Stulp G, Buunk AP, Pollet TV, Nettle D, Verhulst S (2013). Are Human Mating Preferences with Respect to Height Reflected in Actual Pairings? PLOS ONE 8(1): e54186.",
+      "ref1Url": "https://doi.org/10.1371/journal.pone.0054186",
+      "ref2": "Stulp G, Buunk AP, Pollet TV (2013). Women want taller men more than men want shorter women. Personality and Individual Differences.",
+      "ref2Url": "https://tvpollet.github.io/pdfs/Stulp_et_al_2013_PAID.pdf"
+    },
     "tool": {
+      "cardHeaderTitle": "أدخل طولين",
+      "cardHeaderSub": "تتحدث النتائج مباشرة أثناء الكتابة",
       "unitMetric": "متري (سم)",
       "unitImperial": "إمبراطوري (قدم/بوصة)",
       "person1Label": "الشخص 1",
       "person2Label": "الشخص 2",
-      "cmPlaceholder": "سنتيمتر",
-      "heightDifferenceLabel": "فرق الطول",
-      "percentDifferenceLabel": "% الفرق",
+      "swapButtonLabel": "تبديل الشخص 1 والشخص 2",
+      "swapButtonTitle": "تبديل الأطوال",
+      "cmPlaceholder": "مثال: 180",
+      "cmPlaceholder2": "مثال: 165",
+      "ftLabel": "قدم",
+      "inLabel": "بوصة",
+      "hintText": "أدخل الطول في كل حقل. استخدم الزر بالأعلى للتحويل إلى أقدام وبوصات.",
+      "heightDifferenceLabel": "فارق الطول",
+      "percentDifferenceLabel": "% الفارق",
       "tallerPersonLabel": "الشخص الأطول",
-      "cardHeaderTitle": "Enter two heights",
-      "cardHeaderSub": "Results update as you type",
-      "swapButtonLabel": "Swap Person 1 and Person 2",
-      "swapButtonTitle": "Swap heights",
-      "cmPlaceholder2": "e.g. 165",
-      "ftLabel": "FT",
-      "inLabel": "IN",
-      "hintText": "Type a height in each box. Use the toggle above to switch to feet and inches.",
-      "gapGraphicLabel": "Height gap",
-      "badgeFree": "Free",
-      "badgeNoAccount": "No account needed",
-      "badgeSupportsUnits": "Supports cm and ft/in",
-      "badgeUpdatesLive": "Updates live",
-      "noDifferenceText": "No difference",
-      "personShorterText": "{person} is {pct}% shorter",
-      "sameHeightText": "Same height"
+      "gapGraphicLabel": "رسم الفارق",
+      "badgeFree": "مجاني",
+      "badgeNoAccount": "بدون تسجيل",
+      "badgeSupportsUnits": "يدعم سم وقدم/بوصة",
+      "badgeUpdatesLive": "تحديث لحظي",
+      "noDifferenceText": "لا يوجد فارق",
+      "personShorterText": "{person} أقصر بنسبة {pct}%",
+      "sameHeightText": "نفس الطول"
     },
     "coupleCalc": {
+      "chipsLabel": "أزواج كمثال",
       "partner1Label": "الشريك 1",
       "partner2Label": "الشريك 2",
-      "chipsLabel": "Example couples",
-      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
-      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
-      "bandWomanTaller": "woman taller",
-      "band0to5": "0 to 5 cm",
-      "band5to10": "5 to 10 cm",
-      "band10to15": "10 to 15 cm",
-      "band15to20": "15 to 20 cm",
-      "band20to25": "20 to 25 cm",
-      "band25to30": "25 to 30 cm",
-      "bandOver30": "over 30 cm"
+      "coupleLine": "الشريك 1 ({h1} سم) <strong>أطول بمقدار {gap} سم</strong> من الشريك 2 ({h2} سم). يعادل الفارق {pct}% من طول الشريك 1.",
+      "coupleBandText": "يقع فارق {gap} سم ضمن فئة \"{band}\"، والتي تمثل نحو {share}% من الأزواج في الدراسة.",
+      "bandWomanTaller": "المرأة أطول",
+      "band0to5": "0 إلى 5 سم",
+      "band5to10": "5 إلى 10 سم",
+      "band10to15": "10 إلى 15 سم",
+      "band15to20": "15 إلى 20 سم",
+      "band20to25": "20 إلى 25 سم",
+      "band25to30": "25 إلى 30 سم",
+      "bandOver30": "أكثر من 30 سم"
     },
     "chartTable": {
-      "headerPersonA": "الشخص (أ)",
-      "headerPersonB": "الشخص (ب)",
+      "headerPersonA": "الشخص أ",
+      "headerPersonB": "الشخص ب",
       "headerDifference": "الفارق",
-      "headerPercentDifference": "% الفرق"
+      "headerPercentDifference": "% الفارق"
     }
   },
   "averageHeightByCountry": {
@@ -2081,608 +2081,608 @@
   },
   "imageToHeight": {
     "hero": {
-      "eyebrow": "Image to Height",
-      "title": "Measure Your Height From a Photo. ",
-      "titleAccent": "No Tape Measure Needed.",
-      "description": "Upload a full-body photo with a door, an A4 sheet, or a credit card in the frame. Mark the reference object and enter its real size, then draw a line from the floor to the top of the head. Get your height in centimeters and in feet and inches. Results land within 1 to 2 centimeters. Free, no sign-up, works on any device.",
-      "badgeFree": "Free to use",
-      "badgeNoAccount": "No account needed",
-      "badgePrivate": "Photo stays on your device",
-      "badgeUnits": "Results in cm and ft/in",
-      "ctaUpload": "Upload Your Photo and Measure Now",
-      "accuracyNotice": "Accurate to 1–2 cm. 100% private. Runs in browser.",
-      "prepTitle": "Check 3 Things Before Taking Your Photo:",
-      "prep1": "Full body in frame, head to toe with floor visible.",
-      "prep2": "Stand against the same wall as the reference object.",
-      "prep3": "Phone upright and level, at about waist height."
+      "eyebrow": "قياس الطول بالصورة",
+      "title": "قس طولك بدقة من صورة شخصية. ",
+      "titleAccent": "دون الحاجة لشريط قياس.",
+      "description": "ارفع صورة لكامل الجسم يظهر فيها باب أو ورقة A4 أو بطاقة بنكية. حدد الجسم المرجعي، وأدخل مقاسه الفعلي، واسحب خطاً من الأرض إلى قمة الرأس. احصل على طولك بالسنتيمتر والأقدام/البوصات بهامش خطأ 1-2 سم فقط. مجاناً، بدون حساب، وعلى جميع الأجهزة.",
+      "badgeFree": "مجاني",
+      "badgeNoAccount": "بدون تسجيل",
+      "badgePrivate": "الصورة لا تغادر جهازك",
+      "badgeUnits": "النتائج بالسنتيمتر والقدم/البوصة",
+      "ctaUpload": "ارفع الصورة وقس الطول الآن",
+      "accuracyNotice": "دقة 1–2 سم. خصوصية 100%. معالجة محلية بالمتصفح.",
+      "prepTitle": "تحقق من 3 شروط أساسية قبل التقاط الصورة:",
+      "prep1": "ظهور كامل الجسم في الإطار من الرأس إلى القدمين مع وضوح الأرضية.",
+      "prep2": "الوقوف ملاصقاً لنفس الجدار الذي يوجد عليه الجسم المرجعي.",
+      "prep3": "إمساك الهاتف مستقيماً ومستوياً تقريباً على مستوى الخصر."
     },
     "howItWorks": {
-      "eyebrow": "Five Taps, One Photo",
-      "title": "How the Image Height Tool Works: Step by Step",
-      "description": "A photo holds its own scale when one object of known size sits in the frame. Tell the tool how long that object is, and it can measure anyone or anything standing beside it.",
+      "eyebrow": "خمس نقرات، صورة واحدة",
+      "title": "كيف تعمل الأداة: خطوة بخطوة",
+      "description": "تحتوي الصورة الفوتوغرافية على مقاييسها النسبية الخاصة متى ما تضمنت جسماً معلوم المقاس. حدد مقاس هذا الجسم وستحسب الأداة طول أي شخص يقف بجانبه بدقة.",
       "stepPrefix": "خطوة",
       "steps": [
         {
           "step": "01",
-          "title": "Upload a full-body photo",
-          "desc": "Pick a photo that shows the person head to toe, with a door, an A4 sheet, or a card beside them. A doorframe is the most reliable option."
+          "title": "ارفع صورة لكامل الجسم",
+          "desc": "اختر صورة يظهر فيها الشخص من الرأس إلى القدمين بجوار باب أو ورقة A4 أو بطاقة ائتمان. إطار الباب هو الخيار الأكثر ثباتاً."
         },
         {
           "step": "02",
-          "title": "Crop and confirm",
-          "desc": "Trim the edges so the person and the reference fill the frame cleanly, then tap Apply crop."
+          "title": "قص الصورة وأكّد الإطار",
+          "desc": "اضبط حدود الصورة بحيث يظهر الشخص والجسم المرجعي بوضوح، ثم اضغط على 'تطبيق القص'."
         },
         {
           "step": "03",
-          "title": "Mark the reference and pick its size",
-          "desc": "Tap both ends of the door or card. Choose Door (203 cm), ID card (8.56 cm), A4 paper (29.7 cm), 1 metre, or type custom real size."
+          "title": "حدد مقاس الجسم المرجعي",
+          "desc": "انقر على طرفي الباب أو البطاقة. اختر باباً (203 سم)، أو بطاقة ائتمان (8.56 سم)، أو ورقة A4 (29.7 سم)، أو متراً واحداً، أو أدخل قياساً مخصصاً."
         },
         {
           "step": "04",
-          "title": "Tap head and feet",
-          "desc": "Place a line from the floor beneath the subject's feet to the crown of their head. Start from the floor, not the feet, especially when footwear appears in the photo. Or tap AI auto-scan."
+          "title": "حدد القدمين وقمة الرأس",
+          "desc": "اسحب خطاً من الأرض تحت القدمين إلى أعلى الرأس. ابدأ من سطح الأرض وليس من نعل الحذاء. أو استخدم الفحص التلقائي بالذكاء الاصطناعي."
         },
         {
           "step": "05",
-          "title": "Read your result and save to chart",
-          "desc": "Your measured height appears in both centimeters and feet and inches. Hit 'Save to Chart' to log it and compare against friends, family, athletes, or celebrities."
+          "title": "اقرأ النتيجة واحفظها",
+          "desc": "سيظهر طولك بالسنتيمتر والأقدام والبوصات. اضغط على 'حفظ' للاحتفاظ بالطول ومقارنته مع شخصيات أخرى."
         }
       ]
     },
     "whatYouCanMeasure": {
-      "eyebrow": "Beyond Your Own Height",
-      "title": "What You Can Measure from a Photo",
-      "description": "Anything works if a reference of known size stands at the exact same distance from the camera.",
+      "eyebrow": "أكثر من مجرد قياس طولك",
+      "title": "ما يمكنك قياسه باستخدام صورة",
+      "description": "يمكن قياس أي شخص أو مجسم بشرط أن يكون الجسم المرجعي على نفس المسافة تماماً من عدسة الكاميرا.",
       "items": [
         {
-          "title": "Yourself, with no helper",
-          "desc": "Prop your phone upright at waist height, set the timer, and stand beside a door or a taped A4 sheet."
+          "title": "نفسك دون الحاجة لمساعدة أحد",
+          "desc": "ضع الهاتف على مستوى الخصر، واضبط المؤقت الذاتي، وقف بجوار باب أو ورقة A4 ملصقة على الحائط."
         },
         {
-          "title": "Children as they grow",
-          "desc": "Photograph your child against the same door every few months and save each result to the chart. Then check their predicted adult height.",
-          "linkLabel": "predicted adult height"
+          "title": "متابعة نمو أطفالك",
+          "desc": "التقط صورة لطفلك بجوار نفس الباب كل بضعة أشهر لتتبع نموه. ثم راجع ",
+          "linkLabel": "حاسبة توقع الطول النهائي للبالغين"
         },
         {
-          "title": "Anyone in an old photo",
-          "desc": "Family photos, team photos, or a celebrity beside a door all work, as long as a known object sits next to the person."
+          "title": "الأشخاص في الصور القديمة",
+          "desc": "صور العائلة، أو الفرق الرياضية، أو المشاهير تصلح تماماً إذا احتوت الصورة على أي جسم قياسي في نفس المستوى."
         },
         {
-          "title": "Furniture and doorways",
-          "desc": "Tape an A4 sheet to the wall next to a shelf, fridge, or doorway and measure it before you buy, move, or deliver."
+          "title": "قطع الأثاث والمداخل",
+          "desc": "ألصق ورقة A4 على مكتبة أو ثلاجة لقياس ارتفاعها بدقة قبل الشراء أو الانتقال لمنزل جديد."
         },
         {
-          "title": "Trees, walls and gates",
-          "desc": "Stand next to it and enter your own height as the reference size. Step back until both of you fit in the frame and keep the phone level. Tall objects lean away from the camera in photos, so treat the result as an estimate."
+          "title": "الأشجار والأسوار والبوابات",
+          "desc": "قف بجوار المجسم واستخدم طولك المعروف كمرجع. ابتعد حتى يظهر كلاهما في الإطار مع الحفاظ على استواء الهاتف."
         }
       ],
-      "whyArTitle": "Why Use a Photo Instead of an AR Measurement App?",
-      "why1Bold": "Measures past moments:",
-      "why1Desc": " AR apps only measure what is in front of you right now. A photo allows you to measure historic pictures, past milestones, and archive shots.",
-      "why2Bold": "Zero installation:",
-      "why2Desc": " Runs natively in any modern browser on iOS, Android, Mac, or PC with no apps to download or subscriptions.",
-      "why3Bold": "Complete device privacy:",
-      "why3Desc": " Your photo stays securely inside your browser's local sandbox and is never uploaded to any remote server."
+      "whyArTitle": "لماذا استخدام صورة بدلاً من تطبيقات الواقع المعزز (AR)؟",
+      "why1Bold": "قياس الصور السابقة والذكريات:",
+      "why1Desc": " تقيس تطبيقات AR ما هو أمامك في الوقت الحالي فقط. بالصورة يمكنك قياس لقطات تاريخية وألبومات عائلية قديمة.",
+      "why2Bold": "بدون تثبيت أي برامج:",
+      "why2Desc": " تعمل مباشرة في متصفحك على أنظمة iOS وأندرويد وماك والكمبيوتر دون تنزيل تطبيقات.",
+      "why3Bold": "خصوصية تامة ومضمونة:",
+      "why3Desc": " تبقى الصورة بأمان في ذاكرة المتصفح المحلية ولا تُرفع أبداً إلى أي خوادم خارجية."
     },
     "referenceObjects": {
-      "eyebrow": "Calibration Reference",
-      "title": "Which Reference Object to Use for Calibration",
-      "description": "The more certain you are of the reference size, the more you can trust the result. Standardized objects guarantee repeatable accuracy.",
-      "thObject": "Object",
-      "thSize": "Size to enter",
-      "thStandard": "Standard dimension?",
-      "thBestFor": "Best for",
+      "eyebrow": "المعايرة",
+      "title": "ما هو أفضل جسم مرجعي للاستخدام؟",
+      "description": "كلما كان مقاس الجسم المرجعي دقيقاً وثابتاً، كانت نتيجة قياس الطول أكثر موثوقية.",
+      "thObject": "الجسم المرجعي",
+      "thSize": "المقاس المدخل",
+      "thStandard": "هل المقاس موحد؟",
+      "thBestFor": "الأفضل لـ",
       "rows": [
         {
-          "object": "A4 sheet (long edge)",
-          "size": "29.7 cm",
-          "standard": "Yes, ISO 216",
-          "bestFor": "Taped to the wall beside the person"
+          "object": "ورقة A4 (الضلع الأطول)",
+          "size": "29.7 سم",
+          "standard": "نعم، معيار ISO 216",
+          "bestFor": "ملصقة على الحائط مباشرة بجوار الشخص"
         },
         {
-          "object": "Credit card (long edge)",
-          "size": "8.56 cm",
-          "standard": "Yes, ISO/IEC 7810",
-          "bestFor": "Close-up photos. Small, so tap its corners carefully."
+          "object": "بطاقة بنكية (الضلع الأطول)",
+          "size": "8.56 سم",
+          "standard": "نعم، معيار ISO/IEC 7810",
+          "bestFor": "الصور القريبة. نظراً لصغر حجمها، قرّب الشاشة وحدد الزوايا بدقة."
         },
         {
-          "object": "Interior door",
-          "size": "203 cm in the US",
-          "standard": "No, varies by country and home",
-          "bestFor": "Full-body photos, after you measure the door once"
+          "object": "باب قياسي",
+          "size": "203 سم (شائع)",
+          "standard": "لا، يختلف حسب المبنى",
+          "bestFor": "صور كامل الجسم، بعد قياس الباب لمرة واحدة للتحقق"
         }
       ]
     },
     "accuracy": {
-      "eyebrow": "Empirical Accuracy Testing",
-      "title": "How to Get an Accurate Result from a Photo",
-      "description": "Two habits cause most of the error: standing in front of the reference and tilting the phone. Camera height on its own does not matter. Keep the phone upright and level, and stand against the same wall as the reference.",
-      "tiltLowTitle": "Low, Tilted Up",
-      "tiltLowBadge": "Reads taller",
-      "tiltLowDesc": "The top of the scene sits farther from the lens and shrinks, so the door looks short next to the person (+2.4 to +4.5 cm error).",
-      "tiltLevelTitle": "Level, at Waist Height",
-      "tiltLevelBadge": "Closest result",
-      "tiltLevelDesc": "The phone faces the wall square on, so the reference and the person maintain their true geometric proportions (0.0 cm error).",
-      "tiltHighTitle": "High, Tilted Down",
-      "tiltHighBadge": "Reads shorter",
-      "tiltHighDesc": "The floor sits farther from the lens and shrinks, so the door looks tall next to the person (−2.8 to −5.9 cm error).",
-      "tableTitle": "Our Controlled Accuracy Benchmark (14 Rendered Scenes)",
-      "tableDesc": "We evaluated 14 calibrated scenes with known heights taken from 3.5 meters away to isolate camera geometry from manual tap variations.",
-      "thSetup": "Photo Setup",
-      "thTrueHeight": "True Height",
-      "thMeasured": "Measured",
-      "thError": "Error",
+      "eyebrow": "التجارب ودقة القياس",
+      "title": "كيفية الحصول على قياس دقيق من الصورة",
+      "description": "الوقوف في نقطة متقدمة جداً أمام الجسم المرجعي أو إمالة الهاتف يتسببان في معظم الأخطاء. حافظ على استواء الهاتف وقف ملاصقاً للجدار.",
+      "tiltLowTitle": "منخفض ومائل لأعلى",
+      "tiltLowBadge": "زيادة في التقدير",
+      "tiltLowDesc": "تصبح قمة الرأس أبعد عن العدسة وتبدو أصغر، مما يجعل الشخص يبدو أطول من واقعه (+2.4 إلى +4.5 سم خطأ).",
+      "tiltLevelTitle": "مستوٍ على مستوى الخصر",
+      "tiltLevelBadge": "النتيجة المثالية",
+      "tiltLevelDesc": "الهاتف موجه بزاوية قائمة تماماً نحو الجدار، مما يحافظ على التناسب الهندسي الدقيق (0.0 سم خطأ).",
+      "tiltHighTitle": "مرتفع ومائل لأسفل",
+      "tiltHighBadge": "نقص في التقدير",
+      "tiltHighDesc": "تصبح الأرضية أبعد عن العدسة وتبدو أصغر، مما يجعل الشخص يبدو أقصر من واقعه (−2.8 إلى −5.9 سم خطأ).",
+      "tableTitle": "اختبارنا المقارن المضبوط (14 بيئة تصوير)",
+      "tableDesc": "اختبرنا 14 وضعية مع أطوال معروفة من مسافة 3.5 أمتار لفصل خطأ زاوية الكاميرا عن دقة النقر على الشاشة.",
+      "thSetup": "وضعية الكاميرا",
+      "thTrueHeight": "الطول الحقيقي",
+      "thMeasured": "الطول المقاس",
+      "thError": "الفارق",
       "benchmarkRows": [
         {
-          "setup": "Phone level at 60, 100 or 130 cm, person against the wall beside the door",
-          "trueHeight": "172 cm",
-          "measured": "172.0 cm",
-          "error": "0.0 cm"
+          "setup": "الهاتف مستوٍ على ارتفاع 60 أو 100 أو 130 سم، والشخص عند الجدار بجوار الباب",
+          "trueHeight": "172 سم",
+          "measured": "172.0 سم",
+          "error": "0.0 سم"
         },
         {
-          "setup": "Same, for a 120 cm child and a 190 cm adult",
-          "trueHeight": "120, 190 cm",
-          "measured": "120.0, 190.0 cm",
-          "error": "0.0 cm"
+          "setup": "نفس الوضعية لطفل بطول 120 سم وبالغ بطول 190 سم",
+          "trueHeight": "120، 190 سم",
+          "measured": "120.0، 190.0 سم",
+          "error": "0.0 سم"
         },
         {
-          "setup": "Phone tilted up 10° from 60 cm",
-          "trueHeight": "172 cm",
-          "measured": "174.4 cm",
-          "error": "+2.4 cm"
+          "setup": "الهاتف مائل 10 درجات لأعلى من ارتفاع 60 سم",
+          "trueHeight": "172 سم",
+          "measured": "174.4 سم",
+          "error": "+2.4 سم"
         },
         {
-          "setup": "Phone tilted up 20° from 40 cm",
-          "trueHeight": "172 cm",
-          "measured": "176.5 cm",
-          "error": "+4.5 cm"
+          "setup": "الهاتف مائل 20 درجة لأعلى من ارتفاع 40 سم",
+          "trueHeight": "172 سم",
+          "measured": "176.5 سم",
+          "error": "+4.5 سم"
         },
         {
-          "setup": "Phone tilted down 10° from 160 cm",
-          "trueHeight": "172 cm",
-          "measured": "169.2 cm",
-          "error": "−2.8 cm"
+          "setup": "الهاتف مائل 10 درجات لأسفل من ارتفاع 160 سم",
+          "trueHeight": "172 سم",
+          "measured": "169.2 سم",
+          "error": "−2.8 سم"
         },
         {
-          "setup": "Phone tilted down 20° from 180 cm",
-          "trueHeight": "172 cm",
-          "measured": "166.1 cm",
-          "error": "−5.9 cm"
+          "setup": "الهاتف مائل 20 درجة لأسفل من ارتفاع 180 سم",
+          "trueHeight": "172 سم",
+          "measured": "166.1 سم",
+          "error": "−5.9 سم"
         },
         {
-          "setup": "A4 sheet as reference, phone tilted up 10°",
-          "trueHeight": "172 cm",
-          "measured": "176.8 cm",
-          "error": "+4.8 cm"
+          "setup": "استخدام ورقة A4 مع إمالة الهاتف 10 درجات لأعلى",
+          "trueHeight": "172 سم",
+          "measured": "176.8 سم",
+          "error": "+4.8 سم"
         },
         {
-          "setup": "Person standing 30 cm in front of the door",
-          "trueHeight": "172 cm",
-          "measured": "188.1 cm",
-          "error": "+16.1 cm"
+          "setup": "الشخص يقف على بعد 30 سم أمام مستوى الباب",
+          "trueHeight": "172 سم",
+          "measured": "188.1 سم",
+          "error": "+16.1 سم"
         },
         {
-          "setup": "Person standing 60 cm in front of the door",
-          "trueHeight": "172 cm",
-          "measured": "207.6 cm",
-          "error": "+35.6 cm"
+          "setup": "الشخص يقف على بعد 60 سم أمام مستوى الباب",
+          "trueHeight": "172 سم",
+          "measured": "207.6 سم",
+          "error": "+35.6 سم"
         }
       ],
-      "pixelSensitivityBold": "Pixel Sensitivity:",
-      "pixelSensitivityDesc": " Tapping adds its own error, and small references magnify it. On a phone screen, missing one end of the reference by a single screen pixel moves a 172 cm result by about 1 cm with a door, 7 cm with an A4 sheet, and 23 cm with a card. Use the biggest reference in the photo, and zoom in before tapping.",
+      "pixelSensitivityBold": "حساسية النقر وتحديد النقاط:",
+      "pixelSensitivityDesc": " عدم دقة النقر يولد انحرافاً في القياس، خاصة مع الأجسام المرجعية الصغيرة. على الشاشة، الخطأ بمقدار بكسل واحد يغير القياس بنحو 1 سم مع الباب، و7 سم مع ورقة A4، و23 سم مع البطاقة البنكية. اختر المرجع الأكبر وكبّر الشاشة قبل النقر.",
       "tips": [
         {
-          "title": "Camera tilt",
-          "desc": "Camera tilt is the single biggest source of error in photo-based measurement. Hold the phone upright and level at about waist height for an adult, then step back until both head and feet fit cleanly."
+          "title": "لا تمل الهاتف",
+          "desc": "زاوية الميل هي المسبب الأكبر للأخطاء. حافظ على استواء الهاتف عند مستوى الخصر وابتعد حتى يظهر الجسم كاملاً."
         },
         {
-          "title": "Reference placement",
-          "desc": "Stand against the same wall as the reference object, not in front of it. In our test, stepping 30 cm forward added 16 cm in false height. Keep the reference close to the subject to avoid lens distortion near edges."
+          "title": "موضع الجسم المرجعي",
+          "desc": "قف ملاصقاً لنفس الجدار الموجود عليه الجسم المرجعي. التقدم للأمام بمقدار 30 سم فقط أضاف 16 سم خاطئة في الاختبار."
         },
         {
-          "title": "Stand straight",
-          "desc": "Heels flat, back straight, head level. Posture errors in the photo produce the exact same measurement errors as posture errors against a wall."
+          "title": "الوقفة الصحيحة",
+          "desc": "الكعبان على الأرض، والظهر مستقيم، والنظر للأمام. أي انحناء في الوقفة ينتج عنه نفس الخطأ في القياس اليدوي."
         },
         {
-          "title": "Show the full body",
-          "desc": "Cropped feet or a cropped head makes a floor-to-crown measurement impossible. A clean head-to-toe shot in the frame gives the most reliable result."
+          "title": "ظهور كامل الجسم",
+          "desc": "قص القدمين أو الرأس يمنع حساب الارتفاع الكامل. الصورة الواضحة تضمن أدق قياس."
         }
       ]
     },
     "noTapeMethods": {
-      "eyebrow": "Alternative Methods",
-      "title": "How to Measure Your Height Without a Measuring Tape",
-      "description": "Five methods work reliably when no tape measure is available. Each uses an object of known size to establish scale.",
+      "eyebrow": "طرق بديلة",
+      "title": "كيف تقيس طولك بدون شريط قياس",
+      "description": "خمس طرق عملية مجربة عندما لا يتوفر لديك شريط قياس أو متر مرن.",
       "methods": [
         {
           "id": "wall-a4",
-          "title": "The wall mark and A4 sheet method",
+          "title": "طريقة علامة الجدار وورقة A4",
           "tags": [
-            "Hardcover book",
-            "A4 sheet",
-            "Pencil"
+            "كتاب بغلاف مقوى",
+            "ورقة A4",
+            "قلم رصاص"
           ],
-          "desc": "Mark your height on the wall with a hardcover book, as in the clinic method below. Lay an A4 sheet's long edge (29.7 cm) against the wall from the floor up, mark its top, and repeat until you reach your mark. Multiply the full sheets by 29.7 cm, then estimate the last gap against a sheet folded in half (14.85 cm)."
+          "desc": "حدد طولك على الجدار باستخدام كتاب. ضع الضلع الطويل لورقة A4 (29.7 سم) من الأرض باتجاه الأعلى، وضع علامات متتالية حتى تصل لعلامتك. اضرب عدد الأوراق في 29.7 سم واستخدم ورقة مطوية (14.85 سم) للمسافة المتبقية."
         },
         {
           "id": "door",
-          "title": "The doorframe method",
+          "title": "طريقة إطار الباب",
           "tags": [
-            "A door"
+            "باب"
           ],
-          "desc": "Standard US interior doors stand 80 inches (203 cm) tall. Stand in the frame, note where the top of your head falls, and you have a working estimate. Not precise to the half-inch, but accurate enough to know whether you are 5'8\" or 5'10\". Door heights differ outside the US and between homes, so check yours first."
+          "desc": "يتراوح ارتفاع الأبواب القياسية غالباً بين 200 و205 سم. قف تحت الإطار وقدّر المسافة بين قمة رأسك والحافة العلوية."
         },
         {
           "id": "arm-span",
-          "title": "The arm span method",
+          "title": "طريقة مدى الذراعين",
           "tags": [
-            "A helper or a wall"
+            "مساعد أو جدار"
           ],
-          "desc": "Your fingertip-to-fingertip wingspan with arms fully extended matches your height within about one inch. If you know your arm span, you know your height."
+          "desc": "المسافة بين طرفي الإصبعين الأوسطين عند مد الذراعين أفقياً بالكامل تساوي طول قامة الإنسان تقريباً (متوسط الفارق أقل من 2.5 سم)."
         },
         {
           "id": "phone",
-          "title": "The phone method",
+          "title": "تطبيق القياس في الهاتف الذكي",
           "tags": [
-            "A phone"
+            "هاتف ذكي"
           ],
-          "desc": "On supported iPhone and iPad models, Apple's Measure app can measure a person's height from the floor to the top of the head. On any other phone, take a full-body photo and use the tool above."
+          "desc": "في هواتف آيفون المتوافقة، يقيس تطبيق القياس من آبل أطوال الأشخاص تلقائياً. وفي الهواتف الأخرى يكفي التقاط صورة واستخدام أداتنا."
         },
         {
           "id": "dollar",
-          "title": "The dollar bill method (US)",
+          "title": "طريقة الأوراق النقدية",
           "tags": [
-            "US dollar bills"
+            "أوراق نقدية"
           ],
-          "desc": "A US dollar bill is 6.14 inches long. Mark your height on a wall, stack bills from the floor to the mark, count them, and multiply. Tedious, but mathematically sound."
+          "desc": "للأوراق النقدية أبعاد معيارية ثابتة (الدولار الأمريكي = 15.6 سم، ورقة 100 ريال سعودي = 14.5 سم، 20 يورو = 13.3 سم). يمكنك ترتيبها رأسياً على الجدار."
         }
       ],
-      "footer": "Each method gets you close, and none is exact. Confirming the precise number still needs a calibrated reference at some point, unless you use a calibrated photo."
+      "footer": "توفر كل هذه الطرق تقديراً تقريبياً جيداً، ولكن تظل الصورة الفوتوغرافية المعايرة الطريقة الأكثر دقة وثباتاً."
     },
     "clinicMethod": {
-      "eyebrow": "Clinical Standard",
-      "title": "How to Measure Height Accurately: The Clinic Method",
-      "description": "Adapted from clinical stadiometer protocols (CDC guidelines) to ensure maximum physical accuracy at home.",
+      "eyebrow": "المعايير الطبية",
+      "title": "كيف تقيس الطول بدقة سريرية: الطريقة الطبية المعتمدة",
+      "description": "مستندة إلى بروتوكولات القياس السريري (إرشادات مراكز مكافحة الأمراض CDC) لتحقيق أعلى دقة في المنزل.",
       "steps": [
-        "Take off your shoes, bulky clothing, hats and hair accessories, and undo any hairstyle that sits on top of the head.",
-        "Stand on a firm floor such as tile or wood, not carpet, against a flat wall with no skirting or moulding.",
-        "Keep your feet flat and together, legs straight, arms at your sides and shoulders level.",
-        "Touch the wall with your head, shoulders, buttocks and heels. Not every point touches on every body shape.",
-        "Look straight ahead. Lower a flat book or ruler at a right angle to the wall until it rests on the crown of your head, then mark the wall under it.",
-        "Measure from the floor to the mark with a metal tape, to the nearest 0.1 cm. Without a tape, step an A4 sheet up the wall or use the photo tool above."
+        "اخلع الحذاء والجوارب السميكة والقبعات وافك ربطات الشعر العالية.",
+        "قف على أرضية صلبة ومستوية (بلاط أو خشب، وتجنب السجاد) مستنداً إلى جدار أملس بدون حواف بارزة.",
+        "القدمان متلاصقتان ومستويتان على الأرض، والركبتان ممدودتان، والذراعان مسترخيتان على الجانبين، والكتفان في مستوى واحد.",
+        "يجب أن يلامس الكعبان والمؤخرة وأعلى الظهر وخلفية الرأس الجدار (بحسب البنية الجسدية قد لا تتلامس جميع النقاط معاً لدى الجميع).",
+        "انظر للأمام مباشرة. ضع كتاباً بغلاف مقوى أو مثلثاً هندسياً بزاوية 90 درجة مع الجدار حتى يستقر فوق قمة الرأس وضع علامة خفيفة بقلم رصاص.",
+        "قس المسافة من الأرضية إلى العلامة بشريط قياس معدني بدقة الملليمتر. في حال عدم توفره، استخدم ورقة A4 أو أداتنا بالصورة."
       ],
-      "whyAloneTitle": "Why Measuring Yourself Alone Goes Wrong",
+      "whyAloneTitle": "لماذا تفشل محاولات القياس الذاتي الفردي غالباً؟",
       "errorCauses": [
         {
-          "title": "Hunching",
-          "desc": "You are probably hunching slightly without realizing it."
+          "title": "الانحناء اللاإرادي",
+          "desc": "يميل الشخص دون أن يشعر أثناء محاولة موازنة كتاب أو مسطرة فوق رأسه."
         },
         {
-          "title": "A tilted book",
-          "desc": "The book is not held perfectly level at a right angle."
+          "title": "ميلان الكتاب",
+          "desc": "عدم ثبات الكتاب أو المسطرة بزاوية قائمة تماماً (90 درجة) مع سطح الجدار."
         },
         {
-          "title": "A loose tape",
-          "desc": "The tape measure is not sitting completely flat on the floor."
+          "title": "انثناء شريط القياس",
+          "desc": "التواء الشريط أو تحركه بشكل مائل على الجدار أثناء قراءة القياس."
         },
         {
-          "title": "Time of day",
-          "desc": "You stand up to one centimeter taller in the morning than at night due to spinal disc compression. Measure at the same time of day."
+          "title": "توقيت القياس خلال اليوم",
+          "desc": "تنضغط الغضاريف الفقرية خلال ساعات النهار، مما يجعل قامة الإنسان أقصر بنحو سنتيمتر كامل في المساء مقارنة بالصباح."
         }
       ],
-      "whyAloneFooter": "Doing it alone makes everything worse. Standing straight, balancing a hardback on your head, marking a wall, and measuring the mark all at once is physically awkward. A photo with a reference object removes the need for a second person entirely."
+      "whyAloneFooter": "إنجاز كل شيء بمفردك أمر غير مريح: الوقوف مستقيماً، وتثبيت الكتاب، ورسم العلامة. استخدام صورة بجوار جسم مرجعي يغنيك تماماً عن الحاجة لمساعد."
     },
     "faq": {
       "badge": "مركز المساعدة",
-      "title": "Frequently Asked Questions",
+      "title": "الأسئلة الشائعة",
       "items": [
         {
           "id": "how-accurate-is-height-measurement-from-a-photo",
-          "q": "How accurate is height measurement from a photo?",
-          "a": "It depends on how the photo is taken. In our empirical test of 14 rendered scenes, a level phone with the person standing against the same wall as a door measured the true height exactly. Tilting the phone 10° to 20° moved the result by 2 to 6 cm, and standing 30 cm in front of the door added 16 cm. On a phone screen, each pixel you miss on a door's edge adds about 1 cm more. For personal tracking and casual comparisons under good conditions, results consistently land within 1 to 2 centimeters."
+          "q": "ما مدى دقة قياس الطول من الصورة؟",
+          "a": "تعتمد الدقة على جودة اللقطة. في اختباراتنا المقارنة في 14 بيئة تصوير، حقق الهاتف المستوي مع شخص يقف عند الجدار نفس نتيجة القياس الطبي بدقة متناهية. وأدت إمالة الهاتف بـ 10-20 درجة إلى خطأ قدره 2-6 سم، بينما أدى التقدم 30 سم أمام الباب إلى خطأ 16 سم. مع صورة جيدة، يتراوح الخطأ عادة بين 1 و2 سم فقط."
         },
         {
           "id": "what-is-the-best-object-to-use-for-calibration",
-          "q": "What is the best object to use for calibration?",
-          "a": "An A4 sheet (29.7 cm / 297 mm long) or a credit card (8.56 cm / 85.6 mm wide) works anywhere worldwide because international ISO standards fix both sizes. A standard interior door at 203 cm (80 inches) in the US is the easiest choice for full-body photos because of its size, but measure yours first if outside the US. The larger the reference object, the less sensitive the result is to minor screen tapping errors."
+          "q": "ما هو أفضل جسم مرجعي للمعايرة؟",
+          "a": "ورقة A4 (29.7 سم) أو البطاقة البنكية (8.56 سم) معايير ISO دولية متطابقة في كل مكان. والباب القياسي (عادة 203 سم) ممتاز لصور كامل الجسم بعد قياسه مرة واحدة للتأكد."
         },
         {
           "id": "is-my-photo-uploaded-or-stored",
-          "q": "Is my photo uploaded or stored?",
-          "a": "No. The tool runs entirely client-side in your browser, and your photo never leaves your device."
+          "q": "هل يتم رفع صورتي أو تخزينها على خوادمكم؟",
+          "a": "لا. تتم جميع عمليات المعالجة محلياً في متصفحك. صورتك لا تغادر هاتفك أو جهازك على الإطلاق."
         },
         {
           "id": "can-i-measure-someone-elses-height-from-a-photo",
-          "q": "Can I measure someone else's height from a photo?",
-          "a": "Yes. Upload any photo where the person appears next to a known object, calibrate, draw the line, read the result. The subject does not need to be present."
+          "q": "هل يمكنني قياس طول شخص آخر من صورة؟",
+          "a": "نعم. يكفي رفع أي صورة يقف فيها الشخص بجوار جسم مرجعي معلوم المقاس، ومعايرة المقياس ورسم خط القياس حتى وإن لم يكن الشخص موجوداً معك."
         },
         {
           "id": "does-it-work-for-celebrities",
-          "q": "Does it work for celebrities?",
-          "a": "Yes, when the photo shows them next to a door or another object of known size. Photos taken from unusual angles produce less reliable results."
+          "q": "هل تعمل الأداة مع المشاهير؟",
+          "a": "نعم، إذا كانت الصورة للمشهور وهو يقف مواجهاً للكاميرا بجوار إطار باب أو جسم قياسي معروف الأبعاد."
         },
         {
           "id": "why-do-i-measure-taller-in-the-morning",
-          "q": "Why do I measure taller in the morning?",
-          "a": "Spinal discs compress under body weight throughout the day. That compression reduces standing height by up to one centimeter between morning and evening. Measuring at the same time each day gives the most consistent results over time."
+          "q": "لماذا نكون أطول قامة في الصباح؟",
+          "a": "تنضغط الغضاريف والأقراص بين الفقرات خلال ساعات النهار بسبب وزن الجسم والجاذبية، مما يقلل طول القامة بما يصل إلى سنتيمتر واحد بحلول المساء."
         },
         {
           "id": "do-i-need-an-account",
-          "q": "Do I need an account?",
-          "a": "No. The tool is free, requires no sign-up, and works on any device."
+          "q": "هل يتوجب عليّ إنشاء حساب لاستخدام الأداة؟",
+          "a": "لا. الأداة مجانية بالكامل، ولا تطلب أي تسجيل، وتعمل مباشرة في جميع المتصفحات الحديثة."
         }
       ]
     },
     "tool": {
       "step1Calibration": "الخطوة 1: المعايرة",
       "step2Measure": "الخطوة 2: قياس الشخص",
-      "tapOtherEnd": "اضغط على الطرف الآخر للإكمال",
-      "drawCalibLine": "ارسم خط معايرة العنصر المرجعي بالضغط على الشاشة",
-      "drawMeasLine": "انقر على 'المسح التلقائي' أو ارسم خطا يدويًا من الرأس إلى القدمين",
+      "tapOtherEnd": "انقر على الطرف الآخر للإكمال",
+      "drawCalibLine": "ارسم خط المعايرة بالنقر على الشاشة",
+      "drawMeasLine": "انقر على 'الفحص التلقائي' أو اسحب خطاً من الرأس إلى القدمين",
       "cancel": "إلغاء",
       "done": "تم"
     }
   },
   "home": {
     "intro": {
-      "h1": "Größenvergleich-Rechner: Körpergrößen online im visuellen Diagramm vergleichen",
-      "p": "Nutze dieses Größenvergleichs-Tool, um Körpergrößen nebeneinander in einem maßstabsgetreuen Diagramm zu sehen. Gib beliebige Höhen in Zentimetern, Fuß oder Zoll ein, um den Größenunterschied sofort visuell darzustellen. Das Tool skaliert jede Figur exakt nach deinen Eingaben. Vergleiche zwei oder mehr Personen, Stars, Anime-Figuren oder reale Objekte in Sekundenschnelle.",
-      "freeLibraryBadge": "Kostenlose Online-Bibliothek",
-      "freeLibraryDesc": "Greife auf unsere Datenbank vorgefertigter Referenzgrößen aus drei Sammlungen zu, erstelle unbegrenzt viele Vergleiche und exportiere hochauflösende PNG-Diagramme.",
-      "noAccounts": "Kein Benutzerkonto",
-      "noPayments": "Keine Zahlungen",
-      "free100": "100 % kostenlos",
-      "compareNowCta": "Jetzt vergleichen ↑"
+      "h1": "حاسبة مقارنة الطول: قارن الأطوال عبر الإنترنت برسم بياني مرئي",
+      "p": "استخدم أداة مقارنة الطول لعرض القامات جنباً إلى جنب في رسم بياني بمقياس حقيقي. أدخل أي طول بالسنتيمتر أو بالأقدام والبوصات لرؤية الفرق فوراً. توفر الأداة مقارنة مرئية بنسب هندسية دقيقة. يتحدث الرسم البياني في الوقت الفعلي ويرسم كل شخصية وفقاً للمقاس المدخل بدقة.",
+      "freeLibraryBadge": "مكتبة أطوال مجانية عبر الإنترنت",
+      "freeLibraryDesc": "تصفح قاعدة بيانات الأطوال المرجعية الجاهزة في ثلاث مجموعات، وأنشئ مقارنات مخصصة غير محدودة، ونزّل مخططات PNG عالية الدقة.",
+      "noAccounts": "بدون إنشاء حساب",
+      "noPayments": "بدون أي رسوم",
+      "free100": "مجاني 100%",
+      "compareNowCta": "قارن الآن ↑"
     },
     "section1": {
-      "eyebrow": "Funktionsweise",
-      "title": "Wie funktioniert ein Größenvergleichs-Diagramm?",
-      "p1": "Ein Größenvergleichs-Diagramm wandelt Maßangaben in eine visuelle Grafik um, in der jede Figur das exakte mathematische Verhältnis im echten Maßstab widerspiegelt.",
-      "p2": "Ist Person A 170 cm und Person B 185 cm groß, wird die zweite Figur exakt 1,09-mal so hoch dargestellt. Ein Abstand von 10 cm wirkt bei 160 cm proportional ganz anders als bei 190 cm – das Diagramm macht diesen Unterschied sofort sichtbar.",
-      "p3": "Nutze das Tool als Diagrammersteller für Familien, Sportteams oder kreative Zeichenprojekte.",
-      "imgAlt": "Größenvergleichs-Diagramm einer 170 cm und 185 cm großen Person nebeneinander",
-      "imgCaption": "Alex mit 170 cm (5'7\") und Ben mit 185 cm (6'1\"), maßstabsgetreu gezeichnet.",
-      "needGapTitle": "Suchst du nur die Differenz zwischen zwei bestimmten Größen?",
-      "needGapDesc": "Der Höhendifferenz-Rechner zeigt den exakten Abstand in cm und Zoll, die prozentuale Abweichung und einen Vergleichsbalken. Ideal, wenn du nur die genaue Differenz ermitteln möchtest.",
-      "needGapCta": "Höhendifferenz-Rechner öffnen"
+      "eyebrow": "كيف تعمل الأداة",
+      "title": "كيف يعمل مخطط مقارنة الطول؟",
+      "p1": "يحول مخطط مقارنة الطول الأرقام إلى رسم بياني بمقياس واقعي، حيث تعكس كل شخصية النسبة الهندسية الدقيقة بالحجم الطبيعي.",
+      "p2": "إذا كان الشخص (أ) بطول 170 سم والشخص (ب) بطول 185 سم، تُرسم الشخصية الثانية بارتفاع يعادل 1.09 مرة من طول الشخصية الأولى تماماً. فارق 10 سم عند طول 160 سم يختلف تناسبياً عن فارق 10 سم عند طول 190 سم، والمخطط يوضح ذلك بصرياً دون حسابات معقدة.",
+      "p3": "أداة مثالية للمقارنات العائلية، والفرق الرياضية، والمشاريع الفنية الإبداعية.",
+      "imgAlt": "مخطط مقارنة الطول بين شخص بطول 170 سم وآخر بطول 185 سم جنباً إلى جنب",
+      "imgCaption": "أليكس بطول 170 سم (5 أقدام و7 بوصات) وبن بطول 185 سم (6 أقدام وبوصة واحدة)، مرسومان بمقياس رسم دقيق.",
+      "needGapTitle": "هل تحتاج فقط إلى حساب فارق الطول بالأرقام؟",
+      "needGapDesc": "تعرض حاسبة فارق الطول الفرق الدقيق بالسنتيمتر والبوصة، والنسبة المئوية، وشريطاً بيانياً مرئياً. مثالية للحصول على بيانات عددية مباشرة.",
+      "needGapCta": "افتح حاسبة فرق الطول"
     },
     "section2": {
-      "eyebrow": "Schritt für Schritt",
-      "title": "Körpergrößen online vergleichen: Anleitung für Einsteiger",
-      "step1Title": "Schritt 1: Wähle deinen Vergleichsaufbau",
-      "step1Desc": "Entscheide, was du vergleichen möchtest: Freunde, dich selbst mit einem Prominenten, Anime-Figuren oder Bauwerke. Wechsle jederzeit zwischen cm und Fuß/Zoll.",
-      "guidebookNoteLabel": "Hinweis zur Datenbank:",
-      "guidebookNoteText": "Durchsuche unsere Promi-Datenbank oder wähle Anime- und Fantasy-Charaktere aus dem Charakter-Bereich. Alle Werte basieren auf offiziellen Databooks und Veröffentlichungen.",
-      "panelPeople": "Personen",
-      "panelCelebrities": "Prominente",
-      "panelCharacters": "Charaktere",
-      "panelObjects": "Objekte",
-      "step2Title": "Schritt 2: Erstelle dein Diagramm",
-      "step2Desc": "Gib Namen ein, wähle eigene Farben und trage Maße ein. Die Figuren erscheinen sofort auf der Leinwand. Der Maßstab reicht bis zu 10.000 Meter, sodass du Personen neben den Eiffelturm oder Mount Everest stellen kannst.",
+      "eyebrow": "خطوة بخطوة",
+      "title": "كيف تقارن الأطوال عبر الإنترنت: دليل المبتدئين",
+      "step1Title": "الخطوة 1: اختر من تريد مقارنتهم",
+      "step1Desc": "اختر من تود وضعهم جنباً إلى جنب: أصدقاءك، نفسك مع مشاهير، شخصيات أنمي، أو معالم شهيرة. تدعم الأداة السنتيمتر والأقدام/البوصات مع تحويل فوري.",
+      "guidebookNoteLabel": "ملاحظة من الكتيبات الرسمية:",
+      "guidebookNoteText": "ابحث في قاعدة بيانات المشاهير أو استكشف الشخصيات الخيالية. جميع الأطوال مأخوذة من الكتيبات الرسمية وسجلات الإنتاج المعتمدة.",
+      "panelPeople": "أشخاص",
+      "panelCelebrities": "مشاهير",
+      "panelCharacters": "شخصيات خيالية",
+      "panelObjects": "أجسام ومعالم",
+      "step2Title": "الخطوة 2: أنشئ مخطط الارتفاع الخاص بك",
+      "step2Desc": "أدخل الأسماء، والألوان، والأطوال. يتوسع المقياس حتى 10,000 متر (32,808 أقدام)، مما يتيح لك مقارنة شخص ببرج إيفل أو قمة إفرست.",
       "panels": [
         {
-          "label": "Person hinzufügen",
-          "desc": "Name, Geschlecht, Größe in cm oder ft/in, Wunschfarbe."
+          "label": "إضافة شخص",
+          "desc": "الاسم، والجنس، والطول بالسنتيمتر أو القدم/البوصة، ولون مخصص."
         },
         {
-          "label": "Prominente",
-          "desc": "Sportler, Schauspieler und historische Ikonen weltweit."
+          "label": "المشاهير",
+          "desc": "رياضيون، وممثلون، وشخصيات تاريخية بارزة من مختلف أنحاء العالم."
         },
         {
-          "label": "Charaktere",
-          "desc": "Anime, Cartoons und Superhelden aus lizenzierten Büchern."
+          "label": "شخصيات خيالية",
+          "desc": "شخصيات أنمي، ورسوم متحركة، وأبطال خارقون من أدلة الإنتاج الرسمية."
         },
         {
-          "label": "Objekte & Bauwerke",
-          "desc": "Tiere, weltberühmte Bauwerke und Naturmonumente."
+          "label": "أجسام ومعالم",
+          "desc": "حيوانات، ومعالم معمارية شهيرة، وقمم جبلية شاهقة."
         }
       ],
-      "step3Title": "Schritt 3: Unterschied sehen und teilen",
-      "step3Desc": "Jede Figur ist mit Namen und Größe beschriftet. Der Größenabstand ist sofort erkennbar. Lade dein Diagramm kostenlos als PNG herunter oder teile den Direktlink mit Freunden."
+      "step3Title": "الخطوة 3: شاهد الفارق وشاركه",
+      "step3Desc": "توضح كل شخصية الاسم والارتفاع. يظهر الفرق بوضوح على الفور. يمكنك تنزيل صورة PNG نقية أو مشاركة رابط مباشر صالح لمدة 7 أيام."
     },
     "section3": {
-      "eyebrow": "Vorteile",
-      "title": "Warum ein visueller Vergleich mehr verrät als reine Zahlen",
-      "description": "Ein visuelles Größenvergleichs-Diagramm stellt die mathematische Beziehung maßstabsgetreu dar und macht Proportionen auf einen Blick erfassbar.",
-      "card1Title": "Proportionaler Maßstab enthüllt, was Zahlen verbergen",
-      "card1Desc": "Ein Unterschied von 12 cm bei 160 cm fällt optisch stärker ins Gewicht als bei 190 cm. Die Grafik verdeutlicht das sofort. Für die exakte Differenzrechnung nutze den ",
-      "card1Link": "Höhendifferenz-Rechner",
-      "card2Title": "Vergleiche dich mit jedem und allem",
-      "card2Desc": "Füge dich selbst hinzu und stelle einen Hollywood-Star, eine Spielfigur oder ein Naturwunder daneben – alles auf einer gemeinsamen Achse.",
-      "card3Title": "Figurenvergleich für Zeichner und Autoren",
-      "card3Desc": "Kreative visualisieren Beziehungen zwischen Charakteren anhand verifizierter Maße aus offiziellen Nachschlagewerken.",
-      "card4Title": "Keine manuellen Einheitenumrechnungen",
-      "card4Desc": "Trage Werte in cm oder ft/in ein. Subtraktion, Seitenverhältnis und Prozentrechnung erfolgen automatisch während der Eingabe.",
-      "card5Title": "Echte Maßstäbe rücken menschliche Dimensionen ins Licht",
-      "card5Desc": "Stelle einen 175 cm großen Menschen neben den Mount Everest (8.848 m), um wahre Dimensionen zu begreifen.",
-      "card6Title": "Exportierbares Ergebnis mit einem Klick",
-      "card6Desc": "Lade hochauflösende PNG-Bilder herunter oder erstelle teilbare Links für Social Media, Foren oder Vorträge."
+      "eyebrow": "لماذا نستخدمه",
+      "title": "لماذا يقدم المخطط المرئي أكثر مما توضحه الأرقام وحدها",
+      "description": "يعرض الرسم المرئي العلاقات الرياضية بنسب واقعية متناسقة، مما يجعل الفرق في القامة واضحاً وبديهياً للعين من النظرة الأولى.",
+      "card1Title": "المقياس النسبي يكشف ما تخفيه الأرقام",
+      "card1Desc": "فارق 12 سم عند طول 160 سم يشكل نسبة أكبر مقارنة بطول 190 سم. توضح أشرطتنا المرئية ذلك فوراً. للحساب الرياضي، راجع ",
+      "card1Link": "حاسبة فرق الطول",
+      "card2Title": "قارن نفسك بأي شخص أو أي مجسم",
+      "card2Desc": "أدخل طولك وضع نفسك بجانب مشهور مفضل أو جبل عملاق على نفس الخط الأساسي.",
+      "card3Title": "مقارنة الشخصيات للرسامين والمؤلفين",
+      "card3Desc": "يستطيع الرسامون والكتاب ضبط النسب الجسدية الصحيحة بين الشخصيات وفقاً لكتيبات التوصيف الرسمية.",
+      "card4Title": "دون الحاجة إلى تحويلات يدوية",
+      "card4Desc": "اكتب بالسنتيمتر أو بالأقدام/البوصات. يتم حساب الفروق والنسب والمقاييس مباشرة أثناء الكتابة.",
+      "card5Title": "المقياس الواقعي يوضح الحجم البشري",
+      "card5Desc": "شاهد إنساناً بطول 175 سم بجوار قمة إفرست (8,848 متراً) لتدرك ضخامة الطبيعة بنسب حقيقية.",
+      "card6Title": "تصدير بنقرة واحدة",
+      "card6Desc": "نزّل ملفات PNG فائقة الوضوح أو أنشئ روابط للمنتديات وشبكات التواصل الاجتماعي والعروض التقديمية."
     },
     "section4": {
-      "eyebrow": "Anwendung",
-      "title": "Körpergrößen vergleichen: Beliebte Beispiele und Use-Cases",
-      "description": "Häufige Szenarien, in denen die visuelle Skalierung sofort Klarheit über Größenunterschiede schafft.",
+      "eyebrow": "أمثلة واقعية",
+      "title": "مقارنة الأطوال: مواقف وسيناريوهات يومية",
+      "description": "حالات واقعية يضيف فيها الرسم بمقياس نسبي وضوحاً فورياً يتجاوز الأرقام المجردة.",
       "useCases": [
         {
-          "tag": "PAARE UND FREUNDE",
-          "quote": "„Warte mal, wie viel größer bist du eigentlich genau als ich?“",
-          "desc": "Trage beide Größen ein und sieh den genauen Unterschied im Diagramm. 10 cm Unterschied fallen sofort ins Auge.",
-          "try": "165 CM + 178 CM · 13 CM ABSTAND (7,9 %)"
+          "tag": "الأزواج والأصدقاء",
+          "quote": "”انتظر لحظة، كم يزيد طولك عني بالضبط؟“",
+          "desc": "أدخل الطولين وشاهد الفارق بدقة. فارق 10 سم يمكن ملاحظته وتمييزه بنظرة واحدة.",
+          "try": "165 سم + 178 سم · فارق 13 سم (7.9%)"
         },
         {
-          "tag": "SPORT UND ATHLETEN",
-          "quote": "„Wer hat auf dem Spielfeld wirklich den Größenvorteil?“",
-          "desc": "Vergleiche NBA-Basketballer, NFL-Spieler oder Kletterer miteinander, um den echten Reichweitenvorteil zu sehen.",
-          "try": "NBA-STARTER 200 CM · NFL-LINEBACKER 188 CM · KLETTERER 174 CM"
+          "tag": "الرياضة واللاعبون",
+          "quote": "”من يملك حقاً أفضلية الطول ومد الذراعين في الملعب؟“",
+          "desc": "قارن بين نجوم كرة السلة والرياضيين لتقييم الميزة البدنية ومدى الوصول الحقيقي أثناء المنافسة.",
+          "try": "لاعب كرة سلة 200 سم · مدافع 188 سم · متسلق 174 سم"
         },
         {
-          "tag": "ANIME UND FANDOM",
-          "quote": "„Das Wiki nennt eine Zahl, aber wie sieht das nebeneinander aus?“",
-          "desc": "Anime-Charaktere aus verschiedenen Welten maßstabsgetreu nebeneinander: Goku (175 cm), Vegeta (164 cm), Piccolo (226 cm) und Levi (160 cm).",
-          "try": "GOKU 175 CM · VEGETA 164 CM · PICCOLO 226 CM · LEVI 160 CM"
+          "tag": "الأنمي ومحبو الشخصيات",
+          "quote": "”الموسوعة تذكر الأرقام، لكن كيف يبدون جنباً إلى جنب في الواقع؟“",
+          "desc": "شخصيات الأنمي بحجم واقعي: غوكو (175 سم)، فيجيتا (164 سم)، بيكولو (226 سم)، وليفاي (160 سم).",
+          "try": "غوكو 175 سم · فيجيتا 164 سم · بيكولو 226 سم · ليفاي 160 سم"
         },
         {
-          "tag": "OBJEKTE UND LANDMARKEN",
-          "quote": "„Ich hatte keine Vorstellung, wie gewaltig das in Wirklichkeit ist.“",
-          "desc": "Platziere eine Person neben die Angel Falls (979 m), eine 203 cm hohe Zimmertür oder eine Deckenhöhe von 2,60 m.",
-          "try": "MENSCH 175 CM + CHRYSLER BUILDING 319 M + MT EVEREST 8.848 M"
+          "tag": "المعالم والمجسمات",
+          "quote": "”لم أكن أتخيل مدى ضخامتها في الواقع.“",
+          "desc": "ضع إنساناً بجوار شلالات آنجل (979 متراً)، أو باب قياسي (203 سم)، أو سقف غرفتك.",
+          "try": "إنسان 175 سم + مبنى كرايسلر 319 م + جبل إفرست 8,848 م"
         },
         {
-          "tag": "ICH VS. PROMINENTE",
-          "quote": "„Moment mal, die sind genauso groß wie ich?“",
-          "desc": "Vergleiche dich mit Stars wie Tom Cruise, The Rock oder Taylor Swift anhand veröffentlichter biographischer Daten.",
-          "try": "DU + TOM CRUISE 170 CM · DWAYNE JOHNSON 196 CM · TAYLOR SWIFT 178 CM"
+          "tag": "أنا ضد المشاهير",
+          "quote": "”هل أنا حقاً بنفس طول هذا النجم؟“",
+          "desc": "قارن طولك مع نجوم مثل توم كروز، أو ذا روك، أو تايلور سويفت استناداً إلى بيانات موثوقة.",
+          "try": "أنت + توم كروز 170 سم · دواين جونسون 196 سم · تايلور سويفت 178 سم"
         },
         {
-          "tag": "PLANUNG UND RAUMGESTALTUNG",
-          "quote": "„Passt dieses Möbelstück eigentlich wirklich in mein Zimmer?“",
-          "desc": "Füge Türrahmen, Schränke oder Deckenhöhen neben einer Person ein, um Proportionen vor dem Möbelkauf zu prüfen.",
-          "try": "PERSON 185 CM · STANDARDTÜR 203 CM · DECKENHÖHE 260 CM"
+          "tag": "التصميم والديكور",
+          "quote": "”هل ستتسع هذه القطعة في الغرفة حقاً؟“",
+          "desc": "أدخل ارتفاع إطار الباب أو السقف بجانب مجسم الشخص قبل شراء الأثاث لتفادي المفاجآت.",
+          "try": "شخص 185 سم · باب قياسي 203 سم · سقف الغرفة 260 سم"
         }
       ],
-      "tableTitle": "Größenunterschied-Tabelle in Fuß, Zoll und Zentimetern",
-      "tableDesc": "Sieben alltagsnahe Beispiele für Paare und Personen, dargestellt in Fuß, Zoll, Zentimetern und prozentualen Verhältnissen."
+      "tableTitle": "جدول فروق الطول بالأقدام والبوصات والسنتيمترات",
+      "tableDesc": "سبعة سيناريوهات يومية لمقارنة الأزواج والأفراد بالأقدام والبوصات والسنتيمترات والنسب المئوية."
     },
     "section5": {
-      "eyebrow": "Vorteile",
-      "title": "Warum unser Größenvergleichs-Tool wählen?",
-      "description": "Professionelle Werkzeuge. Null Barrieren. Keine Registrierung.",
+      "eyebrow": "الميزات",
+      "title": "لماذا تختار حاسبة مقارنة الطول لدينا؟",
+      "description": "أدوات متكاملة. استجابة فائقة السرعة. بدون تسجيل حساب.",
       "features": [
         {
-          "title": "Echtzeit-Höhengenerator",
-          "desc": "Das Diagramm aktualisiert sich live bei jedem Tastendruck ohne Neuladen der Seite."
+          "title": "تحديث لحظي فوري",
+          "desc": "يتحدث المخطط في الوقت الفعلي أثناء الكتابة دون الحاجة لإعادة تحميل الصفحة."
         },
         {
-          "title": "Individuelle Avatare",
-          "desc": "Sechs Farben und männliche/weibliche Silhouetten halten das Diagramm auch bei 10+ Personen übersichtlich."
+          "title": "شخصيات قابلة للتخصيص",
+          "desc": "ستة ألوان وصور ظلية للذكور والإناث للتمييز بين أكثر من 10 شخصيات بسهولة."
         },
         {
-          "title": "Prominenten-Datenbank",
-          "desc": "1.294 Stars aus Sport, Film, Musik und Geschichte, direkt in der Datenbank erfasst."
+          "title": "قاعدة بيانات المشاهير",
+          "desc": "1,294 شخصية موثقة من الرياضيين والممثلين والقادة التاريخيين."
         },
         {
-          "title": "Fiktionale Charaktere",
-          "desc": "1.138 Figuren aus Anime, Comics und Fantasy nach offiziellen Franchise-Quellen."
+          "title": "شخصيات خيالية",
+          "desc": "1,138 شخصية من الأنمي والقصص المصورة والألعاب مستندة إلى المصادر الرسمية."
         },
         {
-          "title": "Objekte & Bauwerke",
-          "desc": "264 verifizierte Objekte, Tiere und Wahrzeichen vom Mammutbaum bis zum Mount Everest."
+          "title": "مجسمات ومعالم واقعية",
+          "desc": "264 مرجعاً من عالم الحيوان، وناطحات السحاب، والقمم الجبلية الشهيرة."
         },
         {
-          "title": "Bild-zu-Größe-Messung",
-          "desc": "Lade Fotos hoch und füge reale Aufnahmen automatisch maßstabsgetreu ins Diagramm ein."
+          "title": "قياس الطول من الصورة",
+          "desc": "ارفع صورة عادية وضع الشخص على المخطط بمقياس دقيق."
         },
         {
-          "title": "Sauberer PNG-Export",
-          "desc": "Lade dein Diagramm kostenlos in hoher Auflösung herunter – ideal zum Teilen."
+          "title": "تصدير PNG عالي الدقة",
+          "desc": "نزّل صوراً عالية الجودة مجاناً وبدون أي علامات مائية أو حدود للاستخدام."
         },
         {
-          "title": "Teilbare Direktlinks",
-          "desc": "Erstelle einen Link zu deinem fertigen Diagramm, der 7 Tage lang ohne Konto aktiv bleibt."
+          "title": "روابط سهلة للمشاركة",
+          "desc": "أنشئ رابطاً مباشراً لمخططك يظل فعالاً لمدة 7 أيام دون الحاجة لتسجيل دخول."
         }
       ]
     },
     "section6": {
-      "eyebrow": "Genauigkeit",
-      "title": "Wie verlässlich ist das Größenvergleichs-Diagramm?",
+      "eyebrow": "الموثوقية",
+      "title": "ما مدى دقة مخطط مقارنة الطول؟",
       "items": [
         {
-          "title": "Exakte Skalierungs-Engine",
-          "desc": "Jede Figur wird exakt nach deinem Zahlenwert gezeichnet: 170 cm rendern auf der Leinwand als 170,00 Einheiten."
+          "title": "محرك رسم بمقياس دقيق",
+          "desc": "تعكس كل شخصية القيمة المدخلة بدقة: 170 سم تُرسم كـ 170.00 وحدة دقيقة على المحور."
         },
         {
-          "title": "Referenzwerte",
-          "desc": "Veröffentlichte Maße weichen oft zwischen Quellen ab. Wir nutzen stets die jüngsten verifizierten Angaben seriöser Register."
+          "title": "مراجع قياسية موحدة",
+          "desc": "عند اختلاف المصادر العامة، نعتمد أحدث الأرقام المؤكدة رسمياً."
         },
         {
-          "title": "Promi-Angaben",
-          "desc": "Entstammen biographischen Registern und offiziellen Maßblättern. Keine ungeprüften Fanschätzungen."
+          "title": "أطوال المشاهير",
+          "desc": "مأخوذة من السجلات الرسمية والتراخيص المدنية والبيانات الشخصية المؤكدة دون تخمين."
         },
         {
-          "title": "Offizielles Quellenmaterial",
-          "desc": "Charaktergrößen basieren auf lizenzierten Handbüchern und autorisierten Produktionsunterlagen."
+          "title": "المراجع الأصلية للأعمال",
+          "desc": "تعتمد الشخصيات الخيالية على كتيبات الإنتاج الرسمية ومصادر المؤلفين المعتمدة."
         },
         {
-          "title": "Bauwerke & Tierwelt",
-          "desc": "Bauwerke nach Bauplänen verifiziert. Tiermaße messen die Schulterhöhe (Widerrist), nicht die Gesamtlänge."
+          "title": "المباني والحيوانات",
+          "desc": "ارتفاعات المباني موثقة معمارياً؛ ويقاس ارتفاع الحيوانات عند الغارب (الكتف)."
         }
       ]
     },
     "section7": {
-      "eyebrow": "Funktionsübersicht",
-      "title": "Auf maximale Einfachheit ausgelegt",
-      "description": "Alle Funktionen für den perfekten Größenvergleich – ohne jede Einstiegshürde.",
-      "thFeature": "Funktion",
-      "thFree": "Was du kostenlos erhältst",
+      "eyebrow": "نظرة عامة",
+      "title": "أداة صُممت للبساطة والدقة القصوى",
+      "description": "كل ما تحتاجه لمقارنة الأطوال بدقة متناهية وبدون أي عوائق.",
+      "thFeature": "الميزة",
+      "thFree": "ما تحصل عليه مجاناً",
       "rows": [
         [
-          "Figuren pro Diagramm",
-          "Unbegrenzt – alle auf einer gemeinsamen Skala"
+          "عدد الأشخاص في المخطط",
+          "غير محدود — جميعهم على نفس المحور المتناسب"
         ],
         [
-          "Vordefinierte Vorlagen",
-          "2.696 Einträge (1.294 Prominente, 1.138 Charaktere, 264 Objekte)"
+          "أطوال جاهزة للاستخدام",
+          "2,696 مرجعاً (1,294 مشهوراً، 1,138 شخصية، 264 مجسماً)"
         ],
         [
-          "Unterstützte Einheiten",
-          "Zentimeter, Meter, Fuß und Zoll (jederzeit wechselbar)"
+          "وحدات القياس",
+          "السنتيمتر، والمتر، والأقدام، والبوصات (تحويل فوري)"
         ],
         [
-          "Skalierungsbereich",
-          "Von wenigen Zentimetern bis 10.000 Meter mit automatischem Zoom"
+          "نطاق المقياس",
+          "من بضعة سنتيمترات حتى 10,000 متر مع تقريب تلقائي"
         ],
         [
-          "Exportoptionen",
-          "Kostenloser PNG-Download und teilbare Links (7 Tage aktiv)"
+          "خيارات الحفظ والمشاركة",
+          "تنزيل PNG فائق الوضوح وروابط مشاركة (صالحة 7 أيام)"
         ],
         [
-          "Kosten & Konto",
-          "0,00 € für immer – keine Registrierung, keine Abos, keine Zahlungsdaten"
+          "التكلفة والتسجيل",
+          "مجاناً دائماً — بدون اشتراكات وبدون طلب بطاقة ائتمان"
         ]
       ]
     },
     "section8": {
-      "title": "Häufig gestellte Fragen (FAQ)",
-      "description": "Antworten auf die wichtigsten Fragen zu Diagrammskalierung, Einheiten und Datenquellen",
+      "title": "الأسئلة الشائعة حول مقارنة الأطوال",
+      "description": "إجابات دقيقة ومفصلة عن التناسب الهندسي والوحدات ومصادر البيانات",
       "badge": "مركز المساعدة"
     },
     "section9": {
-      "eyebrow": "Entdecken",
-      "title": "Online-Werkzeuge & Rechner rund um Körpergröße",
-      "launchTool": "Rechner starten",
-      "privacyTitle": "Datenschutz & Nutzerrechte",
-      "privacyText": "Wir verkaufen deine personenbezogenen Daten niemals an Dritte. Unter Datenschutzgesetzen wie DSGVO und CCPA hast du jederzeit das Recht auf Auskunft und Widerspruch. Erfahre mehr in unserer ",
-      "privacyLink": "Datenschutzerklärung",
-      "privacyTextEnd": " oder kontaktiere uns direkt. Die normale Nutzung des Tools erfordert keinerlei Registrierung.",
+      "eyebrow": "أدوات مفيدة",
+      "title": "المزيد من حاسبات وأدوات قياس الطول عبر الإنترنت",
+      "launchTool": "فتح الأداة",
+      "privacyTitle": "حماية البيانات وحقوق المستخدم",
+      "privacyText": "نحن لا نبيع بياناتك الشخصية لأي طرف ثالث. وفقاً للائحة العامة لحماية البيانات (GDPR) وقوانين الخصوصية، يمكنك طلب حذف بياناتك في أي وقت. راجع ",
+      "privacyLink": "سياسة الخصوصية",
+      "privacyTextEnd": " أو تواصل معنا. لا يجمع الاستخدام العادي للأداة أي بيانات شخصية.",
       "cards": [
         {
-          "label": "Höhendifferenz-Rechner",
-          "desc": "Exakter Größenabstand in cm und Zoll, prozentuale Abweichung und Referenztabelle für Paare.",
-          "badge": "Werkzeug",
+          "label": "حاسبة فرق الطول",
+          "desc": "الفارق الدقيق بالسنتيمتر والبوصة، والنسبة المئوية، وجدول الأزواج.",
+          "badge": "أداة",
           "href": "/height-difference-calculator"
         },
         {
-          "label": "Perzentilen-Rechner (Größe & Gewicht)",
-          "desc": "Vergleiche deine Werte mit WHO- und CDC-Bevölkerungsdaten nach Alter und Geschlecht.",
-          "badge": "Werkzeug",
+          "label": "حاسبة مئين الطول والوزن",
+          "desc": "قارن قياساتك بمنحنيات نمو منظمة الصحة العالمية ومراكز CDC حسب العمر والجنس.",
+          "badge": "أداة",
           "href": "/height-weight-percentile-calculator"
         },
         {
-          "label": "Idealgewichts-Rechner",
-          "desc": "Formeln nach Devine, Robinson und Hamwi im direkten Vergleich mit gesunden Gewichtstabellen.",
-          "badge": "Werkzeug",
+          "label": "حاسبة الوزن المثالي للجسم",
+          "desc": "معادلات ديفين، وروبنسون، وهاموي مع نطاقات الوزن الصحي للجسم.",
+          "badge": "أداة",
           "href": "/ideal-body-weight-calculator"
         },
         {
-          "label": "Bild-zu-Größe-Rechner",
-          "desc": "Körpergröße ohne Maßband direkt anhand eines Fotos messen mit Genauigkeits-Tipps.",
-          "badge": "Werkzeug",
+          "label": "قياس الطول من الصورة",
+          "desc": "احسب طول القامة مباشرة من الصورة دون الحاجة إلى شريط قياس.",
+          "badge": "أداة",
           "href": "/image-to-height"
         },
         {
-          "label": "Größen-Vorhersagerechner",
-          "desc": "Erwachsenengröße bei Kindern nach Khamis-Roche und Mid-Parental-Methode berechnen.",
-          "badge": "Werkzeug",
+          "label": "حاسبة التنبؤ بطول الطفل",
+          "desc": "توقع الطول المستقبلي عند البلوغ للأطفال باستخدام طريقة خميس-روش العلمية.",
+          "badge": "أداة",
           "href": "/height-predictor"
         }
       ]

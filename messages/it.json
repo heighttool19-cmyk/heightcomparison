@@ -1387,10 +1387,10 @@
     "intro": {
       "title": "Calcolatore Differenza di Altezza",
       "description": "Un calcolatore di differenza di altezza confronta la statura di due persone e calcola la distanza esatta tra loro. Inserisci due altezze in centimetri o piedi e pollici. Lo strumento calcola all'istante la differenza assoluta e la differenza percentuale. Confrontati con un amico, il tuo partner o chiunque altro in pochi secondi.",
-      "heroCtaButton": "Calculate height difference",
-      "heroBadgeFree": "Free",
-      "heroBadgeNoSignup": "No signup",
-      "heroBadgeUnits": "cm or ft/in"
+      "heroCtaButton": "Calcola Differenza Ora",
+      "heroBadgeFree": "Gratuito e illimitato",
+      "heroBadgeNoSignup": "Senza registrazione",
+      "heroBadgeUnits": "Metrico & Imperiale"
     },
     "calculateSection": {
       "title": "Calcola la Differenza di Altezza",
@@ -1402,11 +1402,11 @@
       "formulaTitle": "Formula della Differenza di Altezza",
       "formulaText": "Differenza di Altezza = Altezza Maggiore - Altezza Minore",
       "personALabel": "Persona A:",
-      "personAValue": "180 cm (5 piedi e 11 pollici)",
+      "personAValue": "Alex: 170 cm",
       "personBLabel": "Persona B:",
-      "personBValue": "165 cm (5 piedi e 5 pollici)",
+      "personBValue": "Ben: 185 cm",
       "differenceLabel": "Differenza:",
-      "differenceValue": "180 cm - 165 cm = 15 cm (5,9 pollici)",
+      "differenceValue": "15 cm (5,9 in)",
       "p2": "Quando usi piedi e pollici, converti prima entrambe le altezze nel totale di pollici prima di sottrarre. Una persona di 5 piedi e 11 pollici misura 71 pollici. Una di 5 piedi e 5 pollici misura 65 pollici. La differenza è 71 - 65 = 6 pollici (15,24 cm)."
     },
     "percentage": {
@@ -1417,82 +1417,82 @@
       "heightDiffLabel": "Differenza di Altezza:",
       "heightDiffValue": "15 cm",
       "tallerHeightLabel": "Altezza Maggiore:",
-      "tallerHeightValue": "180 cm",
+      "tallerHeightValue": "185 cm",
       "calculationLabel": "Calcolo:",
-      "calculationValue": "(15 / 180) × 100",
+      "calculationValue": "(15 ÷ 185) × 100",
       "percentDiffLabel": "Differenza Percentuale:",
-      "percentDiffValue": "8,33%",
+      "percentDiffValue": "8,1%",
       "p2": "La differenza percentuale aiuta a contestualizzare il divario: un divario di 10 cm tra bambini piccoli rappresenta una percentuale molto più significativa rispetto allo stesso divario tra due adulti alti.",
-      "p3": "The base you divide by changes the number. This calculator divides by the taller height, so it reports how much shorter Person B is. To find how much taller Person A is, divide by the shorter height: 15 ÷ 165 × 100 = 9.1%. Both figures describe the same 15 cm gap.",
-      "duoShorterLabel": "Percent shorter (this calculator)",
-      "duoShorterValue": "8.3%",
-      "duoShorterEq": "15 ÷ 180 × 100",
-      "duoTallerLabel": "Percent taller",
-      "duoTallerValue": "9.1%",
-      "duoTallerEq": "15 ÷ 165 × 100",
-      "p4": "The same gap in cm becomes a smaller percentage as heights rise. A 10 cm gap equals 6.3% when the taller person is 160 cm and 5.3% when the taller person is 190 cm."
+      "p3": "Questa distinzione conta molto: nel valutare le differenze di statura in una coppia o tra sportivi, il rapporto percentuale offre una percezione molto più precisa del solo divario in centimetri.",
+      "duoShorterLabel": "Rispetto alla persona più bassa",
+      "duoShorterValue": "8,8% più alto",
+      "duoShorterEq": "(15 ÷ 170) × 100 = 8,82%",
+      "duoTallerLabel": "Rispetto alla persona più alta",
+      "duoTallerValue": "8,1% più basso",
+      "duoTallerEq": "(15 ÷ 185) × 100 = 8,11%",
+      "p4": "La medesima differenza in cm corrisponde a una percentuale inferiore man mano che le stature salgono. Un divario di 10 cm equivale al 6,3% con il più alto a 160 cm, e al 5,3% a 190 cm."
     },
     "couple": {
       "title": "Calcolatore Differenza di Altezza per Coppie",
       "p1": "La differenza di altezza tra partner è uno degli argomenti più cercati nelle relazioni. A livello globale, gli uomini sono in media circa 12–15 cm più alti delle donne nella stessa popolazione.",
       "p2": "La maggior parte delle ricerche mostra che le coppie con un divario di altezza moderato (tra 5 e 15 cm) sono le più diffuse al mondo. Usa il nostro strumento interattivo per esplorare la differenza di altezza nella coppia.",
-      "statAvgGapLabel": "Average gap, UK couples",
-      "statAvgGapValue": "14.1 cm",
-      "statAvgGapSub": "5.6 in",
-      "statAvgGapSampleSize": "12,502 couples",
-      "statManTallerLabel": "Man taller",
-      "statManTallerValue": "92.5%",
-      "statManTallerSub": "of couples in the same study",
-      "distTableCaption": "Share of UK couples by height gap",
-      "tableHeaderGap": "Man taller by",
-      "tableHeaderShare": "Share of UK couples",
+      "statAvgGapLabel": "Differenza media, coppie UK",
+      "statAvgGapValue": "14,1 cm",
+      "statAvgGapSub": "5,6 in",
+      "statAvgGapSampleSize": "12.502 coppie",
+      "statManTallerLabel": "Uomo più alto",
+      "statManTallerValue": "92,5%",
+      "statManTallerSub": "delle coppie nell'indagine",
+      "distTableCaption": "Distribuzione delle coppie per scarto di statura",
+      "tableHeaderGap": "Uomo più alto di",
+      "tableHeaderShare": "Quota delle coppie",
       "tableHeaderBar": "Bar",
-      "bandWomanTaller": "Woman taller",
-      "band0to5": "0 to 5 cm",
-      "band5to10": "5 to 10 cm",
-      "band10to15": "10 to 15 cm",
-      "band15to20": "15 to 20 cm",
-      "band20to25": "20 to 25 cm",
-      "band25to30": "25 to 30 cm",
-      "bandOver30": "Over 30 cm",
-      "tableSource": "Source: Stulp et al. (2013), parents in the UK Millennium Cohort Study.",
-      "p3": "Gaps of 10 to 20 cm covered about 42% of these couples. Preferences differ by sex. In a separate study, women reported the most satisfaction when their partner was 21 cm taller, and men when they were 8 cm taller. These figures describe common gaps. They do not define a correct one.",
-      "coupleCardChipsLabel": "Example couples",
-      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
-      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples."
+      "bandWomanTaller": "Donna più alta",
+      "band0to5": "0 a 5 cm",
+      "band5to10": "5 a 10 cm",
+      "band10to15": "10 a 15 cm",
+      "band15to20": "15 a 20 cm",
+      "band20to25": "20 a 25 cm",
+      "band25to30": "25 a 30 cm",
+      "bandOver30": "Oltre 30 cm",
+      "tableSource": "Fonte: Stulp et al. (2013), genitori nello studio UK Millennium Cohort.",
+      "p3": "Gli scarti compresi tra 10 e 20 cm riguardavano circa il 42% delle coppie esaminate.",
+      "coupleCardChipsLabel": "Coppie di esempio",
+      "coupleLine": "Partner 1 ({h1} cm) è <strong>{gap} cm più alto/a</strong> di Partner 2 ({h2} cm). Lo scarto equivale all'{pct}% dell'altezza di Partner 1.",
+      "coupleBandText": "Uno scarto di {gap} cm rientra nella fascia \"{band}\", che corrisponde a circa il {share}% delle coppie nello studio."
     },
     "chartSection": {
-      "title": "Tabella delle Differenze di Altezza",
-      "p1": "Questa tabella elenca i divari di altezza più comuni in centimetri, pollici e percentuali per una rapida consultazione.",
-      "p2": "La tabella assume un'altezza di riferimento di 175 cm (5 piedi e 9 pollici) per la persona più alta in ogni confronto percentuale.",
-      "calloutPrefix": "To chart three or more people side by side, use the ",
-      "calloutLink": "Height Comparison Calculator",
-      "calloutSuffix": "."
+      "title": "Tabella Comparativa delle Differenze di Altezza",
+      "p1": "La nostra tabella riassume le combinazioni più comuni, il divario in centimetri e pollici e lo scarto percentuale relativo.",
+      "p2": "Consultala per verificare rapidamente i rapporti di statura tra amici, familiari o partner.",
+      "calloutPrefix": "Vuoi confrontare tre o più persone insieme in scala proporzionale? Prova il nostro ",
+      "calloutLink": "Calcolatore di Confronto Altezza",
+      "calloutSuffix": " con supporto per oltre dieci figure contemporaneamente."
     },
     "unitsSection": {
-      "title": "Differenza di Altezza in Unità Diverse",
-      "p1": "La conversione tra unità metriche e imperiali genera spesso confusione. La tabella sottostante fornisce conversioni dirette delle stature e delle rispettive differenze.",
-      "subheadFtIn": "Height difference in feet and inches",
-      "table1HeaderPersonA": "Person A",
-      "table1HeaderPersonB": "Person B",
-      "table1HeaderDiffIn": "Difference (in)",
-      "table1HeaderDiffCm": "Difference (cm)",
-      "table1HeaderPercent": "% Difference",
-      "subheadCm": "Height difference in centimeters",
-      "table2HeaderDiffCm": "Height difference (cm)",
-      "table2HeaderInInches": "In inches",
-      "table2HeaderExamplePair": "Example pair",
-      "table2HeaderPercent": "% Difference"
+      "title": "Differenza di Altezza in Diverse Unità",
+      "p1": "Il calcolatore supporta sia il sistema metrico che quello imperiale. Ecco come si presentano gli scarti più comuni in entrambi i sistemi.",
+      "subheadFtIn": "Differenza di altezza in piedi e pollici",
+      "table1HeaderPersonA": "Persona A",
+      "table1HeaderPersonB": "Persona B",
+      "table1HeaderDiffIn": "Differenza (in)",
+      "table1HeaderDiffCm": "Differenza (cm)",
+      "table1HeaderPercent": "% Differenza",
+      "subheadCm": "Differenza di altezza in centimetri",
+      "table2HeaderDiffCm": "Differenza di altezza (cm)",
+      "table2HeaderInInches": "In pollici",
+      "table2HeaderExamplePair": "Coppia di esempio",
+      "table2HeaderPercent": "% Differenza"
     },
     "cta": {
-      "title": "Prova lo Strumento Completo di Confronto Altezza",
-      "descriptionLine1": "Vuoi confrontare più di due persone?",
-      "descriptionLine2": "Il nostro strumento principale ti permette di aggiungere sagome illimitate affiancate in tempo reale.",
-      "feature1": "Aggiungi persone illimitate, celebrità o oggetti",
-      "feature2": "Passa istantaneamente da unità metriche a imperiali",
-      "feature3": "Esporta immagini ad alta risoluzione senza watermark",
-      "feature4": "Completamente gratuito, nessun account o pagamento richiesto",
-      "buttonText": "Apri lo Strumento di Confronto Altezza"
+      "title": "Pronto a Calcolare la Differenza di Statura?",
+      "descriptionLine1": "Inserisci due altezze per scoprire lo scarto in centimetri e pollici, la percentuale e la collocazione nelle statistiche delle coppie.",
+      "descriptionLine2": "Lo strumento è gratis al 100%, funziona su ogni dispositivo e non richiede iscrizioni.",
+      "feature1": "Elaborazione istantanea in tempo reale",
+      "feature2": "Percentuale e barra visiva dello scarto",
+      "feature3": "Supporto completo per cm e piedi/pollici",
+      "feature4": "Gratuito per sempre e senza account",
+      "buttonText": "Torna in alto e calcola ora ↑"
     },
     "references": {
       "title": "Fonti e Riferimenti",
@@ -1503,104 +1503,104 @@
     },
     "faq": [
       {
-        "q": "What is a normal height difference between couples?",
-        "a": "No single gap is normal. In a study of 12,502 UK couples, the man was 14.1 cm (5.6 in) taller on average. Gaps of 10 to 20 cm covered about 42% of couples. The couple height difference calculator shows the gap for any two heights."
+        "q": "Qual è la normale differenza di altezza in una coppia?",
+        "a": "Non esiste una misura fissa. In un'indagine britannica su 12.502 coppie, l'uomo era in media 14,1 cm (5,6 pollici) più alto. Circa il 42% delle coppie mostrava un divario compreso tra 10 e 20 cm. Il nostro calcolatore permette di simulare qualsiasi combinazione."
       },
       {
-        "q": "How do you calculate height difference?",
-        "a": "Subtract the shorter height from the taller height: Height Difference = Taller Height − Shorter Height. For 180 cm and 165 cm, the difference is 15 cm. Divide 15 by 180 and multiply by 100 to get the percentage difference of 8.3%."
+        "q": "Come si calcola la differenza di altezza?",
+        "a": "Sottrai la statura minore da quella maggiore: Differenza = Statura Maggiore − Statura Minore. Con 180 cm e 165 cm, la differenza è di 15 cm. Per il valore percentuale, dividi 15 per 180 e moltiplica per 100 (8,3%)."
       },
       {
-        "q": "Can a height difference calculator show percentage difference?",
-        "a": "Yes. This difference in height calculator shows the gap in cm or inches and the percentage difference. It divides the gap by the taller person's height and updates both values when either height changes."
+        "q": "Il calcolatore mostra anche la percentuale di scarto?",
+        "a": "Sì. Visualizza sia la differenza in cm e pollici sia il valore percentuale calcolato rispetto alla persona più alta, aggiornati all'istante."
       },
       {
-        "q": "Is \"percent taller\" the same as \"percent shorter\"?",
-        "a": "No. Percent shorter divides the gap by the taller height. Percent taller divides it by the shorter height. For 180 cm and 165 cm, Person B is 8.3% shorter and Person A is 9.1% taller."
+        "q": "\"Percentuale più alto\" equivale a \"percentuale più basso\"?",
+        "a": "No. \"Percentuale più basso\" divide la differenza per la statura maggiore (15 ÷ 180 = 8,3%). \"Percentuale più alto\" divide per la statura minore (15 ÷ 165 = 9,1%). Entrambi descrivono lo stesso divario di 15 cm."
       },
       {
-        "q": "What units can be used in a height difference calculator?",
-        "a": "This height difference calculator accepts centimeters and feet and inches. Switching units converts both inputs and the result at once."
+        "q": "Quali unità di misura possono essere inserite?",
+        "a": "Il calcolatore accetta centimetri, nonché piedi e pollici. Cambiare unità converte all'istante sia i dati inseriti che il risultato finale."
       }
     ],
     "toc": [
       {
         "id": "calculate-height-difference",
-        "label": "Calculate Height Difference"
+        "label": "Calcola differenza di altezza"
       },
       {
         "id": "how-to-calculate-height-difference",
-        "label": "How to Calculate Height Difference"
+        "label": "Come calcolare la differenza di altezza"
       },
       {
         "id": "height-difference-percentage",
-        "label": "Height Difference Percentage"
+        "label": "Differenza di altezza in percentuale"
       },
       {
         "id": "couple-height-difference-calculator",
-        "label": "Couple Height Difference Calculator"
+        "label": "Calcolatore per coppie"
       },
       {
         "id": "height-difference-chart",
-        "label": "Height Difference Chart"
+        "label": "Tabella di confronto altezze"
       },
       {
         "id": "height-difference-in-different-units",
-        "label": "Height Difference in Different Units"
+        "label": "Differenza in unità diverse"
       },
       {
         "id": "try-the-height-difference-calculator",
-        "label": "Try the Height Difference Calculator"
+        "label": "Prova il calcolatore"
       },
       {
         "id": "frequently-asked-questions",
-        "label": "Frequently Asked Questions"
+        "label": "Domande frequenti"
       },
       {
         "id": "references",
-        "label": "References"
+        "label": "Fonti"
       }
     ],
     "tool": {
       "unitMetric": "Metrico (cm)",
-      "unitImperial": "Imperiale (piedi / pol)",
+      "unitImperial": "Imperiale (ft/in)",
       "person1Label": "Persona 1",
       "person2Label": "Persona 2",
-      "cmPlaceholder": "cm",
-      "heightDifferenceLabel": "Differenza di Altezza",
-      "percentDifferenceLabel": "Differenza Percentuale",
-      "tallerPersonLabel": "Persona Più Alta",
-      "cardHeaderTitle": "Enter two heights",
-      "cardHeaderSub": "Results update as you type",
-      "swapButtonLabel": "Swap Person 1 and Person 2",
-      "swapButtonTitle": "Swap heights",
-      "cmPlaceholder2": "e.g. 165",
+      "cmPlaceholder": "es. 180",
+      "heightDifferenceLabel": "Differenza di altezza",
+      "percentDifferenceLabel": "% di differenza",
+      "tallerPersonLabel": "Persona più alta",
+      "cardHeaderTitle": "Inserisci due altezze",
+      "cardHeaderSub": "Risultati aggiornati in tempo reale",
+      "swapButtonLabel": "Inverti Persona 1 e Persona 2",
+      "swapButtonTitle": "Scambia altezze",
+      "cmPlaceholder2": "es. 165",
       "ftLabel": "FT",
       "inLabel": "IN",
-      "hintText": "Type a height in each box. Use the toggle above to switch to feet and inches.",
-      "gapGraphicLabel": "Height gap",
-      "badgeFree": "Free",
-      "badgeNoAccount": "No account needed",
-      "badgeSupportsUnits": "Supports cm and ft/in",
-      "badgeUpdatesLive": "Updates live",
-      "noDifferenceText": "No difference",
-      "personShorterText": "{person} is {pct}% shorter",
-      "sameHeightText": "Same height"
+      "hintText": "Digita un'altezza in ciascuna casella. Usa il selettore in alto per passare a piedi e pollici.",
+      "gapGraphicLabel": "Grafico dello scarto",
+      "badgeFree": "Gratuito",
+      "badgeNoAccount": "Senza registrazione",
+      "badgeSupportsUnits": "Supporta cm e ft/in",
+      "badgeUpdatesLive": "Aggiornato in tempo reale",
+      "noDifferenceText": "Nessuna differenza",
+      "personShorterText": "{person} è più basso/a dell'{pct}%",
+      "sameHeightText": "Stessa altezza"
     },
     "coupleCalc": {
       "partner1Label": "Partner 1",
       "partner2Label": "Partner 2",
-      "chipsLabel": "Example couples",
-      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
-      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
-      "bandWomanTaller": "woman taller",
-      "band0to5": "0 to 5 cm",
-      "band5to10": "5 to 10 cm",
-      "band10to15": "10 to 15 cm",
-      "band15to20": "15 to 20 cm",
-      "band20to25": "20 to 25 cm",
-      "band25to30": "25 to 30 cm",
-      "bandOver30": "over 30 cm"
+      "chipsLabel": "Coppie di esempio",
+      "coupleLine": "Partner 1 ({h1} cm) è <strong>{gap} cm più alto/a</strong> di Partner 2 ({h2} cm). Lo scarto equivale all'{pct}% dell'altezza di Partner 1.",
+      "coupleBandText": "Uno scarto di {gap} cm rientra nella fascia \"{band}\", che corrisponde a circa il {share}% delle coppie nello studio.",
+      "bandWomanTaller": "donna più alta",
+      "band0to5": "da 0 a 5 cm",
+      "band5to10": "da 5 a 10 cm",
+      "band10to15": "da 10 a 15 cm",
+      "band15to20": "da 15 a 20 cm",
+      "band20to25": "da 20 a 25 cm",
+      "band25to30": "da 25 a 30 cm",
+      "bandOver30": "oltre 30 cm"
     },
     "chartTable": {
       "headerPersonA": "Persona A",
@@ -2043,335 +2043,335 @@
   },
   "imageToHeight": {
     "hero": {
-      "eyebrow": "Image to Height",
-      "title": "Measure Your Height From a Photo. ",
-      "titleAccent": "No Tape Measure Needed.",
-      "description": "Upload a full-body photo with a door, an A4 sheet, or a credit card in the frame. Mark the reference object and enter its real size, then draw a line from the floor to the top of the head. Get your height in centimeters and in feet and inches. Results land within 1 to 2 centimeters. Free, no sign-up, works on any device.",
-      "badgeFree": "Free to use",
-      "badgeNoAccount": "No account needed",
-      "badgePrivate": "Photo stays on your device",
-      "badgeUnits": "Results in cm and ft/in",
-      "ctaUpload": "Upload Your Photo and Measure Now",
-      "accuracyNotice": "Accurate to 1–2 cm. 100% private. Runs in browser.",
-      "prepTitle": "Check 3 Things Before Taking Your Photo:",
-      "prep1": "Full body in frame, head to toe with floor visible.",
-      "prep2": "Stand against the same wall as the reference object.",
-      "prep3": "Phone upright and level, at about waist height."
+      "eyebrow": "Immagine in altezza",
+      "title": "Misura la Tua Altezza da una Foto. ",
+      "titleAccent": "Senza Metro da Sarto.",
+      "description": "Carica una foto a figura intera con una porta, un foglio A4 o una carta di credito nell'inquadratura. Seleziona l'oggetto di riferimento, digita la sua dimensione reale e traccia una linea da terra alla testa. Scopri la tua altezza in centimetri e piedi/pollici con scarto di 1-2 cm. Gratuito, senza registrazione, su ogni dispositivo.",
+      "badgeFree": "Gratuito",
+      "badgeNoAccount": "Senza account",
+      "badgePrivate": "La foto non lascia il tuo dispositivo",
+      "badgeUnits": "Risultati in cm e ft/in",
+      "ctaUpload": "Carica Foto e Misura Ora",
+      "accuracyNotice": "Accurato a 1–2 cm. 100% privato. Elaborato nel browser.",
+      "prepTitle": "Controlla 3 dettagli prima dello scatto:",
+      "prep1": "Figura intera nella foto, dalla testa ai piedi con il pavimento visibile.",
+      "prep2": "Rimani a ridosso della stessa parete dell'oggetto di riferimento.",
+      "prep3": "Telefono dritto e a bolla, approssimativamente ad altezza bacino."
     },
     "howItWorks": {
-      "eyebrow": "Five Taps, One Photo",
-      "title": "How the Image Height Tool Works: Step by Step",
-      "description": "A photo holds its own scale when one object of known size sits in the frame. Tell the tool how long that object is, and it can measure anyone or anything standing beside it.",
+      "eyebrow": "Cinque tocchi, una foto",
+      "title": "Come Funziona lo Strumento: Passo dopo Passo",
+      "description": "Una fotografia racchiude le proprie proporzioni quando contiene un oggetto a misura nota. Indica tale misura e lo strumento calcolerà l'altezza di chiunque compaia a fianco.",
       "stepPrefix": "Passo",
       "steps": [
         {
           "step": "01",
-          "title": "Upload a full-body photo",
-          "desc": "Pick a photo that shows the person head to toe, with a door, an A4 sheet, or a card beside them. A doorframe is the most reliable option."
+          "title": "Carica una foto a figura intera",
+          "desc": "Scegli un'immagine dove la persona sia visibile da testa a piedi, vicino a una porta, un foglio A4 o una tessera. Lo stipite è il riferimento più affidabile."
         },
         {
           "step": "02",
-          "title": "Crop and confirm",
-          "desc": "Trim the edges so the person and the reference fill the frame cleanly, then tap Apply crop."
+          "title": "Ritaglia e conferma",
+          "desc": "Regola i bordi per inquadrare bene la persona e la misura di riferimento, quindi tocca 'Applica ritaglio'."
         },
         {
           "step": "03",
-          "title": "Mark the reference and pick its size",
-          "desc": "Tap both ends of the door or card. Choose Door (203 cm), ID card (8.56 cm), A4 paper (29.7 cm), 1 metre, or type custom real size."
+          "title": "Seleziona la misura dell'oggetto",
+          "desc": "Tocca le due estremità della porta o della tessera. Scegli Porta (203 cm), Carta di credito (8,56 cm), Foglio A4 (29,7 cm), 1 metro o inserisci una cifra personalizzata."
         },
         {
           "step": "04",
-          "title": "Tap head and feet",
-          "desc": "Place a line from the floor beneath the subject's feet to the crown of their head. Start from the floor, not the feet, especially when footwear appears in the photo. Or tap AI auto-scan."
+          "title": "Tocca piedi e testa",
+          "desc": "Disegna una linea dal pavimento sotto i piedi fino alla sommità del capo. Parti dal pavimento, non dalla suola. Oppure usa la scansione automatica AI."
         },
         {
           "step": "05",
-          "title": "Read your result and save to chart",
-          "desc": "Your measured height appears in both centimeters and feet and inches. Hit 'Save to Chart' to log it and compare against friends, family, athletes, or celebrities."
+          "title": "Leggi l'altezza e salvala",
+          "desc": "La tua altezza comparirà in centimetri e in piedi/pollici. Tocca 'Salva' per conservarla e confrontarla con altri."
         }
       ]
     },
     "whatYouCanMeasure": {
-      "eyebrow": "Beyond Your Own Height",
-      "title": "What You Can Measure from a Photo",
-      "description": "Anything works if a reference of known size stands at the exact same distance from the camera.",
+      "eyebrow": "Oltre la tua sola statura",
+      "title": "Cosa Puoi Misurare Partendo da una Foto",
+      "description": "Qualsiasi persona o elemento è misurabile, purché il riferimento noto sia alla medesima distanza dall'obiettivo.",
       "items": [
         {
-          "title": "Yourself, with no helper",
-          "desc": "Prop your phone upright at waist height, set the timer, and stand beside a door or a taped A4 sheet."
+          "title": "Te stesso, senza l'aiuto di nessuno",
+          "desc": "Appoggia il telefono ad altezza vita, imposta l'autoscatto e posizionati vicino a una porta o a un foglio A4 attaccato al muro."
         },
         {
-          "title": "Children as they grow",
-          "desc": "Photograph your child against the same door every few months and save each result to the chart. Then check their predicted adult height.",
-          "linkLabel": "predicted adult height"
+          "title": "I tuoi figli durante la crescita",
+          "desc": "Fotografa tuo figlio accanto alla stessa porta ogni pochi mesi e monitora lo sviluppo. Poi controlla la sua ",
+          "linkLabel": "previsione di altezza adulta"
         },
         {
-          "title": "Anyone in an old photo",
-          "desc": "Family photos, team photos, or a celebrity beside a door all work, as long as a known object sits next to the person."
+          "title": "Persone in vecchie fotografie",
+          "desc": "Foto di famiglia, squadre sportive o celebrità funzionano benissimo purché vi sia un oggetto standard visibile."
         },
         {
-          "title": "Furniture and doorways",
-          "desc": "Tape an A4 sheet to the wall next to a shelf, fridge, or doorway and measure it before you buy, move, or deliver."
+          "title": "Mobili e varchi",
+          "desc": "Fissa un foglio A4 accanto a una libreria o un frigorifero per misurarne l'altezza prima di un acquisto o trasloco."
         },
         {
-          "title": "Trees, walls and gates",
-          "desc": "Stand next to it and enter your own height as the reference size. Step back until both of you fit in the frame and keep the phone level. Tall objects lean away from the camera in photos, so treat the result as an estimate."
+          "title": "Alberi, recinzioni e cancelli",
+          "desc": "Mettiti a fianco e imposta la tua stessa altezza come valore noto. Allontanati finché entrate entrambi nell'inquadratura tenendo il telefono dritto."
         }
       ],
-      "whyArTitle": "Why Use a Photo Instead of an AR Measurement App?",
-      "why1Bold": "Measures past moments:",
-      "why1Desc": " AR apps only measure what is in front of you right now. A photo allows you to measure historic pictures, past milestones, and archive shots.",
-      "why2Bold": "Zero installation:",
-      "why2Desc": " Runs natively in any modern browser on iOS, Android, Mac, or PC with no apps to download or subscriptions.",
-      "why3Bold": "Complete device privacy:",
-      "why3Desc": " Your photo stays securely inside your browser's local sandbox and is never uploaded to any remote server."
+      "whyArTitle": "Perché una foto invece di un'app di realtà aumentata (AR)?",
+      "why1Bold": "Misura immagini del passato:",
+      "why1Desc": " Le app AR misurano solo ciò che hai davanti adesso. Con una foto puoi misurare scatti storici e ricordi di famiglia.",
+      "why2Bold": "Zero installazione:",
+      "why2Desc": " Funziona direttamente in ogni browser moderno su iOS, Android, Mac o PC senza installare app.",
+      "why3Bold": "Privacy protetta:",
+      "why3Desc": " La foto rimane al sicuro nella memoria locale del browser e non viene mai caricata su server esterni."
     },
     "referenceObjects": {
-      "eyebrow": "Calibration Reference",
-      "title": "Which Reference Object to Use for Calibration",
-      "description": "The more certain you are of the reference size, the more you can trust the result. Standardized objects guarantee repeatable accuracy.",
-      "thObject": "Object",
-      "thSize": "Size to enter",
-      "thStandard": "Standard dimension?",
-      "thBestFor": "Best for",
+      "eyebrow": "Calibrazione",
+      "title": "Quale Oggetto di Riferimento Scegliere",
+      "description": "Più è affidabile la grandezza dell'oggetto noto, più precisa sarà la misura calcolata. Gli oggetti normati offrono risultati ripetibili.",
+      "thObject": "Oggetto",
+      "thSize": "Misura da inserire",
+      "thStandard": "Dimensione standard?",
+      "thBestFor": "Ideale per",
       "rows": [
         {
-          "object": "A4 sheet (long edge)",
-          "size": "29.7 cm",
-          "standard": "Yes, ISO 216",
-          "bestFor": "Taped to the wall beside the person"
+          "object": "Foglio A4 (lato lungo)",
+          "size": "29,7 cm",
+          "standard": "Sì, ISO 216",
+          "bestFor": "Attaccato al muro vicino alla persona"
         },
         {
-          "object": "Credit card (long edge)",
-          "size": "8.56 cm",
-          "standard": "Yes, ISO/IEC 7810",
-          "bestFor": "Close-up photos. Small, so tap its corners carefully."
+          "object": "Carta di credito (lato lungo)",
+          "size": "8,56 cm",
+          "standard": "Sì, ISO/IEC 7810",
+          "bestFor": "Foto da vicino. Date le dimensioni ridotte, tocca gli angoli con cura."
         },
         {
-          "object": "Interior door",
-          "size": "203 cm in the US",
-          "standard": "No, varies by country and home",
-          "bestFor": "Full-body photos, after you measure the door once"
+          "object": "Porta standard",
+          "size": "203 cm (comune)",
+          "standard": "No, cambia a seconda della casa",
+          "bestFor": "Foto a figura intera, dopo aver verificato la porta la prima volta"
         }
       ]
     },
     "accuracy": {
-      "eyebrow": "Empirical Accuracy Testing",
-      "title": "How to Get an Accurate Result from a Photo",
-      "description": "Two habits cause most of the error: standing in front of the reference and tilting the phone. Camera height on its own does not matter. Keep the phone upright and level, and stand against the same wall as the reference.",
-      "tiltLowTitle": "Low, Tilted Up",
-      "tiltLowBadge": "Reads taller",
-      "tiltLowDesc": "The top of the scene sits farther from the lens and shrinks, so the door looks short next to the person (+2.4 to +4.5 cm error).",
-      "tiltLevelTitle": "Level, at Waist Height",
-      "tiltLevelBadge": "Closest result",
-      "tiltLevelDesc": "The phone faces the wall square on, so the reference and the person maintain their true geometric proportions (0.0 cm error).",
-      "tiltHighTitle": "High, Tilted Down",
-      "tiltHighBadge": "Reads shorter",
-      "tiltHighDesc": "The floor sits farther from the lens and shrinks, so the door looks tall next to the person (−2.8 to −5.9 cm error).",
-      "tableTitle": "Our Controlled Accuracy Benchmark (14 Rendered Scenes)",
-      "tableDesc": "We evaluated 14 calibrated scenes with known heights taken from 3.5 meters away to isolate camera geometry from manual tap variations.",
-      "thSetup": "Photo Setup",
-      "thTrueHeight": "True Height",
-      "thMeasured": "Measured",
-      "thError": "Error",
+      "eyebrow": "Rilievi e test di precisione",
+      "title": "Come Ottenere una Misura Precisa da una Foto",
+      "description": "Posizionarsi troppo avanti rispetto all'oggetto e inclinare il telefono provocano quasi tutti gli errori. Tieni il dispositivo a bolla e resta vicino alla parete.",
+      "tiltLowTitle": "In basso, puntato verso l'alto",
+      "tiltLowBadge": "Stima per eccesso",
+      "tiltLowDesc": "La sommità è più lontana dall'obiettivo e rimpicciolisce, facendo apparire la porta più bassa (+2,4 a +4,5 cm di errore).",
+      "tiltLevelTitle": "A livello, ad altezza cintura",
+      "tiltLevelBadge": "Risultato ottimale",
+      "tiltLevelDesc": "Il telefono punta frontalmente verso la parete, preservando le corrette proporzioni prospettiche (0,0 cm di errore).",
+      "tiltHighTitle": "In alto, puntato verso il basso",
+      "tiltHighBadge": "Stima per difetto",
+      "tiltHighDesc": "Il pavimento è più lontano e si riduce nell'immagine, facendo sembrare la porta più alta (−2,8 a −5,9 cm di errore).",
+      "tableTitle": "Nostro test comparativo controllato (14 ambientazioni)",
+      "tableDesc": "Abbiamo esaminato 14 ambientazioni con altezze certe a 3,5 metri per isolare l'inclinazione prospettica dall'accuratezza del tocco su schermo.",
+      "thSetup": "Inquadratura",
+      "thTrueHeight": "Altezza reale",
+      "thMeasured": "Misurata",
+      "thError": "Scarto",
       "benchmarkRows": [
         {
-          "setup": "Phone level at 60, 100 or 130 cm, person against the wall beside the door",
+          "setup": "Smartphone a livello a 60, 100 o 130 cm, persona a ridosso del muro vicino alla porta",
           "trueHeight": "172 cm",
-          "measured": "172.0 cm",
-          "error": "0.0 cm"
+          "measured": "172,0 cm",
+          "error": "0,0 cm"
         },
         {
-          "setup": "Same, for a 120 cm child and a 190 cm adult",
+          "setup": "Identica impostazione per bambino di 120 cm e adulto di 190 cm",
           "trueHeight": "120, 190 cm",
-          "measured": "120.0, 190.0 cm",
-          "error": "0.0 cm"
+          "measured": "120,0, 190,0 cm",
+          "error": "0,0 cm"
         },
         {
-          "setup": "Phone tilted up 10° from 60 cm",
+          "setup": "Smartphone inclinato di 10° verso l'alto da 60 cm",
           "trueHeight": "172 cm",
-          "measured": "174.4 cm",
-          "error": "+2.4 cm"
+          "measured": "174,4 cm",
+          "error": "+2,4 cm"
         },
         {
-          "setup": "Phone tilted up 20° from 40 cm",
+          "setup": "Smartphone inclinato di 20° verso l'alto da 40 cm",
           "trueHeight": "172 cm",
-          "measured": "176.5 cm",
-          "error": "+4.5 cm"
+          "measured": "176,5 cm",
+          "error": "+4,5 cm"
         },
         {
-          "setup": "Phone tilted down 10° from 160 cm",
+          "setup": "Smartphone inclinato di 10° verso il basso da 160 cm",
           "trueHeight": "172 cm",
-          "measured": "169.2 cm",
-          "error": "−2.8 cm"
+          "measured": "169,2 cm",
+          "error": "−2,8 cm"
         },
         {
-          "setup": "Phone tilted down 20° from 180 cm",
+          "setup": "Smartphone inclinato di 20° verso il basso da 180 cm",
           "trueHeight": "172 cm",
-          "measured": "166.1 cm",
-          "error": "−5.9 cm"
+          "measured": "166,1 cm",
+          "error": "−5,9 cm"
         },
         {
-          "setup": "A4 sheet as reference, phone tilted up 10°",
+          "setup": "Foglio A4 come riferimento, telefono inclinato di 10° verso l'alto",
           "trueHeight": "172 cm",
-          "measured": "176.8 cm",
-          "error": "+4.8 cm"
+          "measured": "176,8 cm",
+          "error": "+4,8 cm"
         },
         {
-          "setup": "Person standing 30 cm in front of the door",
+          "setup": "Persona posizionata 30 cm davanti alla porta",
           "trueHeight": "172 cm",
-          "measured": "188.1 cm",
-          "error": "+16.1 cm"
+          "measured": "188,1 cm",
+          "error": "+16,1 cm"
         },
         {
-          "setup": "Person standing 60 cm in front of the door",
+          "setup": "Persona posizionata 60 cm davanti alla porta",
           "trueHeight": "172 cm",
-          "measured": "207.6 cm",
-          "error": "+35.6 cm"
+          "measured": "207,6 cm",
+          "error": "+35,6 cm"
         }
       ],
-      "pixelSensitivityBold": "Pixel Sensitivity:",
-      "pixelSensitivityDesc": " Tapping adds its own error, and small references magnify it. On a phone screen, missing one end of the reference by a single screen pixel moves a 172 cm result by about 1 cm with a door, 7 cm with an A4 sheet, and 23 cm with a card. Use the biggest reference in the photo, and zoom in before tapping.",
+      "pixelSensitivityBold": "Sensibilità del tocco:",
+      "pixelSensitivityDesc": " Toccare fuori asse genera imprecisione, e con oggetti piccoli l'errore aumenta. Sullo schermo, mancare l'estremità di 1 pixel sposta il calcolo di 1 cm con una porta, 7 cm con un A4 e 23 cm con una tessera. Scegli il riferimento più grande e ingrandisci prima di toccare.",
       "tips": [
         {
-          "title": "Camera tilt",
-          "desc": "Camera tilt is the single biggest source of error in photo-based measurement. Hold the phone upright and level at about waist height for an adult, then step back until both head and feet fit cleanly."
+          "title": "Non inclinare il telefono",
+          "desc": "L'inclinazione è la causa principale di errore. Tieni il telefono diritto ad altezza bacino e allontanati fino a inquadrare dalla testa ai piedi."
         },
         {
-          "title": "Reference placement",
-          "desc": "Stand against the same wall as the reference object, not in front of it. In our test, stepping 30 cm forward added 16 cm in false height. Keep the reference close to the subject to avoid lens distortion near edges."
+          "title": "Posizione dell'oggetto",
+          "desc": "Resta a contatto con la stessa parete dell'oggetto, mai più avanti. Spostarsi avanti di soli 30 cm ha aggiunto 16 cm fittizi nei test."
         },
         {
-          "title": "Stand straight",
-          "desc": "Heels flat, back straight, head level. Posture errors in the photo produce the exact same measurement errors as posture errors against a wall."
+          "title": "Postura corretta",
+          "desc": "Talloni a terra, schiena dritta e sguardo orizzontale. Difetti di postura nello scatto comportano gli stessi errori di una misurazione classica."
         },
         {
-          "title": "Show the full body",
-          "desc": "Cropped feet or a cropped head makes a floor-to-crown measurement impossible. A clean head-to-toe shot in the frame gives the most reliable result."
+          "title": "Corpo intero visibile",
+          "desc": "Tagliare piedi o testa non consente di calcolare il dislivello completo. Un'inquadratura nitida garantisce il risultato migliore."
         }
       ]
     },
     "noTapeMethods": {
-      "eyebrow": "Alternative Methods",
-      "title": "How to Measure Your Height Without a Measuring Tape",
-      "description": "Five methods work reliably when no tape measure is available. Each uses an object of known size to establish scale.",
+      "eyebrow": "Metodi alternativi",
+      "title": "Come Misurare la Propria Altezza Senza Metro",
+      "description": "Cinque soluzioni funzionali quando non si dispone di un metro da sarto o a nastro.",
       "methods": [
         {
           "id": "wall-a4",
-          "title": "The wall mark and A4 sheet method",
+          "title": "Metodo del segno al muro e foglio A4",
           "tags": [
-            "Hardcover book",
-            "A4 sheet",
-            "Pencil"
+            "Libro rigido",
+            "Foglio A4",
+            "Matita"
           ],
-          "desc": "Mark your height on the wall with a hardcover book, as in the clinic method below. Lay an A4 sheet's long edge (29.7 cm) against the wall from the floor up, mark its top, and repeat until you reach your mark. Multiply the full sheets by 29.7 cm, then estimate the last gap against a sheet folded in half (14.85 cm)."
+          "desc": "Fai un segno della tua altezza con un libro rigido. Appoggia il lato lungo di un foglio A4 (29,7 cm) dal pavimento in su, segna dove arriva e risali fino al tuo segno. Moltiplica i fogli per 29,7 cm e usa un foglio piegato a metà (14,85 cm) per lo scarto finale."
         },
         {
           "id": "door",
-          "title": "The doorframe method",
+          "title": "Metodo dello stipite della porta",
           "tags": [
-            "A door"
+            "Una porta"
           ],
-          "desc": "Standard US interior doors stand 80 inches (203 cm) tall. Stand in the frame, note where the top of your head falls, and you have a working estimate. Not precise to the half-inch, but accurate enough to know whether you are 5'8\" or 5'10\". Door heights differ outside the US and between homes, so check yours first."
+          "desc": "Le porte standard misurano spesso tra i 200 e i 203 cm. Mettiti sotto lo stipite, controlla dove arriva la testa e ottieni una stima rapida."
         },
         {
           "id": "arm-span",
-          "title": "The arm span method",
+          "title": "Metodo dell'apertura delle braccia",
           "tags": [
-            "A helper or a wall"
+            "Un aiutante o una parete"
           ],
-          "desc": "Your fingertip-to-fingertip wingspan with arms fully extended matches your height within about one inch. If you know your arm span, you know your height."
+          "desc": "L'apertura delle braccia da punta a punta dei medi corrisponde quasi al millimetro alla propria altezza (scarto medio inferiore a 2,5 cm)."
         },
         {
           "id": "phone",
-          "title": "The phone method",
+          "title": "Metodo dell'app dello smartphone",
           "tags": [
-            "A phone"
+            "Uno smartphone"
           ],
-          "desc": "On supported iPhone and iPad models, Apple's Measure app can measure a person's height from the floor to the top of the head. On any other phone, take a full-body photo and use the tool above."
+          "desc": "Sugli iPhone e iPad compatibili, l'app Metro di Apple calcola l'altezza delle persone. Con altri telefoni, basta scattare una foto e usare il nostro tool."
         },
         {
           "id": "dollar",
-          "title": "The dollar bill method (US)",
+          "title": "Metodo delle banconote",
           "tags": [
-            "US dollar bills"
+            "Banconote"
           ],
-          "desc": "A US dollar bill is 6.14 inches long. Mark your height on a wall, stack bills from the floor to the mark, count them, and multiply. Tedious, but mathematically sound."
+          "desc": "Le banconote hanno dimensioni fisse (5 € = 12 cm, 20 € = 13,3 cm; il dollaro = 15,6 cm). Puoi disporle verticalmente fino al tuo segno sul muro."
         }
       ],
-      "footer": "Each method gets you close, and none is exact. Confirming the precise number still needs a calibrated reference at some point, unless you use a calibrated photo."
+      "footer": "Tutti questi metodi offrono una buona approssimazione, ma una foto opportunamente calibrata rimane la via più solida."
     },
     "clinicMethod": {
-      "eyebrow": "Clinical Standard",
-      "title": "How to Measure Height Accurately: The Clinic Method",
-      "description": "Adapted from clinical stadiometer protocols (CDC guidelines) to ensure maximum physical accuracy at home.",
+      "eyebrow": "Standard medico",
+      "title": "Come Misurare l'Altezza con Precisione: Il Metodo Clinico",
+      "description": "Adattato dai protocolli clinici con statimetro (linee guida CDC) per la massima accuratezza a casa.",
       "steps": [
-        "Take off your shoes, bulky clothing, hats and hair accessories, and undo any hairstyle that sits on top of the head.",
-        "Stand on a firm floor such as tile or wood, not carpet, against a flat wall with no skirting or moulding.",
-        "Keep your feet flat and together, legs straight, arms at your sides and shoulders level.",
-        "Touch the wall with your head, shoulders, buttocks and heels. Not every point touches on every body shape.",
-        "Look straight ahead. Lower a flat book or ruler at a right angle to the wall until it rests on the crown of your head, then mark the wall under it.",
-        "Measure from the floor to the mark with a metal tape, to the nearest 0.1 cm. Without a tape, step an A4 sheet up the wall or use the photo tool above."
+        "Togli scarpe, indumenti pesanti, cappelli e fasce, sciogliendo acconciature alte.",
+        "Mettiti su un pavimento piano e solido (piastrelle o parquet, niente tappeti) appoggiato a una parete liscia senza battiscopa sporgente.",
+        "Piedi uniti e piatti a terra, gambe tese, braccia lungo i fianchi e spalle orizzontali.",
+        "Tocca la parete con la parte posteriore della testa, scapole, glutei e talloni (in base alla corporatura non tutti i punti toccheranno assieme).",
+        "Guarda dritto davanti a te. Fai scendere un libro rigido o una squadra ad angolo retto con la parete fin sopra la testa e segna con una matita.",
+        "Misura dal pavimento al segno con un metro a nastro metallico, al millimetro. Senza metro, usa un foglio A4 o il nostro tool."
       ],
-      "whyAloneTitle": "Why Measuring Yourself Alone Goes Wrong",
+      "whyAloneTitle": "Perché Misurarsi da Soli Porta Quasi Sempre a Errori",
       "errorCauses": [
         {
-          "title": "Hunching",
-          "desc": "You are probably hunching slightly without realizing it."
+          "title": "Incurvarsi",
+          "desc": "Ci si piega leggermente senza volerlo nel tentativo di tenere un libro in equilibrio sulla testa."
         },
         {
-          "title": "A tilted book",
-          "desc": "The book is not held perfectly level at a right angle."
+          "title": "Libro inclinato",
+          "desc": "Il libro o la riga non viene mantenuto a 90° esatti con la parete."
         },
         {
-          "title": "A loose tape",
-          "desc": "The tape measure is not sitting completely flat on the floor."
+          "title": "Metro non dritto",
+          "desc": "Il metro a nastro flette o scorre storto lungo la parete."
         },
         {
-          "title": "Time of day",
-          "desc": "You stand up to one centimeter taller in the morning than at night due to spinal disc compression. Measure at the same time of day."
+          "title": "Orario del giorno",
+          "desc": "La compressione dei dischi della colonna vertebrale fa perdere fino a 1 cm di statura tra mattina e sera."
         }
       ],
-      "whyAloneFooter": "Doing it alone makes everything worse. Standing straight, balancing a hardback on your head, marking a wall, and measuring the mark all at once is physically awkward. A photo with a reference object removes the need for a second person entirely."
+      "whyAloneFooter": "Fare tutto da soli è scomodo: stare dritti, posizionare il libro e tracciare la linea. Una foto con oggetto noto elimina il bisogno di un aiutante."
     },
     "faq": {
       "badge": "CENTRO ASSISTENZA",
-      "title": "Frequently Asked Questions",
+      "title": "Domande Frequenti",
       "items": [
         {
           "id": "how-accurate-is-height-measurement-from-a-photo",
-          "q": "How accurate is height measurement from a photo?",
-          "a": "It depends on how the photo is taken. In our empirical test of 14 rendered scenes, a level phone with the person standing against the same wall as a door measured the true height exactly. Tilting the phone 10° to 20° moved the result by 2 to 6 cm, and standing 30 cm in front of the door added 16 cm. On a phone screen, each pixel you miss on a door's edge adds about 1 cm more. For personal tracking and casual comparisons under good conditions, results consistently land within 1 to 2 centimeters."
+          "q": "Quanto è precisa la misurazione dell'altezza da una foto?",
+          "a": "Dipende dallo scatto. Nei test su 14 ambientazioni calibrate, un telefono a livello con la persona al muro ha misurato l'altezza reale esatta. Inclinare di 10°-20° ha introdotto da 2 a 6 cm di scarto, e avanzare di 30 cm ha aggiunto 16 cm errati. Con buoni scatti, l'errore resta regolarmente contenuto tra 1 e 2 cm."
         },
         {
           "id": "what-is-the-best-object-to-use-for-calibration",
-          "q": "What is the best object to use for calibration?",
-          "a": "An A4 sheet (29.7 cm / 297 mm long) or a credit card (8.56 cm / 85.6 mm wide) works anywhere worldwide because international ISO standards fix both sizes. A standard interior door at 203 cm (80 inches) in the US is the easiest choice for full-body photos because of its size, but measure yours first if outside the US. The larger the reference object, the less sensitive the result is to minor screen tapping errors."
+          "q": "Qual è l'oggetto migliore per calibrare?",
+          "a": "Un foglio A4 (29,7 cm di lunghezza) o una carta di credito (8,56 cm) sono standard internazionali ISO validi ovunque. Una porta interna (spesso 203 cm) è ottima per figure intere, verificandone la misura la prima volta."
         },
         {
           "id": "is-my-photo-uploaded-or-stored",
-          "q": "Is my photo uploaded or stored?",
-          "a": "No. The tool runs entirely client-side in your browser, and your photo never leaves your device."
+          "q": "La mia foto viene caricata o conservata sui server?",
+          "a": "No. Il software viene eseguito interamente nel tuo browser. L'immagine non lascia mai il tuo smartphone o PC."
         },
         {
           "id": "can-i-measure-someone-elses-height-from-a-photo",
-          "q": "Can I measure someone else's height from a photo?",
-          "a": "Yes. Upload any photo where the person appears next to a known object, calibrate, draw the line, read the result. The subject does not need to be present."
+          "q": "Posso misurare l'altezza di un'altra persona da una foto?",
+          "a": "Sì. Basta caricare qualsiasi immagine in cui compaia vicino a un oggetto a grandezza nota, calibrare e tracciare la linea anche se la persona non è presente."
         },
         {
           "id": "does-it-work-for-celebrities",
-          "q": "Does it work for celebrities?",
-          "a": "Yes, when the photo shows them next to a door or another object of known size. Photos taken from unusual angles produce less reliable results."
+          "q": "Funziona anche per i personaggi famosi?",
+          "a": "Sì, se la foto ritrae la celebrità accanto a una porta o a un elemento di scala nota, in prospettiva frontale."
         },
         {
           "id": "why-do-i-measure-taller-in-the-morning",
-          "q": "Why do I measure taller in the morning?",
-          "a": "Spinal discs compress under body weight throughout the day. That compression reduces standing height by up to one centimeter between morning and evening. Measuring at the same time each day gives the most consistent results over time."
+          "q": "Perché siamo più alti al mattino?",
+          "a": "I dischi intervertebrali si schiacciano durante il giorno a causa del peso corporeo, riducendo l'altezza fino a un centimetro la sera."
         },
         {
           "id": "do-i-need-an-account",
-          "q": "Do I need an account?",
-          "a": "No. The tool is free, requires no sign-up, and works on any device."
+          "q": "Devo creare un account?",
+          "a": "No. Lo strumento è gratis, non richiede registrazioni e funziona su qualsiasi dispositivo."
         }
       ]
     },
@@ -2387,264 +2387,264 @@
   },
   "home": {
     "intro": {
-      "h1": "Größenvergleich-Rechner: Körpergrößen online im visuellen Diagramm vergleichen",
-      "p": "Nutze dieses Größenvergleichs-Tool, um Körpergrößen nebeneinander in einem maßstabsgetreuen Diagramm zu sehen. Gib beliebige Höhen in Zentimetern, Fuß oder Zoll ein, um den Größenunterschied sofort visuell darzustellen. Das Tool skaliert jede Figur exakt nach deinen Eingaben. Vergleiche zwei oder mehr Personen, Stars, Anime-Figuren oder reale Objekte in Sekundenschnelle.",
-      "freeLibraryBadge": "Kostenlose Online-Bibliothek",
-      "freeLibraryDesc": "Greife auf unsere Datenbank vorgefertigter Referenzgrößen aus drei Sammlungen zu, erstelle unbegrenzt viele Vergleiche und exportiere hochauflösende PNG-Diagramme.",
-      "noAccounts": "Kein Benutzerkonto",
-      "noPayments": "Keine Zahlungen",
-      "free100": "100 % kostenlos",
-      "compareNowCta": "Jetzt vergleichen ↑"
+      "h1": "Calcolatore di Confronto Altezza: Confronta Altezze Online con Grafico Visivo",
+      "p": "Usa questo strumento di confronto altezza per visualizzare le stature affiancate in un grafico in scala reale. Inserisci qualsiasi altezza in centimetri o piedi e pollici per vedere all'istante la differenza. Lo strumento offre un confronto visivo con proporzioni esatte. Il grafico si aggiorna in tempo reale e scala ogni figura a partire dal valore preciso inserito.",
+      "freeLibraryBadge": "Archivio Online Gratuito",
+      "freeLibraryDesc": "Accedi al nostro database di altezze di riferimento pronte all'uso suddivise in tre collezioni, crea confronti personalizzati illimitati ed esporta grafici PNG ad alta risoluzione.",
+      "noAccounts": "Nessun account",
+      "noPayments": "Nessun pagamento",
+      "free100": "100% Gratuito",
+      "compareNowCta": "Confronta Ora ↑"
     },
     "section1": {
-      "eyebrow": "Funktionsweise",
-      "title": "Wie funktioniert ein Größenvergleichs-Diagramm?",
-      "p1": "Ein Größenvergleichs-Diagramm wandelt Maßangaben in eine visuelle Grafik um, in der jede Figur das exakte mathematische Verhältnis im echten Maßstab widerspiegelt.",
-      "p2": "Ist Person A 170 cm und Person B 185 cm groß, wird die zweite Figur exakt 1,09-mal so hoch dargestellt. Ein Abstand von 10 cm wirkt bei 160 cm proportional ganz anders als bei 190 cm – das Diagramm macht diesen Unterschied sofort sichtbar.",
-      "p3": "Nutze das Tool als Diagrammersteller für Familien, Sportteams oder kreative Zeichenprojekte.",
-      "imgAlt": "Größenvergleichs-Diagramm einer 170 cm und 185 cm großen Person nebeneinander",
-      "imgCaption": "Alex mit 170 cm (5'7\") und Ben mit 185 cm (6'1\"), maßstabsgetreu gezeichnet.",
-      "needGapTitle": "Suchst du nur die Differenz zwischen zwei bestimmten Größen?",
-      "needGapDesc": "Der Höhendifferenz-Rechner zeigt den exakten Abstand in cm und Zoll, die prozentuale Abweichung und einen Vergleichsbalken. Ideal, wenn du nur die genaue Differenz ermitteln möchtest.",
-      "needGapCta": "Höhendifferenz-Rechner öffnen"
+      "eyebrow": "Come funziona",
+      "title": "Come Funziona un Grafico di Confronto Altezza?",
+      "p1": "Un grafico di confronto altezza converte le misure numeriche in un'immagine scalata in cui ogni barra rispetta l'esatta proporzione geometrica a grandezza reale.",
+      "p2": "Se la Persona A è alta 170 cm e la Persona B 185 cm, la seconda figura viene renderizzata esattamente a 1,09 volte l'altezza della prima. Un dislivello di 10 cm su 160 cm è proporzionalmente diverso rispetto a 190 cm: il grafico rende visibile questa differenza senza calcoli.",
+      "p3": "Ideale per confronti in famiglia, squadre sportive o progetti artistici.",
+      "imgAlt": "Grafico di confronto altezza tra una persona di 170 cm e una di 185 cm affiancate",
+      "imgCaption": "Alex a 170 cm (5'7\") e Ben a 185 cm (6'1\"), disegnati in scala.",
+      "needGapTitle": "Ti serve solo il calcolo preciso della differenza?",
+      "needGapDesc": "Il Calcolatore di Differenza Altezza mostra la differenza esatta in cm e pollici, la percentuale di scarto e una barra visiva. Ideale per conoscere il dato numerico diretto.",
+      "needGapCta": "Apri Calcolatore di Differenza Altezza"
     },
     "section2": {
-      "eyebrow": "Schritt für Schritt",
-      "title": "Körpergrößen online vergleichen: Anleitung für Einsteiger",
-      "step1Title": "Schritt 1: Wähle deinen Vergleichsaufbau",
-      "step1Desc": "Entscheide, was du vergleichen möchtest: Freunde, dich selbst mit einem Prominenten, Anime-Figuren oder Bauwerke. Wechsle jederzeit zwischen cm und Fuß/Zoll.",
-      "guidebookNoteLabel": "Hinweis zur Datenbank:",
-      "guidebookNoteText": "Durchsuche unsere Promi-Datenbank oder wähle Anime- und Fantasy-Charaktere aus dem Charakter-Bereich. Alle Werte basieren auf offiziellen Databooks und Veröffentlichungen.",
-      "panelPeople": "Personen",
-      "panelCelebrities": "Prominente",
-      "panelCharacters": "Charaktere",
-      "panelObjects": "Objekte",
-      "step2Title": "Schritt 2: Erstelle dein Diagramm",
-      "step2Desc": "Gib Namen ein, wähle eigene Farben und trage Maße ein. Die Figuren erscheinen sofort auf der Leinwand. Der Maßstab reicht bis zu 10.000 Meter, sodass du Personen neben den Eiffelturm oder Mount Everest stellen kannst.",
+      "eyebrow": "Passo dopo passo",
+      "title": "Come Confrontare le Altezze Online: Guida per Principianti",
+      "step1Title": "Passo 1: Imposta il tuo confronto",
+      "step1Desc": "Scegli chi confrontare: due amici, te stesso con una celebrità, personaggi anime o monumenti. Funziona in cm e piedi/pollici con passaggio istantaneo.",
+      "guidebookNoteLabel": "Nota da guide ufficiali:",
+      "guidebookNoteText": "Cerca nel database dei vip o esplora i personaggi fantastici. Tutte le altezze provengono da databook e schede di produzione ufficiali.",
+      "panelPeople": "Persone",
+      "panelCelebrities": "Celebrità",
+      "panelCharacters": "Personaggi",
+      "panelObjects": "Oggetti",
+      "step2Title": "Passo 2: Crea il tuo grafico di altezza",
+      "step2Desc": "Inserisci nomi, colori e misure. Il sistema scala fino a 10.000 metri (32.808 ft), consentendoti di affiancare una persona alla Torre Eiffel o all'Everest.",
       "panels": [
         {
-          "label": "Person hinzufügen",
-          "desc": "Name, Geschlecht, Größe in cm oder ft/in, Wunschfarbe."
+          "label": "Aggiungi Persona",
+          "desc": "Nome, genere, altezza in cm o ft/in e colore a scelta."
         },
         {
-          "label": "Prominente",
-          "desc": "Sportler, Schauspieler und historische Ikonen weltweit."
+          "label": "Celebrità",
+          "desc": "Atleti, attori e icone storiche di tutto il mondo."
         },
         {
-          "label": "Charaktere",
-          "desc": "Anime, Cartoons und Superhelden aus lizenzierten Büchern."
+          "label": "Personaggi Fittizi",
+          "desc": "Anime, cartoni animati e supereroi da guide autorizzate."
         },
         {
-          "label": "Objekte & Bauwerke",
-          "desc": "Tiere, weltberühmte Bauwerke und Naturmonumente."
+          "label": "Entità e Oggetti",
+          "desc": "Animali, monumenti celebri e cime montuose."
         }
       ],
-      "step3Title": "Schritt 3: Unterschied sehen und teilen",
-      "step3Desc": "Jede Figur ist mit Namen und Größe beschriftet. Der Größenabstand ist sofort erkennbar. Lade dein Diagramm kostenlos als PNG herunter oder teile den Direktlink mit Freunden."
+      "step3Title": "Passo 3: Visualizza la differenza e condividi",
+      "step3Desc": "Ogni sagoma include nome e altezza. La differenza è visibile all'istante. Scarica un'immagine PNG nitida o condividi un link diretto valido 7 giorni."
     },
     "section3": {
-      "eyebrow": "Vorteile",
-      "title": "Warum ein visueller Vergleich mehr verrät als reine Zahlen",
-      "description": "Ein visuelles Größenvergleichs-Diagramm stellt die mathematische Beziehung maßstabsgetreu dar und macht Proportionen auf einen Blick erfassbar.",
-      "card1Title": "Proportionaler Maßstab enthüllt, was Zahlen verbergen",
-      "card1Desc": "Ein Unterschied von 12 cm bei 160 cm fällt optisch stärker ins Gewicht als bei 190 cm. Die Grafik verdeutlicht das sofort. Für die exakte Differenzrechnung nutze den ",
-      "card1Link": "Höhendifferenz-Rechner",
-      "card2Title": "Vergleiche dich mit jedem und allem",
-      "card2Desc": "Füge dich selbst hinzu und stelle einen Hollywood-Star, eine Spielfigur oder ein Naturwunder daneben – alles auf einer gemeinsamen Achse.",
-      "card3Title": "Figurenvergleich für Zeichner und Autoren",
-      "card3Desc": "Kreative visualisieren Beziehungen zwischen Charakteren anhand verifizierter Maße aus offiziellen Nachschlagewerken.",
-      "card4Title": "Keine manuellen Einheitenumrechnungen",
-      "card4Desc": "Trage Werte in cm oder ft/in ein. Subtraktion, Seitenverhältnis und Prozentrechnung erfolgen automatisch während der Eingabe.",
-      "card5Title": "Echte Maßstäbe rücken menschliche Dimensionen ins Licht",
-      "card5Desc": "Stelle einen 175 cm großen Menschen neben den Mount Everest (8.848 m), um wahre Dimensionen zu begreifen.",
-      "card6Title": "Exportierbares Ergebnis mit einem Klick",
-      "card6Desc": "Lade hochauflösende PNG-Bilder herunter oder erstelle teilbare Links für Social Media, Foren oder Vorträge."
+      "eyebrow": "Perché usarlo",
+      "title": "Perché un Grafico Visivo Mostra Molto Più dei Numeri",
+      "description": "Un grafico visivo restituisce le relazioni matematiche in proporzioni reali, rendendo comprensibile la differenza di statura al primo sguardo.",
+      "card1Title": "La scala proporzionale svela ciò che i numeri celano",
+      "card1Desc": "Un divario di 12 cm a 160 cm è proporzionalmente maggiore rispetto a 190 cm. Le barre visive lo mostrano subito. Per il calcolo matematico, apri il ",
+      "card1Link": "Calcolatore di Differenza Altezza",
+      "card2Title": "Confrontati con chiunque o con qualsiasi cosa",
+      "card2Desc": "Aggiungi la tua altezza e posiziona accanto un personaggio famoso o una montagna: tutto allineato sullo stesso asse.",
+      "card3Title": "Confronto personaggi per disegnatori e autori",
+      "card3Desc": "Scrittori e illustratori possono impostare la corretta scala corporea dei loro personaggi secondo le schede canoniche.",
+      "card4Title": "Nessuna conversione o calcolo manuale",
+      "card4Desc": "Scrivi in cm o ft/in. Differenze, percentuali e rapporti dimensionali vengono elaborati in tempo reale durante la digitazione.",
+      "card5Title": "La scala reale contestualizza l'essere umano",
+      "card5Desc": "Guarda una persona di 175 cm accanto all'Everest (8.848 m) per apprezzare l'effettiva grandezza della natura.",
+      "card6Title": "Esportazione visiva in un clic",
+      "card6Desc": "Scarica file PNG ad alta risoluzione o genera link per social media, presentazioni o forum di discussione."
     },
     "section4": {
-      "eyebrow": "Anwendung",
-      "title": "Körpergrößen vergleichen: Beliebte Beispiele und Use-Cases",
-      "description": "Häufige Szenarien, in denen die visuelle Skalierung sofort Klarheit über Größenunterschiede schafft.",
+      "eyebrow": "Esempi pratici",
+      "title": "Confrontare le Altezze: Esempi e Scenari Quotidiani",
+      "description": "Casi reali in cui una resa visiva in scala apporta immediata chiarezza rispetto ai soli numeri.",
       "useCases": [
         {
-          "tag": "PAARE UND FREUNDE",
-          "quote": "„Warte mal, wie viel größer bist du eigentlich genau als ich?“",
-          "desc": "Trage beide Größen ein und sieh den genauen Unterschied im Diagramm. 10 cm Unterschied fallen sofort ins Auge.",
-          "try": "165 CM + 178 CM · 13 CM ABSTAND (7,9 %)"
+          "tag": "COPPIE E AMICI",
+          "quote": "“Aspetta un attimo, di quanto sei più alto di me esattamente?”",
+          "desc": "Inserisci entrambe le altezze e visualizza lo stacco preciso. 10 cm di differenza si notano subito a colpo d'occhio.",
+          "try": "165 CM + 178 CM · SCARTO DI 13 CM (7,9%)"
         },
         {
-          "tag": "SPORT UND ATHLETEN",
-          "quote": "„Wer hat auf dem Spielfeld wirklich den Größenvorteil?“",
-          "desc": "Vergleiche NBA-Basketballer, NFL-Spieler oder Kletterer miteinander, um den echten Reichweitenvorteil zu sehen.",
-          "try": "NBA-STARTER 200 CM · NFL-LINEBACKER 188 CM · KLETTERER 174 CM"
+          "tag": "SPORT ED ATLETI",
+          "quote": "“Chi ha davvero il vantaggio di statura sul parquet?”",
+          "desc": "Confronta atleti della NBA o di altri sport per valutare l'effettivo vantaggio di altezza e allungo.",
+          "try": "TITOLARE NBA 200 CM · LINEBACKER NFL 188 CM · CLIMBER 174 CM"
         },
         {
-          "tag": "ANIME UND FANDOM",
-          "quote": "„Das Wiki nennt eine Zahl, aber wie sieht das nebeneinander aus?“",
-          "desc": "Anime-Charaktere aus verschiedenen Welten maßstabsgetreu nebeneinander: Goku (175 cm), Vegeta (164 cm), Piccolo (226 cm) und Levi (160 cm).",
+          "tag": "ANIME E FANDOM",
+          "quote": "“La wiki dice un numero, ma come appaiono vicini nella realtà?”",
+          "desc": "Personaggi anime a grandezza fedele: Goku (175 cm), Vegeta (164 cm), Piccolo (226 cm) e Levi (160 cm).",
           "try": "GOKU 175 CM · VEGETA 164 CM · PICCOLO 226 CM · LEVI 160 CM"
         },
         {
-          "tag": "OBJEKTE UND LANDMARKEN",
-          "quote": "„Ich hatte keine Vorstellung, wie gewaltig das in Wirklichkeit ist.“",
-          "desc": "Platziere eine Person neben die Angel Falls (979 m), eine 203 cm hohe Zimmertür oder eine Deckenhöhe von 2,60 m.",
-          "try": "MENSCH 175 CM + CHRYSLER BUILDING 319 M + MT EVEREST 8.848 M"
+          "tag": "OGGETTI E MONUMENTI",
+          "quote": "“Non avevo idea di quanto fosse mastodontico dal vivo.”",
+          "desc": "Posiziona una persona accanto alle cascate Salto Angel (979 m), a una porta standard (203 cm) o al soffitto di casa.",
+          "try": "PERSONA 175 CM + CHRYSLER BUILDING 319 M + MONTE EVEREST 8.848 M"
         },
         {
-          "tag": "ICH VS. PROMINENTE",
-          "quote": "„Moment mal, die sind genauso groß wie ich?“",
-          "desc": "Vergleiche dich mit Stars wie Tom Cruise, The Rock oder Taylor Swift anhand veröffentlichter biographischer Daten.",
-          "try": "DU + TOM CRUISE 170 CM · DWAYNE JOHNSON 196 CM · TAYLOR SWIFT 178 CM"
+          "tag": "IO CONTRO I VIP",
+          "quote": "“Davvero sono alto esattamente quanto loro?”",
+          "desc": "Confrontati con celebrità come Tom Cruise, The Rock o Taylor Swift usando dati biografici attendibili.",
+          "try": "TU + TOM CRUISE 170 CM · DWAYNE JOHNSON 196 CM · TAYLOR SWIFT 178 CM"
         },
         {
-          "tag": "PLANUNG UND RAUMGESTALTUNG",
-          "quote": "„Passt dieses Möbelstück eigentlich wirklich in mein Zimmer?“",
-          "desc": "Füge Türrahmen, Schränke oder Deckenhöhen neben einer Person ein, um Proportionen vor dem Möbelkauf zu prüfen.",
-          "try": "PERSON 185 CM · STANDARDTÜR 203 CM · DECKENHÖHE 260 CM"
+          "tag": "DESIGN E SPAZI",
+          "quote": "“Questo mobile entrerà davvero nella mia stanza?”",
+          "desc": "Inserisci il telaio di una porta o l'altezza del soffitto a fianco di una persona prima di comprare arredamento.",
+          "try": "PERSONA 185 CM · PORTA STANDARD 203 CM · SOFFITTO 260 CM"
         }
       ],
-      "tableTitle": "Größenunterschied-Tabelle in Fuß, Zoll und Zentimetern",
-      "tableDesc": "Sieben alltagsnahe Beispiele für Paare und Personen, dargestellt in Fuß, Zoll, Zentimetern und prozentualen Verhältnissen."
+      "tableTitle": "Tabella di differenza altezza in piedi, pollici e centimetri",
+      "tableDesc": "Sette scenari quotidiani per confrontare coppie e persone in piedi, pollici, centimetri e percentuali."
     },
     "section5": {
-      "eyebrow": "Vorteile",
-      "title": "Warum unser Größenvergleichs-Tool wählen?",
-      "description": "Professionelle Werkzeuge. Null Barrieren. Keine Registrierung.",
+      "eyebrow": "Punti di forza",
+      "title": "Perché Scegliere il Nostro Calcolatore di Confronto Altezza?",
+      "description": "Strumenti completi. Massima immediatezza. Nessuna registrazione.",
       "features": [
         {
-          "title": "Echtzeit-Höhengenerator",
-          "desc": "Das Diagramm aktualisiert sich live bei jedem Tastendruck ohne Neuladen der Seite."
+          "title": "Generatore istantaneo di altezze",
+          "desc": "Il grafico si aggiorna in tempo reale mentre digiti, senza ricaricare la pagina."
         },
         {
-          "title": "Individuelle Avatare",
-          "desc": "Sechs Farben und männliche/weibliche Silhouetten halten das Diagramm auch bei 10+ Personen übersichtlich."
+          "title": "Sagome personalizzabili",
+          "desc": "Sei colori e silhouette maschili/femminili per distinguere fino a oltre 10 soggetti."
         },
         {
-          "title": "Prominenten-Datenbank",
-          "desc": "1.294 Stars aus Sport, Film, Musik und Geschichte, direkt in der Datenbank erfasst."
+          "title": "Database celebrità",
+          "desc": "1.294 personaggi noti tra sportivi, attori e figure storiche già censiti."
         },
         {
-          "title": "Fiktionale Charaktere",
-          "desc": "1.138 Figuren aus Anime, Comics und Fantasy nach offiziellen Franchise-Quellen."
+          "title": "Eroi di fantasia",
+          "desc": "1.138 personaggi di anime, fumetti e videogiochi da fonti ufficiali."
         },
         {
-          "title": "Objekte & Bauwerke",
-          "desc": "264 verifizierte Objekte, Tiere und Wahrzeichen vom Mammutbaum bis zum Mount Everest."
+          "title": "Oggetti e monumenti",
+          "desc": "264 riferimenti del mondo reale tra animali, grattacieli e vette montuose."
         },
         {
-          "title": "Bild-zu-Größe-Messung",
-          "desc": "Lade Fotos hoch und füge reale Aufnahmen automatisch maßstabsgetreu ins Diagramm ein."
+          "title": "Misurazione da foto",
+          "desc": "Carica una foto reale e inseriscila nel grafico a grandezza fedele."
         },
         {
-          "title": "Sauberer PNG-Export",
-          "desc": "Lade dein Diagramm kostenlos in hoher Auflösung herunter – ideal zum Teilen."
+          "title": "Download PNG pulito",
+          "desc": "Scarica grafici ad alta risoluzione in modo illimitato e gratuito."
         },
         {
-          "title": "Teilbare Direktlinks",
-          "desc": "Erstelle einen Link zu deinem fertigen Diagramm, der 7 Tage lang ohne Konto aktiv bleibt."
+          "title": "Link condivisibili",
+          "desc": "Crea un link diretto al tuo grafico valido per 7 giorni senza dover effettuare il login."
         }
       ]
     },
     "section6": {
-      "eyebrow": "Genauigkeit",
-      "title": "Wie verlässlich ist das Größenvergleichs-Diagramm?",
+      "eyebrow": "Affidabilità",
+      "title": "Quanto è Preciso il Grafico di Confronto Altezza?",
       "items": [
         {
-          "title": "Exakte Skalierungs-Engine",
-          "desc": "Jede Figur wird exakt nach deinem Zahlenwert gezeichnet: 170 cm rendern auf der Leinwand als 170,00 Einheiten."
+          "title": "Motore a scala esatta",
+          "desc": "Ogni sagoma rispecchia il dato esatto: 170 cm corrispondono a 170,00 unità esatte sull'asse."
         },
         {
-          "title": "Referenzwerte",
-          "desc": "Veröffentlichte Maße weichen oft zwischen Quellen ab. Wir nutzen stets die jüngsten verifizierten Angaben seriöser Register."
+          "title": "Valori di riferimento",
+          "desc": "Poiché le fonti pubbliche possono differire, adottiamo i dati confermati più recenti."
         },
         {
-          "title": "Promi-Angaben",
-          "desc": "Entstammen biographischen Registern und offiziellen Maßblättern. Keine ungeprüften Fanschätzungen."
+          "title": "Altezze dei vip",
+          "desc": "Tratte da archivi anagrafici e schede biografiche certificate, senza stime arbitrarie."
         },
         {
-          "title": "Offizielles Quellenmaterial",
-          "desc": "Charaktergrößen basieren auf lizenzierten Handbüchern und autorisierten Produktionsunterlagen."
+          "title": "Materiale originale",
+          "desc": "I dati sui personaggi fittizi provengono da manuali di produzione autorizzati."
         },
         {
-          "title": "Bauwerke & Tierwelt",
-          "desc": "Bauwerke nach Bauplänen verifiziert. Tiermaße messen die Schulterhöhe (Widerrist), nicht die Gesamtlänge."
+          "title": "Edifici e fauna",
+          "desc": "Monumenti verificati da rilievi tecnici. Negli animali si misura l'altezza al garrese (spalla)."
         }
       ]
     },
     "section7": {
-      "eyebrow": "Funktionsübersicht",
-      "title": "Auf maximale Einfachheit ausgelegt",
-      "description": "Alle Funktionen für den perfekten Größenvergleich – ohne jede Einstiegshürde.",
-      "thFeature": "Funktion",
-      "thFree": "Was du kostenlos erhältst",
+      "eyebrow": "Panoramica",
+      "title": "Un Sito Costruito per la Massima Semplicità",
+      "description": "Tutto ciò che serve per confrontare altezze con estrema precisione e zero ostacoli.",
+      "thFeature": "Caratteristica",
+      "thFree": "Cosa ottieni gratuitamente",
       "rows": [
         [
-          "Figuren pro Diagramm",
-          "Unbegrenzt – alle auf einer gemeinsamen Skala"
+          "Persone per grafico",
+          "Illimitate — tutte sullo stesso asse proporzionale"
         ],
         [
-          "Vordefinierte Vorlagen",
-          "2.696 Einträge (1.294 Prominente, 1.138 Charaktere, 264 Objekte)"
+          "Altezze già pronte",
+          "2.696 riferimenti (1.294 celebrità, 1.138 personaggi, 264 oggetti)"
         ],
         [
-          "Unterstützte Einheiten",
-          "Zentimeter, Meter, Fuß und Zoll (jederzeit wechselbar)"
+          "Unità di misura",
+          "Centimetri, metri, piedi e pollici (conversione immediata)"
         ],
         [
-          "Skalierungsbereich",
-          "Von wenigen Zentimetern bis 10.000 Meter mit automatischem Zoom"
+          "Estensione di scala",
+          "Da pochi centimetri fino a 10.000 metri con auto-zoom"
         ],
         [
-          "Exportoptionen",
-          "Kostenloser PNG-Download und teilbare Links (7 Tage aktiv)"
+          "Opzioni di salvataggio",
+          "Download PNG in alta definizione e link condivisibili (7 giorni)"
         ],
         [
-          "Kosten & Konto",
-          "0,00 € für immer – keine Registrierung, keine Abos, keine Zahlungsdaten"
+          "Costo e registrazione",
+          "0,00 € per sempre — senza abbonamenti né carte di credito"
         ]
       ]
     },
     "section8": {
-      "title": "Häufig gestellte Fragen (FAQ)",
-      "description": "Antworten auf die wichtigsten Fragen zu Diagrammskalierung, Einheiten und Datenquellen",
+      "title": "Domande Frequenti sul Confronto Altezza",
+      "description": "Risposte autorevoli a dubbi comuni su proporzioni, conversioni e fonti",
       "badge": "CENTRO ASSISTENZA"
     },
     "section9": {
-      "eyebrow": "Entdecken",
-      "title": "Online-Werkzeuge & Rechner rund um Körpergröße",
-      "launchTool": "Rechner starten",
-      "privacyTitle": "Datenschutz & Nutzerrechte",
-      "privacyText": "Wir verkaufen deine personenbezogenen Daten niemals an Dritte. Unter Datenschutzgesetzen wie DSGVO und CCPA hast du jederzeit das Recht auf Auskunft und Widerspruch. Erfahre mehr in unserer ",
-      "privacyLink": "Datenschutzerklärung",
-      "privacyTextEnd": " oder kontaktiere uns direkt. Die normale Nutzung des Tools erfordert keinerlei Registrierung.",
+      "eyebrow": "Risorse",
+      "title": "Strumenti e Calcolatori Online Dedicati all'Altezza",
+      "launchTool": "Apri Strumento",
+      "privacyTitle": "Tutela dei Dati e Diritti Utente",
+      "privacyText": "Non vendiamo le tue informazioni personali a terze parti. Ai sensi del GDPR e delle normative sulla privacy, puoi richiedere la cancellazione dei dati in qualsiasi momento. Consulta la nostra ",
+      "privacyLink": "Informativa sulla Privacy",
+      "privacyTextEnd": " o contattaci. L'uso ordinario dello strumento non raccoglie dati personali.",
       "cards": [
         {
-          "label": "Höhendifferenz-Rechner",
-          "desc": "Exakter Größenabstand in cm und Zoll, prozentuale Abweichung und Referenztabelle für Paare.",
-          "badge": "Werkzeug",
+          "label": "Calcolatore di Differenza Altezza",
+          "desc": "Differenza esatta in cm e pollici, scarto percentuale e tabella per coppie.",
+          "badge": "Strumento",
           "href": "/height-difference-calculator"
         },
         {
-          "label": "Perzentilen-Rechner (Größe & Gewicht)",
-          "desc": "Vergleiche deine Werte mit WHO- und CDC-Bevölkerungsdaten nach Alter und Geschlecht.",
-          "badge": "Werkzeug",
+          "label": "Calcolatore Percentili Altezza e Peso",
+          "desc": "Confronta le tue misure con le curve di crescita OMS e CDC per età e sesso.",
+          "badge": "Strumento",
           "href": "/height-weight-percentile-calculator"
         },
         {
-          "label": "Idealgewichts-Rechner",
-          "desc": "Formeln nach Devine, Robinson und Hamwi im direkten Vergleich mit gesunden Gewichtstabellen.",
-          "badge": "Werkzeug",
+          "label": "Calcolatore del Peso Corporeo Ideale",
+          "desc": "Formule di Devine, Robinson e Hamwi con fasce di peso corporeo sano.",
+          "badge": "Strumento",
           "href": "/ideal-body-weight-calculator"
         },
         {
-          "label": "Bild-zu-Größe-Rechner",
-          "desc": "Körpergröße ohne Maßband direkt anhand eines Fotos messen mit Genauigkeits-Tipps.",
-          "badge": "Werkzeug",
+          "label": "Calcolatore Immagine in Altezza",
+          "desc": "Misura la statura partendo da una foto senza bisogno del metro da sarto.",
+          "badge": "Strumento",
           "href": "/image-to-height"
         },
         {
-          "label": "Größen-Vorhersagerechner",
-          "desc": "Erwachsenengröße bei Kindern nach Khamis-Roche und Mid-Parental-Methode berechnen.",
-          "badge": "Werkzeug",
+          "label": "Calcolatore Previsione Altezza Bambini",
+          "desc": "Stima la futura statura da adulti nei ragazzi con il metodo scientifico Khamis-Roche.",
+          "badge": "Strumento",
           "href": "/height-predictor"
         }
       ]

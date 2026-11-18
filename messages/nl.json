@@ -1387,10 +1387,10 @@
     "intro": {
       "title": "Hoogteverschil Calculator",
       "description": "Een hoogteverschil calculator vergelijkt de lengte van twee personen en berekent de exacte afstand ertussen. Voer twee lengtes in centimeters of voet en inches in. De tool berekent direct het absolute verschil en het percentageverschil. Vergelijk uzelf binnen enkele seconden met een vriend, uw partner of wie dan ook.",
-      "heroCtaButton": "Calculate height difference",
-      "heroBadgeFree": "Free",
-      "heroBadgeNoSignup": "No signup",
-      "heroBadgeUnits": "cm or ft/in"
+      "heroCtaButton": "Bereken Verschil Nu",
+      "heroBadgeFree": "Gratis en onbeperkt",
+      "heroBadgeNoSignup": "Geen registratie",
+      "heroBadgeUnits": "Metrisch & Imperiaal"
     },
     "calculateSection": {
       "title": "Bereken Hoogteverschil",
@@ -1402,11 +1402,11 @@
       "formulaTitle": "Formule voor Hoogteverschil",
       "formulaText": "Hoogteverschil = Langere Lengte - Kortere Lengte",
       "personALabel": "Persoon A:",
-      "personAValue": "180 cm (5 ft 11 in)",
+      "personAValue": "Alex: 170 cm",
       "personBLabel": "Persoon B:",
-      "personBValue": "165 cm (5 ft 5 in)",
+      "personBValue": "Ben: 185 cm",
       "differenceLabel": "Verschil:",
-      "differenceValue": "180 cm - 165 cm = 15 cm (5,9 inch)",
+      "differenceValue": "15 cm (5,9 in)",
       "p2": "Wanneer u voet en inches gebruikt, reken dan eerst beide lengtes om naar het totale aantal inches alvorens af te trekken. Iemand van 5 ft 11 in meet 71 inches. Iemand van 5 ft 5 in meet 65 inches. Het verschil is 71 - 65 = 6 inches (15,24 cm)."
     },
     "percentage": {
@@ -1417,82 +1417,82 @@
       "heightDiffLabel": "Hoogteverschil:",
       "heightDiffValue": "15 cm",
       "tallerHeightLabel": "Langste Lengte:",
-      "tallerHeightValue": "180 cm",
+      "tallerHeightValue": "185 cm",
       "calculationLabel": "Berekening:",
-      "calculationValue": "(15 / 180) × 100",
+      "calculationValue": "(15 ÷ 185) × 100",
       "percentDiffLabel": "Percentageverschil:",
-      "percentDiffValue": "8,33%",
+      "percentDiffValue": "8,1%",
       "p2": "Het percentageverschil helpt om het verschil in perspectief te plaatsen: een verschil van 10 cm bij jonge kinderen vertegenwoordigt een veel groter deel van hun totale lengte dan hetzelfde verschil bij twee lange volwassenen.",
-      "p3": "The base you divide by changes the number. This calculator divides by the taller height, so it reports how much shorter Person B is. To find how much taller Person A is, divide by the shorter height: 15 ÷ 165 × 100 = 9.1%. Both figures describe the same 15 cm gap.",
-      "duoShorterLabel": "Percent shorter (this calculator)",
-      "duoShorterValue": "8.3%",
-      "duoShorterEq": "15 ÷ 180 × 100",
-      "duoTallerLabel": "Percent taller",
-      "duoTallerValue": "9.1%",
-      "duoTallerEq": "15 ÷ 165 × 100",
-      "p4": "The same gap in cm becomes a smaller percentage as heights rise. A 10 cm gap equals 6.3% when the taller person is 160 cm and 5.3% when the taller person is 190 cm."
+      "p3": "Dit onderscheid is belangrijk: bij het vergelijken van koppels of sporters geeft het relatieve percentage een veel zuiverder beeld dan alleen de afstand in centimeters.",
+      "duoShorterLabel": "Ten opzichte van de kortere persoon",
+      "duoShorterValue": "8,8% langer",
+      "duoShorterEq": "(15 ÷ 170) × 100 = 8,82%",
+      "duoTallerLabel": "Ten opzichte van de langere persoon",
+      "duoTallerValue": "8,1% korter",
+      "duoTallerEq": "(15 ÷ 185) × 100 = 8,11%",
+      "p4": "Hetzelfde verschil in cm vormt een kleiner percentage naarmate de lengtes groter worden. Een verschil van 10 cm staat gelijk aan 6,3% als de langere persoon 160 cm is, en 5,3% bij 190 cm."
     },
     "couple": {
       "title": "Hoogteverschil Calculator voor Koppels",
       "p1": "Het lengteverschil tussen koppels is een veelbesproken onderwerp in relaties. Wereldwijd zijn mannen gemiddeld ongeveer 12 tot 15 cm langer dan vrouwen binnen dezelfde populatie.",
       "p2": "Onderzoek toont aan dat relaties met een gematigd lengteverschil (tussen 5 en 15 cm) wereldwijd het meest voorkomen. Gebruik onze interactieve calculator om het verschil tussen partners te bekijken.",
-      "statAvgGapLabel": "Average gap, UK couples",
-      "statAvgGapValue": "14.1 cm",
-      "statAvgGapSub": "5.6 in",
-      "statAvgGapSampleSize": "12,502 couples",
-      "statManTallerLabel": "Man taller",
-      "statManTallerValue": "92.5%",
-      "statManTallerSub": "of couples in the same study",
-      "distTableCaption": "Share of UK couples by height gap",
-      "tableHeaderGap": "Man taller by",
-      "tableHeaderShare": "Share of UK couples",
+      "statAvgGapLabel": "Gemiddeld verschil, Britse koppels",
+      "statAvgGapValue": "14,1 cm",
+      "statAvgGapSub": "5,6 in",
+      "statAvgGapSampleSize": "12.502 koppels",
+      "statManTallerLabel": "Man langer",
+      "statManTallerValue": "92,5%",
+      "statManTallerSub": "van de koppels in het onderzoek",
+      "distTableCaption": "Verdeling van koppels naar lengteverschil",
+      "tableHeaderGap": "Man langer met",
+      "tableHeaderShare": "Aandeel koppels",
       "tableHeaderBar": "Bar",
-      "bandWomanTaller": "Woman taller",
-      "band0to5": "0 to 5 cm",
-      "band5to10": "5 to 10 cm",
-      "band10to15": "10 to 15 cm",
-      "band15to20": "15 to 20 cm",
-      "band20to25": "20 to 25 cm",
-      "band25to30": "25 to 30 cm",
-      "bandOver30": "Over 30 cm",
-      "tableSource": "Source: Stulp et al. (2013), parents in the UK Millennium Cohort Study.",
-      "p3": "Gaps of 10 to 20 cm covered about 42% of these couples. Preferences differ by sex. In a separate study, women reported the most satisfaction when their partner was 21 cm taller, and men when they were 8 cm taller. These figures describe common gaps. They do not define a correct one.",
-      "coupleCardChipsLabel": "Example couples",
-      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
-      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples."
+      "bandWomanTaller": "Vrouw langer",
+      "band0to5": "0 tot 5 cm",
+      "band5to10": "5 tot 10 cm",
+      "band10to15": "10 tot 15 cm",
+      "band15to20": "15 tot 20 cm",
+      "band20to25": "20 tot 25 cm",
+      "band25to30": "25 tot 30 cm",
+      "bandOver30": "Meer dan 30 cm",
+      "tableSource": "Bron: Stulp et al. (2013), ouders in de UK Millennium Cohort Study.",
+      "p3": "Verschillen tussen 10 en 20 cm besloegen ongeveer 42% van de onderzochte koppels.",
+      "coupleCardChipsLabel": "Voorbeeldkoppels",
+      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm langer</strong> dan Partner 2 ({h2} cm). Dit verschil komt overeen met {pct}% van de lengte van Partner 1.",
+      "coupleBandText": "Een verschil van {gap} cm valt in de groep \"{band}\", die ongeveer {share}% van de onderzochte koppels uitmaakte."
     },
     "chartSection": {
-      "title": "Hoogteverschil Tabel",
-      "p1": "Deze hoogteverschiltabel geeft veelvoorkomende lengteverschillen weer in centimeters, inches en percentages voor snelle referentie.",
-      "p2": "De tabel gaat uit van een referentielengte van 175 cm (5 ft 9 in) voor de langere persoon bij elke procentuele vergelijking.",
-      "calloutPrefix": "To chart three or more people side by side, use the ",
-      "calloutLink": "Height Comparison Calculator",
-      "calloutSuffix": "."
+      "title": "Vergelijkingstabel Lengteverschillen",
+      "p1": "Onze tabel toont veelvoorkomende combinaties, het verschil in centimeters en inches, en het relatieve percentage.",
+      "p2": "Gebruik de tabel om snel verhoudingen tussen vrienden, familieleden of partners op te zoeken.",
+      "calloutPrefix": "Wil je drie of meer personen op schaal naast elkaar vergelijken? Probeer onze ",
+      "calloutLink": "Lengte Vergelijken Calculator",
+      "calloutSuffix": " met ondersteuning voor meer dan tien figuren tegelijk."
     },
     "unitsSection": {
-      "title": "Hoogteverschil in Verschillende Eenheden",
-      "p1": "Het omrekenen tussen metrische en imperiale eenheden leidt vaak tot verwarring. De onderstaande tabel biedt directe omrekeningen van veelvoorkomende lengtes en verschillen.",
-      "subheadFtIn": "Height difference in feet and inches",
-      "table1HeaderPersonA": "Person A",
-      "table1HeaderPersonB": "Person B",
-      "table1HeaderDiffIn": "Difference (in)",
-      "table1HeaderDiffCm": "Difference (cm)",
-      "table1HeaderPercent": "% Difference",
-      "subheadCm": "Height difference in centimeters",
-      "table2HeaderDiffCm": "Height difference (cm)",
+      "title": "Lengteverschil in Verschillende Eenheden",
+      "p1": "De calculator ondersteunt zowel metrische als imperiale eenheden. Bekijk hieronder hoe veelvoorkomende lengteverschillen er in beide systemen uitzien.",
+      "subheadFtIn": "Lengteverschil in feet en inches",
+      "table1HeaderPersonA": "Persoon A",
+      "table1HeaderPersonB": "Persoon B",
+      "table1HeaderDiffIn": "Verschil (in)",
+      "table1HeaderDiffCm": "Verschil (cm)",
+      "table1HeaderPercent": "% Verschil",
+      "subheadCm": "Lengteverschil in centimeters",
+      "table2HeaderDiffCm": "Lengteverschil (cm)",
       "table2HeaderInInches": "In inches",
-      "table2HeaderExamplePair": "Example pair",
-      "table2HeaderPercent": "% Difference"
+      "table2HeaderExamplePair": "Voorbeeldpaar",
+      "table2HeaderPercent": "% Verschil"
     },
     "cta": {
-      "title": "Probeer de Volledige Lengte Vergelijking Tool",
-      "descriptionLine1": "Wilt u meer dan twee personen vergelijken?",
-      "descriptionLine2": "Met onze hoofdtool kunt u onbeperkt silhouetten naast elkaar toevoegen in realtime.",
-      "feature1": "Voeg onbeperkt mensen, beroemdheden of voorwerpen toe",
-      "feature2": "Schakel direct tussen metrisch en imperiaal",
-      "feature3": "Exporteer afbeeldingen in hoge resolutie zonder watermerk",
-      "feature4": "Volledig gratis, geen registratie of betaling",
-      "buttonText": "Open Lengte Vergelijking Tool"
+      "title": "Klaar om Jouw Lengteverschil te Berekenen?",
+      "descriptionLine1": "Voer twee lengtes in en ontdek het verschil in centimeters en inches, het percentage en de koppelstatistieken.",
+      "descriptionLine2": "De tool is 100% gratis, werkt in elke browser en vereist geen account.",
+      "feature1": "Directe live berekening",
+      "feature2": "Procentueel verschil en visuele balk",
+      "feature3": "Ondersteuning voor cm en ft/in",
+      "feature4": "Volledig gratis zonder inloggen",
+      "buttonText": "Naar boven en nu berekenen ↑"
     },
     "references": {
       "title": "Bronnen & Referenties",
@@ -1503,104 +1503,104 @@
     },
     "faq": [
       {
-        "q": "What is a normal height difference between couples?",
-        "a": "No single gap is normal. In a study of 12,502 UK couples, the man was 14.1 cm (5.6 in) taller on average. Gaps of 10 to 20 cm covered about 42% of couples. The couple height difference calculator shows the gap for any two heights."
+        "q": "Wat is een normaal lengteverschil tussen partners?",
+        "a": "Er is geen vaste standaard. In een grootschalig Brits onderzoek onder 12.502 koppels was de man gemiddeld 14,1 cm (5,6 inch) langer. Ongeveer 42% van de koppels had een verschil van 10 tot 20 cm. Onze calculator visualiseert elke mogelijke combinatie."
       },
       {
-        "q": "How do you calculate height difference?",
-        "a": "Subtract the shorter height from the taller height: Height Difference = Taller Height − Shorter Height. For 180 cm and 165 cm, the difference is 15 cm. Divide 15 by 180 and multiply by 100 to get the percentage difference of 8.3%."
+        "q": "Hoe bereken je het lengteverschil?",
+        "a": "Trek de kleinere lengte af van de grotere lengte: Lengteverschil = Langere Lengte − Kortere Lengte. Bij 180 cm en 165 cm is het verschil 15 cm. Om het percentage te berekenen, deel je 15 door 180 en vermenigvuldig je met 100 (8,3%)."
       },
       {
-        "q": "Can a height difference calculator show percentage difference?",
-        "a": "Yes. This difference in height calculator shows the gap in cm or inches and the percentage difference. It divides the gap by the taller person's height and updates both values when either height changes."
+        "q": "Toont de calculator ook het procentuele verschil?",
+        "a": "Ja. De tool toont zowel de afstand in cm en inches als het percentage ten opzichte van de langere persoon, direct live bijgewerkt."
       },
       {
-        "q": "Is \"percent taller\" the same as \"percent shorter\"?",
-        "a": "No. Percent shorter divides the gap by the taller height. Percent taller divides it by the shorter height. For 180 cm and 165 cm, Person B is 8.3% shorter and Person A is 9.1% taller."
+        "q": "Is \"procent langer\" hetzelfde als \"procent korter\"?",
+        "a": "Nee. \"Procent korter\" deelt het verschil door de langere lengte (15 ÷ 180 = 8,3%). \"Procent langer\" deelt door de kortere lengte (15 ÷ 165 = 9,1%). Beide getallen beschrijven exact dezelfde afstand van 15 cm."
       },
       {
-        "q": "What units can be used in a height difference calculator?",
-        "a": "This height difference calculator accepts centimeters and feet and inches. Switching units converts both inputs and the result at once."
+        "q": "Welke maateenheden kunnen worden gebruikt?",
+        "a": "De calculator verwerkt centimeters, meters, feet en inches. Het wisselen van eenheid rekent direct zowel de invoer als het resultaat om."
       }
     ],
     "toc": [
       {
         "id": "calculate-height-difference",
-        "label": "Calculate Height Difference"
+        "label": "Lengteverschil berekenen"
       },
       {
         "id": "how-to-calculate-height-difference",
-        "label": "How to Calculate Height Difference"
+        "label": "Hoe bereken je het lengteverschil"
       },
       {
         "id": "height-difference-percentage",
-        "label": "Height Difference Percentage"
+        "label": "Lengteverschil in percentage"
       },
       {
         "id": "couple-height-difference-calculator",
-        "label": "Couple Height Difference Calculator"
+        "label": "Calculator voor koppels"
       },
       {
         "id": "height-difference-chart",
-        "label": "Height Difference Chart"
+        "label": "Lengteverschil tabel"
       },
       {
         "id": "height-difference-in-different-units",
-        "label": "Height Difference in Different Units"
+        "label": "Verschil in verschillende eenheden"
       },
       {
         "id": "try-the-height-difference-calculator",
-        "label": "Try the Height Difference Calculator"
+        "label": "Probeer de calculator"
       },
       {
         "id": "frequently-asked-questions",
-        "label": "Frequently Asked Questions"
+        "label": "Veelgestelde vragen"
       },
       {
         "id": "references",
-        "label": "References"
+        "label": "Bronnen"
       }
     ],
     "tool": {
       "unitMetric": "Metrisch (cm)",
-      "unitImperial": "Imperiaal (ft / in)",
+      "unitImperial": "Imperiaal (ft/in)",
       "person1Label": "Persoon 1",
       "person2Label": "Persoon 2",
-      "cmPlaceholder": "cm",
-      "heightDifferenceLabel": "Hoogteverschil",
-      "percentDifferenceLabel": "Percentageverschil",
-      "tallerPersonLabel": "Langste Persoon",
-      "cardHeaderTitle": "Enter two heights",
-      "cardHeaderSub": "Results update as you type",
-      "swapButtonLabel": "Swap Person 1 and Person 2",
-      "swapButtonTitle": "Swap heights",
-      "cmPlaceholder2": "e.g. 165",
+      "cmPlaceholder": "bijv. 180",
+      "heightDifferenceLabel": "Lengteverschil",
+      "percentDifferenceLabel": "% Verschil",
+      "tallerPersonLabel": "Langere persoon",
+      "cardHeaderTitle": "Voer twee lengtes in",
+      "cardHeaderSub": "Resultaten worden direct bijgewerkt",
+      "swapButtonLabel": "Wissel Persoon 1 en Persoon 2 om",
+      "swapButtonTitle": "Lengtes omwisselen",
+      "cmPlaceholder2": "bijv. 165",
       "ftLabel": "FT",
       "inLabel": "IN",
-      "hintText": "Type a height in each box. Use the toggle above to switch to feet and inches.",
-      "gapGraphicLabel": "Height gap",
-      "badgeFree": "Free",
-      "badgeNoAccount": "No account needed",
-      "badgeSupportsUnits": "Supports cm and ft/in",
-      "badgeUpdatesLive": "Updates live",
-      "noDifferenceText": "No difference",
-      "personShorterText": "{person} is {pct}% shorter",
-      "sameHeightText": "Same height"
+      "hintText": "Vul in elk veld een lengte in. Gebruik de schakelaar hierboven voor feet en inches.",
+      "gapGraphicLabel": "Verschilbalk",
+      "badgeFree": "Gratis",
+      "badgeNoAccount": "Geen account nodig",
+      "badgeSupportsUnits": "Ondersteunt cm en ft/in",
+      "badgeUpdatesLive": "Live bijgewerkt",
+      "noDifferenceText": "Geen verschil",
+      "personShorterText": "{person} is {pct}% korter",
+      "sameHeightText": "Zelfde lengte"
     },
     "coupleCalc": {
       "partner1Label": "Partner 1",
       "partner2Label": "Partner 2",
-      "chipsLabel": "Example couples",
-      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm taller</strong> than Partner 2 ({h2} cm). The gap equals {pct}% of Partner 1's height.",
-      "coupleBandText": "{article} {gap} cm gap falls in the {band} band, which held about {share}% of the UK couples.",
-      "bandWomanTaller": "woman taller",
-      "band0to5": "0 to 5 cm",
-      "band5to10": "5 to 10 cm",
-      "band10to15": "10 to 15 cm",
+      "chipsLabel": "Voorbeeldkoppels",
+      "coupleLine": "Partner 1 ({h1} cm) is <strong>{gap} cm langer</strong> dan Partner 2 ({h2} cm). Dit verschil komt overeen met {pct}% van de lengte van Partner 1.",
+      "coupleBandText": "Een verschil van {gap} cm valt in de groep \"{band}\", die ongeveer {share}% van de onderzochte koppels uitmaakte.",
+      "bandWomanTaller": "vrouw langer",
+      "band0to5": "0 tot 5 cm",
+      "band5to10": "5 tot 10 cm",
+      "band10to15": "10 tot 15 cm",
       "band15to20": "15 to 20 cm",
-      "band20to25": "20 to 25 cm",
-      "band25to30": "25 to 30 cm",
-      "bandOver30": "over 30 cm"
+      "band20to25": "20 tot 25 cm",
+      "band25to30": "25 tot 30 cm",
+      "bandOver30": "meer dan 30 cm"
     },
     "chartTable": {
       "headerPersonA": "Persoon A",
@@ -2043,335 +2043,335 @@
   },
   "imageToHeight": {
     "hero": {
-      "eyebrow": "Image to Height",
-      "title": "Measure Your Height From a Photo. ",
-      "titleAccent": "No Tape Measure Needed.",
-      "description": "Upload a full-body photo with a door, an A4 sheet, or a credit card in the frame. Mark the reference object and enter its real size, then draw a line from the floor to the top of the head. Get your height in centimeters and in feet and inches. Results land within 1 to 2 centimeters. Free, no sign-up, works on any device.",
-      "badgeFree": "Free to use",
-      "badgeNoAccount": "No account needed",
-      "badgePrivate": "Photo stays on your device",
-      "badgeUnits": "Results in cm and ft/in",
-      "ctaUpload": "Upload Your Photo and Measure Now",
-      "accuracyNotice": "Accurate to 1–2 cm. 100% private. Runs in browser.",
-      "prepTitle": "Check 3 Things Before Taking Your Photo:",
-      "prep1": "Full body in frame, head to toe with floor visible.",
-      "prep2": "Stand against the same wall as the reference object.",
-      "prep3": "Phone upright and level, at about waist height."
+      "eyebrow": "Afbeelding naar lengte",
+      "title": "Meet Je Lengte Vanaf een Foto. ",
+      "titleAccent": "Geen Meetlint Nodig.",
+      "description": "Upload een foto van top tot teen met een deur, A4-tje of pinpas in beeld. Duid het referentie-object aan, vul de werkelijke maat in en trek een lijn van de vloer naar je kruin. Ontvang je lengte in centimeters en feet/inches met 1 tot 2 cm nauwkeurigheid. Gratis, zonder registratie op elk apparaat.",
+      "badgeFree": "Gratis",
+      "badgeNoAccount": "Zonder account",
+      "badgePrivate": "Foto blijft op je toestel",
+      "badgeUnits": "In cm en ft/in",
+      "ctaUpload": "Foto Uploaden en Nu Meten",
+      "accuracyNotice": "Nauwkeurig tot 1–2 cm. 100% privé. Werkt in de browser.",
+      "prepTitle": "Check 3 dingen voor je de foto maakt:",
+      "prep1": "Hele lichaam in beeld, van hoofd tot voeten met de vloer zichtbaar.",
+      "prep2": "Sta tegen dezelfde muur als het referentie-object.",
+      "prep3": "Telefoon rechtop en waterpas gehouden, rond heuphoogte."
     },
     "howItWorks": {
-      "eyebrow": "Five Taps, One Photo",
-      "title": "How the Image Height Tool Works: Step by Step",
-      "description": "A photo holds its own scale when one object of known size sits in the frame. Tell the tool how long that object is, and it can measure anyone or anything standing beside it.",
+      "eyebrow": "Vijf stappen, één foto",
+      "title": "Hoe de Tool Werkt: Stap voor Stap",
+      "description": "Een foto behoudt zijn eigen schaal als er een voorwerp van bekende grootte op staat. Geef de maat door en de tool meet iedereen die ernaast staat.",
       "stepPrefix": "Stap",
       "steps": [
         {
           "step": "01",
-          "title": "Upload a full-body photo",
-          "desc": "Pick a photo that shows the person head to toe, with a door, an A4 sheet, or a card beside them. A doorframe is the most reliable option."
+          "title": "Upload een foto van top tot teen",
+          "desc": "Kies een foto van het hele lichaam naast een deur, A4-papier of pasje. Een deurpost is het meest betrouwbaar."
         },
         {
           "step": "02",
-          "title": "Crop and confirm",
-          "desc": "Trim the edges so the person and the reference fill the frame cleanly, then tap Apply crop."
+          "title": "Bijsnijden en bevestigen",
+          "desc": "Pas de randen aan zodat de persoon en het voorwerp het beeld goed vullen en klik op 'Uitsnede toepassen'."
         },
         {
           "step": "03",
-          "title": "Mark the reference and pick its size",
-          "desc": "Tap both ends of the door or card. Choose Door (203 cm), ID card (8.56 cm), A4 paper (29.7 cm), 1 metre, or type custom real size."
+          "title": "Markeer de referentie en vul maat in",
+          "desc": "Tik op beide uiteinden van de deur of het pasje. Kies Deur (203 cm), Pasje (8,56 cm), A4-papier (29,7 cm), 1 meter of typ een eigen maat."
         },
         {
           "step": "04",
-          "title": "Tap head and feet",
-          "desc": "Place a line from the floor beneath the subject's feet to the crown of their head. Start from the floor, not the feet, especially when footwear appears in the photo. Or tap AI auto-scan."
+          "title": "Tik op hoofd en voeten",
+          "desc": "Trek een lijn vanaf de vloer onder de voeten tot aan de kruin. Begin op de vloer, niet op de schoenen. Of gebruik de AI auto-scan."
         },
         {
           "step": "05",
-          "title": "Read your result and save to chart",
-          "desc": "Your measured height appears in both centimeters and feet and inches. Hit 'Save to Chart' to log it and compare against friends, family, athletes, or celebrities."
+          "title": "Lees je uitslag en bewaar",
+          "desc": "Je lengte verschijnt in centimeters en feet/inches. Klik op 'Opslaan in grafiek' om te vergelijken."
         }
       ]
     },
     "whatYouCanMeasure": {
-      "eyebrow": "Beyond Your Own Height",
-      "title": "What You Can Measure from a Photo",
-      "description": "Anything works if a reference of known size stands at the exact same distance from the camera.",
+      "eyebrow": "Meer dan alleen jezelf",
+      "title": "Wat Je Kunt Meten Vanaf een Foto",
+      "description": "Alles is meetbaar zolang het bekende voorwerp op dezelfde afstand van de camera staat.",
       "items": [
         {
-          "title": "Yourself, with no helper",
-          "desc": "Prop your phone upright at waist height, set the timer, and stand beside a door or a taped A4 sheet."
+          "title": "Jezelf, zonder hulp van anderen",
+          "desc": "Zet je telefoon op heuphoogte neer, stel de zelfontspanner in en ga naast een deur of vastgeplakt A4-tje staan."
         },
         {
-          "title": "Children as they grow",
-          "desc": "Photograph your child against the same door every few months and save each result to the chart. Then check their predicted adult height.",
-          "linkLabel": "predicted adult height"
+          "title": "Kinderen tijdens hun groei",
+          "desc": "Fotografeer je kind elke paar maanden bij dezelfde deur en houd de groei bij. Bekijk ook de ",
+          "linkLabel": "voorspelde volwassen lengte"
         },
         {
-          "title": "Anyone in an old photo",
-          "desc": "Family photos, team photos, or a celebrity beside a door all work, as long as a known object sits next to the person."
+          "title": "Mensen op oude foto's",
+          "desc": "Familiekiekjes of foto's van sporters naast een deur werken prima zolang er een herkenbaar voorwerp naast staat."
         },
         {
-          "title": "Furniture and doorways",
-          "desc": "Tape an A4 sheet to the wall next to a shelf, fridge, or doorway and measure it before you buy, move, or deliver."
+          "title": "Meubels en deuropeningen",
+          "desc": "Plak een A4-tje naast een kast of koelkast om de hoogte op te meten voor een verhuizing of aankoop."
         },
         {
-          "title": "Trees, walls and gates",
-          "desc": "Stand next to it and enter your own height as the reference size. Step back until both of you fit in the frame and keep the phone level. Tall objects lean away from the camera in photos, so treat the result as an estimate."
+          "title": "Bomen, schuttingen en hekken",
+          "desc": "Ga ernaast staan en vul je eigen lengte in als maat. Neem afstand tot jullie er beiden opstaan terwijl je het toestel recht houdt."
         }
       ],
-      "whyArTitle": "Why Use a Photo Instead of an AR Measurement App?",
-      "why1Bold": "Measures past moments:",
-      "why1Desc": " AR apps only measure what is in front of you right now. A photo allows you to measure historic pictures, past milestones, and archive shots.",
-      "why2Bold": "Zero installation:",
-      "why2Desc": " Runs natively in any modern browser on iOS, Android, Mac, or PC with no apps to download or subscriptions.",
-      "why3Bold": "Complete device privacy:",
-      "why3Desc": " Your photo stays securely inside your browser's local sandbox and is never uploaded to any remote server."
+      "whyArTitle": "Waarom een foto in plaats van een augmented reality (AR) app?",
+      "why1Bold": "Meet het verleden:",
+      "why1Desc": " AR-apps meten alleen het nu. Een foto maakt het mogelijk om historische foto's en jeugdherinneringen te meten.",
+      "why2Bold": "Geen installatie:",
+      "why2Desc": " Werkt gewoon in elke browser op iOS, Android, Mac of pc zonder apps te downloaden.",
+      "why3Bold": "Volledige privacy:",
+      "why3Desc": " Je foto blijft op je eigen toestel in de browser en wordt nooit naar servers gestuurd."
     },
     "referenceObjects": {
-      "eyebrow": "Calibration Reference",
-      "title": "Which Reference Object to Use for Calibration",
-      "description": "The more certain you are of the reference size, the more you can trust the result. Standardized objects guarantee repeatable accuracy.",
-      "thObject": "Object",
-      "thSize": "Size to enter",
-      "thStandard": "Standard dimension?",
-      "thBestFor": "Best for",
+      "eyebrow": "Kalibratie-object",
+      "title": "Welk Voorwerp Je het Beste Kunt Gebruiken",
+      "description": "Hoe zekerder de maat van het voorwerp, des te betrouwbaarder de uitslag. Gestandaardiseerde voorwerpen geven vaste zekerheid.",
+      "thObject": "Voorwerp",
+      "thSize": "In te vullen maat",
+      "thStandard": "Standaardformaat?",
+      "thBestFor": "Ideaal voor",
       "rows": [
         {
-          "object": "A4 sheet (long edge)",
-          "size": "29.7 cm",
-          "standard": "Yes, ISO 216",
-          "bestFor": "Taped to the wall beside the person"
+          "object": "A4-vel (lange zijde)",
+          "size": "29,7 cm",
+          "standard": "Ja, ISO 216",
+          "bestFor": "Op de muur geplakt naast de persoon"
         },
         {
-          "object": "Credit card (long edge)",
-          "size": "8.56 cm",
-          "standard": "Yes, ISO/IEC 7810",
-          "bestFor": "Close-up photos. Small, so tap its corners carefully."
+          "object": "Betaalpasje (lange zijde)",
+          "size": "8,56 cm",
+          "standard": "Ja, ISO/IEC 7810",
+          "bestFor": "Dichtbijfoto's. Let goed op de hoeken bij het aantikken."
         },
         {
-          "object": "Interior door",
-          "size": "203 cm in the US",
-          "standard": "No, varies by country and home",
-          "bestFor": "Full-body photos, after you measure the door once"
+          "object": "Binnendeur",
+          "size": "203 cm (vaak voorkomend)",
+          "standard": "Nee, verschilt per huis",
+          "bestFor": "Volledige lichaamsfoto's, nadat je de deur één keer hebt nagemeten"
         }
       ]
     },
     "accuracy": {
-      "eyebrow": "Empirical Accuracy Testing",
-      "title": "How to Get an Accurate Result from a Photo",
-      "description": "Two habits cause most of the error: standing in front of the reference and tilting the phone. Camera height on its own does not matter. Keep the phone upright and level, and stand against the same wall as the reference.",
-      "tiltLowTitle": "Low, Tilted Up",
-      "tiltLowBadge": "Reads taller",
-      "tiltLowDesc": "The top of the scene sits farther from the lens and shrinks, so the door looks short next to the person (+2.4 to +4.5 cm error).",
-      "tiltLevelTitle": "Level, at Waist Height",
-      "tiltLevelBadge": "Closest result",
-      "tiltLevelDesc": "The phone faces the wall square on, so the reference and the person maintain their true geometric proportions (0.0 cm error).",
-      "tiltHighTitle": "High, Tilted Down",
-      "tiltHighBadge": "Reads shorter",
-      "tiltHighDesc": "The floor sits farther from the lens and shrinks, so the door looks tall next to the person (−2.8 to −5.9 cm error).",
-      "tableTitle": "Our Controlled Accuracy Benchmark (14 Rendered Scenes)",
-      "tableDesc": "We evaluated 14 calibrated scenes with known heights taken from 3.5 meters away to isolate camera geometry from manual tap variations.",
-      "thSetup": "Photo Setup",
-      "thTrueHeight": "True Height",
-      "thMeasured": "Measured",
-      "thError": "Error",
+      "eyebrow": "Praktijktests en nauwkeurigheid",
+      "title": "Zo Krijg Je een Nauwkeurig Resultaat",
+      "description": "Voor het object gaan staan en het toestel schuin houden veroorzaken de meeste fouten. Houd het toestel recht en sta strak tegen de muur.",
+      "tiltLowTitle": "Laag, naar boven gekanteld",
+      "tiltLowBadge": "Lijkt langer",
+      "tiltLowDesc": "De bovenkant is verder weg en oogt kleiner, waardoor de deur kleiner lijkt (+2,4 tot +4,5 cm fout).",
+      "tiltLevelTitle": "Waterpas, op heuphoogte",
+      "tiltLevelBadge": "Beste resultaat",
+      "tiltLevelDesc": "Het toestel kijkt recht naar de muur, waardoor de echte verhoudingen behouden blijven (0,0 cm fout).",
+      "tiltHighTitle": "Hoog, naar beneden gekanteld",
+      "tiltHighBadge": "Lijkt korter",
+      "tiltHighDesc": "De vloer is verder weg en lijkt kleiner, waardoor de deur langer lijkt (−2,8 tot −5,9 cm fout).",
+      "tableTitle": "Onze gecontroleerde precisietest (14 situaties)",
+      "tableDesc": "We onderzochten 14 gekalibreerde opstellingen op 3,5 meter afstand om camerahoeken te scheiden van tikfouten op het scherm.",
+      "thSetup": "Foto-opstelling",
+      "thTrueHeight": "Echte lengte",
+      "thMeasured": "Gemeten",
+      "thError": "Verschil",
       "benchmarkRows": [
         {
-          "setup": "Phone level at 60, 100 or 130 cm, person against the wall beside the door",
+          "setup": "Telefoon waterpas op 60, 100 of 130 cm, persoon tegen de muur naast de deur",
           "trueHeight": "172 cm",
-          "measured": "172.0 cm",
-          "error": "0.0 cm"
+          "measured": "172,0 cm",
+          "error": "0,0 cm"
         },
         {
-          "setup": "Same, for a 120 cm child and a 190 cm adult",
+          "setup": "Zelfde situatie voor een kind van 120 cm en volwassene van 190 cm",
           "trueHeight": "120, 190 cm",
-          "measured": "120.0, 190.0 cm",
-          "error": "0.0 cm"
+          "measured": "120,0, 190,0 cm",
+          "error": "0,0 cm"
         },
         {
-          "setup": "Phone tilted up 10° from 60 cm",
+          "setup": "Telefoon 10° omhoog gekanteld vanaf 60 cm",
           "trueHeight": "172 cm",
-          "measured": "174.4 cm",
-          "error": "+2.4 cm"
+          "measured": "174,4 cm",
+          "error": "+2,4 cm"
         },
         {
-          "setup": "Phone tilted up 20° from 40 cm",
+          "setup": "Telefoon 20° omhoog gekanteld vanaf 40 cm",
           "trueHeight": "172 cm",
-          "measured": "176.5 cm",
-          "error": "+4.5 cm"
+          "measured": "176,5 cm",
+          "error": "+4,5 cm"
         },
         {
-          "setup": "Phone tilted down 10° from 160 cm",
+          "setup": "Telefoon 10° omlaag gekanteld vanaf 160 cm",
           "trueHeight": "172 cm",
-          "measured": "169.2 cm",
-          "error": "−2.8 cm"
+          "measured": "169,2 cm",
+          "error": "−2,8 cm"
         },
         {
-          "setup": "Phone tilted down 20° from 180 cm",
+          "setup": "Telefoon 20° omlaag gekanteld vanaf 180 cm",
           "trueHeight": "172 cm",
-          "measured": "166.1 cm",
-          "error": "−5.9 cm"
+          "measured": "166,1 cm",
+          "error": "−5,9 cm"
         },
         {
-          "setup": "A4 sheet as reference, phone tilted up 10°",
+          "setup": "A4-vel als referentie, telefoon 10° omhoog gekanteld",
           "trueHeight": "172 cm",
-          "measured": "176.8 cm",
-          "error": "+4.8 cm"
+          "measured": "176,8 cm",
+          "error": "+4,8 cm"
         },
         {
-          "setup": "Person standing 30 cm in front of the door",
+          "setup": "Persoon staat 30 cm vóór de deur",
           "trueHeight": "172 cm",
-          "measured": "188.1 cm",
-          "error": "+16.1 cm"
+          "measured": "188,1 cm",
+          "error": "+16,1 cm"
         },
         {
-          "setup": "Person standing 60 cm in front of the door",
+          "setup": "Persoon staat 60 cm vóór de deur",
           "trueHeight": "172 cm",
-          "measured": "207.6 cm",
-          "error": "+35.6 cm"
+          "measured": "207,6 cm",
+          "error": "+35,6 cm"
         }
       ],
-      "pixelSensitivityBold": "Pixel Sensitivity:",
-      "pixelSensitivityDesc": " Tapping adds its own error, and small references magnify it. On a phone screen, missing one end of the reference by a single screen pixel moves a 172 cm result by about 1 cm with a door, 7 cm with an A4 sheet, and 23 cm with a card. Use the biggest reference in the photo, and zoom in before tapping.",
+      "pixelSensitivityBold": "Pixel-nauwkeurigheid:",
+      "pixelSensitivityDesc": " Scheef aantikken geeft afwijkingen. Op een telefoonscherm verschuift een misplaatst pixel de meting met 1 cm bij een deur, 7 cm bij een A4 en 23 cm bij een pasje. Gebruik de grootste referentie en zoom in.",
       "tips": [
         {
-          "title": "Camera tilt",
-          "desc": "Camera tilt is the single biggest source of error in photo-based measurement. Hold the phone upright and level at about waist height for an adult, then step back until both head and feet fit cleanly."
+          "title": "Houd de camera recht",
+          "desc": "Kantelen is foutoorzaak nummer één. Houd de telefoon rechtop op heuphoogte en neem afstand tot het hele lichaam erop staat."
         },
         {
-          "title": "Reference placement",
-          "desc": "Stand against the same wall as the reference object, not in front of it. In our test, stepping 30 cm forward added 16 cm in false height. Keep the reference close to the subject to avoid lens distortion near edges."
+          "title": "Plek van het voorwerp",
+          "desc": "Sta tegen dezelfde muur als het voorwerp, nooit ervoor. 30 cm naar voren staan voegde al 16 cm neplengte toe."
         },
         {
-          "title": "Stand straight",
-          "desc": "Heels flat, back straight, head level. Posture errors in the photo produce the exact same measurement errors as posture errors against a wall."
+          "title": "Rechte houding",
+          "desc": "Hakken op de grond, rug recht, blik vooruit. Houdingsfouten op de foto geven dezelfde meetfout als bij een meetlat."
         },
         {
-          "title": "Show the full body",
-          "desc": "Cropped feet or a cropped head makes a floor-to-crown measurement impossible. A clean head-to-toe shot in the frame gives the most reliable result."
+          "title": "Hele lichaam zichtbaar",
+          "desc": "Voeten of hoofd afsnijden maakt meten onmogelijk. Een helder totaalbeeld levert de meest betrouwbare meting op."
         }
       ]
     },
     "noTapeMethods": {
-      "eyebrow": "Alternative Methods",
-      "title": "How to Measure Your Height Without a Measuring Tape",
-      "description": "Five methods work reliably when no tape measure is available. Each uses an object of known size to establish scale.",
+      "eyebrow": "Alternatieve methoden",
+      "title": "Je Lengte Meten Zonder Meetlint",
+      "description": "Vijf manieren die werken als je even geen meetlint bij de hand hebt.",
       "methods": [
         {
           "id": "wall-a4",
-          "title": "The wall mark and A4 sheet method",
+          "title": "Muurstreepje en A4-papier methode",
           "tags": [
-            "Hardcover book",
-            "A4 sheet",
-            "Pencil"
+            "Hard boek",
+            "A4-papier",
+            "Potlood"
           ],
-          "desc": "Mark your height on the wall with a hardcover book, as in the clinic method below. Lay an A4 sheet's long edge (29.7 cm) against the wall from the floor up, mark its top, and repeat until you reach your mark. Multiply the full sheets by 29.7 cm, then estimate the last gap against a sheet folded in half (14.85 cm)."
+          "desc": "Zet met een stevig boek een streepje bij je lengte. Leg de lange kant van een A4 (29,7 cm) vanaf de vloer omhoog, markeer en herhaal tot je streepje. Vermenigvuldig de vellen met 29,7 cm en schat het laatste stukje met een dubbelgevouwen vel (14,85 cm)."
         },
         {
           "id": "door",
-          "title": "The doorframe method",
+          "title": "Deurkozijn methode",
           "tags": [
-            "A door"
+            "Een deur"
           ],
-          "desc": "Standard US interior doors stand 80 inches (203 cm) tall. Stand in the frame, note where the top of your head falls, and you have a working estimate. Not precise to the half-inch, but accurate enough to know whether you are 5'8\" or 5'10\". Door heights differ outside the US and between homes, so check yours first."
+          "desc": "Standaard binnendeuren zijn vaak 201,5 tot 203 cm hoog. Ga onder het kozijn staan en kijk waar je kruin uitkomt voor een snelle schatting."
         },
         {
           "id": "arm-span",
-          "title": "The arm span method",
+          "title": "Armspanwijdte methode",
           "tags": [
-            "A helper or a wall"
+            "Iemand die helpt of muur"
           ],
-          "desc": "Your fingertip-to-fingertip wingspan with arms fully extended matches your height within about one inch. If you know your arm span, you know your height."
+          "desc": "Je spanwijdte van middelvinger tot middelvinger met wijdgestrekte armen komt vrijwel exact overeen met je lengte (gemiddeld binnen 2,5 cm)."
         },
         {
           "id": "phone",
-          "title": "The phone method",
+          "title": "Telefoon-app methode",
           "tags": [
-            "A phone"
+            "Een smartphone"
           ],
-          "desc": "On supported iPhone and iPad models, Apple's Measure app can measure a person's height from the floor to the top of the head. On any other phone, take a full-body photo and use the tool above."
+          "desc": "Op geschikte iPhones en iPads meet de Meten-app van Apple de lengte van personen. Op andere telefoons maak je een foto en gebruik je onze tool hierboven."
         },
         {
           "id": "dollar",
-          "title": "The dollar bill method (US)",
+          "title": "Geldbriefjes methode",
           "tags": [
-            "US dollar bills"
+            "Bankbiljetten"
           ],
-          "desc": "A US dollar bill is 6.14 inches long. Mark your height on a wall, stack bills from the floor to the mark, count them, and multiply. Tedious, but mathematically sound."
+          "desc": "Geldbriefjes hebben vaste maten (een briefje van € 20 is 13,3 cm lang; dollar is 15,6 cm). Stapel ze verticaal op vanaf de vloer tot je streepje."
         }
       ],
-      "footer": "Each method gets you close, and none is exact. Confirming the precise number still needs a calibrated reference at some point, unless you use a calibrated photo."
+      "footer": "Elke methode geeft een goede indicatie, maar een gekalibreerde foto levert het meest consistente resultaat."
     },
     "clinicMethod": {
-      "eyebrow": "Clinical Standard",
-      "title": "How to Measure Height Accurately: The Clinic Method",
-      "description": "Adapted from clinical stadiometer protocols (CDC guidelines) to ensure maximum physical accuracy at home.",
+      "eyebrow": "Klinische standaard",
+      "title": "Nauwkeurig Lengte Meten: De Klinische Methode",
+      "description": "Gebaseerd op medische stadiometer-richtlijnen (CDC-protocollen) voor thuis.",
       "steps": [
-        "Take off your shoes, bulky clothing, hats and hair accessories, and undo any hairstyle that sits on top of the head.",
-        "Stand on a firm floor such as tile or wood, not carpet, against a flat wall with no skirting or moulding.",
-        "Keep your feet flat and together, legs straight, arms at your sides and shoulders level.",
-        "Touch the wall with your head, shoulders, buttocks and heels. Not every point touches on every body shape.",
-        "Look straight ahead. Lower a flat book or ruler at a right angle to the wall until it rests on the crown of your head, then mark the wall under it.",
-        "Measure from the floor to the mark with a metal tape, to the nearest 0.1 cm. Without a tape, step an A4 sheet up the wall or use the photo tool above."
+        "Doe schoenen, dikke kleding, petjes en haarspelden uit en doe hoge staarten los.",
+        "Ga op een harde vloer staan (tegels of laminaat, geen tapijt) tegen een vlakke muur zonder plint.",
+        "Voeten plat en tegen elkaar, benen recht, armen langs het lichaam en schouders ontspannen op gelijke hoogte.",
+        "Raak de muur met achterhoofd, schouderbladen, billen en hakken (afhankelijk van lichaamsbouw raakt niet alles tegelijk).",
+        "Kijk recht vooruit. Laat een hard boek haaks op de muur zakken tot op de kruin en zet eronder een potloodstreepje.",
+        "Meet vanaf de vloer tot het streepje met een metalen rolmaat tot op de millimeter. Zonder rolmaat gebruik je een A4 of onze foto-tool."
       ],
-      "whyAloneTitle": "Why Measuring Yourself Alone Goes Wrong",
+      "whyAloneTitle": "Waarom Alleen Meten Vaak Misgaat",
       "errorCauses": [
         {
-          "title": "Hunching",
-          "desc": "You are probably hunching slightly without realizing it."
+          "title": "Inzakken",
+          "desc": "Je zakt ongemerkt wat in wanneer je zelf een boek op je hoofd balanceert."
         },
         {
-          "title": "A tilted book",
-          "desc": "The book is not held perfectly level at a right angle."
+          "title": "Scheef boek",
+          "desc": "Het boek wordt niet exact in een hoek van 90° tegen de muur gehouden."
         },
         {
-          "title": "A loose tape",
-          "desc": "The tape measure is not sitting completely flat on the floor."
+          "title": "Slap meetlint",
+          "desc": "Het meetlint buigt door of loopt schuin langs de muur omhoog."
         },
         {
-          "title": "Time of day",
-          "desc": "You stand up to one centimeter taller in the morning than at night due to spinal disc compression. Measure at the same time of day."
+          "title": "Tijdstip op de dag",
+          "desc": "Door compressie van de tussenwervelschijven ben je 's ochtends tot 1 cm langer dan 's avonds."
         }
       ],
-      "whyAloneFooter": "Doing it alone makes everything worse. Standing straight, balancing a hardback on your head, marking a wall, and measuring the mark all at once is physically awkward. A photo with a reference object removes the need for a second person entirely."
+      "whyAloneFooter": "Het zelf doen maakt het lastig: rechtop staan, het boek horizontaal houden en tegelijk aftekenen. Een foto met een herkenbaar voorwerp lost dit direct op."
     },
     "faq": {
       "badge": "HELPCENTRUM",
-      "title": "Frequently Asked Questions",
+      "title": "Veelgestelde Vragen",
       "items": [
         {
           "id": "how-accurate-is-height-measurement-from-a-photo",
-          "q": "How accurate is height measurement from a photo?",
-          "a": "It depends on how the photo is taken. In our empirical test of 14 rendered scenes, a level phone with the person standing against the same wall as a door measured the true height exactly. Tilting the phone 10° to 20° moved the result by 2 to 6 cm, and standing 30 cm in front of the door added 16 cm. On a phone screen, each pixel you miss on a door's edge adds about 1 cm more. For personal tracking and casual comparisons under good conditions, results consistently land within 1 to 2 centimeters."
+          "q": "Hoe nauwkeurig is lengte meten vanaf een foto?",
+          "a": "Dat hangt af van de foto. In tests met 14 situaties mat een recht gehouden telefoon bij iemand strak tegen de muur de lengte exact. Een kanteling van 10° tot 20° gaf 2 tot 6 cm afwijking, en 30 cm vóór de deur staan voegde 16 cm neplengte toe. Onder goede omstandigheden zit je altijd binnen 1 tot 2 cm marge."
         },
         {
           "id": "what-is-the-best-object-to-use-for-calibration",
-          "q": "What is the best object to use for calibration?",
-          "a": "An A4 sheet (29.7 cm / 297 mm long) or a credit card (8.56 cm / 85.6 mm wide) works anywhere worldwide because international ISO standards fix both sizes. A standard interior door at 203 cm (80 inches) in the US is the easiest choice for full-body photos because of its size, but measure yours first if outside the US. The larger the reference object, the less sensitive the result is to minor screen tapping errors."
+          "q": "Wat is het beste voorwerp voor de kalibratie?",
+          "a": "Een A4-tje (29,7 cm) of een betaalpasje (8,56 cm) werken wereldwijd door ISO-normen. Een binnendeur (vaak 201,5 tot 203 cm) is ideaal voor totaalbeelden nadat je hem eenmalig hebt nagemeten."
         },
         {
           "id": "is-my-photo-uploaded-or-stored",
-          "q": "Is my photo uploaded or stored?",
-          "a": "No. The tool runs entirely client-side in your browser, and your photo never leaves your device."
+          "q": "Wordt mijn foto opgeslagen op een server?",
+          "a": "Nee. De software draait geheel in je eigen webbrowser. De foto verlaat je telefoon of computer niet."
         },
         {
           "id": "can-i-measure-someone-elses-height-from-a-photo",
-          "q": "Can I measure someone else's height from a photo?",
-          "a": "Yes. Upload any photo where the person appears next to a known object, calibrate, draw the line, read the result. The subject does not need to be present."
+          "q": "Kan ik iemand anders meten op een foto?",
+          "a": "Ja. Upload een foto waarop de ander naast een bekend voorwerp staat, kalibreer en trek de lijn om de lengte te zien."
         },
         {
           "id": "does-it-work-for-celebrities",
-          "q": "Does it work for celebrities?",
-          "a": "Yes, when the photo shows them next to a door or another object of known size. Photos taken from unusual angles produce less reliable results."
+          "q": "Werkt dit ook voor beroemdheden?",
+          "a": "Ja, mits de foto de beroemdheid toont naast een deur of ander herkenbaar voorwerp van voren gefotografeerd."
         },
         {
           "id": "why-do-i-measure-taller-in-the-morning",
-          "q": "Why do I measure taller in the morning?",
-          "a": "Spinal discs compress under body weight throughout the day. That compression reduces standing height by up to one centimeter between morning and evening. Measuring at the same time each day gives the most consistent results over time."
+          "q": "Waarom ben je 's ochtends langer?",
+          "a": "Tussenwervelschijven veren overdag in door je lichaamsgewicht. Daardoor krimp je tegen de avond tot wel één centimeter."
         },
         {
           "id": "do-i-need-an-account",
-          "q": "Do I need an account?",
-          "a": "No. The tool is free, requires no sign-up, and works on any device."
+          "q": "Heb ik een account nodig?",
+          "a": "Nee. De tool is helemaal gratis, vereist geen aanmelding en werkt op elk apparaat."
         }
       ]
     },
@@ -2379,7 +2379,7 @@
       "step1Calibration": "Stap 1: Kalibratie",
       "step2Measure": "Stap 2: Persoon meten",
       "tapOtherEnd": "Tik op het andere uiteinde om te voltooien",
-      "drawCalibLine": "Teken de kalibratielijn van het referentieobject op het scherm",
+      "drawCalibLine": "Teken de kalibratielijn van het voorwerp op het scherm",
       "drawMeasLine": "Klik op 'Auto Scan' of teken handmatig een lijn van hoofd tot teen",
       "cancel": "Annuleren",
       "done": "Klaar"
@@ -2387,264 +2387,264 @@
   },
   "home": {
     "intro": {
-      "h1": "Größenvergleich-Rechner: Körpergrößen online im visuellen Diagramm vergleichen",
-      "p": "Nutze dieses Größenvergleichs-Tool, um Körpergrößen nebeneinander in einem maßstabsgetreuen Diagramm zu sehen. Gib beliebige Höhen in Zentimetern, Fuß oder Zoll ein, um den Größenunterschied sofort visuell darzustellen. Das Tool skaliert jede Figur exakt nach deinen Eingaben. Vergleiche zwei oder mehr Personen, Stars, Anime-Figuren oder reale Objekte in Sekundenschnelle.",
-      "freeLibraryBadge": "Kostenlose Online-Bibliothek",
-      "freeLibraryDesc": "Greife auf unsere Datenbank vorgefertigter Referenzgrößen aus drei Sammlungen zu, erstelle unbegrenzt viele Vergleiche und exportiere hochauflösende PNG-Diagramme.",
-      "noAccounts": "Kein Benutzerkonto",
-      "noPayments": "Keine Zahlungen",
-      "free100": "100 % kostenlos",
-      "compareNowCta": "Jetzt vergleichen ↑"
+      "h1": "Lengte Vergelijken Calculator: Vergelijk Lengtes Online met Visuele Grafiek",
+      "p": "Gebruik deze tool om lengtes naast elkaar te bekijken op een nauwkeurige schaalgrafiek. Voer elke lengte in centimeters of feet en inches in om direct het verschil te zien. De tool toont een visuele vergelijking met proportionele schaling. De grafiek past zich in real-time aan en tekent elke figuur op basis van de ingevoerde waarden.",
+      "freeLibraryBadge": "Gratis Online Bibliotheek",
+      "freeLibraryDesc": "Krijg toegang tot onze database met kant-en-klare referentielengtes in drie collecties, maak onbeperkt vergelijkingen en download hoge-resolutie PNG-afbeeldingen.",
+      "noAccounts": "Geen account",
+      "noPayments": "Geen kosten",
+      "free100": "100% Gratis",
+      "compareNowCta": "Nu vergelijken ↑"
     },
     "section1": {
-      "eyebrow": "Funktionsweise",
-      "title": "Wie funktioniert ein Größenvergleichs-Diagramm?",
-      "p1": "Ein Größenvergleichs-Diagramm wandelt Maßangaben in eine visuelle Grafik um, in der jede Figur das exakte mathematische Verhältnis im echten Maßstab widerspiegelt.",
-      "p2": "Ist Person A 170 cm und Person B 185 cm groß, wird die zweite Figur exakt 1,09-mal so hoch dargestellt. Ein Abstand von 10 cm wirkt bei 160 cm proportional ganz anders als bei 190 cm – das Diagramm macht diesen Unterschied sofort sichtbar.",
-      "p3": "Nutze das Tool als Diagrammersteller für Familien, Sportteams oder kreative Zeichenprojekte.",
-      "imgAlt": "Größenvergleichs-Diagramm einer 170 cm und 185 cm großen Person nebeneinander",
-      "imgCaption": "Alex mit 170 cm (5'7\") und Ben mit 185 cm (6'1\"), maßstabsgetreu gezeichnet.",
-      "needGapTitle": "Suchst du nur die Differenz zwischen zwei bestimmten Größen?",
-      "needGapDesc": "Der Höhendifferenz-Rechner zeigt den exakten Abstand in cm und Zoll, die prozentuale Abweichung und einen Vergleichsbalken. Ideal, wenn du nur die genaue Differenz ermitteln möchtest.",
-      "needGapCta": "Höhendifferenz-Rechner öffnen"
+      "eyebrow": "Hoe het werkt",
+      "title": "Hoe Werkt een Lengtevergelijkingsgrafiek?",
+      "p1": "Een lengtevergelijkingsgrafiek zet ruwe afmetingen om in een visueel diagram waarin elke figuur exact de wiskundige verhouding op ware schaal weergeeft.",
+      "p2": "Als Persoon A 170 cm is en Persoon B 185 cm, wordt het tweede figuur precies 1,09 keer zo hoog getekend. Een verschil van 10 cm bij 160 cm toont proportioneel heel anders dan bij 190 cm — de grafiek maakt dat onderscheid direct zichtbaar zonder rekenwerk.",
+      "p3": "Ideaal voor gezinnen, sportteams of creatieve tekenprojecten.",
+      "imgAlt": "Lengtevergelijkingsgrafiek van een persoon van 170 cm en een van 185 cm naast elkaar",
+      "imgCaption": "Alex met 170 cm (5'7\") en Ben met 185 cm (6'1\"), op schaal getekend.",
+      "needGapTitle": "Heb je alleen het exacte lengteverschil nodig?",
+      "needGapDesc": "De Lengteverschil Calculator toont het precieze verschil in cm en inches, het percentage en een visuele balk. Handig wanneer je direct een getal zoekt.",
+      "needGapCta": "Open Lengteverschil Calculator"
     },
     "section2": {
-      "eyebrow": "Schritt für Schritt",
-      "title": "Körpergrößen online vergleichen: Anleitung für Einsteiger",
-      "step1Title": "Schritt 1: Wähle deinen Vergleichsaufbau",
-      "step1Desc": "Entscheide, was du vergleichen möchtest: Freunde, dich selbst mit einem Prominenten, Anime-Figuren oder Bauwerke. Wechsle jederzeit zwischen cm und Fuß/Zoll.",
-      "guidebookNoteLabel": "Hinweis zur Datenbank:",
-      "guidebookNoteText": "Durchsuche unsere Promi-Datenbank oder wähle Anime- und Fantasy-Charaktere aus dem Charakter-Bereich. Alle Werte basieren auf offiziellen Databooks und Veröffentlichungen.",
+      "eyebrow": "Stap voor stap",
+      "title": "Online Lengtes Vergelijken: Handleiding voor Beginners",
+      "step1Title": "Stap 1: Kies je vergelijking",
+      "step1Desc": "Bepaal wie je wilt vergelijken: vrienden, jezelf met een beroemdheid, anime-karakters of gebouwen. Werkt in cm en ft/in met directe omzetting.",
+      "guidebookNoteLabel": "Bronvermelding:",
+      "guidebookNoteText": "Zoek in onze database met beroemdheden of fictieve figuren. Alle lengtes zijn gebaseerd op officiële databoeken en publicaties.",
       "panelPeople": "Personen",
-      "panelCelebrities": "Prominente",
-      "panelCharacters": "Charaktere",
-      "panelObjects": "Objekte",
-      "step2Title": "Schritt 2: Erstelle dein Diagramm",
-      "step2Desc": "Gib Namen ein, wähle eigene Farben und trage Maße ein. Die Figuren erscheinen sofort auf der Leinwand. Der Maßstab reicht bis zu 10.000 Meter, sodass du Personen neben den Eiffelturm oder Mount Everest stellen kannst.",
+      "panelCelebrities": "Beroemdheden",
+      "panelCharacters": "Personages",
+      "panelObjects": "Objecten",
+      "step2Title": "Stap 2: Bouw je lengtegrafiek",
+      "step2Desc": "Typ namen, kies kleuren en vul maten in. De schaal reikt tot 10.000 meter (32.808 ft), zodat je iemand kunt vergelijken met de Eiffeltoren of de Mount Everest.",
       "panels": [
         {
-          "label": "Person hinzufügen",
-          "desc": "Name, Geschlecht, Größe in cm oder ft/in, Wunschfarbe."
+          "label": "Persoon toevoegen",
+          "desc": "Naam, geslacht, lengte in cm of ft/in en eigen kleur."
         },
         {
-          "label": "Prominente",
-          "desc": "Sportler, Schauspieler und historische Ikonen weltweit."
+          "label": "Beroemdheden",
+          "desc": "Sporters, acteurs en historische iconen wereldwijd."
         },
         {
-          "label": "Charaktere",
-          "desc": "Anime, Cartoons und Superhelden aus lizenzierten Büchern."
+          "label": "Fictie",
+          "desc": "Anime, cartoons en superhelden uit officiële naslagwerken."
         },
         {
-          "label": "Objekte & Bauwerke",
-          "desc": "Tiere, weltberühmte Bauwerke und Naturmonumente."
+          "label": "Objecten & Gebouwen",
+          "desc": "Dieren, beroemde bouwwerken en bergtoppen."
         }
       ],
-      "step3Title": "Schritt 3: Unterschied sehen und teilen",
-      "step3Desc": "Jede Figur ist mit Namen und Größe beschriftet. Der Größenabstand ist sofort erkennbar. Lade dein Diagramm kostenlos als PNG herunter oder teile den Direktlink mit Freunden."
+      "step3Title": "Stap 3: Zie het verschil en deel",
+      "step3Desc": "Elke figuur toont naam en lengte. Het verschil valt meteen op. Download een scherpe PNG of deel een directe link die 7 dagen actief blijft."
     },
     "section3": {
-      "eyebrow": "Vorteile",
-      "title": "Warum ein visueller Vergleich mehr verrät als reine Zahlen",
-      "description": "Ein visuelles Größenvergleichs-Diagramm stellt die mathematische Beziehung maßstabsgetreu dar und macht Proportionen auf einen Blick erfassbar.",
-      "card1Title": "Proportionaler Maßstab enthüllt, was Zahlen verbergen",
-      "card1Desc": "Ein Unterschied von 12 cm bei 160 cm fällt optisch stärker ins Gewicht als bei 190 cm. Die Grafik verdeutlicht das sofort. Für die exakte Differenzrechnung nutze den ",
-      "card1Link": "Höhendifferenz-Rechner",
-      "card2Title": "Vergleiche dich mit jedem und allem",
-      "card2Desc": "Füge dich selbst hinzu und stelle einen Hollywood-Star, eine Spielfigur oder ein Naturwunder daneben – alles auf einer gemeinsamen Achse.",
-      "card3Title": "Figurenvergleich für Zeichner und Autoren",
-      "card3Desc": "Kreative visualisieren Beziehungen zwischen Charakteren anhand verifizierter Maße aus offiziellen Nachschlagewerken.",
-      "card4Title": "Keine manuellen Einheitenumrechnungen",
-      "card4Desc": "Trage Werte in cm oder ft/in ein. Subtraktion, Seitenverhältnis und Prozentrechnung erfolgen automatisch während der Eingabe.",
-      "card5Title": "Echte Maßstäbe rücken menschliche Dimensionen ins Licht",
-      "card5Desc": "Stelle einen 175 cm großen Menschen neben den Mount Everest (8.848 m), um wahre Dimensionen zu begreifen.",
-      "card6Title": "Exportierbares Ergebnis mit einem Klick",
-      "card6Desc": "Lade hochauflösende PNG-Bilder herunter oder erstelle teilbare Links für Social Media, Foren oder Vorträge."
+      "eyebrow": "Waarom gebruiken",
+      "title": "Waarom een Visuele Grafiek Meer Zegt dan Cijfers",
+      "description": "Een visuele vergelijking toont de wiskundige verhouding op ware schaal, waardoor lengteverschillen direct begrijpelijk worden.",
+      "card1Title": "Proportionele schaal toont wat cijfers verbergen",
+      "card1Desc": "Een verschil van 12 cm op 160 cm is verhoudingsgewijs groter dan op 190 cm. De balken tonen dat meteen. Voor het exacte getal, open de ",
+      "card1Link": "Lengteverschil Calculator",
+      "card2Title": "Vergelijk jezelf met iedereen en alles",
+      "card2Desc": "Voeg je eigen lengte toe en plaats er een filmster, stripheld of berg naast — allemaal op dezelfde schaalas.",
+      "card3Title": "Personagevergelijking voor tekenaars en schrijvers",
+      "card3Desc": "Creatieven visualiseren verhoudingen tussen karakters volgens officiële productiespecificaties.",
+      "card4Title": "Geen handmatige omrekeningen",
+      "card4Desc": "Vul in wat je wilt: cm of ft/in. Aftrekkingen, verhoudingen en percentages worden direct berekend.",
+      "card5Title": "Ware schaal geeft menselijke afmetingen context",
+      "card5Desc": "Plaats een mens van 175 cm naast de Mount Everest (8.848 m) om de grootsheid van de natuur te ervaren.",
+      "card6Title": "Download met één klik",
+      "card6Desc": "Download PNG-bestanden of maak deelbare links voor sociale media, fora en presentaties."
     },
     "section4": {
-      "eyebrow": "Anwendung",
-      "title": "Körpergrößen vergleichen: Beliebte Beispiele und Use-Cases",
-      "description": "Häufige Szenarien, in denen die visuelle Skalierung sofort Klarheit über Größenunterschiede schafft.",
+      "eyebrow": "Toepassingen",
+      "title": "Lengtes Vergelijken: Voorbeelden en Praktijksituaties",
+      "description": "Alledaagse situaties waarin visuele schaling meteen duidelijkheid biedt.",
       "useCases": [
         {
-          "tag": "PAARE UND FREUNDE",
-          "quote": "„Warte mal, wie viel größer bist du eigentlich genau als ich?“",
-          "desc": "Trage beide Größen ein und sieh den genauen Unterschied im Diagramm. 10 cm Unterschied fallen sofort ins Auge.",
-          "try": "165 CM + 178 CM · 13 CM ABSTAND (7,9 %)"
+          "tag": "KOPPELS EN VRIENDEN",
+          "quote": "“Wacht eens, hoeveel langer ben jij nou precies dan ik?”",
+          "desc": "Vul beide lengtes in en zie de exacte afstand op een proportionele grafiek. 10 cm verschil zie je meteen.",
+          "try": "165 CM + 178 CM · 13 CM VERSCHIL (7,9%)"
         },
         {
-          "tag": "SPORT UND ATHLETEN",
-          "quote": "„Wer hat auf dem Spielfeld wirklich den Größenvorteil?“",
-          "desc": "Vergleiche NBA-Basketballer, NFL-Spieler oder Kletterer miteinander, um den echten Reichweitenvorteil zu sehen.",
-          "try": "NBA-STARTER 200 CM · NFL-LINEBACKER 188 CM · KLETTERER 174 CM"
+          "tag": "SPORT EN ATLETEN",
+          "quote": "“Wie heeft hier nou echt het lengtevoordeel?”",
+          "desc": "Vergelijk basketbalspelers uit de NBA of klimmers om het werkelijke fysieke voordeel te zien.",
+          "try": "NBA-SPELER 200 CM · NFL-LINEBACKER 188 CM · KLIMMER 174 CM"
         },
         {
-          "tag": "ANIME UND FANDOM",
-          "quote": "„Das Wiki nennt eine Zahl, aber wie sieht das nebeneinander aus?“",
-          "desc": "Anime-Charaktere aus verschiedenen Welten maßstabsgetreu nebeneinander: Goku (175 cm), Vegeta (164 cm), Piccolo (226 cm) und Levi (160 cm).",
+          "tag": "ANIME EN FICTIE",
+          "quote": "“De wiki noemt een getal, maar hoe ziet dat er samen uit?”",
+          "desc": "Anime-helden op geverifieerde schaal: Goku (175 cm), Vegeta (164 cm), Piccolo (226 cm) en Levi (160 cm).",
           "try": "GOKU 175 CM · VEGETA 164 CM · PICCOLO 226 CM · LEVI 160 CM"
         },
         {
-          "tag": "OBJEKTE UND LANDMARKEN",
-          "quote": "„Ich hatte keine Vorstellung, wie gewaltig das in Wirklichkeit ist.“",
-          "desc": "Platziere eine Person neben die Angel Falls (979 m), eine 203 cm hohe Zimmertür oder eine Deckenhöhe von 2,60 m.",
-          "try": "MENSCH 175 CM + CHRYSLER BUILDING 319 M + MT EVEREST 8.848 M"
+          "tag": "OBJECTEN EN GEBOUWEN",
+          "quote": "“Ik had geen idee dat het in werkelijkheid zo gigantisch was.”",
+          "desc": "Plaats iemand naast de Angel Falls (979 m), een kamerdeur (203 cm) of een plafond van 2,60 m.",
+          "try": "MENS 175 CM + CHRYSLER BUILDING 319 M + MT EVEREST 8.848 M"
         },
         {
-          "tag": "ICH VS. PROMINENTE",
-          "quote": "„Moment mal, die sind genauso groß wie ich?“",
-          "desc": "Vergleiche dich mit Stars wie Tom Cruise, The Rock oder Taylor Swift anhand veröffentlichter biographischer Daten.",
-          "try": "DU + TOM CRUISE 170 CM · DWAYNE JOHNSON 196 CM · TAYLOR SWIFT 178 CM"
+          "tag": "IK VS BEROEMDHEDEN",
+          "quote": "“Zijn zij nou echt precies even lang als ik?”",
+          "desc": "Vergelijk je met Tom Cruise, The Rock of Taylor Swift op basis van geverifieerde biografieën.",
+          "try": "JIJ + TOM CRUISE 170 CM · DWAYNE JOHNSON 196 CM · TAYLOR SWIFT 178 CM"
         },
         {
-          "tag": "PLANUNG UND RAUMGESTALTUNG",
-          "quote": "„Passt dieses Möbelstück eigentlich wirklich in mein Zimmer?“",
-          "desc": "Füge Türrahmen, Schränke oder Deckenhöhen neben einer Person ein, um Proportionen vor dem Möbelkauf zu prüfen.",
-          "try": "PERSON 185 CM · STANDARDTÜR 203 CM · DECKENHÖHE 260 CM"
+          "tag": "INTERIEUR EN ONTWERP",
+          "quote": "“Past deze kast eigenlijk wel mooi in mijn kamer?”",
+          "desc": "Voeg een deurkozijn of plafondhoogte toe naast een persoon voordat je meubels aanschaft.",
+          "try": "PERSOON 185 CM · DEUR 203 CM · PLAFOND 260 CM"
         }
       ],
-      "tableTitle": "Größenunterschied-Tabelle in Fuß, Zoll und Zentimetern",
-      "tableDesc": "Sieben alltagsnahe Beispiele für Paare und Personen, dargestellt in Fuß, Zoll, Zentimetern und prozentualen Verhältnissen."
+      "tableTitle": "Lengteverschil tabel in feet, inches en centimeters",
+      "tableDesc": "Zeven praktische voorbeelden om koppels en personen te vergelijken in centimeters en percentages."
     },
     "section5": {
-      "eyebrow": "Vorteile",
-      "title": "Warum unser Größenvergleichs-Tool wählen?",
-      "description": "Professionelle Werkzeuge. Null Barrieren. Keine Registrierung.",
+      "eyebrow": "Voordelen",
+      "title": "Waarom Kiezen voor Onze Lengtevergelijker?",
+      "description": "Professionele opties. Geen drempels. Geen account nodig.",
       "features": [
         {
-          "title": "Echtzeit-Höhengenerator",
-          "desc": "Das Diagramm aktualisiert sich live bei jedem Tastendruck ohne Neuladen der Seite."
+          "title": "Directe lengtegenerator",
+          "desc": "De grafiek past zich direct aan terwijl je typt, zonder herladen."
         },
         {
-          "title": "Individuelle Avatare",
-          "desc": "Sechs Farben und männliche/weibliche Silhouetten halten das Diagramm auch bei 10+ Personen übersichtlich."
+          "title": "Aanpasbare figuren",
+          "desc": "Zes kleuren en man/vrouw stijlen houden het overzichtelijk bij 10+ personen."
         },
         {
-          "title": "Prominenten-Datenbank",
-          "desc": "1.294 Stars aus Sport, Film, Musik und Geschichte, direkt in der Datenbank erfasst."
+          "title": "Beroemdhedenoverzicht",
+          "desc": "1.294 bekende personen uit sport, film en muziek opgenomen in de database."
         },
         {
-          "title": "Fiktionale Charaktere",
-          "desc": "1.138 Figuren aus Anime, Comics und Fantasy nach offiziellen Franchise-Quellen."
+          "title": "Fictieve personages",
+          "desc": "1.138 figuren uit anime, strips en games volgens officiële boeken."
         },
         {
-          "title": "Objekte & Bauwerke",
-          "desc": "264 verifizierte Objekte, Tiere und Wahrzeichen vom Mammutbaum bis zum Mount Everest."
+          "title": "Objecten en bouwwerken",
+          "desc": "264 natuurmonumenten, dieren en bouwwerken op ware schaal."
         },
         {
-          "title": "Bild-zu-Größe-Messung",
-          "desc": "Lade Fotos hoch und füge reale Aufnahmen automatisch maßstabsgetreu ins Diagramm ein."
+          "title": "Meting via foto",
+          "desc": "Upload een foto en plaats echte personen proportioneel in de grafiek."
         },
         {
-          "title": "Sauberer PNG-Export",
-          "desc": "Lade dein Diagramm kostenlos in hoher Auflösung herunter – ideal zum Teilen."
+          "title": "Heldere PNG-export",
+          "desc": "Download afbeeldingen in hoge resolutie, onbeperkt en gratis."
         },
         {
-          "title": "Teilbare Direktlinks",
-          "desc": "Erstelle einen Link zu deinem fertigen Diagramm, der 7 Tage lang ohne Konto aktiv bleibt."
+          "title": "Deelbare links",
+          "desc": "Maak een directe link naar je grafiek die 7 dagen geldig blijft zonder inloggen."
         }
       ]
     },
     "section6": {
-      "eyebrow": "Genauigkeit",
-      "title": "Wie verlässlich ist das Größenvergleichs-Diagramm?",
+      "eyebrow": "Nauwkeurigheid",
+      "title": "Hoe Betrouwbaar is de Lengtevergelijking?",
       "items": [
         {
-          "title": "Exakte Skalierungs-Engine",
-          "desc": "Jede Figur wird exakt nach deinem Zahlenwert gezeichnet: 170 cm rendern auf der Leinwand als 170,00 Einheiten."
+          "title": "Exacte schaalberekening",
+          "desc": "Elke figuur wordt getekend volgens de precieze invoer: 170 cm is exact 170,00 punten op het scherm."
         },
         {
-          "title": "Referenzwerte",
-          "desc": "Veröffentlichte Maße weichen oft zwischen Quellen ab. Wir nutzen stets die jüngsten verifizierten Angaben seriöser Register."
+          "title": "Referentiewaarden",
+          "desc": "Openbare bronnen kunnen verschillen; we hanteren altijd de meest recente betrouwbare bron."
         },
         {
-          "title": "Promi-Angaben",
-          "desc": "Entstammen biographischen Registern und offiziellen Maßblättern. Keine ungeprüften Fanschätzungen."
+          "title": "Gegevens van beroemdheden",
+          "desc": "Afkomstig uit biografieën en officiële documenten, geen schattingen van fans."
         },
         {
-          "title": "Offizielles Quellenmaterial",
-          "desc": "Charaktergrößen basieren auf lizenzierten Handbüchern und autorisierten Produktionsunterlagen."
+          "title": "Originele bronnen",
+          "desc": "Personagelengths komen uit geautoriseerde databoeken en productiedocumenten."
         },
         {
-          "title": "Bauwerke & Tierwelt",
-          "desc": "Bauwerke nach Bauplänen verifiziert. Tiermaße messen die Schulterhöhe (Widerrist), nicht die Gesamtlänge."
+          "title": "Architectuur en dieren",
+          "desc": "Bouwwerken gecontroleerd volgens bouwplannen. Dieren worden gemeten aan de schoft (schouder)."
         }
       ]
     },
     "section7": {
-      "eyebrow": "Funktionsübersicht",
-      "title": "Auf maximale Einfachheit ausgelegt",
-      "description": "Alle Funktionen für den perfekten Größenvergleich – ohne jede Einstiegshürde.",
-      "thFeature": "Funktion",
-      "thFree": "Was du kostenlos erhältst",
+      "eyebrow": "Overzicht",
+      "title": "Ontworpen voor Eenvoud",
+      "description": "Alles wat je nodig hebt om lengtes te vergelijken zonder gedoe.",
+      "thFeature": "Functionaliteit",
+      "thFree": "Wat je gratis krijgt",
       "rows": [
         [
-          "Figuren pro Diagramm",
-          "Unbegrenzt – alle auf einer gemeinsamen Skala"
+          "Personen per grafiek",
+          "Onbeperkt — allemaal op dezelfde schaalas"
         ],
         [
-          "Vordefinierte Vorlagen",
-          "2.696 Einträge (1.294 Prominente, 1.138 Charaktere, 264 Objekte)"
+          "Kant-en-klare lengtes",
+          "2.696 opties (1.294 beroemdheden, 1.138 karakters, 264 objecten)"
         ],
         [
-          "Unterstützte Einheiten",
-          "Zentimeter, Meter, Fuß und Zoll (jederzeit wechselbar)"
+          "Ondersteunde eenheden",
+          "Centimeters, meters, feet en inches (direct wisselen)"
         ],
         [
-          "Skalierungsbereich",
-          "Von wenigen Zentimetern bis 10.000 Meter mit automatischem Zoom"
+          "Schaalbereik",
+          "Van enkele centimeters tot 10.000 meter met automatische zoom"
         ],
         [
-          "Exportoptionen",
-          "Kostenloser PNG-Download und teilbare Links (7 Tage aktiv)"
+          "Exportopties",
+          "PNG-download en deelbare links (7 dagen geldig)"
         ],
         [
-          "Kosten & Konto",
-          "0,00 € für immer – keine Registrierung, keine Abos, keine Zahlungsdaten"
+          "Kosten en account",
+          "€ 0,00 voor altijd — geen abonnementen of creditcards"
         ]
       ]
     },
     "section8": {
-      "title": "Häufig gestellte Fragen (FAQ)",
-      "description": "Antworten auf die wichtigsten Fragen zu Diagrammskalierung, Einheiten und Datenquellen",
+      "title": "Veelgestelde Vragen over Lengte Vergelijken",
+      "description": "Antwoorden van experts op vragen over schaal, eenheden en bronnen",
       "badge": "HELPCENTRUM"
     },
     "section9": {
-      "eyebrow": "Entdecken",
-      "title": "Online-Werkzeuge & Rechner rund um Körpergröße",
-      "launchTool": "Rechner starten",
-      "privacyTitle": "Datenschutz & Nutzerrechte",
-      "privacyText": "Wir verkaufen deine personenbezogenen Daten niemals an Dritte. Unter Datenschutzgesetzen wie DSGVO und CCPA hast du jederzeit das Recht auf Auskunft und Widerspruch. Erfahre mehr in unserer ",
-      "privacyLink": "Datenschutzerklärung",
-      "privacyTextEnd": " oder kontaktiere uns direkt. Die normale Nutzung des Tools erfordert keinerlei Registrierung.",
+      "eyebrow": "Ontdekken",
+      "title": "Online Hulpmiddelen & Rekenmachines voor Lengte",
+      "launchTool": "Start Tool",
+      "privacyTitle": "Privacy & Gegevensrechten",
+      "privacyText": "Wij verkopen je persoonlijke gegevens niet aan derden. Onder de AVG heb je recht op inzage en verwijdering. Bekijk ons ",
+      "privacyLink": "Privacybeleid",
+      "privacyTextEnd": " of neem contact op. Normaal gebruik van de tool verzamelt geen persoonsgegevens.",
       "cards": [
         {
-          "label": "Höhendifferenz-Rechner",
-          "desc": "Exakter Größenabstand in cm und Zoll, prozentuale Abweichung und Referenztabelle für Paare.",
-          "badge": "Werkzeug",
+          "label": "Lengteverschil Calculator",
+          "desc": "Exact verschil in cm en inches, percentage en koppeltabel.",
+          "badge": "Tool",
           "href": "/height-difference-calculator"
         },
         {
-          "label": "Perzentilen-Rechner (Größe & Gewicht)",
-          "desc": "Vergleiche deine Werte mit WHO- und CDC-Bevölkerungsdaten nach Alter und Geschlecht.",
-          "badge": "Werkzeug",
+          "label": "Lengte en Gewicht Percentiel Calculator",
+          "desc": "Vergelijk je waarden met WHO- en CDC-groeicurves naar leeftijd en geslacht.",
+          "badge": "Tool",
           "href": "/height-weight-percentile-calculator"
         },
         {
-          "label": "Idealgewichts-Rechner",
-          "desc": "Formeln nach Devine, Robinson und Hamwi im direkten Vergleich mit gesunden Gewichtstabellen.",
-          "badge": "Werkzeug",
+          "label": "Ideaal Lichaamsgewicht Calculator",
+          "desc": "Formules van Devine, Robinson en Hamwi naast gezonde gewichtstabellen.",
+          "badge": "Tool",
           "href": "/ideal-body-weight-calculator"
         },
         {
-          "label": "Bild-zu-Größe-Rechner",
-          "desc": "Körpergröße ohne Maßband direkt anhand eines Fotos messen mit Genauigkeits-Tipps.",
-          "badge": "Werkzeug",
+          "label": "Foto naar Lengte Calculator",
+          "desc": "Meet je lengte vanaf een foto zonder dat je een meetlint nodig hebt.",
+          "badge": "Tool",
           "href": "/image-to-height"
         },
         {
-          "label": "Größen-Vorhersagerechner",
-          "desc": "Erwachsenengröße bei Kindern nach Khamis-Roche und Mid-Parental-Methode berechnen.",
-          "badge": "Werkzeug",
+          "label": "Lengte Voorspeller voor Kinderen",
+          "desc": "Bereken de volwassen lengte van kinderen volgens Khamis-Roche.",
+          "badge": "Tool",
           "href": "/height-predictor"
         }
       ]

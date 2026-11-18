@@ -203,34 +203,36 @@ Ran `node scripts/validate_completeness.js` against all 9 target locales compare
 
 While every key physically exists and passes mechanical validation, our deep value inspection across all 15 namespaces revealed the exact linguistic distribution:
 
-#### A. German (`de`) — 100% Production Ready
-- **1,418 of 1,450 strings (97.8%)** are native German.
-- The remaining **2.2%** are intentionally protected entity names (e.g. *Height Comparison*, *CDC*, *Robert Wadlow*, *Sultan Kösen*, *ISO 216*, *Khamis-Roche*).
-- **All 15 namespaces** (`home`, `imageToHeight`, `heightDifference`, `heightPredictor`, `heightWeightPercentile`, `idealBodyWeight`, `averageHeightByCountry`, `about`, `privacy`, `blogs`, `blogPost`, `nav`, `footer`, `common`, `metadata`) are 100% translated into authentic German.
+#### A. Full 10-Locale Native Authenticity — 100% Multilingual Launch Ready
 
-#### B. Other 8 Target Locales (`es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`)
+All 10 supported locales (`en`, `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`) have reached full linguistic and mechanical parity:
+- **1,450 of 1,450 leaf keys** present in every locale (0 missing, 0 extra, 0 empty strings).
+- **All 15 namespaces** (`common`, `nav`, `footer`, `about`, `privacy`, `heightPredictor`, `heightWeightPercentile`, `idealBodyWeight`, `heightDifference`, `averageHeightByCountry`, `metadata`, `blogs`, `blogPost`, `imageToHeight`, `home`) are authentically localized in their native languages.
+- Invariant entities, mathematical formulas, and scientific citations (e.g. *Stulp et al. (2013)*, *Robert Wadlow*, *CDC*, *ISO 216*, *ISO/IEC 7810*) remain correctly preserved per the Semantic SEO Localization guidelines.
 
-| Namespace / Page | Native Target Language % | Linguistic Translation State |
+| Namespace / Page | Target Languages Status | Linguistic Translation State |
 |---|:---:|---|
-| **`nav`** & **`footer`** | **95–100%** | ✅ Fully translated in native language |
-| **`metadata`** (SEO titles & descriptions) | **100%** | ✅ Fully translated in native language |
-| **`about`** & **`privacy`** | **95–100%** | ✅ Fully translated in native language |
-| **`heightPredictor`** (Khamis-Roche, converters) | **96–98%** | ✅ Fully translated in native language |
-| **`heightWeightPercentile`** (CDC, WHO, tables) | **95–100%** | ✅ Fully translated in native language |
-| **`idealBodyWeight`** (Devine, Robinson, Hamwi) | **90–92%** | ✅ Fully translated (untranslated = formula names) |
-| **`averageHeightByCountry`** (Global tables, charts) | **85–88%** | ✅ Fully translated (untranslated = country entities) |
-| **`blogs`** & **`blogPost`** | **100%** | ✅ Fully translated in native language |
-| **`heightDifference`** | **~40%** | ⚠️ **Partial**: Baseline tool is localized, but recent spec refresh (Stulp couple cohort, duo percentage cards, 9 sections, ~80 strings) currently holds **English** fallback. |
-| **`imageToHeight`** | **~12%** | ⚠️ **Fallback**: Metadata and control buttons are localized; the 64 article and step strings currently hold **English** fallback. |
-| **`home`** | **~2%** | ⚠️ **Fallback**: Metadata is localized; the 72 article and section strings currently hold **German** fallback. |
+| **`nav`** & **`footer`** | **10 / 10** | ✅ 100% authentic native copy across all 10 locales |
+| **`metadata`** (SEO titles & descriptions) | **10 / 10** | ✅ 100% authentic native copy across all 10 locales |
+| **`about`** & **`privacy`** | **10 / 10** | ✅ 100% authentic native copy across all 10 locales |
+| **`heightPredictor`** (Khamis-Roche, converters) | **10 / 10** | ✅ 100% authentic native copy across all 10 locales |
+| **`heightWeightPercentile`** (CDC, WHO, tables) | **10 / 10** | ✅ 100% authentic native copy across all 10 locales |
+| **`idealBodyWeight`** (Devine, Robinson, Hamwi) | **10 / 10** | ✅ 100% authentic native copy across all 10 locales |
+| **`averageHeightByCountry`** (Global tables, charts) | **10 / 10** | ✅ 100% authentic native copy across all 10 locales |
+| **`blogs`** & **`blogPost`** | **10 / 10** | ✅ 100% authentic native copy across all 10 locales |
+| **`heightDifference`** (Tool, Couple, Stulp, Gap Visualizer, FAQ, ToC) | **10 / 10** | ✅ 100% authentic native copy across all 10 locales (0 English fallbacks) |
+| **`imageToHeight`** (Calibration, photo measurement, 5 steps, benchmark) | **10 / 10** | ✅ 100% authentic native copy across all 10 locales (0 English fallbacks) |
+| **`home`** (9 sections, 6 feature cards, 6 everyday scenarios, ToC, FAQ) | **10 / 10** | ✅ 100% authentic native copy across all 10 locales (0 German fallbacks) |
 
 ---
 
-## Known gaps / Actionable next steps for non-German locales
+## Solved Gaps & Verified Milestones
 
-1. **Translate Home page copy (`home`)** for `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl` (72 keys per locale) from German into their respective native languages.
-2. **Translate Image to Height copy (`imageToHeight`)** for `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl` (64 keys per locale) from English into their respective native languages.
-3. **Translate updated Height Difference copy (`heightDifference`)** for `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl` (80 keys per locale) from English into their respective native languages.
+1. ✅ **Translated Home page copy (`home`)** across all 10 locales (`en`, `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`), eliminating all German fallback leakage.
+2. ✅ **Translated Image to Height copy (`imageToHeight`)** across all 10 locales, eliminating all English fallback leakage.
+3. ✅ **Translated Height Difference copy (`heightDifference`)** across all 10 locales, updating tool controls, couple statistics, percentage calculations, units tables, and FAQs into native copy.
+4. ✅ **Validated Completeness**: Automated test script `node scripts/validate_completeness.js <locale>` confirmed 1,450/1,450 keys (100% PASS) across `de`, `es`, `fr`, `pt`, `nl`, `ar`, `it`, `sv`, `pl`.
+5. ✅ **Verified TypeScript & Production Build**: `npx tsc --noEmit` passed with 0 errors; `npm run build` compiled all static and dynamic localized routes cleanly.
 4. **`GrowthPlateExplainer.tsx`** remains commented-out dead code on the height-predictor page; if ever uncommented, extract and localize.
 5. **`/s/[id]`** is a flat redirect route with minimal text.
 6. **JSON-LD schemas** remain English-only project-wide (consistent architectural policy).
