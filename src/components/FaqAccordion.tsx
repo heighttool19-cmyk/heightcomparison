@@ -43,9 +43,10 @@ interface Props {
     title?: string;
     description?: string;
     footerText?: React.ReactNode;
+    badge?: string;
 }
 
-export default function FaqAccordion({ items, title = "Frequently Asked Questions", description = "Scientific insights into your development", footerText }: Props) {
+export default function FaqAccordion({ items, title = "Frequently Asked Questions", description = "Scientific insights into your development", footerText, badge }: Props) {
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
     return (
@@ -53,7 +54,7 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
             <div className="border border-border rounded-[2.5rem] overflow-hidden bg-surface transition-colors duration-500 shadow-sm mt-4">
                 <div className="px-8 md:px-12 pt-4 pb-8 text-center sm:text-left space-y-2 border-b border-border">
                     <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
-                        <HelpCircle size={12} /> HELP CENTER
+                        <HelpCircle size={12} /> {badge || "HELP CENTER"}
                     </div>
                     <h2 className="text-3xl font-black text-foreground">{title}</h2>
                     <p className="text-sm text-muted">{description}</p>
