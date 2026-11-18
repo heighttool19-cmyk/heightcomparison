@@ -49,7 +49,7 @@ export default function CoupleHeightDifferenceCalculator() {
     const maxPx = 170;
     const tallest = Math.max(a, b);
 
-    const renderFigure = (hVal: number, cx: number, color: string, label: string) => {
+    const renderFigure = (hVal: number, cx: number, colorClass: string, label: string) => {
         const px = (maxPx * hVal) / tallest;
         const top = floor - px;
         const s = px / 170;
@@ -59,14 +59,14 @@ export default function CoupleHeightDifferenceCalculator() {
         const legH = px - headR * 2 - bodyH - 6 * s;
 
         return (
-            <g key={label} aria-hidden="true">
-                <circle cx={cx} cy={top + headR} r={headR} fill={color} />
-                <rect x={cx - bodyW / 2} y={top + headR * 2 + 3 * s} width={bodyW} height={bodyH} rx={7 * s} fill={color} />
-                <rect x={cx - bodyW / 2 - 9 * s} y={top + headR * 2 + 6 * s} width={7 * s} height={bodyH * 0.8} rx={3.5 * s} fill={color} opacity="0.75" />
-                <rect x={cx + bodyW / 2 + 2 * s} y={top + headR * 2 + 6 * s} width={7 * s} height={bodyH * 0.8} rx={3.5 * s} fill={color} opacity="0.75" />
-                <rect x={cx - bodyW / 2 + 2 * s} y={floor - legH} width={11 * s} height={legH} rx={4 * s} fill={color} />
-                <rect x={cx + bodyW / 2 - 13 * s} y={floor - legH} width={11 * s} height={legH} rx={4 * s} fill={color} />
-                <text x={cx} y={top - 8} textAnchor="middle" fontSize="12" fontWeight="700" fill={color}>
+            <g key={label} aria-hidden="true" className={colorClass}>
+                <circle cx={cx} cy={top + headR} r={headR} fill="currentColor" />
+                <rect x={cx - bodyW / 2} y={top + headR * 2 + 3 * s} width={bodyW} height={bodyH} rx={7 * s} fill="currentColor" />
+                <rect x={cx - bodyW / 2 - 9 * s} y={top + headR * 2 + 6 * s} width={7 * s} height={bodyH * 0.8} rx={3.5 * s} fill="currentColor" opacity="0.75" />
+                <rect x={cx + bodyW / 2 + 2 * s} y={top + headR * 2 + 6 * s} width={7 * s} height={bodyH * 0.8} rx={3.5 * s} fill="currentColor" opacity="0.75" />
+                <rect x={cx - bodyW / 2 + 2 * s} y={floor - legH} width={11 * s} height={legH} rx={4 * s} fill="currentColor" />
+                <rect x={cx + bodyW / 2 - 13 * s} y={floor - legH} width={11 * s} height={legH} rx={4 * s} fill="currentColor" />
+                <text x={cx} y={top - 8} textAnchor="middle" fontSize="12" fontWeight="700" fill="currentColor">
                     {label}
                 </text>
                 <text x={cx} y={floor + 18} textAnchor="middle" fontSize="12" fontWeight="700" className="fill-foreground font-mono">
@@ -140,21 +140,21 @@ export default function CoupleHeightDifferenceCalculator() {
                                     key={bRow.key}
                                     className={`transition-colors ${
                                         isHit
-                                            ? 'bg-pink-50 dark:bg-pink-950/40 font-bold'
+                                            ? 'bg-accent/10 font-bold'
                                             : 'hover:bg-bg/40'
                                     }`}
                                 >
-                                    <td className={`px-5 py-3 ${isHit ? 'text-pink-600 dark:text-pink-400 font-extrabold' : 'text-foreground font-medium'}`}>
+                                    <td className={`px-5 py-3 ${isHit ? 'text-accent font-extrabold' : 'text-foreground font-medium'}`}>
                                         {tCouple(bRow.key)}
                                     </td>
-                                    <td className={`px-5 py-3 font-mono ${isHit ? 'text-pink-600 dark:text-pink-400 font-extrabold' : 'text-muted'}`}>
+                                    <td className={`px-5 py-3 font-mono ${isHit ? 'text-accent font-extrabold' : 'text-muted'}`}>
                                         {bRow.share}
                                     </td>
                                     <td className="px-5 py-3">
-                                        <div className="h-2.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                        <div className="h-2.5 w-full bg-border/60 rounded-full overflow-hidden">
                                             <div
                                                 className={`h-full rounded-full transition-all duration-300 ${
-                                                    isHit ? 'bg-pink-600 dark:bg-pink-500' : 'bg-blue-300 dark:bg-blue-700'
+                                                    isHit ? 'bg-accent shadow-sm' : 'bg-muted/30'
                                                 }`}
                                                 style={{ width: bRow.width }}
                                             />
@@ -171,7 +171,7 @@ export default function CoupleHeightDifferenceCalculator() {
             </p>
 
             {/* Couple Visualization Card */}
-            <div className="bg-gradient-to-b from-surface to-pink-50/20 dark:to-pink-950/10 border border-border rounded-2xl p-6 shadow-sm space-y-4">
+            <div className="bg-surface border border-border rounded-2xl p-6 shadow-sm space-y-4">
                 {/* Preset Chips */}
                 <div className="flex flex-wrap items-center gap-2" role="group" aria-label={tCouple('coupleCardChipsLabel')}>
                     {PRESETS.map((p, idx) => (
@@ -182,11 +182,11 @@ export default function CoupleHeightDifferenceCalculator() {
                             aria-pressed={presetIndex === idx}
                             className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all border ${
                                 presetIndex === idx
-                                    ? 'bg-pink-600 text-white border-pink-600 shadow-md'
-                                    : 'bg-surface text-foreground border-border hover:border-pink-300'
+                                    ? 'bg-accent text-white dark:text-zinc-950 border-accent shadow-sm'
+                                    : 'bg-surface text-muted border-border hover:border-accent/40 hover:text-foreground'
                             }`}
                         >
-                            {p.a} cm / {p.b} cm
+                            <span className="font-mono">{p.a} cm</span> / <span className="font-mono">{p.b} cm</span>
                         </button>
                     ))}
                 </div>
@@ -199,8 +199,8 @@ export default function CoupleHeightDifferenceCalculator() {
                     className="w-full max-w-[420px] h-auto mx-auto block"
                 >
                     <line x1="40" y1={floor} x2="380" y2={floor} stroke="currentColor" className="text-border" strokeWidth="2" />
-                    {renderFigure(a, 130, '#db2777', tCalc('partner1Label'))}
-                    {renderFigure(b, 290, '#2563eb', tCalc('partner2Label'))}
+                    {renderFigure(a, 130, 'text-blue-600 dark:text-blue-400', tCalc('partner1Label'))}
+                    {renderFigure(b, 290, 'text-emerald-600 dark:text-emerald-400', tCalc('partner2Label'))}
 
                     {/* Gap Bracket */}
                     {y2 - y1 > 1 && (

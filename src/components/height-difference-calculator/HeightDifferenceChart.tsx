@@ -30,11 +30,11 @@ export default function HeightDifferenceChart() {
                 <tbody className="divide-y divide-border/50">
                     {CHART_DATA.map((r, i) => (
                         <tr key={i} className="hover:bg-bg/50 transition-colors">
-                            <td className="px-6 py-3.5 font-bold text-foreground">{r.a}</td>
-                            <td className="px-6 py-3.5 font-bold text-foreground">{r.b}</td>
-                            <td className="px-6 py-3.5 font-black text-amber-600 dark:text-amber-400 font-mono">{r.diff}</td>
+                            <td className="px-6 py-3.5 font-bold text-foreground font-mono">{r.a}</td>
+                            <td className="px-6 py-3.5 font-bold text-foreground font-mono">{r.b}</td>
+                            <td className="px-6 py-3.5 font-black text-foreground font-mono">{r.diff}</td>
                             <td className="px-6 py-3.5">
-                                <span className="font-black text-[#2563eb] dark:text-blue-400 font-mono bg-blue-50 dark:bg-blue-950/40 px-2.5 py-1 rounded-md text-xs">
+                                <span className="font-black text-accent font-mono bg-accent/10 px-2.5 py-1 rounded-md text-xs">
                                     {r.pct}
                                 </span>
                             </td>

@@ -56,14 +56,14 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                         <div className="flex flex-wrap items-center gap-4 pt-2">
                             <a
                                 href="#calculate-height-difference"
-                                className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-700 to-blue-600 text-white font-extrabold text-sm uppercase tracking-wider px-6 py-3 rounded-full shadow-lg shadow-blue-500/25 hover:shadow-xl hover:translate-y-[-1px] transition-all"
+                                className="inline-flex items-center gap-2 bg-accent text-white dark:text-zinc-950 font-black text-sm uppercase tracking-wider px-6 py-3 rounded-full shadow-lg shadow-accent/20 hover:shadow-xl hover:opacity-95 hover:translate-y-[-1px] active:scale-95 transition-all"
                             >
                                 {t('intro.heroCtaButton')} <span aria-hidden="true">↓</span>
                             </a>
                             <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-muted uppercase tracking-wider">
-                                <span className="flex items-center gap-1"><span className="text-emerald-500">✓</span> {t('intro.heroBadgeFree')}</span>
-                                <span className="flex items-center gap-1"><span className="text-emerald-500">✓</span> {t('intro.heroBadgeNoSignup')}</span>
-                                <span className="flex items-center gap-1"><span className="text-emerald-500">✓</span> {t('intro.heroBadgeUnits')}</span>
+                                <span className="flex items-center gap-1.5"><span className="text-accent font-black">✓</span> {t('intro.heroBadgeFree')}</span>
+                                <span className="flex items-center gap-1.5"><span className="text-accent font-black">✓</span> {t('intro.heroBadgeNoSignup')}</span>
+                                <span className="flex items-center gap-1.5"><span className="text-accent font-black">✓</span> {t('intro.heroBadgeUnits')}</span>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                             <h3 className="font-extrabold text-foreground text-xs uppercase tracking-widest text-muted">
                                 {t('howToCalculate.formulaTitle')}
                             </h3>
-                            <div className="font-mono bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 p-4 rounded-xl text-blue-700 dark:text-blue-400 font-extrabold text-sm sm:text-base overflow-x-auto">
+                            <div className="font-mono bg-accent/5 border border-accent/20 p-4 rounded-xl text-accent font-black text-sm sm:text-base overflow-x-auto">
                                 {t('howToCalculate.formulaText')}
                             </div>
 
@@ -114,11 +114,11 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                                         {t('howToCalculate.personBValue')}
                                     </span>
                                 </div>
-                                <div className="bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 p-4 rounded-xl">
-                                    <span className="block text-[#2563eb] font-bold uppercase tracking-wider text-[10px] mb-1">
+                                <div className="bg-accent/10 border border-accent/25 p-4 rounded-xl">
+                                    <span className="block text-accent font-bold uppercase tracking-wider text-[10px] mb-1">
                                         {t('howToCalculate.differenceLabel')}
                                     </span>
-                                    <span className="font-black text-foreground text-lg font-mono">
+                                    <span className="font-black text-accent text-lg font-mono">
                                         {t('howToCalculate.differenceValue')}
                                     </span>
                                 </div>
@@ -143,7 +143,7 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                             <h3 className="font-extrabold text-foreground text-xs uppercase tracking-widest text-muted">
                                 {t('percentage.formulaTitle')}
                             </h3>
-                            <div className="font-mono bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900/60 p-4 rounded-xl text-blue-700 dark:text-blue-400 font-extrabold text-sm sm:text-base overflow-x-auto">
+                            <div className="font-mono bg-accent/5 border border-accent/20 p-4 rounded-xl text-accent font-black text-sm sm:text-base overflow-x-auto">
                                 {t('percentage.formulaText')}
                             </div>
 
@@ -160,9 +160,9 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                                     <span className="text-[11px] font-bold uppercase tracking-wider text-muted">{t('percentage.calculationLabel')}</span>
                                     <span className="font-bold text-foreground font-mono">{t('percentage.calculationValue')}</span>
                                 </li>
-                                <li className="flex justify-between items-center p-3.5 bg-blue-50/60 dark:bg-blue-950/30">
-                                    <span className="text-[11px] font-black uppercase tracking-wider text-[#2563eb]">{t('percentage.percentDiffLabel')}</span>
-                                    <span className="font-black text-[#2563eb] text-lg font-mono">{t('percentage.percentDiffValue')}</span>
+                                <li className="flex justify-between items-center p-3.5 bg-accent/10 border-t border-accent/20">
+                                    <span className="text-[11px] font-black uppercase tracking-wider text-accent">{t('percentage.percentDiffLabel')}</span>
+                                    <span className="font-black text-accent text-lg font-mono">{t('percentage.percentDiffValue')}</span>
                                 </li>
                             </ul>
                         </div>
@@ -177,8 +177,8 @@ export default async function HeightDifferencePage({ params }: { params: Promise
 
                         {/* Duo Cards: Shorter vs Taller */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
-                            <div className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-1">
-                                <div className="text-[11px] font-black uppercase tracking-wider text-[#2563eb]">
+                            <div className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-1 hover:border-accent/30 transition-colors">
+                                <div className="text-[11px] font-black uppercase tracking-wider text-accent">
                                     {t('percentage.duoShorterLabel')}
                                 </div>
                                 <div className="text-3xl font-black text-foreground font-mono">
@@ -189,8 +189,8 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                                 </div>
                             </div>
 
-                            <div className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-1">
-                                <div className="text-[11px] font-black uppercase tracking-wider text-[#db2777]">
+                            <div className="bg-surface border border-border rounded-2xl p-5 shadow-sm space-y-1 hover:border-accent/30 transition-colors">
+                                <div className="text-[11px] font-black uppercase tracking-wider text-accent-secondary">
                                     {t('percentage.duoTallerLabel')}
                                 </div>
                                 <div className="text-3xl font-black text-foreground font-mono">
@@ -242,9 +242,9 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                             {t('chartSection.p2')}
                         </p>
 
-                        <div className="border-l-4 border-[#2563eb] bg-blue-50 dark:bg-blue-950/40 rounded-r-xl p-4 text-sm text-foreground font-medium">
+                        <div className="border border-border border-l-4 border-l-accent bg-accent/5 rounded-r-2xl p-5 text-sm text-foreground font-medium">
                             {t('chartSection.calloutPrefix')}
-                            <Link href="/" className="text-[#2563eb] dark:text-blue-400 font-bold hover:underline">
+                            <Link href="/" className="text-accent font-bold hover:underline">
                                 {t('chartSection.calloutLink')}
                             </Link>
                             {t('chartSection.calloutSuffix')}
@@ -289,11 +289,11 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                                             ["5'10\"", "6'2\"", "4 in", "10.2 cm", "5.4%"]
                                         ].map(([p1, p2, din, dcm, pct], i) => (
                                             <tr key={i} className="hover:bg-bg/50 transition-colors">
-                                                <td className="px-6 py-3.5 font-bold text-foreground">{p1}</td>
-                                                <td className="px-6 py-3.5 font-bold text-foreground">{p2}</td>
-                                                <td className="px-6 py-3.5 font-black text-amber-600 dark:text-amber-400 font-mono">{din}</td>
-                                                <td className="px-6 py-3.5 font-bold text-foreground font-mono">{dcm}</td>
-                                                <td className="px-6 py-3.5 font-black text-[#2563eb] dark:text-blue-400 font-mono">{pct}</td>
+                                                <td className="px-6 py-3.5 font-bold text-foreground font-mono">{p1}</td>
+                                                <td className="px-6 py-3.5 font-bold text-foreground font-mono">{p2}</td>
+                                                <td className="px-6 py-3.5 font-black text-foreground font-mono">{din}</td>
+                                                <td className="px-6 py-3.5 font-bold text-muted font-mono">{dcm}</td>
+                                                <td className="px-6 py-3.5 font-black text-accent font-mono">{pct}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -325,10 +325,10 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                                             ["20 cm", "7.9 in", "170 cm and 190 cm", "10.5%"]
                                         ].map(([dcm, din, ex, pct], i) => (
                                             <tr key={i} className="hover:bg-bg/50 transition-colors">
-                                                <td className="px-6 py-3.5 font-black text-amber-600 dark:text-amber-400 font-mono">{dcm}</td>
-                                                <td className="px-6 py-3.5 font-bold text-foreground font-mono">{din}</td>
+                                                <td className="px-6 py-3.5 font-black text-foreground font-mono">{dcm}</td>
+                                                <td className="px-6 py-3.5 font-bold text-muted font-mono">{din}</td>
                                                 <td className="px-6 py-3.5 font-medium text-foreground">{ex}</td>
-                                                <td className="px-6 py-3.5 font-black text-[#2563eb] dark:text-blue-400 font-mono">{pct}</td>
+                                                <td className="px-6 py-3.5 font-black text-accent font-mono">{pct}</td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -338,7 +338,7 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                     </section>
 
                     {/* Section 7: CTA Box */}
-                    <section id="try-the-height-difference-calculator" className="bg-surface border-2 border-blue-100 dark:border-blue-900/60 rounded-3xl p-8 md:p-12 text-center scroll-mt-24 shadow-xl">
+                    <section id="try-the-height-difference-calculator" className="bg-surface border border-border hover:border-accent/30 rounded-3xl p-8 md:p-12 text-center scroll-mt-24 shadow-xl shadow-black/5 transition-colors">
                         <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground mb-3">
                             {t('cta.title')}
                         </h2>
@@ -349,26 +349,26 @@ export default async function HeightDifferencePage({ params }: { params: Promise
 
                         <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4 text-left max-w-2xl mx-auto mb-10 text-sm font-bold text-foreground">
                             <div className="flex items-start gap-3">
-                                <CheckCircle2 className="text-[#2563eb] w-5 h-5 shrink-0 mt-[2px]" />
+                                <CheckCircle2 className="text-accent w-5 h-5 shrink-0 mt-[2px]" />
                                 <span>{t('cta.feature1')}</span>
                             </div>
                             <div className="flex items-start gap-3">
-                                <CheckCircle2 className="text-[#2563eb] w-5 h-5 shrink-0 mt-[2px]" />
+                                <CheckCircle2 className="text-accent w-5 h-5 shrink-0 mt-[2px]" />
                                 <span>{t('cta.feature2')}</span>
                             </div>
                             <div className="flex items-start gap-3">
-                                <CheckCircle2 className="text-[#2563eb] w-5 h-5 shrink-0 mt-[2px]" />
+                                <CheckCircle2 className="text-accent w-5 h-5 shrink-0 mt-[2px]" />
                                 <span>{t('cta.feature3')}</span>
                             </div>
                             <div className="flex items-start gap-3">
-                                <CheckCircle2 className="text-[#2563eb] w-5 h-5 shrink-0 mt-[2px]" />
+                                <CheckCircle2 className="text-accent w-5 h-5 shrink-0 mt-[2px]" />
                                 <span>{t('cta.feature4')}</span>
                             </div>
                         </div>
 
                         <a
                             href="#calculate-height-difference"
-                            className="bg-gradient-to-r from-blue-700 to-blue-600 text-white px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm hover:scale-[1.03] transition-all shadow-xl shadow-blue-500/25 active:scale-95 inline-flex items-center gap-2"
+                            className="bg-accent text-white dark:text-zinc-950 px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm hover:scale-[1.02] transition-all shadow-xl shadow-accent/20 active:scale-95 inline-flex items-center gap-2"
                         >
                             <ArrowUpCircle size={18} /> {t('cta.buttonText')}
                         </a>
@@ -386,12 +386,12 @@ export default async function HeightDifferencePage({ params }: { params: Promise
                         </h3>
                         <ul className="space-y-3 list-disc pl-5 marker:text-muted/60">
                             <li>
-                                <a href={t('references.ref1Url')} target="_blank" rel="noopener noreferrer" className="text-[#2563eb] dark:text-blue-400 font-semibold hover:underline">
+                                <a href={t('references.ref1Url')} target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">
                                     {t('references.ref1')}
                                 </a>
                             </li>
                             <li>
-                                <a href={t('references.ref2Url')} target="_blank" rel="noopener noreferrer" className="text-[#2563eb] dark:text-blue-400 font-semibold hover:underline">
+                                <a href={t('references.ref2Url')} target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">
                                     {t('references.ref2')}
                                 </a>
                             </li>

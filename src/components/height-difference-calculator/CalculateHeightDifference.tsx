@@ -31,10 +31,15 @@ function ftInLabel(cm: number): string {
 }
 
 function gapInLabel(cm: number): string {
-    const inches = cm / CM_PER_IN;
-    if (inches < 12) return `${fmt(inches)} in`;
-    const ft = Math.floor(inches / 12);
-    return `${ft} ft ${fmt(inches - ft * 12)} in`;
+    const totalIn = round1(cm / CM_PER_IN);
+    if (totalIn < 12) return `${fmt(totalIn)} in`;
+    let ft = Math.floor(totalIn / 12);
+    let remIn = round1(totalIn - ft * 12);
+    if (remIn >= 12) {
+        ft += 1;
+        remIn = 0;
+    }
+    return remIn > 0 ? `${ft} ft ${fmt(remIn)} in` : `${ft} ft`;
 }
 
 export default function CalculateHeightDifference() {
@@ -118,7 +123,7 @@ export default function CalculateHeightDifference() {
     const maxPx = 170;
     const tallest = valid && tall > 0 ? tall : 180;
 
-    const renderFigure = (hVal: number, cx: number, color: string, label: string) => {
+    const renderFigure = (hVal: number, cx: number, colorClass: string, label: string) => {
         const px = Math.max(30, (maxPx * hVal) / tallest);
         const top = floor - px;
         const s = px / 170;
@@ -128,17 +133,17 @@ export default function CalculateHeightDifference() {
         const legH = px - headR * 2 - bodyH - 6 * s;
 
         return (
-            <g key={label} aria-hidden="true">
-                <circle cx={cx} cy={top + headR} r={headR} fill={color} />
-                <rect x={cx - bodyW / 2} y={top + headR * 2 + 3 * s} width={bodyW} height={bodyH} rx={7 * s} fill={color} />
-                <rect x={cx - bodyW / 2 - 9 * s} y={top + headR * 2 + 6 * s} width={7 * s} height={bodyH * 0.8} rx={3.5 * s} fill={color} opacity="0.75" />
-                <rect x={cx + bodyW / 2 + 2 * s} y={top + headR * 2 + 6 * s} width={7 * s} height={bodyH * 0.8} rx={3.5 * s} fill={color} opacity="0.75" />
-                <rect x={cx - bodyW / 2 + 2 * s} y={floor - legH} width={11 * s} height={legH} rx={4 * s} fill={color} />
-                <rect x={cx + bodyW / 2 - 13 * s} y={floor - legH} width={11 * s} height={legH} rx={4 * s} fill={color} />
-                <text x={cx} y={top - 8} textAnchor="middle" fontSize="12" fontWeight="700" fill={color}>
+            <g key={label} aria-hidden="true" className={colorClass}>
+                <circle cx={cx} cy={top + headR} r={headR} fill="currentColor" />
+                <rect x={cx - bodyW / 2} y={top + headR * 2 + 3 * s} width={bodyW} height={bodyH} rx={7 * s} fill="currentColor" />
+                <rect x={cx - bodyW / 2 - 9 * s} y={top + headR * 2 + 6 * s} width={7 * s} height={bodyH * 0.8} rx={3.5 * s} fill="currentColor" opacity="0.75" />
+                <rect x={cx + bodyW / 2 + 2 * s} y={top + headR * 2 + 6 * s} width={7 * s} height={bodyH * 0.8} rx={3.5 * s} fill="currentColor" opacity="0.75" />
+                <rect x={cx - bodyW / 2 + 2 * s} y={floor - legH} width={11 * s} height={legH} rx={4 * s} fill="currentColor" />
+                <rect x={cx + bodyW / 2 - 13 * s} y={floor - legH} width={11 * s} height={legH} rx={4 * s} fill="currentColor" />
+                <text x={cx} y={top - 8} textAnchor="middle" fontSize="12" fontWeight="700" fill="currentColor">
                     {label}
                 </text>
-                <text x={cx} y={floor + 18} textAnchor="middle" fontSize="12" fontWeight="700" className="fill-foreground">
+                <text x={cx} y={floor + 18} textAnchor="middle" fontSize="12" fontWeight="700" className="fill-foreground font-mono">
                     {fmtH(hVal)}
                 </text>
             </g>
@@ -152,21 +157,26 @@ export default function CalculateHeightDifference() {
     const showBracket = y2 - y1 > 1;
 
     return (
-        <div id="calc" className="w-full bg-surface border-2 border-blue-100 dark:border-blue-900/50 rounded-2xl shadow-xl overflow-hidden transition-all">
+        <div id="calc" className="w-full bg-surface border border-border rounded-2xl shadow-xl overflow-hidden transition-all">
             {/* Header */}
-            <div className="flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6 bg-gradient-to-r from-blue-700 to-blue-600 text-white">
+            <div className="flex flex-wrap items-center justify-between gap-4 p-5 sm:p-6 bg-surface border-b border-border">
                 <div>
-                    <h3 className="text-xl font-black text-white m-0 tracking-tight">{t('cardHeaderTitle')}</h3>
-                    <p className="text-xs text-blue-100/90 font-medium m-0 mt-0.5">{t('cardHeaderSub')}</p>
+                    <div className="flex items-center gap-2">
+                        <h3 className="text-xl font-black text-foreground m-0 tracking-tight">{t('cardHeaderTitle')}</h3>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black tracking-wide uppercase bg-accent/10 text-accent border border-accent/20">
+                            Live
+                        </span>
+                    </div>
+                    <p className="text-xs text-muted font-medium m-0 mt-0.5">{t('cardHeaderSub')}</p>
                 </div>
-                <div className="inline-flex bg-white/20 p-1 rounded-full backdrop-blur-sm" role="group" aria-label="Unit">
+                <div className="inline-flex bg-bg border border-border p-1 rounded-full shadow-inner" role="group" aria-label="Unit">
                     <button
                         type="button"
                         onClick={() => handleUnitChange('cm')}
                         className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
                             unit === 'cm'
-                                ? 'bg-white text-blue-700 shadow-sm'
-                                : 'text-white hover:text-blue-100'
+                                ? 'bg-accent text-white dark:text-zinc-950 shadow-sm'
+                                : 'text-muted hover:text-foreground'
                         }`}
                         aria-pressed={unit === 'cm'}
                     >
@@ -177,8 +187,8 @@ export default function CalculateHeightDifference() {
                         onClick={() => handleUnitChange('imp')}
                         className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all ${
                             unit === 'imp'
-                                ? 'bg-white text-blue-700 shadow-sm'
-                                : 'text-white hover:text-blue-100'
+                                ? 'bg-accent text-white dark:text-zinc-950 shadow-sm'
+                                : 'text-muted hover:text-foreground'
                         }`}
                         aria-pressed={unit === 'imp'}
                     >
@@ -194,11 +204,11 @@ export default function CalculateHeightDifference() {
                     {/* Person 1 */}
                     <div className="space-y-2">
                         <label htmlFor="p1cm" className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#2563eb]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-blue-600 dark:bg-blue-400" />
                             {t('person1Label')}
                         </label>
                         {unit === 'cm' ? (
-                            <div className="flex items-center bg-bg border-2 border-border focus-within:border-[#2563eb] border-l-[5px] border-l-[#2563eb] rounded-xl px-3 transition-all shadow-inner">
+                            <div className="flex items-center bg-bg border-2 border-border focus-within:border-blue-600 dark:focus-within:border-blue-400 border-l-[5px] border-l-blue-600 dark:border-l-blue-400 rounded-xl px-3 transition-all shadow-inner">
                                 <input
                                     id="p1cm"
                                     type="number"
@@ -211,11 +221,11 @@ export default function CalculateHeightDifference() {
                                     placeholder={t('cmPlaceholder')}
                                     className="w-full py-3 bg-transparent text-foreground text-2xl font-black outline-none font-mono"
                                 />
-                                <span className="text-xs font-black text-[#2563eb] bg-blue-500/10 px-2 py-1 rounded-lg">CM</span>
+                                <span className="text-xs font-black text-blue-600 dark:text-blue-400 bg-blue-500/10 px-2 py-1 rounded-lg font-mono">CM</span>
                             </div>
                         ) : (
                             <div className="grid grid-cols-2 gap-2">
-                                <div className="flex items-center bg-bg border-2 border-border focus-within:border-[#2563eb] border-l-[5px] border-l-[#2563eb] rounded-xl px-2.5 transition-all shadow-inner">
+                                <div className="flex items-center bg-bg border-2 border-border focus-within:border-blue-600 dark:focus-within:border-blue-400 border-l-[5px] border-l-blue-600 dark:border-l-blue-400 rounded-xl px-2.5 transition-all shadow-inner">
                                     <input
                                         id="p1ft"
                                         type="number"
@@ -227,9 +237,9 @@ export default function CalculateHeightDifference() {
                                         aria-label={`${t('person1Label')} ${t('ftLabel')}`}
                                         className="w-full py-3 bg-transparent text-foreground text-xl font-black outline-none font-mono"
                                     />
-                                    <span className="text-xs font-black text-[#2563eb] bg-blue-500/10 px-1.5 py-0.5 rounded-md">FT</span>
+                                    <span className="text-xs font-black text-blue-600 dark:text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded-md font-mono">FT</span>
                                 </div>
-                                <div className="flex items-center bg-bg border-2 border-border focus-within:border-[#2563eb] rounded-xl px-2.5 transition-all shadow-inner">
+                                <div className="flex items-center bg-bg border-2 border-border focus-within:border-blue-600 dark:focus-within:border-blue-400 rounded-xl px-2.5 transition-all shadow-inner">
                                     <input
                                         id="p1in"
                                         type="number"
@@ -242,7 +252,7 @@ export default function CalculateHeightDifference() {
                                         aria-label={`${t('person1Label')} ${t('inLabel')}`}
                                         className="w-full py-3 bg-transparent text-foreground text-xl font-black outline-none font-mono"
                                     />
-                                    <span className="text-xs font-black text-[#2563eb] bg-blue-500/10 px-1.5 py-0.5 rounded-md">IN</span>
+                                    <span className="text-xs font-black text-blue-600 dark:text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded-md font-mono">IN</span>
                                 </div>
                             </div>
                         )}
@@ -262,11 +272,11 @@ export default function CalculateHeightDifference() {
                     {/* Person 2 */}
                     <div className="space-y-2">
                         <label htmlFor="p2cm" className="flex items-center gap-2 text-xs font-black uppercase tracking-wider text-foreground">
-                            <span className="w-2.5 h-2.5 rounded-full bg-[#0d9488]" />
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 dark:bg-emerald-400" />
                             {t('person2Label')}
                         </label>
                         {unit === 'cm' ? (
-                            <div className="flex items-center bg-bg border-2 border-border focus-within:border-[#0d9488] border-l-[5px] border-l-[#0d9488] rounded-xl px-3 transition-all shadow-inner">
+                            <div className="flex items-center bg-bg border-2 border-border focus-within:border-emerald-600 dark:focus-within:border-emerald-400 border-l-[5px] border-l-emerald-600 dark:border-l-emerald-400 rounded-xl px-3 transition-all shadow-inner">
                                 <input
                                     id="p2cm"
                                     type="number"
@@ -279,11 +289,11 @@ export default function CalculateHeightDifference() {
                                     placeholder={t('cmPlaceholder2')}
                                     className="w-full py-3 bg-transparent text-foreground text-2xl font-black outline-none font-mono"
                                 />
-                                <span className="text-xs font-black text-[#0d9488] bg-teal-500/10 px-2 py-1 rounded-lg">CM</span>
+                                <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-lg font-mono">CM</span>
                             </div>
                         ) : (
                             <div className="grid grid-cols-2 gap-2">
-                                <div className="flex items-center bg-bg border-2 border-border focus-within:border-[#0d9488] border-l-[5px] border-l-[#0d9488] rounded-xl px-2.5 transition-all shadow-inner">
+                                <div className="flex items-center bg-bg border-2 border-border focus-within:border-emerald-600 dark:focus-within:border-emerald-400 border-l-[5px] border-l-emerald-600 dark:border-l-emerald-400 rounded-xl px-2.5 transition-all shadow-inner">
                                     <input
                                         id="p2ft"
                                         type="number"
@@ -295,9 +305,9 @@ export default function CalculateHeightDifference() {
                                         aria-label={`${t('person2Label')} ${t('ftLabel')}`}
                                         className="w-full py-3 bg-transparent text-foreground text-xl font-black outline-none font-mono"
                                     />
-                                    <span className="text-xs font-black text-[#0d9488] bg-teal-500/10 px-1.5 py-0.5 rounded-md">FT</span>
+                                    <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded-md font-mono">FT</span>
                                 </div>
-                                <div className="flex items-center bg-bg border-2 border-border focus-within:border-[#0d9488] rounded-xl px-2.5 transition-all shadow-inner">
+                                <div className="flex items-center bg-bg border-2 border-border focus-within:border-emerald-600 dark:focus-within:border-emerald-400 rounded-xl px-2.5 transition-all shadow-inner">
                                     <input
                                         id="p2in"
                                         type="number"
@@ -310,7 +320,7 @@ export default function CalculateHeightDifference() {
                                         aria-label={`${t('person2Label')} ${t('inLabel')}`}
                                         className="w-full py-3 bg-transparent text-foreground text-xl font-black outline-none font-mono"
                                     />
-                                    <span className="text-xs font-black text-[#0d9488] bg-teal-500/10 px-1.5 py-0.5 rounded-md">IN</span>
+                                    <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded-md font-mono">IN</span>
                                 </div>
                             </div>
                         )}
@@ -319,15 +329,15 @@ export default function CalculateHeightDifference() {
 
                 {/* Hint */}
                 <p className="flex items-center gap-2 text-xs text-muted font-medium">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_0_3px_rgba(16,185,129,0.2)] shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-accent shadow-[0_0_0_3px_var(--color-border)] shrink-0" />
                     {t('hintText')}
                 </p>
 
                 {/* Results Row */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3" aria-live="polite">
                     {/* Card 1: Difference */}
-                    <div className="bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800/60 rounded-xl p-4 text-center">
-                        <div className="text-[11px] font-black uppercase tracking-wider text-[#2563eb]">
+                    <div className="bg-accent/10 border-2 border-accent/30 rounded-2xl p-4 sm:p-5 text-center shadow-sm">
+                        <div className="text-[11px] font-black uppercase tracking-wider text-accent">
                             {t('heightDifferenceLabel')}
                         </div>
                         <div className="text-2xl sm:text-3xl font-black text-foreground my-1.5 font-mono">
@@ -339,8 +349,8 @@ export default function CalculateHeightDifference() {
                     </div>
 
                     {/* Card 2: Percentage */}
-                    <div className="bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 rounded-xl p-4 text-center">
-                        <div className="text-[11px] font-black uppercase tracking-wider text-[#059669]">
+                    <div className="bg-surface border border-border rounded-2xl p-4 sm:p-5 text-center shadow-sm">
+                        <div className="text-[11px] font-black uppercase tracking-wider text-muted">
                             {t('percentDifferenceLabel')}
                         </div>
                         <div className="text-2xl sm:text-3xl font-black text-foreground my-1.5 font-mono">
@@ -352,14 +362,14 @@ export default function CalculateHeightDifference() {
                     </div>
 
                     {/* Card 3: Taller Person */}
-                    <div className="bg-pink-50 dark:bg-pink-950/40 border border-pink-200 dark:border-pink-800/60 rounded-xl p-4 text-center">
-                        <div className="text-[11px] font-black uppercase tracking-wider text-[#db2777]">
+                    <div className="bg-surface border border-border rounded-2xl p-4 sm:p-5 text-center shadow-sm">
+                        <div className="text-[11px] font-black uppercase tracking-wider text-muted">
                             {t('tallerPersonLabel')}
                         </div>
                         <div className="text-2xl sm:text-3xl font-black text-foreground my-1.5 font-mono">
                             {valid ? tallDisplay : '—'}
                         </div>
-                        <div className="text-xs text-muted font-bold">
+                        <div className="text-xs text-accent font-bold">
                             {valid ? tallerWho : ''}
                         </div>
                     </div>
@@ -380,10 +390,10 @@ export default function CalculateHeightDifference() {
                         <line x1="40" y1={floor} x2="380" y2={floor} stroke="currentColor" className="text-border" strokeWidth="2" />
 
                         {/* Person 1 (x = 130) */}
-                        {renderFigure(valid ? h1 : 180, 130, '#2563eb', t('person1Label'))}
+                        {renderFigure(valid ? h1 : 180, 130, 'text-blue-600 dark:text-blue-400', t('person1Label'))}
 
                         {/* Person 2 (x = 290) */}
-                        {renderFigure(valid ? h2 : 165, 290, '#0d9488', t('person2Label'))}
+                        {renderFigure(valid ? h2 : 165, 290, 'text-emerald-600 dark:text-emerald-400', t('person2Label'))}
 
                         {/* Gap Bracket */}
                         {showBracket && (
