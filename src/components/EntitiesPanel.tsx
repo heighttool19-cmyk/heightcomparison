@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { Search, Plus, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { Entity, EntityCategory } from '../types';
 import { getEntities } from '../data/entities';
 import { FilterTabs } from './ui/FilterTabs';
@@ -15,6 +16,7 @@ interface EntitiesPanelProps {
 }
 
 export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClose, onExport, isCapturing }) => {
+    const t = useTranslations('dashboard.panels');
     const [entities, setEntities] = useState<Entity[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
@@ -111,8 +113,8 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
         <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
             {/* Header Area */}
             <PanelHeader
-                title="Entities & Objects"
-                subtitle="Compare real-world dimensions on your chart"
+                title={t('entitiesTitle')}
+                subtitle={t('entitiesSub')}
                 count={filteredEntities.length}
             />
 
@@ -124,7 +126,7 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                     <input
                         id="search-entities"
                         type="text"
-                        placeholder="Search by name or category..."
+                        placeholder={t('entitiesSearch')}
                         value={searchQuery}
                         onChange={handleSearchChange}
                         className="w-full bg-bg border border-border/50 rounded-xl py-2.5 pl-10 pr-4 text-sm font-medium text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/50 transition-all"
@@ -144,7 +146,7 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                 {isLoading ? (
                     <div className="flex flex-col items-center justify-center py-20 gap-3">
                         <Loader2 className="animate-spin text-accent" size={32} />
-                        <p className="text-muted text-sm font-medium">Loading entities...</p>
+                        <p className="text-muted text-sm font-medium">{t('entitiesLoading')}</p>
                     </div>
                 ) : (
                     <AnimatePresence mode="popLayout">
@@ -153,7 +155,7 @@ export const EntitiesPanel: React.FC<EntitiesPanelProps> = ({ onAddEntity, onClo
                                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                 className="text-center py-12 text-muted font-medium"
                             >
-                                No entities found matching &quot;{searchQuery}&quot;
+                                {t('entitiesNotFound', { query: searchQuery })}
                             </motion.div>
                         ) : (
                             Object.entries(groupedEntities).map(([category, ents]) => (

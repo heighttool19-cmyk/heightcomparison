@@ -1,14 +1,18 @@
+'use client';
+
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 const BENCHMARKS = [
-  { shortLabel: 'Boy 4', fullLabel: 'Boy (Age 4, 50th%)', cm: 102.5, ft: "3'4.3\"", tone: 'zinc' },
-  { shortLabel: 'Girl 10', fullLabel: 'Girl (Age 10, 50th%)', cm: 138.2, ft: "4'6.4\"", tone: 'zinc' },
-  { shortLabel: 'Boy 10', fullLabel: 'Boy (Age 10, 50th%)', cm: 138.8, ft: "4'6.6\"", tone: 'zinc' },
-  { shortLabel: 'Women', fullLabel: 'US Women (20+, NHANES)', cm: 161.3, ft: "5'3.5\"", tone: 'emerald' },
-  { shortLabel: 'Men', fullLabel: 'US Men (20+, NHANES)', cm: 175.0, ft: "5'8.9\"", tone: 'emerald' },
+  { key: 'boy4' as const, cm: 102.5, ft: "3'4.3\"", tone: 'zinc' },
+  { key: 'girl10' as const, cm: 138.2, ft: "4'6.4\"", tone: 'zinc' },
+  { key: 'boy10' as const, cm: 138.8, ft: "4'6.6\"", tone: 'zinc' },
+  { key: 'women' as const, cm: 161.3, ft: "5'3.5\"", tone: 'emerald' },
+  { key: 'men' as const, cm: 175.0, ft: "5'8.9\"", tone: 'emerald' },
 ];
 
 export const AgeBenchmarkBars: React.FC = () => {
+  const t = useTranslations('home.visuals.ageBenchmarks');
   const maxCm = 190;
 
   return (
@@ -16,25 +20,25 @@ export const AgeBenchmarkBars: React.FC = () => {
       <div
         className="space-y-3"
         role="img"
-        aria-label={`CDC US height benchmarks: Boy age 4 is 102.5 cm, Girl age 10 is 138.2 cm, Boy age 10 is 138.8 cm, Adult Women average 161.3 cm (5'3.5"), Adult Men average 175.0 cm (5'8.9").`}
+        aria-label="CDC US height benchmarks"
       >
         <div className="flex justify-between items-center text-xs font-semibold text-muted border-b border-border/50 pb-2">
-          <span>Population / Age Group</span>
-          <span>Measured Average (CDC)</span>
+          <span>{t('colPop')}</span>
+          <span>{t('colAvg')}</span>
         </div>
 
         {BENCHMARKS.map((b) => {
           const widthPct = (b.cm / maxCm) * 100;
           const isAdult = b.tone === 'emerald';
+          const label = t(b.key);
 
           return (
-            <div key={b.fullLabel} className="space-y-1">
-              <div className="flex justify-between items-baseline text-xs">
-                <span className={`font-semibold ${isAdult ? 'text-foreground font-bold' : 'text-muted'}`}>
-                  <span className="sm:hidden">{b.shortLabel}</span>
-                  <span className="hidden sm:inline">{b.fullLabel}</span>
+            <div key={b.key} className="space-y-1">
+              <div className="flex justify-between items-baseline text-xs gap-2">
+                <span className={`font-semibold truncate ${isAdult ? 'text-foreground font-bold' : 'text-muted'}`}>
+                  {label}
                 </span>
-                <span className="font-mono text-xs font-bold text-foreground">
+                <span className="font-mono text-xs font-bold text-foreground shrink-0">
                   {b.cm} cm <span className="text-muted font-normal">({b.ft})</span>
                 </span>
               </div>
@@ -54,7 +58,7 @@ export const AgeBenchmarkBars: React.FC = () => {
       </div>
 
       <figcaption className="text-xs text-muted mt-3 pt-2 border-t border-border/50 text-center sm:text-left">
-        US adult averages from CDC FastStats / NHANES (Aug 2021 to Aug 2023) alongside CDC clinical growth chart medians for children. All bars drawn to scale starting from a zero baseline.
+        {t('caption')}
       </figcaption>
     </figure>
   );

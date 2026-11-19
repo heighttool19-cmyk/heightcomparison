@@ -3,6 +3,7 @@
 import React from 'react';
 import { Sparkles, Activity, Plus } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { QUICK_ADD_PRESETS, Person, uid } from '../types';
 import { useUnitStore } from '../store';
 import { ftIn } from '../lib/height';
@@ -14,6 +15,7 @@ interface QuickAddPresetsProps {
 }
 
 const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom }) => {
+    const t = useTranslations('dashboard.quickAdd');
     const { unitSystem } = useUnitStore();
     const handlePresetClick = (preset: typeof QUICK_ADD_PRESETS[0]) => {
         onAdd({
@@ -30,7 +32,7 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
             <div className="p-6 space-y-4">
                 <div className="flex items-center gap-2">
                     <Sparkles size={14} className="text-muted" />
-                    <p className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70">Quick Insertion</p>
+                    <p className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70">{t('quickInsertion')}</p>
                 </div>
 
                 <motion.div
@@ -52,7 +54,7 @@ const QuickAddPresets: React.FC<QuickAddPresetsProps> = ({ onAdd, scale, zoom })
                             whileHover={{ scale: 1.02, x: 4, backgroundColor: 'rgba(59, 130, 246, 0.05)' }}
                             whileTap={{ scale: 0.98 }}
                             onClick={() => handlePresetClick(preset)}
-                            aria-label={`Quick add ${preset.name}`}
+                            aria-label={t('quickAddAria', { name: preset.name })}
                             className="flex items-center justify-between p-3.5 rounded-2xl bg-bg border border-border hover:border-accent/40 transition-all text-left shadow-sm group"
                         >
                             <span className="text-[11px] font-mono text-foreground group-hover:text-accent transition-colors uppercase leading-none">

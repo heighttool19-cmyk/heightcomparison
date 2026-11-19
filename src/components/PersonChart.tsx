@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trash2, Edit2, ChevronUp, ChevronDown, Check } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { Person } from '../types';
 import { useUnitStore } from '../store';
 import { heightGap, ftIn } from '../lib/height';
@@ -26,6 +27,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({
     referencePersonId,
     onSelectReference,
 }) => {
+    const t = useTranslations('dashboard.personChart');
     const { unitSystem } = useUnitStore();
     const listHeaderRef = React.useRef<HTMLDivElement>(null);
     const dropdownRef = React.useRef<HTMLDivElement>(null);
@@ -67,7 +69,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({
                 {/* 1. COMPARE AGAINST Selector */}
                 <div className="px-5 pt-3 pb-2 bg-surface/50 border-b border-border/50 shrink-0">
                     <p className="text-[10.5px] font-black uppercase tracking-[0.12em] text-[#71717a] mb-1.5">
-                        Compare against
+                        {t('compareAgainst')}
                     </p>
                     <div ref={dropdownRef} className="relative">
                         <button
@@ -135,7 +137,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({
                 {/* 2. DIFFERENCES VS [NAME] Header */}
                 <div className="px-5 pt-3 pb-1 flex items-center justify-between shrink-0">
                     <p className="text-[10.5px] font-black uppercase tracking-[0.12em] text-[#71717a]">
-                        Differences vs {refPerson.name}
+                        {t('differencesVs', { name: refPerson.name })}
                     </p>
                 </div>
 
@@ -215,7 +217,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({
                 {/* 4. Range Summary and Hint */}
                 <div className="p-4 border-t border-[#3f3f46] shrink-0 bg-surface/50 space-y-1">
                     <p className="text-xs text-[#d4d4d8] leading-relaxed">
-                        <b className="text-white font-bold">Tallest vs shortest:</b> {tallest.name} is {extremeDiff} taller than {shortest.name}.
+                        <b className="text-white font-bold">{t('tallestVsShortest')}:</b> {tallest.name} is {extremeDiff} taller than {shortest.name}.
                     </p>
                     <p className="text-[11px] text-[#a1a1aa]">
                         Tap any figure on the chart to make it the reference.
@@ -233,7 +235,7 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({
                 className={`px-6 py-4 flex items-center justify-between sticky top-0 bg-surface z-10 border-y border-border transition-colors duration-500 ${highlight ? 'bg-accent/10 border-accent/50 group' : ''}`}
             >
                 <p className="text-xs uppercase tracking-[0.15em] font-black text-foreground/70 flex items-center gap-2">
-                    Your List
+                    {t('yourList')}
                     {highlight && (
                         <motion.div
                             initial={{ scale: 0.5, opacity: 0 }}
@@ -314,14 +316,14 @@ const PersonChart: React.FC<PersonChartProps> = React.memo(({
                                 <button
                                     onClick={() => onEdit?.(person.id)}
                                     className="p-1.5 text-muted hover:text-accent hover:bg-accent/10 rounded-lg transition-all"
-                                    aria-label="Edit"
+                                    aria-label={t('edit')}
                                 >
                                     <Edit2 size={13} strokeWidth={3} />
                                 </button>
                                 <button
                                     onClick={() => onRemove(person.id)}
                                     className="p-1.5 text-muted hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all"
-                                    aria-label="Remove"
+                                    aria-label={t('remove')}
                                 >
                                     <Trash2 size={13} strokeWidth={3} />
                                 </button>

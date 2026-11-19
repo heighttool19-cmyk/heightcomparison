@@ -3,6 +3,7 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, Plus, Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { getFictionalCharacters } from '../data/fictional';
 import { FictionalCategory, Person, FictionalCharacter } from '../types';
 import { FilterTabs } from './ui/FilterTabs';
@@ -16,6 +17,7 @@ interface FictionalPanelProps {
 }
 
 export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onClose }) => {
+    const t = useTranslations('dashboard.panels');
     const [fictionalCharacters, setFictionalCharacters] = useState<FictionalCharacter[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
@@ -92,8 +94,8 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
         <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
             {/* Header */}
             <PanelHeader
-                title="Fictional Entities"
-                subtitle="Add iconic characters to your chart"
+                title={t('fictionalTitle')}
+                subtitle={t('fictionalSub')}
                 count={filteredCharacters.length}
             />
 
@@ -105,7 +107,7 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                     <input
                         id="search-fictional"
                         type="text"
-                        placeholder="Search by name or series..."
+                        placeholder={t('fictionalSearch')}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="w-full bg-bg border border-border/50 rounded-xl py-2.5 pl-10 pr-4 text-sm font-medium text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/50 transition-all"
@@ -125,7 +127,7 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                 {isLoading ? (
                     <div className="flex flex-col items-center justify-center py-20 gap-3">
                         <Loader2 className="animate-spin text-accent" size={32} />
-                        <p className="text-muted text-sm font-medium">Loading characters...</p>
+                        <p className="text-muted text-sm font-medium">{t('fictionalLoading')}</p>
                     </div>
                 ) : (
                     <AnimatePresence mode="popLayout">
@@ -134,7 +136,7 @@ export const FictionalPanel: React.FC<FictionalPanelProps> = ({ onAddPerson, onC
                                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                                 className="text-center py-12 text-muted font-medium"
                             >
-                                No characters found matching &quot;{searchQuery}&quot;
+                                {t('fictionalNotFound', { query: searchQuery })}
                             </motion.div>
                         ) : (
                             Object.entries(groupedCharacters).map(([category, chars]) => (

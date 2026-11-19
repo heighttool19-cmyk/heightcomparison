@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import {
     ZoomIn, ZoomOut, Download, UserPlus, Star, Box, Ghost,
     ImageIcon, Check, Plus, X, Link as LinkIcon, ArrowLeftRight,
@@ -114,6 +115,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
     const storeRemovePerson = usePersonStore(s => s.removePerson);
     const storeUpdatePerson = usePersonStore(s => s.updatePerson);
     const storeSetPersons = usePersonStore(s => s.setPersons);
+
+    const tNav = useTranslations('dashboard.nav');
+    const tToolbar = useTranslations('dashboard.toolbar');
+    const tCanvas = useTranslations('dashboard.canvas');
+    const tModal = useTranslations('dashboard.modal');
 
     const persons = (readOnly && initialPersons) ? initialPersons : storePersons;
 
@@ -642,7 +648,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                         className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-bg"
                     >
                         <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin mb-4" />
-                        <p className="text-muted font-bold animate-pulse uppercase tracking-widest text-xs">Loading Comparison...</p>
+                        <p className="text-muted font-bold animate-pulse uppercase tracking-widest text-xs">{tCanvas('loading')}</p>
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -664,11 +670,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                     >
                         <div className="flex sm:flex-col h-full w-full overflow-hidden">
                             {([
-                                ['ADD_PERSON', <UserPlus size={18} />, 'ADD PERSON'],
-                                ['CELEBRITIES', <Star size={18} />, 'CELEBRITIES'],
-                                ['FICTIONAL', <Ghost size={18} />, 'FICTIONAL'],
-                                ['ENTITIES', <Box size={18} />, 'ENTITIES'],
-                                ['ADD_IMAGE', <ImageIcon size={18} />, 'ADD IMAGE'],
+                                ['ADD_PERSON', <UserPlus size={18} />, tNav('addPerson')],
+                                ['CELEBRITIES', <Star size={18} />, tNav('celebrities')],
+                                ['FICTIONAL', <Ghost size={18} />, tNav('fictional')],
+                                ['ENTITIES', <Box size={18} />, tNav('entities')],
+                                ['ADD_IMAGE', <ImageIcon size={18} />, tNav('addImage')],
                             ] as [PanelType, React.ReactNode, string][]).map(([panel, icon, label]) => (
                                 <LeftNavItem key={panel} icon={icon} label={label} active={activePanel === panel}
                                     onClick={() => { setActivePanel(panel); setIsMobileDrawerOpen(true); setIsSidebarCollapsed(false); }} />
@@ -692,25 +698,25 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                 <div className="flex items-center gap-1 lg:gap-3 shrink-0">
                                     <button
                                         onClick={toggleUnitSystem}
-                                        aria-label={`Switch to ${unitSystem === 'metric' ? 'Imperial' : 'Metric'} units`}
+                                        aria-label={unitSystem === 'metric' ? tToolbar('switchToImperial') : tToolbar('switchToMetric')}
                                         className="shrink-0 flex items-center gap-1 group hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all"
                                     >
                                         <ArrowLeftRight size={14} className="text-[var(--toolbar-foreground)] group-hover:text-zinc-950" />
                                         <span className="hidden sm:inline text-[10px] lg:text-xs font-semibold text-[var(--toolbar-foreground)] group-hover:text-zinc-950 whitespace-nowrap">
-                                            {unitSystem === 'metric' ? 'cm → ft' : 'ft → cm'}
+                                            {unitSystem === 'metric' ? tToolbar('cmToFt') : tToolbar('ftToCm')}
                                         </span>
                                     </button>
                                     <div className="hidden sm:block w-px h-5 bg-white/10 shrink-0" />
                                     <div className="flex shrink-0 items-center gap-0.5">
                                         <button
                                             onClick={() => setZoom(z => (z + 0.01))}
-                                            aria-label="Zoom in"
+                                            aria-label={tToolbar('zoomIn')}
                                             className="p-1.5 lg:p-2 text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover rounded-xl transition-all"
                                         >
                                             <ZoomIn size={16} strokeWidth={2.5} />
                                         </button>
                                         <div className="bg-item-hover rounded-lg px-1 py-1 flex items-center gap-0.5 border border-toolbar-border">
-                                            <label htmlFor="dashboard-zoom-input" className="sr-only">Zoom percentage</label>
+                                            <label htmlFor="dashboard-zoom-input" className="sr-only">{tToolbar('zoomPercentage')}</label>
                                             <NumericInput
                                                 id="dashboard-zoom-input"
                                                 value={zoomInput}
@@ -733,7 +739,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         </div>
                                         <button
                                             onClick={() => setZoom(z => (z - 0.01))}
-                                            aria-label="Zoom out"
+                                            aria-label={tToolbar('zoomOut')}
                                             className="p-1.5 lg:p-2 text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover rounded-xl transition-all"
                                         >
                                             <ZoomOut size={16} strokeWidth={2.5} />
@@ -743,16 +749,16 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         <button
                                             onClick={handleAutoScale}
                                             className="p-1.5 lg:p-2 text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover rounded-xl transition-all"
-                                            title="Auto Fit"
-                                            aria-label="Auto fit chart"
+                                            title={tToolbar('autoFit')}
+                                            aria-label={tToolbar('autoFit')}
                                         >
                                             <Focus size={16} strokeWidth={2.5} />
                                         </button>
                                         <button
                                             onClick={() => { setActivePanel('ADD_PERSON'); setIsSidebarCollapsed(false); if (isMobile) setIsMobileDrawerOpen(true); setHighlightYourList(true); setTimeout(() => setHighlightYourList(false), 2000); }}
                                             className="p-1.5 lg:p-2 text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover rounded-xl transition-all"
-                                            title="Edit List"
-                                            aria-label="Edit persons list"
+                                            title={tToolbar('editList')}
+                                            aria-label={tToolbar('editList')}
                                         >
                                             <Edit2 size={16} strokeWidth={2.5} />
                                         </button>
@@ -776,16 +782,16 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                     <button
                                         onClick={handleClearAll}
                                         className="flex items-center gap-1.5 text-[var(--toolbar-foreground)] hover:text-red-200 hover:bg-item-hover px-1.5 py-1.5 rounded-xl transition-all group shrink-0"
-                                        aria-label="Clear all persons"
+                                        aria-label={tToolbar('clearAll')}
                                     >
                                         <Trash2 size={16} className="text-[var(--toolbar-foreground)] group-hover:text-red-300 shrink-0" />
-                                        <span className="hidden xl:inline whitespace-nowrap text-xs">Clear All</span>
+                                        <span className="hidden xl:inline whitespace-nowrap text-xs">{tToolbar('clearAll')}</span>
                                     </button>
                                     <div className="relative inline-flex">
                                         <button
                                             onClick={handleShare}
                                             disabled={shareStatus !== 'idle'}
-                                            aria-label="Share height comparison"
+                                            aria-label={tToolbar('share')}
                                             className={`flex items-center gap-1.5 px-1.5 py-1.5 group shrink-0 transition-all duration-300 rounded-xl ${shareStatus === 'copied' ? 'text-black bg-white/40' : shareStatus === 'error' ? 'text-red-950 bg-red-500/20' : 'text-[var(--toolbar-foreground)] hover:text-zinc-950 hover:bg-item-hover'}`}
                                         >
                                             {shareStatus === 'generating' ? (
@@ -796,7 +802,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                                 <LinkIcon size={16} className={`group-hover:text-zinc-950 shrink-0 ${shareStatus === 'error' ? 'text-red-950' : 'text-[var(--toolbar-foreground)]'}`} />
                                             )}
                                             <span className="hidden xl:inline whitespace-nowrap text-xs">
-                                                {shareStatus === 'generating' ? 'Generating...' : shareStatus === 'copied' ? 'Copied!' : shareStatus === 'error' ? 'Error' : 'Share'}
+                                                {shareStatus === 'generating' ? tToolbar('generating') : shareStatus === 'copied' ? tToolbar('copied') : shareStatus === 'error' ? tToolbar('error') : tToolbar('share')}
                                             </span>
                                         </button>
                                         {/* Ticket T9: Share Notice Tooltip directly below Share button */}
@@ -809,14 +815,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                                 exit={{ opacity: 0, scale: 0.95 }}
                                                 className="absolute top-[calc(100%+8px)] right-0 z-50 w-[240px] sm:w-[260px] bg-[#111113] text-[#e4e4e7] border border-[#3f3f46] rounded-xl p-2.5 text-xs shadow-2xl pointer-events-none"
                                             >
-                                                <b className="text-[#86efac] mr-1 font-bold">Link copied.</b> Links stay active for 7 days.
+                                                <b className="text-[#86efac] mr-1 font-bold">{tToolbar('linkCopied')}</b> {tToolbar('linkExpiry')}
                                             </motion.div>
                                         )}
                                     </div>
                                     <button
                                         onClick={handleDownloadPNG}
                                         disabled={isCapturing}
-                                        aria-label="Download chart as PNG image"
+                                        aria-label={tToolbar('downloadChart')}
                                         className="flex items-center gap-1 bg-accent/10 text-[var(--toolbar-foreground)] border border-accent/10 px-2 lg:px-4 py-1.5 lg:py-2 rounded-xl text-[10px] lg:text-xs font-black hover:bg-[var(--toolbar-foreground)] hover:text-white transition-all shadow-lg active:scale-95 disabled:opacity-50 shrink-0"
                                     >
                                         {isCapturing ? (
@@ -824,7 +830,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                         ) : (
                                             <Download size={14} strokeWidth={2.5} />
                                         )}
-                                        <span className="hidden lg:inline ml-1">PNG</span>
+                                        <span className="hidden lg:inline ml-1">{tToolbar('png')}</span>
                                     </button>
                                 </div>
                             </div>
@@ -849,10 +855,10 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                             <div className="flex-1 flex justify-end">
                                 <button
                                     onClick={toggleFullscreen}
-                                    aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
+                                    aria-label={isFullscreen ? tToolbar('exitFullscreen') : tToolbar('fullscreen')}
                                     className={`shrink-0 z-[100] flex items-center gap-1.5 active:scale-95 ${isFullscreen ? 'p-2 sm:p-3 bg-accent text-white rounded-full shadow-2xl' : 'px-2 py-1 bg-surface text-foreground hover:bg-accent hover:text-white rounded-xl border border-border/60 shadow-lg'}`}
                                 >
-                                    {isFullscreen ? <X size={isMobile ? 20 : 28} /> : <><Maximize size={16} strokeWidth={2.5} /><span className="hidden sm:inline text-xs font-bold ml-1">Fullscreen</span></>}
+                                    {isFullscreen ? <X size={isMobile ? 20 : 28} /> : <><Maximize size={16} strokeWidth={2.5} /><span className="hidden sm:inline text-xs font-bold ml-1">{tToolbar('fullscreen')}</span></>}
                                 </button>
                             </div>
                         </div>
@@ -995,14 +1001,14 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                                                             className="w-2.5 h-2.5 rounded-full shrink-0"
                                                                             style={{ backgroundColor: pairInfo.taller.color || '#22c55e' }}
                                                                         />
-                                                                        <span>{pairInfo.taller.name} is {pairInfo.gap.tallerPct}% taller</span>
+                                                                        <span>{tCanvas('gapTaller', { name: pairInfo.taller.name, pct: pairInfo.gap.tallerPct })}</span>
                                                                     </div>
                                                                     <div className="flex items-center gap-2 text-xs text-[#e4e4e7] font-medium font-sans">
                                                                         <span
                                                                             className="w-2.5 h-2.5 rounded-full shrink-0"
                                                                             style={{ backgroundColor: pairInfo.shorter.color || '#f97316' }}
                                                                         />
-                                                                        <span>{pairInfo.shorter.name} is {pairInfo.gap.shorterPct}% shorter</span>
+                                                                        <span>{tCanvas('gapShorter', { name: pairInfo.shorter.name, pct: pairInfo.gap.shorterPct })}</span>
                                                                     </div>
                                                                 </div>
                                                             </>
@@ -1022,7 +1028,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                             <span
                                                 className="hidden sm:inline-block absolute left-1.5 sm:left-2 -translate-y-full mb-1 font-black text-[10px] sm:text-[10.5px] uppercase tracking-wider text-[#fdba74] bg-[#111113]/90 px-1.5 py-0.5 rounded shadow pointer-events-none font-sans whitespace-nowrap"
                                             >
-                                                REF · {refPerson.name.toUpperCase()} {unitSystem === 'metric' ? `${refPerson.heightCm} cm` : ftIn(refPerson.heightCm)}
+                                                {tCanvas('ref')} · {refPerson.name.toUpperCase()} {unitSystem === 'metric' ? `${refPerson.heightCm} cm` : ftIn(refPerson.heightCm)}
                                             </span>
                                         </div>
                                     )}
@@ -1046,7 +1052,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                                     {unitSystem === 'metric' ? `${pairInfo.gap.gapCm} cm (${pairInfo.gap.gapIn} in) gap` : `${pairInfo.gap.gapIn} in (${pairInfo.gap.gapCm} cm) gap`}
                                                 </div>
                                                 <div className="text-[11px] text-[#e4e4e7] font-medium leading-tight">
-                                                    {pairInfo.taller.name} is {pairInfo.gap.tallerPct}% taller than {pairInfo.shorter.name} ({pairInfo.gap.shorterPct}% shorter).
+                                                    {tCanvas('gapSummary', { taller: pairInfo.taller.name, tallerPct: pairInfo.gap.tallerPct, shorter: pairInfo.shorter.name, shorterPct: pairInfo.gap.shorterPct })}
                                                 </div>
                                             </div>
                                         </>
@@ -1059,8 +1065,8 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                             aria-live="polite"
                                             className="absolute top-4 right-4 z-30 bg-[#111113] border-2 border-emerald-500 rounded-2xl p-3 shadow-xl max-w-xs text-xs pointer-events-auto text-[#e4e4e7]"
                                         >
-                                            <div className="font-black text-sm text-white">Same height</div>
-                                            <div className="text-muted font-medium mt-0.5">{pairInfo.p1.name} and {pairInfo.p2.name} are both {unitSystem === 'imperial' ? ftIn(pairInfo.p1.heightCm) : `${pairInfo.p1.heightCm} cm`}.</div>
+                                            <div className="font-black text-sm text-white">{tCanvas('sameHeight')}</div>
+                                            <div className="text-muted font-medium mt-0.5">{tCanvas('sameHeightBoth', { name1: pairInfo.p1.name, name2: pairInfo.p2.name, height: unitSystem === 'imperial' ? ftIn(pairInfo.p1.heightCm) : `${pairInfo.p1.heightCm} cm` })}</div>
                                         </div>
                                     )}
                                 </div>
@@ -1071,13 +1077,13 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             onClick={() => { if (readOnly) return; setActivePanel('ADD_PERSON'); setIsSidebarCollapsed(false); if (window.innerWidth < 768) setIsMobileDrawerOpen(true); }}
-                                            aria-label="Add a person to the chart"
+                                            aria-label={tCanvas('addPersonAria')}
                                             className={`empty-door flex items-center justify-center group pointer-events-auto ${!readOnly ? 'cursor-pointer hover:border-accent' : ''}`}
                                         >
                                             <Plus size={40} className="text-muted/20 group-hover:text-accent group-hover:scale-110 transition-all duration-500" />
                                         </motion.button>
                                         <span className="text-sm sm:text-lg lg:text-xl text-center font-bold text-muted bg-surface/50 px-6 py-2.5 rounded-2xl border border-border/50 backdrop-blur-md shadow-xl">
-                                            Add a person to get started
+                                            {tCanvas('addPersonPrompt')}
                                         </span>
                                     </div>
                                 )}
@@ -1163,7 +1169,7 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                                 <motion.div initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', damping: 25, stiffness: 200 }} className="sm:hidden fixed bottom-0 left-0 right-0 h-[80vh] bg-surface rounded-t-[2rem] z-[200] overflow-hidden flex flex-col shadow-2xl border-t border-border">
                                     <div className="flex items-center justify-between px-6 py-5 border-b border-border/30 bg-surface/50 backdrop-blur-md sticky top-0 z-20">
                                         <h3 className="text-sm font-black uppercase tracking-[0.2em]">
-                                            {activePanel === 'ADD_PERSON' ? 'Enter Details' : activePanel === 'CELEBRITIES' ? 'Celebrities' : activePanel === 'FICTIONAL' ? 'Fictional' : activePanel.replace('_', ' ')}
+                                            {activePanel === 'ADD_PERSON' ? tNav('addPerson') : activePanel === 'CELEBRITIES' ? tNav('celebrities') : activePanel === 'FICTIONAL' ? tNav('fictional') : activePanel === 'ENTITIES' ? tNav('entities') : tNav('addImage')}
                                         </h3>
                                         <button
                                             onClick={() => setIsMobileDrawerOpen(false)}
@@ -1200,11 +1206,11 @@ const HeightDashboard: React.FC<HeightDashboardProps> = ({
                 {isConfirmingClear && (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
                         <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-surface border border-border/50 rounded-2xl shadow-2xl p-6 sm:p-8 max-w-sm w-full">
-                            <h3 className="text-xl font-bold mb-3 text-red-500 flex items-center gap-2"><Trash2 size={24} />Clear Chart</h3>
-                            <p className="text-muted mb-8 text-sm">Remove all subjects? This cannot be undone.</p>
+                            <h3 className="text-xl font-bold mb-3 text-red-500 flex items-center gap-2"><Trash2 size={24} />{tModal('clearTitle')}</h3>
+                            <p className="text-muted mb-8 text-sm">{tModal('clearDesc')}</p>
                             <div className="flex justify-end gap-3">
-                                <button onClick={() => setIsConfirmingClear(false)} className="px-5 py-2.5 rounded-xl font-bold text-muted hover:text-foreground hover:bg-bg">Cancel</button>
-                                <button onClick={confirmClearAll} className="px-5 py-2.5 rounded-xl font-bold bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all">Clear All</button>
+                                <button onClick={() => setIsConfirmingClear(false)} className="px-5 py-2.5 rounded-xl font-bold text-muted hover:text-foreground hover:bg-bg">{tModal('cancel')}</button>
+                                <button onClick={confirmClearAll} className="px-5 py-2.5 rounded-xl font-bold bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition-all">{tModal('clearConfirm')}</button>
                             </div>
                         </motion.div>
                     </motion.div>

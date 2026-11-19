@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { Gender, UnitSystem, COLOR_PALETTE, uid, Person } from '../types';
 import { ALL_AVATARS, AVATAR_CATEGORIES, AvatarCategory, DEFAULT_FEMALE_AVATAR, DEFAULT_MALE_AVATAR, ENABLE_SVG_AVATARS } from '../constants/avatars';
 import { handleInputChange } from '../utils/input';
@@ -14,6 +15,7 @@ interface AddPersonFormProps {
 }
 
 const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => {
+    const t = useTranslations('dashboard.form');
     const [gender, setGender] = useState<Gender>('male');
     const [name, setName] = useState('');
     const [unit, setUnit] = useState<UnitSystem>('metric');
@@ -111,7 +113,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
         >
             <div className="flex items-center gap-2">
                 <div className="w-1 h-4 bg-accent rounded-full" />
-                <p className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">Enter Your Details</p>
+                <p className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">{t('enterDetails')}</p>
             </div>
 
             {/* Gender Toggle */}
@@ -121,25 +123,25 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                     className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
-                    Male
+                    {t('male')}
                 </button>
                 <button
                     onClick={() => handleGenderChange('female')}
                     className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
                         }`}
                 >
-                    Female
+                    {t('female')}
                 </button>
             </div>
 
             <div className="space-y-4">
                 {/* Name Input */}
                 <div className="space-y-1.5">
-                    <label htmlFor="name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Name</label>
+                    <label htmlFor="name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">{t('name')}</label>
                     <input
                         id="name"
                         type="text"
-                        placeholder="Optional"
+                        placeholder={t('optional')}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full bg-bg border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
@@ -149,7 +151,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                 {/* Unit & Height Container */}
                 <div className="space-y-1.5">
                     <div className="flex justify-between items-center ml-0.5">
-                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60">Height (CM/FT)</label>
+                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60">{t('heightLabel')}</label>
                         <div className="flex gap-1.5">
                             {(['metric', 'imperial'] as UnitSystem[]).map((u) => (
                                 <button
@@ -169,7 +171,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                             <div className="w-full flex bg-bg border border-border rounded-2xl overflow-hidden focus-within:border-accent/40 transition-all">
                                 <NumericInput
                                     id="height-cm"
-                                    placeholder="Height"
+                                    placeholder={t('heightPlaceholder')}
                                     value={heightCm}
                                     onValueChange={setHeightCm}
                                     aria-label="Height in centimeters"
@@ -184,7 +186,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                     <NumericInput
                                         id="height-ft"
-                                        placeholder="Ft"
+                                        placeholder={t('ftPlaceholder')}
                                         value={heightFt}
                                         onValueChange={setHeightFt}
                                         aria-label="Height in feet"
@@ -197,7 +199,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                                 <div className="flex-1 flex bg-bg border border-border rounded-xl overflow-hidden focus-within:border-accent/40 transition-all">
                                     <NumericInput
                                         id="height-in"
-                                        placeholder="In"
+                                        placeholder={t('inPlaceholder')}
                                         value={heightIn}
                                         onValueChange={setHeightIn}
                                         aria-label="Height in inches"
@@ -216,7 +218,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
             {/* Avatar Selection */}
             {ENABLE_SVG_AVATARS && (gender === 'male' || gender === 'female') && (
                 <div className="space-y-4">
-                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Avatar Style</label>
+                    <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">{t('avatarStyle')}</label>
 
                     {/* Category Selector */}
                     <div ref={categoryContainerRef} className="flex gap-2 overflow-x-auto pb-2 no-scrollbar scroll-smooth">
@@ -291,7 +293,7 @@ const AddPersonForm: React.FC<AddPersonFormProps> = ({ onAdd, personCount }) => 
                 className="w-full bg-accent text-zinc-950 py-4 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-accent/10"
             >
                 <Plus size={16} className="group-hover:rotate-90 transition-transform duration-300" />
-                Add Person
+                {t('addPerson')}
             </motion.button>
 
         </motion.div>

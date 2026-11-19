@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Person, uid, UnitSystem } from '../types';
 import { UploadCloud, X, Crop as CropIcon, Check } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { handleInputChange } from '../utils/input';
 import { NumericInput } from './ui/NumericInput';
 import { CropModal } from './ImageMeasurementCom/components/CropModal';
@@ -14,6 +15,8 @@ interface AddImageFormProps {
 }
 
 const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
+    const tPanels = useTranslations('dashboard.panels');
+    const tForm = useTranslations('dashboard.form');
     // Form state
     const [name, setName] = useState('');
     const [unit, setUnit] = useState<UnitSystem>('metric');
@@ -153,16 +156,16 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, ease: 'easeOut' }} className="p-6 space-y-6">
                 <div className="flex items-center gap-2">
                     <div className="w-1 h-4 bg-accent rounded-full" />
-                    <h2 className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">Add Image Person</h2>
+                    <h2 className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">{tPanels('addImageTitle')}</h2>
                 </div>
 
                 {/* Name */}
                 <div className="space-y-1.5">
-                    <label htmlFor="image-person-name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Name</label>
+                    <label htmlFor="image-person-name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">{tForm('name')}</label>
                     <input
                         id="image-person-name"
                         type="text"
-                        placeholder="Optional"
+                        placeholder={tForm('optional')}
                         value={name}
                         onChange={e => setName(e.target.value)}
                         className="w-full bg-bg border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all"
@@ -172,7 +175,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                 {/* Height */}
                 <div className="space-y-1.5">
                     <div className="flex justify-between items-center ml-0.5">
-                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60">Height</label>
+                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60">{tForm('heightLabel')}</label>
                         <div className="flex gap-1.5">
                             {(['metric', 'imperial'] as UnitSystem[]).map(u => (
                                 <button
@@ -192,7 +195,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                             <label htmlFor="image-height-cm" className="sr-only">Height in centimeters</label>
                             <NumericInput
                                 id="image-height-cm"
-                                placeholder="eg. 158 cm"
+                                placeholder={tForm('heightPlaceholder')}
                                 value={heightCm}
                                 onValueChange={(val) => { setError(''); setHeightCm(val); }}
                                 className="flex-1 bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
@@ -205,7 +208,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                                 <label htmlFor="image-height-ft" className="sr-only">Height in feet</label>
                                 <NumericInput
                                     id="image-height-ft"
-                                    placeholder="Ft"
+                                    placeholder={tForm('ftPlaceholder')}
                                     value={heightFt}
                                     onValueChange={(val) => { setError(''); setHeightFt(val); }}
                                     className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
@@ -216,7 +219,7 @@ const AddImageForm: React.FC<AddImageFormProps> = ({ onAdd }) => {
                                 <label htmlFor="image-height-in" className="sr-only">Height in inches</label>
                                 <NumericInput
                                     id="image-height-in"
-                                    placeholder="In"
+                                    placeholder={tForm('inPlaceholder')}
                                     value={heightIn}
                                     onValueChange={(val) => { setError(''); setHeightIn(val); }}
                                     className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"

@@ -1,6 +1,10 @@
+'use client';
+
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 export const GapPairBars: React.FC = () => {
+  const t = useTranslations('home.visuals.gapPairBars');
   const max = 210;
 
   return (
@@ -13,9 +17,9 @@ export const GapPairBars: React.FC = () => {
         {/* Pair 1: 160 vs 172 cm */}
         <div className="p-3 bg-bg rounded-xl border border-border/60">
           <div className="flex justify-between items-center text-xs font-semibold mb-2">
-            <span className="text-foreground">Shorter Base (160 vs 172 cm)</span>
+            <span className="text-foreground">{t('shorterBase')}</span>
             <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 font-bold text-[11px]">
-              12 cm gap = 7.5% difference
+              {t('gapDiff', { pct: '7.5' })}
             </span>
           </div>
           <div className="space-y-1.5">
@@ -38,9 +42,9 @@ export const GapPairBars: React.FC = () => {
         {/* Pair 2: 190 vs 202 cm */}
         <div className="p-3 bg-bg rounded-xl border border-border/60">
           <div className="flex justify-between items-center text-xs font-semibold mb-2">
-            <span className="text-foreground">Taller Base (190 vs 202 cm)</span>
+            <span className="text-foreground">{t('tallerBase')}</span>
             <span className="px-2 py-0.5 rounded bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 font-bold text-[11px]">
-              12 cm gap = 6.3% difference
+              {t('gapDiff', { pct: '6.3' })}
             </span>
           </div>
           <div className="space-y-1.5">
@@ -62,9 +66,8 @@ export const GapPairBars: React.FC = () => {
       </div>
 
       <figcaption className="text-xs text-muted mt-3 pt-2 border-t border-border/50 text-center sm:text-left">
-        The same 12 cm gap represents a 7.5% height increase at shorter heights (160 vs 172 cm), but only a 6.3% increase at taller heights (190 vs 202 cm). Visual side-by-side charts reveal relative proportion that raw millimeter numbers obscure.
+        {t('caption')}
       </figcaption>
     </figure>
   );
 };
-

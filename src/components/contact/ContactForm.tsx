@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const TOPIC_HELP: Record<string, string> = {
   'wrong-height':
@@ -15,6 +16,7 @@ const TOPIC_HELP: Record<string, string> = {
 };
 
 export default function ContactForm() {
+  const t = useTranslations('contact.form');
   const [topic, setTopic] = useState('wrong-height');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -78,11 +80,11 @@ export default function ContactForm() {
         setMessage('');
       } else {
         setStatus('error');
-        setErrorMessage(data.error || 'Failed to send message. Please try again or email us directly.');
+        setErrorMessage(data.error || t('errorTitle'));
       }
     } catch {
       setStatus('error');
-      setErrorMessage('Network error occurred. Please check your connection or email us directly.');
+      setErrorMessage(t('errorTitle'));
     }
   };
 
@@ -131,7 +133,7 @@ export default function ContactForm() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="name" className="block text-xs font-black uppercase tracking-wider text-foreground mb-2">
-              Your Name <span className="text-red-500">*</span>
+              {t('name')} <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -140,14 +142,14 @@ export default function ContactForm() {
               maxLength={80}
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Alex"
+              placeholder={t('namePlaceholder')}
               className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted/60 focus:outline-none focus:border-accent"
             />
           </div>
 
           <div>
             <label htmlFor="email" className="block text-xs font-black uppercase tracking-wider text-foreground mb-2">
-              Your Email <span className="text-red-500">*</span>
+              {t('email')} <span className="text-red-500">*</span>
             </label>
             <input
               type="email"
@@ -156,7 +158,7 @@ export default function ContactForm() {
               maxLength={120}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="alex@example.com"
+              placeholder={t('emailPlaceholder')}
               className="w-full bg-bg border border-border rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted/60 focus:outline-none focus:border-accent"
             />
           </div>
@@ -182,7 +184,7 @@ export default function ContactForm() {
         <div>
           <div className="flex justify-between items-center mb-2">
             <label htmlFor="message" className="text-xs font-black uppercase tracking-wider text-foreground">
-              Message <span className="text-red-500">*</span>
+              {t('message')} <span className="text-red-500">*</span>
             </label>
             <span className="text-[11px] font-mono text-muted">
               {message.length} / 2000 {message.length < 20 && '(min 20)'}
@@ -195,7 +197,7 @@ export default function ContactForm() {
             maxLength={2000}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Please detail your request or correction here..."
+            placeholder={t('messagePlaceholder')}
             className="w-full bg-bg border border-border rounded-xl p-4 text-sm text-foreground placeholder:text-muted/60 focus:outline-none focus:border-accent resize-y"
           />
         </div>
@@ -207,7 +209,10 @@ export default function ContactForm() {
             className="p-4 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-300 dark:border-emerald-800 rounded-2xl flex items-center gap-3 text-emerald-800 dark:text-emerald-300 text-sm font-medium"
           >
             <CheckCircle2 size={20} className="shrink-0 text-emerald-600 dark:text-emerald-400" />
-            <span>Thank you! Your message has been sent. Our team will review your report.</span>
+            <div>
+              <b className="block">{t('successTitle')}</b>
+              <span>{t('successDesc')}</span>
+            </div>
           </div>
         )}
 
@@ -217,7 +222,7 @@ export default function ContactForm() {
             className="p-4 bg-red-50 dark:bg-red-950/50 border border-red-300 dark:border-red-800 rounded-2xl flex items-center gap-3 text-red-800 dark:text-red-300 text-sm font-medium"
           >
             <AlertCircle size={20} className="shrink-0 text-red-600 dark:text-red-400" />
-            <span>{errorMessage}</span>
+            <span>{errorMessage || t('errorTitle')}</span>
           </div>
         )}
 
@@ -225,17 +230,17 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full py-4 px-6 rounded-2xl bg-accent text-zinc-950 font-black uppercase tracking-widest text-sm hover:scale-[1.01] active:scale-95 transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-4 px-6 rounded-2xl bg-accent text-zinc-950 font-black uppercase tracking-widest text-sm hover:scale-[1.01] active:scale-95 transition-all shadow-md flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
         >
           {status === 'loading' ? (
             <>
               <Loader2 size={18} className="animate-spin" />
-              <span>Sending Message...</span>
+              <span>{t('sending')}</span>
             </>
           ) : (
             <>
               <Send size={16} />
-              <span>Send Message</span>
+              <span>{t('submit')}</span>
             </>
           )}
         </button>
@@ -253,4 +258,3 @@ export default function ContactForm() {
     </div>
   );
 }
-

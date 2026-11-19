@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 const COMMON_PAIRS = [
   { pair: "5'2\" vs 5'8\"", h1Ft: "5'2\"", h1Cm: 157.5, h2Ft: "5'8\"", h2Cm: 172.7, gapIn: 6.0, gapCm: 15.2, tallerPct: 9.7, shorterPct: 8.8 },
@@ -11,6 +14,7 @@ const COMMON_PAIRS = [
 ];
 
 export const HeightGapTable: React.FC = () => {
+  const t = useTranslations('home.visuals.heightGapTable');
   const maxCm = 195;
 
   return (
@@ -19,11 +23,11 @@ export const HeightGapTable: React.FC = () => {
         <table className="w-full text-left border-collapse text-xs sm:text-sm">
           <thead>
             <tr className="border-b border-border bg-zinc-50 dark:bg-zinc-900/60 text-muted font-semibold uppercase tracking-wider text-[11px]">
-              <th className="py-3 px-4">Height Pairing</th>
-              <th className="py-3 px-3">Difference</th>
-              <th className="py-3 px-3">Taller %</th>
-              <th className="py-3 px-3">Shorter %</th>
-              <th className="py-3 px-4 min-w-[140px]">Visual Scale</th>
+              <th className="py-3 px-4">{t('colPair')}</th>
+              <th className="py-3 px-3">{t('colDiff')}</th>
+              <th className="py-3 px-3">{t('colTaller')}</th>
+              <th className="py-3 px-3">{t('colShorter')}</th>
+              <th className="py-3 px-4 min-w-[140px]">{t('colScale')}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-border/60">
@@ -74,9 +78,8 @@ export const HeightGapTable: React.FC = () => {
       </div>
 
       <figcaption className="text-xs text-muted mt-2.5 px-1 text-center sm:text-left">
-        Common height differences in feet and inches with exact conversions and proportional scaling. Directional percentages show both perspectives: how much taller the second person is, and how much shorter the first person is.
+        {t('caption')}
       </figcaption>
     </figure>
   );
 };
-

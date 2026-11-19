@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, X } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { Gender, UnitSystem, COLOR_PALETTE, Person } from '../types';
 import { ALL_AVATARS, AVATAR_CATEGORIES, AvatarCategory, DEFAULT_FEMALE_AVATAR, DEFAULT_MALE_AVATAR } from '../constants/avatars';
 import { useUnitStore } from '../store';
@@ -18,6 +19,7 @@ interface EditPersonFormProps {
 }
 
 const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdate, onCancel }) => {
+    const t = useTranslations('dashboard.form');
     const { unitSystem: globalUnit } = useUnitStore();
 
     const [gender, setGender] = useState<Gender>(person.gender || 'other');
@@ -151,7 +153,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                     <div className="w-1 h-4 bg-accent rounded-full" />
-                    <h2 className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">Edit Subject</h2>
+                    <h2 className="text-xs uppercase tracking-[0.2em] font-black text-foreground/70">{t('editPerson')}</h2>
                 </div>
                 <motion.button
                     whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.1)' }}
@@ -188,7 +190,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                         className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'male' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
                             }`}
                     >
-                        Male
+                        {t('male')}
                     </button>
                     <button
                         onClick={() => {
@@ -199,7 +201,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                         className={`flex-1 py-2 text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-300 ${gender === 'female' ? 'bg-accent text-zinc-950 shadow-md' : 'text-muted hover:text-foreground'
                             }`}
                     >
-                        Female
+                        {t('female')}
                     </button>
                 </div>
             )}
@@ -207,11 +209,11 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
             <div className="space-y-4">
                 {/* Name Input */}
                 <div className="space-y-1.5">
-                    <label htmlFor="edit-name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Identity</label>
+                    <label htmlFor="edit-name" className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">{t('name')}</label>
                     <input
                         id="edit-name"
                         type="text"
-                        placeholder="Name (Optional)"
+                        placeholder={t('optional')}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="w-full bg-bg border border-border rounded-2xl px-4 py-3 text-sm text-foreground placeholder:text-muted/30 focus:outline-none focus:border-accent/40 transition-all duration-300"
@@ -235,7 +237,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                 {/* Unit & Height Container */}
                 <div className="space-y-1.5">
                     <div className="flex justify-between items-center ml-0.5">
-                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60">Dimension</label>
+                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60">{t('heightLabel')}</label>
                         <div className="flex gap-1.5">
                             {(['metric', 'imperial'] as UnitSystem[]).map((u) => (
                                 <button
@@ -256,7 +258,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                                 <label htmlFor="edit-height-cm" className="sr-only">Height in centimeters</label>
                                 <NumericInput
                                     id="edit-height-cm"
-                                    placeholder="Height"
+                                    placeholder={t('heightPlaceholder')}
                                     value={heightCm}
                                     onValueChange={(val) => { setHeightCm(val); setError(null); }}
                                     className="w-full bg-transparent px-4 py-3 text-sm text-foreground focus:outline-none"
@@ -271,7 +273,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                                     <label htmlFor="edit-height-ft" className="sr-only">Height in feet</label>
                                     <NumericInput
                                         id="edit-height-ft"
-                                        placeholder="Ft"
+                                        placeholder={t('ftPlaceholder')}
                                         value={heightFt}
                                         onValueChange={(val) => { setHeightFt(val); setError(null); }}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
@@ -284,7 +286,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                                     <label htmlFor="edit-height-in" className="sr-only">Height in inches</label>
                                     <NumericInput
                                         id="edit-height-in"
-                                        placeholder="In"
+                                        placeholder={t('inPlaceholder')}
                                         value={heightIn}
                                         onValueChange={(val) => { setHeightIn(val); setError(null); }}
                                         className="w-full min-w-0 bg-transparent px-3 py-3 text-sm text-foreground focus:outline-none"
@@ -301,7 +303,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                 {/* Avatar Selection */}
                 {isHumanAvatar && (gender === 'male' || gender === 'female') && !person.isEntity && (
                     <div className="space-y-4">
-                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">Avatar Style</label>
+                        <label className="text-[11px] uppercase tracking-widest font-black text-foreground/60 ml-0.5">{t('avatarStyle')}</label>
 
                         {/* Category Selector */}
                         <div ref={categoryContainerRef} className="flex gap-2 overflow-x-auto pb-2 no-scrollbar scroll-smooth">
@@ -385,7 +387,7 @@ const EditPersonForm: React.FC<EditPersonFormProps> = ({ person, onSave, onUpdat
                 onClick={handleSave}
                 className="w-full bg-accent text-zinc-950 py-4 rounded-2xl text-xs font-black uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 group shadow-lg shadow-accent/10"
             >
-                Save Changes
+                {t('saveChanges')}
                 <ChevronRight size={16} className="group-hover:translate-x-0.5 transition-transform" strokeWidth={4} />
             </motion.button>
 

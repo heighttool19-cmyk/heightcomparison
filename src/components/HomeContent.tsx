@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Check } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -10,13 +10,15 @@ import FaqAccordion from './FaqAccordion';
 import DashboardLink from './DashboardLink';
 import SmoothScrollLink from './SmoothScrollLink';
 import HomeCTAs from './HomeCTAs';
-import { HOME_FAQ, HOME_FAQ_SOURCES } from '@/constants/home';
 import {
   LibraryStackBar,
   WorkedExampleBars,
   ScaleLadder,
   GapPairBars,
   HeightGapTable,
+  AgeBenchmarkBars,
+  TwoInchGap,
+  ConversionFlow,
 } from './visuals';
 
 export default function HomeContent() {
@@ -532,13 +534,43 @@ export default function HomeContent() {
             </section>
 
             {/* --- SECTION 8: Frequently Asked Questions (Single ID via FaqAccordion) --- */}
-            <FaqAccordion
-              items={HOME_FAQ}
-              title={t('section8.title')}
-              description={t('section8.description')}
-              badge={t('section8.badge')}
-              footerText={HOME_FAQ_SOURCES}
-            />
+            {(() => {
+              const rawItems = (t.raw('section8.items') as Array<{ q: string; a: string }>) || [];
+              const mappedItems = rawItems.map((item, idx) => {
+                let extraNode: React.ReactNode = null;
+                if (idx === 5) {
+                  extraNode = <AgeBenchmarkBars />;
+                } else if (idx === 6) {
+                  extraNode = <TwoInchGap />;
+                } else if (idx === 8) {
+                  extraNode = <ConversionFlow />;
+                }
+
+                if (!extraNode) {
+                  return { q: item.q, a: item.a };
+                }
+
+                return {
+                  q: item.q,
+                  a: (
+                    <div className="space-y-3">
+                      <p>{item.a}</p>
+                      {extraNode}
+                    </div>
+                  )
+                };
+              });
+
+              return (
+                <FaqAccordion
+                  items={mappedItems}
+                  title={t('section8.title')}
+                  description={t('section8.description')}
+                  badge={t('section8.badge')}
+                  footerText={t('section8.sources')}
+                />
+              );
+            })()}
 
             {/* --- SECTION 9: Compare Heights Online — Tools and Articles --- */}
             <section id="compare-heights-online-tools-and-articles" className="space-y-6 scroll-mt-24">

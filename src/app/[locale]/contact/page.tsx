@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Mail, Shield, AlertTriangle, Lightbulb } from 'lucide-react';
+import { getTranslations } from 'next-intl/server';
 import JsonLd from '@/components/common/JsonLd';
 import { CONTACT_SCHEMA } from '@/constants/schemas/contact';
 import ContactForm from '@/components/contact/ContactForm';
@@ -8,18 +9,18 @@ import { getCanonicalUrl, getAlternateLanguages } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'contact.metadata' });
 
   return {
-    title: 'Contact Us | Height Comparison Calculator',
-    description:
-      'Contact the Height Comparison Calculator team to report a wrong height, a bug or a privacy request. Use the form or email us directly.',
+    title: t('title'),
+    description: t('description'),
     alternates: {
       canonical: getCanonicalUrl('/contact', locale),
       languages: getAlternateLanguages('/contact'),
     },
     openGraph: {
-      title: 'Contact Us | Height Comparison Calculator',
-      description: 'Report a wrong height, a bug or a privacy request. Use the form or email us directly.',
+      title: t('title'),
+      description: t('description'),
       url: getCanonicalUrl('/contact', locale),
       images: [
         {
@@ -33,7 +34,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default async function ContactPage() {
+export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const tNav = await getTranslations({ locale, namespace: 'contact.breadcrumb' });
+  const tHeader = await getTranslations({ locale, namespace: 'contact.header' });
+
   return (
     <div className="min-h-screen bg-bg text-foreground">
       {/* Schema Markup */}
@@ -44,13 +49,13 @@ export default async function ContactPage() {
         <nav aria-label="Breadcrumb" className="text-xs text-muted font-medium mb-8">
           <ol className="flex items-center gap-2">
             <li>
-              <Link href="/" className="hover:text-foreground transition-colors">
-                Home
+              <Link href={locale === 'en' ? '/' : `/${locale}`} className="hover:text-foreground transition-colors">
+                {tNav('home')}
               </Link>
             </li>
             <li>/</li>
             <li className="text-foreground font-bold" aria-current="page">
-              Contact Us
+              {tNav('contact')}
             </li>
           </ol>
         </nav>
@@ -58,10 +63,10 @@ export default async function ContactPage() {
         {/* Page Header */}
         <header className="mb-10 space-y-3">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-foreground">
-            Contact <span className="text-accent">Our Team</span>
+            {tHeader('title')}
           </h1>
           <p className="text-base sm:text-lg text-muted font-medium max-w-2xl leading-relaxed">
-            Report an inaccurate height, request data corrections under privacy laws, report technical issues, or reach out regarding press and partnerships.
+            {tHeader('description')}
           </p>
         </header>
 
@@ -80,10 +85,10 @@ export default async function ContactPage() {
                 <Mail size={20} />
               </div>
               <h2 className="text-base font-black text-foreground uppercase tracking-wider">
-                Direct Email
+                {tHeader('emailUs')}
               </h2>
               <p className="text-xs text-muted leading-relaxed font-medium">
-                You can write to us directly at any time. We review all feedback and data verification inquiries:
+                {tHeader('emailDesc')}
               </p>
               <a
                 href="mailto:contact@heightcomparisoncalculator.com"
@@ -99,10 +104,10 @@ export default async function ContactPage() {
                 <Lightbulb size={20} />
               </div>
               <h2 className="text-sm font-black text-foreground uppercase tracking-wider">
-                Report a Wrong Height
+                {tHeader('requestFeature')}
               </h2>
               <p className="text-xs text-muted leading-relaxed font-medium">
-                We update character and celebrity heights based on official guidebooks, sports team rosters, and verified biographies. If a measurement is outdated, please include the source URL or publication reference.
+                {tHeader('requestFeatureDesc')}
               </p>
             </div>
 
@@ -112,10 +117,10 @@ export default async function ContactPage() {
                 <Shield size={20} />
               </div>
               <h2 className="text-sm font-black text-foreground uppercase tracking-wider">
-                Privacy & Data Deletion
+                {tHeader('privacyInquiry')}
               </h2>
               <p className="text-xs text-muted leading-relaxed font-medium">
-                Under the California Consumer Privacy Act (CCPA) and global regulations, you have the right to request deletion of any temporary chart data or image identifier. Chart links expire automatically after 7 days.
+                {tHeader('privacyInquiryDesc')}
               </p>
             </div>
 
@@ -125,10 +130,10 @@ export default async function ContactPage() {
                 <AlertTriangle size={20} />
               </div>
               <h2 className="text-sm font-black text-foreground uppercase tracking-wider">
-                Bug Reports
+                {tHeader('reportBug')}
               </h2>
               <p className="text-xs text-muted leading-relaxed font-medium">
-                Please mention your browser (Chrome, Safari, Firefox), device type, and the screen size if reporting a rendering or layout glitch.
+                {tHeader('reportBugDesc')}
               </p>
             </div>
           </div>
@@ -137,4 +142,3 @@ export default async function ContactPage() {
     </div>
   );
 }
-

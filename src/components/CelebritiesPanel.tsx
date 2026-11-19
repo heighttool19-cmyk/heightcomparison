@@ -4,6 +4,7 @@ import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import Image from 'next/image';
 import { Search, Plus, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 import { Celebrity, CelebrityCategory, Person } from '../types';
 import { getCelebrities } from '../data/celebrities';
 import { FilterTabs } from './ui/FilterTabs';
@@ -17,6 +18,7 @@ interface CelebritiesPanelProps {
 }
 
 export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson, onClose }) => {
+    const t = useTranslations('dashboard.panels');
     const [celebrities, setCelebrities] = useState<Celebrity[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
@@ -128,8 +130,8 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
         <div className="flex flex-col h-full bg-surface text-foreground font-sans relative w-full flex-shrink-0 z-50">
             {/* 1. Header Area */}
             <PanelHeader
-                title="Celebrity Selection"
-                subtitle="Add icons to your comparison chart"
+                title={t('celebritiesTitle')}
+                subtitle={t('celebritiesSub')}
                 count={filteredCelebrities.length}
             />
 
@@ -141,7 +143,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                     <input
                         id="search-celebrities"
                         type="text"
-                        placeholder="Search by name or category"
+                        placeholder={t('celebritiesSearch')}
                         value={searchQuery}
                         onChange={handleSearchChange}
                         className="w-full bg-bg border border-border/50 rounded-xl py-2.5 pl-10 pr-4 text-sm font-medium text-foreground placeholder:text-muted/50 focus:outline-none focus:border-accent/50 transition-all"
@@ -161,7 +163,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                 {isLoading ? (
                     <div className="flex flex-col items-center justify-center py-20 gap-3">
                         <Loader2 className="animate-spin text-accent" size={32} />
-                        <p className="text-muted text-sm font-medium">Loading celebrities...</p>
+                        <p className="text-muted text-sm font-medium">{t('celebritiesLoading')}</p>
                     </div>
                 ) : (
                     <AnimatePresence mode="popLayout">
@@ -170,7 +172,7 @@ export const CelebritiesPanel: React.FC<CelebritiesPanelProps> = ({ onAddPerson,
                             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                             className="text-center py-12 text-muted font-medium"
                         >
-                            No celebrities found matching &quot;{searchQuery}&quot;
+                            {t('celebritiesNotFound', { query: searchQuery })}
                         </motion.div>
                     ) : (
                         Object.entries(groupedCelebrities).map(([category, celebs]) => (
