@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { set, unset, type ObjectInputProps } from 'sanity';
 import {
   Badge,
@@ -66,6 +66,31 @@ function parseSpreadsheetText(text: string): string[][] {
 }
 
 /**
+ * CustomTableBlock
+ *
+ * Renders the table directly inline in the Sanity Portable Text body editor.
+ * Eliminates the collapsed "[📄 Untitled]" preview block and makes the full table
+ * visible and interactive right in the editor flow.
+ */
+export function CustomTableBlock(props: any) {
+  const { children, value, focused, selected, onRemove } = props;
+
+  return (
+    <Box
+      contentEditable={false}
+      marginY={3}
+      style={{
+        userSelect: 'text',
+        outline: selected || focused ? '2px solid var(--card-focus-ring-color, #2276fc)' : 'none',
+        borderRadius: '6px',
+      }}
+    >
+      {children || <CustomTablePreview value={value} onRemove={onRemove} />}
+    </Box>
+  );
+}
+
+/**
  * CustomTableEditor
  *
  * Provides BOTH:
@@ -96,6 +121,15 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
       })
     );
   };
+
+  // Auto-repair missing keys or types on rows to prevent "Missing keys" warning in Sanity Studio
+  useEffect(() => {
+    if (!value?.rows || value.rows.length === 0) return;
+    const needsRepair = !value._key || value.rows.some((r) => !r._key || !r._type);
+    if (needsRepair) {
+      updateTable(value.rows);
+    }
+  }, [value]);
 
   // Initialize a new blank 2x2 table
   const handleCreateTable = () => {
@@ -468,18 +502,17 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
 /**
  * CustomTablePreview
  *
- * Rendered by Sanity Studio's DefaultBlockObjectComponent.
- * Shows a rich, live table card in the Portable Text editor body.
- * Double-clicking this card (or clicking the "..." menu -> "Edit")
- * automatically triggers onOpen() and displays CustomTableEditor in the edit modal.
+ * Fallback preview component for Sanity Studio.
+ * Shows a rich, live table card with summary and rows.
  */
 export function CustomTablePreview(props: any) {
   const rows: TableRow[] = props.rows || props.value?.rows || [];
   const colCount = rows[0]?.cells?.length || 0;
-  const title = props.title || 'Table';
+  const firstRowSample = rows[0]?.cells?.filter(Boolean).slice(0, 4).join(" | ");
+  const title = props.title || (firstRowSample ? `Table: ${firstRowSample}` : 'Table');
 
   return (
-    <Box padding={2}>
+    <Card border radius={2} padding={3}>
       <Stack space={3}>
         <Flex justify="space-between" align="center" wrap="wrap" gap={2}>
           <Inline space={2}>
@@ -492,22 +525,19 @@ export function CustomTablePreview(props: any) {
               </Badge>
             )}
           </Inline>
-          <Text size={0} muted>
-            Double-click or click &quot;...&quot; &rarr; Edit to modify cells / paste spreadsheet
-          </Text>
         </Flex>
 
         {rows.length === 0 ? (
           <Card padding={3} radius={2} tone="transparent" style={{ textAlign: 'center', border: '1px dashed #ccc' }}>
             <Text size={1} muted>
-              Empty table — Double-click to start typing cells or paste spreadsheet
+              Empty table
             </Text>
           </Card>
         ) : (
-          <Box style={{ overflowX: 'auto' }}>
+          <Box style={{ overflowX: 'auto', maxHeight: '300px', overflowY: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
               <tbody>
-                {rows.slice(0, 6).map((row, rIdx) => (
+                {rows.map((row, rIdx) => (
                   <tr
                     key={row._key || `preview-row-${rIdx}`}
                     style={{
@@ -521,10 +551,7 @@ export function CustomTablePreview(props: any) {
                           padding: '6px 10px',
                           border: '1px solid var(--card-border-color, #e2e8f0)',
                           fontWeight: rIdx === 0 ? 600 : 400,
-                          maxWidth: '180px',
                           whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
                         }}
                       >
                         {cell || <span style={{ color: '#aaa', fontStyle: 'italic' }}>(empty)</span>}
@@ -534,16 +561,9 @@ export function CustomTablePreview(props: any) {
                 ))}
               </tbody>
             </table>
-            {rows.length > 6 && (
-              <Box paddingTop={2}>
-                <Text size={0} muted>
-                  + {rows.length - 6} more rows...
-                </Text>
-              </Box>
-            )}
           </Box>
         )}
       </Stack>
-    </Box>
+    </Card>
   );
 }

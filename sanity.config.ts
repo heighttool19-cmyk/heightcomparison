@@ -1,6 +1,5 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
-import { table } from '@sanity/table'
 import { schemaTypes } from './src/sanity/schemas'
 import { autoTranslateActions } from './src/sanity/actions/autoTranslateAction'
 
@@ -13,7 +12,7 @@ export default defineConfig({
 
     basePath: '/studio',
 
-    plugins: [structureTool(), table()],
+    plugins: [structureTool()],
 
     schema: {
         types: schemaTypes,
@@ -28,4 +27,3 @@ export default defineConfig({
         },
     },
 })
-

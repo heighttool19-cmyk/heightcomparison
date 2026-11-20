@@ -1,5 +1,5 @@
 import { defineField } from "sanity";
-import { CustomTableEditor, CustomTablePreview } from "../../components/CustomTableEditor";
+import { CustomTableEditor, CustomTableBlock, CustomTablePreview } from "../../components/CustomTableEditor";
 
 export const portableTextBodyTypes = [
   {
@@ -72,6 +72,7 @@ export const portableTextBodyTypes = [
     title: "Table",
     type: "table",
     components: {
+      block: CustomTableBlock,
       input: CustomTableEditor,
       preview: CustomTablePreview,
     },

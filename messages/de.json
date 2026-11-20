@@ -2069,19 +2069,18 @@
   "imageToHeight": {
     "hero": {
       "eyebrow": "Bild zu Körpergröße",
-      "title": "Messe deine Körpergröße anhand eines Fotos. ",
-      "titleAccent": "Kein Maßband erforderlich.",
-      "description": "Lade ein Ganzkörperfoto mit einer Tür, einem DIN-A4-Blatt oder einer Kreditkarte im Bild hoch. Markiere das Referenzobjekt, gib dessen reale Größe ein und ziehe eine Linie vom Boden bis zum Scheitel. Erhalte deine Größe in Zentimetern sowie in Fuß und Zoll. Die Ergebnisse liegen auf 1 bis 2 Zentimeter genau. Kostenlos, ohne Registrierung, auf jedem Gerät.",
-      "badgeFree": "Kostenlos nutzbar",
+      "title": "Online-Körpergrößenmessung anhand eines Fotos",
+      "description": "Lade ein Ganzkörperfoto mit einer Tür, einem DIN-A4-Blatt oder einer Kreditkarte im Bild hoch. Markiere das Referenzobjekt und gib dessen reale Größe ein, dann ziehe eine Linie vom Boden bis zum Scheitel. Das Tool liefert die Körpergröße in Zentimetern sowie in Fuß und Zoll.",
+      "badgeFree": "Kostenlos",
       "badgeNoAccount": "Kein Konto erforderlich",
       "badgePrivate": "Foto bleibt auf deinem Gerät",
       "badgeUnits": "Ergebnisse in cm und ft/in",
-      "ctaUpload": "Foto hochladen und jetzt messen",
-      "accuracyNotice": "Genau auf 1–2 cm. 100 % privat. Läuft im Browser.",
-      "prepTitle": "Beachte 3 Punkte vor der Fotoaufnahme:",
-      "prep1": "Ganzkörper im Bild, von Kopf bis Fuß mit sichtbarem Boden.",
-      "prep2": "Stehe an derselben Wand wie das Referenzobjekt.",
-      "prep3": "Smartphone aufrecht und waagerecht halten, etwa auf Hüfthöhe."
+      "toolTitle": "Körpergröße anhand eines Fotos messen",
+      "toolSubtitle": "Überprüfe drei Dinge, bevor du das Foto aufnimmst.",
+      "prep1": "Ganzkörper im Bild, von Kopf bis Fuß",
+      "prep2": "Stehe an derselben Wand wie das Referenzobjekt",
+      "prep3": "Smartphone aufrecht und waagerecht halten, etwa auf Hüfthöhe",
+      "privacyLine": "Dein Foto bleibt auf deinem Gerät. Das Tool läuft in deinem Browser und lädt es niemals hoch."
     },
     "howItWorks": {
       "eyebrow": "Fünf Schritte, ein Foto",
@@ -2114,7 +2113,8 @@
           "title": "Ergebnis ablesen und speichern",
           "desc": "Deine gemessene Größe erscheint in Zentimetern und in Fuß/Zoll. Klicke auf 'Im Diagramm speichern', um sie mit Freunden, Sportlern oder Stars zu vergleichen."
         }
-      ]
+      ],
+      "caption": "Screenshots aus dem Tool. Die Testfigur misst 171,8 cm gegenüber echten 172,0 cm."
     },
     "whatYouCanMeasure": {
       "eyebrow": "Mehr als nur die eigene Größe",
@@ -2143,13 +2143,10 @@
           "desc": "Stelle dich daneben und gib deine eigene Körpergröße als Referenz ein. Tritt zurück, bis beide ganz im Bild sind, und halte das Handy gerade. Hohe Objekte neigen sich perspektivisch, betrachte das Ergebnis als Schätzung."
         }
       ],
-      "whyArTitle": "Warum ein Foto statt einer AR-Mess-App?",
-      "why1Bold": "Misst vergangene Momente:",
-      "why1Desc": " AR-Apps messen nur, was gerade vor dir steht. Ein Foto ermöglicht das Messen historischer Bilder, vergangener Meilensteine und Archivaufnahmen.",
-      "why2Bold": "Keine Installation:",
-      "why2Desc": " Läuft nativ in jedem modernen Browser auf iOS, Android, Mac oder PC ohne App-Downloads oder Abonnements.",
-      "why3Bold": "Volle Privatsphäre:",
-      "why3Desc": " Dein Foto verbleibt geschützt in der lokalen Sandbox deines Browsers und wird niemals auf externe Server übertragen."
+      "whyArTitle": "Warum ein Foto statt einer AR-Mess-App",
+      "why1": "AR-Apps messen nur, was gerade vor dir steht. Ein Foto ermöglicht das Messen vergangener Momente, einschließlich alter Bilder.",
+      "why2": "Läuft im Browser auf jedem Smartphone, ganz ohne Installation und ohne Abonnement.",
+      "why3": "Dein Foto bleibt auf deinem Gerät. Das Tool lädt es niemals hoch."
     },
     "referenceObjects": {
       "eyebrow": "Kalibrierungs-Referenz",
@@ -2193,6 +2190,7 @@
       "tiltHighTitle": "Hoch, nach unten geneigt",
       "tiltHighBadge": "Fällt kleiner aus",
       "tiltHighDesc": "Der Boden ist weiter vom Objektiv entfernt und schrumpft, wodurch die Tür neben der Person gestreckt wirkt (−2,8 bis −5,9 cm Fehler).",
+      "tiltCaption": "Seitenansicht oben, das resultierende Foto unten. Gestrichelte Linien zeigen das Sichtfeld der Kamera vom Boden bis zur Türoberkante.",
       "tableTitle": "Unser kontrollierter Genauigkeits-Benchmark (14 gerenderte Szenen)",
       "tableDesc": "Wir haben 14 kalibrierte Szenen mit bekannter Höhe aus 3,5 Metern Entfernung ausgewertet, um Kamerageometrie von manuellen Tippfehlern zu trennen.",
       "thSetup": "Foto-Aufbau",
@@ -2255,8 +2253,6 @@
           "error": "+35,6 cm"
         }
       ],
-      "pixelSensitivityBold": "Pixel-Empfindlichkeit:",
-      "pixelSensitivityDesc": " Ungenaues Antippen verfälscht das Ergebnis, besonders bei kleinen Objekten. Auf einem Smartphone-Bildschirm verschiebt ein verfehltes Pixel an der Kante das Ergebnis um ca. 1 cm bei einer Tür, 7 cm bei einem A4-Blatt und 23 cm bei einer Karte. Nutze stets die größte Referenz und zoome vor dem Markieren heran.",
       "tips": [
         {
           "title": "Kameraneigung vermeiden",
@@ -2274,7 +2270,9 @@
           "title": "Ganzkörper abbilden",
           "desc": "Abgeschnittene Füße oder Köpfe machen eine Messung unmöglich. Ein sauberer Kopf-bis-Fuß-Ausschnitt liefert das verlässlichste Resultat."
         }
-      ]
+      ],
+      "pixelSensitivity": "Ungenaues Antippen verfälscht das Ergebnis, besonders bei kleinen Objekten. Auf einem Smartphone-Bildschirm verschiebt ein verfehltes Pixel an der Kante das Ergebnis um ca. 1 cm bei einer Tür, 7 cm bei einem A4-Blatt und 23 cm bei einer Karte. Nutze stets die größte Referenz und zoome vor dem Markieren heran.",
+      "renderedNote": "Gerenderte Testszenen, keine Fotos realer Personen, daher sind Haltung, Haare und Objektivverzerrung nicht berücksichtigt."
     },
     "noTapeMethods": {
       "eyebrow": "Alternative Methoden",
@@ -2329,7 +2327,6 @@
     "clinicMethod": {
       "eyebrow": "Klinischer Standard",
       "title": "Körpergröße exakt messen: Die klinische Methode",
-      "description": "Angelehnt an medizinische Stadiometer-Protokolle (CDC-Richtlinien) für maximale physikalische Genauigkeit zu Hause.",
       "steps": [
         "Ziehe Schuhe, dicke Kleidung, Mützen und Haarschmuck aus und öffne Frisuren, die oben auf dem Kopf aufliegen.",
         "Stelle dich auf einen festen Boden (Fliesen oder Holz, kein Teppich) an eine gerade Wand ohne Fußleiste.",
@@ -2338,6 +2335,7 @@
         "Blicke geradeaus. Senke ein Buch oder Lineal im rechten Winkel zur Wand ab, bis es auf dem Scheitel aufliegt, und markiere die Stelle an der Wand darunter.",
         "Miss den Abstand vom Boden bis zur Markierung mit einem Metallmaßband auf 0,1 cm genau ab. Ohne Maßband nutze ein A4-Blatt oder unser Foto-Tool."
       ],
+      "cdcAttribution": "Angelehnt an den CDC-Leitfaden",
       "whyAloneTitle": "Warum Alleinmessen oft fehlschlägt",
       "errorCauses": [
         {
@@ -2357,7 +2355,9 @@
           "desc": "Durch die Kompression der Bandscheiben bist du morgens bis zu 1 cm größer als abends. Miss immer zur gleichen Tageszeit."
         }
       ],
-      "whyAloneFooter": "Es alleine zu versuchen, erschwert alles: Aufrecht stehen, ein Buch balancieren, die Wand markieren und messen. Ein Foto mit Referenzobjekt erspart die zweite Person komplett."
+      "whyAloneFooter": "Es alleine zu versuchen, erschwert alles: Aufrecht stehen, ein Buch balancieren, die Wand markieren und messen. Ein Foto mit Referenzobjekt erspart die zweite Person komplett.",
+      "cdcLink": "Measuring Children's Height and Weight",
+      "cdcSuffix": ", der für Erwachsene genauso gilt."
     },
     "faq": {
       "badge": "HILFEZENTRUM",
