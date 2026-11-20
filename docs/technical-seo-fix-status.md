@@ -14,45 +14,45 @@
 
 | ID | Title / Task | Priority | Affected Pages | Status | Notes / Plan Action |
 |:---|:---|:---|:---|:---|:---|
-| **T1** | Remove sitewide `noimageindex` tag & add `max-image-preview: large` | P1 Critical | Sitewide (`app/layout.tsx`) | 🚀 Ready (Batch 1) | `noimageindex` is absent; add `max-image-preview: large`. |
-| **T2** | Add `https://` to every schema `@id` and `url` | P1 Critical | 5 Calculators | 🚀 Ready (Batch 3) | Standardize on `BASE_URL` in `schemas/`. |
-| **T3** | Add Open Graph and Twitter tags | P2 High | 10 Pages | 🚀 Ready (Batch 5) | Add default OG/Twitter metadata; fallback image until custom designs ready. |
-| **T4** | Fix table ranking order & remove "combined average" | P2 High | `/average-height-by-country` | 🚀 Ready (Batch 4) | Dynamically sort by male height descending; USA #27, Russia #28; add tie-rule. |
-| **T5** | Complete Dataset schema | P2 High | `/average-height-by-country` | 🚀 Ready (Batch 3) | Full schema provided in Developer Notes (2019 data, NCD-RisC source). |
-| **T6** | Use "Height Comparison Calculator" as single brand name | P2 High | Sitewide | 🚀 Ready (Batch 2) | Update Header, Footer, schema names, logo alt text, copyright line. |
-| **T7** | Add `alt=""` and explicit dimensions to flag images | P3 Medium | `/average-height-by-country` | 🚀 Ready (Batch 4) | Decorative flags beside country names get `alt=""`, width & height. |
-| **T8** | Lazy-load flag images & avoid unversioned CDN | P3 Medium | `/average-height-by-country` | 🚀 Ready (Batch 4) | Add `loading="lazy"` on rows > 5. |
-| **T9** | Allow pinch-zoom on mobile | P3 Medium | All pages (`app/layout.tsx`) | ✅ Verified Clean | `maximumScale` and `userScalable` already removed from viewport. |
-| **T10** | Add `aria-expanded` and `aria-controls` to toggles/accordions | P3 Medium | Accordions & Toggles | 🚀 Ready (Batch 4) | Update FAQ accordion, unit switch, and chart tabs with proper ARIA states. |
-| **T11** | Clean up References block | P3 Medium | `/average-height-by-country` | 🚀 Ready (Batch 4) | Remove 16 unrelated papers; keep NCD-RisC 2016/2020; update global/Guatemala notes. |
+| **T1** | Remove sitewide `noimageindex` tag & add `max-image-preview: large` | P1 Critical | Sitewide (`app/layout.tsx`) | ✅ Complete (Batch 1) | `noimageindex` absent; added `max-image-preview: large`. |
+| **T2** | Add `https://` to every schema `@id` and `url` | P1 Critical | 5 Calculators | ✅ Complete (Batch 3) | Standardized on `BASE_URL` in `schemas/`. |
+| **T3** | Add Open Graph and Twitter tags | P2 High | 10 Pages | ✅ Complete (Batch 5) | Added `metadataBase`, `openGraph.siteName`, and social card tags. |
+| **T4** | Fix table ranking order & remove "combined average" | P2 High | `/average-height-by-country` | ✅ Complete (Batch 4) | Dynamically sorted by male height descending; USA #27, Russia #28; alphabetical tie-break. |
+| **T5** | Complete Dataset schema | P2 High | `/average-height-by-country` | ✅ Complete (Batch 3) | Full Dataset schema implemented (2019 data, NCD-RisC source, spatial/temporal coverage). |
+| **T6** | Use "Height Comparison Calculator" as single brand name | P2 High | Sitewide | ✅ Complete (Batch 2) | Header, Footer, schema names, logo alt text, copyright line unified. |
+| **T7** | Add `alt=""` and explicit dimensions to flag images | P3 Medium | `/average-height-by-country` | ✅ Complete (Batch 4) | Decorative flags beside country names have `alt=""`, width 24 & height 18. |
+| **T8** | Lazy-load flag images & avoid unversioned CDN | P3 Medium | `/average-height-by-country` | ✅ Complete (Batch 4) | Added `loading="lazy"` on all flag rows. |
+| **T9** | Allow pinch-zoom on mobile | P3 Medium | All pages (`app/layout.tsx`) | ✅ Complete (Batch 1/5) | `maximumScale` and `userScalable` completely removed from all viewports. |
+| **T10** | Add `aria-expanded` and `aria-controls` to toggles/accordions | P3 Medium | Accordions & Toggles | ✅ Complete (Batch 4) | FAQ accordion, unit switch, and chart tabs have full ARIA states. |
+| **T11** | Clean up References block | P3 Medium | `/average-height-by-country` | ✅ Complete (Batch 4) | Removed 16 off-topic citations; kept NCD-RisC 2016/2020; updated global/Guatemala notes. |
 | **T12** | Add in-body links to related tools | P3 Medium | `/average-height-by-country` | ⏸️ Skipped | Marked "Skip" in tracker CSV. |
-| **T13** | Fix "the team" footer link | P3 Medium | Footer | 🚀 Ready (Batch 1) | Link "the team" to `/about`. |
+| **T13** | Fix "the team" footer link | P3 Medium | Footer | ✅ Complete (Batch 1) | Linked "the team" to `getLocalizedHref('/about')`. |
 | **T14** | Show an Updated date and author | P3 Medium | `/average-height-by-country` | ⏸️ Skipped | Marked "skip" in tracker CSV. |
-| **T15** | Use real per-page `lastmod` in sitemap | P3 Medium | `app/sitemap.ts` | 🚀 Ready (Batch 5) | Implement dynamic `lastmod` mapping derived from content updates. |
-| **T16** | Match FAQ schema to visible FAQ | P4 Low | `/average-height-by-country` | 🚀 Ready (Batch 3) | Build FAQ schema directly from page FAQ array. |
-| **T17** | Remove 20 unreferenced `Observation` schema nodes | P4 Low | `/average-height-by-country` | 🚀 Ready (Batch 3) | Remove `Observation` array; covered cleanly by `Dataset` schema. |
+| **T15** | Use real per-page `lastmod` in sitemap | P3 Medium | `app/sitemap.ts` | ✅ Complete (Batch 5) | Dynamic `lastmod` mapping reflecting verified content revisions and Sanity updates. |
+| **T16** | Match FAQ schema to visible FAQ | P4 Low | `/average-height-by-country` | ✅ Complete (Batch 3) | FAQ schema matches 5 page FAQs word-for-word. |
+| **T17** | Remove 20 unreferenced `Observation` schema nodes | P4 Low | `/average-height-by-country` | ✅ Complete (Batch 3) | Removed `Observation` array; covered cleanly by `Dataset` schema. |
 | **T18** | Add BreadcrumbList schema | P4 Low | `/average-height-by-country` | ⏸️ Skipped | Marked "Skip" in tracker CSV. |
-| **T19** | Fix World Population Review link | P4 Low | `/average-height-by-country` | 🚀 Ready (Batch 4) | Remove from intro; ensure any remaining mentions use `https://`. |
-| **T20** | Remove leftover FAQ subtitle | P4 Low | 5 Calculators | 🚀 Ready (Batch 4) | Remove "Scientific insights into your development" subtitle from all 5 pages. |
+| **T19** | Fix World Population Review link | P4 Low | `/average-height-by-country` | ✅ Complete (Batch 4) | Removed from intro; external links verified. |
+| **T20** | Remove leftover FAQ subtitle | P4 Low | 5 Calculators | ✅ Complete (Batch 4) | Removed "Scientific insights into your development" subtitle from all pages. |
 | **T21** | Remove duplicate `dom-defender` script | P4 Low | Sitewide | ✅ Verified Clean | Only a single `<Script id="dom-defender">` in `layout.tsx`. |
 | **T22** | Remove unused verification tag | P4 Low | Sitewide | ⏸️ Skipped | Marked "Skip" in tracker CSV. |
-| **T23** | Fix broken/redirecting links in homepage FAQ | P2 High | Homepage | 🚀 Ready (Batch 5) | Remove trailing slash from `/average-height-by-country`; 301 redirects already active. |
-| **T24** | Optimize & cache logo, add favicon/apple-icon | P2 High | Sitewide | 🚀 Ready (Batch 2) | Add static asset long-term cache headers in `next.config.ts`; check logo sizing. |
-| **T25** | Cache blog posts (ISR / static params) | P3 Medium | `app/blog/[slug]/page.tsx` | 🚀 Ready (Batch 6) | Add `revalidate = 3600` and `generateStaticParams`. |
-| **T26** | Resize blog images and add dimensions | P3 Medium | `/blogs`, `/blog/*` | 🚀 Ready (Batch 6) | Use Sanity image URL builder with explicit display width/height. |
-| **T27** | Shorten titles & drop blog title template suffix | P3 Medium | Metadata across pages | 🚀 Ready (Batch 5) | Strip `"- Blog Height Comparison Tool"`; ensure titles stay under 561px. |
+| **T23** | Fix broken/redirecting links in homepage FAQ | P2 High | Homepage | ✅ Complete (Batch 5) | Removed trailing slash from `/average-height-by-country`; 301 redirects active in `next.config.ts`. |
+| **T24** | Optimize & cache logo, add favicon/apple-icon | P2 High | Sitewide | ✅ Complete (Batch 2) | Static asset long-term cache headers (1-year immutable) active in `next.config.ts`. |
+| **T25** | Cache blog posts (ISR / static params) | P3 Medium | `app/blog/[slug]/page.tsx` | ✅ Complete (Batch 6) | Added `revalidate = 3600` and `generateStaticParams` for SSG/ISR. |
+| **T26** | Resize blog images and add dimensions | P3 Medium | `/blogs`, `/blog/*` | ✅ Complete (Batch 6) | Implemented `next/image` with auto-format queries, explicit dimensions, and descriptive alt. |
+| **T27** | Shorten titles & drop blog title template suffix | P3 Medium | Metadata across pages | ✅ Complete (Batch 5) | Stripped `"- Blog Height Comparison Tool"` / `"- Height Comparison"`. |
 | **T28** | Shorten 3 meta descriptions | P4 Low | 3 Pages | ⏸️ Skipped | Marked "Skip" in tracker CSV. |
-| **T29** | Fix heading hierarchy & pre-H1 labels | P4 Low | 5 Pages | 🚀 Ready (Batch 5) | Make "Image Measurement" a styled label; adjust H4s to H3s; structure FAQ headings. |
-| **T30** | Add intro copy to `/blogs` page | P4 Low | `/blogs` | 🚀 Ready (Batch 6) | Change H1 to "Height Blog" and add intro paragraph. |
+| **T29** | Fix heading hierarchy & pre-H1 labels | P4 Low | 5 Pages | ✅ Complete (Batch 5) | Changed pre-H1 to `<p>`; converted skipped `<h4>`s to `<h3>`s; wrapped FAQ questions in `<h3>`. |
+| **T30** | Add intro copy to `/blogs` page | P4 Low | `/blogs` | ✅ Complete (Batch 6) | Changed H1 to "Height Blog" and added intro paragraph + metadata. |
 | **T31** | Fix 3 broken external links | P4 Low | External links | ⏳ Awaiting PM | Needs Screaming Frog 4xx export list from Biswa / PM. |
 | **T32** | Add `rel="noopener"` to external link | P4 Low | `/height-weight-percentile` | ⏸️ Skipped | Marked "skip" in tracker CSV. |
-| **T33** | Add basic security headers | P4 Low | Sitewide (`next.config.ts`) | 🚀 Ready (Batch 1) | Add HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy headers. |
-| **T34** | Fix dead URL in `/image-to-height` schema | P2 High | `/image-to-height` | 🚀 Ready (Batch 3) | Replace `/measure-height-from-photo` with `/image-to-height` in schema. |
-| **T35** | Match FAQ schema to visible FAQ on 3 more pages | P3 Medium | 3 Pages + Homepage | 🚀 Ready (Batch 3) | Synchronize schema Q&A with visible accordion arrays. |
-| **T36** | Add Article schema, author, date to blog posts | P3 Medium | `/blog/*` | 🚀 Ready (Batch 6) | Add `BlogPosting` schema with author `"Height Expert"` and Sanity `_updatedAt`. |
+| **T33** | Add basic security headers | P4 Low | Sitewide (`next.config.ts`) | ✅ Complete (Batch 1) | Added HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy headers. |
+| **T34** | Fix dead URL in `/image-to-height` schema | P2 High | `/image-to-height` | ✅ Complete (Batch 3) | Replaced `/measure-height-from-photo` with `/image-to-height` in schema. |
+| **T35** | Match FAQ schema to visible FAQ on 3 more pages | P3 Medium | 3 Pages + Homepage | ✅ Complete (Batch 3) | Synchronized schema Q&A with visible accordion arrays word-for-word. |
+| **T36** | Add Article schema, author, date to blog posts | P3 Medium | `/blog/*` | ✅ Complete (Batch 6) | Added `BlogPosting` schema with author `"Height Expert"` and Sanity `_updatedAt`. |
 | **T37** | Remove 3 empty H2s from blog post | P3 Medium | Blog post | ✅ Done | Marked DONE in tracker CSV. |
-| **T38** | Standardize tool schema across calculators | P4 Low | 6 Calculators | 🚀 Ready (Batch 3) | Standardize `HealthApplication` vs `UtilitiesApplication` and add free `Offer`. |
-| **T39** | Custom 404 page with clean title and tool links | P4 Low | `app/not-found.tsx` | 🚀 Ready (Batch 2) | Implement custom 404 page per Developer Notes spec. |
+| **T38** | Standardize tool schema across calculators | P4 Low | 6 Calculators | ✅ Complete (Batch 3) | Standardized `HealthApplication` vs `UtilitiesApplication` and added free `Offer`. |
+| **T39** | Custom 404 page with clean title and tool links | P4 Low | `app/not-found.tsx` | ✅ Complete (Batch 2) | Custom 404 page with single title and links to all 6 calculators. |
 
 ---
 
@@ -96,22 +96,23 @@
   - Removed World Population Review link from intro.
 - **Validation**: Strict sorting assertion check passed for all 46 countries; 100% of accessibility assertions passed; `npx tsc --noEmit` and `npm run build` compiled cleanly.
 
-### **Batch 5: Titles, Headings & Homepage Links (T3, T15, T23, T27, T29)**
-- **Files**: `src/app/[locale]/page.tsx`, `src/app/sitemap.ts`, `src/app/[locale]/image-to-height/page.tsx`, `src/app/[locale]/blog/layout.tsx`.
+### **Batch 5: Titles, Headings & Homepage Links (T3, T15, T23, T27, T29) - [COMPLETE]**
+- **Files**: `src/app/layout.tsx`, `src/app/sitemap.ts`, `next.config.ts`, `src/components/ImageMeasurementCom/components/Header.tsx`, `src/components/FaqAccordion.tsx`, `src/app/[locale]/height-weight-percentile-calculator/page.tsx`, `src/app/[locale]/ideal-body-weight-calculator/page.tsx`, `src/app/[locale]/height-predictor/page.tsx`, `src/app/[locale]/height-difference-calculator/page.tsx`, `src/app/[locale]/blog/layout.tsx`, `src/app/[locale]/blog/[slug]/layout.tsx`.
 - **Changes**:
-  - Add Open Graph & Twitter card metadata defaults.
-  - Automate per-page `lastmod` dates in `sitemap.ts`.
-  - Fix homepage FAQ link to `/average-height-by-country` (remove trailing slash).
-  - Shorten titles over 561px and remove `"- Blog Height Comparison Tool"` suffix.
-  - Fix heading hierarchy: change pre-H1 "Image Measurement" to a styled label, adjust H4s to H3s, and format FAQ questions as H3 under H2.
-- **Validation**: Heading level check + title pixel length audit.
+  - Added `metadataBase` (`https://heightcomparisoncalculator.com`), `openGraph.siteName`, and social card metadata in root layout.
+  - Automated per-page `lastmod` dates in `sitemap.ts` mapping directly to verified page updates.
+  - Added explicit permanent 301 redirect for `/average-height-by-country/` in `next.config.ts`.
+  - Removed template suffix `"- Height Comparison"` from blog post titles.
+  - Fixed heading hierarchy: converted pre-H1 "Image Measurement" to a styled label `<p>`, eliminated all skipped `<h4>` levels on percentile & IBW pages, formatted all FAQ questions as accessible `<h3>` headings under `<h2>Frequently Asked Questions</h2>`, and linked external citations.
+- **Validation**: Strict heading level assertion check, title length check, and Next.js production build (`npm run build`) passed cleanly.
 
-### **Batch 6: Blog Caching, Image Sizing & Article Schema (T25, T26, T30, T36)**
-- **Files**: `src/app/[locale]/blog/[slug]/page.tsx`, `src/app/[locale]/blogs/page.tsx`.
+### **Batch 6: Blog Caching, Image Sizing & Article Schema (T25, T26, T30, T36) - [COMPLETE]**
+- **Files**: `src/sanity/lib/queries.ts`, `src/sanity/lib/types.ts`, `messages/en.json`, `src/components/blog/CustomPortableText.tsx`, `src/app/[locale]/blog/[slug]/page.tsx`, `src/app/[locale]/blogs/page.tsx`.
 - **Changes**:
-  - Add `revalidate = 3600` and `generateStaticParams` for ISR static caching.
-  - Use Sanity image URL builder with explicit display width/height dimensions.
-  - Update `/blogs` H1 to "Height Blog" and add intro copy.
-  - Add `BlogPosting` Article schema with author `"Height Expert"` and Sanity publication/update dates.
-- **Validation**: Next.js production build (`npm run build`) ensuring all blog routes generate statically.
+  - Implemented `export const revalidate = 3600;` and `generateStaticParams()` on `/blog/[slug]` for SSG/ISR prerendering.
+  - Added `generateMetadata` on `/blogs` and updated H1 to `"Height Blog"` with descriptive subtitle.
+  - Integrated `next/image` with auto-format queries (`?auto=format&w=...`) and explicit width & height dimensions across article cards, portable text body images, and author avatars.
+  - Added descriptive alt text `"Icon of a person beside a height scale"` for the Height Expert avatar icon.
+  - Added structured `BlogPosting` Article schema on all blog posts with Sanity author `"Height Expert"`, publisher `"Height Comparison Calculator"`, and `dateModified`.
+- **Validation**: Automated Batch 6 assertions passed; Next.js production build confirmed `/blog/[slug]` rendered as pre-rendered SSG (`● (SSG)`).
 
