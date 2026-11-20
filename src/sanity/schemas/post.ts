@@ -5,6 +5,7 @@
  * author reference, main image, and standard metadata fields.
  */
 import { defineField, defineType } from "sanity";
+import { CustomTableEditor, TableBlockComponent } from "../components/CustomTableEditor";
 
 export default defineType({
   name: "post",
@@ -133,6 +134,10 @@ export default defineType({
           name: "table",
           title: "Table",
           type: "table",
+          components: {
+            input: CustomTableEditor,
+            block: TableBlockComponent,
+          },
           preview: {
             select: {
               rows: "rows",
@@ -140,10 +145,10 @@ export default defineType({
             prepare({ rows }: { rows?: Array<{ cells?: string[] }> }) {
               const rowCount = rows?.length || 0;
               const colCount = rows?.[0]?.cells?.length || 0;
-              const firstRowSample = rows?.[0]?.cells?.filter(Boolean).slice(0, 3).join(" | ");
+              const firstRowSample = rows?.[0]?.cells?.filter(Boolean).slice(0, 4).join(" | ");
               return {
-                title: firstRowSample ? `Table: ${firstRowSample}` : "Table",
-                subtitle: rowCount > 0 ? `${rowCount} rows × ${colCount} columns` : "Empty Table (Click to edit)",
+                title: firstRowSample ? `📊 Table: ${firstRowSample}` : "📊 Table",
+                subtitle: rowCount > 0 ? `${rowCount} rows × ${colCount} columns (Click to edit)` : "Empty Table (Click to edit or paste)",
               };
             },
           },
