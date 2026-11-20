@@ -84,15 +84,17 @@
   - Standardize `SoftwareApplication` / `HealthApplication` schema with free `Offer` (`HealthApplication` for predictor, percentile, IBW; `UtilitiesApplication` for rest).
 - **Validation**: 57/57 automated schema validation assertions passed; `npx tsc --noEmit` and `npm run build` compiled cleanly.
 
-### **Batch 4: Average Height by Country Data, Table & Accessibility (T4, T7, T8, T10, T11, T19, T20)**
-- **Files**: `src/app/[locale]/average-height-by-country/page.tsx`, `src/components/average-height-by-country/AverageHeightTable.tsx`, `src/components/FaqAccordion.tsx`, `src/components/References.tsx`.
+### **Batch 4: Average Height by Country Data, Table & Accessibility (T4, T7, T8, T10, T11, T19, T20) - [COMPLETE]**
+- **Files**: `src/constants/averageHeight.ts`, `src/app/[locale]/average-height-by-country/page.tsx`, `src/components/average-height-by-country/AverageHeightTable.tsx`, `src/components/average-height-by-country/ChartHelpers.tsx`, `src/components/FaqAccordion.tsx`, `messages/en.json`.
 - **Changes**:
-  - Dynamically sort country table by male height descending (USA #27, Russia #28); add tie-break note; remove "and combined average" from intro.
-  - Add `alt=""`, explicit width/height, and `loading="lazy"` to flag images.
-  - Add ARIA accessibility attributes (`aria-expanded`, `aria-controls`, `aria-pressed`) to toggles and accordions.
-  - Clean up References component (remove 16 off-topic citations, update global and Guatemala notes).
-  - Remove "Scientific insights into your development" FAQ subtitle across all 5 calculators.
-- **Validation**: Table sorting assertion check + accessibility attribute check.
+  - Dynamically sorted 46 countries by male height descending (USA #27 at 176.9 cm, Russia #28 at 176.7 cm, Pakistan #37 at 166.9 cm, India #38 at 166.5 cm, Sri Lanka #39 at 166.0 cm) with alphabetical tie-breaks.
+  - Added tie-break source note under table and updated table intro copy.
+  - Added `alt=""`, explicit width (`24`), height (`18`), and `loading="lazy"` to flag images.
+  - Added ARIA accessibility attributes (`aria-expanded`, `aria-controls`, `role="region"`, `role="tablist"`, `role="tab"`, `aria-selected`, `aria-pressed`) to toggles, tabs, and FAQ accordions.
+  - Cleaned up References section: removed 16 off-topic citations, kept only the two primary NCD-RisC studies (eLife 2016 and The Lancet 2020), and updated Guatemala & global average source notes.
+  - Removed "Scientific insights into your development" FAQ subtitle across all calculators.
+  - Removed World Population Review link from intro.
+- **Validation**: Strict sorting assertion check passed for all 46 countries; 100% of accessibility assertions passed; `npx tsc --noEmit` and `npm run build` compiled cleanly.
 
 ### **Batch 5: Titles, Headings & Homepage Links (T3, T15, T23, T27, T29)**
 - **Files**: `src/app/[locale]/page.tsx`, `src/app/sitemap.ts`, `src/app/[locale]/image-to-height/page.tsx`, `src/app/[locale]/blog/layout.tsx`.

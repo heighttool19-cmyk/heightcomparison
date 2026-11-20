@@ -39,9 +39,11 @@ export default function AverageHeightTable() {
         }
         if (sortConfig.key !== null) {
             sortableItems.sort((a, b) => {
-                if (a[sortConfig.key!] < b[sortConfig.key!]) return sortConfig.direction === 'asc' ? -1 : 1;
-                if (a[sortConfig.key!] > b[sortConfig.key!]) return sortConfig.direction === 'asc' ? 1 : -1;
-                return 0;
+                const valA = a[sortConfig.key!];
+                const valB = b[sortConfig.key!];
+                if (valA < valB) return sortConfig.direction === 'asc' ? -1 : 1;
+                if (valA > valB) return sortConfig.direction === 'asc' ? 1 : -1;
+                return a.name.localeCompare(b.name);
             });
         }
         return sortableItems;
@@ -52,9 +54,21 @@ export default function AverageHeightTable() {
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
                 <h2 id="average-height-by-country" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24">{t('title')}</h2>
                 {/* Synced Unit Toggle */}
-                <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
-                    <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unitSystem === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>{t('unitToggle.metric')}</button>
-                    <button onClick={() => setUnitSystem('imperial')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unitSystem === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>{t('unitToggle.imperial')}</button>
+                <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0" role="group" aria-label="Unit selection">
+                    <button
+                        onClick={() => setUnitSystem('metric')}
+                        aria-pressed={unitSystem === 'metric'}
+                        className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unitSystem === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}
+                    >
+                        {t('unitToggle.metric')}
+                    </button>
+                    <button
+                        onClick={() => setUnitSystem('imperial')}
+                        aria-pressed={unitSystem === 'imperial'}
+                        className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unitSystem === 'imperial' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}
+                    >
+                        {t('unitToggle.imperial')}
+                    </button>
                 </div>
             </div>
 
@@ -98,7 +112,7 @@ export default function AverageHeightTable() {
                                 <tr key={country.name} className="hover:bg-bg/50 transition-colors">
                                     <td className="px-6 py-4">{country.rank}</td>
                                     <td className="px-6 py-4 font-bold text-foreground flex items-center gap-2">
-                                        <ReactCountryFlag countryCode={country.flag} svg style={{ width: '1.5em', height: '1.5em' }} title={country.name} /> {country.name}
+                                        <ReactCountryFlag countryCode={country.flag} svg style={{ width: '24px', height: '18px' }} aria-hidden="true" alt="" loading="lazy" /> {country.name}
                                     </td>
                                     <td className="px-6 py-4 font-medium text-foreground">
                                         {unitSystem === 'metric' ? `${country.maleCm} cm` : cmToFtIn(country.maleCm)}

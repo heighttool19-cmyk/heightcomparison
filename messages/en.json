@@ -1633,7 +1633,7 @@
   "averageHeightByCountry": {
     "h1": "Average Height by Country",
     "intro": {
-      "description": "Average height varies more than most people expect. The gap between the world's tallest and shortest populations spans nearly 24 cm for men and 21 cm for women. This page compares average human height around the world for both sexes, from the Netherlands at the top to Timor-Leste at the foot, drawing on data from the <ncdRisc>NCD Risk Factor Collaboration</ncdRisc> and <wpr>World Population Review</wpr>. Men and women follow the same broad geographic pattern, with Northern Europe at the top and parts of South and Central Asia at the lower end."
+      "description": "Average height varies more than most people expect. The gap between the world's tallest and shortest populations spans nearly 24 cm for men and 21 cm for women. This page compares average human height around the world for both sexes, from the Netherlands at the top to Timor-Leste at the foot, drawing on data from the <ncdRisc>NCD Risk Factor Collaboration</ncdRisc>. Men and women follow the same broad geographic pattern, with Northern Europe at the top and parts of South and Central Asia at the lower end."
     },
     "globalTable": {
       "title": "Average Height by Country (Global Table)",
@@ -1641,7 +1641,7 @@
         "metric": "Metric (cm)",
         "imperial": "US (ft/in)"
       },
-      "description": "The table below shows average male height by country, average female height, and combined average across 46 nations. Click any column header to sort. Use the search field to find a specific country.",
+      "description": "Compare average heights for men and women across 46 countries. Click a column heading to sort the table, or search for a country by name.",
       "searchPlaceholder": "Search countries...",
       "tableHeaders": {
         "rank": "Rank",
@@ -1650,7 +1650,7 @@
         "avgFemale": "Avg Female"
       },
       "noResults": "No countries found matching \"{query}\"",
-      "sourceNote": "Source: NCD Risk Factor Collaboration (NCD-RisC) / World Population Review. Adults aged ~19."
+      "sourceNote": "Estimated average heights for 19-year-olds in 2019. Countries with the same average male height are listed alphabetically. Source: NCD Risk Factor Collaboration (NCD-RisC)."
     },
     "common": {
       "tabMen": "Men",
@@ -1675,7 +1675,7 @@
       "captionMen": "Timor-Leste men average 159.8 cm, the shortest male average of any tracked nation. Six of the ten shortest countries for men are in South or Southeast Asia.",
       "captionWomen": "Guatemalan and Filipino women average around 149 cm, the lowest female averages in the Americas and Southeast Asia respectively.",
       "paragraph1": "The shortest populations sit predominantly in South and Southeast Asia and Central America. Timor-Leste records the lowest combined average globally, followed closely by Guatemala and Laos.",
-      "paragraph2": "In Guatemala, chronic malnutrition affects nearly a third of children under five, directly stunting skeletal development. Bangladesh and Nepal face similar constraints: protein-scarce diets, limited healthcare access, and structural poverty that limits growth potential from birth.",
+      "paragraph2": "A national health survey in Guatemala found that nearly half of children under five had stunted growth, a sign of chronic malnutrition. <unicef>Source: UNICEF Guatemala</unicef>.",
       "paragraph3": "These figures are not genetic ceilings. They are largely markers of historical underdevelopment, reversible, as South Korea and China demonstrated across the 20th century."
     },
     "tallestShortest": {
@@ -1770,7 +1770,7 @@
       "title": "Global Average Height",
       "maleStatLabel": "Global average male height",
       "femaleStatLabel": "Global average female height",
-      "paragraph1": "<who>The World Health Organization</who> and NCD Risk Factor Collaboration place the global average male height at approximately 171 cm and the global average female height at approximately 159 cm. These weighted figures pull lower than most Western country averages because they account for the large populations of South and Southeast Asia.",
+      "paragraph1": "In 2019, the estimated global average height at age 19 was about 171 cm for males and 159 cm for females. Source: <ncdRisc>NCD Risk Factor Collaboration (NCD-RisC)</ncdRisc>.",
       "paragraph2": "The global figure has been rising since the early 20th century, with the most dramatic gains in East Asia. South Korea and China gained around 5 to 8 cm per generation since the 1950s. Gains in Western Europe, which started earlier, have largely plateaued since the 1980s.",
       "regionMap": {
         "colourScaleLabel": "Colour scale — average male height by region",

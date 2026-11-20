@@ -27,11 +27,11 @@ export function Bars({ items, color, label }: { items: { n: string, code: string
                             <div className="w-[70px] sm:w-24 h-full text-[9px] sm:text-[11px] text-foreground text-left shrink-0 flex items-center justify-start gap-1 min-w-0">
                                 {Array.isArray(d.code) ? (
                                     <div className="flex gap-0.5 shrink-0 w-7 sm:w-8">
-                                        {d.code.map(c => <ReactCountryFlag key={c} countryCode={c} svg style={{ width: '1.2em', height: '1.2em' }} title={c} />)}
+                                        {d.code.map(c => <ReactCountryFlag key={c} countryCode={c} svg style={{ width: '24px', height: '18px' }} aria-hidden="true" alt="" loading="lazy" />)}
                                     </div>
                                 ) : d.code ? (
                                     <div className="shrink-0 flex justify-start w-4">
-                                        <ReactCountryFlag countryCode={d.code} svg style={{ width: '1.2em', height: '1.2em' }} title={d.n} />
+                                        <ReactCountryFlag countryCode={d.code} svg style={{ width: '24px', height: '18px' }} aria-hidden="true" alt="" loading="lazy" />
                                     </div>
                                 ) : null}
 
@@ -170,10 +170,15 @@ export function RegionMap({ regions, colourScaleLabel, tallestLabel, shortestLab
 
 export function Tabs({ options, active, onChange }: { options: string[], active: string, onChange: (val: string) => void }) {
     return (
-        <div className="flex gap-1 mb-4 flex-wrap">
+        <div role="tablist" aria-label="Gender filter" className="flex gap-1 mb-4 flex-wrap">
             {options.map(o => (
-                <button key={o} onClick={() => onChange(o)}
-                    className={`px-2 py-1.5 rounded-full text-[11px] font-black transition-all border-2 ${active === o ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}>
+                <button
+                    key={o}
+                    role="tab"
+                    aria-selected={active === o}
+                    onClick={() => onChange(o)}
+                    className={`px-2 py-1.5 rounded-full text-[11px] font-black transition-all border-2 ${active === o ? 'bg-accent text-white border-accent' : 'bg-bg text-muted border-border hover:bg-surface'}`}
+                >
                     {o}
                 </button>
             ))}

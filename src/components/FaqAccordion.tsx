@@ -46,7 +46,7 @@ interface Props {
     badge?: string;
 }
 
-export default function FaqAccordion({ items, title = "Frequently Asked Questions", description = "Scientific insights into your development", footerText, badge }: Props) {
+export default function FaqAccordion({ items, title = "Frequently Asked Questions", description, footerText, badge }: Props) {
     const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
     return (
@@ -57,12 +57,14 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
                         <HelpCircle size={12} /> {badge || "HELP CENTER"}
                     </div>
                     <h2 className="text-3xl font-black text-foreground">{title}</h2>
-                    <p className="text-sm text-muted">{description}</p>
+                    {description && <p className="text-sm text-muted">{description}</p>}
                 </div>
 
                 <div className="px-2 md:px-10 py-6 flex flex-col gap-3">
                     {items.map((item, idx) => {
                         const isOpen = openFaqIndex === idx;
+                        const questionId = `faq-question-${idx}`;
+                        const answerId = `faq-answer-${idx}`;
                         return (
                             <div
                                 key={idx}
@@ -71,13 +73,20 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
                                 <button
                                     className="w-full flex items-center justify-between pl-4 pr-3 py-4 text-left group rounded-t-2xl gap-2"
                                     onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                                    aria-expanded={isOpen}
+                                    aria-controls={answerId}
                                 >
-                                    <span className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>
+                                    <span id={questionId} className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>
                                     <div className={`shrink-0 transition-all duration-300 ${isOpen ? 'text-accent rotate-180' : 'text-muted rotate-0'}`}>
                                         <ChevronDown size={18} />
                                     </div>
                                 </button>
-                                <div className={`overflow-hidden transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? 'grid grid-rows-[1fr] opacity-100' : 'grid grid-rows-[0fr] opacity-0'}`}>
+                                <div
+                                    id={answerId}
+                                    role="region"
+                                    aria-labelledby={questionId}
+                                    className={`overflow-hidden transition-all duration-[350ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${isOpen ? 'grid grid-rows-[1fr] opacity-100' : 'grid grid-rows-[0fr] opacity-0'}`}
+                                >
                                     <div className="overflow-hidden">
                                         <div className="px-4 pt-0 pb-5 border-t border-border/40">
                                             <div className="text-sm text-muted leading-relaxed pt-4">
