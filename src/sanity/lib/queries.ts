@@ -14,6 +14,7 @@ import { groq } from "next-sanity";
 export const postBySlugQuery = groq`
   *[_type == "post" && slug.current == $slug][0] {
     _id,
+    _updatedAt,
     "title": coalesce(translations[$locale].title, title),
     slug,
     publishedAt,

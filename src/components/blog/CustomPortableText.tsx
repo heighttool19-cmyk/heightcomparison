@@ -7,6 +7,7 @@
  *   - Link marks styled with accent color
  *   - Heading blocks (h2, h3) with auto-generated IDs for ToC anchoring
  */
+import Image from "next/image";
 import {
   PortableText,
   type PortableTextComponents,
@@ -49,17 +50,23 @@ const components: PortableTextComponents = {
       const url = value?.asset?.url;
       if (!url) return null;
 
+      const optimizedUrl = url.includes('cdn.sanity.io')
+        ? `${url}?auto=format&w=800`
+        : url;
+
+      const altText = value.alt && value.alt !== "Main Image" && value.alt !== "Blog post image"
+        ? value.alt
+        : value.caption || "Height comparison historical reference image";
+
       return (
         <figure className="my-10">
-          {/* Added flex justify-center and bg-accent/5 to nicely frame smaller images */}
           <div className="flex justify-center overflow-hidden rounded-2xl border border-border bg-accent/5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={url}
-              alt={value.alt || "Blog post image"}
+            <Image
+              src={optimizedUrl}
+              alt={altText}
+              width={800}
+              height={500}
               loading="lazy"
-              // Removed w-full and object-cover. 
-              // Added w-auto, max-h-[600px], and object-contain to keep it crisp.
               className="h-auto w-auto max-w-full max-h-[600px] object-contain"
             />
           </div>

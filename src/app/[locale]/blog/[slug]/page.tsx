@@ -10,17 +10,33 @@
  *   - Graceful 404 handling via notFound()
  *   - Responsive: two-column on desktop, single-column on mobile
  */
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import type { PortableTextBlock } from "@portabletext/types";
 
 import { client } from "@/sanity/lib/client";
-import { postBySlugQuery } from "@/sanity/lib/queries";
+import { postBySlugQuery, allPostSlugsQuery } from "@/sanity/lib/queries";
 import type { Post, TocHeading } from "@/sanity/lib/types";
 
 import CustomPortableText from "@/components/blog/CustomPortableText";
 import TableOfContents from "@/components/blog/TableOfContents";
+import JsonLd from "@/components/common/JsonLd";
 import { formatLocalizedDate as formatDate } from "@/i18n/config";
+
+export const revalidate = 3600; // Cache blog posts for 1 hour ISR
+
+export async function generateStaticParams() {
+  try {
+    const posts = await client.fetch<{ slug: string }[]>(allPostSlugsQuery);
+    return posts.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.error("Error generating static params for blog:", error);
+    return [];
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -77,8 +93,35 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   const headings = extractHeadings(post.body);
 
+  const blogPostingSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `https://heightcomparisoncalculator.com/blog/${post.slug.current}#blogposting`,
+    "url": `https://heightcomparisoncalculator.com/blog/${post.slug.current}`,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://heightcomparisoncalculator.com/blog/${post.slug.current}`,
+    },
+    "headline": post.title,
+    "description": post.excerpt || post.title,
+    ...(post.mainImage?.asset?.url ? { image: [post.mainImage.asset.url] } : {}),
+    "datePublished": post.publishedAt,
+    "dateModified": post._updatedAt || post.publishedAt,
+    "author": {
+      "@type": "Organization",
+      "name": "Height Expert",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Height Comparison Calculator",
+      "url": "https://heightcomparisoncalculator.com/",
+    },
+    "inLanguage": currentLocale,
+  };
+
   return (
     <article className="min-h-screen bg-bg">
+      <JsonLd data={blogPostingSchema} />
       {/* ── Decorative top gradient ────────────────────────────────────── */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-accent/5 to-transparent" />
 
@@ -115,10 +158,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 {/* Author avatar */}
                 {post.author?.image?.asset?.url ? (
                   <div className="h-12 w-12 shrink-0 overflow-hidden rounded-full border-2 border-border">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={post.author.image.asset.url}
-                      alt={post.author.name}
+                    <Image
+                      src={post.author.image.asset.url.includes('cdn.sanity.io')
+                        ? `${post.author.image.asset.url}?auto=format&w=96`
+                        : post.author.image.asset.url}
+                      alt="Icon of a person beside a height scale"
+                      width={48}
+                      height={48}
                       className="h-full w-full object-cover"
                     />
                   </div>
@@ -149,15 +195,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
             {/* ── Main image ─────────────────────────────────────────── */}
             {post.mainImage?.asset?.url && (
-              // Added max-w-3xl and mx-auto to constrain the width and center it.
-              // Added a subtle background (bg-accent/5) in case the image doesn't fill the borders.
               <div className="mb-12 mx-auto max-w-4xl overflow-hidden rounded-3xl border border-border bg-accent/5">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={post.mainImage.asset.url}
-                  alt={post.mainImage.alt || post.title}
-                  // Removed w-full stretching. 
-                  // Added max-h-[500px] and object-contain to keep it crisp.
+                <Image
+                  src={post.mainImage.asset.url.includes('cdn.sanity.io')
+                    ? `${post.mainImage.asset.url}?auto=format&w=1200`
+                    : post.mainImage.asset.url}
+                  alt={post.mainImage.alt && post.mainImage.alt !== "Main Image"
+                    ? post.mainImage.alt
+                    : `${post.title} - Main Image`}
+                  width={1000}
+                  height={562}
+                  priority
                   className="mx-auto h-auto w-auto max-h-[500px] max-w-full object-contain"
                 />
               </div>
@@ -177,10 +225,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <div className="mt-8 flex items-center gap-4">
               {post.author?.image?.asset?.url ? (
                 <div className="h-14 w-14 shrink-0 overflow-hidden rounded-full border-2 border-border">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={post.author.image.asset.url}
-                    alt={post.author.name}
+                  <Image
+                    src={post.author.image.asset.url.includes('cdn.sanity.io')
+                      ? `${post.author.image.asset.url}?auto=format&w=112`
+                      : post.author.image.asset.url}
+                    alt="Icon of a person beside a height scale"
+                    width={56}
+                    height={56}
                     className="h-full w-full object-cover"
                   />
                 </div>

@@ -33,6 +33,7 @@ export interface Author {
 /** Full post data as returned by the postBySlugQuery */
 export interface Post {
   _id: string;
+  _updatedAt?: string;
   title: string;
   slug: { current: string };
   author: Author;

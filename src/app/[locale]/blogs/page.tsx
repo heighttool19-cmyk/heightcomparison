@@ -1,10 +1,32 @@
+import Image from 'next/image';
 import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 import { client } from '@/sanity/lib/client';
 import { allPostsQuery } from '@/sanity/lib/queries';
 import type { Post } from '@/sanity/lib/types';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
-import { formatLocalizedDate as formatDate } from '@/i18n/config';
+import { formatLocalizedDate as formatDate, getCanonicalUrl, getAlternateLanguages } from '@/i18n/config';
+
+export const revalidate = 3600; // Cache blogs index for 1 hour ISR
+
+export async function generateMetadata({
+    params,
+}: {
+    params?: Promise<{ locale?: string }>;
+}) {
+    const resolvedParams = params ? await params : undefined;
+    const locale = resolvedParams?.locale || "en";
+    const t = await getTranslations({ locale, namespace: 'blogs' });
+
+    return {
+        title: "Height Blog | Height Comparison Calculator",
+        description: t('subheading'),
+        alternates: {
+            canonical: getCanonicalUrl('/blogs', locale),
+            languages: getAlternateLanguages('/blogs'),
+        },
+    };
+}
 
 export default async function BlogsPage({
     params,
@@ -52,10 +74,15 @@ export default async function BlogsPage({
                                     {/* Image */}
                                     <div className="aspect-[16/10] bg-muted/10 overflow-hidden relative">
                                         {post.mainImage?.asset?.url ? (
-                                            // eslint-disable-next-line @next/next/no-img-element
-                                            <img
-                                                src={post.mainImage.asset.url}
-                                                alt={post.title}
+                                            <Image
+                                                src={post.mainImage.asset.url.includes('cdn.sanity.io')
+                                                    ? `${post.mainImage.asset.url}?auto=format&w=640`
+                                                    : post.mainImage.asset.url}
+                                                alt={post.mainImage.alt && post.mainImage.alt !== "Main Image"
+                                                    ? post.mainImage.alt
+                                                    : post.title}
+                                                width={400}
+                                                height={250}
                                                 className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                                             />
                                         ) : (
@@ -93,10 +120,13 @@ export default async function BlogsPage({
                                         {/* Author Footer */}
                                         <div className="mt-auto pt-6 border-t border-border flex items-center gap-3">
                                             {post.author?.image?.asset?.url ? (
-                                                // eslint-disable-next-line @next/next/no-img-element
-                                                <img
-                                                    src={post.author.image.asset.url}
-                                                    alt={post.author.name}
+                                                <Image
+                                                    src={post.author.image.asset.url.includes('cdn.sanity.io')
+                                                        ? `${post.author.image.asset.url}?auto=format&w=64`
+                                                        : post.author.image.asset.url}
+                                                    alt="Icon of a person beside a height scale"
+                                                    width={32}
+                                                    height={32}
                                                     className="w-8 h-8 rounded-full object-cover border border-border"
                                                 />
                                             ) : (
