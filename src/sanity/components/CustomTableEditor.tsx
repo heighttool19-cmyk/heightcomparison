@@ -24,11 +24,12 @@ interface TableRow {
 }
 
 interface TableValue {
+  _key?: string;
   _type?: 'table';
   rows?: TableRow[];
 }
 
-const genKey = () => Math.random().toString(36).substring(2, 10);
+const genKey = () => `${Date.now().toString(36)}${Math.random().toString(36).substring(2, 9)}`;
 
 function parseSpreadsheetText(text: string): string[][] {
   const lines = text
@@ -80,13 +81,29 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
   const [isConfirmClearOpen, setIsConfirmClearOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Helper: always preserve table _key and ensure each row has unique _key and _type
+  const updateTable = (updatedRows: TableRow[]) => {
+    onChange(
+      set({
+        ...value,
+        _key: value?._key || genKey(),
+        _type: 'table',
+        rows: updatedRows.map((r, idx) => ({
+          ...r,
+          _key: r._key || `${genKey()}-${idx}`,
+          _type: 'tableRow',
+        })),
+      })
+    );
+  };
+
   // Initialize a new blank 2x2 table
   const handleCreateTable = () => {
     const newRows: TableRow[] = [
       { _key: genKey(), _type: 'tableRow', cells: ['', ''] },
       { _key: genKey(), _type: 'tableRow', cells: ['', ''] },
     ];
-    onChange(set({ _type: 'table', rows: newRows }));
+    updateTable(newRows);
   };
 
   // Normal cell typing
@@ -97,7 +114,7 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
       newCells[colIndex] = text;
       return { ...r, cells: newCells };
     });
-    onChange(set({ ...value, _type: 'table', rows: newRows }));
+    updateTable(newRows);
   };
 
   // Cell-level smart paste (Ctrl+V inside any cell)
@@ -143,7 +160,7 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
       });
     });
 
-    onChange(set({ ...value, _type: 'table', rows: newRows }));
+    updateTable(newRows);
   };
 
   // Bulk paste modal import
@@ -171,7 +188,7 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
         };
       });
 
-      onChange(set({ _type: 'table', rows: newRows }));
+      updateTable(newRows);
       setPasteContent('');
       setIsPasteDialogOpen(false);
     } catch (err: any) {
@@ -190,7 +207,7 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
         cells: Array(colCount).fill(''),
       },
     ];
-    onChange(set({ ...value, _type: 'table', rows: newRows }));
+    updateTable(newRows);
   };
 
   // Add column on right
@@ -199,7 +216,7 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
       ...r,
       cells: [...r.cells, ''],
     }));
-    onChange(set({ ...value, _type: 'table', rows: newRows }));
+    updateTable(newRows);
   };
 
   // Remove row
@@ -208,7 +225,7 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
       onChange(unset());
     } else {
       const newRows = rows.filter((_, idx) => idx !== rowIndex);
-      onChange(set({ ...value, _type: 'table', rows: newRows }));
+      updateTable(newRows);
     }
   };
 
@@ -222,7 +239,7 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
         ...r,
         cells: r.cells.filter((_, idx) => idx !== colIndex),
       }));
-      onChange(set({ ...value, _type: 'table', rows: newRows }));
+      updateTable(newRows);
     }
   };
 
