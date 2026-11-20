@@ -7,7 +7,7 @@ import type { Post } from '@/sanity/lib/types';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
 import { formatLocalizedDate as formatDate, getCanonicalUrl, getAlternateLanguages, getSocialMetadata } from '@/i18n/config';
 
-export const revalidate = 3600; // Cache blogs index for 1 hour ISR
+export const revalidate = 60; // ISR cache revalidation every 60 seconds
 
 export async function generateMetadata({
     params,

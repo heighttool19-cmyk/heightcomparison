@@ -7,6 +7,7 @@
  *   - Link marks styled with accent color
  *   - Heading blocks (h2, h3) with auto-generated IDs for ToC anchoring
  */
+import React from "react";
 import Image from "next/image";
 import {
   PortableText,
@@ -15,6 +16,68 @@ import {
 } from "@portabletext/react";
 import type { PortableTextBlock } from "@portabletext/types";
 import type { SanityImage } from "@/sanity/lib/types";
+
+// ---------------------------------------------------------------------------
+// Helper: format markdown links [text](url), **bold**, *italic*, <br/>
+// ---------------------------------------------------------------------------
+function renderFormattedInline(text: string): React.ReactNode {
+  if (!text) return null;
+
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(renderBasicFormatting(text.substring(lastIndex, match.index)));
+    }
+    const [, linkText, url] = match;
+    const isExternal = url.startsWith("http");
+    parts.push(
+      <a
+        key={match.index}
+        href={url}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        className="text-accent underline decoration-accent/40 font-semibold underline-offset-2 hover:decoration-accent transition-colors"
+      >
+        {linkText}
+      </a>
+    );
+    lastIndex = linkRegex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(renderBasicFormatting(text.substring(lastIndex)));
+  }
+
+  return parts.length === 1 ? parts[0] : <>{parts}</>;
+}
+
+function renderBasicFormatting(text: string): React.ReactNode {
+  const lines = text.split(/<br\s*\/?>|\n/gi);
+  return lines.map((line, idx) => {
+    const boldParts = line.split(/(\*\*[^*]+\*\*)/g);
+    const content = boldParts.map((bPart, bIdx) => {
+      if (bPart.startsWith("**") && bPart.endsWith("**")) {
+        return (
+          <strong key={bIdx} className="font-bold text-foreground">
+            {bPart.slice(2, -2)}
+          </strong>
+        );
+      }
+      return bPart;
+    });
+
+    return (
+      <React.Fragment key={idx}>
+        {idx > 0 && <br />}
+        {content}
+      </React.Fragment>
+    );
+  });
+}
 
 // ---------------------------------------------------------------------------
 // Utility: slugify heading text for anchor IDs
@@ -72,7 +135,7 @@ const components: PortableTextComponents = {
           </div>
           {value.caption && (
             <figcaption className="mt-3 text-center text-sm text-muted italic">
-              {value.caption}
+              {renderFormattedInline(value.caption)}
             </figcaption>
           )}
         </figure>
@@ -89,14 +152,14 @@ const components: PortableTextComponents = {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-sm md:text-base">
               {header?.cells && (
-                <thead className="bg-accent/5 border-b border-border">
+                <thead className="bg-accent/10 border-b-2 border-border">
                   <tr>
                     {header.cells.map((cell, i) => (
                       <th
                         key={i}
                         className="px-4 py-4 font-black uppercase tracking-wider text-foreground text-xs"
                       >
-                        {cell}
+                        {renderFormattedInline(cell)}
                       </th>
                     ))}
                   </tr>
@@ -104,13 +167,13 @@ const components: PortableTextComponents = {
               )}
               <tbody className="divide-y divide-border/50">
                 {rows.map((row, i) => (
-                  <tr key={i} className="hover:bg-accent/[0.02] transition-colors">
+                  <tr key={i} className="hover:bg-accent/[0.04] transition-colors odd:bg-transparent even:bg-surface/50">
                     {row.cells.map((cell, j) => (
                       <td
                         key={j}
-                        className="px-4 py-4 text-muted font-medium whitespace-nowrap"
+                        className="px-4 py-3.5 text-muted font-medium break-words leading-relaxed align-top"
                       >
-                        {cell}
+                        {renderFormattedInline(cell)}
                       </td>
                     ))}
                   </tr>

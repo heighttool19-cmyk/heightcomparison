@@ -1,4 +1,5 @@
 import { defineField } from "sanity";
+import { CustomTableEditor, CustomTablePreview } from "../../components/CustomTableEditor";
 
 export const portableTextBodyTypes = [
   {
@@ -62,10 +63,32 @@ export const portableTextBodyTypes = [
         name: "caption",
         title: "Caption",
         type: "string",
+        description: "Image caption. Supports markdown links: [Link Text](https://example.com)",
       }),
     ],
   },
   {
-    type: "table" as const,
+    name: "table",
+    title: "Table",
+    type: "table",
+    components: {
+      input: CustomTableEditor,
+      preview: CustomTablePreview,
+    },
+    preview: {
+      select: {
+        rows: "rows",
+      },
+      prepare({ rows }: { rows?: Array<{ cells?: string[] }> }) {
+        const rowCount = rows?.length || 0;
+        const colCount = rows?.[0]?.cells?.length || 0;
+        const firstRowSample = rows?.[0]?.cells?.filter(Boolean).slice(0, 4).join(" | ");
+        return {
+          title: firstRowSample ? `Table: ${firstRowSample}` : "Table",
+          subtitle: rowCount > 0 ? `${rowCount} rows × ${colCount} columns` : "Empty Table",
+          rows: rows || [],
+        };
+      },
+    },
   },
 ];

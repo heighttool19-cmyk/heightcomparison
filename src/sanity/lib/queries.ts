@@ -37,7 +37,8 @@ export const postBySlugQuery = groq`
         ...,
         asset-> { _ref, url }
       }
-    }
+    },
+    customSchema
   }
 `;
 
@@ -62,7 +63,8 @@ export const allPostsQuery = groq`
         ...,
         asset-> { _ref, url }
       }
-    }
+    },
+    customSchema
   }
 `;
 

@@ -92,6 +92,23 @@ export default defineType({
         })
       ),
     }),
+    defineField({
+      name: "customSchema",
+      title: "Custom JSON-LD Schema",
+      type: "text",
+      rows: 8,
+      description: "Paste custom JSON-LD schema (e.g. FAQPage, HowTo, Article). It will be injected directly into the page <head>.",
+      validation: (rule) =>
+        rule.custom((value) => {
+          if (!value) return true;
+          try {
+            JSON.parse(value);
+            return true;
+          } catch (e: any) {
+            return `Invalid JSON: ${e.message}`;
+          }
+        }),
+    }),
   ],
   orderings: [
     {

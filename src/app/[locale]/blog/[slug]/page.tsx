@@ -24,8 +24,6 @@ import TableOfContents from "@/components/blog/TableOfContents";
 import JsonLd from "@/components/common/JsonLd";
 import { formatLocalizedDate as formatDate } from "@/i18n/config";
 
-export const revalidate = 3600; // Cache blog posts for 1 hour ISR
-
 export async function generateStaticParams() {
   try {
     const posts = await client.fetch<{ slug: string }[]>(allPostSlugsQuery);
@@ -37,6 +35,8 @@ export async function generateStaticParams() {
     return [];
   }
 }
+
+export const revalidate = 60; // ISR cache revalidation every 60 seconds
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -122,6 +122,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   return (
     <article className="min-h-screen bg-bg">
       <JsonLd data={blogPostingSchema} />
+
+      {/* ── Custom JSON-LD Schema from Sanity ─────────────────────────── */}
+      {post.customSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: post.customSchema }}
+        />
+      )}
       {/* ── Decorative top gradient ────────────────────────────────────── */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-accent/5 to-transparent" />
 
