@@ -20,6 +20,8 @@ import type { Post, TocHeading } from "@/sanity/lib/types";
 import CustomPortableText from "@/components/blog/CustomPortableText";
 import TableOfContents from "@/components/blog/TableOfContents";
 
+export const revalidate = 60; // ISR cache revalidation every 60 seconds
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -83,6 +85,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <article className="min-h-screen bg-bg">
+      {/* ── Custom JSON-LD Schema from Sanity ─────────────────────────── */}
+      {post.customSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: post.customSchema }}
+        />
+      )}
+
       {/* ── Decorative top gradient ────────────────────────────────────── */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-accent/5 to-transparent" />
 

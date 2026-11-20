@@ -40,6 +40,7 @@ export interface Post {
   publishedAt: string;
   excerpt?: string;
   body: PortableTextBlock[];
+  customSchema?: string;
 }
 
 /** Table of Contents heading entry */

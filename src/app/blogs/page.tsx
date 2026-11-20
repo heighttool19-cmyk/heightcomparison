@@ -12,6 +12,8 @@ function formatDate(dateStr: string): string {
     });
 }
 
+export const revalidate = 60; // ISR cache revalidation every 60 seconds
+
 export default async function BlogsPage() {
     const posts = await client.fetch<Post[]>(allPostsQuery);
 
