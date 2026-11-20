@@ -8,11 +8,24 @@ export const HEIGHT_PREDICTOR_SCHEMA =
         {
             "@type": "WebSite",
             "@id": "https://heightcomparisoncalculator.com/#website",
-            "name": "Height Comparison",
+            "name": "Height Comparison Calculator",
             "url": "https://heightcomparisoncalculator.com",
             "publisher": {
                 "@type": "Organization",
                 "@id": "https://heightcomparisoncalculator.com/#organization"
+            }
+        },
+
+        {
+            "@type": "Organization",
+            "@id": "https://heightcomparisoncalculator.com/#organization",
+            "name": "Height Comparison Calculator",
+            "url": "https://heightcomparisoncalculator.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://heightcomparisoncalculator.com/logo.png",
+                "width": 512,
+                "height": 512
             }
         },
 
@@ -82,10 +95,16 @@ export const HEIGHT_PREDICTOR_SCHEMA =
                 "@type": "WebPage",
                 "@id": "https://heightcomparisoncalculator.com/height-predictor#webpage"
             },
-            "applicationCategory": "CalculatorApplication",
+            "applicationCategory": "HealthApplication",
             "applicationSubCategory": "Health Calculator",
             "operatingSystem": "Web",
             "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
             "browserRequirements": "Requires a modern web browser (Chrome, Firefox, Safari, Edge or equivalent)",
             "description": "Online calculator that predicts a child's adult height using genetics, anthropometric measurements, and scientific growth prediction models.",
             "featureList": "Khamis-Roche height prediction, Mid-parental height calculator, Height unit converter",

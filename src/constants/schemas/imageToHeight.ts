@@ -9,10 +9,23 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
             "@type": "WebSite",
             "@id": "https://heightcomparisoncalculator.com/#website",
             "url": "https://heightcomparisoncalculator.com",
-            "name": "Height Comparison",
+            "name": "Height Comparison Calculator",
             "publisher": {
                 "@type": "Organization",
                 "@id": "https://heightcomparisoncalculator.com/#organization"
+            }
+        },
+
+        {
+            "@type": "Organization",
+            "@id": "https://heightcomparisoncalculator.com/#organization",
+            "name": "Height Comparison Calculator",
+            "url": "https://heightcomparisoncalculator.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://heightcomparisoncalculator.com/logo.png",
+                "width": 512,
+                "height": 512
             }
         },
 
@@ -108,15 +121,15 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
                     "name": "How accurate is height measurement from a photo?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Results land within 1 to 2 centimeters with a straight-on photo and a reliable reference object. In empirical testing, a level phone at waist height measured true height exactly."
+                        "text": "It depends on how the photo is taken. In our empirical test of 14 rendered scenes, a level phone with the person standing against the same wall as a door measured the true height exactly. Tilting the phone 10° to 20° moved the result by 2 to 6 cm, and standing 30 cm in front of the door added 16 cm. On a phone screen, each pixel you miss on a door's edge adds about 1 cm more. For personal tracking and casual comparisons under good conditions, results consistently land within 1 to 2 centimeters."
                     }
                 },
                 {
                     "@type": "Question",
-                    "name": "What object works best for calibration?",
+                    "name": "What is the best object to use for calibration?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "An A4 sheet (29.7 cm) or credit card (8.56 cm) works anywhere because international standards fix both sizes. A standard interior door at 203 cm is the easiest choice for full-body photos."
+                        "text": "An A4 sheet (29.7 cm / 297 mm long) or a credit card (8.56 cm / 85.6 mm wide) works anywhere worldwide because international ISO standards fix both sizes. A standard interior door at 203 cm (80 inches) in the US is the easiest choice for full-body photos because of its size, but measure yours first if outside the US. The larger the reference object, the less sensitive the result is to minor screen tapping errors."
                     }
                 },
                 {
@@ -124,7 +137,7 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
                     "name": "Is my photo uploaded or stored?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "No. The tool runs entirely in your browser, and your photo never leaves your device."
+                        "text": "No. The tool runs entirely client-side in your browser, and your photo never leaves your device."
                     }
                 },
                 {
@@ -132,15 +145,31 @@ export const IMAGE_TO_HEIGHT_SCHEMA =
                     "name": "Can I measure someone else's height from a photo?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Yes. As long as the photo includes a known object for scale, the tool can estimate the height of anyone in the image."
+                        "text": "Yes. Upload any photo where the person appears next to a known object, calibrate, draw the line, read the result. The subject does not need to be present."
                     }
                 },
                 {
                     "@type": "Question",
-                    "name": "Do I need an account to use the tool?",
+                    "name": "Does it work for celebrities?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "No. The tool is completely free and works in any modern browser without creating an account."
+                        "text": "Yes, when the photo shows them next to a door or another object of known size. Photos taken from unusual angles produce less reliable results."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Why do I measure taller in the morning?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Spinal discs compress under body weight throughout the day. That compression reduces standing height by up to one centimeter between morning and evening. Measuring at the same time each day gives the most consistent results over time."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Do I need an account?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "No. The tool is free, requires no sign-up, and works on any device."
                     }
                 }
             ]

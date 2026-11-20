@@ -74,15 +74,15 @@
   - Create `src/app/not-found.tsx` with title `"Page Not Found | Height Comparison Calculator"`, user guidance, and links to all 6 calculator tools.
 - **Validation**: Test custom 404 route rendering and brand string consistency.
 
-### **Batch 3: Schema & Structured Data Parity (T2, T5, T17, T34, T35, T38)**
+### **Batch 3: Schema & Structured Data Parity (T2, T5, T17, T34, T35, T38) - [COMPLETE]**
 - **Files**: `src/constants/schemas/*.ts`.
 - **Changes**:
-  - Add `https://` prefix to all schema `@id` and `url` values using `BASE_URL`.
+  - Add `https://` prefix to all schema `@id` and `url` values using `BASE_URL` (0 bare domain strings remaining).
   - Implement full `Dataset` schema on `/average-height-by-country` and remove 20 `Observation` nodes.
-  - Correct `/image-to-height` schema entity URL from `/measure-height-from-photo`.
-  - Harmonize FAQ schemas to match visible accordion questions word-for-word.
-  - Standardize `SoftwareApplication` / `HealthApplication` schema with free `Offer`.
-- **Validation**: Run schema validation test script on all JSON-LD outputs.
+  - Verified `/image-to-height` schema entity URL is `/image-to-height`.
+  - Harmonize FAQ schemas to match visible accordion questions word-for-word across all calculators and homepage.
+  - Standardize `SoftwareApplication` / `HealthApplication` schema with free `Offer` (`HealthApplication` for predictor, percentile, IBW; `UtilitiesApplication` for rest).
+- **Validation**: 57/57 automated schema validation assertions passed; `npx tsc --noEmit` and `npm run build` compiled cleanly.
 
 ### **Batch 4: Average Height by Country Data, Table & Accessibility (T4, T7, T8, T10, T11, T19, T20)**
 - **Files**: `src/app/[locale]/average-height-by-country/page.tsx`, `src/components/average-height-by-country/AverageHeightTable.tsx`, `src/components/FaqAccordion.tsx`, `src/components/References.tsx`.

@@ -8,7 +8,7 @@ export const ABOUT_SCHEMA = {
             "@type": "WebPage",
             "@id": `${BASE_URL}/about/#webpage`,
             "url": `${BASE_URL}/about`,
-            "name": "About Height Comparison",
+            "name": "About Height Comparison Calculator",
             "description": "Learn about the mission, logic, and calculators behind the Height Comparison Calculator tool."
         }
     ]
