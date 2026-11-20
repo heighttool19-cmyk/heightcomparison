@@ -155,7 +155,7 @@
   },
   "heightPredictor": {
     "intro": {
-      "title": "Längdprognos och kalkylator för vuxenlängd",
+      "title": "Längdprognos och Kalkylator för Vuxenlängd",
       "description": "Använd denna längdräknare för att uppskatta framtida slutlängd för barn, tonåringar och vuxna baserat på ålder, genetik och tillväxtmönster. Den använder Khamis-Roche-metoden, som förutsäger vuxenlängd från 4 till 17,5 år utifrån ålder, längd, vikt och båda föräldrarnas längd. I den ursprungliga studien hamnade 9 av 10 prognoser inom 5,3 cm (2,1 tum) för pojkar och 4,3 cm (1,7 tum) för flickor. För barn under 4 år eller ofödda barn, använd kalkylatorn baserad på föräldralängd nedan.",
       "lastUpdated": "Senast uppdaterad: november 2026"
     },
@@ -188,17 +188,21 @@
       "calculate": "Beräkna längd",
       "clear": "Rensa",
       "estimatedAdultHeight": "Beräknad vuxenlängd",
-      "targetRange": "Målintervall (±5 cm): {min} : {max} cm",
+      "targetRange": "9 av 10 barn hamnar inom detta intervall: {min} – {max}",
       "viewComparisonChart": "Visa jämförelsetabell",
       "cmUnit": "cm",
       "ftUnit": "fot",
       "inUnit": "tum",
       "kgUnit": "kg",
-      "lbsUnit": "lbs"
+      "lbsUnit": "lbs",
+      "ageUnder4Prefix": "Khamis-Roche-metoden är validerad för åldrarna 4 till 17,5 år. För barn under 4 år, använd",
+      "ageUnder4Link": "kalkylatorn baserad på föräldrarnas längd",
+      "ageUnder4Suffix": ".",
+      "ageOver17Warning": "Khamis-Roche-metoden är validerad för åldrarna 4 till 17,5 år. För vuxna (18+) är tillväxtzonerna slutna."
     },
     "midParentalCalculator": {
       "title": "Längdräknare baserad på föräldrarnas längd",
-      "badge": "Mid-Parental",
+      "badge": "Föräldralängd",
       "description": "Uppskatta förväntad slutlängd med enbart föräldrarnas längd. Fungerar för spädbarn, småbarn och ofödda barn. Om du är gravid, ange båda föräldrarnas längd för att se det beräknade vuxna längdintervallet. Använder mid-parental-formeln, som vanligtvis hamnar inom 10 cm (4 tum) från vuxenlängden.",
       "unitUs": "USA (fot/tum)",
       "unitMetric": "Metrisk (cm)",
@@ -213,7 +217,7 @@
       "calculateEstimate": "Beräkna uppskattning",
       "estimatedAdultHeightBoys": "Beräknad vuxenlängd (pojkar)",
       "estimatedAdultHeightGirls": "Beräknad vuxenlängd (flickor)",
-      "targetRange": "Målintervall (±5 cm): {min} : {max} cm",
+      "targetRange": "Vanligt intervall (±10 cm / 4 in): {min} – {max}",
       "viewComparisonChart": "Visa jämförelsetabell",
       "cmUnit": "cm",
       "ftUnit": "fot",
@@ -298,8 +302,8 @@
       "geneticsTitle": "Genetik",
       "geneticsBefore": "Ärftliga DNA-varianter förklarar cirka ",
       "geneticsStrong1": "80 %",
-      "geneticsMiddle": " av längdskillnaderna mellan individer (MedlinePlus). Långa föräldrar tenderar att få långa barn, men regression mot medelvärdet gäller: mycket långa eller korta föräldrar får ofta barn med längd närmare ",
-      "geneticsStrong2": "genomsnittet.",
+      "geneticsMiddle": " av längdskillnaderna mellan människor (MedlinePlus). Långa föräldrar tenderar att få långa barn, men regression mot medelvärdet gäller — mycket långa eller korta föräldrar får ofta barn närmare genomsnittslängden (",
+      "geneticsStrong2": "regression mot medelvärdet",
       "nutritionTitle": "Näring & Sömn",
       "nutritionBefore": "De ",
       "nutritionStrong": "återstående ~20 %",
@@ -308,7 +312,8 @@
       "nutritionItem2": "9–12 timmars sömn (åldrarna 6–12)",
       "nutritionItem3": "8–10 timmar för tonåringar",
       "timingTitle": "Tillväxttiming",
-      "timingText": "Tidig pubertet kan tillfälligt ge ett längre barn men en kortare vuxen. Sen pubertet resulterar ofta i ett längre tillväxtfönster och en större slutlig längd."
+      "timingText": "Tidig pubertet kan tillfälligt ge ett längre barn men en kortare vuxen. Sen pubertet resulterar ofta i ett längre tillväxtfönster och en större slutlig längd.",
+      "geneticsAfter": ")."
     },
     "growthCharts": {
       "title": "Medellängd efter ålder (tillväxtkurvor)",
@@ -392,7 +397,7 @@
       },
       "midParental": {
         "badge": "ENKEL",
-        "title": "Längdprognos baserad på föräldrar (Mid-Parental Height Formula)",
+        "title": "Längdprognos Baserad på Föräldrar (Mid-Parental Formel)",
         "boysFormulaLabel": "För pojkar (amerikanska enheter)",
         "p1": "Mid-Parental Height Formula är det enklaste sättet att uppskatta ett barns vuxenlängd med endast föräldrarnas längder. Den kräver inga medicinska tester och fungerar för alla åldrar, inklusive spädbarn och ofödda barn.",
         "boysFormula": "(Pappa + Mamma + 5 tum) ÷ 2",
@@ -460,31 +465,19 @@
       "title": "Kan man öka sin längd?"
     },
     "accuracy": {
-      "description": "Denna längdprognos använder Khamis-Roche tillväxtmodell, tränad på långtidsstudier av barns tillväxtdata.",
-      "disclaimerStrong": "Medicinsk friskrivning:",
-      "disclaimerText": "Denna längdkalkylator är endast avsedd för informationsändamål. Den ersätter inte professionell medicinsk rådgivning. Om du har funderingar kring ditt barns tillväxt, kontakta en kvalificerad barnläkare eller endokrinolog.",
-      "title": "Hur exakt är en längdräknare?",
-      "is100PercentTitle": "Finns det någon längdräknare som är 100 % exakt?",
-      "is100PercentText": "Nej. Varje metod ger ett sannolikt intervall, eftersom gener, pubertetstidpunkt och hälsa påverkar slutresultatet. Khamis-Roche är den mest precisa icke-radiologiska metoden, där 9 av 10 prognoser hamnar inom 2,1 tum för pojkar och 1,7 tum för flickor. Skelettröntgen är mer exakt och beställs av läkare vid misstanke om tillväxtrubbningar.",
-      "typicalErrorTitle": "Typisk felmarginal per prognosmetod",
-      "thMethod": "Metod",
-      "thTypicalError": "Typiskt fel",
-      "thNeedsBoneAge": "Kräver skelettålder?",
-      "methodKhamis": "Khamis-Roche-metoden",
-      "errorKhamis": "±5,3 cm (pojkar) / ±4,3 cm (flickor)",
-      "boneAgeKhamis": "Nej",
-      "methodMidParental": "Mid-parental-formeln",
-      "errorMidParental": "±10 cm (4 tum)",
-      "boneAgeMidParental": "Nej",
-      "methodBoneAge": "Skelettröntgen (Greulich-Pyle / TW)",
-      "errorBoneAge": "±2,5 cm (högst precision)",
-      "boneAgeBoneAge": "Ja (klinisk)",
-      "whyMissesTitle": "Varför prognoser kan variera",
-      "miss1": "9 av 10 prognoser hamnar inom 5,3 cm (2,1 tum) för pojkar och 4,3 cm (1,7 tum) för flickor",
-      "miss2": "Formeln med enbart föräldrar är mindre exakt: oftast inom 10 cm (4 tum)",
-      "miss3": "Träffsäkerheten är högst när barnet är äldre än 4 år",
-      "miss4": "Noggranna mätningar av längd och vikt förbättrar resultaten avsevärt",
-      "miss5": "Korrekt längddata för båda föräldrarna krävs för ett tillförlitligt resultat"
+      "description": "Denna längdprognos använder tillväxtmodellen Khamis-Roche, utvecklad utifrån långtidsstudier av barns tillväxtdata.",
+      "disclaimerStrong": "Medicinsk ansvarsfriskrivning:",
+      "disclaimerText": "Denna längdkalkylator är endast avsedd för informationssyfte. Den ersätter inte professionell medicinsk rådgivning. Rådgör med en barnläkare eller endokrinolog vid oro över barnets tillväxt.",
+      "title": "Hur träffsäker är en längdkalkylator?",
+      "item1": "9 av 10 prognoser hamnar inom 5,3 cm (2,1 in) från slutlig vuxenlängd för pojkar och 4,3 cm (1,7 in) för flickor",
+      "item2": "Formeln med enbart föräldrarnas längd är mindre precis: vanligtvis inom 10 cm (4 in)",
+      "item3": "Precisionen är högst när barnet är äldre än 4 år",
+      "item4": "Noggranna längd- och viktmätningar förbättrar resultaten avsevärt",
+      "item5": "Korrekt längddata från föräldrarna krävs för ett tillförlitligt resultat",
+      "item6": "Resultaten anger ett sannolikt intervall, inte ett exakt värde",
+      "item7": "Inte lämplig för barn med kända tillväxtrubbningar",
+      "item8": "Tidig eller sen pubertet kan minska prognosens träffsäkerhet",
+      "closing": "Resultatet anger ett sannolikt intervall snarare än ett garanterat värde."
     },
     "faq": [
       {
@@ -534,28 +527,22 @@
         "label": "Hur lång blir mitt barn?",
         "subItems": [
           {
-            "id": "how-tall-will-my-son-be",
-            "label": "Hur lång blir min son?"
-          },
-          {
-            "id": "how-tall-will-my-daughter-be",
-            "label": "Hur lång blir min dotter?"
-          },
-          {
-            "id": "how-tall-will-my-baby-or-toddler-be",
-            "label": "Hur lång blir mitt spädbarn eller småbarn?"
-          },
-          {
-            "id": "how-tall-will-i-be-teens-adults",
-            "label": "Hur lång kommer jag att bli? (Tonåringar och vuxna)"
-          },
-          {
             "id": "worked-example",
-            "label": "Räkneexempel: beräkna längd utifrån föräldrarnas längd"
+            "label": "Räkneexempel: uppskatta längd från föräldrarna"
           },
           {
             "id": "age-2-rule",
             "label": "Snabbkoll för småbarn: 2-årsregeln"
+          }
+        ]
+      },
+      {
+        "id": "how-tall-will-i-be-teens-adults",
+        "label": "Hur lång blir jag (Tonåringar & vuxna)",
+        "subItems": [
+          {
+            "id": "no-parents-height",
+            "label": "Vad gör man om man inte vet föräldrarnas längd?"
           }
         ]
       },

@@ -287,7 +287,7 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                         <Dna className="text-accent w-5 h-5" /> {t('determinants.geneticsTitle')}
                                     </h3>
                                     <p className="text-sm text-muted leading-relaxed font-medium">
-                                        {t('determinants.geneticsBefore')}<strong>{t('determinants.geneticsStrong1')}</strong>{t('determinants.geneticsMiddle')}<strong>{t('determinants.geneticsStrong2')}</strong>
+                                        {t('determinants.geneticsBefore')}<strong>{t('determinants.geneticsStrong1')}</strong>{t('determinants.geneticsMiddle')}<strong>{t('determinants.geneticsStrong2')}</strong>{t('determinants.geneticsAfter')}
                                     </p>
                                 </div>
 
@@ -765,61 +765,22 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                                 {t('accuracy.description')}
                             </p>
 
-                            <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] space-y-4 shadow-sm">
-                                <h3 className="text-xl font-black text-foreground uppercase tracking-tight">
-                                    {t('accuracy.is100PercentTitle')}
-                                </h3>
-                                <p className="text-muted leading-relaxed font-medium text-sm">
-                                    {t('accuracy.is100PercentText')}
-                                </p>
-                            </div>
-
-                            <div className="space-y-4">
-                                <h3 className="text-xl font-black text-foreground uppercase tracking-tight">
-                                    {t('accuracy.typicalErrorTitle')}
-                                </h3>
-                                <div className="overflow-x-auto rounded-2xl border border-border bg-surface shadow-sm">
-                                    <table className="w-full text-left border-collapse">
-                                        <thead>
-                                            <tr className="bg-accent/5 border-b border-border">
-                                                <th className="p-4 text-xs font-black uppercase tracking-widest text-foreground">{t('accuracy.thMethod')}</th>
-                                                <th className="p-4 text-xs font-black uppercase tracking-widest text-accent">{t('accuracy.thTypicalError')}</th>
-                                                <th className="p-4 text-xs font-black uppercase tracking-widest text-foreground">{t('accuracy.thNeedsBoneAge')}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody className="text-sm">
-                                            <tr className="border-b border-border hover:bg-accent/[0.02] transition-colors">
-                                                <td className="p-4 font-bold text-foreground">{t('accuracy.methodKhamis')}</td>
-                                                <td className="p-4 text-accent font-black">{t('accuracy.errorKhamis')}</td>
-                                                <td className="p-4 text-muted font-medium">{t('accuracy.boneAgeKhamis')}</td>
-                                            </tr>
-                                            <tr className="border-b border-border hover:bg-accent/[0.02] transition-colors">
-                                                <td className="p-4 font-bold text-foreground">{t('accuracy.methodMidParental')}</td>
-                                                <td className="p-4 text-accent font-black">{t('accuracy.errorMidParental')}</td>
-                                                <td className="p-4 text-muted font-medium">{t('accuracy.boneAgeMidParental')}</td>
-                                            </tr>
-                                            <tr className="hover:bg-accent/[0.02] transition-colors">
-                                                <td className="p-4 font-bold text-foreground">{t('accuracy.methodBoneAge')}</td>
-                                                <td className="p-4 text-accent font-black">{t('accuracy.errorBoneAge')}</td>
-                                                <td className="p-4 text-muted font-medium">{t('accuracy.boneAgeBoneAge')}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-
                             <div className="bg-surface border border-border p-6 md:p-8 rounded-[2.5rem] border-l-4 border-l-accent shadow-sm space-y-4">
-                                <h3 className="text-xl font-black text-foreground uppercase tracking-tight">
-                                    {t('accuracy.whyMissesTitle')}
-                                </h3>
                                 <ul className="space-y-3 text-muted font-medium">
-                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.miss1')}</li>
-                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.miss2')}</li>
-                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.miss3')}</li>
-                                    <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5 mt-0.5" /> {t('accuracy.miss4')}</li>
-                                    <li className="flex items-start gap-2"><AlertCircle className="shrink-0 text-amber-500 w-5 h-5 mt-0.5" /> {t('accuracy.miss5')}</li>
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.item1')}</li>
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.item2')}</li>
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.item3')}</li>
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.item4')}</li>
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.item5')}</li>
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.item6')}</li>
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.item7')}</li>
+                                    <li className="flex items-start gap-2"><CheckCircle2 className="shrink-0 text-accent w-5 h-5 mt-0.5" /> {t('accuracy.item8')}</li>
                                 </ul>
                             </div>
+
+                            <p className="text-muted leading-relaxed font-medium">
+                                {t('accuracy.closing')}
+                            </p>
 
                             <div className="text-xs text-muted leading-relaxed font-medium bg-muted/20 p-4 rounded-xl border border-border mt-6">
                                 <strong>{t('accuracy.disclaimerStrong')}</strong> {t('accuracy.disclaimerText')}

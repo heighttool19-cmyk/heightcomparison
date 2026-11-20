@@ -149,12 +149,12 @@
   },
   "heightPredictor": {
     "intro": {
-      "title": "Prédicteur de taille : estimez la taille adulte finale",
+      "title": "Prédicteur de Taille et Calculateur de Taille Adulte",
       "description": "Utilisez ce calculateur de taille pour estimer la taille future des enfants, adolescents et adultes en fonction de l'âge, de la génétique et des schémas de croissance. Il utilise la méthode Khamis-Roche, qui prédit la taille adulte pour les enfants de 4 à 17,5 ans à partir de l'âge, de la taille, du poids et de la taille des deux parents. Dans l'étude originale, 9 prédictions sur 10 se situaient à moins de 5,3 cm (2,1 pouces) pour les garçons et 4,3 cm (1,7 pouce) pour les filles. Pour un enfant de moins de 4 ans ou un bébé à naître, utilisez le calculateur basé uniquement sur les parents ci-dessous.",
       "lastUpdated": "Dernière mise à jour : Novembre 2026"
     },
     "khamisRocheCalculator": {
-      "title": "Prédicteur de taille Khamis-Roche",
+      "title": "Prédicteur de Taille",
       "badge": "Recommandé (de 4 à 17 ans)",
       "description": "Prédiction instantanée de la taille à l'aide de modèles de croissance scientifiques. Entrez l'âge, le sexe, la taille, le poids et la taille des deux parents. Fonctionne de 4 à 17,5 ans.",
       "unitUs": "US (pi/po, lb)",
@@ -182,17 +182,21 @@
       "calculate": "Prédire la taille adulte",
       "clear": "Effacer",
       "estimatedAdultHeight": "Taille adulte estimée",
-      "targetRange": "Plage cible (±5 cm) : {min} : {max} cm",
+      "targetRange": "9 enfants sur 10 se situent dans cette fourchette : {min} – {max}",
       "viewComparisonChart": "Voir le graphique comparatif",
       "cmUnit": "cm",
       "ftUnit": "pi",
       "inUnit": "po",
       "kgUnit": "kg",
-      "lbsUnit": "lb"
+      "lbsUnit": "lb",
+      "ageUnder4Prefix": "La méthode Khamis-Roche est validée pour les âges de 4 à 17,5 ans. Pour les enfants de moins de 4 ans, utilisez le",
+      "ageUnder4Link": "calculateur basé sur la taille des parents",
+      "ageUnder4Suffix": ".",
+      "ageOver17Warning": "La méthode Khamis-Roche est validée pour les 4 à 17,5 ans. Chez l'adulte (18+), les cartilages de croissance sont soudés."
     },
     "midParentalCalculator": {
       "title": "Calculateur de taille basé sur la taille des parents",
-      "badge": "Adapté aux nourrissons et enfants de moins de 4 ans",
+      "badge": "Taille des parents",
       "description": "Estimez la taille prévue en utilisant uniquement la taille des parents. Fonctionne pour les bébés, les très jeunes enfants et les fœtus. Si vous êtes enceinte, indiquez la taille des deux parents pour obtenir la fourchette estimée de taille adulte de votre enfant. Utilise la formule mid-parentale, qui se situe généralement à moins de 10 cm (4 pouces) de la taille adulte.",
       "unitUs": "US (pi/po)",
       "unitMetric": "Métrique (cm)",
@@ -207,7 +211,7 @@
       "calculateEstimate": "Calculer la taille estimée",
       "estimatedAdultHeightBoys": "Taille adulte estimée (garçon)",
       "estimatedAdultHeightGirls": "Taille adulte estimée (fille)",
-      "targetRange": "Plage cible (±5 cm) : {min} : {max} cm",
+      "targetRange": "Fourchette habituelle (±10 cm / 4 in) : {min} – {max}",
       "viewComparisonChart": "Voir le graphique comparatif",
       "cmUnit": "cm",
       "ftUnit": "pi",
@@ -292,8 +296,8 @@
       "geneticsTitle": "1. Le patrimoine génétique (environ 80 %) :",
       "geneticsBefore": "Les variants génétiques hérités expliquent environ ",
       "geneticsStrong1": "80 %",
-      "geneticsMiddle": " des différences de taille entre individus (MedlinePlus). Les parents grands ont tendance à avoir des enfants grands, bien que la régression vers la moyenne s'applique — les parents très grands ou petits ont souvent des enfants plus proches de la ",
-      "geneticsStrong2": "moyenne.",
+      "geneticsMiddle": " des différences de taille entre individus (MedlinePlus). Les parents de grande taille ont généralement des enfants grands, bien que la régression vers la moyenne s'applique — les parents très grands ou très petits ont souvent des enfants plus proches de la taille moyenne (",
+      "geneticsStrong2": "régression vers la moyenne",
       "nutritionTitle": "2. La nutrition et l'alimentation (environ 15 %) :",
       "nutritionBefore": "Les ",
       "nutritionStrong": "20 % restants environ",
@@ -302,7 +306,8 @@
       "nutritionItem2": "9–12 h de sommeil (6–12 ans)",
       "nutritionItem3": "8–10 h pour les adolescents",
       "timingTitle": "3. Le sommeil et la régulation hormonale (environ 5 %) :",
-      "timingText": "L'hormone de croissance (GH) est sécrétée principalement par vagues nocturnes au cours du sommeil profond à ondes lentes. Un repos suffisant et une activité physique régulière stimulent sa libération."
+      "timingText": "L'hormone de croissance (GH) est sécrétée principalement par vagues nocturnes au cours du sommeil profond à ondes lentes. Un repos suffisant et une activité physique régulière stimulent sa libération.",
+      "geneticsAfter": ")."
     },
     "growthCharts": {
       "title": "Courbes de croissance ou calculateurs prédictifs",
@@ -386,7 +391,7 @@
       },
       "midParental": {
         "badge": "Formule génétique de référence",
-        "title": "Formule de taille cible parentale (Méthode de Tanner)",
+        "title": "Prédicteur de Taille Basé sur les Parents (Formule Mid-Parentale)",
         "p1": "Élaborée par le pédiatre britannique James Tanner dans les années 1970 pour évaluer la cible génétique :",
         "boysFormulaLabel": "Formule pour les garçons :",
         "boysFormula": "[Taille du père + (Taille de la mère + 13 cm)] ÷ 2",
@@ -454,31 +459,19 @@
       "title": "Peut-on augmenter sa taille ?"
     },
     "accuracy": {
-      "description": "Les études de validation confirment une excellente performance chez les enfants au développement typique :",
-      "disclaimerStrong": "Avertissement médical : ",
-      "disclaimerText": "Cet outil est mis à disposition dans un but éducatif et indicatif. Pour tout diagnostic médical, adressez-vous à un professionnel de santé qualifié.",
+      "description": "Ce prédicteur de taille utilise le modèle de croissance de Khamis-Roche, issu d'études longitudinales sur la croissance des enfants.",
+      "disclaimerStrong": "Avertissement médical :",
+      "disclaimerText": "Ce calculateur de taille est fourni à titre indicatif uniquement. Il ne remplace en aucun cas un avis médical professionnel. En cas d'inquiétude sur la croissance de votre enfant, consultez un pédiatre ou un endocrinologue qualifié.",
       "title": "Quelle est la précision d'un calculateur de taille ?",
-      "is100PercentTitle": "Existe-t-il un prédicteur de taille précis à 100 % ?",
-      "is100PercentText": "Non. Chaque outil fournit une fourchette probable, car les gènes, la puberté et la santé influencent le résultat. Khamis-Roche est la méthode non radiologique la plus précise, avec 9 prédictions sur 10 dans les 2,1 pouces pour les garçons et 1,7 pouce pour les filles. Une radiographie d'âge osseux est plus précise et prescrite par les médecins en cas de suspicion de trouble de croissance.",
-      "typicalErrorTitle": "Erreurs types selon la méthode de prédiction",
-      "thMethod": "Méthode",
-      "thTypicalError": "Erreur type",
-      "thNeedsBoneAge": "Âge osseux requis ?",
-      "methodKhamis": "Méthode Khamis-Roche",
-      "errorKhamis": "±5,3 cm (garçons) / ±4,3 cm (filles)",
-      "boneAgeKhamis": "Non",
-      "methodMidParental": "Formule Mid-Parentale",
-      "errorMidParental": "±10 cm (4 pouces)",
-      "boneAgeMidParental": "Non",
-      "methodBoneAge": "Radiographie de l'âge osseux (Greulich-Pyle / TW)",
-      "errorBoneAge": "±2,5 cm (précision maximale)",
-      "boneAgeBoneAge": "Oui (clinique)",
-      "whyMissesTitle": "Pourquoi les prédictions peuvent varier",
-      "miss1": "9 prédictions sur 10 se situent à moins de 5,3 cm (2,1 po) pour les garçons et 4,3 cm (1,7 po) pour les filles",
-      "miss2": "La formule basée uniquement sur les parents est moins précise : généralement à moins de 10 cm (4 po)",
-      "miss3": "La précision est maximale lorsque l'enfant a plus de 4 ans",
-      "miss4": "Des mesures précises de taille et de poids améliorent nettement les résultats",
-      "miss5": "Des données exactes sur la taille des parents sont indispensables pour un résultat fiable"
+      "item1": "9 prédictions sur 10 se situent à ±5,3 cm (2,1 in) de la taille adulte finale pour les garçons et ±4,3 cm (1,7 in) pour les filles",
+      "item2": "La formule basée uniquement sur les parents est moins précise : généralement à ±10 cm (4 in)",
+      "item3": "La précision est maximale lorsque l'enfant a plus de 4 ans",
+      "item4": "Des mesures précises de la taille et du poids améliorent grandement les résultats",
+      "item5": "Des tailles parentales exactes sont nécessaires pour un résultat fiable",
+      "item6": "Les résultats indiquent une fourchette probable, et non une valeur exacte",
+      "item7": "Non adapté aux enfants présentant des troubles de croissance diagnostiqués",
+      "item8": "Une puberté précoce ou tardive peut modifier la précision de la prédiction",
+      "closing": "Le résultat représente une fourchette probable plutôt qu'une valeur garantie."
     },
     "faq": [
       {
@@ -528,28 +521,22 @@
         "label": "Quelle sera la taille de mon enfant ?",
         "subItems": [
           {
-            "id": "how-tall-will-my-son-be",
-            "label": "Quelle sera la taille de mon fils ?"
-          },
-          {
-            "id": "how-tall-will-my-daughter-be",
-            "label": "Quelle sera la taille de ma fille ?"
-          },
-          {
-            "id": "how-tall-will-my-baby-or-toddler-be",
-            "label": "Quelle sera la taille de mon bébé ou jeune enfant ?"
-          },
-          {
-            "id": "how-tall-will-i-be-teens-adults",
-            "label": "Quelle sera ma taille ? (Ados & Adultes)"
-          },
-          {
             "id": "worked-example",
-            "label": "Exemple concret : prédire la taille à partir de la taille des parents"
+            "label": "Exemple concret : prédire la taille d'après les parents"
           },
           {
             "id": "age-2-rule",
-            "label": "Vérification rapide pour les tout-petits : la règle des 2 ans"
+            "label": "Vérification rapide pour tout-petits : la règle des 2 ans"
+          }
+        ]
+      },
+      {
+        "id": "how-tall-will-i-be-teens-adults",
+        "label": "Quelle taille ferai-je (Ados et adultes)",
+        "subItems": [
+          {
+            "id": "no-parents-height",
+            "label": "Que faire si vous ignorez la taille de vos parents ?"
           }
         ]
       },

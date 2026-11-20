@@ -155,12 +155,12 @@
   },
   "heightPredictor": {
     "intro": {
-      "title": "Kalkulator przewidywanego wzrostu i wzrostu dorosłych",
+      "title": "Kalkulator Wzrostu i Przewidywanie Wzrostu Dorosłego",
       "description": "Użyj tego kalkulatora wzrostu, aby oszacować przyszły wzrost dzieci, nastolatków i dorosłych na podstawie wieku, genetyki i wzorców wzrastania. Narzędzie wykorzystuje metodę Khamisa-Roche'a, która przewiduje wzrost w wieku dorosłym od 4 do 17,5 roku życia na podstawie wieku, wzrostu, masy ciała i wzrostu obojga rodziców. W badaniu pierwotnym 9 na 10 prognoz mieściło się w granicach 5,3 cm (2,1 cala) dla chłopców i 4,3 cm (1,7 cala) dla dziewcząt. W przypadku dzieci poniżej 4 lat lub nienarodzonych dzieci skorzystaj z poniższego kalkulatora opartego wyłącznie na wzroście rodziców.",
       "lastUpdated": "Ostatnia aktualizacja: listopad 2026"
     },
     "khamisRocheCalculator": {
-      "title": "Kalkulator przewidywanego wzrostu",
+      "title": "Kalkulator Wzrostu",
       "badge": "Khamis-Roche",
       "description": "Błyskawiczne przewidywanie wzrostu na podstawie naukowych modeli wzrastania. Wprowadź wiek, płeć, wzrost, wagę i wzrost obojga rodziców. Działa w wieku od 4 do 17,5 lat.",
       "unitUs": "USA (stopy/cale)",
@@ -188,17 +188,21 @@
       "calculate": "Oblicz wzrost",
       "clear": "Wyczyść",
       "estimatedAdultHeight": "Szacowany wzrost dorosłego",
-      "targetRange": "Zakres docelowy (±5 cm): {min} : {max} cm",
+      "targetRange": "9 na 10 dzieci mieści się w tym przedziale: {min} – {max}",
       "viewComparisonChart": "Wyświetl wykres porównawczy",
       "cmUnit": "cm",
       "ftUnit": "ft",
       "inUnit": "cale",
       "kgUnit": "kg",
-      "lbsUnit": "funty"
+      "lbsUnit": "funty",
+      "ageUnder4Prefix": "Metoda Khamis-Roche sprawdza się w wieku od 4 do 17,5 lat. Dla dzieci poniżej 4 lat skorzystaj z",
+      "ageUnder4Link": "kalkulatora na podstawie wzrostu rodziców",
+      "ageUnder4Suffix": ".",
+      "ageOver17Warning": "Metoda Khamis-Roche jest zwalidowana dla wieku 4 do 17,5 lat. U dorosłych (18+) nasady kości uległy zrośnięciu."
     },
     "midParentalCalculator": {
       "title": "Kalkulator wzrostu na podstawie wzrostu rodziców",
-      "badge": "Metoda Mid-Parental",
+      "badge": "Wzrost Rodziców",
       "description": "Oszacuj przewidywany wzrost, korzystając wyłącznie ze wzrostu rodziców. Odpowiedni dla niemowląt, małych dzieci i dzieci nienarodzonych. Kobiety w ciąży mogą wprowadzić wzrost obojga rodziców, aby sprawdzić prognozowany przedział wzrostu docelowego. Wykorzystuje formułę mid-parental, która zazwyczaj mieści się w granicach 10 cm (4 cali) od wzrostu ostatecznego.",
       "unitUs": "USA (stopy/cale)",
       "unitMetric": "Metryczny (cm)",
@@ -213,7 +217,7 @@
       "calculateEstimate": "Oblicz szacunek",
       "estimatedAdultHeightBoys": "Szacowany wzrost dorosłego (chłopcy)",
       "estimatedAdultHeightGirls": "Szacowany wzrost dorosłego (dziewczęta)",
-      "targetRange": "Zakres docelowy (±5 cm): {min} : {max} cm",
+      "targetRange": "Typowy przedział (±10 cm / 4 in): {min} – {max}",
       "viewComparisonChart": "Wyświetl wykres porównawczy",
       "cmUnit": "cm",
       "ftUnit": "stopy",
@@ -298,8 +302,8 @@
       "geneticsTitle": "Genetyka",
       "geneticsBefore": "Odziedziczone warianty DNA odpowiadają za około ",
       "geneticsStrong1": "80%",
-      "geneticsMiddle": " różnic wzrostu między ludźmi (MedlinePlus). Wysocy rodzice zazwyczaj mają wysokie dzieci, chociaż występuje regresja do średniej: bardzo wysocy lub niscy rodzice często mają potomstwo o wzroście bliższym ",
-      "geneticsStrong2": "średniej.",
+      "geneticsMiddle": " różnic we wzroście między ludźmi (MedlinePlus). Wysocy rodzice mają zazwyczaj wysokie dzieci, choć zachodzi regresja do średniej — bardzo wysocy lub niscy rodzice mają często dzieci bliższe średniego wzrostu (",
+      "geneticsStrong2": "regresja do średniej",
       "nutritionTitle": "Odżywianie i sen",
       "nutritionBefore": "Pozostałe ",
       "nutritionStrong": "~20%",
@@ -308,7 +312,8 @@
       "nutritionItem2": "9–12 godzin snu (wiek 6–12 lat)",
       "nutritionItem3": "8–10 godzin dla nastolatków",
       "timingTitle": "Czas wzrostu",
-      "timingText": "Wczesne dojrzewanie może tymczasowo skutkować wyższym dzieckiem, ale niższym dorosłym. Późne dojrzewanie często prowadzi do dłuższego okresu wzrostu i większego ostatecznego wzrostu."
+      "timingText": "Wczesne dojrzewanie może tymczasowo skutkować wyższym dzieckiem, ale niższym dorosłym. Późne dojrzewanie często prowadzi do dłuższego okresu wzrostu i większego ostatecznego wzrostu.",
+      "geneticsAfter": ")."
     },
     "growthCharts": {
       "title": "Średni wzrost według wieku (siatki centylowe)",
@@ -392,7 +397,7 @@
       },
       "midParental": {
         "badge": "PROSTA",
-        "title": "Kalkulator przewidywanego wzrostu na podstawie rodziców (wzór na wzrost środkowo-rodzicielski)",
+        "title": "Kalkulator Wzrostu na Podstawie Rodziców (Formuła Mid-Parental)",
         "p1": "Wzór na wzrost środkowo-rodzicielski to najprostszy sposób na oszacowanie wzrostu dorosłego dziecka, wykorzystujący jedynie wzrost rodziców. Nie wymaga badań medycznych i działa dla każdego wieku, w tym dla niemowląt i nienarodzonych dzieci.",
         "boysFormulaLabel": "Dla chłopców (jednostki US)",
         "boysFormula": "(Ojciec + Matka + 5 cali) ÷ 2",
@@ -460,31 +465,19 @@
       "title": "Czy można zwiększyć swój wzrost?"
     },
     "accuracy": {
-      "description": "Ten kalkulator przewidywanego wzrostu wykorzystuje model wzrostu Khamis-Roche, oparty na długoterminowych badaniach danych dotyczących wzrostu dzieci.",
+      "description": "Ten kalkulator wzrostu wykorzystuje model wzrostu Khamis-Roche, opracowany na podstawie długoterminowych badań danych o wzroście dzieci.",
       "disclaimerStrong": "Zastrzeżenie medyczne:",
-      "disclaimerText": "Ten kalkulator wzrostu służy wyłącznie celom informacyjnym. Nie zastępuje profesjonalnej porady medycznej. Jeśli masz obawy dotyczące wzrostu swojego dziecka, skonsultuj się z wykwalifikowanym pediatrą lub endokrynologiem.",
+      "disclaimerText": "Ten kalkulator wzrostu ma charakter wyłącznie informacyjny. Nie zastępuje profesjonalnej porady medycznej. W przypadku wątpliwości dotyczących wzrostu dziecka należy skonsultować się z pediatrą lub endokrynologiem.",
       "title": "Jak dokładny jest kalkulator wzrostu?",
-      "is100PercentTitle": "Czy istnieje kalkulator wzrostu o 100% dokładności?",
-      "is100PercentText": "Nie. Każda metoda wskazuje prawdopodobny przedział, ponieważ geny, tempo dojrzewania i zdrowie wpływają na wynik. Metoda Khamisa-Roche'a jest najdokładniejszą metodą bez badań RTG (9 na 10 prognoz w granicach 2,1 cala dla chłopców i 1,7 cala dla dziewcząt). RTG wieku kostnego jest dokładniejsze i jest zlecane przez pediatrów w razie podejrzeń zaburzeń wzrastania.",
-      "typicalErrorTitle": "Typowy błąd według metody prognozowania",
-      "thMethod": "Metoda",
-      "thTypicalError": "Typowy błąd",
-      "thNeedsBoneAge": "Wymaga wieku kostnego?",
-      "methodKhamis": "Metoda Khamisa-Roche'a",
-      "errorKhamis": "±5,3 cm (chłopcy) / ±4,3 cm (dziewczęta)",
-      "boneAgeKhamis": "Nie",
-      "methodMidParental": "Formuła Mid-Parental",
-      "errorMidParental": "±10 cm (4 cale)",
-      "boneAgeMidParental": "Nie",
-      "methodBoneAge": "RTG wieku kostnego (Greulich-Pyle / TW)",
-      "errorBoneAge": "±2,5 cm (najwyższa dokładność)",
-      "boneAgeBoneAge": "Tak (kliniczna)",
-      "whyMissesTitle": "Dlaczego prognozy mogą się różnić",
-      "miss1": "9 na 10 prognoz mieści się w granicach 5,3 cm (2,1 cala) dla chłopców i 4,3 cm (1,7 cala) dla dziewcząt",
-      "miss2": "Wzór oparty tylko na rodzicach jest mniej dokładny: zazwyczaj do 10 cm (4 cale)",
-      "miss3": "Dokładność rośnie, gdy dziecko ma więcej niż 4 lata",
-      "miss4": "Dokładne pomiary wzrostu i wagi wyraźnie poprawiają wiarygodność wyników",
-      "miss5": "Rzetelne dane o wzroście obojga rodziców są konieczne do wiarygodnej prognozy"
+      "item1": "9 na 10 przewidywań mieści się w granicach 5,3 cm (2,1 in) od ostatecznego wzrostu dorosłego dla chłopców i 4,3 cm (1,7 in) dla dziewcząt",
+      "item2": "Formuła oparta wyłącznie na rodzicach jest mniej precyzyjna: zazwyczaj w granicach 10 cm (4 in)",
+      "item3": "Dokładność jest najwyższa, gdy dziecko ma więcej niż 4 lata",
+      "item4": "Dokładne pomiary wzrostu i masy ciała znacząco poprawiają wyniki",
+      "item5": "Prawidłowe dane o wzroście rodziców są niezbędne do uzyskania wiarygodnego wyniku",
+      "item6": "Wyniki stanowią prawdopodobny przedział, a nie dokładną wartość",
+      "item7": "Narzędzie nie jest odpowiednie dla dzieci ze zdiagnozowanymi zaburzeniami wzrostu",
+      "item8": "Wczesne lub późne dojrzewanie może obniżyć dokładność prognozy",
+      "closing": "Wynik przedstawia prawdopodobny przedział, a nie gwarantowaną wartość."
     },
     "faq": [
       {
@@ -534,28 +527,22 @@
         "label": "Jak wysokie będzie moje dziecko?",
         "subItems": [
           {
-            "id": "how-tall-will-my-son-be",
-            "label": "Jak wysoki będzie mój syn?"
-          },
-          {
-            "id": "how-tall-will-my-daughter-be",
-            "label": "Jak wysoka będzie moja córka?"
-          },
-          {
-            "id": "how-tall-will-my-baby-or-toddler-be",
-            "label": "Jak wysokie będzie moje niemowlę lub małe dziecko?"
-          },
-          {
-            "id": "how-tall-will-i-be-teens-adults",
-            "label": "Jak wysoki będę? (Nastolatki i dorośli)"
-          },
-          {
             "id": "worked-example",
-            "label": "Praktyczny przykład: obliczanie wzrostu ze wzrostu rodziców"
+            "label": "Praktyczny przykład: szacowanie wzrostu na podstawie rodziców"
           },
           {
             "id": "age-2-rule",
-            "label": "Szybki test dla maluchów: reguła 2 lat"
+            "label": "Szybki test dla maluchów: zasada 2 lat"
+          }
+        ]
+      },
+      {
+        "id": "how-tall-will-i-be-teens-adults",
+        "label": "Jak wysoki będę (Nastolatki i dorośli)",
+        "subItems": [
+          {
+            "id": "no-parents-height",
+            "label": "Co zrobić, jeśli nie znasz wzrostu rodziców?"
           }
         ]
       },

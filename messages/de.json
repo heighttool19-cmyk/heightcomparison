@@ -155,12 +155,12 @@
   },
   "heightPredictor": {
     "intro": {
-      "title": "Größenrechner: Erwachsenengröße vorhersagen",
+      "title": "Größenrechner und Erwachsenengröße-Vorhersage",
       "description": "Nutzen Sie diesen Größenrechner, um die zukünftige Körpergröße von Kindern, Teenagern und Erwachsenen anhand von Alter, Genetik und Wachstumsmustern zu schätzen. Er verwendet die Khamis-Roche-Methode, die die Erwachsenengröße für das Alter von 4 bis 17,5 Jahren aus Alter, Größe, Gewicht und der Größe beider Eltern vorhersagt. In der Originalstudie lagen 9 von 10 Vorhersagen innerhalb von 5,3 cm (2,1 Zoll) bei Jungen und 4,3 cm (1,7 Zoll) bei Mädchen. Für ein Kind unter 4 Jahren oder ein noch ungeborenes Baby verwenden Sie den nachstehenden Nur-Eltern-Rechner.",
       "lastUpdated": "Zuletzt aktualisiert: November 2026"
     },
     "khamisRocheCalculator": {
-      "title": "Größenwachstums-Rechner",
+      "title": "Größenvorhersage",
       "badge": "Khamis-Roche",
       "description": "Sofortige Größenvorhersage anhand wissenschaftlicher Wachstumsmodelle. Geben Sie Alter, Geschlecht, Größe, Gewicht und die Größe beider Eltern ein. Geeignet für ein Alter von 4 bis 17,5 Jahren.",
       "unitUs": "US (ft/in)",
@@ -188,17 +188,21 @@
       "calculate": "Größe berechnen",
       "clear": "Zurücksetzen",
       "estimatedAdultHeight": "Geschätzte Erwachsenengröße",
-      "targetRange": "Zielbereich (±5 cm): {min} : {max} cm",
+      "targetRange": "9 von 10 Kindern liegen in diesem Bereich: {min} – {max}",
       "viewComparisonChart": "Vergleichsdiagramm ansehen",
       "cmUnit": "cm",
       "ftUnit": "ft",
       "inUnit": "in",
       "kgUnit": "kg",
-      "lbsUnit": "lbs"
+      "lbsUnit": "lbs",
+      "ageUnder4Prefix": "Die Khamis-Roche-Methode ist für das Alter von 4 bis 17,5 Jahren validiert. Für Kinder unter 4 Jahren verwenden Sie bitte den",
+      "ageUnder4Link": "Elterngrößen-Rechner",
+      "ageUnder4Suffix": ".",
+      "ageOver17Warning": "Die Khamis-Roche-Methode gilt für das Alter von 4 bis 17,5 Jahren. Bei Erwachsenen (18+) sind die Wachstumsfugen geschlossen."
     },
     "midParentalCalculator": {
       "title": "Größenrechner basierend auf der Elterngröße",
-      "badge": "Mid-Parental",
+      "badge": "Elterngröße",
       "description": "Schätzen Sie die vorhergesagte Größe nur anhand der Größe der Eltern. Funktioniert auch für Babys, Kleinkinder und ungeborene Kinder. Wenn Sie schwanger sind, geben Sie die Größe beider Eltern ein, um den geschätzten Größenbereich Ihres Kindes als Erwachsener zu erhalten. Dies nutzt die Mid-Parental-Formel, die in der Regel innerhalb von 10 cm (4 Zoll) der Erwachsenengröße liegt.",
       "unitUs": "US (ft/in)",
       "unitMetric": "Metrisch (cm)",
@@ -213,7 +217,7 @@
       "calculateEstimate": "Schätzung berechnen",
       "estimatedAdultHeightBoys": "Geschätzte Erwachsenengröße (Jungen)",
       "estimatedAdultHeightGirls": "Geschätzte Erwachsenengröße (Mädchen)",
-      "targetRange": "Zielbereich (±5 cm): {min} : {max} cm",
+      "targetRange": "Üblicher Bereich (±10 cm / 4 in): {min} – {max}",
       "viewComparisonChart": "Vergleichsdiagramm ansehen",
       "cmUnit": "cm",
       "ftUnit": "ft",
@@ -298,8 +302,8 @@
       "geneticsTitle": "Genetik",
       "geneticsBefore": "Ererbte DNA-Varianten erklären etwa ",
       "geneticsStrong1": "80 %",
-      "geneticsMiddle": " der Größenunterschiede zwischen Menschen (MedlinePlus). Große Eltern haben tendenziell große Kinder, wobei die Regression zum Mittelwert gilt – sehr große oder kleine Eltern haben oft Kinder, die näher am ",
-      "geneticsStrong2": "Regression zur Mitte nennt.",
+      "geneticsMiddle": " der Größenunterschiede zwischen Menschen (MedlinePlus). Große Eltern haben meist große Kinder, wobei die Regression zum Mittelwert gilt – sehr große oder kleine Eltern haben oft Kinder, die näher an der Durchschnittsgröße liegen (",
+      "geneticsStrong2": "Regression zum Mittelwert",
       "nutritionTitle": "Ernährung & Schlaf",
       "nutritionBefore": "Die verbleibenden ",
       "nutritionStrong": "etwa 20 %",
@@ -308,7 +312,8 @@
       "nutritionItem2": "9–12 Std. Schlaf (6–12 Jahre)",
       "nutritionItem3": "8–10 Std. für Teenager",
       "timingTitle": "Wachstumszeitpunkt",
-      "timingText": "Eine frühe Pubertät kann vorübergehend zu einem größeren Kind, aber einem kleineren Erwachsenen führen. Eine späte Pubertät führt oft zu einem längeren Wachstumsfenster und einer größeren Endgröße."
+      "timingText": "Eine frühe Pubertät kann vorübergehend zu einem größeren Kind, aber einem kleineren Erwachsenen führen. Eine späte Pubertät führt oft zu einem längeren Wachstumsfenster und einer größeren Endgröße.",
+      "geneticsAfter": ")."
     },
     "growthCharts": {
       "title": "Durchschnittsgröße nach Alter (Wachstumskurven)",
@@ -392,7 +397,7 @@
       },
       "midParental": {
         "badge": "EINFACH",
-        "title": "Größenvorhersage anhand der Eltern (Mid-Parental Height Formula)",
+        "title": "Größenvorhersage nach Elterngröße (Mid-Parental-Formel)",
         "p1": "Die Mid-Parental Height Formula ist der einfachste Weg, die Erwachsenengröße eines Kindes allein anhand der Elterngröße zu schätzen. Sie erfordert keine medizinischen Tests und funktioniert für jedes Alter, einschließlich Babys und ungeborener Kinder.",
         "boysFormulaLabel": "Für Jungen (US-Einheiten)",
         "boysFormula": "(Vater + Mutter + 5 Zoll) ÷ 2",
@@ -460,31 +465,19 @@
       "title": "Kann man das Längenwachstum steigern?"
     },
     "accuracy": {
-      "description": "Dieser Größenwachstums-Rechner nutzt das Khamis-Roche-Wachstumsmodell, das auf Langzeitstudien zu kindlichen Wachstumsdaten basiert.",
+      "description": "Dieser Größenrechner nutzt das Khamis-Roche-Wachstumsmodell, das auf Langzeitstudien kindlicher Wachstumsdaten basiert.",
       "disclaimerStrong": "Medizinischer Haftungsausschluss:",
-      "disclaimerText": "Dieser Größenrechner dient nur zu Informationszwecken. Er ersetzt keine professionelle medizinische Beratung. Bei Bedenken zum Wachstum Ihres Kindes wenden Sie sich an einen qualifizierten Kinderarzt oder Endokrinologen.",
+      "disclaimerText": "Dieser Größenrechner dient ausschließlich Informationszwecken. Er ersetzt keine professionelle medizinische Beratung. Bei Bedenken bezüglich des Wachstums Ihres Kindes wenden Sie sich an einen qualifizierten Kinderarzt oder Endokrinologen.",
       "title": "Wie genau ist ein Größenrechner?",
-      "is100PercentTitle": "Ist ein Größenrechner zu 100 % genau?",
-      "is100PercentText": "Nein. Jede Größenvorhersage liefert einen wahrscheinlichen Bereich, da Gene, Pubertätszeitpunkt und Gesundheit das Ergebnis beeinflussen. Khamis-Roche ist die genaueste Methode ohne Röntgenaufnahme, bei der 9 von 10 Vorhersagen innerhalb von 2,1 Zoll bei Jungen und 1,7 Zoll bei Mädchen liegen. Ein Knochenalter-Röntgenbild ist genauer und wird von Ärzten bei Verdacht auf Wachstumsstörungen angeordnet.",
-      "typicalErrorTitle": "Typische Fehler nach Vorhersagemethode",
-      "thMethod": "Methode",
-      "thTypicalError": "Typischer Fehler",
-      "thNeedsBoneAge": "Benötigt Knochenalter?",
-      "methodKhamis": "Khamis-Roche-Methode",
-      "errorKhamis": "±5,3 cm (Jungen) / ±4,3 cm (Mädchen)",
-      "boneAgeKhamis": "Nein",
-      "methodMidParental": "Mid-Parental-Formel",
-      "errorMidParental": "±10 cm (4 Zoll)",
-      "boneAgeMidParental": "Nein",
-      "methodBoneAge": "Knochenalter-Röntgen (Greulich-Pyle / TW)",
-      "errorBoneAge": "±2,5 cm (höchste Präzision)",
-      "boneAgeBoneAge": "Ja (klinisch)",
-      "whyMissesTitle": "Warum Größenvorhersagen abweichen können",
-      "miss1": "9 von 10 Vorhersagen liegen innerhalb von 5,3 cm (2,1 Zoll) der endgültigen Erwachsenengröße bei Jungen und 4,3 cm (1,7 Zoll) bei Mädchen",
-      "miss2": "Die Nur-Eltern-Formel ist ungenauer: meist innerhalb von 10 cm (4 Zoll)",
-      "miss3": "Die Genauigkeit ist am höchsten, wenn das Kind älter als 4 Jahre ist",
-      "miss4": "Genaue Größen- und Gewichtsmessungen verbessern die Ergebnisse erheblich",
-      "miss5": "Richtige Angaben zur Elterngröße sind für verlässliche Ergebnisse erforderlich"
+      "item1": "9 von 10 Vorhersagen liegen innerhalb von 5,3 cm (2,1 in) der endgültigen Erwachsenengröße bei Jungen und 4,3 cm (1,7 in) bei Mädchen",
+      "item2": "Die reine Elternformel ist ungenauer: in der Regel innerhalb von 10 cm (4 in)",
+      "item3": "Die Genauigkeit ist am höchsten, wenn das Kind älter als 4 Jahre ist",
+      "item4": "Genaue Größen- und Gewichtsmessungen verbessern das Ergebnis erheblich",
+      "item5": "Korrekte Größenangaben der Eltern sind für ein verlässliches Ergebnis erforderlich",
+      "item6": "Die Ergebnisse stellen einen wahrscheinlichen Bereich dar, keinen exakten Wert",
+      "item7": "Nicht geeignet für Kinder mit bekannten Wachstumsstörungen",
+      "item8": "Eine frühe oder späte Pubertät kann die Vorhersagegenauigkeit verringern",
+      "closing": "Das Ergebnis stellt einen wahrscheinlichen Bereich und keinen garantierten Wert dar."
     },
     "faq": [
       {
@@ -534,28 +527,22 @@
         "label": "Wie groß wird mein Kind?",
         "subItems": [
           {
-            "id": "how-tall-will-my-son-be",
-            "label": "Wie groß wird mein Sohn?"
-          },
-          {
-            "id": "how-tall-will-my-daughter-be",
-            "label": "Wie groß wird meine Tochter?"
-          },
-          {
-            "id": "how-tall-will-my-baby-or-toddler-be",
-            "label": "Wie groß wird mein Baby oder Kleinkind?"
-          },
-          {
-            "id": "how-tall-will-i-be-teens-adults",
-            "label": "Wie groß werde ich? (Jugendliche & Erwachsene)"
-          },
-          {
             "id": "worked-example",
-            "label": "Rechenbeispiel: Vorhersage der Größe aus der Elterngröße"
+            "label": "Berechnungsbeispiel: Größenprognose nach Elterngröße"
           },
           {
             "id": "age-2-rule",
-            "label": "Schnell-Check für Kleinkinder: Die 2-Jahres-Verdopplungsregel"
+            "label": "Schnelltest für Kleinkinder: die 2-Jahres-Regel"
+          }
+        ]
+      },
+      {
+        "id": "how-tall-will-i-be-teens-adults",
+        "label": "Wie groß werde ich (Teenager & Erwachsene)",
+        "subItems": [
+          {
+            "id": "no-parents-height",
+            "label": "Was tun, wenn die Größe der Eltern unbekannt ist?"
           }
         ]
       },

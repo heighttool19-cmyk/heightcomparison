@@ -153,12 +153,12 @@
   },
   "heightPredictor": {
     "intro": {
-      "title": "Previsor de Altura: Calcule a Altura Adulta Final",
+      "title": "Previsor de Altura e Calculadora de Altura Adulta",
       "description": "Use esta calculadora de altura para estimar a estatura futura de crianças, adolescentes e adultos com base na idade, genética e padrões de crescimento. Ela utiliza o método Khamis-Roche, que prevê a altura adulta dos 4 aos 17,5 anos a partir da idade, altura, peso e altura de ambos os pais. No estudo original, 9 em cada 10 previsões ficaram dentro de 5,3 cm (2,1 polegadas) para meninos e 4,3 cm (1,7 polegada) para meninas. Para crianças menores de 4 anos ou bebês ainda não nascidos, use a calculadora baseada apenas nos pais abaixo.",
       "lastUpdated": "Última atualização: Novembro de 2026"
     },
     "khamisRocheCalculator": {
-      "title": "Calculadora de Altura Khamis-Roche",
+      "title": "Previsor de Altura",
       "badge": "Mais Preciso (Idades 4–17)",
       "description": "Previsão instantânea de altura usando modelos científicos de crescimento. Insira idade, sexo, altura, peso e altura de ambos os pais. Funciona dos 4 aos 17,5 anos.",
       "unitUs": "EUA (pés/pol, lbs)",
@@ -186,17 +186,21 @@
       "calculate": "Calcular Altura Prevista",
       "clear": "Limpar",
       "estimatedAdultHeight": "Altura Adulta Prevista:",
-      "targetRange": "Intervalo pretendido (±5 cm): {min} : {max} cm",
+      "targetRange": "9 em cada 10 crianças situam-se neste intervalo: {min} – {max}",
       "viewComparisonChart": "Ver Gráfico de Comparação",
       "cmUnit": "cm",
       "ftUnit": "pés",
       "inUnit": "pol",
       "kgUnit": "kg",
-      "lbsUnit": "lbs"
+      "lbsUnit": "lbs",
+      "ageUnder4Prefix": "O método Khamis-Roche é válido para idades de 4 a 17,5 anos. Para crianças com menos de 4 anos, utilize a",
+      "ageUnder4Link": "calculadora baseada na altura dos pais",
+      "ageUnder4Suffix": ".",
+      "ageOver17Warning": "O método Khamis-Roche é validado para idades de 4 a 17,5 anos. Em adultos (18+), as placas de crescimento já fecharam."
     },
     "midParentalCalculator": {
       "title": "Calculadora de Altura Baseada na Altura dos Pais",
-      "badge": "Para Todas as Idades (e Futuros Bebés)",
+      "badge": "Altura Parental",
       "description": "Estime a altura prevista usando apenas a altura dos pais. Funciona para bebês, crianças muito pequenas e bebês em gestação. Se estiver grávida, insira a altura de ambos os pais para obter a faixa estimada de altura adulta. Utiliza a fórmula mid-parental, que geralmente fica a até 10 cm (4 polegadas) da altura adulta.",
       "unitUs": "EUA (pés/pol)",
       "unitMetric": "Métrico (cm)",
@@ -211,7 +215,7 @@
       "calculateEstimate": "Calcular Estimativa Parental",
       "estimatedAdultHeightBoys": "Altura Adulta Prevista para Meninos:",
       "estimatedAdultHeightGirls": "Altura Adulta Prevista para Meninas:",
-      "targetRange": "Intervalo pretendido (±5 cm): {min} : {max} cm",
+      "targetRange": "Intervalo habitual (±10 cm / 4 in): {min} – {max}",
       "viewComparisonChart": "Ver Gráfico de Comparação",
       "cmUnit": "cm",
       "ftUnit": "pés",
@@ -296,8 +300,8 @@
       "geneticsTitle": "1. Genética (60%–80%)",
       "geneticsBefore": "Variantes hereditárias de DNA explicam cerca de ",
       "geneticsStrong1": "80%",
-      "geneticsMiddle": " das diferenças de altura entre as pessoas (MedlinePlus). Pais altos tendem a ter filhos altos, embora se aplique a regressão à média — pais muito altos ou baixos costumam ter filhos mais próximos da ",
-      "geneticsStrong2": "média.",
+      "geneticsMiddle": " das diferenças de altura entre as pessoas (MedlinePlus). Pais altos tendem a ter filhos altos, embora a regressão à média se aplique — pais muito altos ou baixos têm frequentemente filhos mais próximos da altura média (",
+      "geneticsStrong2": "regressão à média",
       "nutritionTitle": "2. Nutrição e Saúde Infantil",
       "nutritionBefore": "Os ",
       "nutritionStrong": "20% restantes aproximadamente",
@@ -306,7 +310,8 @@
       "nutritionItem2": "9–12 h de sono (idades 6–12)",
       "nutritionItem3": "8–10 h para adolescentes",
       "timingTitle": "3. Sono e Hormona do Crescimento (GH)",
-      "timingText": "A maior parte da hormona do crescimento (GH) é segregada pela glândula pituitária durante os ciclos de sono profundo de ondas lentas (estágio N3). Crianças e adolescentes com privação de sono crónico arriscam comprometer o seu potencial genético."
+      "timingText": "A maior parte da hormona do crescimento (GH) é segregada pela glândula pituitária durante os ciclos de sono profundo de ondas lentas (estágio N3). Crianças e adolescentes com privação de sono crónico arriscam comprometer o seu potencial genético.",
+      "geneticsAfter": ")."
     },
     "growthCharts": {
       "title": "Gráficos de Crescimento: Como os Médicos Acompanham o Desenvolvimento",
@@ -390,7 +395,7 @@
       },
       "midParental": {
         "badge": "Clássico Parental",
-        "title": "Fórmula da Altura Média Parental (Método de Tanner)",
+        "title": "Previsor de Altura Baseado nos Pais (Fórmula Mid-Parental)",
         "p1": "Criada pelo endocrinologista britânico J.M. Tanner, é a fórmula mais utilizada na prática clínica rápida quando apenas se conhecem as estaturas dos pais:",
         "boysFormulaLabel": "Fórmula para Meninos:",
         "boysFormula": "[Altura da Mãe + Altura do Pai + 13 cm] / 2",
@@ -458,31 +463,19 @@
       "title": "É possível aumentar a altura?"
     },
     "accuracy": {
-      "description": "Para interpretar os resultados com bom senso, considere as seguintes características metodológicas:",
-      "disclaimerStrong": "Aviso Médico: ",
-      "disclaimerText": "Esta calculadora destina-se a fins informativos e educativos. Em caso de dúvidas sobre o crescimento ou saúde do seu filho, consulte um pediatra ou endocrinologista pediátrico.",
-      "title": "Quão precisa é uma calculadora de altura?",
-      "is100PercentTitle": "Existe algum previsor de altura 100% preciso?",
-      "is100PercentText": "Não. Todo previsor fornece uma faixa provável, pois genes, puberdade e saúde afetam o resultado. Khamis-Roche é o método não radiológico mais preciso, com 9 em 10 previsões dentro de 2,1 pol para meninos e 1,7 pol para meninas. Um raio-X de idade óssea é mais preciso e é solicitado por médicos em suspeitas de distúrbios de crescimento.",
-      "typicalErrorTitle": "Erros típicos por método de previsão",
-      "thMethod": "Método",
-      "thTypicalError": "Erro típico",
-      "thNeedsBoneAge": "Exige idade óssea?",
-      "methodKhamis": "Método Khamis-Roche",
-      "errorKhamis": "±5,3 cm (meninos) / ±4,3 cm (meninas)",
-      "boneAgeKhamis": "Não",
-      "methodMidParental": "Fórmula Mid-Parental",
-      "errorMidParental": "±10 cm (4 polegadas)",
-      "boneAgeMidParental": "Não",
-      "methodBoneAge": "Raio-X de idade óssea (Greulich-Pyle / TW)",
-      "errorBoneAge": "±2,5 cm (precisão máxima)",
-      "boneAgeBoneAge": "Sim (clínico)",
-      "whyMissesTitle": "Por que os previsores podem variar",
-      "miss1": "9 em 10 previsões situam-se a até 5,3 cm (2,1 pol) para meninos e 4,3 cm (1,7 pol) para meninas",
-      "miss2": "A fórmula apenas com os pais é menos precisa: geralmente a até 10 cm (4 pol)",
-      "miss3": "A precisão é maior quando a criança tem mais de 4 anos",
-      "miss4": "Medições precisas de altura e peso melhoram bastante os resultados",
-      "miss5": "Dados corretos da altura dos pais são necessários para um resultado confiável"
+      "description": "Este previsor de altura utiliza o modelo de crescimento de Khamis-Roche, desenvolvido a partir de estudos longitudinais de crescimento infantil.",
+      "disclaimerStrong": "Aviso médico:",
+      "disclaimerText": "Esta calculadora de altura destina-se apenas a fins informativos. Não substitui o aconselhamento médico profissional. Se tiver dúvidas sobre o crescimento do seu filho, consulte um pediatra ou endocrinologista qualificado.",
+      "title": "Qual é a precisão de uma calculadora de altura?",
+      "item1": "9 em cada 10 previsões situam-se a menos de 5,3 cm (2,1 in) da altura adulta final para rapazes e 4,3 cm (1,7 in) para raparigas",
+      "item2": "A fórmula baseada apenas nos pais é menos precisa: normalmente dentro de 10 cm (4 in)",
+      "item3": "A precisão é maior quando a criança tem mais de 4 anos",
+      "item4": "Medições precisas de altura e peso melhoram significativamente os resultados",
+      "item5": "Dados corretos de altura dos pais são necessários para um resultado fiável",
+      "item6": "Os resultados representam um intervalo provável, não um valor exato",
+      "item7": "Não adequado para crianças com distúrbios de crescimento diagnosticados",
+      "item8": "Puberdade precoce ou tardia pode reduzir a precisão da previsão",
+      "closing": "O resultado representa uma faixa provável e não um valor absoluto garantido."
     },
     "faq": [
       {
@@ -532,28 +525,22 @@
         "label": "Qual será a altura do meu filho?",
         "subItems": [
           {
-            "id": "how-tall-will-my-son-be",
-            "label": "Qual será a altura do meu filho?"
-          },
-          {
-            "id": "how-tall-will-my-daughter-be",
-            "label": "Qual será a altura da minha filha?"
-          },
-          {
-            "id": "how-tall-will-my-baby-or-toddler-be",
-            "label": "Qual será a altura do meu bebê ou criança pequena?"
-          },
-          {
-            "id": "how-tall-will-i-be-teens-adults",
-            "label": "Qual será a minha altura? (Adolescentes e Adultos)"
-          },
-          {
             "id": "worked-example",
-            "label": "Exemplo prático: prevendo a altura a partir da altura dos pais"
+            "label": "Exemplo prático: prever a altura a partir dos pais"
           },
           {
             "id": "age-2-rule",
             "label": "Verificação rápida para crianças pequenas: a regra dos 2 anos"
+          }
+        ]
+      },
+      {
+        "id": "how-tall-will-i-be-teens-adults",
+        "label": "Qual será a minha altura (Adolescentes e adultos)",
+        "subItems": [
+          {
+            "id": "no-parents-height",
+            "label": "E se não souber a altura dos seus pais?"
           }
         ]
       },

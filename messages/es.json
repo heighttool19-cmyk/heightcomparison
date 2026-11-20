@@ -155,12 +155,12 @@
   },
   "heightPredictor": {
     "intro": {
-      "title": "Predictor de estatura: calcule la altura adulta final",
+      "title": "Predictor de Estatura y Calculadora de Altura Adulta",
       "description": "Utilice esta calculadora de estatura para estimar la altura futura de niños, adolescentes y adultos según la edad, la genética y los patrones de crecimiento. Utiliza el método Khamis-Roche, que predice la estatura adulta para edades de 4 a 17,5 años a partir de la edad, la estatura, el peso y la estatura de ambos padres. En el estudio original, 9 de cada 10 predicciones se situaron dentro de 5,3 cm (2,1 pulgadas) para niños y 4,3 cm (1,7 pulgadas) para niñas. Para un niño menor de 4 años o un bebé no nacido, utilice la calculadora basada solo en los padres a continuación.",
       "lastUpdated": "Última actualización: Noviembre de 2026"
     },
     "khamisRocheCalculator": {
-      "title": "Predictor de estatura Khamis-Roche",
+      "title": "Predictor de Altura",
       "badge": "Recomendado (de 4 a 17 años)",
       "description": "Predicción instantánea de estatura mediante modelos científicos de crecimiento. Ingrese edad, sexo, estatura, peso y la estatura de ambos padres. Válido para edades de 4 a 17,5 años.",
       "unitUs": "EE. UU. (pies/pulg, lbs)",
@@ -188,17 +188,21 @@
       "calculate": "Predecir estatura adulta",
       "clear": "Borrar",
       "estimatedAdultHeight": "Estatura adulta estimada",
-      "targetRange": "Rango objetivo (±5 cm): {min} : {max} cm",
+      "targetRange": "9 de cada 10 niños se sitúan en este rango: {min} – {max}",
       "viewComparisonChart": "Ver gráfico de comparación",
       "cmUnit": "cm",
       "ftUnit": "pies",
       "inUnit": "pulg",
       "kgUnit": "kg",
-      "lbsUnit": "lbs"
+      "lbsUnit": "lbs",
+      "ageUnder4Prefix": "El método Khamis-Roche funciona para edades de 4 a 17,5 años. Para niños menores de 4 años, utilice la",
+      "ageUnder4Link": "calculadora basada en la estatura de los padres",
+      "ageUnder4Suffix": ".",
+      "ageOver17Warning": "El método Khamis-Roche está validado para edades de 4 a 17,5 años. En adultos (18+), las placas de crecimiento ya se han cerrado."
     },
     "midParentalCalculator": {
       "title": "Calculadora de estatura basada en la estatura de los padres",
-      "badge": "Apta para bebés y niños menores de 4 años",
+      "badge": "Estatura Parental",
       "description": "Estime la estatura prevista utilizando únicamente la estatura de los padres. Funciona para bebés, niños muy pequeños e incluso antes de nacer. Si está embarazada, ingrese la estatura de ambos padres para conocer el rango estimado de altura adulta. Utiliza la fórmula mid-parental, que generalmente se ubica dentro de 10 cm (4 pulgadas) de la estatura adulta.",
       "unitUs": "EE. UU. (pies/pulg)",
       "unitMetric": "Métrico (cm)",
@@ -213,7 +217,7 @@
       "calculateEstimate": "Calcular estatura estimada",
       "estimatedAdultHeightBoys": "Estatura adulta estimada (varón)",
       "estimatedAdultHeightGirls": "Estatura adulta estimada (mujer)",
-      "targetRange": "Rango objetivo (±5 cm): {min} : {max} cm",
+      "targetRange": "Rango habitual (±10 cm / 4 in): {min} – {max}",
       "viewComparisonChart": "Ver gráfico de comparación",
       "cmUnit": "cm",
       "ftUnit": "pies",
@@ -298,8 +302,8 @@
       "geneticsTitle": "1. Factores genéticos (80%):",
       "geneticsBefore": "Las variantes de ADN heredadas explican aproximadamente el ",
       "geneticsStrong1": "80%",
-      "geneticsMiddle": " de las diferencias de estatura entre las personas (MedlinePlus). Los padres altos tienden a tener hijos altos, aunque se aplica la regresión a la media: los padres muy altos o bajos suelen tener hijos más cercanos al ",
-      "geneticsStrong2": "700 variantes genéticas",
+      "geneticsMiddle": " de las diferencias de estatura entre personas (MedlinePlus). Los padres altos suelen tener hijos altos, aunque se aplica la regresión a la media: padres muy altos o bajos suelen tener hijos más cercanos a la estatura promedio (",
+      "geneticsStrong2": "regresión a la media",
       "nutritionTitle": "2. Nutrición y alimentación (15%):",
       "nutritionBefore": "El ",
       "nutritionStrong": "20% restante aprox.",
@@ -308,7 +312,8 @@
       "nutritionItem2": "9–12 hrs de sueño (edades 6–12)",
       "nutritionItem3": "8–10 hrs para adolescentes",
       "timingTitle": "3. Sueño, hormonas y salud general (5%):",
-      "timingText": "La hormona del crecimiento (GH) se segrega principalmente en pulsos nocturnos durante las fases de sueño profundo (ondas lentas). Un sueño regular y la práctica habitual de actividad física estimulan su liberación natural."
+      "timingText": "La hormona del crecimiento (GH) se segrega principalmente en pulsos nocturnos durante las fases de sueño profundo (ondas lentas). Un sueño regular y la práctica habitual de actividad física estimulan su liberación natural.",
+      "geneticsAfter": ")."
     },
     "growthCharts": {
       "title": "Tablas de crecimiento clínico frente a calculadoras predictivas",
@@ -392,7 +397,7 @@
       },
       "midParental": {
         "badge": "Fórmula genética rápida de referencia",
-        "title": "Fórmula de estatura media parental (Método de Tanner)",
+        "title": "Predictor de Estatura Basado en los Padres (Fórmula Mid-Parental)",
         "p1": "Desarrollada por el célebre pediatra británico James Tanner en la década de 1970 para estimar la diana genética potencial:",
         "boysFormulaLabel": "Fórmula para niños (varones):",
         "boysFormula": "[Estatura padre + (Estatura madre + 13 cm)] ÷ 2",
@@ -460,31 +465,19 @@
       "title": "¿Se puede aumentar la estatura?"
     },
     "accuracy": {
-      "description": "Los estudios de validación demuestran un excelente rendimiento clínico en poblaciones con desarrollo normal:",
-      "disclaimerStrong": "Nota de responsabilidad médica: ",
-      "disclaimerText": "Esta herramienta se proporciona con propósitos informativos y educativos. Para cualquier evaluación clínica o sospecha de patología del crecimiento, consulte con su pediatra de confianza.",
+      "description": "Este predictor de estatura utiliza el modelo de crecimiento Khamis-Roche, desarrollado a partir de estudios a largo plazo de datos de crecimiento infantil.",
+      "disclaimerStrong": "Aviso médico:",
+      "disclaimerText": "Esta calculadora de estatura es sólo para fines informativos. No sustituye el asesoramiento médico profesional. Si le preocupa el crecimiento de su hijo, consulte a un pediatra o endocrinólogo cualificado.",
       "title": "¿Qué tan precisa es una calculadora de estatura?",
-      "is100PercentTitle": "¿Existe algún predictor de estatura 100% exacto?",
-      "is100PercentText": "No. Cada predictor de estatura proporciona un rango probable, ya que los genes, el momento de la pubertad y la salud influyen en el resultado. Khamis-Roche es el método no radiológico más preciso, con 9 de cada 10 predicciones dentro de 2,1 pulgadas para niños y 1,7 pulgadas para niñas. Una radiografía de edad ósea es más precisa y los médicos la solicitan ante sospechas de trastornos de crecimiento.",
-      "typicalErrorTitle": "Errores típicos según el método de predicción",
-      "thMethod": "Método",
-      "thTypicalError": "Error típico",
-      "thNeedsBoneAge": "¿Requiere edad ósea?",
-      "methodKhamis": "Método Khamis-Roche",
-      "errorKhamis": "±5,3 cm (niños) / ±4,3 cm (niñas)",
-      "boneAgeKhamis": "No",
-      "methodMidParental": "Fórmula Mid-Parental",
-      "errorMidParental": "±10 cm (4 pulgadas)",
-      "boneAgeMidParental": "No",
-      "methodBoneAge": "Radiografía de edad ósea (Greulich-Pyle / TW)",
-      "errorBoneAge": "±2,5 cm (máxima precisión)",
-      "boneAgeBoneAge": "Sí (clínico)",
-      "whyMissesTitle": "Por qué los predictores de estatura pueden variar",
-      "miss1": "9 de cada 10 predicciones se sitúan dentro de 5,3 cm (2,1 pulgadas) para niños y 4,3 cm (1,7 pulgadas) para niñas",
-      "miss2": "La fórmula basada solo en los padres es menos precisa: normalmente dentro de 10 cm (4 pulgadas)",
-      "miss3": "La precisión es mayor cuando el niño es mayor de 4 años",
-      "miss4": "Las mediciones precisas de estatura y peso mejoran significativamente los resultados",
-      "miss5": "Se requieren datos exactos de la estatura de los padres para obtener resultados fiables"
+      "item1": "9 de cada 10 predicciones caen dentro de 5,3 cm (2,1 in) de la estatura adulta final en niños y 4,3 cm (1,7 in) en niñas",
+      "item2": "La fórmula basada únicamente en los padres es menos precisa: normalmente dentro de 10 cm (4 in)",
+      "item3": "La precisión es mayor cuando el niño es mayor de 4 años",
+      "item4": "Mediciones precisas de estatura y peso mejoran significativamente los resultados",
+      "item5": "Se requieren datos correctos de la estatura de los padres para obtener un resultado fiable",
+      "item6": "Los resultados son un rango probable, no un valor exacto",
+      "item7": "No apto para niños con trastornos del crecimiento conocidos",
+      "item8": "La pubertad precoz o tardía puede reducir la precisión de la predicción",
+      "closing": "El resultado representa un rango probable y no un valor garantizado."
     },
     "faq": [
       {
@@ -534,28 +527,22 @@
         "label": "¿Cuánto medirá mi hijo/a?",
         "subItems": [
           {
-            "id": "how-tall-will-my-son-be",
-            "label": "¿Cuánto medirá mi hijo?"
-          },
-          {
-            "id": "how-tall-will-my-daughter-be",
-            "label": "¿Cuánto medirá mi hija?"
-          },
-          {
-            "id": "how-tall-will-my-baby-or-toddler-be",
-            "label": "¿Cuánto medirá mi bebé o niño pequeño?"
-          },
-          {
-            "id": "how-tall-will-i-be-teens-adults",
-            "label": "¿Cuánto mediré? (Adolescentes y adultos)"
-          },
-          {
             "id": "worked-example",
-            "label": "Ejemplo práctico: predecir la estatura a partir de la estatura de los padres"
+            "label": "Ejemplo práctico: predecir la estatura a partir de los padres"
           },
           {
             "id": "age-2-rule",
-            "label": "Verificación rápida para niños pequeños: la regla de los 2 años"
+            "label": "Comprobación rápida para niños pequeños: la regla de los 2 años"
+          }
+        ]
+      },
+      {
+        "id": "how-tall-will-i-be-teens-adults",
+        "label": "¿Cuánto mediré? (Adolescentes y adultos)",
+        "subItems": [
+          {
+            "id": "no-parents-height",
+            "label": "¿Qué pasa si no conoces la estatura de tus padres?"
           }
         ]
       },

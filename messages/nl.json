@@ -153,12 +153,12 @@
   },
   "heightPredictor": {
     "intro": {
-      "title": "Lengtevoorspeller: Bereken Jouw Volwassen Lengte",
+      "title": "Lengtevoorspeller en Volwassen Lengte Calculator",
       "description": "Gebruik deze lengtevoorspeller om de toekomstige lengte van kinderen, tieners en volwassenen te schatten op basis van leeftijd, genetica en groeipatronen. De tool gebruikt de Khamis-Roche-methode, die de volwassen lengte van 4 tot 17,5 jaar voorspelt aan de hand van leeftijd, lengte, gewicht en de lengte van beide ouders. In de oorspronkelijke studie viel 9 van de 10 voorspellingen binnen 5,3 cm (2,1 inch) voor jongens en 4,3 cm (1,7 inch) voor meisjes. Voor kinderen jonger dan 4 jaar of ongeboren baby's kunt u de onderstaande calculator op basis van ouders gebruiken.",
       "lastUpdated": "Laatst bijgewerkt: november 2026"
     },
     "khamisRocheCalculator": {
-      "title": "Khamis-Roche Lengtecalculator",
+      "title": "Lengtevoorspeller",
       "badge": "Meest Nauwkeurig (Leeftijd 4–17)",
       "description": "Directe lengtevoorspelling met behulp van wetenschappelijke groeimodellen. Voer leeftijd, geslacht, lengte, gewicht en de lengte van beide ouders in. Werkt van 4 tot 17,5 jaar.",
       "unitUs": "VS (ft/in, lbs)",
@@ -186,17 +186,21 @@
       "calculate": "Bereken Verwachte Lengte",
       "clear": "Wissen",
       "estimatedAdultHeight": "Verwachte Volwassen Lengte:",
-      "targetRange": "Doelbereik (±5 cm): {min} : {max} cm",
+      "targetRange": "9 van de 10 kinderen vallen in dit bereik: {min} – {max}",
       "viewComparisonChart": "Bekijk Vergelijkingsgrafiek",
       "cmUnit": "cm",
       "ftUnit": "ft",
       "inUnit": "in",
       "kgUnit": "kg",
-      "lbsUnit": "lbs"
+      "lbsUnit": "lbs",
+      "ageUnder4Prefix": "De Khamis-Roche-methode werkt voor leeftijden van 4 tot 17,5 jaar. Voor kinderen onder de 4 jaar gebruikt u de",
+      "ageUnder4Link": "calculator op basis van lengte van ouders",
+      "ageUnder4Suffix": ".",
+      "ageOver17Warning": "De Khamis-Roche-methode is gevalideerd voor leeftijden van 4 tot 17,5 jaar. Bij volwassenen (18+) zijn de groeischijven gesloten."
     },
     "midParentalCalculator": {
       "title": "Lengtecalculator op basis van lengte van ouders",
-      "badge": "Voor Alle Leeftijden (en Verwachte Baby's)",
+      "badge": "Lengte Ouders",
       "description": "Schat de verwachte lengte met alleen de lengte van de ouders. Geschikt voor baby's, peuters en ongeboren baby's. Als u zwanger bent, voert u de lengte van beide ouders in om het geschatte volwassen lengtebereik te zien. Maakt gebruik van de mid-parentale formule, die doorgaans binnen 10 cm (4 inch) van de volwassen lengte blijft.",
       "unitUs": "VS (ft/in)",
       "unitMetric": "Metrisch (cm)",
@@ -211,7 +215,7 @@
       "calculateEstimate": "Bereken Ouderlijke Schatting",
       "estimatedAdultHeightBoys": "Geschatte Lengte voor Jongens:",
       "estimatedAdultHeightGirls": "Geschatte Lengte voor Meisjes:",
-      "targetRange": "Doelbereik (±5 cm): {min} : {max} cm",
+      "targetRange": "Gebruikelijk bereik (±10 cm / 4 in): {min} – {max}",
       "viewComparisonChart": "Bekijk Vergelijkingsgrafiek",
       "cmUnit": "cm",
       "ftUnit": "ft",
@@ -296,8 +300,8 @@
       "geneticsTitle": "1. Genetica (60%–80%)",
       "geneticsBefore": "Overgeërfde DNA-varianten verklaren ongeveer ",
       "geneticsStrong1": "80%",
-      "geneticsMiddle": " van de lengteverschillen tussen mensen (MedlinePlus). Lange ouders krijgen doorgaans lange kinderen, al geldt regressie naar het gemiddelde: zeer lange of korte ouders krijgen vaak kinderen die dichter bij het ",
-      "geneticsStrong2": "gemiddelde liggen.",
+      "geneticsMiddle": " van de lengteverschillen tussen mensen (MedlinePlus). Lange ouders hebben meestal lange kinderen, al geldt regressie naar het gemiddelde — zeer lange of korte ouders hebben vaak kinderen die dichter bij de gemiddelde lengte liggen (",
+      "geneticsStrong2": "regressie naar het gemiddelde",
       "nutritionTitle": "2. Voeding en Gezondheid",
       "nutritionBefore": "De ",
       "nutritionStrong": "resterende ~20%",
@@ -306,7 +310,8 @@
       "nutritionItem2": "9–12 uur slaap (leeftijd 6–12)",
       "nutritionItem3": "8–10 uur voor tieners",
       "timingTitle": "3. Slaap en Groeihormoon (GH)",
-      "timingText": "Het grootste deel van het menselijk groeihormoon (GH) wordt door de hypofyse afgegeven tijdens diepe slaapfasen (N3). Chronisch slaaptekort kan het groeipotentieel belemmeren."
+      "timingText": "Het grootste deel van het menselijk groeihormoon (GH) wordt door de hypofyse afgegeven tijdens diepe slaapfasen (N3). Chronisch slaaptekort kan het groeipotentieel belemmeren.",
+      "geneticsAfter": ")."
     },
     "growthCharts": {
       "title": "Groeicurves: Hoe Artsen Groei Monitoren",
@@ -390,7 +395,7 @@
       },
       "midParental": {
         "badge": "Klassieke Ouderformule",
-        "title": "Mid-Parental Formule (Tanner Methode)",
+        "title": "Lengtevoorspeller op Basis van Ouders (Mid-Parental Formule)",
         "p1": "Ontwikkeld door de Britse kinderarts J.M. Tanner; de meest toegepaste snelle formule wanneer alleen de lengtes van de ouders bekend zijn:",
         "boysFormulaLabel": "Formule voor Jongens:",
         "boysFormula": "[Lengte Moeder + Lengte Vader + 13 cm] / 2",
@@ -458,31 +463,19 @@
       "title": "Kun je je lengte vergroten?"
     },
     "accuracy": {
-      "description": "Houd bij het interpreteren rekening met deze methodologische kenmerken:",
-      "disclaimerStrong": "Medische Disclaimer: ",
-      "disclaimerText": "Deze calculator dient uitsluitend voor informatieve doeleinden. Raadpleeg bij vragen over de groei van uw kind altijd een kinderarts.",
+      "description": "Deze lengtevoorspeller gebruikt het Khamis-Roche-groeimodel, gebaseerd op langdurige onderzoeken naar groeigegevens van kinderen.",
+      "disclaimerStrong": "Medische disclaimer:",
+      "disclaimerText": "Deze lengtecalculator is uitsluitend bedoeld voor informatieve doeleinden. Het is geen vervanging voor professioneel medisch advies. Raadpleeg bij zorgen over de groei van uw kind een kinderarts of endocrinoloog.",
       "title": "Hoe nauwkeurig is een lengtevoorspeller?",
-      "is100PercentTitle": "Bestaat er een lengtevoorspeller die 100% nauwkeurig is?",
-      "is100PercentText": "Nee. Elke voorspeller geeft een waarschijnlijk bereik, omdat genetica, puberteitstiming en gezondheid het resultaat beïnvloeden. Khamis-Roche is de nauwkeurigste niet-invasieve methode, waarbij 9 van de 10 voorspellingen binnen 2,1 inch voor jongens en 1,7 inch voor meisjes vallen. Een röntgenfoto van de skeletleeftijd is nauwkeuriger en wordt door artsen aangevraagd bij vermoeden van groeistoornissen.",
-      "typicalErrorTitle": "Typische foutmarge per voorspellingsmethode",
-      "thMethod": "Methode",
-      "thTypicalError": "Typische fout",
-      "thNeedsBoneAge": "Skeletleeftijd vereist?",
-      "methodKhamis": "Khamis-Roche-methode",
-      "errorKhamis": "±5,3 cm (jongens) / ±4,3 cm (meisjes)",
-      "boneAgeKhamis": "Nee",
-      "methodMidParental": "Mid-parentale formule",
-      "errorMidParental": "±10 cm (4 inch)",
-      "boneAgeMidParental": "Nee",
-      "methodBoneAge": "Röntgenfoto skeletleeftijd (Greulich-Pyle / TW)",
-      "errorBoneAge": "±2,5 cm (hoogste nauwkeurigheid)",
-      "boneAgeBoneAge": "Ja (klinisch)",
-      "whyMissesTitle": "Waarom voorspellingen kunnen afwijken",
-      "miss1": "9 van de 10 voorspellingen vallen binnen 5,3 cm (2,1 in) voor jongens en 4,3 cm (1,7 in) voor meisjes",
-      "miss2": "De formule op basis van ouders is minder nauwkeurig: meestal binnen 10 cm (4 in)",
-      "miss3": "De nauwkeurigheid is het grootst wanneer het kind ouder is dan 4 jaar",
-      "miss4": "Nauwkeurige lengte- en gewichtsmetingen verbeteren de betrouwbaarheid van de uitkomst",
-      "miss5": "Correcte lengtegegevens van beide ouders zijn noodzakelijk voor een betrouwbare schatting"
+      "item1": "9 van de 10 voorspellingen vallen binnen 5,3 cm (2,1 in) van de uiteindelijke volwassen lengte voor jongens en 4,3 cm (1,7 in) voor meisjes",
+      "item2": "De formule met enkel ouderlengtes is minder nauwkeurig: meestal binnen 10 cm (4 in)",
+      "item3": "De nauwkeurigheid is het hoogst wanneer het kind ouder is dan 4 jaar",
+      "item4": "Nauwkeurige lengte- en gewichtsmetingen verbeteren het resultaat aanzienlijk",
+      "item5": "Correcte lengtegegevens van de ouders zijn vereist voor een betrouwbaar resultaat",
+      "item6": "Resultaten tonen een waarschijnlijk bereik, geen exacte waarde",
+      "item7": "Niet geschikt voor kinderen met bekende groeistoornissen",
+      "item8": "Vroege of late puberteit kan de nauwkeurigheid van de voorspelling beïnvloeden",
+      "closing": "Het resultaat geeft een waarschijnlijk bereik weer en geen gegarandeerde waarde."
     },
     "faq": [
       {
@@ -532,28 +525,22 @@
         "label": "Hoe lang wordt mijn kind?",
         "subItems": [
           {
-            "id": "how-tall-will-my-son-be",
-            "label": "Hoe lang wordt mijn zoon?"
-          },
-          {
-            "id": "how-tall-will-my-daughter-be",
-            "label": "Hoe lang wordt mijn dochter?"
-          },
-          {
-            "id": "how-tall-will-my-baby-or-toddler-be",
-            "label": "Hoe lang wordt mijn baby of peuter?"
-          },
-          {
-            "id": "how-tall-will-i-be-teens-adults",
-            "label": "Hoe lang word ik? (Tieners en volwassenen)"
-          },
-          {
             "id": "worked-example",
-            "label": "Rekenvoorbeeld: lengte voorspellen op basis van lengte van ouders"
+            "label": "Rekenvoorbeeld: lengte voorspellen aan de hand van ouders"
           },
           {
             "id": "age-2-rule",
-            "label": "Snelle controle voor peuters: de 2-jarigenregel"
+            "label": "Snelle controle voor peuters: de 2-jaar-regel"
+          }
+        ]
+      },
+      {
+        "id": "how-tall-will-i-be-teens-adults",
+        "label": "Hoe lang word ik (Tieners & volwassenen)",
+        "subItems": [
+          {
+            "id": "no-parents-height",
+            "label": "Wat als je de lengte van je ouders niet weet?"
           }
         ]
       },

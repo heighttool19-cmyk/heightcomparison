@@ -14,9 +14,10 @@ import LZString from 'lz-string';
 const cmToFtIn = (cm: number) => {
     const totalInches = cm / 2.54;
     const ft = Math.floor(totalInches / 12);
-    const inches = Math.round(totalInches % 12);
-    if (inches === 12) return { ft: ft + 1, in: 0 };
-    return { ft, in: inches };
+    const rawInches = totalInches % 12;
+    const roundedInches = Math.round(rawInches * 2) / 2;
+    if (roundedInches === 12) return { ft: ft + 1, in: 0 };
+    return { ft, in: roundedInches };
 };
 
 const ftInToCm = (ft: number, inc: number) => {
@@ -43,8 +44,9 @@ export default function KhamisRocheCalculator() {
     const [fatherHtFt, setFatherHtFt] = useState<number | ''>('');
     const [fatherHtIn, setFatherHtIn] = useState<number | ''>('');
 
-    const [predictedKhamis, setPredictedKhamis] = useState<{ cm: number; ft: number; in: number } | null>(null);
+    const [predictedKhamis, setPredictedKhamis] = useState<{ cm: number; ft: number; in: number; rangeMin: string; rangeMax: string } | null>(null);
     const [chartPersons, setChartPersons] = useState<Person[]>([]);
+    const [ageWarning, setAgeWarning] = useState<'under4' | 'over17' | null>(null);
 
     const calculateKhamis = () => {
         let currentChildCm = 0;
@@ -61,7 +63,20 @@ export default function KhamisRocheCalculator() {
             pFatherCm = Number(fatherHtCm);
         }
 
-        if (currentChildCm <= 0 || pMotherCm <= 0 || pFatherCm <= 0 || !childAge) return;
+        const age = Number(childAge);
+        if (!childAge || age < 4) {
+            setAgeWarning('under4');
+            setPredictedKhamis(null);
+            return;
+        }
+        if (age > 17.5) {
+            setAgeWarning('over17');
+            setPredictedKhamis(null);
+            return;
+        }
+        setAgeWarning(null);
+
+        if (currentChildCm <= 0 || pMotherCm <= 0 || pFatherCm <= 0) return;
 
         const mph = (childGender === 'male')
             ? (pFatherCm + pMotherCm + 13) / 2
@@ -79,7 +94,6 @@ export default function KhamisRocheCalculator() {
             { age: 18, bm: 176.1, gm: 163.1 },
         ];
 
-        const age = Number(childAge);
         let currentAvgHeight = 0;
         const avgHeightAt18 = (childGender === 'male') ? 176.1 : 163.1;
 
@@ -105,7 +119,23 @@ export default function KhamisRocheCalculator() {
         const predCm = (mph * 0.4) + (curveProjection * 0.6);
 
         const res = cmToFtIn(predCm);
-        const prediction = { cm: Math.round(predCm), ft: res.ft, in: res.in };
+        const errCm = childGender === 'male' ? 5.3 : 4.3;
+        const errIn = childGender === 'male' ? 2.1 : 1.7;
+
+        let rangeMin = '';
+        let rangeMax = '';
+        if (unit === 'imperial') {
+            const totalIn = (res.ft * 12) + res.in;
+            const minFt = cmToFtIn((totalIn - errIn) * 2.54);
+            const maxFt = cmToFtIn((totalIn + errIn) * 2.54);
+            rangeMin = `${minFt.ft}'${minFt.in}"`;
+            rangeMax = `${maxFt.ft}'${maxFt.in}"`;
+        } else {
+            rangeMin = `${Math.round(predCm - errCm)} cm`;
+            rangeMax = `${Math.round(predCm + errCm)} cm`;
+        }
+
+        const prediction = { cm: Math.round(predCm), ft: res.ft, in: res.in, rangeMin, rangeMax };
         setPredictedKhamis(prediction);
 
         const persons: Person[] = [
@@ -122,6 +152,7 @@ export default function KhamisRocheCalculator() {
         setMotherHtCm(''); setMotherHtFt(''); setMotherHtIn('');
         setFatherHtCm(''); setFatherHtFt(''); setFatherHtIn('');
         setPredictedKhamis(null);
+        setAgeWarning(null);
     };
 
     return (
@@ -158,7 +189,37 @@ export default function KhamisRocheCalculator() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                 <div className="space-y-2">
                     <label htmlFor="child-age-years" className="text-base font-semibold text-muted">{t('childAgeLabel')}</label>
-                    <NumericInput id="child-age-years" value={childAge} onValueChange={setChildAge} className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors" placeholder="e.g. 5" aria-label={t('childAgeAriaLabel')} />
+                    <NumericInput
+                        id="child-age-years"
+                        value={childAge}
+                        onValueChange={(val) => {
+                            setChildAge(val);
+                            if (val !== '' && Number(val) < 4) {
+                                setAgeWarning('under4');
+                            } else if (val !== '' && Number(val) > 17.5) {
+                                setAgeWarning('over17');
+                            } else {
+                                setAgeWarning(null);
+                            }
+                        }}
+                        className="w-full bg-bg border border-border rounded-xl px-4 py-3 outline-none focus:border-accent transition-colors"
+                        placeholder="e.g. 5"
+                        aria-label={t('childAgeAriaLabel')}
+                    />
+                    {ageWarning === 'under4' && (
+                        <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 mt-1 leading-snug">
+                            {t('ageUnder4Prefix')}{' '}
+                            <a href="#how-to-predict" className="text-accent underline font-bold">
+                                {t('ageUnder4Link')}
+                            </a>
+                            {t('ageUnder4Suffix')}
+                        </p>
+                    )}
+                    {ageWarning === 'over17' && (
+                        <p className="text-xs font-semibold text-amber-600 dark:text-amber-400 mt-1 leading-snug">
+                            {t('ageOver17Warning')}
+                        </p>
+                    )}
                 </div>
                 <div className="space-y-2">
                     <label className="text-base font-semibold text-muted">{t('genderLabel')}</label>
@@ -273,7 +334,7 @@ export default function KhamisRocheCalculator() {
                         <div className="w-px h-10 bg-border" />
                         <span className="text-4xl md:text-5xl font-black text-accent">{predictedKhamis.ft}&apos;{predictedKhamis.in}&quot;</span>
                     </div>
-                    <p className="text-xs font-black text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">{t('targetRange', { min: predictedKhamis.cm - 5, max: predictedKhamis.cm + 5 })}</p>
+                    <p className="text-xs font-black text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">{t('targetRange', { min: predictedKhamis.rangeMin, max: predictedKhamis.rangeMax })}</p>
 
                     <button
                         onClick={() => {

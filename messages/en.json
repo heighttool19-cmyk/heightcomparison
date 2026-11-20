@@ -155,12 +155,12 @@
   },
   "heightPredictor": {
     "intro": {
-      "title": "Height Predictor and Adult Height Calculator - [ Height Calculator- Children Height Predictor ]",
+      "title": "Height Predictor and Adult Height Calculator",
       "description": "Use this height calculator to estimate the future height of children, teenagers, and adults based on age, genetics, and growth patterns. It uses the Khamis-Roche method, which predicts adult height for ages 4 to 17.5 from age, height, weight and both parents' heights. In the original study, 9 in 10 predictions landed within 2.1 inches (5.3 cm) for boys and 1.7 inches (4.3 cm) for girls. For a child under 4, or a baby not yet born, use the parents-only calculator below.",
       "lastUpdated": "Last updated: November 2026"
     },
     "khamisRocheCalculator": {
-      "title": "khamis roche method height calculator",
+      "title": "Height Predictor",
       "badge": "Khamis-Roche",
       "description": "Instant height prediction using scientific growth models. Enter age, sex, height, weight and both parents' heights. Works for ages 4 to 17.5.",
       "unitUs": "US (ft/in)",
@@ -188,17 +188,21 @@
       "calculate": "Calculate Height",
       "clear": "Clear",
       "estimatedAdultHeight": "Estimated Adult Height",
-      "targetRange": "Target Range (±5 cm): {min} : {max} cm",
+      "targetRange": "9 in 10 children end up in this range: {min} – {max}",
       "viewComparisonChart": "View Comparison Chart",
       "cmUnit": "cm",
       "ftUnit": "ft",
       "inUnit": "in",
       "kgUnit": "kg",
-      "lbsUnit": "lbs"
+      "lbsUnit": "lbs",
+      "ageUnder4Prefix": "The Khamis-Roche method works for ages 4 to 17.5. For children under 4, use the",
+      "ageUnder4Link": "parents' heights calculator",
+      "ageUnder4Suffix": ".",
+      "ageOver17Warning": "The Khamis-Roche method is validated for ages 4 to 17.5. For adults (18+), growth plates have closed."
     },
     "midParentalCalculator": {
       "title": "Height Calculator Based on Parents' Heights",
-      "badge": "parents' height only",
+      "badge": "Mid-Parental",
       "description": "Estimate predicted height using only parents' heights. Works for babies, very young children, and unborn babies too. If you are pregnant, enter both parents' heights to get your child's estimated adult height range. This uses the mid-parental formula, which usually lands within 4 inches (10 cm) of adult height.",
       "unitUs": "US (ft/in)",
       "unitMetric": "Metric (cm)",
@@ -214,7 +218,7 @@
       "clear": "Clear",
       "estimatedAdultHeightBoys": "Estimated Adult Height (Boys)",
       "estimatedAdultHeightGirls": "Estimated Adult Height (Girls)",
-      "targetRange": "Target Range (±5 cm): {min} : {max} cm",
+      "targetRange": "Usual range (±10 cm / 4 in): {min} – {max}",
       "viewComparisonChart": "View Comparison Chart",
       "cmUnit": "cm",
       "ftUnit": "ft",
@@ -298,8 +302,8 @@
       "geneticsTitle": "Genetics",
       "geneticsBefore": "Inherited DNA variants explain about ",
       "geneticsStrong1": "80%",
-      "geneticsMiddle": " of height differences between people (MedlinePlus). Tall parents tend to have tall children, though regression toward the mean applies — meaning very tall or short parents often have children closer to the ",
-      "geneticsStrong2": "regression toward the mean.",
+      "geneticsMiddle": " of height differences between people (MedlinePlus). Tall parents tend to have tall children, though regression toward the mean applies — meaning very tall or short parents often have children closer to the average height (",
+      "geneticsStrong2": "regression toward the mean",
       "nutritionTitle": "Nutrition & Sleep",
       "nutritionBefore": "The remaining ",
       "nutritionStrong": "20% or so",
@@ -308,7 +312,8 @@
       "nutritionItem2": "9-12 hrs sleep (ages 6-12)",
       "nutritionItem3": "8-10 hrs for teenagers",
       "timingTitle": "Growth Timing",
-      "timingText": "Early puberty may produce a taller child temporarily but a shorter adult. Late puberty often results in a longer growth window and greater final height."
+      "timingText": "Early puberty may produce a taller child temporarily but a shorter adult. Late puberty often results in a longer growth window and greater final height.",
+      "geneticsAfter": ")."
     },
     "growthCharts": {
       "title": "Average Height by Age (Growth Charts)",
@@ -392,7 +397,7 @@
       },
       "midParental": {
         "badge": "SIMPLE",
-        "title": "Mid parental height formula",
+        "title": "Height Predictor Based on Parents (Mid-Parental Height Formula)",
         "p1": "The child height predictor based on parents estimates a child's adult height using only the mother's and father's heights. This simple method works for children of any age, including babies and unborn children, but it does not account for the child's current growth.",
         "formulaExplanation": "The mid-parental formula averages both parents' heights, then adds or subtracts a fixed amount. For calculating child height by mid parental height formula, add the mother’s and father’s heights, add 13 cm for boys or subtract 13 cm for girls, then divide by two. For heights measured in inches, use 5 inches instead of 13 cm.",
         "boysFormulaLabel": "BOYS, US UNITS",
@@ -460,31 +465,19 @@
       "warningText": "No exercise, supplement, or stretching program can increase height once growth plates close. Predictions are estimates. Genetics is the dominant factor."
     },
     "accuracy": {
-      "title": "How accurate is this height calculator?",
-      "description": "This height calculator uses the Khamis-Roche growth model, trained on long-term studies of child growth data. Its margin of error is ±2.1 inches for boys and ±1.7 inches for girls.",
-      "is100PercentTitle": "Is any height predictor 100% accurate?",
-      "is100PercentText": "No. Every height predictor returns a likely range, not an exact value. Khamis-Roche is the most accurate method that needs no bone age test. A wrist X-ray for bone age is more accurate, and doctors order it when they suspect a growth disorder.",
-      "typicalErrorTitle": "Typical error by method",
-      "thMethod": "METHOD",
-      "thTypicalError": "TYPICAL ERROR",
-      "thNeedsBoneAge": "NEEDS A BONE AGE X-RAY",
-      "methodKhamis": "Khamis-Roche",
-      "errorKhamis": "±2.1 in for boys, ±1.7 in for girls",
-      "boneAgeKhamis": "No",
-      "methodMidParental": "Mid-parental formula",
-      "errorMidParental": "Within 4 in (10 cm)",
-      "boneAgeMidParental": "No",
-      "methodBoneAge": "Bone age methods",
-      "errorBoneAge": "Most accurate method available",
-      "boneAgeBoneAge": "Yes",
-      "whyMissesTitle": "Why a prediction misses",
-      "miss1": "9 in 10 predictions fall within 5.3 cm (2.1 in) of final adult height for boys and 4.3 cm (1.7 in) for girls",
-      "miss2": "The parents-only formula is less precise: usually within 10 cm (4 in)",
-      "miss3": "Correct parent height data is required for reliable output",
-      "miss4": "Early or late puberty can reduce prediction accuracy",
-      "miss5": "Not suitable for children with known growth disorders",
+      "title": "How Accurate Is a Height Calculator?",
+      "description": "This height predictor uses the Khamis-Roche growth model, trained on long-term studies of child growth data.",
       "disclaimerStrong": "Medical disclaimer:",
-      "disclaimerText": "This height calculator is for informational purposes only. It is not a substitute for professional medical advice. If you have concerns about your child's growth, consult a qualified pediatrician or endocrinologist."
+      "disclaimerText": "This height calculator is for informational purposes only. It is not a substitute for professional medical advice. If you have concerns about your child's growth, consult a qualified pediatrician or endocrinologist.",
+      "item1": "9 in 10 predictions fall within 5.3 cm (2.1 in) of final adult height for boys and 4.3 cm (1.7 in) for girls",
+      "item2": "The parents-only formula is less precise: usually within 10 cm (4 in)",
+      "item3": "Accuracy is highest when the child is older than 4 years",
+      "item4": "Accurate height and weight measurements improve results significantly",
+      "item5": "Correct parent height data is required for reliable output",
+      "item6": "Results are a likely range, not an exact value",
+      "item7": "Not suitable for children with known growth disorders",
+      "item8": "Early or late puberty can reduce prediction accuracy",
+      "closing": "The result represents a likely range rather than an exact value."
     },
     "faq": [
       {
@@ -534,28 +527,22 @@
         "label": "How Tall Will My Child Be?",
         "subItems": [
           {
-            "id": "how-tall-will-my-son-be",
-            "label": "How tall will my son be?"
-          },
-          {
-            "id": "how-tall-will-my-daughter-be",
-            "label": "How tall will my daughter be?"
-          },
-          {
-            "id": "how-tall-will-my-baby-or-toddler-be",
-            "label": "How tall will my baby or toddler be?"
-          },
-          {
-            "id": "how-tall-will-i-be-teens-adults",
-            "label": "How Tall Will I Be (Teens & Adults)"
-          },
-          {
             "id": "worked-example",
             "label": "Worked example: predicting height from parents' heights"
           },
           {
             "id": "age-2-rule",
             "label": "Quick check for toddlers: the age-2 rule"
+          }
+        ]
+      },
+      {
+        "id": "how-tall-will-i-be-teens-adults",
+        "label": "How Tall Will I Be (Teens & Adults)",
+        "subItems": [
+          {
+            "id": "no-parents-height",
+            "label": "What if you don't know your parents' heights?"
           }
         ]
       },

@@ -14,9 +14,10 @@ import LZString from 'lz-string';
 const cmToFtIn = (cm: number) => {
     const totalInches = cm / 2.54;
     const ft = Math.floor(totalInches / 12);
-    const inches = Math.round(totalInches % 12);
-    if (inches === 12) return { ft: ft + 1, in: 0 };
-    return { ft, in: inches };
+    const rawInches = totalInches % 12;
+    const roundedInches = Math.round(rawInches * 2) / 2;
+    if (roundedInches === 12) return { ft: ft + 1, in: 0 };
+    return { ft, in: roundedInches };
 };
 
 const ftInToCm = (ft: number, inc: number) => {
@@ -36,8 +37,8 @@ export default function MidParentalCalculator() {
     const [parentFatherHtFt, setParentFatherHtFt] = useState<number | ''>('');
     const [parentFatherHtIn, setParentFatherHtIn] = useState<number | ''>('');
 
-    const [predictedParentOnlyBoys, setPredictedParentOnlyBoys] = useState<{ cm: number; ft: number; in: number; raw: number; fCm: number; mCm: number } | null>(null);
-    const [predictedParentOnlyGirls, setPredictedParentOnlyGirls] = useState<{ cm: number; ft: number; in: number; raw: number; fCm: number; mCm: number } | null>(null);
+    const [predictedParentOnlyBoys, setPredictedParentOnlyBoys] = useState<{ cm: number; ft: number; in: number; raw: number; fCm: number; mCm: number; rangeMin: string; rangeMax: string } | null>(null);
+    const [predictedParentOnlyGirls, setPredictedParentOnlyGirls] = useState<{ cm: number; ft: number; in: number; raw: number; fCm: number; mCm: number; rangeMin: string; rangeMax: string } | null>(null);
 
     const calculateMidParental = () => {
         let pMotherCm = 0;
@@ -58,8 +59,32 @@ export default function MidParentalCalculator() {
         const bRes = cmToFtIn(boysCm);
         const gRes = cmToFtIn(girlsCm);
 
-        setPredictedParentOnlyBoys({ cm: Math.round(boysCm), ft: bRes.ft, in: bRes.in, raw: boysCm, fCm: pFatherCm, mCm: pMotherCm });
-        setPredictedParentOnlyGirls({ cm: Math.round(girlsCm), ft: gRes.ft, in: gRes.in, raw: girlsCm, fCm: pFatherCm, mCm: pMotherCm });
+        let bMin = '';
+        let bMax = '';
+        let gMin = '';
+        let gMax = '';
+
+        if (unit === 'imperial') {
+            const bTotalIn = (bRes.ft * 12) + bRes.in;
+            const bMinFt = cmToFtIn((bTotalIn - 4) * 2.54);
+            const bMaxFt = cmToFtIn((bTotalIn + 4) * 2.54);
+            bMin = `${bMinFt.ft}'${bMinFt.in}"`;
+            bMax = `${bMaxFt.ft}'${bMaxFt.in}"`;
+
+            const gTotalIn = (gRes.ft * 12) + gRes.in;
+            const gMinFt = cmToFtIn((gTotalIn - 4) * 2.54);
+            const gMaxFt = cmToFtIn((gTotalIn + 4) * 2.54);
+            gMin = `${gMinFt.ft}'${gMinFt.in}"`;
+            gMax = `${gMaxFt.ft}'${gMaxFt.in}"`;
+        } else {
+            bMin = `${Math.round(boysCm - 10)} cm`;
+            bMax = `${Math.round(boysCm + 10)} cm`;
+            gMin = `${Math.round(girlsCm - 10)} cm`;
+            gMax = `${Math.round(girlsCm + 10)} cm`;
+        }
+
+        setPredictedParentOnlyBoys({ cm: Math.round(boysCm), ft: bRes.ft, in: bRes.in, raw: boysCm, fCm: pFatherCm, mCm: pMotherCm, rangeMin: bMin, rangeMax: bMax });
+        setPredictedParentOnlyGirls({ cm: Math.round(girlsCm), ft: gRes.ft, in: gRes.in, raw: girlsCm, fCm: pFatherCm, mCm: pMotherCm, rangeMin: gMin, rangeMax: gMax });
     };
 
     const clearMidParental = () => {
@@ -179,7 +204,7 @@ export default function MidParentalCalculator() {
                             </span>
                         </div>
                         <p className="text-xs font-bold text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">
-                            {t('targetRange', { min: predictedParentOnlyBoys.cm - 5, max: predictedParentOnlyBoys.cm + 5 })}
+                            {t('targetRange', { min: predictedParentOnlyBoys.rangeMin, max: predictedParentOnlyBoys.rangeMax })}
                         </p>
 
                         <button
@@ -218,7 +243,7 @@ export default function MidParentalCalculator() {
                             </span>
                         </div>
                         <p className="text-xs font-bold text-muted uppercase mt-3 tracking-wider bg-surface/50 py-1.5 px-3 rounded-full inline-block border border-border/50">
-                            {t('targetRange', { min: predictedParentOnlyGirls.cm - 5, max: predictedParentOnlyGirls.cm + 5 })}
+                            {t('targetRange', { min: predictedParentOnlyGirls.rangeMin, max: predictedParentOnlyGirls.rangeMax })}
                         </p>
 
                         <button
