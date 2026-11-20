@@ -449,32 +449,25 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
 }
 
 /**
- * TableBlockComponent
+ * CustomTablePreview
  *
- * Rendered inline inside Sanity Studio's Portable Text editor body.
- * Replaces the confusing "[Icon] Untitled" box with a rich visual table card
- * showing row/col counts, header badges, and a live preview of table rows.
+ * Rendered by Sanity Studio's DefaultBlockObjectComponent.
+ * Shows a rich, live table card in the Portable Text editor body.
+ * Double-clicking this card (or clicking the "..." menu -> "Edit")
+ * automatically triggers onOpen() and displays CustomTableEditor in the edit modal.
  */
-export function TableBlockComponent(props: any) {
-  const { value } = props;
-  const rows: TableRow[] = value?.rows || [];
+export function CustomTablePreview(props: any) {
+  const rows: TableRow[] = props.rows || props.value?.rows || [];
   const colCount = rows[0]?.cells?.length || 0;
-  const isSelected = props.selected;
+  const title = props.title || 'Table';
 
   return (
-    <Card
-      padding={3}
-      radius={2}
-      border
-      tone={isSelected ? 'primary' : 'default'}
-      shadow={isSelected ? 1 : 0}
-      style={{ margin: '8px 0', cursor: 'pointer' }}
-    >
+    <Box padding={2}>
       <Stack space={3}>
         <Flex justify="space-between" align="center" wrap="wrap" gap={2}>
           <Inline space={2}>
             <Text size={1} weight="bold">
-              📊 Table
+              {title}
             </Text>
             {rows.length > 0 && (
               <Badge tone="primary" fontSize={0}>
@@ -483,14 +476,14 @@ export function TableBlockComponent(props: any) {
             )}
           </Inline>
           <Text size={0} muted>
-            Double-click or click to edit cells / paste spreadsheet
+            Double-click or click &quot;...&quot; &rarr; Edit to modify cells / paste spreadsheet
           </Text>
         </Flex>
 
         {rows.length === 0 ? (
           <Card padding={3} radius={2} tone="transparent" style={{ textAlign: 'center', border: '1px dashed #ccc' }}>
             <Text size={1} muted>
-              Empty table — Click or double-click to type cells or paste spreadsheet
+              Empty table — Double-click to start typing cells or paste spreadsheet
             </Text>
           </Card>
         ) : (
@@ -504,7 +497,7 @@ export function TableBlockComponent(props: any) {
                       backgroundColor: rIdx === 0 ? 'var(--card-muted-bg, rgba(0,0,0,0.04))' : 'transparent',
                     }}
                   >
-                    {row.cells.map((cell, cIdx) => (
+                    {row.cells?.map((cell, cIdx) => (
                       <td
                         key={`preview-cell-${rIdx}-${cIdx}`}
                         style={{
@@ -534,6 +527,6 @@ export function TableBlockComponent(props: any) {
           </Box>
         )}
       </Stack>
-    </Card>
+    </Box>
   );
 }

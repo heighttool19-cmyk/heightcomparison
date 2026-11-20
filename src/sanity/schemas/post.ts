@@ -5,7 +5,7 @@
  * author reference, main image, and standard metadata fields.
  */
 import { defineField, defineType } from "sanity";
-import { CustomTableEditor, TableBlockComponent } from "../components/CustomTableEditor";
+import { CustomTableEditor, CustomTablePreview } from "../components/CustomTableEditor";
 
 export default defineType({
   name: "post",
@@ -136,7 +136,7 @@ export default defineType({
           type: "table",
           components: {
             input: CustomTableEditor,
-            block: TableBlockComponent,
+            preview: CustomTablePreview,
           },
           preview: {
             select: {
@@ -148,7 +148,8 @@ export default defineType({
               const firstRowSample = rows?.[0]?.cells?.filter(Boolean).slice(0, 4).join(" | ");
               return {
                 title: firstRowSample ? `📊 Table: ${firstRowSample}` : "📊 Table",
-                subtitle: rowCount > 0 ? `${rowCount} rows × ${colCount} columns (Click to edit)` : "Empty Table (Click to edit or paste)",
+                subtitle: rowCount > 0 ? `${rowCount} rows × ${colCount} columns` : "Empty Table",
+                rows: rows || [],
               };
             },
           },
