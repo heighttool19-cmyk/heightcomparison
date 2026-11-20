@@ -13,7 +13,7 @@ import TallestCountriesBars from '@/components/average-height-by-country/Tallest
 import ShortestCountriesBars from '@/components/average-height-by-country/ShortestCountriesBars';
 import TallestVsShortestChart from '@/components/average-height-by-country/TallestVsShortestChart';
 import HeightDistributionChart from '@/components/average-height-by-country/HeightDistributionChart';
-import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
+import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -24,7 +24,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         alternates: {
             canonical: getCanonicalUrl('/average-height-by-country', locale),
             languages: getAlternateLanguages('/average-height-by-country')
-        }
+        },
+        ...getSocialMetadata({
+            title: t('averageHeightByCountryTitle'),
+            description: t('averageHeightByCountryDescription'),
+            path: '/average-height-by-country',
+            locale,
+        }),
     };
 }
 
@@ -406,10 +412,38 @@ export default async function AverageHeightByCountryPage({ params }: { params: P
 
                         {/* References Section */}
                         <div id="references" className="bg-surface border border-border rounded-3xl p-6 md:p-10 text-sm text-muted mt-8 scroll-mt-24">
-                            <h3 className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">{t('references.primarySources.title')}</h3>
-                            <ul className="space-y-3 break-words overflow-hidden">
+                            <p className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">{t('references.primarySources.title')}</p>
+                            <ul className="space-y-3 break-words overflow-hidden mb-6">
                                 <li>{t('references.primarySources.ref1')} <br /><a href="https://elifesciences.org/articles/13410" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://elifesciences.org/articles/13410</a></li>
                                 <li>{t('references.primarySources.ref2')} <br /><a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31859-6/fulltext" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)31859-6/fulltext</a></li>
+                                <li>{t('references.primarySources.ref3')} <br /><a href="https://www.who.int/tools/child-growth-standards" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://www.who.int/tools/child-growth-standards</a></li>
+                                <li>{t('references.primarySources.ref4')} <br /><a href="https://www.who.int/data/gho" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://www.who.int/data/gho</a></li>
+                                <li>{t('references.primarySources.ref5')} <br /><a href="https://pubmed.ncbi.nlm.nih.gov/16817681/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://pubmed.ncbi.nlm.nih.gov/16817681/</a></li>
+                            </ul>
+
+                            <p className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">{t('references.usGovernment.title')}</p>
+                            <ul className="space-y-3 break-words overflow-hidden mb-6">
+                                <li>{t('references.usGovernment.ref1')} <br /><a href="https://www.cdc.gov/growthcharts/cdc-growth-charts.htm" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://www.cdc.gov/growthcharts/cdc-growth-charts.htm</a></li>
+                                <li>{t('references.usGovernment.ref2')} <br /><a href="https://www.cdc.gov/nchs/data/series/sr_11/sr11_246.pdf" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://www.cdc.gov/nchs/data/series/sr_11/sr11_246.pdf</a></li>
+                                <li>{t('references.usGovernment.ref3')} <br /><a href="https://www.cdc.gov/nchs/nhanes/index.html" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://www.cdc.gov/nchs/nhanes/index.html</a></li>
+                                <li>{t('references.usGovernment.ref4')} <br /><a href="https://www.cdc.gov/nchs/data/series/sr_03/sr03_039.pdf" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://www.cdc.gov/nchs/data/series/sr_03/sr03_039.pdf</a></li>
+                                <li>{t('references.usGovernment.ref5')} <br /><a href="https://www.nhlbi.nih.gov/calculate-your-bmi" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://www.nhlbi.nih.gov/calculate-your-bmi</a></li>
+                            </ul>
+
+                            <p className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">{t('references.peerReviewed.title')}</p>
+                            <ul className="space-y-3 break-words overflow-hidden mb-6">
+                                <li>{t('references.peerReviewed.ref1')} <br /><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Devine+BJ+gentamicin+1974+ideal+body+weight" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://pubmed.ncbi.nlm.nih.gov/?term=Devine+BJ+gentamicin+1974+ideal+body+weight</a></li>
+                                <li>{t('references.peerReviewed.ref2')} <br /><a href="https://pubmed.ncbi.nlm.nih.gov/6869387/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://pubmed.ncbi.nlm.nih.gov/6869387/</a></li>
+                                <li>{t('references.peerReviewed.ref3')} <br /><a href="https://pubmed.ncbi.nlm.nih.gov/10981254/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://pubmed.ncbi.nlm.nih.gov/10981254/</a></li>
+                                <li>{t('references.peerReviewed.ref4')} <br /><a href="https://pubmed.ncbi.nlm.nih.gov/16176118/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://pubmed.ncbi.nlm.nih.gov/16176118/</a></li>
+                                <li>{t('references.peerReviewed.ref5')} <br /><a href="https://pubmed.ncbi.nlm.nih.gov/25719490/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://pubmed.ncbi.nlm.nih.gov/25719490/</a></li>
+                                <li>{t('references.peerReviewed.ref6')} <br /><a href="https://pubmed.ncbi.nlm.nih.gov/12365955/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://pubmed.ncbi.nlm.nih.gov/12365955/</a></li>
+                            </ul>
+
+                            <p className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">{t('references.unBodies.title')}</p>
+                            <ul className="space-y-3 break-words overflow-hidden">
+                                <li>{t('references.unBodies.ref1')} <br /><a href="https://data.unicef.org/topic/nutrition/malnutrition/" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://data.unicef.org/topic/nutrition/malnutrition/</a></li>
+                                <li>{t('references.unBodies.ref2')} <br /><a href="https://www.fao.org/publications/fao-flagship-publications/the-state-of-food-security-and-nutrition-in-the-world/en" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">https://www.fao.org/publications/fao-flagship-publications/the-state-of-food-security-and-nutrition-in-the-world/en</a></li>
                             </ul>
                         </div>
 

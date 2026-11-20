@@ -20,7 +20,7 @@ import Link from 'next/link';
 import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/common/JsonLd';
 import { IMAGE_TO_HEIGHT_SCHEMA } from '@/constants/schemas/imageToHeight';
-import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
+import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -32,7 +32,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         alternates: {
             canonical: getCanonicalUrl('/image-to-height', locale),
             languages: getAlternateLanguages('/image-to-height'),
-        }
+        },
+        ...getSocialMetadata({
+            title: t('imageToHeightTitle'),
+            description: t('imageToHeightDescription'),
+            path: '/image-to-height',
+            locale,
+        }),
     };
 }
 

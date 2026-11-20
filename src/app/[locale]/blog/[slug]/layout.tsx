@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { client } from "@/sanity/lib/client";
 import { postBySlugQuery } from "@/sanity/lib/queries";
 import type { Post } from "@/sanity/lib/types";
-import { getAlternateLanguages, getCanonicalUrl } from "@/i18n/config";
+import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from "@/i18n/config";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,22 +22,36 @@ export async function generateMetadata({
     return { title: t("postNotFound") };
   }
 
-  return {
-    title: post.title,
-    description: post.excerpt || `${post.title}`,
-    openGraph: {
-      title: post.title,
-      description: post.excerpt || undefined,
-      type: "article",
-      publishedTime: post.publishedAt,
-      ...(post.mainImage?.asset?.url && {
-        images: [{ url: post.mainImage.asset.url }],
-      }),
+  const title = post.title;
+  const description = post.excerpt || post.title;
+  const imageUrl = post.mainImage?.asset?.url || 'https://heightcomparisoncalculator.com/height-comparison-chart-example.png';
+
+  const social = getSocialMetadata({
+    title,
+    description,
+    path: `/blog/${slug}`,
+    locale: currentLocale,
+    type: 'article',
+    image: {
+      url: imageUrl,
+      width: 1200,
+      height: 630,
+      alt: post.mainImage?.alt || title,
     },
+  });
+
+  return {
+    title,
+    description,
     alternates: {
       canonical: getCanonicalUrl(`/blog/${slug}`, currentLocale),
       languages: getAlternateLanguages(`/blog/${slug}`),
     },
+    openGraph: {
+      ...social.openGraph,
+      publishedTime: post.publishedAt,
+    },
+    twitter: social.twitter,
   };
 }
 

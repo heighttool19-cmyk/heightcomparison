@@ -1,7 +1,7 @@
 import React from 'react';
 import { getTranslations } from 'next-intl/server';
 import { Shield, Lock, FileText, Eye, Database, HelpCircle, Clock, Mail } from 'lucide-react';
-import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
+import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -13,7 +13,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         alternates: {
             canonical: getCanonicalUrl('/privacy', locale),
             languages: getAlternateLanguages('/privacy'),
-        }
+        },
+        ...getSocialMetadata({
+            title: t('privacyTitle'),
+            description: t('privacyDescription'),
+            path: '/privacy',
+            locale,
+        }),
     };
 }
 

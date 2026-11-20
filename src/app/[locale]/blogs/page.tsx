@@ -5,7 +5,7 @@ import { client } from '@/sanity/lib/client';
 import { allPostsQuery } from '@/sanity/lib/queries';
 import type { Post } from '@/sanity/lib/types';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
-import { formatLocalizedDate as formatDate, getCanonicalUrl, getAlternateLanguages } from '@/i18n/config';
+import { formatLocalizedDate as formatDate, getCanonicalUrl, getAlternateLanguages, getSocialMetadata } from '@/i18n/config';
 
 export const revalidate = 3600; // Cache blogs index for 1 hour ISR
 
@@ -25,6 +25,12 @@ export async function generateMetadata({
             canonical: getCanonicalUrl('/blogs', locale),
             languages: getAlternateLanguages('/blogs'),
         },
+        ...getSocialMetadata({
+            title: "Height Blog | Height Comparison Calculator",
+            description: t('subheading'),
+            path: '/blogs',
+            locale,
+        }),
     };
 }
 

@@ -84,14 +84,8 @@ const Footer = () => {
                         <Link href={getLocalizedHref('/about')} className="text-accent hover:underline">{t('theTeam')}</Link>.
                     </p>
                     <div className="flex gap-3">
-                        <SocialButton title="Twitter / X">
-                            <path d="M16.99 3H14.54L10 8.81 6.11 3H1l6.83 9.54L1.5 19h2.46l4.87-5.64L12.85 19H18l-7.17-9.95L16.99 3zm-2.64 14.13-10.1-14h1.94l10.1 14h-1.94z" />
-                        </SocialButton>
                         <SocialButton title="Reddit">
                             <path d="M18 10a2 2 0 0 0-2-2 2 2 0 0 0-1.38.55C13.2 7.87 11.73 7.5 10 7.5c-.06 0-.12 0-.19.01l-.85-3.97 2.74-.57a1.25 1.25 0 1 0-.13-.93L8.6 2.67 7.55 7.52C5.82 7.54 4.37 7.91 3.38 8.55A2 2 0 0 0 2 10a2 2 0 0 0 .92 1.68 3.94 3.94 0 0 0-.04.53c0 2.7 3.17 4.9 7.07 4.9s7.07-2.2 7.07-4.9a3.94 3.94 0 0 0-.04-.53A2 2 0 0 0 18 10zm-11.5 1a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm5.57 2.65c-.5.5-1.5.68-2.07.68s-1.57-.18-2.07-.68a.3.3 0 0 1 .42-.42c.34.34 1.08.5 1.65.5s1.31-.16 1.65-.5a.3.3 0 0 1 .42.42zm-.57-1.65a1 1 0 1 1 2 0 1 1 0 0 1-2 0z" />
-                        </SocialButton>
-                        <SocialButton title="Instagram">
-                            <path d="M10 2c2.17 0 2.44.01 3.3.05 2.8.13 4.12 1.46 4.25 4.25.04.86.05 1.13.05 3.3 0 2.17-.01 2.44-.05 3.3-.13 2.79-1.44 4.12-4.25 4.25-.86.04-1.12.05-3.3.05-2.17 0-2.44-.01-3.3-.05C3.91 17.02 2.58 15.7 2.45 12.9 2.41 12.04 2.4 11.77 2.4 9.6c0-2.17.01-2.44.05-3.3C2.58 3.51 3.91 2.18 6.7 2.05 7.56 2.01 7.83 2 10 2zm0 1.44c-2.13 0-2.38.01-3.22.05-2.14.1-3.14 1.1-3.24 3.24C3.5 7.57 3.49 7.82 3.49 9.6c0 1.78.01 2.03.05 2.87.1 2.13 1.1 3.14 3.24 3.24.84.04 1.09.05 3.22.05s2.38-.01 3.22-.05c2.13-.1 3.14-1.1 3.24-3.24.04-.84.05-1.09.05-2.87 0-1.78-.01-2.03-.05-2.87C16.14 4.6 15.13 3.59 13 3.49c-.84-.04-1.09-.05-3-.05zm0 2.44a3.72 3.72 0 1 1 0 7.44 3.72 3.72 0 0 1 0-7.44zM10 12a2.28 2.28 0 1 0 0-4.56A2.28 2.28 0 0 0 10 12zm4.4-6.6a.88.88 0 1 1 0 1.76.88.88 0 0 1 0-1.76z" />
                         </SocialButton>
                     </div>
                 </div>
@@ -110,7 +104,7 @@ const FooterLink = ({ href, children }: { href: string; children: React.ReactNod
 );
 
 const SocialButton = ({ children, title }: { children: React.ReactNode; title: string }) => (
-    <button title={title} className="w-8 h-8 rounded-lg border border-border bg-surface flex items-center justify-center cursor-pointer transition-all hover:border-accent hover:bg-accent/10 group">
+    <button title={title} aria-label={title} className="w-8 h-8 rounded-lg border border-border bg-surface flex items-center justify-center cursor-pointer transition-all hover:border-accent hover:bg-accent/10 group">
         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" className="w-[15px] h-[15px] fill-muted group-hover:fill-accent transition-colors">
             {children}
         </svg>

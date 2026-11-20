@@ -124,7 +124,7 @@ export const HEIGHT_PREDICTOR_SCHEMA =
                 {
                     "@type": "CreativeWork",
                     "name": "CDC Growth Charts",
-                    "sameAs": "https://www.cdc.gov/growthcharts"
+                    "sameAs": "https://www.cdc.gov/growthcharts/"
                 },
                 {
                     "@type": "CreativeWork",

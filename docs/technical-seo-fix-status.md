@@ -16,7 +16,7 @@
 |:---|:---|:---|:---|:---|:---|
 | **T1** | Remove sitewide `noimageindex` tag & add `max-image-preview: large` | P1 Critical | Sitewide (`app/layout.tsx`) | ✅ Complete (Batch 1) | `noimageindex` absent; added `max-image-preview: large`. |
 | **T2** | Add `https://` to every schema `@id` and `url` | P1 Critical | 5 Calculators | ✅ Complete (Batch 3) | Standardized on `BASE_URL` in `schemas/`. |
-| **T3** | Add Open Graph and Twitter tags | P2 High | 10 Pages | ✅ Complete (Batch 5) | Added `metadataBase`, `openGraph.siteName`, and social card tags. |
+| **T3** | Add Open Graph and Twitter tags | P2 High | 10 Pages | ✅ Complete (Batch 5 & 7) | Added `getSocialMetadata` with fallback 1200x630 preview cards and Twitter tags across all 11 pages and blog posts. |
 | **T4** | Fix table ranking order & remove "combined average" | P2 High | `/average-height-by-country` | ✅ Complete (Batch 4) | Dynamically sorted by male height descending; USA #27, Russia #28; alphabetical tie-break. |
 | **T5** | Complete Dataset schema | P2 High | `/average-height-by-country` | ✅ Complete (Batch 3) | Full Dataset schema implemented (2019 data, NCD-RisC source, spatial/temporal coverage). |
 | **T6** | Use "Height Comparison Calculator" as single brand name | P2 High | Sitewide | ✅ Complete (Batch 2) | Header, Footer, schema names, logo alt text, copyright line unified. |
@@ -44,7 +44,7 @@
 | **T28** | Shorten 3 meta descriptions | P4 Low | 3 Pages | ⏸️ Skipped | Marked "Skip" in tracker CSV. |
 | **T29** | Fix heading hierarchy & pre-H1 labels | P4 Low | 5 Pages | ✅ Complete (Batch 5) | Changed pre-H1 to `<p>`; converted skipped `<h4>`s to `<h3>`s; wrapped FAQ questions in `<h3>`. |
 | **T30** | Add intro copy to `/blogs` page | P4 Low | `/blogs` | ✅ Complete (Batch 6) | Changed H1 to "Height Blog" and added intro paragraph + metadata. |
-| **T31** | Fix 3 broken external links | P4 Low | External links | ⏳ Awaiting PM | Needs Screaming Frog 4xx export list from Biswa / PM. |
+| **T31** | Fix 3 broken external links & citations | P4 Low | External links | ✅ Complete (Batch 7) | Fixed NHANES 404 (`.html`), updated FAO & NHLBI & CDC growth charts redirects, trailing slashes, and corrected 3 unrelated citations to verified PMIDs/DOIs. |
 | **T32** | Add `rel="noopener"` to external link | P4 Low | `/height-weight-percentile` | ⏸️ Skipped | Marked "skip" in tracker CSV. |
 | **T33** | Add basic security headers | P4 Low | Sitewide (`next.config.ts`) | ✅ Complete (Batch 1) | Added HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy headers. |
 | **T34** | Fix dead URL in `/image-to-height` schema | P2 High | `/image-to-height` | ✅ Complete (Batch 3) | Replaced `/measure-height-from-photo` with `/image-to-height` in schema. |
@@ -115,4 +115,21 @@
   - Added descriptive alt text `"Icon of a person beside a height scale"` for the Height Expert avatar icon.
   - Added structured `BlogPosting` Article schema on all blog posts with Sanity author `"Height Expert"`, publisher `"Height Comparison Calculator"`, and `dateModified`.
 - **Validation**: Automated Batch 6 assertions passed; Next.js production build confirmed `/blog/[slug]` rendered as pre-rendered SSG (`● (SSG)`).
+
+### **Batch 7: Social Share Cards, Footer Icons, & External Citations (T3, T31) - [COMPLETE]**
+- **Files**: `src/components/layout/Footer.tsx`, `src/i18n/config.ts`, `src/app/[locale]/average-height-by-country/page.tsx`, `src/app/[locale]/height-predictor/page.tsx`, `src/app/[locale]/ideal-body-weight-calculator/page.tsx`, `src/constants/schemas/heightPredictor.ts`, `src/app/[locale]/**/*.tsx`.
+- **Changes**:
+  - **Footer Social Icons**: Removed Twitter / X and Instagram icons; kept Reddit as the sole social icon with `aria-label="Reddit"` and verified `the team` link points to localized `/about`.
+  - **Social Share Images (T3)**: Created `getSocialMetadata` helper in `src/i18n/config.ts` enforcing 1200x630 fallback images (`/height-comparison-chart-example.png`) and Twitter summary card tags across all 11 pages and dynamic blog posts.
+  - **Broken Links & Redirects (T31)**:
+    - Updated NHANES link to `https://www.cdc.gov/nchs/nhanes/index.html` (resolving real 404).
+    - Preserved The Lancet and UNICEF links (confirmed legitimate bot-block 403s on crawlers that load 200 in browser).
+    - Resolved redirects for FAO SOFI (`https://www.fao.org/publications/fao-flagship-publications/the-state-of-food-security-and-nutrition-in-the-world/en`) and NHLBI BMI (`https://www.nhlbi.nih.gov/calculate-your-bmi`).
+    - Standardized CDC growth charts trailing slashes to `https://www.cdc.gov/growthcharts/`.
+  - **Citation Verification & Fixes (T31)**:
+    - Replaced unrelated PMID `16817523` with verified WHO Child Growth Standards paper PMID `16817681` (Acta Paediatrica 2006).
+    - Replaced unrelated PMID `23382931` with verified Stulp et al. (2015) interpersonal dominance paper PMID `25719490` (DOI `10.1371/journal.pone.0117860`).
+    - Verified Stulp et al. mating preferences citation DOI `10.1371/journal.pone.0054186` (replacing nucleosome simulation `0054228`).
+  - Restored full semantic `<p>` references section on `/average-height-by-country` ensuring no heading hierarchy skips.
+- **Validation**: TypeScript type check (`npx tsc --noEmit`) and production build (`npm run build`) passed with zero errors.
 

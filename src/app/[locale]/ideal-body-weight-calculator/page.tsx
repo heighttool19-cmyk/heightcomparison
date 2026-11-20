@@ -8,7 +8,7 @@ import { DynamicIdealWeightIsland, DynamicHealthyWeightIsland } from '@/componen
 import JsonLd from '@/components/common/JsonLd';
 import { IDEAL_BODY_WEIGHT_SCHEMA } from '@/constants/schemas/idealBodyWeight';
 
-import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
+import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -20,7 +20,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         alternates: {
             canonical: getCanonicalUrl('/ideal-body-weight-calculator', locale),
             languages: getAlternateLanguages('/ideal-body-weight-calculator'),
-        }
+        },
+        ...getSocialMetadata({
+            title: t('idealBodyWeightTitle'),
+            description: t('idealBodyWeightDescription'),
+            path: '/ideal-body-weight-calculator',
+            locale,
+        }),
     };
 }
 
@@ -412,7 +418,7 @@ export default async function IdealBodyWeightPage({ params }: { params: Promise<
                                 </a>: Changing dietary concepts. In: Diabetes Mellitus: Diagnosis and Treatment. American Diabetes Association.
                             </li>
                             <li>
-                                <a href="https://www.cdc.gov/growthcharts" target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">
+                                <a href="https://www.cdc.gov/growthcharts/" target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">
                                     CDC Growth Charts
                                 </a>. Centers for Disease Control and Prevention.
                             </li>

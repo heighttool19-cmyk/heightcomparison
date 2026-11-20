@@ -9,7 +9,7 @@ import TableOfContents from '@/components/TableOfContents';
 import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/common/JsonLd';
 import { HEIGHT_DIFFERENCE_SCHEMA } from '@/constants/schemas/heightDifference';
-import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
+import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -21,7 +21,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         alternates: {
             canonical: getCanonicalUrl('/height-difference-calculator', locale),
             languages: getAlternateLanguages('/height-difference-calculator'),
-        }
+        },
+        ...getSocialMetadata({
+            title: t('heightDifferenceTitle'),
+            description: t('heightDifferenceDescription'),
+            path: '/height-difference-calculator',
+            locale,
+        }),
     };
 }
 

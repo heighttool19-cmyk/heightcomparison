@@ -5,7 +5,7 @@ import { DynamicHeightDashboard } from '@/components/DynamicHeightDashboard';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
 import JsonLd from '@/components/common/JsonLd';
 import { HOME_SCHEMA } from '@/constants/schemas/home';
-import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
+import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -17,7 +17,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: getCanonicalUrl('/', locale),
       languages: getAlternateLanguages('/'),
-    }
+    },
+    ...getSocialMetadata({
+      title: t('homeTitle'),
+      description: t('homeDescription'),
+      path: '/',
+      locale,
+    }),
   };
 }
 

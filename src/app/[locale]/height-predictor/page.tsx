@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { AlertCircle, ArrowUpCircle, CheckCircle2, Dna, Salad, Timer, ArrowUp, ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import TableOfContents from '@/components/TableOfContents';
-import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
+import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 import FaqAccordion from '@/components/FaqAccordion';
 import {
@@ -26,7 +26,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         alternates: {
             canonical: getCanonicalUrl('/height-predictor', locale),
             languages: getAlternateLanguages('/height-predictor'),
-        }
+        },
+        ...getSocialMetadata({
+            title: t('heightPredictorTitle'),
+            description: t('heightPredictorDescription'),
+            path: '/height-predictor',
+            locale,
+        }),
     };
 }
 
@@ -873,7 +879,7 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                     <div id="references" className="bg-surface border border-border rounded-[2.5rem] p-8 md:p-12 text-sm text-muted mt-6 font-medium shadow-sm scroll-mt-24">
                         <p className="font-extrabold text-foreground mb-6 uppercase tracking-[0.2em] text-[10px] opacity-60">{t('references.title')}</p>
                         <ul className="space-y-4 break-words overflow-hidden list-disc pl-5 marker:text-accent/40">
-                            <li>{t('references.ref1')} <br /><a href="https://www.cdc.gov/growthcharts" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.cdc.gov/growthcharts</a></li>
+                            <li>{t('references.ref1')} <br /><a href="https://www.cdc.gov/growthcharts/" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.cdc.gov/growthcharts/</a></li>
                             <li>{t('references.ref2')} </li>
                             <li>{t('references.ref3')} <br /><a href="https://pubmed.ncbi.nlm.nih.gov/12664962/" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://pubmed.ncbi.nlm.nih.gov/12664962/</a></li>
                             <li>{t('references.ref4')} <br /><a href="https://www.who.int/tools/child-growth-standards" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.who.int/tools/child-growth-standards</a></li>

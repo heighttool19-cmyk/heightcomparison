@@ -80,3 +80,67 @@ export function getAlternateLanguages(path: string): Record<string, string> {
   languages['x-default'] = `${BASE_SITE_URL}${cleanPath}`;
   return languages;
 }
+
+export interface OpenGraphImageOptions {
+  url?: string;
+  width?: number;
+  height?: number;
+  alt?: string;
+}
+
+/**
+ * Standardized OpenGraph and Twitter card metadata generator for 1200x630 social preview parity (T3)
+ */
+export function getSocialMetadata({
+  title,
+  description,
+  path,
+  locale = DEFAULT_LOCALE,
+  image = {
+    url: `${BASE_SITE_URL}/height-comparison-chart-example.png`,
+    width: 1200,
+    height: 630,
+    alt: 'Height Comparison Calculator preview chart',
+  },
+  type = 'website',
+}: {
+  title: string;
+  description: string;
+  path: string;
+  locale?: string;
+  image?: OpenGraphImageOptions;
+  type?: 'website' | 'article';
+}) {
+  const canonicalUrl = getCanonicalUrl(path, locale);
+  const imageUrl = image.url?.startsWith('http')
+    ? image.url
+    : `${BASE_SITE_URL}${image.url || '/height-comparison-chart-example.png'}`;
+  const width = image.width || 1200;
+  const height = image.height || 630;
+  const alt = image.alt || title;
+
+  return {
+    openGraph: {
+      type,
+      siteName: 'Height Comparison Calculator',
+      title,
+      description,
+      url: canonicalUrl,
+      images: [
+        {
+          url: imageUrl,
+          width,
+          height,
+          alt,
+        },
+      ],
+      locale: locale === 'de' ? 'de_DE' : 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image' as const,
+      title,
+      description,
+      images: [imageUrl],
+    },
+  };
+}

@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import JsonLd from '@/components/common/JsonLd';
 import { CONTACT_SCHEMA } from '@/constants/schemas/contact';
 import ContactForm from '@/components/contact/ContactForm';
-import { getCanonicalUrl, getAlternateLanguages } from '@/i18n/config';
+import { getCanonicalUrl, getAlternateLanguages, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -18,19 +18,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       canonical: getCanonicalUrl('/contact', locale),
       languages: getAlternateLanguages('/contact'),
     },
-    openGraph: {
+    ...getSocialMetadata({
       title: t('title'),
       description: t('description'),
-      url: getCanonicalUrl('/contact', locale),
-      images: [
-        {
-          url: 'https://heightcomparisoncalculator.com/height-comparison-chart-example.png',
-          width: 1200,
-          height: 630,
-          alt: 'Contact Height Comparison Calculator',
-        },
-      ],
-    },
+      path: '/contact',
+      locale,
+    }),
   };
 }
 

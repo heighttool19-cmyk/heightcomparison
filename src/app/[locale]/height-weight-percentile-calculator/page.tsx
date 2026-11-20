@@ -11,7 +11,7 @@ import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/common/JsonLd';
 import { PERCENTILE_SCHEMA } from '@/constants/schemas/percentile';
 
-import { getAlternateLanguages, getCanonicalUrl } from '@/i18n/config';
+import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -23,7 +23,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         alternates: {
             canonical: getCanonicalUrl('/height-weight-percentile-calculator', locale),
             languages: getAlternateLanguages('/height-weight-percentile-calculator'),
-        }
+        },
+        ...getSocialMetadata({
+            title: t('heightWeightPercentileTitle'),
+            description: t('heightWeightPercentileDescription'),
+            path: '/height-weight-percentile-calculator',
+            locale,
+        }),
     };
 }
 
