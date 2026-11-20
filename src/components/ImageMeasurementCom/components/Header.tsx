@@ -33,9 +33,9 @@ export const Header: React.FC<HeaderProps> = ({
     return (
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div className="flex flex-col gap-1">
-                <h2 className="text-lg sm:text-xl font-black text-foreground flex items-center gap-2 uppercase tracking-tight">
+                <p className="text-lg sm:text-xl font-black text-foreground flex items-center gap-2 uppercase tracking-tight">
                     <Camera className="w-5 h-5 text-accent" /> Image Measurement
-                </h2>
+                </p>
                 <p className="text-xs sm:text-sm text-foreground/60 font-medium">{getInstruction()}</p>
             </div>
             {calculatedHeight > 0 && (

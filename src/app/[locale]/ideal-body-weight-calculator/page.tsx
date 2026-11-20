@@ -204,7 +204,7 @@ export default async function IdealBodyWeightPage({ params }: { params: Promise<
                             {t('women.p2')}
                         </p>
                         <div className="bg-surface border border-border p-6 rounded-2xl my-4">
-                            <h4 className="font-bold text-foreground mb-3 text-sm uppercase tracking-widest">{t('women.exampleTitle')}</h4>
+                            <h3 className="font-bold text-foreground mb-3 text-sm uppercase tracking-widest">{t('women.exampleTitle')}</h3>
                             <ul className="space-y-2 text-muted font-medium">
                                 <li>{t('women.exampleDevine')}</li>
                                 <li>{t('women.exampleRobinson')}</li>
@@ -223,7 +223,7 @@ export default async function IdealBodyWeightPage({ params }: { params: Promise<
                             {t('men.p1')}
                         </p>
                         <div className="bg-surface border border-border p-6 rounded-2xl my-4">
-                            <h4 className="font-bold text-foreground mb-3 text-sm uppercase tracking-widest">{t('men.exampleTitle')}</h4>
+                            <h3 className="font-bold text-foreground mb-3 text-sm uppercase tracking-widest">{t('men.exampleTitle')}</h3>
                             <ul className="space-y-2 text-muted font-medium">
                                 <li>{t('men.exampleDevine')}</li>
                                 <li>{t('men.exampleRobinson')}</li>
@@ -259,7 +259,7 @@ export default async function IdealBodyWeightPage({ params }: { params: Promise<
                             <p className="font-mono bg-bg border border-border p-4 rounded-xl text-accent font-bold text-center sm:text-left mb-6">
                                 {t('adjusted.formulaText')}
                             </p>
-                            <h4 className="font-bold text-foreground mb-2 text-sm">{t('adjusted.exampleTitle')}</h4>
+                            <h3 className="font-bold text-foreground mb-2 text-sm">{t('adjusted.exampleTitle')}</h3>
                             <ul className="space-y-2 text-muted font-medium font-mono text-sm">
                                 <li>{t('adjusted.exampleResult')}<span className='text-accent font-semibold hover:underline'>{t('adjusted.exampleResultValue')}</span></li>
                             </ul>
@@ -323,7 +323,7 @@ export default async function IdealBodyWeightPage({ params }: { params: Promise<
                         </p>
 
                         <div className="bg-surface border border-border p-6 rounded-2xl my-6">
-                            <h4 className="font-bold text-foreground mb-4 text-sm uppercase tracking-widest border-b border-border pb-3">{t('healthyRange.illustrativeTitle')}</h4>
+                            <h3 className="font-bold text-foreground mb-4 text-sm uppercase tracking-widest border-b border-border pb-3">{t('healthyRange.illustrativeTitle')}</h3>
                             <div className="grid grid-cols-3 gap-2 text-center text-xs/4 font-medium">
                                 <div className="bg-bg border border-border p-2 rounded-xl">
                                     <span className="block text-muted mb-1 font-bold">{t('healthyRange.belowLabel')}</span>
@@ -394,13 +394,33 @@ export default async function IdealBodyWeightPage({ params }: { params: Promise<
 
                     {/* References Section */}
                     <div id="references" className="bg-surface border border-border rounded-3xl p-6 md:p-10 text-sm text-muted mt-8 scroll-mt-24">
-                        <h3 className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">{t('references.title')}</h3>
+                        <p className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">{t('references.title')}</p>
                         <ul className="space-y-3 break-words overflow-hidden list-disc pl-5 marker:text-muted/40 font-medium">
-                            <li>{t('references.ref1')}</li>
-                            <li>{t('references.ref2')}</li>
-                            <li>{t('references.ref3')}</li>
-                            <li>{t('references.ref4')}</li>
-                            <li>{t('references.ref5')}</li>
+                            <li>
+                                <a href="https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=201002075945172870" target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">
+                                    Devine BJ (1974)
+                                </a>: Gentamicin therapy. Drug Intelligence and Clinical Pharmacy.
+                            </li>
+                            <li>
+                                <a href="https://pubmed.ncbi.nlm.nih.gov/6869387/" target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">
+                                    Robinson JD et al. (1983)
+                                </a>: Determination of ideal body weight for drug dosage calculations. American Journal of Hospital Pharmacy.
+                            </li>
+                            <li>
+                                <a href="https://www.peng.org.uk/pdfs/pocket-guide/statement-on-ideal-body-weight.pdf" target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">
+                                    Hamwi GJ (1964)
+                                </a>: Changing dietary concepts. In: Diabetes Mellitus: Diagnosis and Treatment. American Diabetes Association.
+                            </li>
+                            <li>
+                                <a href="https://www.cdc.gov/growthcharts" target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">
+                                    CDC Growth Charts
+                                </a>. Centers for Disease Control and Prevention.
+                            </li>
+                            <li>
+                                <a href="https://www.who.int/tools/child-growth-standards" target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">
+                                    WHO Child Growth Standards
+                                </a>. World Health Organization.
+                            </li>
                         </ul>
                     </div>
                 </div>

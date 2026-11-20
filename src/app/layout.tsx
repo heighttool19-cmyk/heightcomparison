@@ -17,8 +17,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://heightcomparisoncalculator.com'),
   title: "Height Comparison Chart - Person Height, Character Height & More",
-  description: "Use Height Comparison Tool to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
+  description: "Use Height Comparison Calculator to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
   alternates: {
     canonical: 'https://heightcomparisoncalculator.com/',
   },
@@ -38,9 +39,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
+    siteName: "Height Comparison Calculator",
     url: "https://heightcomparisoncalculator.com/",
     title: "Height Comparison Chart - Person Height, Character Height & More",
-    description: "Use Height Comparison Tool to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
+    description: "Use Height Comparison Calculator to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
     images: [
       {
         url: "/height-comparison-chart-example.png",
@@ -53,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Height Comparison Chart - Person Height, Character Height & More",
-    description: "Use Height Comparison Tool to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
+    description: "Use Height Comparison Calculator to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
     images: ["/height-comparison-chart-example.png"],
   },
   verification: {

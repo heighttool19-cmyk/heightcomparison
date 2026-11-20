@@ -305,7 +305,7 @@ export default async function PercentileCalculatorPage({ params }: { params: Pro
 
                         <div className="grid md:grid-cols-2 gap-6 font-bold">
                             <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
-                                <h4 className="text-[10px] font-black uppercase text-muted mb-4 border-b border-border pb-2 tracking-widest">{t('example.inputParamsTitle')}</h4>
+                                <h3 className="text-[10px] font-black uppercase text-muted mb-4 border-b border-border pb-2 tracking-widest">{t('example.inputParamsTitle')}</h3>
                                 <div className="space-y-3">
                                     <div className="flex justify-between border-b border-border/40 pb-2"><span className="text-muted uppercase text-[11px]">{t('example.ageLabel')}</span><span className="font-bold text-foreground">{t('example.ageValue')}</span></div>
                                     <div className="flex justify-between border-b border-border/40 pb-2"><span className="text-muted uppercase text-[11px]">{t('example.sexLabel')}</span><span className="font-bold text-foreground">{t('example.sexValue')}</span></div>
@@ -313,7 +313,7 @@ export default async function PercentileCalculatorPage({ params }: { params: Pro
                                 </div>
                             </div>
                             <div className="bg-surface border border-border p-6 rounded-2xl shadow-sm">
-                                <h4 className="text-[10px] font-black uppercase text-muted mb-4 border-b border-border pb-2 tracking-widest">{t('example.calculatedDataTitle')}</h4>
+                                <h3 className="text-[10px] font-black uppercase text-muted mb-4 border-b border-border pb-2 tracking-widest">{t('example.calculatedDataTitle')}</h3>
                                 <div className="space-y-3">
                                     <div className="flex justify-between border-b border-border/40 pb-2"><span className="text-muted uppercase text-[11px]">{t('example.cdcMedianLabel')}</span><span className="font-bold text-foreground">{t('example.cdcMedianValue')}</span></div>
                                     <div className="flex justify-between border-b border-border/40 pb-2"><span className="text-muted uppercase text-[11px]">{t('example.deviationLabel')}</span><span className="font-bold text-accent">{t('example.deviationValue')}</span></div>
@@ -405,7 +405,7 @@ export default async function PercentileCalculatorPage({ params }: { params: Pro
 
                     {/* References Section */}
                     <div id="references" className="bg-surface border border-border rounded-3xl p-6 md:p-10 text-sm text-muted mt-8 font-medium scroll-mt-24">
-                        <h3 className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">{t('references.title')}</h3>
+                        <p className="font-bold text-foreground mb-4 uppercase tracking-widest text-xs">{t('references.title')}</p>
                         <ul className="space-y-4 break-words overflow-hidden list-disc pl-5 marker:text-muted/40">
                             <li>
                                 <a href='https://www.who.int/tools/child-growth-standards/standards' target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">

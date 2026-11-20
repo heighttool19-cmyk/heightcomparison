@@ -70,17 +70,19 @@ export default function FaqAccordion({ items, title = "Frequently Asked Question
                                 key={idx}
                                 className={`rounded-2xl border overflow-hidden transition-all duration-300 ${isOpen ? 'border-accent/50 bg-bg shadow-lg shadow-accent/5' : 'border-border bg-bg hover:border-accent/30'}`}
                             >
-                                <button
-                                    className="w-full flex items-center justify-between pl-4 pr-3 py-4 text-left group rounded-t-2xl gap-2"
-                                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                                    aria-expanded={isOpen}
-                                    aria-controls={answerId}
-                                >
-                                    <span id={questionId} className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>
-                                    <div className={`shrink-0 transition-all duration-300 ${isOpen ? 'text-accent rotate-180' : 'text-muted rotate-0'}`}>
-                                        <ChevronDown size={18} />
-                                    </div>
-                                </button>
+                                <h3 className="m-0 p-0 text-sm font-bold">
+                                    <button
+                                        className="w-full flex items-center justify-between pl-4 pr-3 py-4 text-left group rounded-t-2xl gap-2"
+                                        onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
+                                        aria-expanded={isOpen}
+                                        aria-controls={answerId}
+                                    >
+                                        <span id={questionId} className={`text-sm font-bold transition-colors duration-200 ${isOpen ? 'text-accent' : 'text-foreground group-hover:text-accent'}`}>{item.q}</span>
+                                        <div className={`shrink-0 transition-all duration-300 ${isOpen ? 'text-accent rotate-180' : 'text-muted rotate-0'}`}>
+                                            <ChevronDown size={18} />
+                                        </div>
+                                    </button>
+                                </h3>
                                 <div
                                     id={answerId}
                                     role="region"

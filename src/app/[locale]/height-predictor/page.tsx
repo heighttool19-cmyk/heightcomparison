@@ -415,7 +415,7 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
                         <div className="grid md:grid-cols-1 gap-8">
                             {/* BOYS GROWTH SECTION */}
                             <section className="space-y-4 bg-blue-500/5 p-6 md:p-8 rounded-[2.5rem] border border-blue-500/10 shadow-sm" id="when-do-boys-stop-growing">
-                                <h2 className="text-2xl font-black tracking-tight text-blue-500 uppercase scroll-mt-24">{t('boysGrowth.title')}</h2>
+                                <h3 className="text-2xl font-black tracking-tight text-blue-500 uppercase scroll-mt-24">{t('boysGrowth.title')}</h3>
 
                                 <p className="text-muted leading-relaxed font-medium">{t('boysGrowth.p1Before')}<strong>{t('boysGrowth.p1Strong')}</strong>{t('boysGrowth.p1After')}</p>
 
@@ -433,7 +433,7 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
 
                             {/* GIRLS GROWTH SECTION */}
                             <section className="space-y-4 bg-pink-500/5 p-6 md:p-8 rounded-[2.5rem] border border-pink-500/10 shadow-sm" id="when-do-girls-stop-growing">
-                                <h2 className="text-2xl font-black tracking-tight text-pink-500 uppercase scroll-mt-24">{t('girlsGrowth.title')}</h2>
+                                <h3 className="text-2xl font-black tracking-tight text-pink-500 uppercase scroll-mt-24">{t('girlsGrowth.title')}</h3>
 
                                 <p className="text-muted leading-relaxed font-medium">{t('girlsGrowth.p1')}</p>
 
@@ -871,7 +871,7 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
 
                     {/* References Section */}
                     <div id="references" className="bg-surface border border-border rounded-[2.5rem] p-8 md:p-12 text-sm text-muted mt-6 font-medium shadow-sm scroll-mt-24">
-                        <h3 className="font-extrabold text-foreground mb-6 uppercase tracking-[0.2em] text-[10px] opacity-60">{t('references.title')}</h3>
+                        <p className="font-extrabold text-foreground mb-6 uppercase tracking-[0.2em] text-[10px] opacity-60">{t('references.title')}</p>
                         <ul className="space-y-4 break-words overflow-hidden list-disc pl-5 marker:text-accent/40">
                             <li>{t('references.ref1')} <br /><a href="https://www.cdc.gov/growthcharts" target="_blank" rel="noopener noreferrer" className="text-accent font-black hover:underline">https://www.cdc.gov/growthcharts</a></li>
                             <li>{t('references.ref2')} </li>

@@ -381,9 +381,9 @@ export default async function HeightDifferencePage({ params }: { params: Promise
 
                     {/* Section 9: References Section */}
                     <div id="references" className="bg-surface border border-border rounded-3xl p-6 md:p-8 text-sm text-muted font-medium scroll-mt-24">
-                        <h3 className="font-extrabold text-foreground mb-4 uppercase tracking-widest text-xs">
+                        <p className="font-extrabold text-foreground mb-4 uppercase tracking-widest text-xs">
                             {t('references.title')}
-                        </h3>
+                        </p>
                         <ul className="space-y-3 list-disc pl-5 marker:text-muted/60">
                             <li>
                                 <a href={t('references.ref1Url')} target="_blank" rel="noopener noreferrer" className="text-accent font-semibold hover:underline">

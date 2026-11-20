@@ -45,6 +45,11 @@ const nextConfig: NextConfig = {
         destination: '/height-weight-percentile-calculator',
         permanent: true,
       },
+      {
+        source: '/average-height-by-country/',
+        destination: '/average-height-by-country',
+        permanent: true,
+      },
     ];
   },
   async headers() {
