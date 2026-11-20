@@ -160,7 +160,7 @@ export default function KhamisRocheCalculator() {
             <div className="flex flex-col mb-8 gap-4">
                 <div className="space-y-4">
                     <div className="flex items-center gap-3">
-                        <h2 id="calculator" className="text-3xl font-black tracking-tight text-foreground uppercase">{t('title')}</h2>
+                        <h2 id="height-predictor-calculator" className="text-3xl font-black tracking-tight text-foreground uppercase scroll-mt-24">{t('title')}</h2>
                         <span className="bg-accent/10 text-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border border-accent/20">{t('badge')}</span>
                     </div>
                     <p className="text-muted font-medium leading-relaxed">

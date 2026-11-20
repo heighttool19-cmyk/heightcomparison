@@ -48,7 +48,7 @@ export default async function PercentileCalculatorPage({ params }: { params: Pro
 
                     {/* Title Section */}
                     <div className="space-y-6 text-left sm:text-left mt-4 leading-relaxed p-2">
-                        <h1 id="calculate-your-height-and-weight-percentile" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 text-left">
+                        <h1 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight text-left">
                             {t('intro.title')}
                         </h1>
                         <p className="text-muted leading-relaxed text-lg max-w-3xl text-left">
@@ -63,8 +63,8 @@ export default async function PercentileCalculatorPage({ params }: { params: Pro
                     </div>
 
                     {/* Calculator Component Island */}
-                    <section id="calculate-your-height-and-weight-percentile-tool" className="scroll-mt-24">
-                        <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-6">{t('toolSection.title')}</h2>
+                    <section id="calculator-section" className="scroll-mt-24">
+                        <h2 id="calculate-your-height-and-weight-percentile" className="text-2xl md:text-3xl font-black tracking-tight mb-6 scroll-mt-24">{t('toolSection.title')}</h2>
                         <HeightPercentileTool />
                     </section>
 

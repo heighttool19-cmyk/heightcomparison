@@ -47,7 +47,7 @@ export default async function HeightDifferencePage({ params }: { params: Promise
 
                     {/* H1 Intro */}
                     <div className="space-y-4 text-left">
-                        <h1 id="height-difference-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24">
+                        <h1 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight">
                             {t('intro.title')}
                         </h1>
                         <p className="text-muted leading-relaxed text-lg max-w-3xl">
@@ -70,7 +70,7 @@ export default async function HeightDifferencePage({ params }: { params: Promise
 
                     {/* Section 1: Calculate Height Difference */}
                     <section id="calculate-height-difference" className="scroll-mt-24 space-y-4">
-                        <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground">
+                        <h2 className="text-2xl md:text-3xl font-black tracking-tight text-foreground scroll-mt-24">
                             {t('calculateSection.title')}
                         </h2>
                         <p className="text-muted leading-relaxed">

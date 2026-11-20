@@ -49,7 +49,7 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
 
                     {/* INTRO CONTENT */}
                     <div className="space-y-6 text-left sm:text-left mt-4 leading-relaxed p-2">
-                        <h1 id="height-predictor-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 text-left uppercase">
+                        <h1 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight text-left uppercase">
                             {t('intro.title')}
                         </h1>
                         <p className="text-sm text-muted font-medium">

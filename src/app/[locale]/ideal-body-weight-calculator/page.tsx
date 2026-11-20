@@ -45,7 +45,7 @@ export default async function IdealBodyWeightPage({ params }: { params: Promise<
 
                     {/* Intro */}
                     <div className="space-y-6 text-left sm:text-left p-2">
-                        <h1 id="ideal-body-weight-calculator" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 text-left">
+                        <h1 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight text-left">
                             {t('intro.title')}
                         </h1>
                         <p className="text-muted leading-relaxed text-lg max-w-3xl text-left">

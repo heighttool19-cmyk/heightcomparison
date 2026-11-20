@@ -50,7 +50,7 @@ export default function AverageHeightTable() {
     return (
         <>
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
-                <h2 className="text-2xl md:text-3xl font-black tracking-tight">{t('title')}</h2>
+                <h2 id="average-height-by-country" className="text-2xl md:text-3xl font-black tracking-tight scroll-mt-24">{t('title')}</h2>
                 {/* Synced Unit Toggle */}
                 <div className="bg-bg border border-border p-1 rounded-full flex items-center shadow-sm shrink-0">
                     <button onClick={() => setUnitSystem('metric')} className={`px-4 py-1.5 rounded-full text-xs font-black transition-colors ${unitSystem === 'metric' ? 'bg-accent text-white shadow-md' : 'text-muted hover:text-foreground'}`}>{t('unitToggle.metric')}</button>

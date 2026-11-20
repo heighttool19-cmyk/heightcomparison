@@ -87,8 +87,8 @@ export default function IdealWeightInteractive() {
     const results = getIBW();
 
     return (
-        <section id="calculate-your-ideal-body-weight-in-kg-or-pounds" className="scroll-mt-24 bg-surface border border-border p-6 md:p-10 rounded-3xl shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
-            <h2 className="text-2xl md:text-3xl font-black tracking-tight mb-4 text-foreground">{t('title')}</h2>
+        <section id="ideal-body-weight-calculator-section" className="scroll-mt-24 bg-surface border border-border p-6 md:p-10 rounded-3xl shadow-xl shadow-black/5 hover:border-accent/30 transition-colors">
+            <h2 id="ideal-body-weight-calculator" className="text-2xl md:text-3xl font-black tracking-tight mb-4 text-foreground scroll-mt-24">{t('title')}</h2>
             <p className="text-muted leading-relaxed mb-8">
                 {t('description')}
             </p>

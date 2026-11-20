@@ -82,7 +82,7 @@ export default async function AverageHeightByCountryPage({ params }: { params: P
 
                         {/* H1 Intro */}
                         <div className="space-y-6 text-left sm:text-left">
-                            <h1 id="average-height-by-country" className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight scroll-mt-24 text-left">
+                            <h1 className="text-3xl md:text-5xl font-black text-foreground leading-[1.1] tracking-tight text-left">
                                 {t('h1')}
                             </h1>
                             <p className="text-muted leading-relaxed text-lg max-w-3xl text-left">
@@ -104,7 +104,7 @@ export default async function AverageHeightByCountryPage({ params }: { params: P
                         </div>
 
                         {/* Table Section */}
-                        <section id="average-height-by-country-global-table" className="scroll-mt-24">
+                        <section id="average-height-table-section" className="scroll-mt-24">
                             <AverageHeightTable />
                         </section>
 
