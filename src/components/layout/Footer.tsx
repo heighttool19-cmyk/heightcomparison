@@ -31,14 +31,14 @@ const Footer = () => {
                             <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-110">
                                 <img
                                     src="/logo.png"
-                                    alt="Height Comparison Logo"
+                                    alt="Height Comparison Calculator Logo"
                                     className="object-contain"
                                     width={40}
                                     height={40}
                                 />
                             </div>
                             <span className="text-lg font-semibold text-foreground tracking-tight">
-                                Height<span className="text-accent"> Comparison</span>
+                                Height Comparison<span className="text-accent"> Calculator</span>
                             </span>
                         </Link>
                         <p className="text-sm leading-relaxed text-muted max-w-[280px]">

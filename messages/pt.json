@@ -21,7 +21,7 @@
     "imageToHeight": "Imagem para Altura",
     "about": "Sobre",
     "blogs": "Artigos",
-    "brandName": "Height Comparison",
+    "brandName": "Height Comparison Calculator",
     "metricCm": "métrico (cm)",
     "imperialFtIn": "imperial (ft/in)",
     "switchTo": "Mudar para"
@@ -42,7 +42,7 @@
     "about": "Sobre",
     "blogs": "Artigos",
     "privacyPolicy": "Política de Privacidade",
-    "copyright": "© {year} Height Comparison. Todos os direitos reservados. Desenvolvido com carinho por ",
+    "copyright": "© {year} Height Comparison Calculator. Todos os direitos reservados. Desenvolvido com carinho por ",
     "theTeam": "a equipa"
   },
   "about": {

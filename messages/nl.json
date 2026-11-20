@@ -21,7 +21,7 @@
     "imageToHeight": "Afbeelding naar Lengte",
     "about": "Over Ons",
     "blogs": "Blog",
-    "brandName": "Height Comparison",
+    "brandName": "Height Comparison Calculator",
     "metricCm": "metrisch (cm)",
     "imperialFtIn": "imperiaal (ft/in)",
     "switchTo": "Wisselen naar"
@@ -42,7 +42,7 @@
     "about": "Over Ons",
     "blogs": "Blog",
     "privacyPolicy": "Privacybeleid",
-    "copyright": "© {year} Height Comparison. Alle rechten voorbehouden. Met zorg gemaakt door ",
+    "copyright": "© {year} Height Comparison Calculator. Alle rechten voorbehouden. Met zorg gemaakt door ",
     "theTeam": "het team"
   },
   "about": {

@@ -29,7 +29,7 @@ export const HOME_SCHEMA = {
       "@id": "https://heightcomparisoncalculator.com/#webpage",
       "url": "https://heightcomparisoncalculator.com/",
       "name": "Height Comparison Chart - Person Height, Character Height & More",
-      "description": "Use Height Comparison Tool to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
+      "description": "Use Height Comparison Calculator to compare heights online. Create a height comparison chart for people or characters with this easy height comparison website",
       "inLanguage": "en",
       "isPartOf": {
         "@id": "https://heightcomparisoncalculator.com/#website"

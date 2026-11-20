@@ -21,7 +21,7 @@
     "imageToHeight": "Image to Height",
     "about": "About",
     "blogs": "Blogs",
-    "brandName": "Height Comparison",
+    "brandName": "Height Comparison Calculator",
     "metricCm": "metric (cm)",
     "imperialFtIn": "imperial (ft/in)",
     "switchTo": "Switch to"
@@ -42,12 +42,12 @@
     "about": "About",
     "blogs": "Blogs",
     "privacyPolicy": "Privacy Policy",
-    "copyright": "© {year} Height Comparison. All rights reserved. Built with care by ",
+    "copyright": "© {year} Height Comparison Calculator. All rights reserved. Built with care by ",
     "theTeam": "the team"
   },
   "about": {
     "badge": "About",
-    "brandName": "Height Comparison",
+    "brandName": "Height Comparison Calculator",
     "heroQuote": "HeightComparison started as a side project built around one simple observation: height numbers are almost useless without context. You need to see them. A 12 cm gap between two people at 165 cm is a genuinely different experience to the same 12 cm gap at 185 cm. The proportion changes. The visual relationship changes. Yet every other comparison tool on the internet just subtracts one number from another and calls it done.",
     "builtDifferent": "We built something different.",
     "whatItDoesTitle": "What the Tool Actually Does",
@@ -2028,10 +2028,10 @@
     }
   },
   "metadata": {
-    "aboutTitle": "About Us - Height Comparison Tool",
+    "aboutTitle": "About - Height Comparison Calculator",
     "aboutDescription": "Learn about our true proportional scale height comparison tool, calculators, data sources, and accuracy standards.",
-    "privacyTitle": "Privacy Policy - Height Comparison Tool",
-    "privacyDescription": "Read the Height Comparison Tool privacy policy to learn how we protect your information and handle data.",
+    "privacyTitle": "Privacy Policy - Height Comparison Calculator",
+    "privacyDescription": "Read the Height Comparison Calculator privacy policy to learn how we protect your information and handle data.",
     "heightPredictorTitle": "Height Calculator: Predict Your Adult Height",
     "heightPredictorDescription": "Expected adult height calculator to predict child height from two methods: Khamis Roche calculator and mid parental height calculator.",
     "heightWeightPercentileTitle": "Height and Weight Percentile Calculator for Babies, Kids & Adults",
@@ -2042,7 +2042,7 @@
     "heightDifferenceDescription": "Calculate height difference with our height difference calculator. Includes couple height difference calculator with a height difference calculator chart.",
     "averageHeightByCountryTitle": "Average Height by Country - Global Human Height Chart",
     "averageHeightByCountryDescription": "Learn the average height of a woman & man worldwide and compare average heights by country. See the average human height around the world in one chart.",
-    "blogsTitle": "Blog Height Comparison Tool",
+    "blogsTitle": "Height Blog: Records, Guides & Comparisons",
     "blogsDescription": "Read the latest articles about height, body proportions, and interesting comparisons.",
     "imageToHeightTitle": "How to Measure Your Height at Home Without Measuring Tape",
     "imageToHeightDescription": "Do you want to know how tall am I? Click to find out how to measure your own height without a measuring tape using our image to height calculator",
@@ -2532,7 +2532,7 @@
     },
     "section5": {
       "eyebrow": "Why choose it",
-      "title": "Why Choose Our Height Comparison Tool?",
+      "title": "Why Choose Our Height Comparison Calculator?",
       "description": "Professional toolset. Zero friction. No accounts.",
       "features": [
         {

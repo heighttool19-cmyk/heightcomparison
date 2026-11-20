@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
                     <div className="w-10 h-10 rounded-full bg-[#3B82F6] flex items-center justify-center relative overflow-hidden shadow-lg shadow-blue-500/20">
                         <img
                             src="/logo.png"
-                            alt="Logo"
+                            alt="Height Comparison Calculator Logo"
                             width={40}
                             height={40}
                             className="w-full h-full object-cover"
@@ -86,6 +86,8 @@ const Navbar: React.FC = () => {
                     </div>
                     <span className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors whitespace-nowrap">
                         Height<span className="text-accent"> Comparison</span>
+                        <span className="hidden sm:inline"> Calculator</span>
+                        <span className="sr-only sm:hidden"> Calculator</span>
                     </span>
                 </Link>
 

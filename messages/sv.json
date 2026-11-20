@@ -21,7 +21,7 @@
     "imageToHeight": "Image to Height",
     "about": "Om oss",
     "blogs": "Bloggar",
-    "brandName": "Height Comparison",
+    "brandName": "Height Comparison Calculator",
     "metricCm": "metrisk (cm)",
     "imperialFtIn": "imperial (fot/tum)",
     "switchTo": "Byt till"
@@ -42,12 +42,12 @@
     "about": "Om oss",
     "blogs": "Bloggar",
     "privacyPolicy": "Integritetspolicy",
-    "copyright": "© {year} Height Comparison. Alla rättigheter förbehållna. Byggd med omsorg av ",
+    "copyright": "© {year} Height Comparison Calculator. Alla rättigheter förbehållna. Byggd med omsorg av ",
     "theTeam": "teamet"
   },
   "about": {
     "badge": "Om oss",
-    "brandName": "Height Comparison",
+    "brandName": "Height Comparison Calculator",
     "heroQuote": "HeightComparison började som ett sidoprojekt byggt kring en enkel observation: längdsiffror är nästan värdelösa utan sammanhang. Du måste se dem. En 12 cm skillnad mellan två personer på 165 cm är en genuint annorlunda upplevelse än samma 12 cm skillnad på 185 cm. Proportionerna ändras. Den visuella relationen ändras. Ändå subtraherar alla andra jämförelseverktyg på internet bara ett nummer från ett annat och kallar det klart.",
     "builtDifferent": "Vi byggde något annorlunda.",
     "whatItDoesTitle": "Vad verktyget faktiskt gör",

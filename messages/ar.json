@@ -21,7 +21,7 @@
     "imageToHeight": "تقدير الطول من الصورة",
     "about": "من نحن",
     "blogs": "المدونة",
-    "brandName": "Height Comparison",
+    "brandName": "Height Comparison Calculator",
     "metricCm": "متري (سم)",
     "imperialFtIn": "إمبراطوري (قدم/بوصة)",
     "switchTo": "التبديل إلى"
@@ -42,12 +42,12 @@
     "about": "من نحن",
     "blogs": "المدونة",
     "privacyPolicy": "سياسة الخصوصية",
-    "copyright": "© {year} Height Comparison. جميع الحقوق محفوظة. صُمم بعناية بواسطة ",
+    "copyright": "© {year} Height Comparison Calculator. جميع الحقوق محفوظة. صُمم بعناية بواسطة ",
     "theTeam": "الفريق"
   },
   "about": {
     "badge": "من نحن",
-    "brandName": "Height Comparison",
+    "brandName": "Height Comparison Calculator",
     "heroQuote": "بدأ HeightComparison كمشروع جانبي بُني حول ملاحظة بسيطة واحدة: أرقام الطول تكون عديمة الفائدة تقريبًا بدون سياق. أنت بحاجة إلى رؤيتها بالعين المجردة. ففارق 12 سم بين شخصين عند طول 165 سم يعد تجربة بصرية مختلفة تمامًا عن نفس الفارق البالغ 12 سم عند طول 185 سم. التناسب يتغير، والعلاقة البصرية تتغير. ومع ذلك، فإن كل أداة مقارنة أخرى على الإنترنت تكتفي بطرح رقم من آخر وتعتبر المهمة منتهية.",
     "builtDifferent": "لقد بنينا شيئًا مختلفًا تمامًا.",
     "whatItDoesTitle": "ما تقدمه الأداة بالفعل",

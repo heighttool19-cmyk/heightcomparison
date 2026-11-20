@@ -21,7 +21,7 @@
     "imageToHeight": "Image to Height",
     "about": "O nas",
     "blogs": "Blogi",
-    "brandName": "Height Comparison",
+    "brandName": "Height Comparison Calculator",
     "metricCm": "metryczny (cm)",
     "imperialFtIn": "imperialny (stopy/cale)",
     "switchTo": "Przełącz na"
@@ -42,12 +42,12 @@
     "about": "O nas",
     "blogs": "Blogi",
     "privacyPolicy": "Polityka prywatności",
-    "copyright": "© {year} Height Comparison. Wszelkie prawa zastrzeżone. Stworzone z dbałością przez ",
+    "copyright": "© {year} Height Comparison Calculator. Wszelkie prawa zastrzeżone. Stworzone z dbałością przez ",
     "theTeam": "zespół"
   },
   "about": {
     "badge": "O nas",
-    "brandName": "Height Comparison",
+    "brandName": "Height Comparison Calculator",
     "heroQuote": "HeightComparison zaczęło się jako poboczny projekt zbudowany wokół jednej prostej obserwacji: liczby wzrostu są prawie bezużyteczne bez kontekstu. Trzeba je zobaczyć. 12 cm różnicy między dwiema osobami o wzroście 165 cm to zupełnie inne doświadczenie niż ta sama 12 cm różnica przy wzroście 185 cm. Proporcje się zmieniają. Wizualna relacja się zmienia. A jednak każde inne narzędzie porównawcze w internecie po prostu odejmuje jedną liczbę od drugiej i uważa to za zakończone.",
     "builtDifferent": "Stworzyliśmy coś innego.",
     "whatItDoesTitle": "Co właściwie robi to narzędzie",
