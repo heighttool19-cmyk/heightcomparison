@@ -322,7 +322,7 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
         <Flex justify="space-between" align="center" wrap="wrap" gap={2}>
           <Inline space={2}>
             <Text size={1} weight="bold">
-              📊 Table ({rows.length} rows × {colCount} columns)
+              Table ({rows.length} rows × {colCount} columns)
             </Text>
           </Inline>
           <Flex gap={2} wrap="wrap">
@@ -429,7 +429,7 @@ export function CustomTableEditor(props: ObjectInputProps<TableValue>) {
         </Box>
 
         <Text size={0} muted>
-          💡 <strong>Tip:</strong> You can type directly in any cell, or select any cell and press <strong>Ctrl+V</strong> to paste spreadsheet rows starting at that cell.
+          <strong>Tip:</strong> You can type directly in any cell, or select any cell and press <strong>Ctrl+V</strong> to paste spreadsheet rows starting at that cell.
         </Text>
       </Stack>
 

@@ -147,7 +147,7 @@ export default defineType({
               const colCount = rows?.[0]?.cells?.length || 0;
               const firstRowSample = rows?.[0]?.cells?.filter(Boolean).slice(0, 4).join(" | ");
               return {
-                title: firstRowSample ? `📊 Table: ${firstRowSample}` : "📊 Table",
+                title: firstRowSample ? `Table: ${firstRowSample}` : "Table",
                 subtitle: rowCount > 0 ? `${rowCount} rows × ${colCount} columns` : "Empty Table",
                 rows: rows || [],
               };
