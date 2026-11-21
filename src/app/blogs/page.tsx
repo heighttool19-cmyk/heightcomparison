@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { client } from '@/sanity/lib/client';
-import { allPostsQuery } from '@/sanity/lib/queries';
+import { paginatedPostsQuery, totalPostsCountQuery } from '@/sanity/lib/queries';
 import type { Post } from '@/sanity/lib/types';
 import ErrorBoundary from '@/components/common/ErrorBoundary';
+import Pagination from '@/components/blog/Pagination';
 
 function formatDate(dateStr: string): string {
     return new Date(dateStr).toLocaleDateString('en-US', {
@@ -12,10 +13,26 @@ function formatDate(dateStr: string): string {
     });
 }
 
+const POSTS_PER_PAGE = 9;
+
 export const revalidate = 60; // ISR cache revalidation every 60 seconds
 
-export default async function BlogsPage() {
-    const posts = await client.fetch<Post[]>(allPostsQuery);
+interface BlogsPageProps {
+    searchParams: Promise<{ page?: string }>;
+}
+
+export default async function BlogsPage({ searchParams }: BlogsPageProps) {
+    const { page } = await searchParams;
+    const currentPage = Math.max(1, parseInt(page || '1', 10) || 1);
+    const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+    const endIndex = startIndex + POSTS_PER_PAGE;
+
+    const [posts, totalPosts] = await Promise.all([
+        client.fetch<Post[]>(paginatedPostsQuery, { startIndex, endIndex }),
+        client.fetch<number>(totalPostsCountQuery)
+    ]);
+
+    const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE) || 1;
 
     return (
         <ErrorBoundary name="BlogsIndex">
@@ -42,79 +59,86 @@ export default async function BlogsPage() {
                             <p className="text-muted/60">Check back later for new content.</p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {posts.map((post) => (
-                                <Link
-                                    href={`/blog/${post.slug.current}`}
-                                    key={post._id}
-                                    className="group flex flex-col bg-surface border-2 border-border rounded-3xl overflow-hidden hover:border-accent/40 transition-colors shadow-sm cursor-pointer"
-                                    prefetch={false}
-                                >
-                                    {/* Image */}
-                                    <div className="aspect-[16/10] bg-muted/10 overflow-hidden relative">
-                                        {post.mainImage?.asset?.url ? (
-                                            // eslint-disable-next-line @next/next/no-img-element
-                                            <img
-                                                src={post.mainImage.asset.url}
-                                                alt={post.title}
-                                                className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full flex items-center justify-center text-muted/30">
-                                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                                                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                                                    <circle cx="9" cy="9" r="2" />
-                                                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
-                                                </svg>
-                                            </div>
-                                        )}
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="p-6 md:p-8 flex flex-col flex-1">
-                                        <div className="flex items-center gap-2 mb-4">
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-accent bg-accent/10 px-2.5 py-1 rounded-md">
-                                                Article
-                                            </div>
-                                            <time dateTime={post.publishedAt} className="text-xs font-bold text-muted/70">
-                                                {formatDate(post.publishedAt)}
-                                            </time>
-                                        </div>
-
-                                        <h2 className="text-xl md:text-2xl font-black text-foreground mb-3 leading-tight group-hover:text-accent transition-colors line-clamp-2">
-                                            {post.title}
-                                        </h2>
-
-                                        {post.excerpt && (
-                                            <p className="text-sm text-muted font-bold opacity-70 mb-6 line-clamp-3 leading-relaxed flex-1">
-                                                {post.excerpt}
-                                            </p>
-                                        )}
-
-                                        {/* Author Footer */}
-                                        <div className="mt-auto pt-6 border-t border-border flex items-center gap-3">
-                                            {post.author?.image?.asset?.url ? (
+                        <>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {posts.map((post) => (
+                                    <Link
+                                        href={`/blog/${post.slug.current}`}
+                                        key={post._id}
+                                        className="group flex flex-col bg-surface border-2 border-border rounded-3xl overflow-hidden hover:border-accent/40 transition-colors shadow-sm cursor-pointer"
+                                        prefetch={false}
+                                    >
+                                        {/* Image */}
+                                        <div className="aspect-[16/10] bg-muted/10 overflow-hidden relative">
+                                            {post.mainImage?.asset?.url ? (
                                                 // eslint-disable-next-line @next/next/no-img-element
                                                 <img
-                                                    src={post.author.image.asset.url}
-                                                    alt={post.author.name}
-                                                    className="w-8 h-8 rounded-full object-cover border border-border"
+                                                    src={post.mainImage.asset.url}
+                                                    alt={post.title}
+                                                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                                                 />
                                             ) : (
-                                                <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center font-bold text-accent text-xs">
-                                                    {post.author?.name?.charAt(0) || 'A'}
+                                                <div className="w-full h-full flex items-center justify-center text-muted/30">
+                                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                                                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                                                        <circle cx="9" cy="9" r="2" />
+                                                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+                                                    </svg>
                                                 </div>
                                             )}
-                                            <div className="flex flex-col">
-                                                <span className="text-xs font-bold text-foreground">
-                                                    {post.author?.name || 'Unknown Author'}
-                                                </span>
+                                        </div>
+
+                                        {/* Content */}
+                                        <div className="p-6 md:p-8 flex flex-col flex-1">
+                                            <div className="flex items-center gap-2 mb-4">
+                                                <div className="text-[10px] font-black uppercase tracking-widest text-accent bg-accent/10 px-2.5 py-1 rounded-md">
+                                                    Article
+                                                </div>
+                                                <time dateTime={post.publishedAt} className="text-xs font-bold text-muted/70">
+                                                    {formatDate(post.publishedAt)}
+                                                </time>
+                                            </div>
+
+                                            <h2 className="text-xl md:text-2xl font-black text-foreground mb-3 leading-tight group-hover:text-accent transition-colors line-clamp-2">
+                                                {post.title}
+                                            </h2>
+
+                                            {post.excerpt && (
+                                                <p className="text-sm text-muted font-bold opacity-70 mb-6 line-clamp-3 leading-relaxed flex-1">
+                                                    {post.excerpt}
+                                                </p>
+                                            )}
+
+                                            {/* Author Footer */}
+                                            <div className="mt-auto pt-6 border-t border-border flex items-center gap-3">
+                                                {post.author?.image?.asset?.url ? (
+                                                    // eslint-disable-next-line @next/next/no-img-element
+                                                    <img
+                                                        src={post.author.image.asset.url}
+                                                        alt={post.author.name}
+                                                        className="w-8 h-8 rounded-full object-cover border border-border"
+                                                    />
+                                                ) : (
+                                                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center font-bold text-accent text-xs">
+                                                        {post.author?.name?.charAt(0) || 'A'}
+                                                    </div>
+                                                )}
+                                                <div className="flex flex-col">
+                                                    <span className="text-xs font-bold text-foreground">
+                                                        {post.author?.name || 'Unknown Author'}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </Link>
-                            ))}
-                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                            <Pagination
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                baseUrl="/blogs"
+                            />
+                        </>
                     )}
                 </div>
             </div>
