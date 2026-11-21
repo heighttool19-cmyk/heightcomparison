@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Mail, Shield, AlertTriangle, Lightbulb } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import JsonLd from '@/components/common/JsonLd';
-import { CONTACT_SCHEMA } from '@/constants/schemas/contact';
+import { getContactSchema } from '@/constants/schemas/contact';
 import ContactForm from '@/components/contact/ContactForm';
 import { getCanonicalUrl, getAlternateLanguages, getSocialMetadata } from '@/i18n/config';
 
@@ -35,7 +35,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   return (
     <div className="min-h-screen bg-bg text-foreground">
       {/* Schema Markup */}
-      <JsonLd data={CONTACT_SCHEMA} />
+      <JsonLd data={getContactSchema(locale)} />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-20">
         {/* Breadcrumb Navigation */}

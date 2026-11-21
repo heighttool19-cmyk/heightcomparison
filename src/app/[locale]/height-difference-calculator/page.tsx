@@ -8,7 +8,7 @@ import HeightDifferenceChart from '@/components/height-difference-calculator/Hei
 import TableOfContents from '@/components/TableOfContents';
 import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/common/JsonLd';
-import { HEIGHT_DIFFERENCE_SCHEMA } from '@/constants/schemas/heightDifference';
+import { getHeightDifferenceSchema } from '@/constants/schemas/heightDifference';
 import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -40,7 +40,7 @@ export default async function HeightDifferencePage({ params }: { params: Promise
 
     return (
         <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative pt-8 overflow-x-clip transform-gpu">
-            <JsonLd data={HEIGHT_DIFFERENCE_SCHEMA} />
+            <JsonLd data={getHeightDifferenceSchema(locale)} />
 
             {/* --- Sidebar TOC --- */}
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">

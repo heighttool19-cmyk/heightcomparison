@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { ArrowUpCircle } from 'lucide-react';
 import { DynamicIdealWeightIsland, DynamicHealthyWeightIsland } from '@/components/ideal-body-weight-calculator/DynamicIBWIslands';
 import JsonLd from '@/components/common/JsonLd';
-import { IDEAL_BODY_WEIGHT_SCHEMA } from '@/constants/schemas/idealBodyWeight';
+import { getIdealBodyWeightSchema } from '@/constants/schemas/idealBodyWeight';
 
 import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
@@ -39,7 +39,7 @@ export default async function IdealBodyWeightPage({ params }: { params: Promise<
 
     return (
         <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative pt-8 overflow-x-clip transform-gpu">
-            <JsonLd data={IDEAL_BODY_WEIGHT_SCHEMA} />
+            <JsonLd data={getIdealBodyWeightSchema(locale)} />
             {/* --- Sidebar TOC --- */}
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={toc} />

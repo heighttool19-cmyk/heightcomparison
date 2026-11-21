@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Info, BarChart2, Zap, Lock, ShieldCheck } from 'lucide-react';
 import JsonLd from '@/components/common/JsonLd';
-import { ABOUT_SCHEMA } from '@/constants/schemas/about';
+import { getAboutSchema } from '@/constants/schemas/about';
 import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -36,7 +36,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
   return (
     <div className="min-h-screen bg-bg">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-accent/5 to-transparent" />
-      <JsonLd data={ABOUT_SCHEMA} />
+      <JsonLd data={getAboutSchema(locale)} />
 
       <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-12 pb-24 lg:pt-20">
         <header className="text-center mb-16">

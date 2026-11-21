@@ -1,6 +1,8 @@
 import React from 'react';
 import { getTranslations } from 'next-intl/server';
 import { Shield, Lock, FileText, Eye, Database, HelpCircle, Clock, Mail } from 'lucide-react';
+import JsonLd from '@/components/common/JsonLd';
+import { getPrivacySchema } from '@/constants/schemas/privacy';
 import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -32,6 +34,7 @@ export default async function LocalizedPrivacyPage({ params }: { params: Promise
 
     return (
         <div className="min-h-screen bg-bg">
+            <JsonLd data={getPrivacySchema(locale)} />
             {/* Decorative top gradient */}
             <div className="pointer-events-none absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-accent/5 to-transparent" />
 

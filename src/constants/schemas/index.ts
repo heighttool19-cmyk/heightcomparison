@@ -1,0 +1,10 @@
+export { getAboutSchema, ABOUT_SCHEMA } from './about';
+export { getAverageHeightByCountrySchema, AVERAGE_HEIGHT_BY_COUNTRY_SCHEMA } from './averageHeightByCountry';
+export { getContactSchema, CONTACT_SCHEMA } from './contact';
+export { getHeightDifferenceSchema, HEIGHT_DIFFERENCE_SCHEMA } from './heightDifference';
+export { getHeightPredictorSchema, HEIGHT_PREDICTOR_SCHEMA } from './heightPredictor';
+export { getHomeSchema, HOME_SCHEMA } from './home';
+export { getIdealBodyWeightSchema, IDEAL_BODY_WEIGHT_SCHEMA } from './idealBodyWeight';
+export { getImageToHeightSchema, IMAGE_TO_HEIGHT_SCHEMA } from './imageToHeight';
+export { getPercentileSchema, PERCENTILE_SCHEMA } from './percentile';
+export { getPrivacySchema, PRIVACY_SCHEMA } from './privacy';

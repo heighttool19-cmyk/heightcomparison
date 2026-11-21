@@ -4,7 +4,7 @@ import ReactCountryFlag from "react-country-flag";
 import TableOfContents from '@/components/TableOfContents';
 import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/common/JsonLd';
-import { AVERAGE_HEIGHT_BY_COUNTRY_SCHEMA } from '@/constants/schemas/averageHeightByCountry';
+import { getAverageHeightByCountrySchema } from '@/constants/schemas/averageHeightByCountry';
 import { BLUE, TEAL } from '@/constants/colors';
 import { TOP10, REGIONS } from '@/constants/averageHeight';
 import { Bars, RegionMap } from '@/components/average-height-by-country/ChartHelpers';
@@ -73,7 +73,7 @@ export default async function AverageHeightByCountryPage({ params }: { params: P
 
     return (
         <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative pt-8 overflow-x-clip transform-gpu">
-            <JsonLd data={AVERAGE_HEIGHT_BY_COUNTRY_SCHEMA} />
+            <JsonLd data={getAverageHeightByCountrySchema(locale)} />
 
             <main className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-4 md:p-8 relative pt-8">
 

@@ -12,7 +12,7 @@ import { ImageMeasurement } from '@/components/ImageMeasurement';
 import Link from 'next/link';
 import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/common/JsonLd';
-import { IMAGE_TO_HEIGHT_SCHEMA } from '@/constants/schemas/imageToHeight';
+import { getImageToHeightSchema } from '@/constants/schemas/imageToHeight';
 import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -108,7 +108,7 @@ export default async function ImageToHeightPage({ params }: { params: Promise<{ 
 
     return (
         <div className="flex-1 bg-canvas p-2 py-8 md:p-8 transform-gpu">
-            <JsonLd data={IMAGE_TO_HEIGHT_SCHEMA} />
+            <JsonLd data={getImageToHeightSchema(locale)} />
             <div className="flex-1 flex flex-col justify-center items-center md:flex-row relative p-2 md:p-4 gap-4 bg-canvas overflow-x-clip w-full transform-gpu">
 
                 <div className="responsive-tool-container flex flex-col gap-10 pb-10 max-w-4xl mx-auto w-full">

@@ -9,7 +9,7 @@ import WHOvsCDCVisual from '@/components/height-weight-percentile-calculator/WHO
 import TableOfContents from '@/components/TableOfContents';
 import FaqAccordion from '@/components/FaqAccordion';
 import JsonLd from '@/components/common/JsonLd';
-import { PERCENTILE_SCHEMA } from '@/constants/schemas/percentile';
+import { getPercentileSchema } from '@/constants/schemas/percentile';
 
 import { getAlternateLanguages, getCanonicalUrl, getSocialMetadata } from '@/i18n/config';
 
@@ -42,7 +42,7 @@ export default async function PercentileCalculatorPage({ params }: { params: Pro
 
     return (
         <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 mt-8 overflow-x-clip transform-gpu">
-            <JsonLd data={PERCENTILE_SCHEMA} />
+            <JsonLd data={getPercentileSchema(locale)} />
             {/* --- Sidebar TOC --- */}
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={toc} />

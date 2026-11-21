@@ -14,7 +14,7 @@ import {
     DynamicHeightConverter as HeightConverter
 } from '@/components/height-predictor/DynamicChildHeightIslands';
 import JsonLd from '@/components/common/JsonLd';
-import { HEIGHT_PREDICTOR_SCHEMA } from '@/constants/schemas/heightPredictor';
+import { getHeightPredictorSchema } from '@/constants/schemas/heightPredictor';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
@@ -45,7 +45,7 @@ export default async function HeightCalculatorPage({ params }: { params: Promise
 
     return (
         <div className="flex flex-col md:flex-row max-w-7xl mx-auto w-full gap-8 p-2 md:p-4 relative overflow-x-clip transform-gpu">
-            <JsonLd data={HEIGHT_PREDICTOR_SCHEMA} />
+            <JsonLd data={getHeightPredictorSchema(locale)} />
             <aside className="hidden md:block w-72 shrink-0 order-2 md:order-1">
                 <TableOfContents items={toc} />
             </aside>

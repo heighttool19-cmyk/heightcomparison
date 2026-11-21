@@ -1,39 +1,29 @@
-export const CONTACT_SCHEMA = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ContactPage",
-      "@id": "https://heightcomparisoncalculator.com/contact#webpage",
-      "url": "https://heightcomparisoncalculator.com/contact",
-      "name": "Contact Us | Height Comparison Calculator",
-      "inLanguage": "en",
-      "isPartOf": { "@id": "https://heightcomparisoncalculator.com/#website" },
-      "about": { "@id": "https://heightcomparisoncalculator.com/#organization" },
-      "breadcrumb": { "@id": "https://heightcomparisoncalculator.com/contact#breadcrumb" },
-      "dateModified": "2026-11-14",
-    },
-    {
-      "@type": "Organization",
-      "@id": "https://heightcomparisoncalculator.com/#organization",
-      "name": "Height Comparison Calculator",
-      "url": "https://heightcomparisoncalculator.com",
-      "email": "contact@heightcomparisoncalculator.com",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer support",
-        "email": "contact@heightcomparisoncalculator.com",
-        "url": "https://heightcomparisoncalculator.com/contact",
-        "availableLanguage": "English",
-      },
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://heightcomparisoncalculator.com/contact#breadcrumb",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://heightcomparisoncalculator.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Contact Us", "item": "https://heightcomparisoncalculator.com/contact" },
-      ],
-    },
-  ],
+import { CONTACT_SCHEMA as EN_SCHEMA } from './en/contact';
+import { CONTACT_SCHEMA as DE_SCHEMA } from './de/contact';
+import { CONTACT_SCHEMA as ES_SCHEMA } from './es/contact';
+import { CONTACT_SCHEMA as FR_SCHEMA } from './fr/contact';
+import { CONTACT_SCHEMA as PT_SCHEMA } from './pt/contact';
+import { CONTACT_SCHEMA as NL_SCHEMA } from './nl/contact';
+import { CONTACT_SCHEMA as AR_SCHEMA } from './ar/contact';
+import { CONTACT_SCHEMA as IT_SCHEMA } from './it/contact';
+import { CONTACT_SCHEMA as SV_SCHEMA } from './sv/contact';
+import { CONTACT_SCHEMA as PL_SCHEMA } from './pl/contact';
+
+const schemas: Record<string, Record<string, any>> = {
+  en: EN_SCHEMA,
+  de: DE_SCHEMA,
+  es: ES_SCHEMA,
+  fr: FR_SCHEMA,
+  pt: PT_SCHEMA,
+  nl: NL_SCHEMA,
+  ar: AR_SCHEMA,
+  it: IT_SCHEMA,
+  sv: SV_SCHEMA,
+  pl: PL_SCHEMA,
 };
 
+export function getContactSchema(locale: string = 'en'): Record<string, any> {
+  return schemas[locale] || EN_SCHEMA;
+}
+
+export const CONTACT_SCHEMA = EN_SCHEMA;
