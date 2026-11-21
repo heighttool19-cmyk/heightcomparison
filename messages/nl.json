@@ -2032,18 +2032,17 @@
     "hero": {
       "eyebrow": "Afbeelding naar lengte",
       "title": "Meet Je Lengte Vanaf een Foto. ",
-      "titleAccent": "Geen Meetlint Nodig.",
       "description": "Upload een foto van top tot teen met een deur, A4-tje of pinpas in beeld. Duid het referentie-object aan, vul de werkelijke maat in en trek een lijn van de vloer naar je kruin. Ontvang je lengte in centimeters en feet/inches met 1 tot 2 cm nauwkeurigheid. Gratis, zonder registratie op elk apparaat.",
       "badgeFree": "Gratis",
       "badgeNoAccount": "Zonder account",
       "badgePrivate": "Foto blijft op je toestel",
       "badgeUnits": "In cm en ft/in",
-      "ctaUpload": "Foto Uploaden en Nu Meten",
-      "accuracyNotice": "Nauwkeurig tot 1–2 cm. 100% privé. Werkt in de browser.",
-      "prepTitle": "Check 3 dingen voor je de foto maakt:",
       "prep1": "Hele lichaam in beeld, van hoofd tot voeten met de vloer zichtbaar.",
       "prep2": "Sta tegen dezelfde muur als het referentie-object.",
-      "prep3": "Telefoon rechtop en waterpas gehouden, rond heuphoogte."
+      "prep3": "Telefoon rechtop en waterpas gehouden, rond heuphoogte.",
+      "toolTitle": "Lengte meten vanaf een foto",
+      "toolSubtitle": "Controleer drie zaken voordat je de foto maakt.",
+      "privacyLine": "Je foto blijft op je apparaat. De tool draait in je browser en uploadt deze nooit."
     },
     "howItWorks": {
       "eyebrow": "Vijf stappen, één foto",
@@ -2076,7 +2075,8 @@
           "title": "Lees je uitslag en bewaar",
           "desc": "Je lengte verschijnt in centimeters en feet/inches. Klik op 'Opslaan in grafiek' om te vergelijken."
         }
-      ]
+      ],
+      "caption": "Screenshots van de live tool. De testfiguur meet 171,8 cm ten opzichte van echte 172,0 cm."
     },
     "whatYouCanMeasure": {
       "eyebrow": "Meer dan alleen jezelf",
@@ -2106,12 +2106,9 @@
         }
       ],
       "whyArTitle": "Waarom een foto in plaats van een augmented reality (AR) app?",
-      "why1Bold": "Meet het verleden:",
-      "why1Desc": " AR-apps meten alleen het nu. Een foto maakt het mogelijk om historische foto's en jeugdherinneringen te meten.",
-      "why2Bold": "Geen installatie:",
-      "why2Desc": " Werkt gewoon in elke browser op iOS, Android, Mac of pc zonder apps te downloaden.",
-      "why3Bold": "Volledige privacy:",
-      "why3Desc": " Je foto blijft op je eigen toestel in de browser en wordt nooit naar servers gestuurd."
+      "why1": "AR-apps meten wat er nu voor je staat. Met een foto kun je een voorbij moment meten, inclusief oude afbeeldingen.",
+      "why2": "Het draait in de browser op elke telefoon, zonder installatie en zonder abonnement.",
+      "why3": "Je foto blijft op je apparaat. De tool uploadt deze nooit."
     },
     "referenceObjects": {
       "eyebrow": "Kalibratie-object",
@@ -2217,8 +2214,6 @@
           "error": "+35,6 cm"
         }
       ],
-      "pixelSensitivityBold": "Pixel-nauwkeurigheid:",
-      "pixelSensitivityDesc": " Scheef aantikken geeft afwijkingen. Op een telefoonscherm verschuift een misplaatst pixel de meting met 1 cm bij een deur, 7 cm bij een A4 en 23 cm bij een pasje. Gebruik de grootste referentie en zoom in.",
       "tips": [
         {
           "title": "Houd de camera recht",
@@ -2236,7 +2231,10 @@
           "title": "Hele lichaam zichtbaar",
           "desc": "Voeten of hoofd afsnijden maakt meten onmogelijk. Een helder totaalbeeld levert de meest betrouwbare meting op."
         }
-      ]
+      ],
+      "tiltCaption": "Zijaanzicht bovenaan, de resulterende foto onderaan. Stippellijnen tonen wat de camera ziet, van de vloer tot de bovenkant van de deur.",
+      "pixelSensitivity": "Onnauwkeurig tikken voegt een eigen fout toe, en kleine referenties versterken dit. Op een telefoonscherm verschuift het missen van één rand van de referentie met één pixel een resultaat van 172 cm met ongeveer 1 cm bij een deur, 7 cm bij een A4-vel en 23 cm bij een pasje. Gebruik de grootste referentie op de foto en zoom in voordat je tikt.",
+      "renderedNote": "Gerenderde testscènes, geen foto's van echte mensen, dus houding, haar en lensvervorming zijn niet inbegrepen."
     },
     "noTapeMethods": {
       "eyebrow": "Alternatieve methoden",
@@ -2291,7 +2289,6 @@
     "clinicMethod": {
       "eyebrow": "Klinische standaard",
       "title": "Nauwkeurig Lengte Meten: De Klinische Methode",
-      "description": "Gebaseerd op medische stadiometer-richtlijnen (CDC-protocollen) voor thuis.",
       "steps": [
         "Doe schoenen, dikke kleding, petjes en haarspelden uit en doe hoge staarten los.",
         "Ga op een harde vloer staan (tegels of laminaat, geen tapijt) tegen een vlakke muur zonder plint.",
@@ -2319,7 +2316,10 @@
           "desc": "Door compressie van de tussenwervelschijven ben je 's ochtends tot 1 cm langer dan 's avonds."
         }
       ],
-      "whyAloneFooter": "Het zelf doen maakt het lastig: rechtop staan, het boek horizontaal houden en tegelijk aftekenen. Een foto met een herkenbaar voorwerp lost dit direct op."
+      "whyAloneFooter": "Het zelf doen maakt het lastig: rechtop staan, het boek horizontaal houden en tegelijk aftekenen. Een foto met een herkenbaar voorwerp lost dit direct op.",
+      "cdcAttribution": "Aangepast van de CDC-richtlijn",
+      "cdcLink": "Measuring Children's Height and Weight",
+      "cdcSuffix": ", wat op dezelfde manier werkt voor volwassenen."
     },
     "faq": {
       "badge": "HELPCENTRUM",

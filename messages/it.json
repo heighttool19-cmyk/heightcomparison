@@ -2032,18 +2032,17 @@
     "hero": {
       "eyebrow": "Immagine in altezza",
       "title": "Misura la Tua Altezza da una Foto. ",
-      "titleAccent": "Senza Metro da Sarto.",
       "description": "Carica una foto a figura intera con una porta, un foglio A4 o una carta di credito nell'inquadratura. Seleziona l'oggetto di riferimento, digita la sua dimensione reale e traccia una linea da terra alla testa. Scopri la tua altezza in centimetri e piedi/pollici con scarto di 1-2 cm. Gratuito, senza registrazione, su ogni dispositivo.",
       "badgeFree": "Gratuito",
       "badgeNoAccount": "Senza account",
       "badgePrivate": "La foto non lascia il tuo dispositivo",
       "badgeUnits": "Risultati in cm e ft/in",
-      "ctaUpload": "Carica Foto e Misura Ora",
-      "accuracyNotice": "Accurato a 1–2 cm. 100% privato. Elaborato nel browser.",
-      "prepTitle": "Controlla 3 dettagli prima dello scatto:",
       "prep1": "Figura intera nella foto, dalla testa ai piedi con il pavimento visibile.",
       "prep2": "Rimani a ridosso della stessa parete dell'oggetto di riferimento.",
-      "prep3": "Telefono dritto e a bolla, approssimativamente ad altezza bacino."
+      "prep3": "Telefono dritto e a bolla, approssimativamente ad altezza bacino.",
+      "toolTitle": "Misura l'altezza da una foto",
+      "toolSubtitle": "Verifica tre aspetti prima di scattare la foto.",
+      "privacyLine": "La tua foto rimane sul tuo dispositivo. Lo strumento funziona nel browser e non la carica mai."
     },
     "howItWorks": {
       "eyebrow": "Cinque tocchi, una foto",
@@ -2076,7 +2075,8 @@
           "title": "Leggi l'altezza e salvala",
           "desc": "La tua altezza comparirà in centimetri e in piedi/pollici. Tocca 'Salva' per conservarla e confrontarla con altri."
         }
-      ]
+      ],
+      "caption": "Schermate dello strumento live. La figura di prova misura 171,8 cm rispetto ai 172,0 cm effettivi."
     },
     "whatYouCanMeasure": {
       "eyebrow": "Oltre la tua sola statura",
@@ -2106,12 +2106,9 @@
         }
       ],
       "whyArTitle": "Perché una foto invece di un'app di realtà aumentata (AR)?",
-      "why1Bold": "Misura immagini del passato:",
-      "why1Desc": " Le app AR misurano solo ciò che hai davanti adesso. Con una foto puoi misurare scatti storici e ricordi di famiglia.",
-      "why2Bold": "Zero installazione:",
-      "why2Desc": " Funziona direttamente in ogni browser moderno su iOS, Android, Mac o PC senza installare app.",
-      "why3Bold": "Privacy protetta:",
-      "why3Desc": " La foto rimane al sicuro nella memoria locale del browser e non viene mai caricata su server esterni."
+      "why1": "Le app AR misurano solo ciò che è davanti a te in questo momento. Una foto ti consente di misurare un momento passato, incluse vecchie immagini.",
+      "why2": "Funziona nel browser su qualsiasi smartphone, senza nulla da installare e senza abbonamento.",
+      "why3": "La tua foto rimane sul tuo dispositivo. Lo strumento non la carica mai."
     },
     "referenceObjects": {
       "eyebrow": "Calibrazione",
@@ -2217,8 +2214,6 @@
           "error": "+35,6 cm"
         }
       ],
-      "pixelSensitivityBold": "Sensibilità del tocco:",
-      "pixelSensitivityDesc": " Toccare fuori asse genera imprecisione, e con oggetti piccoli l'errore aumenta. Sullo schermo, mancare l'estremità di 1 pixel sposta il calcolo di 1 cm con una porta, 7 cm con un A4 e 23 cm con una tessera. Scegli il riferimento più grande e ingrandisci prima di toccare.",
       "tips": [
         {
           "title": "Non inclinare il telefono",
@@ -2236,7 +2231,10 @@
           "title": "Corpo intero visibile",
           "desc": "Tagliare piedi o testa non consente di calcolare il dislivello completo. Un'inquadratura nitida garantisce il risultato migliore."
         }
-      ]
+      ],
+      "tiltCaption": "Vista laterale in alto, foto risultante in basso. Le linee tratteggiate mostrano il campo visivo della fotocamera, dal pavimento alla cima della porta.",
+      "pixelSensitivity": "Il tocco impreciso aggiunge un proprio margine di errore, che i riferimenti piccoli amplificano. Sullo schermo di un telefono, mancare un'estremità del riferimento di un solo pixel sposta un risultato di 172 cm di circa 1 cm con una porta, 7 cm con un foglio A4 e 23 cm con una carta. Usa il riferimento più grande nella foto e ingrandisci prima di toccare.",
+      "renderedNote": "Scene di test renderizzate, non foto di persone reali, quindi postura, capelli e distorsione dell'obiettivo non sono inclusi."
     },
     "noTapeMethods": {
       "eyebrow": "Metodi alternativi",
@@ -2291,7 +2289,6 @@
     "clinicMethod": {
       "eyebrow": "Standard medico",
       "title": "Come Misurare l'Altezza con Precisione: Il Metodo Clinico",
-      "description": "Adattato dai protocolli clinici con statimetro (linee guida CDC) per la massima accuratezza a casa.",
       "steps": [
         "Togli scarpe, indumenti pesanti, cappelli e fasce, sciogliendo acconciature alte.",
         "Mettiti su un pavimento piano e solido (piastrelle o parquet, niente tappeti) appoggiato a una parete liscia senza battiscopa sporgente.",
@@ -2319,7 +2316,10 @@
           "desc": "La compressione dei dischi della colonna vertebrale fa perdere fino a 1 cm di statura tra mattina e sera."
         }
       ],
-      "whyAloneFooter": "Fare tutto da soli è scomodo: stare dritti, posizionare il libro e tracciare la linea. Una foto con oggetto noto elimina il bisogno di un aiutante."
+      "whyAloneFooter": "Fare tutto da soli è scomodo: stare dritti, posizionare il libro e tracciare la linea. Una foto con oggetto noto elimina il bisogno di un aiutante.",
+      "cdcAttribution": "Adattato dalla guida del CDC",
+      "cdcLink": "Measuring Children's Height and Weight",
+      "cdcSuffix": ", che si applica allo stesso modo anche per gli adulti."
     },
     "faq": {
       "badge": "CENTRO ASSISTENZA",

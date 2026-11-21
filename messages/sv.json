@@ -2070,18 +2070,17 @@
     "hero": {
       "eyebrow": "Foto till längd",
       "title": "Mät Din Längd Från ett Foto. ",
-      "titleAccent": "Helt Utan Måttband.",
       "description": "Ladda upp en helkroppsbild med en dörr, ett A4-papper eller ett kreditkort i bild. Välj referensobjektet, ange dess verkliga storlek och dra en linje från golvet till hjässan. Få din exakta längd i centimeter och fot/tum med 1–2 cm felmarginal. Gratis, utan konto, på alla enheter.",
       "badgeFree": "Gratis",
       "badgeNoAccount": "Inget konto",
       "badgePrivate": "Bilden stannar i webbläsaren",
       "badgeUnits": "Svar i cm och ft/in",
-      "ctaUpload": "Ladda upp bild och mät nu",
-      "accuracyNotice": "Noggrannhet på 1–2 cm. 100 % privat. Bearbetas lokalt.",
-      "prepTitle": "Kontrollera tre saker före fotografering:",
       "prep1": "Helkroppsbild där både fötter och golv syns tydligt.",
       "prep2": "Stå mot samma vägg som referensobjektet.",
-      "prep3": "Håll telefonen rakt och i våg, ungefär i höfthöjd."
+      "prep3": "Håll telefonen rakt och i våg, ungefär i höfthöjd.",
+      "toolTitle": "Mät längd från ett foto",
+      "toolSubtitle": "Kontrollera tre saker innan du tar fotot.",
+      "privacyLine": "Ditt foto stannar på din enhet. Verktyget körs i din webbläsare och laddar aldrig upp det."
     },
     "howItWorks": {
       "eyebrow": "Fem enkla tryck, ett foto",
@@ -2114,7 +2113,8 @@
           "title": "Läs av och spara måttet",
           "desc": "Din längd visas direkt i centimeter och fot/tum. Tryck på 'Spara' för att behålla resultatet och jämföra med andra figurer."
         }
-      ]
+      ],
+      "caption": "Skärmdumpar från liveverktyget. Testfiguren mäter 171,8 cm mot verkliga 172,0 cm."
     },
     "whatYouCanMeasure": {
       "eyebrow": "Mer än bara din egen längd",
@@ -2144,12 +2144,9 @@
         }
       ],
       "whyArTitle": "Varför använda ett foto istället för en AR-app?",
-      "why1Bold": "Mät gamla bilder:",
-      "why1Desc": " AR-appar mäter bara det du ser just nu. Med ett foto kan du mäta historiska bilder och gamla familjealbum.",
-      "why2Bold": "Ingen appinstallation:",
-      "why2Desc": " Fungerar direkt i din vanliga webbläsare på iOS, Android, Mac och PC utan att ladda ner något.",
-      "why3Bold": "Integritetssäkert:",
-      "why3Desc": " Bilden sparas lokalt i webbläsarens minne och laddas aldrig upp till någon extern server."
+      "why1": "AR-appar mäter bara det som finns framför dig just nu. Ett foto låter dig mäta ett ögonblick som passerat, inklusive gamla bilder.",
+      "why2": "Körs i webbläsaren på vilken telefon som helst, utan installation och utan abonnemang.",
+      "why3": "Ditt foto stannar på din enhet. Verktyget laddar aldrig upp det."
     },
     "referenceObjects": {
       "eyebrow": "Kalibrering",
@@ -2255,8 +2252,6 @@
           "error": "+35,6 cm"
         }
       ],
-      "pixelSensitivityBold": "Känslighet vid markering:",
-      "pixelSensitivityDesc": " Att missa med markören skapar avvikelser, särskilt vid små objekt. Ett missat klick med 1 pixel flyttar måttet med 1 cm vid en dörr, 7 cm vid ett A4 och 23 cm vid ett kort. Välj det största objektet och zooma in innan du trycker.",
       "tips": [
         {
           "title": "Luta inte mobilen",
@@ -2274,7 +2269,10 @@
           "title": "Hela kroppen synlig",
           "desc": "Om fötter eller huvud skärs bort går det inte att mäta hela höjden. En skarp helbild ger bäst resultat."
         }
-      ]
+      ],
+      "tiltCaption": "Sidovy överst, det resulterande fotot nedanför. Streckade linjer visar vad kameran ser, från golvet till dörrens ovankant.",
+      "pixelSensitivity": "Att trycka fel ger ett eget fel, och små referenser förstorar det. På en telefonskärm kan en missad ände av referensen med en enda pixel flytta ett resultat på 172 cm med cirka 1 cm vid en dörr, 7 cm med ett A4-papper och 23 cm med ett kort. Använd den största referensen i fotot och zooma in innan du trycker.",
+      "renderedNote": "Renderade testscener, inte foton av riktiga människor, så hållning, hår och linsförvrängning ingår inte."
     },
     "noTapeMethods": {
       "eyebrow": "Alternativa metoder",
@@ -2329,7 +2327,6 @@
     "clinicMethod": {
       "eyebrow": "Medicinsk standard",
       "title": "Hur Man Mäter Längd med Precision: Den Kliniska Metoden",
-      "description": "Anpassad efter medicinska mätprotokoll (CDC-riktlinjer) för maximal noggrannhet i hemmiljö.",
       "steps": [
         "Ta av skor, tjocka sockor, mössor och hårspännen och släpp ut höga frisyrer.",
         "Ställ dig på ett plant och hårt golv (parkett eller klinker, inte tjock matta) mot en slät vägg utan golvsockel.",
@@ -2357,7 +2354,10 @@
           "desc": "Ryggradens diskar pressas ihop under dagen, vilket gör dig upp till 1 cm kortare på kvällen än på morgonen."
         }
       ],
-      "whyAloneFooter": "Att göra allt själv är besvärligt: stå rakt, hålla boken och rita märket. Ett foto med ett referensobjekt eliminerar behovet av en hjälpreda."
+      "whyAloneFooter": "Att göra allt själv är besvärligt: stå rakt, hålla boken och rita märket. Ett foto med ett referensobjekt eliminerar behovet av en hjälpreda.",
+      "cdcAttribution": "Anpassat från CDC:s guide",
+      "cdcLink": "Measuring Children's Height and Weight",
+      "cdcSuffix": ", vilket fungerar på samma sätt för vuxna."
     },
     "faq": {
       "badge": "HJÄLPCENTER",

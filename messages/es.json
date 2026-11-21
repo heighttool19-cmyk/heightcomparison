@@ -2048,18 +2048,17 @@
     "hero": {
       "eyebrow": "Imagen a Altura",
       "title": "Mide Tu Altura a Partir de una Foto. ",
-      "titleAccent": "Sin Cinta Métrica.",
       "description": "Sube una foto de cuerpo entero con una puerta, una hoja A4 o una tarjeta de crédito visible. Marca el objeto de referencia, introduce su tamaño real y traza una línea desde el suelo hasta la parte superior de la cabeza. Obtén tu estatura en centímetros y en pies y pulgadas con precisión de 1 a 2 cm. Gratis, sin registro y en cualquier dispositivo.",
       "badgeFree": "Gratis",
       "badgeNoAccount": "Sin cuenta",
       "badgePrivate": "La foto no sale de tu dispositivo",
       "badgeUnits": "Resultados en cm y ft/in",
-      "ctaUpload": "Subir Foto y Medir Ahora",
-      "accuracyNotice": "Precisión de 1 a 2 cm. 100% privado. Funciona en tu navegador.",
-      "prepTitle": "Comprueba 3 cosas antes de hacer la foto:",
       "prep1": "Cuerpo entero en el encuadre, de la cabeza a los pies con el suelo visible.",
       "prep2": "Pégate a la misma pared en la que esté el objeto de referencia.",
-      "prep3": "Teléfono en posición vertical y nivelado, a la altura de la cintura."
+      "prep3": "Teléfono en posición vertical y nivelado, a la altura de la cintura.",
+      "toolTitle": "Mide tu altura a partir de una foto",
+      "toolSubtitle": "Comprueba tres cosas antes de hacer la foto.",
+      "privacyLine": "Tu foto se queda en tu dispositivo. La herramienta se ejecuta en tu navegador y nunca la sube."
     },
     "howItWorks": {
       "eyebrow": "Cinco toques, una foto",
@@ -2092,7 +2091,8 @@
           "title": "Consulta tu resultado y guárdalo",
           "desc": "Tu altura aparece en centímetros y en pies/pulgadas. Pulsa 'Guardar en el gráfico' para compararla con amigos, familiares o deportistas."
         }
-      ]
+      ],
+      "caption": "Capturas de la herramienta en vivo. La figura de prueba mide 171,8 cm frente a los 172,0 cm reales."
     },
     "whatYouCanMeasure": {
       "eyebrow": "Más allá de tu propia altura",
@@ -2122,12 +2122,9 @@
         }
       ],
       "whyArTitle": "¿Por qué una foto en lugar de una app de realidad aumentada (RA)?",
-      "why1Bold": "Mide momentos del pasado:",
-      "why1Desc": " Las apps de RA solo miden lo que tienes delante en el presente. Una foto te permite medir imágenes históricas y recuerdos pasados.",
-      "why2Bold": "Sin descargas:",
-      "why2Desc": " Funciona directamente en cualquier navegador moderno en iOS, Android, Mac o PC sin suscripciones.",
-      "why3Bold": "Privacidad absoluta:",
-      "why3Desc": " Tu foto permanece segura en el entorno local de tu navegador y nunca se sube a servidores externos."
+      "why1": "Las aplicaciones de RA miden lo que tienes delante ahora mismo. Una foto te permite medir un momento que ya ha pasado, incluidas fotos antiguas.",
+      "why2": "Se ejecuta en el navegador de cualquier teléfono, sin nada que instalar y sin suscripción.",
+      "why3": "Tu foto se queda en tu dispositivo. La herramienta nunca la sube."
     },
     "referenceObjects": {
       "eyebrow": "Referencia de calibración",
@@ -2233,8 +2230,6 @@
           "error": "+35,6 cm"
         }
       ],
-      "pixelSensitivityBold": "Sensibilidad por píxel:",
-      "pixelSensitivityDesc": " Errar al tocar la pantalla añade desviación, y con referencias pequeñas el error se multiplica. En una pantalla móvil, errar un extremo por un solo píxel varía la medida en 1 cm con una puerta, 7 cm con un folio A4 y 23 cm con una tarjeta. Usa la referencia más grande posible y amplía antes de marcar.",
       "tips": [
         {
           "title": "Evita inclinar la cámara",
@@ -2252,7 +2247,10 @@
           "title": "Cuerpo entero visible",
           "desc": "Cortar los pies o la cabeza impide una medición válida de suelo a coronilla. Un encuadre limpio de cuerpo entero garantiza el mejor resultado."
         }
-      ]
+      ],
+      "tiltCaption": "Vista lateral arriba, la foto resultante abajo. Las líneas discontinuas muestran lo que ve la cámara, desde el suelo hasta la parte superior de la puerta.",
+      "pixelSensitivity": "Errar al pulsar añade su propia desviación, y con referencias pequeñas el error se multiplica. En la pantalla del móvil, errar un extremo de la referencia por un solo píxel varía un resultado de 172 cm en aproximadamente 1 cm con una puerta, 7 cm con una hoja A4 y 23 cm con una tarjeta. Usa la referencia más grande de la foto y haz zoom antes de marcar.",
+      "renderedNote": "Escenas de prueba renderizadas, no fotos de personas reales, por lo que la postura, el cabello y la distorsión de la lente no están incluidos."
     },
     "noTapeMethods": {
       "eyebrow": "Métodos alternativos",
@@ -2307,7 +2305,6 @@
     "clinicMethod": {
       "eyebrow": "Estándar clínico",
       "title": "Cómo Medir la Altura con Exactitud: El Método Clínico",
-      "description": "Adaptado de los protocolos oficiales de estadiómetro (directrices de los CDC) para obtener la máxima precisión física en casa.",
       "steps": [
         "Quítate el calzado, ropa voluminosa, gorros y adornos para el pelo, y deshaz peinados que añadan volumen en la coronilla.",
         "Sitúate sobre suelo firme (baldosas o madera, nunca moqueta) contra una pared lisa sin zócalo.",
@@ -2335,7 +2332,10 @@
           "desc": "La compresión de los discos vertebrales hace que midas hasta 1 cm más por la mañana que por la noche."
         }
       ],
-      "whyAloneFooter": "Hacerlo en solitario complica la tarea: mantenerse erguido, equilibrar el libro, marcar la pared y medir. Una foto con objeto de referencia elimina por completo la necesidad de un ayudante."
+      "whyAloneFooter": "Hacerlo en solitario complica la tarea: mantenerse erguido, equilibrar el libro, marcar la pared y medir. Una foto con objeto de referencia elimina por completo la necesidad de un ayudante.",
+      "cdcAttribution": "Adaptado de la guía de los CDC",
+      "cdcLink": "Measuring Children's Height and Weight",
+      "cdcSuffix": ", que funciona de la misma manera para adultos."
     },
     "faq": {
       "badge": "CENTRO DE AYUDA",

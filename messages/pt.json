@@ -2032,18 +2032,17 @@
     "hero": {
       "eyebrow": "Imagem para altura",
       "title": "Meça Sua Altura a Partir de uma Foto. ",
-      "titleAccent": "Sem Fita Métrica.",
       "description": "Envie uma foto de corpo inteiro com uma porta, uma folha A4 ou um cartão no enquadramento. Marque o objeto de referência, informe a medida real dele e trace uma linha do chão até o topo da cabeça. Obtenha sua altura em centímetros e em pés e polegadas com margem de 1 a 2 cm. Gratuito, sem cadastro, em qualquer aparelho.",
       "badgeFree": "Grátis",
       "badgeNoAccount": "Sem conta",
       "badgePrivate": "A foto não sai do seu aparelho",
       "badgeUnits": "Resultados em cm e ft/in",
-      "ctaUpload": "Enviar Foto e Medir Agora",
-      "accuracyNotice": "Precisão de 1 a 2 cm. 100% privado. Roda no navegador.",
-      "prepTitle": "Confira 3 detalhes antes de tirar a foto:",
       "prep1": "Corpo inteiro no enquadramento, da cabeça aos pés com o chão visível.",
       "prep2": "Encoste na mesma parede em que o objeto de referência está.",
-      "prep3": "Celular nivelado e em pé, aproximadamente na altura da cintura."
+      "prep3": "Celular nivelado e em pé, aproximadamente na altura da cintura.",
+      "toolTitle": "Medir altura a partir de uma foto",
+      "toolSubtitle": "Verifique três coisas antes de tirar a foto.",
+      "privacyLine": "Sua foto fica no seu dispositivo. A ferramenta roda no seu navegador e nunca faz upload dela."
     },
     "howItWorks": {
       "eyebrow": "Cinco toques, uma foto",
@@ -2076,7 +2075,8 @@
           "title": "Veja seu resultado e salve",
           "desc": "Sua altura surge em centímetros e em pés/polegadas. Clique em 'Salvar' para comparar com quem você quiser."
         }
-      ]
+      ],
+      "caption": "Capturas de tela da ferramenta ao vivo. A figura de teste mede 171,8 cm contra 172,0 cm reais."
     },
     "whatYouCanMeasure": {
       "eyebrow": "Além da sua própria altura",
@@ -2106,12 +2106,9 @@
         }
       ],
       "whyArTitle": "Por que uma foto em vez de um app de realidade aumentada (RA)?",
-      "why1Bold": "Mede o passado:",
-      "why1Desc": " Aplicativos de RA só medem o presente. Com uma foto, você consegue medir imagens antigas e registros de infância.",
-      "why2Bold": "Sem instalação:",
-      "why2Desc": " Roda direto no navegador em iOS, Android, Mac ou PC sem downloads ou cobranças.",
-      "why3Bold": "Privacidade total:",
-      "why3Desc": " Sua imagem fica segura no navegador do aparelho e nunca é enviada a servidores externos."
+      "why1": "Os apps de RA medem o que está à sua frente agora. Uma foto permite medir um momento que já passou, incluindo fotos antigas.",
+      "why2": "Funciona no navegador em qualquer celular, sem nada para instalar e sem assinatura.",
+      "why3": "Sua foto fica no seu dispositivo. A ferramenta nunca faz upload dela."
     },
     "referenceObjects": {
       "eyebrow": "Referência para calibragem",
@@ -2217,8 +2214,6 @@
           "error": "+35,6 cm"
         }
       ],
-      "pixelSensitivityBold": "Sensibilidade ao toque:",
-      "pixelSensitivityDesc": " Tocar fora do ponto acrescenta erro, e objetos pequenos ampliam isso. Na tela do celular, errar a borda por 1 pixel desloca o valor em 1 cm com uma porta, 7 cm com um A4 e 23 cm com um cartão. Escolha a maior referência e amplie antes de marcar.",
       "tips": [
         {
           "title": "Não incline a câmera",
@@ -2236,7 +2231,10 @@
           "title": "Corpo inteiro aparente",
           "desc": "Cortar pés ou cabeça inviabiliza o cálculo de chão a topo. Um enquadramento limpo da cabeça aos pés garante o melhor resultado."
         }
-      ]
+      ],
+      "tiltCaption": "Vista lateral acima, a foto resultante abaixo. As linhas tracejadas mostram o campo de visão da câmera, do chão até o topo da porta.",
+      "pixelSensitivity": "O toque impreciso adiciona seu próprio erro, e referências pequenas o amplificam. Na tela do celular, errar uma extremidade da referência por apenas um pixel altera um resultado de 172 cm em cerca de 1 cm com uma porta, 7 cm com uma folha A4 e 23 cm com um cartão. Use a maior referência na foto e amplie antes de marcar.",
+      "renderedNote": "Cenas de teste renderizadas, não fotos de pessoas reais, portanto postura, cabelo e distorção de lente não estão incluídos."
     },
     "noTapeMethods": {
       "eyebrow": "Métodos alternativos",
@@ -2291,7 +2289,6 @@
     "clinicMethod": {
       "eyebrow": "Padrão clínico",
       "title": "Como Medir a Altura com Precisão: O Método Clínico",
-      "description": "Adaptado das diretrizes médicas de estadiômetro (protocolos do CDC) para obter a maior exatidão física em casa.",
       "steps": [
         "Tire sapatos, roupas pesadas, bonés e adereços de cabelo, desmanchando coques ou penteados altos.",
         "Fique em piso rígido (cerâmica ou madeira, sem tapete) encostado em parede lisa e sem rodapé saliente.",
@@ -2319,7 +2316,10 @@
           "desc": "A compressão dos discos da coluna faz você perder até 1 cm de altura entre o início da manhã e a noite."
         }
       ],
-      "whyAloneFooter": "Fazer tudo sozinho é desajeitado: manter a postura, equilibrar o livro e marcar o traço. Uma foto com objeto de referência dispensa totalmente uma segunda pessoa."
+      "whyAloneFooter": "Fazer tudo sozinho é desajeitado: manter a postura, equilibrar o livro e marcar o traço. Uma foto com objeto de referência dispensa totalmente uma segunda pessoa.",
+      "cdcAttribution": "Adaptado do guia do CDC",
+      "cdcLink": "Measuring Children's Height and Weight",
+      "cdcSuffix": ", que funciona da mesma forma para adultos."
     },
     "faq": {
       "badge": "CENTRAL DE AJUDA",

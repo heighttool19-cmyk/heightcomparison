@@ -2070,18 +2070,17 @@
     "hero": {
       "eyebrow": "Zdjęcie na wzrost",
       "title": "Zmierz Swój Wzrost ze Zdjęcia. ",
-      "titleAccent": "Bez Użycia Centymetra.",
       "description": "Wgraj zdjęcie całej sylwetki z drzwiami, kartką A4 lub kartą płatniczą w kadrze. Wybierz obiekt odniesienia, podaj jego rzeczywisty wymiar i przeciągnij linię od podłogi do czubka głowy. Poznaj swój wzrost w centymetrach oraz stopach/calach z dokładnością do 1–2 cm. Bezpłatnie, bez konta, na każdym urządzeniu.",
       "badgeFree": "Za darmo",
       "badgeNoAccount": "Bez konta",
       "badgePrivate": "Zdjęcie nie opuszcza przeglądarki",
       "badgeUnits": "Wyniki w cm i ft/in",
-      "ctaUpload": "Wgraj zdjęcie i zmierz teraz",
-      "accuracyNotice": "Dokładność 1–2 cm. 100% prywatności. Przetwarzanie lokalne.",
-      "prepTitle": "Zwróć uwagę na 3 zasady przed zrobieniem zdjęcia:",
       "prep1": "Cała sylwetka w kadrze, od stóp do głowy wraz z widoczną podłogą.",
       "prep2": "Stój bezpośrednio przy tej samej ścianie, na której znajduje się obiekt referencyjny.",
-      "prep3": "Trzymaj telefon prosto i poziomo, mniej więcej na wysokości pasa."
+      "prep3": "Trzymaj telefon prosto i poziomo, mniej więcej na wysokości pasa.",
+      "toolTitle": "Zmierz wzrost ze zdjęcia",
+      "toolSubtitle": "Sprawdź trzy rzeczy przed zrobieniem zdjęcia.",
+      "privacyLine": "Twoje zdjęcie pozostaje na Twoim urządzeniu. Narzędzie działa w przeglądarce i nigdy go nie przesyła."
     },
     "howItWorks": {
       "eyebrow": "Pięć kliknięć, jedno zdjęcie",
@@ -2114,7 +2113,8 @@
           "title": "Odczytaj i zapisz wynik",
           "desc": "Twój wzrost pojawi się w centymetrach oraz stopach i calach. Kliknij 'Zapisz', aby zachować wynik i porównać go z innymi sylwetkami."
         }
-      ]
+      ],
+      "caption": "Zrzuty ekranu z działającego narzędzia. Figura testowa mierzy 171,8 cm wobec rzeczywistych 172,0 cm."
     },
     "whatYouCanMeasure": {
       "eyebrow": "Więcej niż tylko własny wzrost",
@@ -2144,12 +2144,9 @@
         }
       ],
       "whyArTitle": "Dlaczego zdjęcie zamiast aplikacji AR w telefonie?",
-      "why1Bold": "Pomiary starych zdjęć:",
-      "why1Desc": " Aplikacje AR mierzą tylko to, co masz przed sobą w tej chwili. Ze zdjęciem możesz zmierzyć kadry historyczne i albumy rodzinne.",
-      "why2Bold": "Bez instalacji programów:",
-      "why2Desc": " Działa bezpośrednio w przeglądarce na iOS, Androidzie, Macu i PC bez pobierania aplikacji.",
-      "why3Bold": "Prywatność i bezpieczeństwo:",
-      "why3Desc": " Zdjęcie pozostaje w pamięci podręcznej przeglądarki i nigdy nie jest wysyłane na żaden zewnętrzny serwer."
+      "why1": "Aplikacje AR mierzą tylko to, co znajduje się przed Tobą w tej chwili. Zdjęcie pozwala zmierzyć moment z przeszłości, w tym stare fotografie.",
+      "why2": "Działa w przeglądarce na każdym telefonie, bez konieczności instalacji i bez subskrypcji.",
+      "why3": "Twoje zdjęcie pozostaje na Twoim urządzeniu. Narzędzie nigdy go nie przesyła."
     },
     "referenceObjects": {
       "eyebrow": "Kalibracja",
@@ -2255,8 +2252,6 @@
           "error": "+35,6 cm"
         }
       ],
-      "pixelSensitivityBold": "Czułość zaznaczenia punktów:",
-      "pixelSensitivityDesc": " Niedokładne kliknięcie generuje błąd, szczególnie przy małych obiektach. Na ekranie chybienie o 1 piksel przesuwa wynik o 1 cm przy drzwiach, o 7 cm przy kartce A4 i aż o 23 cm przy karcie bankowej. Wybieraj jak największe obiekty i przybliżaj obraz przed kliknięciem.",
       "tips": [
         {
           "title": "Nie przechylaj telefonu",
@@ -2274,7 +2269,10 @@
           "title": "Widoczna cała postać",
           "desc": "Ucięcie stóp lub czubka głowy uniemożliwia wyznaczenie pełnej wysokości. Wyraźne ujęcie zapewnia najwyższą precyzję."
         }
-      ]
+      ],
+      "tiltCaption": "Widok z boku na górze, wynikowe zdjęcie poniżej. Przerywane linie pokazują pole widzenia kamery, od podłogi po górną krawędź drzwi.",
+      "pixelSensitivity": "Niedokładne dotknięcie wprowadza własny błąd, a małe punkty odniesienia go potęgują. Na ekranie telefonu pomylenie krawędzi odniesienia o jeden piksel przesuwa wynik 172 cm o około 1 cm przy drzwiach, 7 cm przy kartce A4 i 23 cm przy karcie. Używaj największego odniesienia na zdjęciu i przybliżaj przed zaznaczeniem.",
+      "renderedNote": "Wyrenderowane sceny testowe, a nie zdjęcia prawdziwych ludzi, więc postawa, fryzura i zniekształcenia obiektywu nie są uwzględnione."
     },
     "noTapeMethods": {
       "eyebrow": "Metody alternatywne",
@@ -2329,7 +2327,6 @@
     "clinicMethod": {
       "eyebrow": "Standard medyczny",
       "title": "Jak Zmierzyć Wzrost z Precyzją: Metoda Kliniczna",
-      "description": "Oparta na procedurach medycznych stadiometrii (wytyczne CDC) dla zachowania maksymalnej dokładności w domu.",
       "steps": [
         "Zdejmij buty, grube skarpety, czapki, opaski i rozpuść wysokie fryzury.",
         "Stań na płaskiej, twardej podłodze (panele lub płytki, bez dywanu) opierając się o gładką ścianę bez odstających listew.",
@@ -2357,7 +2354,10 @@
           "desc": "Dyski kręgosłupa ulegają kompresji w ciągu dnia, sprawiając, że wieczorem jesteśmy nawet o 1 cm niżsi niż rano."
         }
       ],
-      "whyAloneFooter": "Wykonywanie wszystkiego samemu jest niewygodne: utrzymanie pionu, trzymanie książki i zaznaczanie kreski. Zdjęcie z obiektem referencyjnym całkowicie rozwiązuje ten problem."
+      "whyAloneFooter": "Wykonywanie wszystkiego samemu jest niewygodne: utrzymanie pionu, trzymanie książki i zaznaczanie kreski. Zdjęcie z obiektem referencyjnym całkowicie rozwiązuje ten problem.",
+      "cdcAttribution": "Opracowano na podstawie wytycznych CDC",
+      "cdcLink": "Measuring Children's Height and Weight",
+      "cdcSuffix": ", które działają dokładnie tak samo w przypadku dorosłych."
     },
     "faq": {
       "badge": "CENTRUM POMOCY",

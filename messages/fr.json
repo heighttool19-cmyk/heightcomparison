@@ -2042,18 +2042,17 @@
     "hero": {
       "eyebrow": "Image vers taille",
       "title": "Mesurez Votre Taille à Partir d'une Photo. ",
-      "titleAccent": "Sans Mètre Ruban.",
       "description": "Importez une photo de plain-pied avec une porte, une feuille A4 ou une carte bancaire visible. Pointez l'objet de référence, indiquez sa taille réelle et tracez une ligne du sol au sommet du crâne. Obtenez votre taille en centimètres et en pieds/pouces avec une précision de 1 à 2 cm. Gratuit, sans inscription, sur tout appareil.",
       "badgeFree": "Gratuit",
       "badgeNoAccount": "Sans compte",
       "badgePrivate": "La photo reste sur votre appareil",
       "badgeUnits": "Résultats en cm et ft/in",
-      "ctaUpload": "Importer une Photo et Mesurer",
-      "accuracyNotice": "Précision de 1 à 2 cm. 100 % privé. S'exécute dans votre navigateur.",
-      "prepTitle": "Vérifiez 3 points avant de prendre la photo :",
       "prep1": "Corps entier dans le cadre, de la tête aux pieds avec le sol visible.",
       "prep2": "Tenez-vous contre le même mur que l'objet de référence.",
-      "prep3": "Smartphone tenu droit et à niveau, environ à hauteur de taille."
+      "prep3": "Smartphone tenu droit et à niveau, environ à hauteur de taille.",
+      "toolTitle": "Mesurer sa taille à partir d'une photo",
+      "toolSubtitle": "Vérifiez trois éléments avant de prendre la photo.",
+      "privacyLine": "Votre photo reste sur votre appareil. L'outil fonctionne dans votre navigateur et ne la télécharge jamais."
     },
     "howItWorks": {
       "eyebrow": "Cinq clics, une photo",
@@ -2086,7 +2085,8 @@
           "title": "Lisez votre résultat et enregistrez",
           "desc": "Votre taille apparaît en centimètres et en pieds/pouces. Cliquez sur 'Enregistrer' pour la comparer à vos proches ou athlètes favoris."
         }
-      ]
+      ],
+      "caption": "Captures d'écran de l'outil en direct. La figurine de test mesure 171,8 cm contre 172,0 cm réels."
     },
     "whatYouCanMeasure": {
       "eyebrow": "Au-delà de votre propre taille",
@@ -2116,12 +2116,9 @@
         }
       ],
       "whyArTitle": "Pourquoi une photo plutôt qu'une application de réalité augmentée (RA) ?",
-      "why1Bold": "Mesure le passé :",
-      "why1Desc": " Les applications de RA mesurent uniquement l'instant présent. Une photo permet de mesurer des clichés historiques et des souvenirs d'archives.",
-      "why2Bold": "Sans installation :",
-      "why2Desc": " Fonctionne nativement dans tout navigateur moderne sur iOS, Android, Mac ou PC sans application à télécharger.",
-      "why3Bold": "Vie privée garantie :",
-      "why3Desc": " Votre photo reste dans l'environnement local de votre navigateur et n'est jamais envoyée vers un serveur distant."
+      "why1": "Les applications de RA mesurent ce qui se trouve devant vous en ce moment. Une photo permet de mesurer un moment passé, y compris sur de vieilles images.",
+      "why2": "Fonctionne dans le navigateur sur n'importe quel téléphone, sans rien à installer et sans abonnement.",
+      "why3": "Votre photo reste sur votre appareil. L'outil ne la télécharge jamais."
     },
     "referenceObjects": {
       "eyebrow": "Référence d'étalonnage",
@@ -2227,8 +2224,6 @@
           "error": "+35,6 cm"
         }
       ],
-      "pixelSensitivityBold": "Sensibilité au pixel :",
-      "pixelSensitivityDesc": " Imprécision au clic : sur écran mobile, rater un bord d'un seul pixel déplace la mesure de 1 cm avec une porte, 7 cm avec un A4 et 23 cm avec une carte. Préférez la plus grande référence et zoomez avant de pointer.",
       "tips": [
         {
           "title": "Évitez d'incliner l'appareil",
@@ -2246,7 +2241,10 @@
           "title": "Corps entier visible",
           "desc": "Couper les pieds ou le haut de la tête empêche une mesure précise. Un cadrage net des pieds à la tête donne le résultat le plus fiable."
         }
-      ]
+      ],
+      "tiltCaption": "Vue latérale en haut, photo résultante en bas. Les lignes pointillées montrent ce que voit la caméra, du sol au haut de la porte.",
+      "pixelSensitivity": "Toucher l'écran ajoute sa propre imprécision, et les petites références l'amplifient. Sur un écran de smartphone, rater une extrémité de la référence d'un seul pixel déplace un résultat de 172 cm d'environ 1 cm avec une porte, 7 cm avec une feuille A4 et 23 cm avec une carte. Utilisez la plus grande référence sur la photo et zoomez avant de toucher.",
+      "renderedNote": "Scènes de test modélisées, pas des photos de personnes réelles, donc la posture, les cheveux et la distorsion de l'objectif ne sont pas inclus."
     },
     "noTapeMethods": {
       "eyebrow": "Méthodes alternatives",
@@ -2301,7 +2299,6 @@
     "clinicMethod": {
       "eyebrow": "Protocole médical",
       "title": "Comment Mesurer sa Taille Précisément : La Méthode Clinique",
-      "description": "Adapté des protocoles médicaux de toise stadiométrique (directives CDC) pour une précision physique maximale à domicile.",
       "steps": [
         "Retirez chaussures, vêtements épais, chapeaux et accessoires, et défaites les coiffures hautes.",
         "Tenez-vous sur un sol dur (carrelage ou parquet, pas de moquette) contre un mur droit sans plinthe saillante.",
@@ -2329,7 +2326,10 @@
           "desc": "La compression des disques vertébraux fait perdre jusqu'à 1 cm de taille entre le matin et le soir."
         }
       ],
-      "whyAloneFooter": "Se mesurer seul complique tout : rester droit, tenir un livre d'équerre, marquer et mesurer en même temps. Une photo avec un objet de référence évite d'avoir besoin d'une seconde personne."
+      "whyAloneFooter": "Se mesurer seul complique tout : rester droit, tenir un livre d'équerre, marquer et mesurer en même temps. Une photo avec un objet de référence évite d'avoir besoin d'une seconde personne.",
+      "cdcAttribution": "Adapté du guide des CDC",
+      "cdcLink": "Measuring Children's Height and Weight",
+      "cdcSuffix": ", qui s'applique exactement de la même manière pour les adultes."
     },
     "faq": {
       "badge": "CENTRE D'AIDE",
