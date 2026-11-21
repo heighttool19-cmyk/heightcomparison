@@ -100,6 +100,10 @@ export default function LanguageSwitcher() {
   const currentLanguage =
     LANGUAGES.find((lang) => lang.code === currentLocale) || LANGUAGES[0];
 
+  if (LANGUAGES.length <= 1) {
+    return null;
+  }
+
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
       {/* Trigger Button */}

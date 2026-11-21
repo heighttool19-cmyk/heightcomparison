@@ -14,7 +14,7 @@ export interface AppLocale {
   dir: 'ltr' | 'rtl';
 }
 
-export const SUPPORTED_LOCALES: AppLocale[] = [
+export const ALL_SUPPORTED_LOCALES: AppLocale[] = [
   { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸', dateLocale: 'en-US', dir: 'ltr' },
   { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪', dateLocale: 'de-DE', dir: 'ltr' },
   { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸', dateLocale: 'es-ES', dir: 'ltr' },
@@ -26,6 +26,21 @@ export const SUPPORTED_LOCALES: AppLocale[] = [
   { code: 'sv', name: 'Swedish', nativeName: 'Svenska', flag: '🇸🇪', dateLocale: 'sv-SE', dir: 'ltr' },
   { code: 'pl', name: 'Polish', nativeName: 'Polski', flag: '🇵🇱', dateLocale: 'pl-PL', dir: 'ltr' },
 ];
+
+/**
+ * Staged Language Rollout Configuration
+ * 
+ * Control which languages are published live to users and search engines.
+ * To enable a language, simply add its code to this list:
+ * - English only: ['en']
+ * - English + German: ['en', 'de']
+ * - English + German + Spanish: ['en', 'de', 'es']
+ */
+export const PUBLISHED_LOCALES: string[] = ['en'];
+
+export const SUPPORTED_LOCALES: AppLocale[] = ALL_SUPPORTED_LOCALES.filter((loc) =>
+  PUBLISHED_LOCALES.includes(loc.code)
+);
 
 export const ALL_LOCALE_CODES = SUPPORTED_LOCALES.map((l) => l.code);
 export const DEFAULT_LOCALE = 'en';

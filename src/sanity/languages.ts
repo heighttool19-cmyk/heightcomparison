@@ -6,7 +6,7 @@
  * The Sanity schema and translation actions will automatically adapt!
  */
 
-import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from '@/i18n/config';
+import { ALL_SUPPORTED_LOCALES, DEFAULT_LOCALE } from '@/i18n/config';
 
 export interface TranslationLanguage {
   id: string;          // ISO-639-1 code used in URLs and Sanity fields (e.g. 'de', 'es', 'fr')
@@ -15,7 +15,7 @@ export interface TranslationLanguage {
   flag: string;        // Flag emoji for editor visual clarity
 }
 
-export const TARGET_LANGUAGES: TranslationLanguage[] = SUPPORTED_LOCALES
+export const TARGET_LANGUAGES: TranslationLanguage[] = ALL_SUPPORTED_LOCALES
   .filter((l) => l.code !== DEFAULT_LOCALE)
   .map((l) => ({
     id: l.code,
