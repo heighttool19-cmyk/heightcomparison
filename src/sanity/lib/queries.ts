@@ -69,6 +69,39 @@ export const allPostsQuery = groq`
 `;
 
 /**
+ * Fetch a paginated slice of posts with their essential metadata.
+ */
+export const paginatedPostsQuery = groq`
+  *[_type == "post"] | order(publishedAt desc) [$startIndex...$endIndex] {
+    _id,
+    "title": coalesce(translations[$locale].title, title),
+    slug,
+    publishedAt,
+    "excerpt": coalesce(translations[$locale].excerpt, excerpt),
+    mainImage {
+      ...,
+      asset-> { _ref, url }
+    },
+    author-> {
+      name,
+      role,
+      image {
+        ...,
+        asset-> { _ref, url }
+      }
+    },
+    customSchema
+  }
+`;
+
+/**
+ * Total count of published posts for pagination.
+ */
+export const totalPostsCountQuery = groq`
+  count(*[_type == "post"])
+`;
+
+/**
  * Fetch all post slugs — used for generateStaticParams().
  */
 export const allPostSlugsQuery = groq`

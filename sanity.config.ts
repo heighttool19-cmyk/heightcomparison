@@ -2,6 +2,7 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { schemaTypes } from './src/sanity/schemas'
 import { autoTranslateActions } from './src/sanity/actions/autoTranslateAction'
+import { DeletePostAction } from './src/sanity/actions/deletePostAction'
 
 export default defineConfig({
     name: 'height-comparison-blog-studio',
@@ -21,9 +22,9 @@ export default defineConfig({
     document: {
         actions: (prev, context) => {
             if (context.schemaType === 'post') {
-                return [...prev, ...autoTranslateActions]
+                return [...prev.filter((a) => a.action !== 'delete'), DeletePostAction, ...autoTranslateActions];
             }
-            return prev
+            return prev;
         },
     },
 })
